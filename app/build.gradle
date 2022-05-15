@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId "kr.hs.dgsw.smartschool.dodamdodam"
         minSdk 23
-        targetSdk 32
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
