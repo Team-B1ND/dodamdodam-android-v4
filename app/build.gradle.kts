@@ -1,11 +1,12 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("kotlin-kapt")
 }
 
 android {
-    compileSdk = Versions.COMPILE_SDK_VERSION
 
+    compileSdk = 27
     defaultConfig {
         applicationId = "kr.hs.dgsw.smartschool.dodamdodam"
         minSdk = Versions.MIN_SDK_VERSION
@@ -26,6 +27,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -36,6 +38,7 @@ dependencies {
     implementation(AndroidX.APP_COMPAT)
     implementation(Google.MATERIAL)
     implementation(AndroidX.CONSTRAINT_LAYOUT)
+    implementation("androidx.appcompat:appcompat:1.4.1")
     testImplementation(UnitTest.JUNIT)
     androidTestImplementation(AndroidTest.ANDROID_JUNIT)
     androidTestImplementation(AndroidTest.ESPRESSO_CORE)

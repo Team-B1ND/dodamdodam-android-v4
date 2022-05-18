@@ -1,2 +1,2 @@
 rootProject.name = "DodamDodam"
-include (":app")
+include(":app")
