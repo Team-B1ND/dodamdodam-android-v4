@@ -1,6 +1,7 @@
 object Kotlin {
     const val COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.KOTLINX_COROUTINES}"
     const val COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.KOTLINX_COROUTINES}"
+    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN}"
 }
 
 object AndroidX {
@@ -48,8 +49,7 @@ object AndroidTest {
     const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE}"
 }
 
-object M1 {
-    const val SQLITE_JDBC = "org.xerial:sqlite-jdbc:${Versions.M1_JDBC}"
+object Android {
+    const val ANDROID_BUILD_TOOL = "com.android.tools.build:gradle:${Versions.ANDROID_BUILD_TOOL}"
 }
-
 

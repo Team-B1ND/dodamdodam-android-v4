@@ -1,12 +1,12 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-kapt")
+    id(Plugins.androidApplication)
+    id(Plugins.kotlinAndroid)
+    id(Plugins.kotlinKapt)
 }
 
 android {
 
-    compileSdk = 31
+    compileSdk = Versions.COMPILE_SDK_VERSION
     defaultConfig {
         applicationId = "kr.hs.dgsw.smartschool.dodamdodam"
         minSdk = Versions.MIN_SDK_VERSION
@@ -29,7 +29,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = Versions.JVM_TARGET
     }
 }
 

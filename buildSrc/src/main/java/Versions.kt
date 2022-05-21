@@ -7,6 +7,7 @@ object Versions {
     const val TARGET_SDK_VERSION = 31
     const val VERSION_CODE = 1
     const val VERSION_NAME = "1.0"
+    const val JVM_TARGET = "1.8"
 
     const val CORE_KTX = "1.7.0"
     const val APP_COMPAT = "1.4.1"
@@ -33,4 +34,6 @@ object Versions {
     const val M1_JDBC = "3.36.0"
 
     const val GLIDE = "4.13.0"
+    const val ANDROID_BUILD_TOOL = "7.1.3"
+    const val KOTLIN = "1.5.21"
 }
