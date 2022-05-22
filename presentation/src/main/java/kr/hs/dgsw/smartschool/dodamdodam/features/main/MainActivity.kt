@@ -1,7 +1,8 @@
-package kr.hs.dgsw.smartschool.dodamdodam
+package kr.hs.dgsw.smartschool.dodamdodam.features.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kr.hs.dgsw.smartschool.dodamdodam.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
