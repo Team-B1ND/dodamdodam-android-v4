@@ -1,12 +1,13 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.main
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import kr.hs.dgsw.smartschool.dodamdodam.R
+import androidx.activity.viewModels
+import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
+import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
+    override val viewModel: MainViewModel by viewModels()
+
+    override fun observerViewModel() {
+
     }
 }
