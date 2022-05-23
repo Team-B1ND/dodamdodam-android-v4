@@ -36,4 +36,6 @@ object Versions {
     const val GLIDE = "4.13.0"
     const val ANDROID_BUILD_TOOL = "7.1.3"
     const val KOTLIN = "1.5.21"
+
+    const val NAVIGATION = "2.4.2"
 }
