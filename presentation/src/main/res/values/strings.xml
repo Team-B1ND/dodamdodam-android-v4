@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">DodamDodam</string>
+    <string name="nav_home">홈</string>
+    <string name="nav_news">소식</string>
+    <string name="nav_song">기상송</string>
+    <string name="nav_profile">프로필</string>
 </resources>

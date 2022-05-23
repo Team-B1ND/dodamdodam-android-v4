@@ -65,7 +65,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
         val name = StringBuilder()
 
         for (i in split.indices) {
-            name.append(split[i].toLowerCase(Locale.ROOT))
+            name.append(split[i].lowercase(Locale.ROOT))
             if (i != split.size - 1)
                 name.append("_")
         }

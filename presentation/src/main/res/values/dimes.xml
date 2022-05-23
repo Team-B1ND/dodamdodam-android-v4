@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="title1">25sp</dimen>
+    <dimen name="title2">20sp</dimen>
+    <dimen name="title3">18sp</dimen>
+    <dimen name="title4">16sp</dimen>
+    <dimen name="title5">14sp</dimen>
+    <dimen name="title6">12sp</dimen>
+</resources>
