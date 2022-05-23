@@ -18,7 +18,6 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
 
     protected lateinit var mBinding: VB
     protected lateinit var mViewModel: VM
-
     protected abstract val viewModel: VM
 
     protected abstract fun observerViewModel()

@@ -10,7 +10,7 @@
         android:icon="@drawable/selecter_speaker"
         android:title="@string/nav_news" />
 
-    <item android:id="@+id/main_wakeup_song"
+    <item android:id="@+id/main_song"
         android:icon="@drawable/selecter_song"
         android:title="@string/nav_song" />
 

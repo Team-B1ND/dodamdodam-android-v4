@@ -16,5 +16,7 @@
     <color name="color_white">#FFFFFF</color>
     <color name="color_black">#000000</color>
 
-    <color name="gray">#999999</color>
+    <color name="gray200">#CACACA</color>
+    <color name="gray500">#999999</color>
+    <color name="gray700">#6A6A6A</color>
 </resources>
