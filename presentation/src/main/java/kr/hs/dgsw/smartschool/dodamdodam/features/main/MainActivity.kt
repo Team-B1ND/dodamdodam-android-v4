@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.main
 
 import androidx.activity.viewModels
+import androidx.core.view.isInvisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import kr.hs.dgsw.smartschool.dodamdodam.R
@@ -20,5 +21,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         val navController = navHostFragment.navController
         mBinding.mainBottomNav
             .setupWithNavController(navController)
+    }
+
+    fun setNavVisible(demand: Boolean) {
+        mBinding.mainBottomNav.isInvisible = demand
+    }
+
+    fun setActionBarVisible(demand: Boolean) {
+        mBinding.actionBar.isInvisible = demand
     }
 }
