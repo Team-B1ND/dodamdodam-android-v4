@@ -4,4 +4,8 @@
     <string name="nav_news">소식</string>
     <string name="nav_song">기상송</string>
     <string name="nav_profile">프로필</string>
+    <string name="home_meal">오늘의 급식</string>
+    <string name="project_name">도담도담</string>
+    <string name="meal_dummy">*기장밥 , 김치어묵국 , *명태껍질볶음 , 새송이돈육마늘구이 , *짜먹는요거트 , *꽃상추쌈/쌈장</string>
+    <string name="meal_name_dummy">조식</string>
 </resources>

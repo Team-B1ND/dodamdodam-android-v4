@@ -19,4 +19,8 @@
     <color name="gray200">#CACACA</color>
     <color name="gray500">#999999</color>
     <color name="gray700">#6A6A6A</color>
+
+    <color name="colorBreakfast">#FCA800</color>
+    <color name="colorLunch">#3DBDE5</color>
+    <color name="colorDinner">#A252E1</color>
 </resources>
