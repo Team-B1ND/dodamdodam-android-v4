@@ -14,7 +14,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_meal"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="7dp"
             android:layout_margin="15dp"
@@ -32,7 +32,7 @@
                     android:id="@+id/iv_today_song"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="2.5"
+                    android:layout_weight="3"
                     android:scaleType="centerCrop"
                     android:src="@drawable/default_img" />
 
@@ -48,7 +48,7 @@
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/title4"
+                    android:textSize="@dimen/title5"
                     android:src="@drawable/default_img" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
