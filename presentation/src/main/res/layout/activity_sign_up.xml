@@ -33,10 +33,79 @@ xmlns:tools="http://schemas.android.com/tools">
                 android:id="@+id/image_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:src=""
+                android:src="@drawable/image_sign_up"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_name"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="1dp"
+                app:boxStrokeErrorColor="#FF0000"
+                app:counterEnabled="true"
+                app:counterMaxLength="15"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:helperText="본명을 입력해주세요"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_sign_up">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableStart="@drawable/selecter_ic_id"
+                    android:drawablePadding="10dp"
+                    android:inputType="text"
+                    android:maxLength="15"
+                    android:text="@={vm.name}"
+                    android:hint="이름"
+                    android:textColorHint="#999999" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_school_num"
+                android:layout_width="350dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="50dp"
+                android:weightSum="3"
+                android:background="@drawable/bg_edittext"
+                app:layout_constraintStart_toStartOf="@id/layout_name"
+                app:layout_constraintTop_toBottomOf="@id/layout_name">
+
+                <Spinner
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/grade_spinner"
+                    android:spinnerMode="dialog"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+                <Spinner
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/class_num_spinner"
+                    android:spinnerMode="dialog"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/grade_spinner"
+                    android:layout_marginStart="10dp"/>
+                <Spinner
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                    android:layout_width="110dp"
+                    app:layout_constraintHorizontal_weight="1"
+                    android:layout_height="match_parent"
+                    android:id="@+id/stu_num_spinner"
+                    android:spinnerMode="dialog"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/class_num_spinner"
+                    android:layout_marginStart="10dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_id"
@@ -44,17 +113,16 @@ xmlns:tools="http://schemas.android.com/tools">
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginEnd="1dp"
-                android:hint="닉네임"
                 app:boxStrokeErrorColor="#FF0000"
                 app:counterEnabled="true"
                 app:counterMaxLength="15"
                 app:endIconMode="clear_text"
                 app:errorEnabled="true"
-                app:helperText="닉네임으로 보여집니다"
+                app:helperText="영문과 숫자만 이용 가능합니다"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image_sign_up">
+                app:layout_constraintTop_toBottomOf="@id/layout_school_num">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edittext_id"
@@ -65,6 +133,7 @@ xmlns:tools="http://schemas.android.com/tools">
                     android:inputType="text"
                     android:maxLength="15"
                     android:text="@={vm.id}"
+                    android:hint="아이디"
                     android:textColorHint="#999999" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +143,6 @@ xmlns:tools="http://schemas.android.com/tools">
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:hint="비밀번호"
                 app:helperText="영문과 숫자, 특수문자(!@#$%^&amp;+=)를 사용하세요"
                 app:counterEnabled="true"
                 app:counterMaxLength="15"
@@ -86,6 +154,7 @@ xmlns:tools="http://schemas.android.com/tools">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edittext_password"
                     android:layout_width="match_parent"
+                    android:hint="비밀번호"
                     android:layout_height="match_parent"
                     android:drawableStart="@drawable/selecter_ic_password"
                     android:drawablePadding="10dp"
@@ -101,15 +170,14 @@ xmlns:tools="http://schemas.android.com/tools">
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:hint="이메일"
-                app:helperText="사용하는 이메일을 입력해주세요"
-                app:endIconMode="clear_text"
-                app:errorEnabled="true"
                 app:counterEnabled="true"
                 app:counterMaxLength="30"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:helperText="사용하는 이메일을 입력해주세요"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_password">
+                app:layout_constraintTop_toBottomOf="@+id/layout_phone">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edittext_email"
@@ -118,6 +186,7 @@ xmlns:tools="http://schemas.android.com/tools">
                     android:drawableStart="@drawable/selecter_ic_email"
                     android:drawablePadding="10dp"
                     android:inputType="text"
+                    android:hint="이메일"
                     android:text="@={vm.email}"
                     android:textColorHint="#999999" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -140,30 +209,34 @@ xmlns:tools="http://schemas.android.com/tools">
             </LinearLayout>
 
 
-            <!--<com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_year"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_phone"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="100dp"
+                android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="30dp"
-                android:hint="기수"
-                app:suffixText=" 기"
+                android:layout_marginTop="50dp"
+                app:boxStrokeErrorColor="#FF0000"
                 app:counterEnabled="true"
+                app:counterMaxLength="15"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:helperText="휴대폰 번호를 입력하세요"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/layout_id"
-                app:layout_constraintTop_toBottomOf="@+id/image_sign_up">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_password">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edittext_year"
+                    android:id="@+id/edittext_phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:drawableStart="@drawable/selecter_ic_phone_num"
+                    android:drawablePadding="10dp"
                     android:inputType="number"
-                    android:maxLength="1"
-                    android:text="@={vm.year}"
+                    android:hint="전화번호"
+                    android:maxLength="15"
+                    android:text="@={vm.phone}"
                     android:textColorHint="#999999" />
-            </com.google.android.material.textfield.TextInputLayout>-->
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_sign_up"
@@ -201,7 +274,7 @@ xmlns:tools="http://schemas.android.com/tools">
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:onClick="@{()->vm.toLogin()}"
-                    android:text="    LOG IN"
+                    android:text="    로그인"
                     android:textColor="#55AAFF" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,9 @@ data class SignUpRequest(
     val name: String,
     val phone: String,
     val email:String,
-    val accountType:String,
-    val additionalInfo: SensorAdditionalInfo
+    val generation: Int,
+    val role:String,
+    val grade: Int,
+    val classNum: Int,
+    val stuNum : Int
 )

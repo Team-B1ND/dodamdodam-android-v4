@@ -3,13 +3,20 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.sign.signUp
 import android.content.Intent
 import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
+import kr.hs.dgsw.smartschool.domain.request.SignUpRequest
 import kr.hs.dgsw.smartschool.domain.usecase.SignUpUseCase
+import kr.hs.dgsw.smartschool.domain.util.Resource
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import java.util.*
 import java.util.regex.Pattern
 import javax.inject.Inject
 
@@ -19,8 +26,15 @@ class SignUpViewModel @Inject constructor(
 ) : BaseViewModel() {
     val id = MutableLiveData<String>()
     val password = MutableLiveData<String>()
+    val name = MutableLiveData<String>()
     val email = MutableLiveData<String>()
+    val phone = MutableLiveData<String>()
     val generation = MutableLiveData<String>()
+    val role = MutableLiveData<String>()
+    val grade = MutableLiveData<String>()
+    val classNum = MutableLiveData<String>()
+    val stuNum = MutableLiveData<String>()
+
 
 
     private val _state = MutableStateFlow<SignUpState>(SignUpState(isLoading = false))
@@ -35,11 +49,17 @@ class SignUpViewModel @Inject constructor(
 
     fun onClickSignUp() {
         if (checkError()) {
-            /*val signUpRequest = SignUpRequest(
+            val signUpRequest = SignUpRequest(
                 id = id.value ?: "",
                 pw = getHash(password.value!!),
                 generation = generation.value?.toInt() ?: 0,
-                email = email.value ?: ""
+                email = email.value ?: "",
+                name = name.value ?: "",
+                phone = phone.value ?: "",
+                grade = grade.value?.toInt() ?: -1,
+                classNum = classNum.value?.toInt() ?: -1,
+                stuNum = stuNum.value?.toInt() ?: -1,
+                role = "student"
             )
 
             signUpUseCase(signUpRequest).onEach { result ->
@@ -54,7 +74,7 @@ class SignUpViewModel @Inject constructor(
                         _state.value = SignUpState(error = "회원가입에 실패했습니다.")
                     }
                 }
-            }.launchIn(viewModelScope)*/
+            }.launchIn(viewModelScope)
         }
     }
 
