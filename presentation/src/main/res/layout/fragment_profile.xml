@@ -24,108 +24,102 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/iv_profile"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:elevation="6dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/default_user"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
 
-                <LinearLayout
-                    android:id="@+id/linear_info"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="15dp"
-                    android:elevation="12dp"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="@+id/card_info_base"
-                    app:layout_constraintEnd_toEndOf="@+id/card_info_base"
-                    app:layout_constraintStart_toEndOf="@+id/iv_profile"
-                    app:layout_constraintTop_toTopOf="@+id/card_info_base">
-
-                    <TextView
-                        android:id="@+id/tv_generation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="기수"
-                        android:textColor="#BFBFBF"
-                        android:textSize="@dimen/title6" />
-
-                    <TextView
-                        android:id="@+id/tv_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="닉네임"
-                        android:ellipsize="end"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/title4" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:text="이메일"
-                        android:textColor="#BFBFBF"
-                        android:textSize="@dimen/title6" />
-
-                    <TextView
-                        android:id="@+id/tv_email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="이메일"
-                        tools:text="oooo1234@gmail.com"
-                        android:ellipsize="end"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/title4" />
-
-                </LinearLayout>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_info_base"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_marginStart="50dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="50dp"
                     android:layout_marginEnd="20dp"
                     app:cardCornerRadius="30dp"
                     app:cardElevation="5dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent" >
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:elevation="10dp"
-                    android:layout_margin="15dp"
-                    app:layout_constraintTop_toTopOf="@id/card_info_base"
-                    app:layout_constraintEnd_toEndOf="@id/card_info_base"
-                    android:orientation="vertical">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/btn_go_info_update"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/ic_btn_modify"
-                        app:tint="@color/color_black" />
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_profile"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginStart="30dp"
+                            android:elevation="6dp"
+                            android:src="@drawable/default_user"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/modify"
-                        android:textColor="#BFBFBF"
-                        android:layout_gravity="center_horizontal"
-                        android:textSize="@dimen/title6" />
+                        <ImageView
+                            android:id="@+id/btn_go_info_update"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center_horizontal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_margin="15dp"
+                            android:src="@drawable/ic_btn_modify"
+                            app:tint="@color/color_black" />
 
-                </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/linear_info"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="15dp"
+                            android:elevation="12dp"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/iv_profile"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent">
+
+                            <TextView
+                                android:id="@+id/tv_generation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="기수"
+                                android:textColor="#BFBFBF"
+                                android:textSize="@dimen/title6" />
+
+                            <TextView
+                                android:id="@+id/tv_id"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="닉네임"
+                                android:ellipsize="end"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/title4" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="이메일"
+                                android:textColor="#BFBFBF"
+                                android:textSize="@dimen/title6" />
+
+                            <TextView
+                                android:id="@+id/tv_email"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="이메일"
+                                tools:text="oooo1234@gmail.com"
+                                android:ellipsize="end"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/title4" />
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraint_my_sit_container"
@@ -163,7 +157,6 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
-
 
 
 

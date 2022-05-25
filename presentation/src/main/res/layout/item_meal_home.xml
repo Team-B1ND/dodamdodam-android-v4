@@ -14,7 +14,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_meal"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="170dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="7dp"
             android:layout_margin="15dp"
