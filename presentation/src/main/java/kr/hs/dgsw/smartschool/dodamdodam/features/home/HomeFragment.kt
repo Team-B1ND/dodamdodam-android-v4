@@ -14,6 +14,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override val viewModel: HomeViewModel by viewModels()
 
     override fun observerViewModel() {
+        setUpTodayMeal()
+    }
+
+    private fun setUpTodayMeal() {
         val mealHomeAdapter = MealHomeAdapter()
         mBinding.viewPagerMealList.adapter = mealHomeAdapter
         mBinding.viewPagerMealList.offscreenPageLimit = 3
@@ -26,10 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             var v = 1 - Math.abs(fl)
             view.scaleY = 0.8f + v * 0.2f
         }
-
         mBinding.viewPagerMealList.setPageTransformer(transform)
-
-
         mealHomeAdapter.submitList(
             listOf(
                 MealInfo(1, "쇠고기버섯죽 , *크로크무슈 , 나박물김치 , *오레오오즈레드+우유 , 바나나"),
@@ -38,5 +39,4 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             )
         )
     }
-
 }

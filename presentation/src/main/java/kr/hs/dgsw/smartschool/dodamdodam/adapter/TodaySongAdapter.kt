@@ -16,7 +16,7 @@ class TodaySongAdapter : ListAdapter<Song, TodaySongAdapter.TodaySongViewHolder>
     class TodaySongViewHolder(val binding: ItemTodaySongBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Song) {
             binding.tvTodaySong.text = item.songTitle
-            
+
             Glide.with(binding.root)
                 .load(item.songImage)
                 .error(R.drawable.default_img)
