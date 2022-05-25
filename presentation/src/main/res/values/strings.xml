@@ -8,4 +8,5 @@
     <string name="project_name">도담도담</string>
     <string name="meal_dummy">*기장밥 , 김치어묵국 , *명태껍질볶음 , 새송이돈육마늘구이 , *짜먹는요거트 , *꽃상추쌈/쌈장</string>
     <string name="meal_name_dummy">조식</string>
+    <string name="today_song">오늘의 노래</string>
 </resources>
