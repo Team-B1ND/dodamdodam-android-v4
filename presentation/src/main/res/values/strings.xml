@@ -13,4 +13,6 @@
     <string name="my">My</string>
     <string name="fab_content_desc">add wake up song</string>
     <string name="add_wakeup_song">기상송 추가</string>
+    <string name="sit_application">자습실 신청</string>
+    <string name="modify">수정</string>
 </resources>
