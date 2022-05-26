@@ -21,6 +21,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         val navController = navHostFragment.navController
         mBinding.mainBottomNav
             .setupWithNavController(navController)
+
     }
 
     fun setNavVisible(demand: Boolean) {
@@ -29,5 +30,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     fun setActionBarVisible(demand: Boolean) {
         mBinding.actionBar.isInvisible = demand
+    }
+
+    fun moveHomeToSong() {
+        mBinding.mainBottomNav.selectedItemId = R.id.main_song
     }
 }

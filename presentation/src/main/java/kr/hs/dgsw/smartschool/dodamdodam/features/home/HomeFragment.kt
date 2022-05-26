@@ -2,13 +2,17 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.home
 
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
+import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealHomeAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.StudyRoomAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.TodaySongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentHomeBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.SongFragment
 import kr.hs.dgsw.smartschool.domain.model.location.Location
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
 import kr.hs.dgsw.smartschool.domain.model.song.Song
@@ -20,6 +24,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         setUpTodayMeal()
         setUpStudyRoom()
         setUpTodaySong()
+        bindViews()
     }
 
     private fun setUpTodayMeal() {
@@ -27,15 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         mBinding.viewPagerMealList.adapter = mealHomeAdapter
         mBinding.viewPagerMealList.offscreenPageLimit = 3
         mBinding.viewPagerMealList.setPadding(90, 0, 90, 0)
-
-        val transform = CompositePageTransformer()
-        transform.addTransformer(MarginPageTransformer(10))
-
-        transform.addTransformer { view: View, fl: Float ->
-            val v = 1 - Math.abs(fl)
-            view.scaleY = 0.8f + v * 0.2f
-        }
-        mBinding.viewPagerMealList.setPageTransformer(transform)
+        mBinding.viewPagerMealList.setPageTransformer(getTransform())
         mealHomeAdapter.submitList(
             listOf(
                 MealInfo(1, "쇠고기버섯죽 , *크로크무슈 , 나박물김치 , *오레오오즈레드+우유 , 바나나"),
@@ -50,15 +47,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         mBinding.viewPagerTodaySong.adapter = todaySongAdapter
         mBinding.viewPagerTodaySong.offscreenPageLimit = 3
         mBinding.viewPagerTodaySong.setPadding(90, 0, 90, 0)
-
-        val transform = CompositePageTransformer()
-        transform.addTransformer(MarginPageTransformer(10))
-
-        transform.addTransformer { view: View, fl: Float ->
-            val v = 1 - Math.abs(fl)
-            view.scaleY = 0.8f + v * 0.2f
-        }
-        mBinding.viewPagerTodaySong.setPageTransformer(transform)
+        mBinding.viewPagerTodaySong.setPageTransformer(getTransform())
         todaySongAdapter.submitList(
             listOf(
                 Song("(G)I-DLE 'TOMBOY' Lyrics ((여자)아이들 TOMBOY 가사) (Color Coded Lyrics)", "https://i.ytimg.com/vi/E6W835snlNg/maxresdefault.jpg", ""),
@@ -76,8 +65,28 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 Location("17:00 ~ 17:20", "시간대가 지났습니다."),
                 Location("17:00 ~ 17:20", "시간대가 지났습니다."),
                 Location("17:00 ~ 17:20", "시간대가 지났습니다."),
-                Location("17:00 ~ 17:20", "시간대가 지났습니다."),
+                Location("17:00 ~ 17:20", "시간대가 지났습니다.")
             )
         )
+    }
+
+    private fun bindViews() {
+        mBinding.tvSongMore.setOnClickListener {
+            (activity as? MainActivity)?.moveHomeToSong()
+        }
+    }
+
+    companion object {
+        fun getTransform() : CompositePageTransformer {
+            val transform = CompositePageTransformer()
+            transform.addTransformer(MarginPageTransformer(10))
+
+            transform.addTransformer { view: View, fl: Float ->
+                val v = 1 - Math.abs(fl)
+                view.scaleY = 0.8f + v * 0.2f
+            }
+
+            return transform
+        }
     }
 }
