@@ -76,6 +76,9 @@ dependencies {
     // circular image view
     implementation(Libraries.CIRCULAR_IMAGE_VIEW)
 
+    // MP Android Chart
+    implementation(Libraries.MP_ANDROID_CHART)
+
     implementation(project(":data"))
     implementation(project(":domain"))
 }

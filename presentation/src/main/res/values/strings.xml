@@ -19,4 +19,13 @@
     <string name="period_eight">8교시</string>
     <string name="period_eight_time">17:00 ~ 17:20</string>
     <string name="home_song">오늘의 기상송</string>
+    <string name="show_point">상벌점 조회</string>
+    <string name="profile_modify_desc">프로필 수정 아이콘</string>
+    <string name="grade">기수</string>
+    <string name="name">이름</string>
+    <string name="email">이메일</string>
+    <string name="dormitory">기숙사</string>
+    <string name="school">학교</string>
+    <string name="prize_point">상점</string>
+    <string name="penalty_point">벌점</string>
 </resources>

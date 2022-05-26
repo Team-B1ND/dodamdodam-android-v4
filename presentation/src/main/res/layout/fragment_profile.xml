@@ -46,7 +46,6 @@
                             android:layout_width="80dp"
                             android:layout_height="80dp"
                             android:layout_marginStart="30dp"
-                            android:elevation="6dp"
                             android:src="@drawable/default_user"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +60,8 @@
                             app:layout_constraintTop_toTopOf="parent"
                             android:layout_margin="15dp"
                             android:src="@drawable/ic_btn_modify"
-                            app:tint="@color/color_black" />
+                            app:tint="@color/color_black"
+                            android:contentDescription="@string/profile_modify_desc" />
 
                         <LinearLayout
                             android:id="@+id/linear_info"
@@ -80,7 +80,7 @@
                                 android:id="@+id/tv_generation"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="기수"
+                                android:text="@string/grade"
                                 android:textColor="#BFBFBF"
                                 android:textSize="@dimen/title6" />
 
@@ -89,7 +89,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
-                                android:text="닉네임"
+                                tools:text="최민재"
                                 android:ellipsize="end"
                                 android:textColor="@color/color_black"
                                 android:textSize="@dimen/title4" />
@@ -98,7 +98,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:text="이메일"
+                                android:text="@string/email"
                                 android:textColor="#BFBFBF"
                                 android:textSize="@dimen/title6" />
 
@@ -107,7 +107,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
-                                android:text="이메일"
                                 tools:text="oooo1234@gmail.com"
                                 android:ellipsize="end"
                                 android:textColor="@color/color_black"
@@ -120,7 +119,7 @@
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraint_my_sit_container"
+                    android:id="@+id/constraint_point_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -138,27 +137,155 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:text="@string/sit_application" />
+                        android:text="@string/show_point" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="700dp"
-                    app:cardElevation="5dp"
-                    app:cardCornerRadius="20dp"
+                    android:layout_height="230dp"
                     android:layout_marginHorizontal="20dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/constraint_my_sit_container" >
+                    android:layout_marginBottom="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/constraint_point_container"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
+                        <TextView
+                            android:id="@+id/tv_point_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:includeFontPadding="false"
+                            android:paddingHorizontal="20dp"
+                            android:paddingBottom="6dp"
+                            tools:text="2021.06.10일 기준"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
+                        <TextView
+                            android:id="@+id/tv_dormitory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@null"
+                            android:background="@drawable/background_select_box"
+                            android:includeFontPadding="false"
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="3dp"
+                            android:text="@string/dormitory"
+                            android:textSize="12sp"
+                            android:textColor="@color/color_black"
+                            app:layout_constraintEnd_toStartOf="@id/tv_school"
+                            app:layout_constraintStart_toStartOf="@id/tv_point_date"
+                            app:layout_constraintTop_toBottomOf="@id/tv_point_date" />
+
+                        <TextView
+                            android:id="@+id/tv_school"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@null"
+                            android:background="@drawable/background_select_box"
+                            android:includeFontPadding="false"
+                            android:paddingHorizontal="20dp"
+                            android:paddingVertical="3dp"
+                            android:text="@string/school"
+                            android:textColor="@color/color_black"
+                            android:textSize="12sp"
+                            app:layout_constraintEnd_toEndOf="@id/tv_point_date"
+                            app:layout_constraintStart_toEndOf="@id/tv_dormitory"
+                            app:layout_constraintTop_toBottomOf="@id/tv_point_date" />
+
+                        <View
+                            android:id="@+id/view_prize_point"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:background="@android:color/holo_blue_bright"
+                            app:layout_constraintBottom_toTopOf="@id/view_penalty_point"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_title_prize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/prize_point"
+                            android:textSize="15sp"
+                            android:textColor="@color/color_black"
+                            app:layout_constraintBottom_toBottomOf="@id/view_prize_point"
+                            app:layout_constraintStart_toEndOf="@id/view_prize_point"
+                            app:layout_constraintTop_toTopOf="@id/view_prize_point" />
+
+                        <TextView
+                            android:id="@+id/tv_prize_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:includeFontPadding="false"
+                            tools:text="6점"
+                            android:textSize="13sp"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_title_prize"
+                            app:layout_constraintStart_toEndOf="@id/tv_title_prize"
+                            app:layout_constraintTop_toTopOf="@id/tv_title_prize" />
+
+                        <View
+                            android:id="@+id/view_penalty_point"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:background="@android:color/holo_red_light"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_title_penalty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/penalty_point"
+                            android:textSize="15sp"
+                            android:textColor="@color/color_black"
+                            app:layout_constraintBottom_toBottomOf="@id/view_penalty_point"
+                            app:layout_constraintStart_toEndOf="@id/view_penalty_point"
+                            app:layout_constraintTop_toTopOf="@id/view_penalty_point" />
+
+                        <TextView
+                            android:id="@+id/tv_penalty_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:includeFontPadding="false"
+                            tools:text="3점"
+                            android:textSize="13sp"
+                            app:layout_constraintBottom_toBottomOf="@id/tv_title_penalty"
+                            app:layout_constraintStart_toEndOf="@id/tv_title_penalty"
+                            app:layout_constraintTop_toTopOf="@id/tv_title_penalty" />
+
+
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/chart_point"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="20dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.6"
+                            app:layout_constraintTop_toTopOf="parent"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
                 </androidx.cardview.widget.CardView>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

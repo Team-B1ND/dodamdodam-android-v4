@@ -23,4 +23,7 @@
     <color name="colorBreakfast">#FCA800</color>
     <color name="colorLunch">#3DBDE5</color>
     <color name="colorDinner">#A252E1</color>
+
+    <color name="colorSelected">#0067BC</color>
+    <color name="colorUnSelected">#FFFFFF</color>
 </resources>
