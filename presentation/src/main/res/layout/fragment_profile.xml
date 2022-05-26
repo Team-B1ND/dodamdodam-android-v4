@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="kr.hs.dgsw.smartschool.dodamdodam.features.profile.ProfileViewModel" />
@@ -17,8 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -33,9 +34,9 @@
                     android:layout_marginEnd="20dp"
                     app:cardCornerRadius="30dp"
                     app:cardElevation="5dp"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" >
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -56,12 +57,12 @@
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_gravity="center_horizontal"
+                            android:layout_margin="15dp"
+                            android:contentDescription="@string/profile_modify_desc"
+                            android:src="@drawable/ic_btn_modify"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            android:layout_margin="15dp"
-                            android:src="@drawable/ic_btn_modify"
-                            app:tint="@color/color_black"
-                            android:contentDescription="@string/profile_modify_desc" />
+                            app:tint="@color/color_black" />
 
                         <LinearLayout
                             android:id="@+id/linear_info"
@@ -71,10 +72,10 @@
                             android:layout_marginEnd="15dp"
                             android:elevation="12dp"
                             android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/iv_profile"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent">
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
                                 android:id="@+id/tv_generation"
@@ -89,10 +90,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
-                                tools:text="최민재"
                                 android:ellipsize="end"
                                 android:textColor="@color/color_black"
-                                android:textSize="@dimen/title4" />
+                                android:textSize="@dimen/title4"
+                                tools:text="최민재" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -107,10 +108,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
-                                tools:text="oooo1234@gmail.com"
                                 android:ellipsize="end"
                                 android:textColor="@color/color_black"
-                                android:textSize="@dimen/title4" />
+                                android:textSize="@dimen/title4"
+                                tools:text="oooo1234@gmail.com" />
 
                         </LinearLayout>
 
@@ -123,32 +124,33 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@id/card_info_base"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_info_base">
 
                     <TextView
                         android:id="@+id/tv_my_sit_application"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:layout_margin="15dp"
+                        android:text="@string/show_point"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/title4"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:text="@string/show_point" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/card_point_base"
                     android:layout_width="match_parent"
                     android:layout_height="230dp"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginBottom="20dp"
-                    app:layout_constraintTop_toBottomOf="@id/constraint_point_container"
                     app:cardCornerRadius="20dp"
-                    app:cardElevation="5dp">
+                    app:cardElevation="5dp"
+                    app:layout_constraintTop_toBottomOf="@id/constraint_point_container">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -162,24 +164,24 @@
                             android:includeFontPadding="false"
                             android:paddingHorizontal="20dp"
                             android:paddingBottom="6dp"
-                            tools:text="2021.06.10일 기준"
                             android:textColor="@color/black"
                             android:textSize="15sp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="2021.06.10일 기준" />
 
                         <TextView
                             android:id="@+id/tv_dormitory"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:button="@null"
                             android:background="@drawable/background_select_box"
+                            android:button="@null"
                             android:includeFontPadding="false"
                             android:paddingHorizontal="15dp"
                             android:paddingVertical="3dp"
                             android:text="@string/dormitory"
-                            android:textSize="12sp"
                             android:textColor="@color/color_black"
+                            android:textSize="12sp"
                             app:layout_constraintEnd_toStartOf="@id/tv_school"
                             app:layout_constraintStart_toStartOf="@id/tv_point_date"
                             app:layout_constraintTop_toBottomOf="@id/tv_point_date" />
@@ -188,8 +190,8 @@
                             android:id="@+id/tv_school"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:button="@null"
                             android:background="@drawable/background_select_box"
+                            android:button="@null"
                             android:includeFontPadding="false"
                             android:paddingHorizontal="20dp"
                             android:paddingVertical="3dp"
@@ -217,8 +219,8 @@
                             android:layout_marginStart="5dp"
                             android:includeFontPadding="false"
                             android:text="@string/prize_point"
-                            android:textSize="15sp"
                             android:textColor="@color/color_black"
+                            android:textSize="15sp"
                             app:layout_constraintBottom_toBottomOf="@id/view_prize_point"
                             app:layout_constraintStart_toEndOf="@id/view_prize_point"
                             app:layout_constraintTop_toTopOf="@id/view_prize_point" />
@@ -229,11 +231,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:includeFontPadding="false"
-                            tools:text="6점"
                             android:textSize="13sp"
                             app:layout_constraintBottom_toBottomOf="@id/tv_title_prize"
                             app:layout_constraintStart_toEndOf="@id/tv_title_prize"
-                            app:layout_constraintTop_toTopOf="@id/tv_title_prize" />
+                            app:layout_constraintTop_toTopOf="@id/tv_title_prize"
+                            tools:text="6점" />
 
                         <View
                             android:id="@+id/view_penalty_point"
@@ -252,8 +254,8 @@
                             android:layout_marginStart="5dp"
                             android:includeFontPadding="false"
                             android:text="@string/penalty_point"
-                            android:textSize="15sp"
                             android:textColor="@color/color_black"
+                            android:textSize="15sp"
                             app:layout_constraintBottom_toBottomOf="@id/view_penalty_point"
                             app:layout_constraintStart_toEndOf="@id/view_penalty_point"
                             app:layout_constraintTop_toTopOf="@id/view_penalty_point" />
@@ -264,11 +266,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:includeFontPadding="false"
-                            tools:text="3점"
                             android:textSize="13sp"
                             app:layout_constraintBottom_toBottomOf="@id/tv_title_penalty"
                             app:layout_constraintStart_toEndOf="@id/tv_title_penalty"
-                            app:layout_constraintTop_toTopOf="@id/tv_title_penalty" />
+                            app:layout_constraintTop_toTopOf="@id/tv_title_penalty"
+                            tools:text="3점" />
 
 
                         <com.github.mikephil.charting.charts.PieChart
@@ -280,11 +282,110 @@
                             app:layout_constraintDimensionRatio="1:1"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHeight_percent="0.6"
-                            app:layout_constraintTop_toTopOf="parent"/>
+                            app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
                 </androidx.cardview.widget.CardView>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginHorizontal="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/card_point_base">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_offbase"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="5dp"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:0.8"
+                        app:layout_constraintEnd_toStartOf="@id/card_bus"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_offbase"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/offbase"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:layout_margin="16dp"
+                                android:textSize="@dimen/title3"
+                                android:textColor="@color/main" />
+
+                            <TextView
+                                android:id="@+id/tv_offbase_desc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/offbase_desc"
+                                app:layout_constraintTop_toBottomOf="@id/tv_offbase"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:layout_marginHorizontal="16dp"
+                                android:layout_marginTop="7dp"
+                                android:textSize="@dimen/title5"
+                                android:textColor="@color/color_black" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_bus"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="5dp"
+                        app:cardElevation="5dp"
+                        app:cardCornerRadius="20dp"
+                        app:layout_constraintTop_toTopOf="@id/card_offbase"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/card_offbase"
+                        app:layout_constraintStart_toEndOf="@id/card_offbase">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_bus"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/bus"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:layout_margin="16dp"
+                                android:textSize="@dimen/title3"
+                                android:textColor="@color/main" />
+
+                            <TextView
+                                android:id="@+id/tv_bus_desc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/bus_desc"
+                                app:layout_constraintTop_toBottomOf="@id/tv_bus"
+                                app:layout_constraintStart_toStartOf="parent"
+                                android:layout_marginHorizontal="16dp"
+                                android:layout_marginTop="7dp"
+                                android:textSize="@dimen/title5"
+                                android:textColor="@color/color_black" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
