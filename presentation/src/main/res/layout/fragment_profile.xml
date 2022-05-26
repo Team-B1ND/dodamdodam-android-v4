@@ -287,19 +287,43 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_apply_text_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/card_point_base">
+                    app:layout_constraintTop_toBottomOf="@id/card_point_base">
+
+                    <TextView
+                        android:id="@+id/tv_apply"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="@string/apply"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/title4"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_apply_card_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraint_apply_text_container">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/card_offbase"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="20dp"
                         app:cardCornerRadius="20dp"
                         app:cardElevation="5dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -316,24 +340,24 @@
                                 android:id="@+id/tv_offbase"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/offbase"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
                                 android:layout_margin="16dp"
+                                android:text="@string/offbase"
+                                android:textColor="@color/main"
                                 android:textSize="@dimen/title3"
-                                android:textColor="@color/main" />
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
                                 android:id="@+id/tv_offbase_desc"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/offbase_desc"
-                                app:layout_constraintTop_toBottomOf="@id/tv_offbase"
-                                app:layout_constraintStart_toStartOf="parent"
                                 android:layout_marginHorizontal="16dp"
                                 android:layout_marginTop="7dp"
+                                android:text="@string/offbase_desc"
+                                android:textColor="@color/color_black"
                                 android:textSize="@dimen/title5"
-                                android:textColor="@color/color_black" />
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_offbase" />
 
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -344,12 +368,13 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="5dp"
-                        app:cardElevation="5dp"
                         app:cardCornerRadius="20dp"
-                        app:layout_constraintTop_toTopOf="@id/card_offbase"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="20dp"
+                        app:cardElevation="5dp"
                         app:layout_constraintBottom_toBottomOf="@id/card_offbase"
-                        app:layout_constraintStart_toEndOf="@id/card_offbase">
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/card_offbase"
+                        app:layout_constraintTop_toTopOf="@id/card_offbase">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
@@ -359,34 +384,80 @@
                                 android:id="@+id/tv_bus"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/bus"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
                                 android:layout_margin="16dp"
+                                android:text="@string/bus"
+                                android:textColor="@color/main"
                                 android:textSize="@dimen/title3"
-                                android:textColor="@color/main" />
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
                                 android:id="@+id/tv_bus_desc"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/bus_desc"
-                                app:layout_constraintTop_toBottomOf="@id/tv_bus"
-                                app:layout_constraintStart_toStartOf="parent"
                                 android:layout_marginHorizontal="16dp"
                                 android:layout_marginTop="7dp"
+                                android:text="@string/bus_desc"
+                                android:textColor="@color/color_black"
                                 android:textSize="@dimen/title5"
-                                android:textColor="@color/color_black" />
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_bus" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
-
                     </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_basic_location_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/constraint_apply_card_container">
+
+                    <TextView
+                        android:id="@+id/tv_basic_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="@string/change_basic_location"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/title4"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_modify_basic_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginBottom="20dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:0.4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/constraint_basic_location_container" >
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="기본 위치 수정 카드"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

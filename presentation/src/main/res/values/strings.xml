@@ -32,4 +32,6 @@
     <string name="bus">버스 신청</string>
     <string name="offbase_desc">설마 무단 외출은 아니지?</string>
     <string name="bus_desc">드디어 집에 갈 시간이야!</string>
+    <string name="apply">신청하기</string>
+    <string name="change_basic_location">기본 위치 변경</string>
 </resources>
