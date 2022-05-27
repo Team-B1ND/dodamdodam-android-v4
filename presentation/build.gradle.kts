@@ -3,6 +3,7 @@ plugins {
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinKapt)
     id(Plugins.daggerPlugin)
+    id(Plugins.extensions)
 }
 
 android {

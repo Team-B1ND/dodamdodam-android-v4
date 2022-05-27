@@ -11,18 +11,18 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
+import kr.hs.dgsw.smartschool.dodamdodam.adapter.SignUpPagerAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivitySignUpBinding
-import kr.hs.dgsw.smartschool.dodamschool.R
-import kr.hs.dgsw.smartschool.dodamschool.base.BaseActivity
-import kr.hs.dgsw.smartschool.dodamschool.databinding.ActivitySignUpBinding
-import kr.hs.dgsw.smartschool.dodamschool.ui.features.sign.signin.SignInActivity
 
 
 @AndroidEntryPoint
 class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
     override val viewModel: SignUpViewModel by viewModels()
+    val signUpPagerAdapter =  SignUpPagerAdapter(this)
     override fun observerViewModel() {
-
+        with(mBinding){
+            viewPager.adapter = signUpPagerAdapter
+        }
     }
 }

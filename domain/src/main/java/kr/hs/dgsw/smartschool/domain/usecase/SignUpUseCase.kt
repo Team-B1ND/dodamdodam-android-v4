@@ -21,9 +21,9 @@ class SignUpUseCase @Inject constructor(
             val result = signUpRepository.signUp(signUpRequest)
             emit(Resource.Success<String>(result))
         } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "An unexpected error occured"))
+            emit(Resource.Error<String>(e.localizedMessage ?: "An unexpected error occured"))
         } catch (e: IOException) {
-            emit(Resource.Error("Couldn't reach server. Check your internet connection"))
+            emit(Resource.Error<String>("Couldn't reach server. Check your internet connection"))
         }
     }
 }

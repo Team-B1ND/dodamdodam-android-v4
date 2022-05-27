@@ -8,12 +8,9 @@
             name="vm"
             type="kr.hs.dgsw.smartschool.dodamdodam.features.sign.signUp.SignUpViewModel" />
     </data>
-    <androidx.cardview.widget.CardView
-        android:layout_width="380dp"
-        android:layout_height="400dp">
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="380dp"
+        android:layout_height="460dp">
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_id"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -112,8 +109,5 @@
                 android:id="@+id/generation_spinner"
                 android:spinnerMode="dialog" />
         </LinearLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
 </layout>
