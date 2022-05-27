@@ -34,4 +34,8 @@
     <string name="bus_desc">드디어 집에 갈 시간이야!</string>
     <string name="apply">신청하기</string>
     <string name="change_basic_location">기본 위치 변경</string>
+    <string name="text_offbase_leave_date_end">복귀 날짜</string>
+    <string name="text_offbase_time_end">복귀 시간</string>
+    <string name="back_to_home_desc">back to home</string>
+    <string name="go_to_write_offbase_desc">go to write offbase</string>
 </resources>

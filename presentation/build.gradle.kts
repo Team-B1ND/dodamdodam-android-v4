@@ -79,6 +79,9 @@ dependencies {
     // MP Android Chart
     implementation(Libraries.MP_ANDROID_CHART)
 
+    // Swipe refresh layout
+    implementation(AndroidX.SWIPE_REFRESH_LAYOUT)
+
     implementation(project(":data"))
     implementation(project(":domain"))
 }
