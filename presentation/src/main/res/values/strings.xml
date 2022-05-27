@@ -38,4 +38,16 @@
     <string name="text_offbase_time_end">복귀 시간</string>
     <string name="back_to_home_desc">back to home</string>
     <string name="go_to_write_offbase_desc">go to write offbase</string>
+    <string name="text_ok">확인</string>
+    <string name="text_offbase_leave">외출</string>
+    <string name="text_offbase_sleep">외박</string>
+    <string name="text_offbase">외출 / 외박</string>
+    <string name="text_reason">사유</string>
+    <string name="text_offbase_pass_time">외출 시간</string>
+    <string name="text_range_hour">0~23</string>
+    <string name="text_range_minutes">0~59</string>
+    <string name="colon">:</string>
+    <string name="text_wave">~</string>
+    <string name="text_offbase_sleep_date">외박 날짜</string>
+    <string name="text_offbase_sleep_time">외박 시간</string>
 </resources>
