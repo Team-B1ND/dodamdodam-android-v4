@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">DodamDodam</string>
+    <string-array name="generation_array">
+        <item>1기</item>
+        <item>2기</item>
+        <item>3기</item>
+        <item>4기</item>
+        <item>5기</item>
+        <item>6기</item>
+        <item>7기</item>
+    </string-array>
 </resources>
