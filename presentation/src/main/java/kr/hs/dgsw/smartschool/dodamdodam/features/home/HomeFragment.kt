@@ -19,6 +19,8 @@ import kr.hs.dgsw.smartschool.domain.model.song.Song
 
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override val viewModel: HomeViewModel by viewModels()
+    override val hasActionBar: Boolean = true
+    override val hasBottomNav: Boolean = true
 
     override fun observerViewModel() {
         setUpTodayMeal()

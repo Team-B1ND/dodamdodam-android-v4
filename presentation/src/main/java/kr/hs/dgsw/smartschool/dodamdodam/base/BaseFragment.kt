@@ -26,8 +26,8 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
 
     protected abstract fun observerViewModel()
 
-    protected open val hasActionBar: Boolean = true
-    protected open val hasBottomNav: Boolean = true
+    protected open val hasActionBar: Boolean = false
+    protected open val hasBottomNav: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
