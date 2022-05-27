@@ -5,6 +5,8 @@ import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.PagerAdapter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -30,7 +32,6 @@ class SignUpViewModel @Inject constructor(
     val email = MutableLiveData<String>()
     val phone = MutableLiveData<String>()
     val generation = MutableLiveData<String>()
-    val role = MutableLiveData<String>()
     val grade = MutableLiveData<String>()
     val classNum = MutableLiveData<String>()
     val stuNum = MutableLiveData<String>()

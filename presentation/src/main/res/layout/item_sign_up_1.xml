@@ -19,7 +19,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="50dp"
             android:layout_marginEnd="1dp"
             app:boxStrokeErrorColor="#FF0000"
@@ -29,7 +29,7 @@
             app:errorEnabled="true"
             app:helperText="영문과 숫자만 이용 가능합니다"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_school_num">
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edittext_id"
@@ -83,7 +83,7 @@
             app:helperText="사용하는 이메일을 입력해주세요"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_phone">
+            app:layout_constraintTop_toBottomOf="@+id/layout_password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edittext_email"
