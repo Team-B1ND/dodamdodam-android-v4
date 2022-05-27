@@ -50,4 +50,6 @@
     <string name="text_wave">~</string>
     <string name="text_offbase_sleep_date">외박 날짜</string>
     <string name="text_offbase_sleep_time">외박 시간</string>
+    <string name="title_bus_apply">귀가 버스 신청</string>
+    <string name="text_bus_start_time">출발시간</string>
 </resources>
