@@ -13,4 +13,5 @@ class NewsFragment : BaseFragment<FragmentNewsBinding, NewsViewModel>() {
 
     }
 
+
 }

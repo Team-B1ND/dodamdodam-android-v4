@@ -52,4 +52,9 @@
     <string name="text_offbase_sleep_time">외박 시간</string>
     <string name="title_bus_apply">귀가 버스 신청</string>
     <string name="text_bus_start_time">출발시간</string>
+    <string name="title_important_news">중요한 뉴스</string>
+    <string name="title_popular_text">일반 뉴스</string>
+    <string name="title_all_news">모든 뉴스</string>
+    <string name="title_my_news">나의 뉴스</string>
+    <string name="more"><![CDATA[더보기 ->]]></string>
 </resources>
