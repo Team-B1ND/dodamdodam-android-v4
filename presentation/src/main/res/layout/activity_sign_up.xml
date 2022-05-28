@@ -43,6 +43,7 @@ xmlns:tools="http://schemas.android.com/tools">
                 app:layout_constraintTop_toBottomOf="@id/image_sign_up"
                 app:layout_constraintStart_toStartOf="parent"
                 android:id="@+id/view_pager"/>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_sign_up"
                 android:layout_width="350dp"
