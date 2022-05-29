@@ -6,6 +6,8 @@ import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentAllNewsBinding
 
 class AllNewsFragment: BaseFragment<FragmentAllNewsBinding, AllNewsViewModel>() {
     override val viewModel: AllNewsViewModel by viewModels()
+    override val hasActionBar: Boolean = true
+    override val hasBottomNav: Boolean = true
 
     override fun observerViewModel() {
     }

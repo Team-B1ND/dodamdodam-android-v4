@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="vm"
             type="kr.hs.dgsw.smartschool.dodamdodam.features.news.NewsViewModel" />
@@ -20,35 +19,34 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tabIndicator="@drawable/background_tab_indicator"
             app:tabIndicatorColor="@color/main"
-            app:tabIndicatorFullWidth="false"
-            app:tabIndicatorGravity="center"
             app:tabMode="fixed"
             app:tabRippleColor="@null"
-            app:tabSelectedTextColor="@color/white"
+            app:tabSelectedTextColor="@color/main"
             app:tabTextAppearance="@style/tab_text"
-            app:tabTextColor="#949494">
+            app:tabTextColor="@color/gray500">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="     모든 뉴스     " />
+                android:text="@string/title_all_news" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="     나의 뉴스     " />
+                android:text="@string/title_my_news" />
 
         </com.google.android.material.tabs.TabLayout>
 
-        <FrameLayout
-            android:id="@+id/layout_news_tab_container"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fcb_news_tab_container"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:name="kr.hs.dgsw.smartschool.dodamdodam.features.news.AllNewsFragment"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tab_news" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

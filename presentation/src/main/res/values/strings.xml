@@ -56,5 +56,5 @@
     <string name="title_popular_text">일반 뉴스</string>
     <string name="title_all_news">모든 뉴스</string>
     <string name="title_my_news">나의 뉴스</string>
-    <string name="more"><![CDATA[더보기 ->]]></string>
+    <string name="more">더보기 ></string>
 </resources>
