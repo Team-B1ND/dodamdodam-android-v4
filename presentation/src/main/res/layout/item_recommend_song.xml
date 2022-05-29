@@ -37,32 +37,27 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
-            android:layout_marginBottom="10dp"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="3"
             android:textColor="@color/black"
             android:textSize="@dimen/title5"
-            app:layout_constraintBottom_toTopOf="@id/tv_now_song_date"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_apply_recommend_song"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/card_image_container"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
-            tools:text="(G)I-DLE 'TOMBOY' Lyrics ((여자)아이들 TOMBOY 가사) (Color Coded Lyrics)asfdsadfasdfas" />
+            tools:text="(G)I-DLE 'TOMBOY' Lyrics ((여자)아이들 TOMBOY 가사) (Color Coded Lyrics)" />
 
         <TextView
-            android:id="@+id/tv_now_song_date"
-            android:layout_width="0dp"
+            android:id="@+id/tv_apply_recommend_song"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="15dp"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textColor="@color/gray500"
-            android:textSize="@dimen/title6"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/tv_recommend_song_title"
-            app:layout_constraintStart_toStartOf="@id/tv_recommend_song_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_recommend_song_title"
-            tools:text="신청일 : 2022-05-25" />
-
-
+            android:text="@string/text_simple_apply"
+            android:textColor="@color/main"
+            android:textSize="@dimen/title5"
+            app:layout_constraintTop_toTopOf="@id/tv_recommend_song_title"
+            app:layout_constraintBottom_toBottomOf="@id/tv_recommend_song_title"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -61,4 +61,10 @@
     <string name="text_my_apply_desc">내가 뭐 신청했더라?</string>
     <string name="text_setting">설정</string>
     <string name="text_setting_desc">도담을 잘 활용하는 방법</string>
+    <string name="title_song_apply">기상송 신청</string>
+    <string name="text_song_apply_desc">원하는 곡의 유튜브 링크를 올려주세요</string>
+    <string name="text_youtube_link_hint">https://www.youtube.com/watch?v=</string>
+    <string name="text_apply">신청하기</string>
+    <string name="text_simple_apply">신청 ></string>
+    <string name="title_recommend_music">추천 음악</string>
 </resources>
