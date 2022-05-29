@@ -33,7 +33,7 @@
     <string name="offbase_desc">설마 무단 외출은 아니지?</string>
     <string name="bus_desc">드디어 집에 갈 시간이야!</string>
     <string name="apply">신청하기</string>
-    <string name="change_basic_location">기본 위치 변경</string>
+    <string name="text_other">기타</string>
     <string name="text_offbase_leave_date_end">복귀 날짜</string>
     <string name="text_offbase_time_end">복귀 시간</string>
     <string name="back_to_home_desc">back to home</string>
@@ -57,4 +57,8 @@
     <string name="title_all_news">모든 뉴스</string>
     <string name="title_my_news">나의 뉴스</string>
     <string name="more">더보기 ></string>
+    <string name="text_my_apply">신청 내역 확인</string>
+    <string name="text_my_apply_desc">내가 뭐 신청했더라?</string>
+    <string name="text_setting">설정</string>
+    <string name="text_setting_desc">도담을 잘 활용하는 방법</string>
 </resources>
