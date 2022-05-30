@@ -11,7 +11,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemSignUp2Binding
 
 @AndroidEntryPoint
-class SignUpFragment2 : BaseFragment<ItemSignUp2Binding, SignUpViewModel>(){
+class PersonalInfoFragment : BaseFragment<ItemSignUp2Binding, SignUpViewModel>(){
 
     override val viewModel: SignUpViewModel by viewModels()
 
