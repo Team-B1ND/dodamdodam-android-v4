@@ -15,7 +15,6 @@ import java.time.LocalDate
 
 class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
     override val viewModel: SongViewModel by viewModels()
-    override val hasActionBar: Boolean = true
     override val hasBottomNav: Boolean = true
 
     override fun observerViewModel() {

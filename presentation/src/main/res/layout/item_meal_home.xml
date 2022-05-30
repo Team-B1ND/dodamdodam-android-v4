@@ -14,7 +14,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/card_meal"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="160dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="7dp"
             android:layout_margin="15dp"
@@ -39,8 +39,8 @@
 
                     <ImageView
                         android:id="@+id/iv_meal"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:contentDescription="mael image"
                         tools:ignore="HardcodedText"
                         tools:src="@drawable/ic_dinner" />
@@ -57,7 +57,7 @@
                         android:paddingVertical="3dp"
                         android:text="@string/meal_name_dummy"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/title4"
+                        android:textSize="@dimen/title5"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -70,6 +70,7 @@
                     android:layout_marginHorizontal="30dp"
                     android:layout_marginVertical="20dp"
                     android:ellipsize="end"
+                    android:textSize="@dimen/title6"
                     android:gravity="center_vertical"
                     android:text="@string/meal_dummy"
                     android:textColor="@color/black"

@@ -48,7 +48,7 @@
                     android:ellipsize="end"
                     android:gravity="center_vertical"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/title5"
+                    android:textSize="@dimen/title6"
                     android:src="@drawable/default_img" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>

@@ -2,4 +2,7 @@
 <resources>
     <color name="color_white">#000000</color>
     <color name="color_black">#FFFFFF</color>
+
+    <color name="colorCardBackground">#202020</color>
+    <color name="colorBackground">#171717</color>
 </resources>

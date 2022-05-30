@@ -26,7 +26,6 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
 
     protected abstract fun observerViewModel()
 
-    protected open val hasActionBar: Boolean = false
     protected open val hasBottomNav: Boolean = false
 
     override fun onCreateView(
@@ -46,7 +45,6 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
         super.onViewCreated(view, savedInstanceState)
         setUp()
         observerViewModel()
-        (activity as? MainActivity)?.setActionBarVisible(!hasActionBar)
         (activity as? MainActivity)?.setNavVisible(!hasBottomNav)
     }
 

@@ -28,10 +28,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         mBinding.mainBottomNav.isInvisible = demand
     }
 
-    fun setActionBarVisible(demand: Boolean) {
-        mBinding.actionBar.isInvisible = demand
-    }
-
     fun moveHomeToSong() {
         mBinding.mainBottomNav.selectedItemId = R.id.main_song
     }

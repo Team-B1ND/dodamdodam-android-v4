@@ -26,4 +26,7 @@
 
     <color name="colorSelected">#0067BC</color>
     <color name="colorUnSelected">#FFFFFF</color>
+
+    <color name="colorCardBackground">@color/white</color>
+    <color name="colorBackground">#F5F5F5</color>
 </resources>

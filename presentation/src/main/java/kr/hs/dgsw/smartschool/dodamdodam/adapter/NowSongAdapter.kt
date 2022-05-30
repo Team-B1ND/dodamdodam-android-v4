@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.adapter
 
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -16,8 +15,7 @@ class NowSongAdapter : ListAdapter<Song, NowSongAdapter.NowSongViewHolder>(SongD
 
     class NowSongViewHolder(val binding: ItemNowSongBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Song) {
-            binding.tvNowSong.text = item.songTitle
-            binding.tvNowSongDate.text = item.songDate
+            binding.song = item
 
             Glide.with(binding.root)
                 .load(item.songImage)

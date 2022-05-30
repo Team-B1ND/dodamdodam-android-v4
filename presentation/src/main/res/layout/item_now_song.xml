@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="song"
+            type="kr.hs.dgsw.smartschool.domain.model.song.Song" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/iv_recommend_song"
+                android:id="@+id/iv_now_song"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -33,13 +36,14 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/tv_recommend_song_title"
+            android:id="@+id/tv_now_song_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:layout_marginBottom="10dp"
             android:ellipsize="end"
             android:maxLines="2"
+            android:text="@{song.songTitle}"
             android:textColor="@color/black"
             android:textSize="@dimen/title5"
             app:layout_constraintBottom_toTopOf="@id/tv_now_song_date"
@@ -51,16 +55,16 @@
 
         <TextView
             android:id="@+id/tv_now_song_date"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
+            android:text="@{song.songDate}"
             android:textColor="@color/gray500"
             android:textSize="@dimen/title6"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/tv_recommend_song_title"
-            app:layout_constraintStart_toStartOf="@id/tv_recommend_song_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_recommend_song_title"
+            app:layout_constraintStart_toStartOf="@id/tv_now_song_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_now_song_title"
             tools:text="신청일 : 2022-05-25" />
 
 
