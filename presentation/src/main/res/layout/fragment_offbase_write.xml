@@ -81,8 +81,8 @@
                         android:layout_width="75dp"
                         android:layout_height="35dp"
                         android:layout_marginTop="15dp"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="5dp"
+                        app:cardCornerRadius="@dimen/card_corner"
+                        app:cardElevation="@dimen/card_elevation"
                         app:layout_constraintStart_toStartOf="@+id/guideline"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -102,8 +102,8 @@
                         android:layout_width="75dp"
                         android:layout_height="35dp"
                         android:layout_marginTop="15dp"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="5dp"
+                        app:cardCornerRadius="@dimen/card_corner"
+                        app:cardElevation="@dimen/card_elevation"
                         app:layout_constraintEnd_toStartOf="@+id/guideline2"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -410,8 +410,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginEnd="5dp"
                                     android:layout_weight="1"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="3dp"
+                                    app:cardCornerRadius="@dimen/card_small_corner"
+                                    app:cardElevation="@dimen/card_elevation"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintTop_toTopOf="parent">
@@ -529,8 +529,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginEnd="5dp"
                                     android:layout_weight="1"
-                                    app:cardCornerRadius="5dp"
-                                    app:cardElevation="3dp"
+                                    app:cardCornerRadius="@dimen/card_small_corner"
+                                    app:cardElevation="@dimen/card_elevation"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintTop_toTopOf="parent">

@@ -17,8 +17,8 @@
         app:cardElevation="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:orientation="vertical">
 
             <TextView

@@ -69,8 +69,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
-                app:cardCornerRadius="5dp"
-                app:cardElevation="5dp">
+                app:cardCornerRadius="@dimen/card_small_corner"
+                app:cardElevation="@dimen/card_elevation">
 
                 <EditText
                     android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="15dp"
-                android:backgroundTint="#0067BC"
+                android:backgroundTint="@color/main"
                 android:includeFontPadding="false"
                 android:paddingVertical="10dp"
                 android:text="@string/text_apply"

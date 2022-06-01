@@ -33,15 +33,15 @@ class MealHomeAdapter : ListAdapter<MealInfo, MealHomeAdapter.MealHomeViewHolder
             when(item.type) {
                 1 -> {
                     binding.tvMealName.text = "조식"
-                    binding.tvMealName.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.colorBreakfast))
+                    binding.tvMealName.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.color_breakfast))
                 }
                 2 -> {
                     binding.tvMealName.text = "중식"
-                    binding.tvMealName.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.colorLunch))
+                    binding.tvMealName.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.color_lunch))
                 }
                 3 -> {
                     binding.tvMealName.text = "석식"
-                    binding.tvMealName.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.colorDinner))
+                    binding.tvMealName.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.color_dinner))
                 }
             }
 

@@ -1,6 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="card_corner">20dp</dimen>
+    <dimen name="card_small_corner">5dp</dimen>
     <dimen name="card_elevation">5dp</dimen>
     <dimen name="title1">25sp</dimen>
     <dimen name="title2">20sp</dimen>

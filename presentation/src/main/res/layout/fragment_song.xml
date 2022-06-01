@@ -13,7 +13,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackground">
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:background="@color/color_background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_main_text_container"

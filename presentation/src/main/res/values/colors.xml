@@ -20,13 +20,13 @@
     <color name="gray500">#999999</color>
     <color name="gray700">#6A6A6A</color>
 
-    <color name="colorBreakfast">#FCA800</color>
-    <color name="colorLunch">#3DBDE5</color>
-    <color name="colorDinner">#A252E1</color>
+    <color name="color_breakfast">#FCA800</color>
+    <color name="color_lunch">#3DBDE5</color>
+    <color name="color_dinner">#A252E1</color>
 
-    <color name="colorSelected">#0067BC</color>
-    <color name="colorUnSelected">#FFFFFF</color>
+    <color name="color_selected">#0067BC</color>
+    <color name="color_un_selected">#FFFFFF</color>
 
-    <color name="colorCardBackground">@color/white</color>
-    <color name="colorBackground">#F5F5F5</color>
+    <color name="color_card_background">@color/white</color>
+    <color name="color_background">#F5F5F5</color>
 </resources>

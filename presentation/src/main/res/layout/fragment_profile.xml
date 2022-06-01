@@ -13,7 +13,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackground">
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:background="@color/color_background">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -156,7 +157,6 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
                         android:text="@string/show_point"
-                        android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="@dimen/title4"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -329,7 +329,6 @@
                         android:layout_margin="15dp"
                         android:text="@string/apply"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
                         android:textSize="@dimen/title4"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -463,7 +462,6 @@
                         android:layout_margin="15dp"
                         android:text="@string/text_other"
                         android:textColor="@color/black"
-                        android:textStyle="bold"
                         android:textSize="@dimen/title4"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

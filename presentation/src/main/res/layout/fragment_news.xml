@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackground">
+        android:background="@color/color_background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_news_title"
@@ -41,10 +41,12 @@
             android:id="@+id/tab_news"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorBackground"
+            android:background="@color/color_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_news_title"
+            app:tabIndicator="@drawable/background_tab_indicator"
+            app:tabIndicatorFullWidth="false"
             app:tabIndicatorColor="@color/main"
             app:tabMode="fixed"
             app:tabRippleColor="@null"
@@ -69,6 +71,7 @@
             android:name="kr.hs.dgsw.smartschool.dodamdodam.features.news.AllNewsFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginBottom="?attr/actionBarSize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

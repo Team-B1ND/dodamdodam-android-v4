@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorBackground"
+        android:background="@color/color_background"
         android:orientation="vertical">
 
         <androidx.core.widget.NestedScrollView
@@ -55,7 +55,7 @@
                         android:layout_margin="15sp"
                         android:text="@string/study_room_apply"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/title2"
+                        android:textSize="@dimen/title4"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -83,7 +83,7 @@
                         android:layout_margin="15sp"
                         android:text="@string/home_meal"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/title2"
+                        android:textSize="@dimen/title4"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -112,7 +112,7 @@
                         android:layout_margin="15sp"
                         android:text="@string/home_song"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/title2"
+                        android:textSize="@dimen/title4"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
