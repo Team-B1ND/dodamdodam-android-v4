@@ -175,7 +175,7 @@
                         app:cardElevation="@dimen/card_elevation"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="1:0.8"
-                        app:layout_constraintEnd_toStartOf="@id/card_lost_and_found"
+                        app:layout_constraintEnd_toStartOf="@id/card_lost_found"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -212,7 +212,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/card_lost_and_found"
+                        android:id="@+id/card_lost_found"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="5dp"
@@ -229,7 +229,7 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:id="@+id/tv_lost_and_found"
+                                android:id="@+id/tv_lost_found"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="16dp"
@@ -241,7 +241,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                android:id="@+id/tv_lost_and_found_desc"
+                                android:id="@+id/tv_lost_found_desc"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginHorizontal="16dp"
@@ -250,7 +250,7 @@
                                 android:textColor="@color/color_black"
                                 android:textSize="@dimen/title5"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@id/tv_lost_and_found" />
+                                app:layout_constraintTop_toBottomOf="@id/tv_lost_found" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
@@ -268,7 +268,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/card_lost_and_found">
+                        app:layout_constraintTop_toBottomOf="@id/card_lost_found">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
