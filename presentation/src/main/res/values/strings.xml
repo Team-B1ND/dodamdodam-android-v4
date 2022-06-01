@@ -68,4 +68,11 @@
     <string name="text_simple_apply">신청 ></string>
     <string name="title_recommend_music">추천 음악</string>
     <string name="title_study_room_apply">자습실 신청</string>
+    <string name="text_more_function">이런 기능도 있어요</string>
+    <string name="text_baek_rank_card_desc">우리 학교 알고리즘 짱은?</string>
+    <string name="title_baek_rank">백랭</string>
+    <string name="title_lost_and_found">분실물 찾기</string>
+    <string name="text_lost_and_found">내 물건 찾아줘..</string>
+    <string name="title_it_map">여기 선배 it을 지도?</string>
+    <string name="text_it_map_desc">졸업한 선배의 회사를 알고싶다면</string>
 </resources>
