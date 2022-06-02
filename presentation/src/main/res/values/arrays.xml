@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="point_prize_list">
+        <item>청소 우수|1|</item>
+        <item>모범 학생|2|</item>
+        <item>기숙사 생활을 위한 봉사활동|2|</item>
+        <item>안전사고 예방에 기여한 자|2|</item>
+        <item>폭력, 성폭력 예방에 기여한 자|5|</item>
+        <item>기타 (사감 판단)|1~10|</item>
+    </string-array>
+
+    <string-array name="point_demerit_list">
+        <item>기숙사 미 복귀 시|―|30분 마다 1점</item>
+        <item>점호 복장 불량 (잠옷, 슬리퍼 등)|1|</item>
+        <item>정리정돈 및 위생상태 불량|1|</item>
+        <item>등교 또는 외출 시 호실 소등 또는 전기 장치를 끄지 않은 경우|1|</item>
+        <item>담당구역 청소 불이행|1|</item>
+        <item>점호 지각|1|</item>
+        <item>지도교사, 사감의 지시 불이행|2|</item>
+        <item>야간 소란 행위 (취침 시간 이후 타인 수면 방해자 포함)|2|</item>
+        <item>취침 시간 이후 타 호실 출입|3|</item>
+        <item>점호 불참|3|</item>
+        <item>음식물 배달 및 반입|3|</item>
+        <item>기물 파손|3|</item>
+        <item>호실 내 휴대전화, 노트북 사용|5|</item>
+        <item>무단출입 및 무단외출|5|</item>
+        <item>반입금지 물품을 소지|8|인화물, 주류, 담배, 흉기, 화투, 카드,\n음란물, 전열기구 (드라이기 제외) 등</item>
+        <item>타인의 물건을 훔침|―|선도위원회를 통해 결정</item>
+        <item>흡연, 음주, 도박, 약물 행위|―|선도위원회를 통해 결정</item>
+        <item>이성 교제로 풍기를 문란케 함|―|선도위원회를 통해 결정</item>
+        <item>정당한 지도에 대한 학생 본분에 어긋나는 행동이나 반항|―|선도위원회를 통해 결정</item>
+        <item>기타 (기숙사 생활에 지장을 초래한 사항)|1~25|기숙사 운영위원회를 통해 결정</item>
+    </string-array>
+
+    <string-array name="lost_found_type">
+        <item>분실물</item>
+        <item>습득물</item>
+    </string-array>
+
+    <string-array name="day_of_week_type">
+        <item>일요일</item>
+        <item>월요일</item>
+        <item>화요일</item>
+        <item>수요일</item>
+        <item>목요일</item>
+        <item>금요일</item>
+        <item>토요일</item>
+    </string-array>
+</resources>
