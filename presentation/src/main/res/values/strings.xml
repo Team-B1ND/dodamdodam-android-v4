@@ -77,4 +77,6 @@
     <string name="text_it_map_desc">졸업한 선배의 회사를 알고싶다면</string>
     <string name="text_search">검색</string>
     <string name="text_write_comment">댓들 달기</string>
+    <string name="text_input_comment">댓글 입력...</string>
+    <string name="title_comment">댓글</string>
 </resources>

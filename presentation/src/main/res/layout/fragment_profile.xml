@@ -173,9 +173,9 @@
                     android:layout_marginBottom="20dp"
                     app:cardCornerRadius="@dimen/card_corner"
                     app:cardElevation="@dimen/card_elevation"
-                    app:layout_constraintTop_toBottomOf="@id/layout_point_container"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
+                    app:layout_constraintTop_toBottomOf="@id/layout_point_container">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -185,19 +185,19 @@
                             android:id="@+id/tv_point_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
                             android:layout_marginStart="20dp"
+                            android:layout_marginTop="20dp"
+                            android:text="2021.06.10일 기준"
                             android:textColor="@color/color_black"
                             android:textSize="15sp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:text="2021.06.10일 기준" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:layout_marginTop="6dp"
+                            android:orientation="horizontal"
                             app:layout_constraintEnd_toEndOf="@id/tv_point_date"
                             app:layout_constraintStart_toStartOf="@id/tv_point_date"
                             app:layout_constraintTop_toBottomOf="@id/tv_point_date">
@@ -206,8 +206,8 @@
                                 android:id="@+id/tv_dormitory"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/background_select_box"
                                 android:layout_marginEnd="5dp"
+                                android:background="@drawable/background_select_box"
                                 android:includeFontPadding="false"
                                 android:paddingHorizontal="15dp"
                                 android:paddingVertical="3dp"
@@ -348,9 +348,9 @@
                         android:id="@+id/card_offbase"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
+                        android:layout_marginStart="20dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginStart="20dp"
                         app:cardCornerRadius="@dimen/card_corner"
                         app:cardElevation="@dimen/card_elevation"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -368,10 +368,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="16dp"
-                                android:textStyle="bold"
                                 android:text="@string/offbase"
                                 android:textColor="@color/main"
                                 android:textSize="@dimen/title3"
+                                android:textStyle="bold"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -396,8 +396,8 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="5dp"
-                        app:cardCornerRadius="@dimen/card_corner"
                         android:layout_marginEnd="20dp"
+                        app:cardCornerRadius="@dimen/card_corner"
                         app:cardElevation="@dimen/card_elevation"
                         app:layout_constraintBottom_toBottomOf="@id/card_offbase"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -414,9 +414,9 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="16dp"
                                 android:text="@string/bus"
-                                android:textStyle="bold"
                                 android:textColor="@color/main"
                                 android:textSize="@dimen/title3"
+                                android:textStyle="bold"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -436,11 +436,11 @@
                                 android:id="@+id/iv_bus"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
-                                android:src="@drawable/ic_btn_bus"
                                 android:layout_marginEnd="20dp"
-                                app:layout_constraintTop_toBottomOf="@id/tv_bus_desc"
-                                app:layout_constraintEnd_toEndOf="parent"
+                                android:src="@drawable/ic_btn_bus"
                                 app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_bus_desc"
                                 tools:ignore="ContentDescription" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -481,9 +481,9 @@
                         android:id="@+id/card_my_apply"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
+                        android:layout_marginStart="20dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginStart="20dp"
                         app:cardCornerRadius="@dimen/card_corner"
                         app:cardElevation="@dimen/card_elevation"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -503,8 +503,8 @@
                                 android:layout_margin="16dp"
                                 android:text="@string/text_my_apply"
                                 android:textColor="@color/main"
-                                android:textStyle="bold"
                                 android:textSize="@dimen/title3"
+                                android:textStyle="bold"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -529,8 +529,8 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="5dp"
-                        app:cardCornerRadius="@dimen/card_corner"
                         android:layout_marginEnd="20dp"
+                        app:cardCornerRadius="@dimen/card_corner"
                         app:cardElevation="@dimen/card_elevation"
                         app:layout_constraintBottom_toBottomOf="@id/card_my_apply"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -564,7 +564,6 @@
                                 android:textSize="@dimen/title5"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/tv_setting" />
-
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
