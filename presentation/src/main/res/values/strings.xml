@@ -79,4 +79,5 @@
     <string name="text_write_comment">댓들 달기</string>
     <string name="text_input_comment">댓글 입력...</string>
     <string name="title_comment">댓글</string>
+    <string name="title_write_lost_found">분실물 작성</string>
 </resources>
