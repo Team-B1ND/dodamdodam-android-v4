@@ -87,4 +87,5 @@
     <string name="text_content">내용</string>
     <string name="text_image_delete">사진 삭제</string>
     <string name="text_image_add">사진 추가</string>
+    <string name="title_menu">서비스 전체 보기</string>
 </resources>

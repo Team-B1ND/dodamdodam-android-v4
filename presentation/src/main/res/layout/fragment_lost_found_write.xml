@@ -12,7 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_title_write"
@@ -87,7 +88,7 @@
                     android:drawableTint="@color/main"
                     android:padding="15dp"
                     android:text="@string/text_image_add"
-                    android:textColor="@color/gray700"
+                    android:textColor="@color/color_black"
                     app:layout_constraintBottom_toTopOf="@id/btn_image_delete"
                     app:layout_constraintStart_toStartOf="@id/btn_image_delete"
                     app:layout_constraintTop_toTopOf="@id/card_image" />
@@ -102,7 +103,7 @@
                     android:drawableTint="@color/main"
                     android:padding="15dp"
                     android:text="@string/text_image_delete"
-                    android:textColor="@color/gray700"
+                    android:textColor="@color/color_black"
                     app:layout_constraintBottom_toBottomOf="@id/card_image"
                     app:layout_constraintStart_toEndOf="@id/card_image"
                     app:layout_constraintTop_toBottomOf="@id/btn_image_add" />

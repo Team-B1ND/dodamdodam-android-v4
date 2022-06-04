@@ -1,6 +1,9 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.home
 
+import android.annotation.SuppressLint
+import android.view.Gravity
 import android.view.View
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -27,6 +30,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         setUpTodaySong()
         bindViews()
     }
+
+    private fun bindViews() {
+        mBinding.tvSongMore.setOnClickListener {
+            (activity as? MainActivity)?.moveHomeToSong()
+        }
+        mBinding.btnMenu.setOnClickListener {
+            openDrawer()
+        }
+    }
+
+    @SuppressLint("RtlHardcoded")
+    private fun openDrawer() {
+        mBinding.layoutDrawer.openDrawer(Gravity.LEFT, true)
+    }
+
 
     private fun setUpTodayMeal() {
         val mealHomeAdapter = MealHomeAdapter()
@@ -69,12 +87,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 Location("17:00 ~ 17:20", "시간대가 지났습니다.")
             )
         )
-    }
-
-    private fun bindViews() {
-        mBinding.tvSongMore.setOnClickListener {
-            (activity as? MainActivity)?.moveHomeToSong()
-        }
     }
 
     companion object {
