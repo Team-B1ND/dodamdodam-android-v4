@@ -14,6 +14,7 @@ object AndroidX {
 
     const val NAVIGATION = "androidx.navigation:navigation-fragment-ktx:${Versions.NAVIGATION}"
     const val NAVIGATION_UI_KTX = "androidx.navigation:navigation-ui-ktx:${Versions.NAVIGATION}"
+    const val SWIPE_REFRESH_LAYOUT = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.SWIPE_REFRESH_LAYOUT}"
 }
 
 object Google {
@@ -34,6 +35,8 @@ object Libraries {
     const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:${Versions.GLIDE}"
 
     const val CIRCULAR_IMAGE_VIEW = "de.hdodenhof:circleimageview:${Versions.CIRCULAR_IMAGE_VIEW}"
+    const val MP_ANDROID_CHART = "com.github.PhilJay:MPAndroidChart:${Versions.MP_ANDROID_CHART}"
+
 }
 
 object UnitTest {

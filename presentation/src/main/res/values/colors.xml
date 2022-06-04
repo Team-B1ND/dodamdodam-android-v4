@@ -7,4 +7,26 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="main">#0067BC</color>
+    <color name="main_200">#300067BC</color>
+    <color name="main_500">#500067BC</color>
+    <color name="main_700">#700067BC</color>
+
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_black">#000000</color>
+
+    <color name="gray200">#CACACA</color>
+    <color name="gray500">#999999</color>
+    <color name="gray700">#6A6A6A</color>
+
+    <color name="color_breakfast">#FCA800</color>
+    <color name="color_lunch">#3DBDE5</color>
+    <color name="color_dinner">#A252E1</color>
+
+    <color name="color_selected">#0067BC</color>
+    <color name="color_un_selected">#FFFFFF</color>
+
+    <color name="color_card_background">@color/white</color>
+    <color name="color_background">#F9F9F9</color>
 </resources>

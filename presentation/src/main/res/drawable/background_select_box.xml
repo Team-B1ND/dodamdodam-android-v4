@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?colorPrimary">
+    <item>
+        <selector>
+            <item
+                android:drawable="@drawable/background_unselected"
+                android:state_selected="false" />
+            <item
+                android:drawable="@drawable/background_selected"
+                android:state_selected="true" />
+        </selector>
+    </item>
+</ripple>

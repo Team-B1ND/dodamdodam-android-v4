@@ -20,6 +20,7 @@ abstract class BaseActivity<VB : ViewDataBinding, VM: BaseViewModel> : AppCompat
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         performDataBinding()
         observerViewModel()
     }
