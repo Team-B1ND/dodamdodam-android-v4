@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="@string/today_song"
+                android:text="@string/tomorrow_song"
                 android:textColor="@color/main"
                 android:textSize="@dimen/title2"
                 android:textStyle="bold"
@@ -80,26 +80,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.switchmaterial.SwitchMaterial
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_my"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:thumbTint="@color/main"
+                android:layout_marginEnd="15dp"
+                app:thumbTint="@color/main"
+                app:trackTint="@color/gray200"
+                android:text="@string/my"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:useMaterialThemeColors="false" />
-
-            <TextView
-                android:id="@+id/tv_my"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/my"
-                android:textColor="@color/color_black"
-                app:layout_constraintBottom_toBottomOf="@id/switch_my"
-                app:layout_constraintEnd_toStartOf="@id/switch_my"
-                app:layout_constraintTop_toTopOf="@id/switch_my" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

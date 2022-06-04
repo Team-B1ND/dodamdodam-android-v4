@@ -9,6 +9,7 @@
     <string name="meal_dummy">*기장밥 , 김치어묵국 , *명태껍질볶음 , 새송이돈육마늘구이 , *짜먹는요거트 , *꽃상추쌈/쌈장</string>
     <string name="meal_name_dummy">조식</string>
     <string name="today_song">오늘의 기상송</string>
+    <string name="tomorrow_song">내일의 기상송</string>
     <string name="now_song_application">신청현황</string>
     <string name="my">My</string>
     <string name="fab_content_desc">add wake up song</string>
