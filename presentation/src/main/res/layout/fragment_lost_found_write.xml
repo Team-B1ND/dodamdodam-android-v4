@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.LostFoundWriteViewModel" />
@@ -14,12 +15,12 @@
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_title_comment"
+            android:id="@+id/layout_title_write"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" >
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/btn_back"
@@ -47,6 +48,174 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_title_write">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="@dimen/card_corner"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/iv_lost_found"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/default_img"
+                        tools:ignore="ContentDescription" />
+
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:id="@+id/btn_image_add"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_btn_add"
+                    android:drawableTint="@color/main"
+                    android:padding="15dp"
+                    android:text="@string/text_image_add"
+                    android:textColor="@color/gray700"
+                    app:layout_constraintBottom_toTopOf="@id/btn_image_delete"
+                    app:layout_constraintStart_toStartOf="@id/btn_image_delete"
+                    app:layout_constraintTop_toTopOf="@id/card_image" />
+
+                <Button
+                    android:id="@+id/btn_image_delete"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:drawableLeft="@drawable/ic_btn_delete"
+                    android:drawableTint="@color/main"
+                    android:padding="15dp"
+                    android:text="@string/text_image_delete"
+                    android:textColor="@color/gray700"
+                    app:layout_constraintBottom_toBottomOf="@id/card_image"
+                    app:layout_constraintStart_toEndOf="@id/card_image"
+                    app:layout_constraintTop_toBottomOf="@id/btn_image_add" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_main_content"
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    app:cardCornerRadius="@dimen/card_corner"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_image">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                        <RadioGroup
+                            android:id="@+id/rg_group_lost_found"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.7"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rg_btn_lost"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="@color/main"
+                                android:checked="true"
+                                android:text="@string/text_lost" />
+
+                            <RadioButton
+                                android:id="@+id/rg_btn_found"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:buttonTint="@color/main"
+                                android:text="@string/text_found" />
+
+                        </RadioGroup>
+
+                        <EditText
+                            android:id="@+id/edit_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/text_title"
+                            android:importantForAutofill="no"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:paddingStart="5dp"
+                            android:textSize="@dimen/title4"
+                            tools:ignore="RtlSymmetry" />
+
+                        <EditText
+                            android:id="@+id/layout_location"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:hint="@string/text_location"
+                            android:importantForAutofill="no"
+                            android:inputType="text"
+                            android:paddingStart="5dp"
+                            android:textSize="@dimen/title4"
+                            tools:ignore="RtlSymmetry" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:layout_margin="20dp"
+                    app:cardCornerRadius="@dimen/card_corner"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_main_content">
+
+                    <EditText
+                        android:id="@+id/edit_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="15dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:gravity="top"
+                        android:hint="@string/text_content"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:textSize="@dimen/title4" />
+
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:backgroundTint="@color/main"
+            android:src="@drawable/ic_btn_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/white"
+            tools:ignore="ContentDescription" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

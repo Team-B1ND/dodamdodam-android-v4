@@ -80,4 +80,11 @@
     <string name="text_input_comment">댓글 입력...</string>
     <string name="title_comment">댓글</string>
     <string name="title_write_lost_found">분실물 작성</string>
+    <string name="text_lost">분실물</string>
+    <string name="text_found">습득물</string>
+    <string name="text_location">장소 (빈칸 허용)</string>
+    <string name="text_title">제목</string>
+    <string name="text_content">내용</string>
+    <string name="text_image_delete">사진 삭제</string>
+    <string name="text_image_add">사진 추가</string>
 </resources>
