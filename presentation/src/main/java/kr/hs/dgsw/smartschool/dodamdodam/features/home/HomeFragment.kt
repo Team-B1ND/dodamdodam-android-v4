@@ -35,6 +35,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         mBinding.tvSongMore.setOnClickListener {
             (activity as? MainActivity)?.moveHomeToSong()
         }
+        mBinding.tvMealMore.setOnClickListener {
+            (activity as? MainActivity)?.moveHomeToMeal()
+        }
         mBinding.btnMenu.setOnClickListener {
             openDrawer()
         }

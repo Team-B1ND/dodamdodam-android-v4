@@ -31,4 +31,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     fun moveHomeToSong() {
         mBinding.mainBottomNav.selectedItemId = R.id.main_song
     }
+
+    fun moveHomeToMeal() {
+        mBinding.mainBottomNav.selectedItemId = R.id.main_meal
+    }
 }

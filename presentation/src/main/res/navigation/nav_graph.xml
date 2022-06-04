@@ -20,4 +20,8 @@
         android:id="@+id/main_song"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.SongFragment"
         android:label="SongFragment" />
+    <fragment
+        android:id="@+id/main_meal"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.meal.MealFragment"
+        android:label="MealFragment" />
 </navigation>

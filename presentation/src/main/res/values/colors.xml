@@ -28,5 +28,5 @@
     <color name="color_un_selected">#FFFFFF</color>
 
     <color name="color_card_background">@color/white</color>
-    <color name="color_background">#F5F5F5</color>
+    <color name="color_background">#F9F9F9</color>
 </resources>

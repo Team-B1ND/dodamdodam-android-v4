@@ -10,6 +10,10 @@
         android:icon="@drawable/selector_speaker"
         android:title="@string/nav_news" />
 
+    <item android:id="@+id/main_meal"
+        android:icon="@drawable/selector_meal"
+        android:title="@string/nav_meal" />
+
     <item android:id="@+id/main_song"
         android:icon="@drawable/selector_song"
         android:title="@string/nav_song" />
