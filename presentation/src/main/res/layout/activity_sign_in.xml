@@ -32,7 +32,6 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layout_id"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
@@ -44,6 +43,8 @@
                     app:counterMaxLength="15"
                     app:endIconMode="clear_text"
                     app:errorEnabled="true"
+                    app:startIconDrawable="@drawable/selecter_ic_id"
+                    android:drawableStart="10dp"
                     app:helperText="아이디(닉네임)을 입력해주세요"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/image_sign_in">
@@ -52,8 +53,6 @@
                         android:id="@+id/edittext_id"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:drawableStart="@drawable/selecter_ic_id"
-                        android:drawablePadding="10dp"
                         android:inputType="text"
                         android:maxLength="15"
                         android:text="@={vm.id}"
@@ -62,7 +61,6 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layout_password"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"
@@ -73,14 +71,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layout_id"
+                    app:startIconDrawable="@drawable/selecter_ic_password"
+                    android:drawablePadding="10dp"
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edittext_password"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:drawableStart="@drawable/selecter_ic_password"
-                        android:drawablePadding="10dp"
                         android:inputType="textPassword"
                         android:maxLength="15"
                         android:text="@={vm.pw}"
@@ -97,7 +95,7 @@
                     android:text="자동 로그인"
                     />
 
-                <com.google.android.material.button.MaterialButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_sign_up"
                     android:layout_width="350dp"
                     android:layout_height="60dp"
@@ -105,6 +103,7 @@
                     android:elevation="10dp"
                     android:shadowColor="@color/black"
                     android:text="로그인"
+                    android:background="@color/main"
                     android:textColor="@color/white"
                     android:textSize="20dp"
                     android:textStyle="bold"

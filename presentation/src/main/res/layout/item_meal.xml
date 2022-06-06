@@ -44,7 +44,7 @@
                         android:layout_height="60dp"
                         android:contentDescription="mael image"
                         tools:ignore="HardcodedText"
-                        tools:src="@drawable/ic_dinner" />
+                        tools:src="@drawable/ic_dinner_moon" />
 
                     <TextView
                         android:id="@+id/tv_meal_name"

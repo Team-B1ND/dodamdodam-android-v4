@@ -18,9 +18,9 @@ class MealHomeAdapter : ListAdapter<MealInfo, MealHomeAdapter.MealHomeViewHolder
     class MealHomeViewHolder(val binding: ItemMealHomeBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MealInfo) {
             val image = when (item.type) {
-                1 -> R.drawable.ic_breakfast
-                2 -> R.drawable.ic_lunch
-                3 -> R.drawable.ic_dinner
+                1 -> R.drawable.ic_breakfast_sun
+                2 -> R.drawable.ic_lunch_night
+                3 -> R.drawable.ic_dinner_moon
                 else -> return
             }
 

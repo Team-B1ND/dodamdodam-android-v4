@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.MealDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemMealBinding
-import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemMealHomeBinding
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
 
 class MealAdapter : ListAdapter<MealInfo, MealAdapter.MealViewHolder>(MealDiffUtilCallback) {
@@ -19,9 +18,9 @@ class MealAdapter : ListAdapter<MealInfo, MealAdapter.MealViewHolder>(MealDiffUt
     class MealViewHolder(val binding: ItemMealBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MealInfo) {
             val image = when (item.type) {
-                1 -> R.drawable.ic_breakfast
-                2 -> R.drawable.ic_lunch
-                3 -> R.drawable.ic_dinner
+                1 -> R.drawable.ic_breakfast_sun
+                2 -> R.drawable.ic_lunch_night
+                3 -> R.drawable.ic_dinner_moon
                 else -> return
             }
 
