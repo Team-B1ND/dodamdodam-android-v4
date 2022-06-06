@@ -77,6 +77,12 @@ dependencies {
     // circular image view
     implementation(Libraries.CIRCULAR_IMAGE_VIEW)
 
+    // MP Android Chart
+    implementation(Libraries.MP_ANDROID_CHART)
+
+    // Swipe refresh layout
+    implementation(AndroidX.SWIPE_REFRESH_LAYOUT)
+
     implementation(project(":data"))
     implementation(project(":domain"))
 }
