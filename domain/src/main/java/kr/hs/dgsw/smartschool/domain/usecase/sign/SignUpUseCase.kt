@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.domain.usecase
+package kr.hs.dgsw.smartschool.domain.usecase.sign
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -8,7 +8,6 @@ import kr.hs.dgsw.smartschool.domain.util.Resource
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
-
 
 class SignUpUseCase @Inject constructor(
     private val signUpRepository: SignUpRepository

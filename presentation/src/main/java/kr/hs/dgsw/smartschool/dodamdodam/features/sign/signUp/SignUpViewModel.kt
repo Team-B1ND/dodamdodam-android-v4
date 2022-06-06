@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.domain.request.SignUpRequest
-import kr.hs.dgsw.smartschool.domain.usecase.SignUpUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.sign.SignUpUseCase
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
