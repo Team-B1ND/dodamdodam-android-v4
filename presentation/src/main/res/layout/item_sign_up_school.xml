@@ -16,7 +16,6 @@
         android:layout_height="460dp">
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_id"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -29,14 +28,14 @@
             app:errorEnabled="true"
             app:helperText="영문과 숫자만 이용 가능합니다"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/selecter_ic_id"
+            android:drawablePadding="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edittext_id"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:drawableStart="@drawable/selecter_ic_id"
-                android:drawablePadding="10dp"
                 android:inputType="text"
                 android:maxLength="15"
                 android:text="@={vm.id}"
@@ -46,7 +45,6 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_password"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -56,15 +54,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_id"
-            app:passwordToggleEnabled="true">
+            app:passwordToggleEnabled="true"
+            app:startIconDrawable="@drawable/selecter_ic_password"
+            android:drawablePadding="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edittext_password"
                 android:layout_width="match_parent"
                 android:hint="비밀번호"
                 android:layout_height="match_parent"
-                android:drawableStart="@drawable/selecter_ic_password"
-                android:drawablePadding="10dp"
                 android:inputType="textPassword"
                 android:maxLength="15"
                 android:text="@={vm.password}"
@@ -72,15 +70,13 @@
         </com.google.android.material.textfield.TextInputLayout>
         <LinearLayout
             android:layout_width="100dp"
-            android:layout_height="65dp"
+            android:layout_height="55dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/bg_edittext"
+            android:layout_marginTop="50dp"
             app:layout_constraintStart_toEndOf="@+id/layout_id"
-            app:layout_constraintTop_toTopOf="@+id/layout_id">
+            app:layout_constraintTop_toTopOf="parent">
 
             <Spinner
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/generation_spinner"
@@ -92,7 +88,6 @@
             android:layout_height="65dp"
             android:layout_marginTop="50dp"
             android:weightSum="3"
-            android:background="@drawable/bg_edittext"
             app:layout_constraintStart_toStartOf="@id/layout_id"
             app:layout_constraintTop_toBottomOf="@id/layout_password">
 

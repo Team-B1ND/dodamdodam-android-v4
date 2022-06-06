@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.data.network.response.data
+package kr.hs.dgsw.smartschool.domain.model.response
 
 
 
