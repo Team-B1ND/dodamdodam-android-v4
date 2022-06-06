@@ -66,16 +66,19 @@
                         app:layout_constraintEnd_toStartOf="@id/layout_date"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
 
                     <LinearLayout
                         android:id="@+id/layout_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/btn_next"
                         app:layout_constraintStart_toEndOf="@id/btn_previous"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="UseCompoundDrawables">
 
                         <TextView
                             android:id="@+id/tv_date"
@@ -93,7 +96,8 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="5dp"
                             android:padding="5dp"
-                            android:src="@drawable/ic_btn_calendar" />
+                            android:src="@drawable/ic_btn_calendar"
+                            tools:ignore="ContentDescription" />
 
                     </LinearLayout>
 
@@ -108,7 +112,8 @@
                         app:layout_constraintStart_toEndOf="@id/layout_date"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
