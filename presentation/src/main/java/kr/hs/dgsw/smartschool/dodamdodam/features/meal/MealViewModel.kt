@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import java.time.LocalDate
@@ -30,10 +29,15 @@ class MealViewModel @Inject constructor(
          LocalDate.now()
     }
 
+    init {
+        _targetDate.value = LocalDate.now()
+        getMealList()
+    }
+
     /**
      * 급식 리스트를 받아오는 함수입니다.
      */
-    private fun getMealList() {
+    fun getMealList() {
         mealUseCases.getAllMeal(
            _targetDate.value?.year ?: todayDate.year,
            _targetDate.value?.monthValue ?: todayDate.monthValue
@@ -53,7 +57,4 @@ class MealViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
-
-
-
 }

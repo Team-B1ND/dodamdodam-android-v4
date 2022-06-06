@@ -17,16 +17,12 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
     override val hasBottomNav: Boolean = true
 
     override fun observerViewModel() {
-        setUpTodayMeal()
-
-    }
-
-    private fun setUpTodayMeal() {
-
-    }
-
-    private fun getMealList() {
         with(viewModel) {
+            targetDate.observe(this@MealFragment) {
+                mBinding.tvDate.text = it.toString()
+                Toast.makeText(requireContext(), targetDate.toString(), Toast.LENGTH_SHORT).show()
+            }
+
             lifecycleScope.launchWhenStarted {
                 mealState.collect { state ->
                     if (mealState.value.meal.isNotEmpty()) {
@@ -41,7 +37,7 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                 }
             }
         }
-    } // getMealList()
+    }
 
     private fun getMeal(mealList: List<Meal>) {
         val meal = mealList.find { meal ->
@@ -62,5 +58,5 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                 MealInfo(3, meal.safeDinner)
             )
         )
-    }
+    } // setMealRecycler
 }
