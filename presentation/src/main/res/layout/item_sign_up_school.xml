@@ -29,7 +29,7 @@
             app:helperText="영문과 숫자만 이용 가능합니다"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:startIconDrawable="@drawable/selecter_ic_id"
+            app:startIconDrawable="@drawable/selector_ic_id"
             android:drawablePadding="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -55,7 +55,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_id"
             app:passwordToggleEnabled="true"
-            app:startIconDrawable="@drawable/selecter_ic_password"
+            app:startIconDrawable="@drawable/selector_ic_password"
             android:drawablePadding="10dp">
 
             <com.google.android.material.textfield.TextInputEditText

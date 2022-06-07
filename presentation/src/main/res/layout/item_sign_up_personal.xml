@@ -17,7 +17,6 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -36,8 +35,9 @@
                     android:id="@+id/edittext_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:drawableStart="@drawable/selecter_ic_id"
+                    android:drawableStart="@drawable/selector_ic_id"
                     android:drawablePadding="10dp"
+                    android:backgroundTint="@color/white"
                     android:hint="이름"
                     android:inputType="text"
                     android:maxLength="15"
@@ -47,7 +47,6 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout_phone"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
@@ -59,14 +58,14 @@
                 app:helperText="휴대폰 번호를 입력하세요"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_name">
+                app:layout_constraintTop_toBottomOf="@id/layout_name"
+                android:drawableStart="@drawable/selector_ic_phone_num"
+                android:drawablePadding="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edittext_phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:drawableStart="@drawable/selecter_ic_phone_num"
-                    android:drawablePadding="10dp"
                     android:hint="전화번호"
                     android:inputType="number"
                     android:maxLength="15"
@@ -93,7 +92,7 @@
                     android:id="@+id/edittext_email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:drawableStart="@drawable/selecter_ic_email"
+                    android:drawableStart="@drawable/selector_ic_email"
                     android:drawablePadding="10dp"
                     android:hint="이메일"
                     android:inputType="text"
