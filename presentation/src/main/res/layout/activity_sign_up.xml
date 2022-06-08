@@ -32,11 +32,14 @@ xmlns:tools="http://schemas.android.com/tools">
             <ImageView
                 android:id="@+id/image_sign_up"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:src="@drawable/image_sign_up"
+                android:layout_height="90dp"
+                android:src="@drawable/ic_bind_logo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="100dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginEnd="100dp" />
             <androidx.viewpager2.widget.ViewPager2
                 android:layout_width="match_parent"
                 android:layout_height="500dp"
@@ -44,7 +47,7 @@ xmlns:tools="http://schemas.android.com/tools">
                 app:layout_constraintStart_toStartOf="parent"
                 android:id="@+id/view_pager"/>
 
-            <com.google.android.material.button.MaterialButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_sign_up"
                 android:layout_width="350dp"
                 android:layout_height="60dp"
@@ -56,6 +59,7 @@ xmlns:tools="http://schemas.android.com/tools">
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"
+                android:background="@color/main"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view_pager" />
