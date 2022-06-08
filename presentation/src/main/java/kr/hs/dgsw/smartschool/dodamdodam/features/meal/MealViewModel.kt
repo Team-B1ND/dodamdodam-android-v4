@@ -19,7 +19,12 @@ class MealViewModel @Inject constructor(
     private val mealUseCases: MealUseCases
 ) : BaseViewModel() {
 
-    private val _mealState = MutableStateFlow<MealState>(MealState(isLoading = false))
+    companion object {
+        const val EVENT_CLICK_DATE = 1
+        const val EVENT_UPDATE_DATE = 2
+    }
+
+    private val _mealState = MutableStateFlow(MealState(isLoading = false))
     val mealState: StateFlow<MealState> = _mealState
 
     private val _targetDate = MutableLiveData<LocalDate>()
@@ -56,5 +61,33 @@ class MealViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun setTargetDate(date: LocalDate) {
+        _targetDate.value = date
+    }
+
+    fun onClickDate() = viewEvent(EVENT_CLICK_DATE)
+    fun onClickPlusDate() {
+        _targetDate.value?.let {
+            if (it.plusDays(1).month != it.month) {
+                _targetDate.value = it.plusDays(1)
+                getMealList()
+                return
+            }
+            _targetDate.value = it.plusDays(1)
+            viewEvent(EVENT_UPDATE_DATE)
+        }
+    }
+    fun onClickMinusDate() {
+        _targetDate.value?.let {
+            if (it.minusDays(1).month != it.month) {
+                _targetDate.value = it.minusDays(1)
+                getMealList()
+                return
+            }
+            _targetDate.value = it.minusDays(1)
+            viewEvent(EVENT_UPDATE_DATE)
+        }
     }
 }

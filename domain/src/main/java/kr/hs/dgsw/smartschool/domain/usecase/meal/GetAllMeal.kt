@@ -16,13 +16,13 @@ class GetAllMeal @Inject constructor(
         year: Int, month: Int
     ): Flow<Resource<List<Meal>>> = flow {
         try {
-            emit(Resource.Loading())
+            emit(Resource.Loading<List<Meal>>())
             val result = repository.getAllMeal(year, month)
             emit(Resource.Success<List<Meal>>(result))
         } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "알 수 없는 오류가 발생했습니다."))
+            emit(Resource.Error<List<Meal>>(e.localizedMessage ?: "알 수 없는 오류가 발생했습니다."))
         } catch (e: IOException) {
-            emit(Resource.Error("서버에 도달할 수 없습니다. 네트워크 상태를 확인해 주세요."))
+            emit(Resource.Error<List<Meal>>("서버에 도달할 수 없습니다. 네트워크 상태를 확인해 주세요."))
         }
     }
 }

@@ -14,13 +14,13 @@ class DeleteMeal @Inject constructor(
 ): BaseUseCase<MealRepository>() {
     operator fun invoke() : Flow<Resource<String>> = flow {
         try {
-            emit(Resource.Loading())
+            emit(Resource.Loading<String>())
             repository.deleteAllMeal()
-            emit(Resource.Success("급식을 삭제하였습니다."))
+            emit(Resource.Success<String>("급식을 삭제하였습니다."))
         } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "알 수 없는 오류가 발생했습니다."))
+            emit(Resource.Error<String>(e.localizedMessage ?: "알 수 없는 오류가 발생했습니다."))
         } catch (e: IOException) {
-            emit(Resource.Error("서버에 도달할 수 없습니다. 네트워크 상태를 확인해 주세요."))
+            emit(Resource.Error<String>("서버에 도달할 수 없습니다. 네트워크 상태를 확인해 주세요."))
         }
     }
 }
