@@ -18,5 +18,5 @@ open class BaseViewModel : ViewModel() {
         _viewEvent.value = Event(content)
     }
 
-    
+    val onErrorEvent = MutableLiveData<Throwable>()
 }

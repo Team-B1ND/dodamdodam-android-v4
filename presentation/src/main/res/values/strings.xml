@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">DodamDodam</string>
+    <string-array name="generation_array">
+        <item>1기</item>
+        <item>2기</item>
+        <item>3기</item>
+        <item>4기</item>
+        <item>5기</item>
+        <item>6기</item>
+        <item>7기</item>
+    </string-array>
     <string name="nav_home">홈</string>
     <string name="nav_news">소식</string>
     <string name="nav_song">기상송</string>
