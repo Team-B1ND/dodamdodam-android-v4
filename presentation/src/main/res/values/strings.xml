@@ -100,4 +100,10 @@
     <string name="title_menu">서비스 전체 보기</string>
     <string name="nav_meal">급식</string>
     <string name="title_meal">급식</string>
+    <string name="text_id">아이디</string>
+    <string name="text_password">비밀번호</string>
+    <string name="text_auto_login">로그인 유지</string>
+    <string name="text_login">로그인</string>
+    <string name="text_guide_sign_up">혹시 계정이 없으신가요?</string>
+    <string name="text_sign_up">회원가입</string>
 </resources>
