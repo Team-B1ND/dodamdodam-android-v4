@@ -52,7 +52,6 @@ xmlns:tools="http://schemas.android.com/tools">
                 android:elevation="10dp"
                 android:shadowColor="@color/black"
                 android:text="회원가입"
-                android:onClick="@{() -> vm.onClickSignUp()}"
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:textStyle="bold"

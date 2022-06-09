@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Query
 import kr.hs.dgsw.smartschool.data.base.BaseDao
 import kr.hs.dgsw.smartschool.data.database.entity.UserInfoEntity
-import kr.hs.dgsw.smartschool.domain.model.UserInfo
 
 @Dao
 interface UserInfoDao: BaseDao<UserInfoEntity> {

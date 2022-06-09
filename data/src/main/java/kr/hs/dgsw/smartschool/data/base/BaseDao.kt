@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.data.base
 
 import androidx.room.*
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BaseDao<ET> {

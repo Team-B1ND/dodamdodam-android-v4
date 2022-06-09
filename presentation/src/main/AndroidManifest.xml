@@ -12,20 +12,20 @@
         android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DodamDodam"
-        android:name=".MyApplication">
+        android:theme="@style/Theme.DodamDodam">
         <activity
             android:name=".features.main.MainActivity"
             android:exported="true">
-        </activity>
-        <activity
-            android:exported="true"
-            android:name=".features.sign.signUp.SignUpActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:exported="true"
+            android:name=".features.sign.signUp.SignUpActivity">
+
         </activity>
     </application>
 
