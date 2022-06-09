@@ -5,10 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import kr.hs.dgsw.smartschool.data.database.dao.MealDao
 import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
+import kr.hs.dgsw.smartschool.data.database.entity.SignInEntity
 import java.util.concurrent.Executors
 
 @Database(
-    entities = [MealEntity::class],
+    entities = [MealEntity::class, SignInEntity::class],
     version = 1,
     exportSchema = false
 )

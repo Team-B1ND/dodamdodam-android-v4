@@ -3,26 +3,15 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.sign.signUp
 import android.content.Intent
 import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.PagerAdapter
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.domain.request.SignUpRequest
 import kr.hs.dgsw.smartschool.domain.usecase.SignUpUseCase
-import kr.hs.dgsw.smartschool.domain.util.Resource
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
-import java.util.*
 import java.util.regex.Pattern
 import javax.inject.Inject
 
-@HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase
 ) : BaseViewModel() {
@@ -36,8 +25,6 @@ class SignUpViewModel @Inject constructor(
     val classNum = MutableLiveData<String>()
     val stuNum = MutableLiveData<String>()
 
-
-
     private val _state = MutableStateFlow<SignUpState>(SignUpState(isLoading = false))
     val state: StateFlow<SignUpState> = _state
 
@@ -48,7 +35,7 @@ class SignUpViewModel @Inject constructor(
     }
 
 
-    fun onClickSignUp() {
+    /*fun onClickSignUp() {
         if (checkError()) {
             val signUpRequest = SignUpRequest(
                 id = id.value ?: "",
@@ -77,7 +64,7 @@ class SignUpViewModel @Inject constructor(
                 }
             }.launchIn(viewModelScope)
         }
-    }
+    }*/
 
 
     private fun checkError(): Boolean {
