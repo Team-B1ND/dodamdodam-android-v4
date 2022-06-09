@@ -5,5 +5,5 @@ import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 
 data class MealData (
     @SerializedName("meal")
-    val meals: List<Meal>
+    val meal: Meal
 )

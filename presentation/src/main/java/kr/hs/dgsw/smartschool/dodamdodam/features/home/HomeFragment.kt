@@ -30,9 +30,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private var mealList = listOf<Meal>()
 
-    private var date = LocalDate.now()
 
     override fun observerViewModel() {
+        var date = LocalDate.now()
         setUpStudyRoom()
         setUpTodaySong()
         bindViews()
@@ -42,19 +42,33 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 date = date.plusDays(1)
                 mBinding.tvMealTitle.text = "내일의 급식"
             }
-            Toast.makeText(requireContext(), date.toString(), Toast.LENGTH_SHORT).show()
+            mBinding.tvMealDate.text = String.format("%d.%d", date.monthValue, date.dayOfMonth)
             getMealList(date)
 
             lifecycleScope.launchWhenStarted {
                 mealState.collect { state ->
                     if (mealState.value.meal.isNotEmpty()) {
+                        mBinding.progressLoading.visibility = View.GONE
+                        mBinding.viewPagerMealList.visibility = View.VISIBLE
                         mealList = mealState.value.meal
-                        getMeal(mealList)
+                        getMeal(mealList, date)
                     }
                     if (state.isLoading) {
-                        Toast.makeText(requireContext(), "로딩중학교", Toast.LENGTH_SHORT).show()
+                        mBinding.progressLoading.visibility = View.VISIBLE
+                        mBinding.viewPagerMealList.visibility = View.GONE
                     }
                     if (state.error.isNotBlank()) {
+                        mBinding.progressLoading.visibility = View.GONE
+                        mBinding.viewPagerMealList.visibility = View.VISIBLE
+                        setMealViewPager(
+                            meal = Meal(
+                                "값을 받아올 수 없습니다.",
+                                "",
+                                "값을 받아올 수 없습니다.",
+                                false,
+                                "값을 받아올 수 없습니다."
+                            )
+                        )
                         Toast.makeText(requireContext(), state.error, Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -74,7 +88,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         }
     }
 
-    private fun getMeal(mealList: List<Meal>) {
+    private fun getMeal(mealList: List<Meal>, date: LocalDate) {
         val meal = mealList.find { meal ->
             meal.date == date.toString()
         }

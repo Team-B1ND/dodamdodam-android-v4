@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.meal
 
 import android.app.DatePickerDialog
+import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -31,12 +32,26 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                 mealState.collect { state ->
                     if (mealState.value.meal.isNotEmpty()) {
                         mealList = mealState.value.meal
+                        mBinding.progressLoading.visibility = View.GONE
+                        mBinding.recyclerMeal.visibility = View.VISIBLE
                         getMeal(mealList)
                     }
                     if (state.isLoading) {
-                        Toast.makeText(requireContext(), "로딩중학교", Toast.LENGTH_SHORT).show()
+                        mBinding.recyclerMeal.visibility = View.GONE
+                        mBinding.progressLoading.visibility = View.VISIBLE
                     }
                     if (state.error.isNotBlank()) {
+                        mBinding.recyclerMeal.visibility = View.VISIBLE
+                        mBinding.progressLoading.visibility = View.GONE
+                        setMealRecycler(
+                            meal = Meal(
+                                "값을 받아올 수 없습니다.",
+                                "",
+                                "값을 받아올 수 없습니다.",
+                                false,
+                                "값을 받아올 수 없습니다."
+                            )
+                        )
                         Toast.makeText(requireContext(), state.error, Toast.LENGTH_SHORT).show()
                     }
                 }

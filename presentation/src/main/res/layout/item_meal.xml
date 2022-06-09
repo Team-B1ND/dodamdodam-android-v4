@@ -11,14 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/iv_meal"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="23dp"
+            android:elevation="20dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/card_meal"
+            tools:ignore="ContentDescription,HardcodedText"
+            tools:src="@drawable/ic_dinner" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/card_meal"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="80dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="35dp"
             app:cardCornerRadius="@dimen/card_corner"
             app:cardElevation="@dimen/card_elevation"
-            android:layout_marginVertical="15dp"
-            android:layout_marginHorizontal="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,56 +41,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <LinearLayout
-                    android:id="@+id/linear_meal"
+                <TextView
+                    android:id="@+id/tv_meal_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="45dp"
-                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/background_meal_name"
+                    android:backgroundTint="@color/main"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="3dp"
+                    android:text="@string/meal_name_dummy"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/title6"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/iv_meal"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:contentDescription="mael image"
-                        tools:ignore="HardcodedText"
-                        tools:src="@drawable/ic_dinner" />
-
-                    <TextView
-                        android:id="@+id/tv_meal_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/background_meal_name"
-                        android:backgroundTint="@color/main"
-                        android:paddingHorizontal="17dp"
-                        android:paddingVertical="3dp"
-                        android:text="@string/meal_name_dummy"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/title5"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView
                     android:id="@+id/tv_meal"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginHorizontal="30dp"
-                    android:layout_marginVertical="20dp"
+                    android:layout_marginHorizontal="20dp"
                     android:ellipsize="end"
-                    android:textSize="@dimen/title6"
                     android:gravity="center_vertical"
                     android:text="@string/meal_dummy"
                     android:textColor="@color/black"
+                    android:textSize="@dimen/title6"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/linear_meal"
+                    app:layout_constraintStart_toEndOf="@id/tv_meal_name"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

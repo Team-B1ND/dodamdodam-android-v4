@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.meal
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.data.mapper
 
+import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseEntityMapper
 import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
@@ -21,7 +22,6 @@ class MealMapper : BaseEntityMapper<Meal, MealEntity> {
 
     override fun mapToEntity(model: Meal): MealEntity {
         val (year, month, day) = model.date.split('-')
-
         return MealEntity(
             year.toInt(),
             month.toInt(),
