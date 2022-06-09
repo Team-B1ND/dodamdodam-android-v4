@@ -106,6 +106,17 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
+                            android:id="@+id/tv_meal_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="6.10"
+                            android:textColor="@color/gray500"
+                            android:textSize="@dimen/title6"
+                            android:layout_marginStart="5dp"
+                            app:layout_constraintStart_toEndOf="@id/tv_meal_title"
+                            app:layout_constraintBaseline_toBaselineOf="@id/tv_meal_title" />
+
+                        <TextView
                             android:id="@+id/tv_meal_more"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -117,6 +128,14 @@
                             app:layout_constraintEnd_toEndOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <ProgressBar
+                        android:id="@+id/progress_loading"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/main"
+                        />
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/view_pager_meal_list"

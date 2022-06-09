@@ -3,32 +3,77 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.home
 import android.annotation.SuppressLint
 import android.view.Gravity
 import android.view.View
-import androidx.fragment.app.setFragmentResult
+import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
-import kr.hs.dgsw.smartschool.dodamdodam.R
+import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealHomeAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.StudyRoomAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.TodaySongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentHomeBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
-import kr.hs.dgsw.smartschool.dodamdodam.features.song.SongFragment
 import kr.hs.dgsw.smartschool.domain.model.location.Location
+import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
 import kr.hs.dgsw.smartschool.domain.model.song.Song
+import java.time.LocalDate
+import java.time.LocalDateTime
+import kotlin.math.abs
 
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override val viewModel: HomeViewModel by viewModels()
     override val hasBottomNav: Boolean = true
 
+    private var mealList = listOf<Meal>()
+
+
     override fun observerViewModel() {
-        setUpTodayMeal()
+        var date = LocalDate.now()
         setUpStudyRoom()
         setUpTodaySong()
         bindViews()
+
+        with(viewModel) {
+            if(LocalDateTime.now().hour >= 19) {
+                date = date.plusDays(1)
+                mBinding.tvMealTitle.text = "내일의 급식"
+            }
+            mBinding.tvMealDate.text = String.format("%d.%d", date.monthValue, date.dayOfMonth)
+            getMealList(date)
+
+            lifecycleScope.launchWhenStarted {
+                mealState.collect { state ->
+                    if (mealState.value.meal.isNotEmpty()) {
+                        mBinding.progressLoading.visibility = View.GONE
+                        mBinding.viewPagerMealList.visibility = View.VISIBLE
+                        mealList = mealState.value.meal
+                        getMeal(mealList, date)
+                    }
+                    if (state.isLoading) {
+                        mBinding.progressLoading.visibility = View.VISIBLE
+                        mBinding.viewPagerMealList.visibility = View.GONE
+                    }
+                    if (state.error.isNotBlank()) {
+                        mBinding.progressLoading.visibility = View.GONE
+                        mBinding.viewPagerMealList.visibility = View.VISIBLE
+                        setMealViewPager(
+                            meal = Meal(
+                                "값을 받아올 수 없습니다.",
+                                "",
+                                "값을 받아올 수 없습니다.",
+                                false,
+                                "값을 받아올 수 없습니다."
+                            )
+                        )
+                        Toast.makeText(requireContext(), state.error, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
     }
 
     private fun bindViews() {
@@ -43,13 +88,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         }
     }
 
-    @SuppressLint("RtlHardcoded")
-    private fun openDrawer() {
-        mBinding.layoutDrawer.openDrawer(Gravity.LEFT, true)
-    }
+    private fun getMeal(mealList: List<Meal>, date: LocalDate) {
+        val meal = mealList.find { meal ->
+            meal.date == date.toString()
+        }
+        meal?.let {
+            setMealViewPager(it)
+        }
+    } // getMeal()
 
-
-    private fun setUpTodayMeal() {
+    private fun setMealViewPager(meal: Meal) {
         val mealHomeAdapter = MealHomeAdapter()
         mBinding.viewPagerMealList.adapter = mealHomeAdapter
         mBinding.viewPagerMealList.offscreenPageLimit = 3
@@ -57,11 +105,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         mBinding.viewPagerMealList.setPageTransformer(getTransform())
         mealHomeAdapter.submitList(
             listOf(
-                MealInfo(1, "쇠고기버섯죽 , *크로크무슈 , 나박물김치 , *오레오오즈레드+우유 , 바나나"),
-                MealInfo(2, "*발아현미밥 , *놀부부대찌개 , *꽁치감자조림 , *시카고피자 , 배추김치 , 납작복숭아주스"),
-                MealInfo(3, "*기장밥 , 김치어묵국 , *명태껍질볶음 , 새송이돈육마늘구이 , *짜먹는요거트 , *꽃상추쌈/쌈장")
+                MealInfo(1, meal.safeBreakfast),
+                MealInfo(2, meal.safeLunch),
+                MealInfo(3, meal.safeDinner)
             )
         )
+    }
+
+    @SuppressLint("RtlHardcoded")
+    private fun openDrawer() {
+        mBinding.layoutDrawer.openDrawer(Gravity.LEFT, true)
     }
 
     private fun setUpTodaySong() {
@@ -98,7 +151,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             transform.addTransformer(MarginPageTransformer(10))
 
             transform.addTransformer { view: View, fl: Float ->
-                val v = 1 - Math.abs(fl)
+                val v = 1 - abs(fl)
                 view.scaleY = 0.8f + v * 0.2f
             }
 

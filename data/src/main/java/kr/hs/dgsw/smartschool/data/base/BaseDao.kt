@@ -5,7 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BaseDao<ET> {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity: ET)
 
