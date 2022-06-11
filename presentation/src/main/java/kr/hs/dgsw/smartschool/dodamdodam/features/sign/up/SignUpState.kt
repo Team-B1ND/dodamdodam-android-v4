@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.sign.signUp
+package kr.hs.dgsw.smartschool.dodamdodam.features.sign.up
 
 data class SignUpState(
     val isLoading: Boolean = false,

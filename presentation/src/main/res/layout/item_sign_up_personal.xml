@@ -5,7 +5,7 @@
     <data>
         <variable
             name="vm"
-            type="kr.hs.dgsw.smartschool.dodamdodam.features.sign.signUp.SignUpViewModel" />
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.sign.up.SignUpViewModel" />
     </data>
     <androidx.cardview.widget.CardView
         android:layout_width="380dp"

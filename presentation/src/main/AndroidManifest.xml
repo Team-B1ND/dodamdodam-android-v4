@@ -23,10 +23,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:exported="true"
-            android:name=".features.sign.signUp.SignUpActivity">
-
+            android:exported="false"
+            android:name=".features.sign.up.SignUpActivity">
         </activity>
+        <activity
+            android:name=".features.sign.in.SignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".features.sign.up.SignUpDetailActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
