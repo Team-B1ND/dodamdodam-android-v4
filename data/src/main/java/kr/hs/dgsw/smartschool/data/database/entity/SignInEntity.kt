@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.data.database.entity
 
 import androidx.room.Entity
-import kr.hs.dgsw.smartschool.domain.model.response.UserData
 
 
 @Entity(

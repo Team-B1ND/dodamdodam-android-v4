@@ -1,7 +1,5 @@
 package kr.hs.dgsw.smartschool.domain.request
 
-import android.hardware.SensorAdditionalInfo
-
 data class SignUpRequest(
     val id:String,
     val pw: String,

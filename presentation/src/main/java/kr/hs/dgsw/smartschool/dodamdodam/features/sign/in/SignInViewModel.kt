@@ -5,5 +5,5 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 
 @HiltViewModel
 class SignInViewModel : BaseViewModel() {
-    
+
 }
