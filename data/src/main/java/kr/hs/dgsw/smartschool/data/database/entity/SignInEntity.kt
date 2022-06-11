@@ -11,4 +11,4 @@ data class SignInEntity(
     val token: String,
     val id : String,
     val pw : String
-    )
+)
