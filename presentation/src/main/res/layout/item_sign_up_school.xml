@@ -33,7 +33,7 @@
             android:drawablePadding="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edittext_id"
+                android:id="@+id/edit_id"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="text"
@@ -59,7 +59,7 @@
             android:drawablePadding="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edittext_password"
+                android:id="@+id/edit_password"
                 android:layout_width="match_parent"
                 android:hint="비밀번호"
                 android:layout_height="match_parent"
