@@ -1,5 +1,7 @@
 package kr.hs.dgsw.smartschool.domain.repository
 
-interface SignInRepository {
+import kr.hs.dgsw.smartschool.domain.request.SignInRequest
 
+interface SignInRepository {
+    suspend fun signIn(signInRequest: SignInRequest)
 }
