@@ -10,7 +10,6 @@ import kr.hs.dgsw.smartschool.domain.model.token.Token
 import kr.hs.dgsw.smartschool.domain.request.TokenRequest
 import org.json.JSONException
 import org.json.JSONObject
-import java.util.*
 import javax.inject.Inject
 
 class TokenDataSource @Inject constructor(
