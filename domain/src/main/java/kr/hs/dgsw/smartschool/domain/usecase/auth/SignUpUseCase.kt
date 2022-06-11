@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.domain.usecase
+package kr.hs.dgsw.smartschool.domain.usecase.auth
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
