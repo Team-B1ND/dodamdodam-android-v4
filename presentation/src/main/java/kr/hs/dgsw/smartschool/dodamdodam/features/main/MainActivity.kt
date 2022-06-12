@@ -37,4 +37,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     fun moveHomeToMeal() {
         mBinding.mainBottomNav.selectedItemId = R.id.main_meal
     }
+
+    override fun bindingViewEvent() {}
 }

@@ -14,7 +14,6 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
     override val viewModel: SignInViewModel by viewModels()
 
     override fun observerViewModel() {
-        bindingViewEvent()
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 signInState.collect { state ->
@@ -30,7 +29,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
         }
     }
 
-    private fun bindingViewEvent() {
+    override fun bindingViewEvent() {
         with(viewModel) {
             viewEvent.observe(this@SignInActivity) {
                 it.getContentIfNotHandled()?.let { event ->

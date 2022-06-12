@@ -17,12 +17,14 @@ abstract class BaseActivity<VB : ViewDataBinding, VM: BaseViewModel> : AppCompat
     protected abstract val viewModel: VM
 
     protected abstract fun observerViewModel()
+    protected abstract fun bindingViewEvent()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         performDataBinding()
         observerViewModel()
+        bindingViewEvent()
     }
 
     private fun performDataBinding() {
