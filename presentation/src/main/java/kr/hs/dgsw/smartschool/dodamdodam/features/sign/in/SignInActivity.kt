@@ -5,7 +5,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivitySignInBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
@@ -36,7 +35,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
             viewEvent.observe(this@SignInActivity) {
                 it.getContentIfNotHandled()?.let { event ->
                     when(event) {
-                        SignInViewModel.EVENT_SUCCESS_LOGIN -> {
+                        SignInViewModel.EVENT_SUCCESS_SIGN_IN -> {
                             val intent = Intent(this@SignInActivity, MainActivity::class.java)
                             startActivity(intent)
                         }

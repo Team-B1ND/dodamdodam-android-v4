@@ -9,6 +9,8 @@ import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivitySignUpBinding
 class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
     override val viewModel: SignUpViewModel by viewModels()
 
+
+
     override fun observerViewModel() {
 
     }

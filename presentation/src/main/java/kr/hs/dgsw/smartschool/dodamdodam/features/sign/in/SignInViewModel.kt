@@ -19,7 +19,7 @@ class SignInViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     companion object {
-        const val EVENT_SUCCESS_LOGIN = 1234
+        const val EVENT_SUCCESS_SIGN_IN = 1234
     }
 
     private val _id = MutableLiveData<String>()
@@ -47,7 +47,7 @@ class SignInViewModel @Inject constructor(
         ).onEach { result ->
             when(result) {
                 is Resource.Success -> {
-                    viewEvent(EVENT_SUCCESS_LOGIN)
+                    viewEvent(EVENT_SUCCESS_SIGN_IN)
                 }
                 is Resource.Loading -> {
                     _signInState.value = SignInState(isLoading = true)
