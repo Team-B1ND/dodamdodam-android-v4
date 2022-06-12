@@ -8,6 +8,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivitySignInBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
+import kr.hs.dgsw.smartschool.dodamdodam.features.sign.up.SignUpActivity
 
 @AndroidEntryPoint
 class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
@@ -26,6 +27,11 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
                     }
                 }
             }
+        }
+
+        mBinding.tvSignUp.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
         }
     }
 

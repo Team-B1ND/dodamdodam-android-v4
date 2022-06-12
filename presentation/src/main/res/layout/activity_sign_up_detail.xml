@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="kr.hs.dgsw.smartschool.dodamdodam.features.sign.up.SignUpDetailViewModel" />
@@ -35,13 +36,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:text="@string/text_detail_info"
                 android:textColor="@color/color_black"
-                android:layout_marginStart="10dp"
                 android:textSize="@dimen/title3"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/btn_back"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -49,26 +50,26 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="10dp"
-            app:layout_constraintTop_toBottomOf="@id/layout_action_bar"
             app:layout_constraintBottom_toTopOf="@+id/btn_sign_up"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_action_bar">
 
             <LinearLayout
                 android:id="@+id/layout_sign_up"
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layout_name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="40dp"
                     android:layout_marginTop="20dp"
                     android:hint="@string/text_name"
-                    android:layout_gravity="center_horizontal"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     app:boxStrokeErrorColor="@android:color/holo_red_light"
                     app:counterEnabled="true"
                     app:counterMaxLength="10"
@@ -80,24 +81,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:maxLength="15" />
+                        android:maxLength="15"
+                        android:text="@={vm.name}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="40dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginHorizontal="40dp" >
+                    android:orientation="horizontal">
 
                     <EditText
                         android:id="@+id/edit_grade"
                         android:layout_width="0dp"
-                        android:maxLength="1"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:inputType="number"
+                        android:maxLength="1"
+                        android:text="@={vm.grade}"
                         tools:ignore="Autofill,LabelFor" />
 
                     <TextView
@@ -112,8 +115,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:maxLength="1"
                         android:inputType="number"
+                        android:maxLength="1"
+                        android:text="@={vm.room}"
                         tools:ignore="Autofill,LabelFor" />
 
                     <TextView
@@ -128,8 +132,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:maxLength="1"
                         android:inputType="number"
+                        android:maxLength="1"
+                        android:text="@={vm.number}"
                         tools:ignore="Autofill,LabelFor" />
 
                     <TextView
@@ -142,13 +147,13 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layout_email"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="40dp"
                     android:layout_marginTop="20dp"
                     android:hint="@string/text_email"
-                    android:layout_gravity="center_horizontal"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     app:boxStrokeErrorColor="@android:color/holo_red_light"
                     app:counterEnabled="true"
                     app:counterMaxLength="30"
@@ -160,19 +165,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
-                        android:maxLength="30" />
+                        android:maxLength="30"
+                        android:text="@={vm.email}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layout_phone"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginHorizontal="40dp"
                     android:layout_marginTop="20dp"
                     android:hint="@string/text_phone"
-                    android:layout_gravity="center_horizontal"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     app:boxStrokeErrorColor="@android:color/holo_red_light"
                     app:counterEnabled="true"
                     app:counterMaxLength="11"
@@ -184,7 +190,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="phone"
-                        android:maxLength="11" />
+                        android:maxLength="11"
+                        android:text="@={vm.number}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -193,23 +200,24 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="40dp"
                     android:buttonTint="@color/main"
-                    android:checked="true"
                     android:text="@string/text_use_agree" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
-                    android:textSize="@dimen/title6"
                     android:text="@string/text_personal_info"
-                    android:textColor="@color/gray700" />
+                    android:textColor="@color/gray700"
+                    android:textSize="@dimen/title6" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
-                    android:textSize="@dimen/title6"
                     android:layout_marginTop="5dp"
                     android:text="@string/text_service_operation"
-                    android:textColor="@color/gray700" />
+                    android:textColor="@color/gray700"
+                    android:textSize="@dimen/title6" />
 
             </LinearLayout>
         </ScrollView>
@@ -219,12 +227,13 @@
             android:layout_width="350dp"
             android:layout_height="60dp"
             android:layout_marginTop="70dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/main"
+            android:onClick="@{() -> vm.signUp()}"
             android:text="@string/text_sign_up"
             android:textColor="@color/white"
             android:textSize="@dimen/title3"
             android:textStyle="bold"
-            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

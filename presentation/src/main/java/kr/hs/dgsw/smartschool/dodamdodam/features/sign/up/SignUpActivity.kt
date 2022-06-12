@@ -9,7 +9,9 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
     override val viewModel: SignUpViewModel by viewModels()
 
     override fun observerViewModel() {
-
+        mBinding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
     override fun bindingViewEvent() {

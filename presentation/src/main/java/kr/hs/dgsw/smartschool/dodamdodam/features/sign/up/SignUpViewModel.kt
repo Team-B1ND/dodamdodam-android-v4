@@ -16,6 +16,9 @@ class SignUpViewModel: BaseViewModel() {
     private val _pw = MutableLiveData<String>()
     val pw: LiveData<String> get() = _pw
 
+    private val _pwRight = MutableLiveData<String>()
+    val pwRight: LiveData<String> get() = _pwRight
+
     fun onClickNext() {
         viewEvent(EVENT_ON_CLICK_NEXT)
     }
