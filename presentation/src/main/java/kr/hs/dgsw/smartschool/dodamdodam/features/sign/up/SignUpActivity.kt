@@ -11,6 +11,5 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
 
     override fun observerViewModel() {
 
-
     }
 }

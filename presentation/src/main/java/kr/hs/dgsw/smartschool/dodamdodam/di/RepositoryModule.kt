@@ -6,8 +6,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.data.repository.MealRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.SignInRepositoryImpl
+import kr.hs.dgsw.smartschool.data.repository.SignUpRepositoryImpl
 import kr.hs.dgsw.smartschool.domain.repository.MealRepository
 import kr.hs.dgsw.smartschool.domain.repository.SignInRepository
+import kr.hs.dgsw.smartschool.domain.repository.SignUpRepository
 import javax.inject.Singleton
 
 @Module
@@ -20,4 +22,8 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideSignInRepository(signInRepositoryImpl: SignInRepositoryImpl): SignInRepository = signInRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun providesSignUpRepository(signUpRepositoryImpl: SignUpRepositoryImpl): SignUpRepository = signUpRepositoryImpl
 }

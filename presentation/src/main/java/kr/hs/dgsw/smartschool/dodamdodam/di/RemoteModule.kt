@@ -7,6 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.data.network.api.MealApi
 import kr.hs.dgsw.smartschool.data.network.remote.MealRemote
 import kr.hs.dgsw.smartschool.data.network.remote.SignInRemote
+import kr.hs.dgsw.smartschool.data.network.remote.SignUpRemote
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -21,4 +22,8 @@ class RemoteModule {
     @Singleton
     @Provides
     fun provideSignInRemote(): SignInRemote = SignInRemote()
+
+    @Singleton
+    @Provides
+    fun provideSignUpRemote(): SignUpRemote = SignUpRemote()
 }
