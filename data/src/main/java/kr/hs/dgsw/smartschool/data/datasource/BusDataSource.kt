@@ -26,6 +26,6 @@ class BusDataSource @Inject constructor(
 
     }
     suspend fun getTodayBusList():List<BusList<List<Bus>>>{
-
+        return remote.getBusList()
     }
 }
