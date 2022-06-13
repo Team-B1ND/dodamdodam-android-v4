@@ -100,4 +100,6 @@
     <string name="title_menu">서비스 전체 보기</string>
     <string name="nav_meal">급식</string>
     <string name="title_meal">급식</string>
+    <string name="bus_ride_possible">탑승 가능</string>
+    <string name="bus_ride_impossible">탑승 불가</string>
 </resources>

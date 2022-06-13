@@ -28,6 +28,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
+            <TextView
+                android:id="@+id/tv_bus_ride_possible"
+                android:padding="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bus_ride_possible"
+                android:textSize="@dimen/title7"
+                android:textColor="@color/color_white"
+                app:layout_constraintTop_toTopOf="@id/iv_bus"
+                app:layout_constraintStart_toStartOf="@id/iv_bus"
+                app:layout_constraintEnd_toEndOf="@id/iv_bus"
+                android:layout_marginTop="55dp"
+                android:background="@drawable/background_bus_ride_possible"/>
 
             <TextView
                 android:id="@+id/tv_bus_title"
@@ -39,6 +52,16 @@
                 app:layout_constraintStart_toEndOf="@id/iv_bus"
                 app:layout_constraintTop_toTopOf="@id/iv_bus"
                 tools:text="용산역" />
+            <TextView
+                android:id="@+id/count_people"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="50/60"
+                tools:textSize="@dimen/title5"
+                app:layout_constraintTop_toTopOf="@+id/tv_bus_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="20dp"
+                />
 
             <LinearLayout
                 android:id="@+id/layout_time"
@@ -57,13 +80,13 @@
                     android:layout_gravity="center_vertical"
                     android:text="@string/text_bus_start_time"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/title6" />
+                    android:textSize="@dimen/title4" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/title4"
-                    tools:text="9월 6일 12시 30분"
+                    tools:text="9월 6일 13:30"
                     android:textColor="@color/color_black"
                     android:layout_marginStart="20dp" />
 
