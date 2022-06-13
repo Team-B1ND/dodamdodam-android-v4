@@ -3,12 +3,13 @@ package kr.hs.dgsw.smartschool.data.network.api
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusList
+import kr.hs.dgsw.smartschool.domain.model.bus.BusMember
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface BusApi {
     @GET("bus")
     suspend fun getBusList(
-    ):Response<List<BusList>>
-    //TODO 반환형 고치기
+    ):Response<List<BusList<List<Bus>>>>
+    //TODO 티처 수정
 }
