@@ -191,7 +191,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="phone"
                         android:maxLength="11"
-                        android:text="@={vm.number}" />
+                        android:text="@={vm.phone}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

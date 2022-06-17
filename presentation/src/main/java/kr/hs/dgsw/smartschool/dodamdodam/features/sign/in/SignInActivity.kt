@@ -49,5 +49,4 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
             }
         }
     }
-
 }

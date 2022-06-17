@@ -1,13 +1,11 @@
 package kr.hs.dgsw.smartschool.data.network.interceptor
 
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
 import kr.hs.dgsw.smartschool.data.datasource.AccountDataSource
 import kr.hs.dgsw.smartschool.data.exception.TokenException
+import kr.hs.dgsw.smartschool.data.util.AppDispatchers
 import kr.hs.dgsw.smartschool.domain.model.token.Token
 import kr.hs.dgsw.smartschool.domain.usecase.auth.SignInUseCase
 import kr.hs.dgsw.smartschool.domain.usecase.token.TokenUseCases
@@ -22,9 +20,8 @@ class TokenInterceptor @Inject constructor(
     private val signInUseCase: SignInUseCase,
     private val tokenUseCases: TokenUseCases,
     private val accountDataSource: AccountDataSource,
-    private val coroutineScope: CoroutineScope
+    private val appDispatcher: AppDispatchers
 ): Interceptor {
-
     private val TOKEN_ERROR = 410
 
     private lateinit var token: Token
@@ -39,7 +36,6 @@ class TokenInterceptor @Inject constructor(
 
         val response = chain.proceed(request)
         if (response.code == 200) {
-            coroutineScope.cancel()
             return response
         } else if (response.code == TOKEN_ERROR) {
             lateinit var r: Response
@@ -48,11 +44,9 @@ class TokenInterceptor @Inject constructor(
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
-            coroutineScope.cancel()
             return r
         }
 
-        coroutineScope.cancel()
         return response
     }
 
@@ -70,7 +64,6 @@ class TokenInterceptor @Inject constructor(
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
-            coroutineScope.cancel()
             r
         } else another
     }
@@ -88,29 +81,36 @@ class TokenInterceptor @Inject constructor(
     }
 
     private fun setToken() {
-        tokenUseCases.getToken().onEach { result ->
-            if (result is Resource.Success) {
-                token = result.data!!
+        runBlocking(appDispatcher.io) {
+            tokenUseCases.getToken().onEach { result ->
+                if (result is Resource.Success) {
+                    token = result.data!!
+                }
             }
-        }.launchIn(coroutineScope)
+        }
     }
 
-    private fun fetchToken() =
-        tokenUseCases.updateNewToken().onEach { result ->
-            if(result is Resource.Success) {
-                token = result.data!!
+    private fun fetchToken() {
+        runBlocking(appDispatcher.io) {
+            tokenUseCases.updateNewToken().onEach { result ->
+                if(result is Resource.Success) {
+                    token = result.data!!
+                }
             }
         }
+    }
+
 
     private fun getTokenToLogin() {
-        val account = coroutineScope.async {
+        val account = runBlocking(appDispatcher.io) {
             accountDataSource.getAccount()
         }
-        coroutineScope.launch {
-            signInUseCase(account.await().id, account.await().pw, false).onEach {
+
+        runBlocking(appDispatcher.io) {
+            signInUseCase(account.id, account.pw, false).onEach {
                 if (it is Resource.Success)
                     setToken()
-            }.launchIn(coroutineScope)
+            }
         }
     }
 }

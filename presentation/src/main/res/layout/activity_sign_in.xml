@@ -56,7 +56,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="70dp"
                     android:layout_marginEnd="1dp"
-                    android:drawableStart="10dp"
                     android:hint="@string/text_id"
                     app:boxStrokeErrorColor="@android:color/holo_red_light"
                     app:counterEnabled="true"
@@ -69,10 +68,10 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_id"
-                        android:text="@={vm.id}"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:backgroundTint="@android:color/transparent"
+                        android:text="@={vm.id}"
                         android:inputType="text"
                         android:maxLength="15" />
                 </com.google.android.material.textfield.TextInputLayout>

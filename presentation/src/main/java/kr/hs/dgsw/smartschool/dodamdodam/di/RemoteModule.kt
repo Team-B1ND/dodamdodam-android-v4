@@ -8,6 +8,7 @@ import kr.hs.dgsw.smartschool.data.network.api.MealApi
 import kr.hs.dgsw.smartschool.data.network.remote.MealRemote
 import kr.hs.dgsw.smartschool.data.network.remote.SignInRemote
 import kr.hs.dgsw.smartschool.data.network.remote.SignUpRemote
+import kr.hs.dgsw.smartschool.data.network.remote.TokenRemote
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -26,4 +27,8 @@ class RemoteModule {
     @Singleton
     @Provides
     fun provideSignUpRemote(): SignUpRemote = SignUpRemote()
+    
+    @Singleton
+    @Provides
+    fun provideTokenRemote(): TokenRemote = TokenRemote()
 }

@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.sign.up
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,8 +22,8 @@ class SignUpDetailViewModel @Inject constructor(
         const val EVENT_SUCCESS_SIGN_IN = 11
     }
 
-    val id: String = ""
-    val pw: String = ""
+    var id: String = ""
+    var pw: String = ""
 
     private val _signUpState = MutableStateFlow<SignUpState>(SignUpState(isLoading = false))
     val signUpState: StateFlow<SignUpState> = _signUpState
@@ -32,23 +31,12 @@ class SignUpDetailViewModel @Inject constructor(
     private val _signInState = MutableStateFlow<SignInState>(SignInState(isLoading = false))
     val signInState: StateFlow<SignInState> = _signInState
 
-    private val _email = MutableLiveData<String>()
-    val email: LiveData<String> get() = _email
-
-    private val _phone = MutableLiveData<String>()
-    val phone: LiveData<String> get() = _phone
-
-    private val _name = MutableLiveData<String>()
-    val name: LiveData<String> get() = _name
-
-    private val _grade = MutableLiveData<String>()
-    val grade: LiveData<String> get() = _grade
-
-    private val _room = MutableLiveData<String>()
-    val room: LiveData<String> get() = _room
-
-    private val _number = MutableLiveData<String>()
-    val number: LiveData<String> get() = _number
+    val email = MutableLiveData<String>()
+    val phone = MutableLiveData<String>()
+    val name = MutableLiveData<String>()
+    val grade = MutableLiveData<String>()
+    val room = MutableLiveData<String>()
+    val number = MutableLiveData<String>()
 
     fun signUp() {
         val successId = id

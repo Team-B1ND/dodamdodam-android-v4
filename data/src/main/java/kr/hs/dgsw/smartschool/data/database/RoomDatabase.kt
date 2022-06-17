@@ -17,7 +17,7 @@ import java.util.concurrent.Executors
     [MealEntity::class, TokenEntity::class,
     AccountEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class RoomDatabase : androidx.room.RoomDatabase() {

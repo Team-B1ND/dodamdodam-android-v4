@@ -20,6 +20,10 @@ class SignUpDetailActivity : BaseActivity<ActivitySignUpDetailBinding, SignUpDet
         collectSignUpState()
         collectSignInState()
 
+        val intent = Intent()
+        viewModel.id = intent.getStringExtra("id") ?: ""
+        viewModel.pw = intent.getStringExtra("pw") ?: ""
+
         mBinding.btnBack.setOnClickListener {
             finish()
         }

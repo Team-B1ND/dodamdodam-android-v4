@@ -12,7 +12,7 @@ import android.os.Environment
 */
 object Constants {
     val DIRECTORY_DOWNLOADS = Environment.getExternalStorageDirectory().toString() + "/DodamDodam"
-    const val mode = "TEST"
+    const val mode = "RELEASE"
     const val DEFAULT_HOST = "http://dodam.b1nd.com:80/api/v2/"
     const val SOCKET_HOST = "http://dodam.b1nd.com/"
     const val TEST_HOST = "http://110.80.163.92:3000/api/v2/"

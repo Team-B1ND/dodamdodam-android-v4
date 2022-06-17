@@ -10,14 +10,9 @@ class SignUpViewModel: BaseViewModel() {
         const val EVENT_ON_CLICK_NEXT = 2
     }
 
-    private val _id = MutableLiveData<String>()
-    val id: LiveData<String> get() = _id
-
-    private val _pw = MutableLiveData<String>()
-    val pw: LiveData<String> get() = _pw
-
-    private val _pwRight = MutableLiveData<String>()
-    val pwRight: LiveData<String> get() = _pwRight
+    val id = MutableLiveData<String>()
+    val pw = MutableLiveData<String>()
+    val pwRight = MutableLiveData<String>()
 
     fun onClickNext() {
         viewEvent(EVENT_ON_CLICK_NEXT)
