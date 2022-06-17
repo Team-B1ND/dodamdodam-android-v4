@@ -11,5 +11,5 @@ interface MealApi {
     suspend fun getAllMeals(
         @Query("year") year: Int,
         @Query("month") month: Int
-    ): Response<List<Meal>>
+    ): Response<MealData>
 }

@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.data.network.interceptor
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.sync.Mutex
 import kr.hs.dgsw.smartschool.data.datasource.AccountDataSource
 import kr.hs.dgsw.smartschool.data.exception.TokenException
 import kr.hs.dgsw.smartschool.data.util.AppDispatchers
@@ -80,33 +79,20 @@ class TokenInterceptor @Inject constructor(
         } else return another
     }
 
-    private fun setToken() {
-        runBlocking(appDispatcher.io) {
-            tokenUseCases.getToken().onEach { result ->
-                if (result is Resource.Success) {
-                    token = result.data!!
-                }
-            }
+    private fun setToken() = runBlocking(appDispatcher.io) {
+        tokenUseCases.getToken().let {
+            token = it
         }
     }
 
-    private fun fetchToken() {
-        runBlocking(appDispatcher.io) {
-            tokenUseCases.updateNewToken().onEach { result ->
-                if(result is Resource.Success) {
-                    token = result.data!!
-                }
-            }
-        }
+    private fun fetchToken() = runBlocking(appDispatcher.io) {
+        tokenUseCases.updateNewToken().let { token = it }
     }
 
 
     private fun getTokenToLogin() {
-        val account = runBlocking(appDispatcher.io) {
-            accountDataSource.getAccount()
-        }
-
         runBlocking(appDispatcher.io) {
+            val account = accountDataSource.getAccount()
             signInUseCase(account.id, account.pw, false).onEach {
                 if (it is Resource.Success)
                     setToken()

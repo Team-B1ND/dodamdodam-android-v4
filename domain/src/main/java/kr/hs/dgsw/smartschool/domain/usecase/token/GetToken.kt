@@ -14,15 +14,5 @@ import javax.inject.Inject
 class GetToken @Inject constructor(
     override val repository: TokenRepository
 ) : BaseUseCase<TokenRepository>() {
-
-    operator fun invoke(): Flow<Resource<Token>> = flow {
-        try {
-            emit(Resource.Loading())
-            val result = repository.getToken()
-            emit(Resource.Success<Token>(result))
-        } catch (e: Exception) {
-            emit(Resource.Error<Token>("오류가 발생하였습니다."))
-        }
-
-    }
+    suspend operator fun invoke(): Token = repository.getToken()
 }

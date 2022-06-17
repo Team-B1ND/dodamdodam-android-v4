@@ -23,7 +23,7 @@ class MealDataSource @Inject constructor(
         }
 
     private suspend fun getAllMealRemote(year: Int, month: Int): List<MealEntity> {
-        val mealEntityList = remote.getAllMeals(year, month).data.map { meal ->
+        val mealEntityList = remote.getAllMeals(year, month).data.meals.map { meal ->
             mealMapper.mapToEntity(meal)
         }
         cache.insertMealList(mealEntityList)

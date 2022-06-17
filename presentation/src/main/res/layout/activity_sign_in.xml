@@ -52,16 +52,16 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layout_id"
-                    android:layout_width="350dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="70dp"
-                    android:layout_marginEnd="1dp"
                     android:hint="@string/text_id"
                     app:boxStrokeErrorColor="@android:color/holo_red_light"
                     app:counterEnabled="true"
                     app:counterMaxLength="15"
                     app:endIconMode="clear_text"
                     app:errorEnabled="true"
+                    android:layout_marginHorizontal="30dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_view">
@@ -78,8 +78,9 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layout_password"
-                    android:layout_width="350dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="30dp"
                     android:layout_marginTop="30dp"
                     android:drawablePadding="10dp"
                     android:hint="@string/text_password"
@@ -103,7 +104,7 @@
 
                 <CheckBox
                     android:id="@+id/check_auto_sign_in"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="20dp"
@@ -114,8 +115,9 @@
 
                 <Button
                     android:id="@+id/btn_sign_in"
-                    android:layout_width="350dp"
+                    android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:layout_marginHorizontal="30dp"
                     android:layout_marginTop="50dp"
                     android:backgroundTint="@color/main"
                     android:text="@string/text_sign_in"
