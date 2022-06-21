@@ -4,12 +4,51 @@ import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusList
 import kr.hs.dgsw.smartschool.domain.model.bus.BusMember
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface BusApi {
     @GET("bus")
     suspend fun getBusList(
-    ):Response<List<BusList<List<Bus>>>>
-    //TODO 티처 수정
+    ):Response<List<BusList>>
+    //도담 티처
+    /*@POST("bus")
+    suspend fun addBus(
+        @Body busName: String,
+        @Body description : String,
+        @Body leaveTime : String,
+        @Body timeRequired : String,
+        @Body peopleLimit : Int
+    ):Response<Any>
+    @PUT("bus")
+    suspend fun updateBus(
+        @Body busIdx : Int,
+        @Body busName : String,
+        @Body description: String,
+        @Body leaveTime: String,
+        @Body timeRequired: String,
+        @Body peopleLimit: Int
+    ):Response<Any>
+    @DELETE("bus")
+    suspend fun deleteBus(
+        @Body idx : Int
+    ):Response<Any>*/
+    @GET("bus/self")
+    suspend fun getMyBusList(
+    ):Response<Any>
+    @GET("bus/self/apply")
+    suspend fun getMyBusListMonth(
+    ):Response<Any>
+    @POST("bus/self")
+    suspend fun applyBus(
+        @Body busIdx : Int
+    ):Response<Any>
+    @PUT("bus/self")
+    suspend fun modifyBus(
+        @Body originBusIdx : Int,
+        @Body busIdx: Int
+    ):Response<Any>
+    @DELETE("bus/self")
+    suspend fun deleteBus(
+        @Body idx : Int
+    ):Response<Any>
 }
