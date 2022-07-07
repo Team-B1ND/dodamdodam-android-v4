@@ -34,10 +34,10 @@ interface BusApi {
     ):Response<Any>*/
     @GET("bus/self")
     suspend fun getMyBusList(
-    ):Response<Any>
+    ):Response<List<Bus>>
     @GET("bus/self/apply")
     suspend fun getMyBusListMonth(
-    ):Response<Any>
+    ):Response<List<Bus>>
     @POST("bus/self")
     suspend fun applyBus(
         @Body busIdx : Int

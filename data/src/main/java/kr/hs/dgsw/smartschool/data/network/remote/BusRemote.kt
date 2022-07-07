@@ -10,7 +10,15 @@ class BusRemote @Inject constructor(
     val api: BusApi
 ) {
     suspend fun getBusList(
-    ):List<BusList<List<Bus>>>{
+    ):List<BusList>{
         return api.getBusList().data
+    }
+    suspend fun getMyBusList(
+    ):List<Bus>{
+        return api.getMyBusList().data
+    }
+    suspend fun getMyBusListMonth(
+    ):List<Bus>{
+        return api.getMyBusListMonth().data
     }
 }

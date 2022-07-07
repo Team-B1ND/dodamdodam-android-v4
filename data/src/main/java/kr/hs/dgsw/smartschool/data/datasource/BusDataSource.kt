@@ -16,16 +16,13 @@ class BusDataSource @Inject constructor(
         private val mapper = BusMapper()
 
 
-    suspend fun getBusSelfApply(){
-
+    suspend fun getBusSelfMonth():List<Bus>{
+        return remote.getMyBusListMonth()
     }
-    suspend fun getBusSelf(){
-
+    suspend fun getBusSelf():List<Bus>{
+        return remote.getMyBusList()
     }
-    suspend fun getBusList(){
-
-    }
-    suspend fun getTodayBusList():List<BusList<List<Bus>>>{
+    suspend fun getBusList():List<BusList>{
         return remote.getBusList()
     }
 }
