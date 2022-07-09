@@ -40,4 +40,6 @@ object Versions {
     const val NAVIGATION = "2.4.2"
     const val MP_ANDROID_CHART = "3.1.0"
     const val SWIPE_REFRESH_LAYOUT = "1.1.0"
+
+    const val SPLASH_SCREEN = "1.0.0-rc01"
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DodamDodam</string>
+    <string name="app_name">도담도담Test</string>
     <string-array name="generation_array">
         <item>1기</item>
         <item>2기</item>

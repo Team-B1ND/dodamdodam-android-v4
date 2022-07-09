@@ -9,15 +9,13 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.domain.usecase.auth.SignInUseCase
-import kr.hs.dgsw.smartschool.domain.usecase.token.TokenUseCases
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import kr.hs.dgsw.smartschool.domain.util.Utils
 import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val signInUseCase: SignInUseCase,
-    private val tokenUseCases: TokenUseCases
+    private val signInUseCase: SignInUseCase
 ) : BaseViewModel() {
 
     companion object {
