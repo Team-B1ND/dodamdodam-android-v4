@@ -116,4 +116,5 @@
     <string name="text_use_agree">필수 이용약관 동의</string>
     <string name="text_personal_info"><![CDATA[> 개인정보 취급방침]]></string>
     <string name="text_service_operation"><![CDATA[> 서비스 운영정책]]></string>
+    <string name="text_sign_out">로그아웃</string>
 </resources>
