@@ -1,10 +1,11 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`
 
-import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceManager
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivitySignInBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
@@ -25,6 +26,10 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
                     }
                 }
             }
+
+            isAutoSignIn.observe(this@SignInActivity) {
+                Log.d("TestTest", "observerViewModel: $it")
+            }
         }
 
         mBinding.tvSignUp.setOnClickListener {
@@ -38,6 +43,8 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
                 it.getContentIfNotHandled()?.let { event ->
                     when(event) {
                         SignInViewModel.EVENT_SUCCESS_SIGN_IN -> {
+                            if (isAutoSignIn.value == true)
+                                SharedPreferenceManager.signIn(this@SignInActivity)
                             startActivityWithFinishAll(MainActivity::class.java)
                         }
                     }

@@ -111,6 +111,7 @@
                     android:layout_marginHorizontal="@dimen/sign_horizontal_margin"
                     android:layout_marginTop="20dp"
                     android:buttonTint="@color/main"
+                    android:onClick="@{() -> vm.changeAuthSignIn()}"
                     android:text="@string/text_auto_login"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

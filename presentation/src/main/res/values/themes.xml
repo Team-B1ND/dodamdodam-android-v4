@@ -19,13 +19,12 @@
     </style>
 
 
-    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
-        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/white</item>
-        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@drawable/ic_b1nd_logo</item>
+    <style name="Theme.App.Starting" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/color_white</item>
+        <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@mipmap/ic_launcher</item>
         <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="s">1000</item>
         <item name="postSplashScreenTheme">@style/Theme.DodamDodam</item>
 
-    <!-- 필요시 다크모드 같은 상황 고려. Status bar and Nav bar configs -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
         <item name="android:navigationBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
