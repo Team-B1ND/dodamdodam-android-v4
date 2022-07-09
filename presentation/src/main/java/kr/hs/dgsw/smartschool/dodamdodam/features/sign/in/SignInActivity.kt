@@ -9,6 +9,8 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivitySignInBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
 import kr.hs.dgsw.smartschool.dodamdodam.features.sign.up.SignUpActivity
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivity
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
 
 @AndroidEntryPoint
 class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
@@ -18,10 +20,6 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 signInState.collect { state ->
-                    if (state.isLoading) {
-                        Toast.makeText(this@SignInActivity, "로딩중학교", Toast.LENGTH_SHORT).show()
-                    }
-
                     if (state.error.isNotBlank()) {
                         Toast.makeText(this@SignInActivity, state.error, Toast.LENGTH_SHORT).show()
                     }
@@ -30,8 +28,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
         }
 
         mBinding.tvSignUp.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
+            startActivity(SignUpActivity::class.java)
         }
     }
 
@@ -41,8 +38,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
                 it.getContentIfNotHandled()?.let { event ->
                     when(event) {
                         SignInViewModel.EVENT_SUCCESS_SIGN_IN -> {
-                            val intent = Intent(this@SignInActivity, MainActivity::class.java)
-                            startActivity(intent)
+                            startActivityWithFinishAll(MainActivity::class.java)
                         }
                     }
                 }

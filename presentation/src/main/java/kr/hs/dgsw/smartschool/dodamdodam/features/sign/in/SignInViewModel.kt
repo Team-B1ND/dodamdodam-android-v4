@@ -1,7 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,6 +11,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.domain.usecase.auth.SignInUseCase
 import kr.hs.dgsw.smartschool.domain.usecase.token.TokenUseCases
 import kr.hs.dgsw.smartschool.domain.util.Resource
+import kr.hs.dgsw.smartschool.domain.util.Utils
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,36 +27,43 @@ class SignInViewModel @Inject constructor(
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
 
-    private val _signInState = MutableStateFlow<SignInState>(SignInState(isLoading = false))
+    private val _signInState = MutableStateFlow(SignInState(isLoading = false))
     val signInState: StateFlow<SignInState> = _signInState
 
     fun onClickSignIn() {
-        Log.d("TestTest", "onClickSignIn: ${id.value} ${pw.value}")
         if (id.value.isNullOrBlank() || pw.value.isNullOrBlank()) {
-            Log.d("TestTest", "onClickSignIn: 실행")
             onErrorEvent.value = Throwable("아이디와 패스워드를 입력해 주세요")
             return
         }
-        Log.d("TestTest", "onClickSignIn")
         signIn()
     }
 
     private fun signIn() {
         signInUseCase(
-            id = id.value ?: "",
-            pw = pw.value ?: ""
+            id = Utils.removeBlankInString(id.value ?: ""),
+            pw = Utils.removeBlankInString(pw.value ?: "")
         ).onEach { result ->
             when(result) {
                 is Resource.Success -> {
                     viewEvent(EVENT_SUCCESS_SIGN_IN)
+                    isLoading.value = false
                 }
                 is Resource.Loading -> {
                     _signInState.value = SignInState(isLoading = true)
+                    isLoading.value = true
                 }
                 is Resource.Error -> {
+                    val message = if (result.message.orEmpty().split(" ")[2] == "Unauthorized") {
+                        "아이디 혹은 비밀번호를 확인해 주세요."
+                    } else {
+                        result.message
+                    }
+
                     _signInState.value = SignInState(
-                        error = result.message ?: "로그인에 실패했습니다."
+                        error = message ?: "로그인에 실패하였습니다."
+
                     )
+                    isLoading.value = false
                 }
             }
         }.launchIn(viewModelScope)

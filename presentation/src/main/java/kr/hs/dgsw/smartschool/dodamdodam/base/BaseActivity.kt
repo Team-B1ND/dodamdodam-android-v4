@@ -5,8 +5,13 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceManager
+import kr.hs.dgsw.smartschool.data.exception.TokenException
 import kr.hs.dgsw.smartschool.dodamdodam.BR
 import kr.hs.dgsw.smartschool.dodamdodam.R
+import kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`.SignInActivity
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
 import java.lang.reflect.ParameterizedType
 import java.util.*
 
@@ -19,12 +24,25 @@ abstract class BaseActivity<VB : ViewDataBinding, VM: BaseViewModel> : AppCompat
     protected abstract fun observerViewModel()
     protected abstract fun bindingViewEvent()
 
+    protected open fun onErrorEvent(e: Throwable) {
+        shortToast(e.message)
+        if (e is TokenException) {
+            SharedPreferenceManager.signOut(this)
+            startActivityWithFinishAll(SignInActivity::class.java)
+            return
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         performDataBinding()
         observerViewModel()
         bindingViewEvent()
+
+        mViewModel.onErrorEvent.observe(this) {
+            onErrorEvent(it)
+        }
     }
 
     private fun performDataBinding() {

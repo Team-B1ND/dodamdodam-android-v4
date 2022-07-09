@@ -4,8 +4,6 @@ import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
 object Utils {
-
-
     @JvmStatic
     @Throws(NoSuchAlgorithmException::class)
     fun encryptSHA512(target: String): String? {
@@ -25,4 +23,7 @@ object Utils {
         }
         return encryptedPassword.toString()
     }
+
+    fun removeBlankInString(target: String) =
+        target.replace(" ", "")
 }

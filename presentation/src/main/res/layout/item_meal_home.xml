@@ -57,7 +57,7 @@
                         android:backgroundTint="@color/main"
                         android:paddingHorizontal="17dp"
                         android:paddingVertical="3dp"
-                        android:text="@string/meal_name_dummy"
+                        tools:text="@string/meal_name_dummy"
                         android:textColor="@color/white"
                         android:textSize="@dimen/title5"
                         android:textStyle="bold" />
@@ -74,7 +74,7 @@
                     android:ellipsize="end"
                     android:textSize="@dimen/title6"
                     android:gravity="center_vertical"
-                    android:text="@string/meal_dummy"
+                    tools:text="@string/meal_dummy"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
