@@ -11,7 +11,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.Event
 
 open class BaseViewModel : ViewModel() {
 
-    protected val isLoading: MutableLiveData<Boolean> = MediatorLiveData()
+    protected val isLoading: MutableLiveData<Boolean> = MutableLiveData()
     fun getIsLoading(): LiveData<Boolean> {
         return isLoading
     }

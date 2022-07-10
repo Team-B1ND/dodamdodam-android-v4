@@ -44,12 +44,15 @@ class SignUpDetailViewModel @Inject constructor(
         ).onEach { result ->
             when(result) {
                 is Resource.Success -> {
+                    isLoading.value = false
                     _signUpState.value = SignUpState(result = result.data ?: "")
                 }
                 is Resource.Loading -> {
+                    isLoading.value = true
                     _signUpState.value = SignUpState(isLoading = true)
                 }
                 is Resource.Error -> {
+                    isLoading.value = false
                     _signUpState.value = SignUpState(
                         error = result.message ?: "회원가입에 실패했습니다."
                     )

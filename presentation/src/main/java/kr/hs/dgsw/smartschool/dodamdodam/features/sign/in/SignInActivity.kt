@@ -26,10 +26,6 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
                     }
                 }
             }
-
-            isAutoSignIn.observe(this@SignInActivity) {
-                Log.d("TestTest", "observerViewModel: $it")
-            }
         }
 
         mBinding.tvSignUp.setOnClickListener {

@@ -3,16 +3,18 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.sign.up
 import android.content.Intent
 import android.graphics.Paint
 import android.net.Uri
-import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_sign_up_detail.*
+import kotlinx.android.synthetic.main.item_loading_progressbar.*
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivitySignUpDetailBinding
-import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
-import kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`.SignInViewModel
+import kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`.SignInActivity
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
 
 @AndroidEntryPoint
 class SignUpDetailActivity : BaseActivity<ActivitySignUpDetailBinding, SignUpDetailViewModel>() {
@@ -35,15 +37,17 @@ class SignUpDetailActivity : BaseActivity<ActivitySignUpDetailBinding, SignUpDet
         lifecycleScope.launchWhenStarted {
             viewModel.signUpState.collect { state ->
                 if (state.result.isNotEmpty()) {
-                    Toast.makeText(this@SignUpDetailActivity, state.result, Toast.LENGTH_SHORT).show()
+                    shortToast("회원가입에 성공하였습니다.")
+                    startActivityWithFinishAll(SignInActivity::class.java)
                 }
 
                 if (state.isLoading) {
-                    Toast.makeText(this@SignUpDetailActivity, "로딩중학교", Toast.LENGTH_SHORT).show()
+                    isStateLoading(true)
                 }
 
                 if (state.error.isNotBlank()) {
-                    Toast.makeText(this@SignUpDetailActivity, state.error, Toast.LENGTH_SHORT).show()
+                    shortToast(state.error)
+                    isStateLoading(false)
                 }
             }
         }
@@ -65,6 +69,12 @@ class SignUpDetailActivity : BaseActivity<ActivitySignUpDetailBinding, SignUpDet
             intent.data = Uri.parse(resources.getString(R.string.link_personal_info))
             startActivity(intent)
         }
+    }
+
+    private fun isStateLoading(state: Boolean) {
+        mBinding.scrollView.isVisible = !state
+        mBinding.btnBack.isEnabled = !state
+        mBinding.btnSignUp.isEnabled = !state
     }
 
     override fun bindingViewEvent() {}

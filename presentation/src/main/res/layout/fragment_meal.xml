@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
             name="vm"
             type="kr.hs.dgsw.smartschool.dodamdodam.features.meal.MealViewModel" />
@@ -127,12 +127,14 @@
 
             </androidx.cardview.widget.CardView>
 
-            <ProgressBar
+            <include
                 android:id="@+id/progress_loading"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:indeterminateTint="@color/main" />
+                tools:visibility="gone"
+                android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
+                layout="@layout/item_loading_progressbar"
+                android:layout_gravity="center"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_meal"
@@ -140,10 +142,11 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:overScrollMode="never"
+                android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="3"
                 tools:listitem="@layout/item_meal" />
-
+            
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

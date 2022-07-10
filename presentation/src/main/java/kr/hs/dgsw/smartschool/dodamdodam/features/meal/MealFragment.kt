@@ -9,6 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentMealBinding
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
 import java.time.LocalDate
@@ -32,17 +33,11 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                 mealState.collect { state ->
                     if (mealState.value.meal.isNotEmpty()) {
                         mealList = mealState.value.meal
-                        mBinding.progressLoading.visibility = View.GONE
-                        mBinding.recyclerMeal.visibility = View.VISIBLE
                         getMeal(mealList)
                     }
                     if (state.isLoading) {
-                        mBinding.recyclerMeal.visibility = View.GONE
-                        mBinding.progressLoading.visibility = View.VISIBLE
                     }
                     if (state.error.isNotBlank()) {
-                        mBinding.recyclerMeal.visibility = View.VISIBLE
-                        mBinding.progressLoading.visibility = View.GONE
                         setMealRecycler(
                             meal = Meal(
                                 "값을 받아올 수 없습니다.",
@@ -52,7 +47,7 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                                 "값을 받아올 수 없습니다."
                             )
                         )
-                        Toast.makeText(requireContext(), state.error, Toast.LENGTH_SHORT).show()
+                        shortToast(state.error)
                     }
                 }
             }

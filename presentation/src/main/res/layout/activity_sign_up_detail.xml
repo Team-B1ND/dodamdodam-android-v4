@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
 
         <variable
             name="vm"
@@ -46,7 +47,20 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <include
+            android:id="@+id/progress_loading"
+            layout="@layout/item_loading_progressbar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            tools:visibility="gone"
+            android:visibility="@{vm.isLoading ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ScrollView
+            android:id="@+id/scroll_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="10dp"
@@ -231,6 +245,7 @@
             android:layout_marginTop="70dp"
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/main"
+            android:enabled="false"
             android:onClick="@{() -> vm.signUp()}"
             android:text="@string/text_sign_up"
             android:textColor="@color/white"
