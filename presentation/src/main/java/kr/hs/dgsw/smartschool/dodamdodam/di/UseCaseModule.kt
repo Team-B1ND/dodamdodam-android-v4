@@ -5,9 +5,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.domain.repository.MealRepository
+import kr.hs.dgsw.smartschool.domain.repository.TokenRepository
 import kr.hs.dgsw.smartschool.domain.usecase.meal.DeleteMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.token.*
 import javax.inject.Singleton
 
 @Module
@@ -19,5 +21,14 @@ class UseCaseModule {
         MealUseCases(
             getAllMeal = GetAllMeal(repository),
             deleteMeal = DeleteMeal(repository)
+        )
+
+    @Provides
+    @Singleton
+    fun provideTokenUseCases(repository: TokenRepository): TokenUseCases =
+        TokenUseCases(
+            deleteToken = DeleteToken(repository),
+            getToken = GetToken(repository),
+            updateNewToken = UpdateNewToken(repository)
         )
 }

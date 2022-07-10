@@ -11,11 +11,7 @@ object Versions {
 
     const val CORE_KTX = "1.7.0"
     const val APP_COMPAT = "1.4.1"
-    const val ACTIVITY_KTX = "1.2.3"
-    const val FRAGMENT_KTX = "1.3.4"
-    const val LIFECYCLE_KTX = "2.3.1"
     const val ROOM = "2.4.2"
-    const val CONSTRAINT = "2.3.1"
 
     const val HILT = "2.38.1"
     const val MATERIAL = "1.5.0"
@@ -31,8 +27,6 @@ object Versions {
     const val ANDROID_JUNIT = "1.1.3"
     const val ESPRESSO_CORE = "3.4.0"
 
-    const val M1_JDBC = "3.36.0"
-
     const val GLIDE = "4.13.0"
     const val ANDROID_BUILD_TOOL = "7.1.3"
     const val KOTLIN = "1.5.21"
@@ -40,4 +34,6 @@ object Versions {
     const val NAVIGATION = "2.4.2"
     const val MP_ANDROID_CHART = "3.1.0"
     const val SWIPE_REFRESH_LAYOUT = "1.1.0"
+
+    const val SPLASH_SCREEN = "1.0.0-rc01"
 }

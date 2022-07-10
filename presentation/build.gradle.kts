@@ -47,6 +47,9 @@ dependencies {
     androidTestImplementation(AndroidTest.ANDROID_JUNIT)
     androidTestImplementation(AndroidTest.ESPRESSO_CORE)
 
+    // splash screen
+    implementation(AndroidX.SPLASH_SCREEN)
+
     // navigation
     implementation(AndroidX.NAVIGATION)
     implementation(AndroidX.NAVIGATION_UI_KTX)

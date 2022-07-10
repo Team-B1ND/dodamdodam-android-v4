@@ -1,10 +1,11 @@
 package kr.hs.dgsw.smartschool.domain.repository
 
+import kr.hs.dgsw.smartschool.domain.model.token.Token
+
 interface TokenRepository {
-    //token 관련 함수
-    suspend fun getToken():String
-    suspend fun getRefreshToken():String
-    suspend fun updateToken(token: String)
-    suspend fun updateRefreshToken(refreshToken: String)
-    suspend fun insertToken(token:String,refreshToken:String)
+    suspend fun getToken() : Token
+
+    suspend fun updateNewToken() : Token
+
+    suspend fun deleteToken()
 }

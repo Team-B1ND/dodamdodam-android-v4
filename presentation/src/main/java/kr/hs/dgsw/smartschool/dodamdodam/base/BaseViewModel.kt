@@ -10,6 +10,12 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.meal.MealState
 import kr.hs.dgsw.smartschool.dodamdodam.widget.Event
 
 open class BaseViewModel : ViewModel() {
+
+    protected val isLoading: MutableLiveData<Boolean> = MutableLiveData()
+    fun getIsLoading(): LiveData<Boolean> {
+        return isLoading
+    }
+
     private val _viewEvent = MutableLiveData<Event<Any>>()
     val viewEvent: LiveData<Event<Any>>
         get() = _viewEvent

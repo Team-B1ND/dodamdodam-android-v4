@@ -15,7 +15,15 @@
     <fragment
         android:id="@+id/main_profile"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_main_profile_to_settingFragment"
+            app:destination="@id/settingFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/main_profile"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/main_song"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.SongFragment"
@@ -24,4 +32,8 @@
         android:id="@+id/main_meal"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.meal.MealFragment"
         android:label="MealFragment" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.setting.SettingFragment"
+        android:label="SettingFragment" />
 </navigation>

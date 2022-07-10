@@ -104,7 +104,7 @@
                                 android:id="@+id/tv_generation"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/grade"
+                                android:text="@string/text_grade"
                                 android:textColor="#BFBFBF"
                                 android:textSize="@dimen/title6" />
 
@@ -122,7 +122,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
-                                android:text="@string/email"
+                                android:text="@string/text_email"
                                 android:textColor="#BFBFBF"
                                 android:textSize="@dimen/title6" />
 
@@ -211,7 +211,7 @@
                                 android:includeFontPadding="false"
                                 android:paddingHorizontal="15dp"
                                 android:paddingVertical="3dp"
-                                android:text="@string/dormitory"
+                                android:text="@string/text_dormitory"
                                 android:textColor="@color/color_black"
                                 android:textSize="12sp" />
 

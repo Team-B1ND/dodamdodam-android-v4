@@ -23,8 +23,7 @@
             android:layout_marginTop="15dp"
             android:src="@drawable/ic_btn_back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/back_to_home_desc" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
