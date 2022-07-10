@@ -1,9 +1,12 @@
 package kr.hs.dgsw.smartschool.domain.util
 
+import org.json.JSONObject
+import retrofit2.HttpException
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
 object Utils {
+
     @JvmStatic
     @Throws(NoSuchAlgorithmException::class)
     fun encryptSHA512(target: String): String? {
@@ -22,5 +25,10 @@ object Utils {
             encryptedPassword.append(sb)
         }
         return encryptedPassword.toString()
+    }
+
+    fun convertErrorBody(throwable: HttpException): String {
+        val errorBody = JSONObject(throwable.response()?.errorBody()!!.string())
+        return errorBody.getString("message")
     }
 }

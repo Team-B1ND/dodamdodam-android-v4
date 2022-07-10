@@ -6,6 +6,7 @@ import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
 import kr.hs.dgsw.smartschool.domain.repository.SignInRepository
 import kr.hs.dgsw.smartschool.domain.request.SignInRequest
 import kr.hs.dgsw.smartschool.domain.util.Resource
+import kr.hs.dgsw.smartschool.domain.util.Utils
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
@@ -20,7 +21,7 @@ class SignInUseCase @Inject constructor(
             val result = repository.signIn(SignInRequest(id, pw, encryption))
             emit(Resource.Success<Unit>(result))
         } catch (e: HttpException) {
-            emit(Resource.Error<Unit>(e.localizedMessage ?: "알 수 없는 오류가 발생했습니다."))
+            emit(Resource.Error<Unit>(Utils.convertErrorBody(e)))
         } catch (e: IOException) {
             emit(Resource.Error<Unit>("서버에 도달 할 수 없습니다. 네트워크 상태를 확인해 주세요."))
         }

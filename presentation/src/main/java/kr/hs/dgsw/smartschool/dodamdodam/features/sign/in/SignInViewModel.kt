@@ -57,15 +57,8 @@ class SignInViewModel @Inject constructor(
                     isLoading.value = true
                 }
                 is Resource.Error -> {
-                    val message = if (result.message.orEmpty().split(" ")[2] == "Unauthorized") {
-                        "아이디 혹은 비밀번호를 확인해 주세요."
-                    } else {
-                        result.message
-                    }
-
                     _signInState.value = SignInState(
-                        error = message ?: "로그인에 실패하였습니다."
-
+                        error = result.message ?: "로그인에 실패하였습니다."
                     )
                     isLoading.value = false
                 }

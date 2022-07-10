@@ -11,11 +11,7 @@ object Versions {
 
     const val CORE_KTX = "1.7.0"
     const val APP_COMPAT = "1.4.1"
-    const val ACTIVITY_KTX = "1.2.3"
-    const val FRAGMENT_KTX = "1.3.4"
-    const val LIFECYCLE_KTX = "2.3.1"
     const val ROOM = "2.4.2"
-    const val CONSTRAINT = "2.3.1"
 
     const val HILT = "2.38.1"
     const val MATERIAL = "1.5.0"
