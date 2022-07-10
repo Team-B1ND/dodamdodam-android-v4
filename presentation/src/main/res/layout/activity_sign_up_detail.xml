@@ -203,20 +203,22 @@
                     android:text="@string/text_use_agree" />
 
                 <TextView
+                    android:id="@+id/tv_personal_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
                     android:text="@string/text_personal_info"
-                    android:textColor="@color/gray700"
+                    android:textColor="@color/main"
                     android:textSize="@dimen/title6" />
 
                 <TextView
+                    android:id="@+id/tv_service_policy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="5dp"
                     android:text="@string/text_service_operation"
-                    android:textColor="@color/gray700"
+                    android:textColor="@color/main"
                     android:textSize="@dimen/title6" />
 
             </LinearLayout>

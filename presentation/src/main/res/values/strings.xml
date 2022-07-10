@@ -117,4 +117,7 @@
     <string name="text_personal_info"><![CDATA[> 개인정보 취급방침]]></string>
     <string name="text_service_operation"><![CDATA[> 서비스 운영정책]]></string>
     <string name="text_sign_out">로그아웃</string>
+
+    <string name="link_service_policy">http://dodam.b1nd.com/detailed-information/service-policy</string>
+    <string name="link_personal_info">http://dodam.b1nd.com/detailed-information/personal-information</string>
 </resources>

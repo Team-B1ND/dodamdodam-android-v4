@@ -31,8 +31,6 @@ object Versions {
     const val ANDROID_JUNIT = "1.1.3"
     const val ESPRESSO_CORE = "3.4.0"
 
-    const val M1_JDBC = "3.36.0"
-
     const val GLIDE = "4.13.0"
     const val ANDROID_BUILD_TOOL = "7.1.3"
     const val KOTLIN = "1.5.21"
