@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.removeBlankInString
 import kr.hs.dgsw.smartschool.domain.usecase.auth.SignInUseCase
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import kr.hs.dgsw.smartschool.domain.util.Utils
@@ -43,8 +44,8 @@ class SignInViewModel @Inject constructor(
 
     private fun signIn() {
         signInUseCase(
-            id = Utils.removeBlankInString(id.value ?: ""),
-            pw = Utils.removeBlankInString(pw.value ?: "")
+            id = id.value?.removeBlankInString() ?: "",
+            pw = pw.value?.removeBlankInString() ?: ""
         ).onEach { result ->
             when(result) {
                 is Resource.Success -> {

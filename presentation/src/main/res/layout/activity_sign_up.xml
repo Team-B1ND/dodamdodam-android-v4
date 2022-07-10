@@ -72,7 +72,7 @@
                     android:hint="@string/text_id"
                     app:boxStrokeErrorColor="@android:color/holo_red_light"
                     app:counterEnabled="true"
-                    app:counterMaxLength="15"
+                    app:counterMaxLength="20"
                     app:endIconMode="clear_text"
                     app:errorEnabled="true">
 
@@ -81,7 +81,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:inputType="text"
-                        android:maxLength="15"
+                        android:maxLength="20"
                         android:text="@={vm.id}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -97,7 +97,7 @@
                     android:hint="@string/text_password"
                     app:boxStrokeErrorColor="@android:color/holo_red_light"
                     app:counterEnabled="true"
-                    app:counterMaxLength="15"
+                    app:counterMaxLength="20"
                     app:endIconMode="password_toggle"
                     app:errorEnabled="true">
 
@@ -106,7 +106,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:inputType="textPassword"
-                        android:maxLength="15"
+                        android:maxLength="20"
                         android:text="@={vm.pw}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -122,7 +122,7 @@
                     android:hint="@string/text_password_right"
                     app:boxStrokeErrorColor="@android:color/holo_red_light"
                     app:counterEnabled="true"
-                    app:counterMaxLength="15"
+                    app:counterMaxLength="20"
                     app:endIconMode="password_toggle"
                     app:errorEnabled="true">
 
@@ -131,7 +131,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:maxLength="15"
+                        android:maxLength="20"
                         android:text="@={vm.pwRight}" />
 
                 </com.google.android.material.textfield.TextInputLayout>

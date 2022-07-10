@@ -95,7 +95,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:maxLength="15"
+                        android:maxLength="10"
                         android:text="@={vm.name}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -114,6 +114,7 @@
                         android:layout_weight="1"
                         android:inputType="number"
                         android:maxLength="1"
+                        android:gravity="end"
                         android:text="@={vm.grade}"
                         tools:ignore="Autofill,LabelFor" />
 
@@ -131,6 +132,7 @@
                         android:layout_weight="1"
                         android:inputType="number"
                         android:maxLength="1"
+                        android:gravity="end"
                         android:text="@={vm.room}"
                         tools:ignore="Autofill,LabelFor" />
 
@@ -147,7 +149,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:inputType="number"
-                        android:maxLength="1"
+                        android:gravity="end"
+                        android:maxLength="2"
                         android:text="@={vm.number}"
                         tools:ignore="Autofill,LabelFor" />
 
@@ -212,6 +215,7 @@
                 <CheckBox
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:onClick="@{() -> vm.changeAgree()}"
                     android:layout_marginHorizontal="40dp"
                     android:buttonTint="@color/main"
                     android:text="@string/text_use_agree" />
@@ -245,8 +249,7 @@
             android:layout_marginTop="70dp"
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/main"
-            android:enabled="false"
-            android:onClick="@{() -> vm.signUp()}"
+            android:onClick="@{() -> vm.checkForm()}"
             android:text="@string/text_sign_up"
             android:textColor="@color/white"
             android:textSize="@dimen/title3"

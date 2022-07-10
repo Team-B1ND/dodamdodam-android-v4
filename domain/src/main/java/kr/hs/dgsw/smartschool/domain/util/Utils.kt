@@ -23,7 +23,4 @@ object Utils {
         }
         return encryptedPassword.toString()
     }
-
-    fun removeBlankInString(target: String) =
-        target.replace(" ", "")
 }

@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.activity.viewModels
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivitySignUpBinding
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.removeBlankInString
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 
 class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
     override val viewModel: SignUpViewModel by viewModels()
@@ -21,10 +23,14 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding, SignUpViewModel>() {
                     when(event) {
                         SignUpViewModel.EVENT_ON_CLICK_NEXT -> {
                             val intent = Intent(this@SignUpActivity, SignUpDetailActivity::class.java)
-                            intent.putExtra("id", id.value)
-                            intent.putExtra("pw", pw.value)
+                            intent.putExtra("id", id.value?.removeBlankInString())
+                            intent.putExtra("pw", pw.value?.removeBlankInString())
                             startActivity(intent)
                         }
+
+                        SignUpViewModel.EVENT_EMPTY -> shortToast("입력란을 모두 채워 주세요.")
+                        SignUpViewModel.EVENT_NOT_SAME_PW -> shortToast("비밀번호가 일치하지 않습니다.")
+                        SignUpViewModel.EVENT_NOT_MATCH_FORM -> shortToast("형식이 일치하지 않습니다.")
                     }
                 }
             }
