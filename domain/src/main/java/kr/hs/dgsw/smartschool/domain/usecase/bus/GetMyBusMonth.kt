@@ -9,13 +9,13 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class AddBusUseCase @Inject constructor(
+class GetMyBusMonth @Inject constructor(
     private val busRepository: BusRepository
 ){
     operator fun invoke(): Flow<Resource<String>> = flow{
         try{
             emit(Resource.Loading())
-            val result = busRepository.addBus().message()
+            val result = busRepository.getMyBusMonth().message()
             emit(Resource.Success<String>(result))
         }catch(e : HttpException){
             emit(Resource.Error<String>(e.localizedMessage ?: "AN unexpected error occured"))
