@@ -16,12 +16,12 @@ class ProfileViewModel @Inject constructor(
     private val memberUseCases: MemberUseCases
 ): BaseViewModel() {
 
+    private val _myInfoState = MutableStateFlow(MyInfoState(isLoading = false))
+    val myInfoState: StateFlow<MyInfoState> = _myInfoState
+
     init {
         getMyInfo()
     }
-
-    private val _myInfoState = MutableStateFlow(MyInfoState(isLoading = false))
-    val myInfoState: StateFlow<MyInfoState> = _myInfoState
 
     private fun getMyInfo() {
         memberUseCases.getMyInfo().onEach { result ->

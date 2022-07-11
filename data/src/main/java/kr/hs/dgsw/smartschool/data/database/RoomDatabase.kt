@@ -13,7 +13,7 @@ import java.util.concurrent.Executors
     MemberEntity::class, StudentEntity::class, TeacherEntity::class,
     HistoryMemberEntity::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class RoomDatabase : androidx.room.RoomDatabase() {

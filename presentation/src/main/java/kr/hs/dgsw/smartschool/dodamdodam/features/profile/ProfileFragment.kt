@@ -50,7 +50,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         mBinding.tvEmail.text = email
 
         Glide.with(mBinding.root)
-            .load(Constants.SERVER_HOST + profileImage)
+            .load(profileImage)
             .centerCrop()
             .error(R.drawable.default_user)
             .into(mBinding.ivProfile)
