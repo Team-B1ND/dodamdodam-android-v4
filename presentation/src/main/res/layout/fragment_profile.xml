@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="kr.hs.dgsw.smartschool.dodamdodam.features.profile.ProfileViewModel" />
@@ -61,9 +63,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/layout_profile_title">
 
+                    <include
+                        android:id="@+id/progress_circular"
+                        layout="@layout/item_loading_progressbar"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}" />
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}">
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/iv_profile"
@@ -326,8 +337,8 @@
                         android:id="@+id/tv_apply"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
                         android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginBottom="10dp"
                         android:text="@string/apply"
                         android:textColor="@color/black"
@@ -348,10 +359,10 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/card_offbase"
-                        android:layout_marginTop="5dp"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="10dp"
                         app:cardCornerRadius="@dimen/card_corner"
@@ -462,8 +473,8 @@
                         android:id="@+id/tv_basic_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
                         android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginBottom="10dp"
                         android:text="@string/text_other"
                         android:textColor="@color/black"
@@ -486,8 +497,8 @@
                         android:id="@+id/card_my_apply"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginTop="5dp"
                         android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:layout_marginBottom="10dp"
                         app:cardCornerRadius="@dimen/card_corner"

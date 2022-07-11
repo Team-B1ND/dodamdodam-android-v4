@@ -35,8 +35,7 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                         mealList = mealState.value.meal
                         getMeal(mealList)
                     }
-                    if (state.isLoading) {
-                    }
+
                     if (state.error.isNotBlank()) {
                         setMealRecycler(
                             meal = Meal(
