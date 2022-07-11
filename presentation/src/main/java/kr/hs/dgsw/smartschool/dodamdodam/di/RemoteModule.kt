@@ -5,10 +5,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.data.network.api.MealApi
-import kr.hs.dgsw.smartschool.data.network.remote.MealRemote
-import kr.hs.dgsw.smartschool.data.network.remote.SignInRemote
-import kr.hs.dgsw.smartschool.data.network.remote.SignUpRemote
-import kr.hs.dgsw.smartschool.data.network.remote.TokenRemote
+import kr.hs.dgsw.smartschool.data.network.api.MemberApi
+import kr.hs.dgsw.smartschool.data.network.remote.*
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -31,4 +29,10 @@ class RemoteModule {
     @Singleton
     @Provides
     fun provideTokenRemote(): TokenRemote = TokenRemote()
+
+    @Singleton
+    @Provides
+    fun provideMemberRemote(retrofit: Retrofit): MemberRemote =
+        MemberRemote(retrofit.create(MemberApi::class.java))
+
 }
