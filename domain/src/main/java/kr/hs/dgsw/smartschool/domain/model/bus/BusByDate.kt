@@ -2,7 +2,7 @@ package kr.hs.dgsw.smartschool.domain.model.bus
 
 import java.util.*
 
-data class BusList(
+data class BusByDate(
     val date: Date,
-    val busList : List<Bus>, // 버스 이름
+    val bus: Bus, // 버스 이름
 )

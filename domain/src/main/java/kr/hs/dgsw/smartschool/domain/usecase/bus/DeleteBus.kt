@@ -4,8 +4,6 @@ import kotlinx.coroutines.flow.flow
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import retrofit2.HttpException
-import retrofit2.Response
-import java.io.IOError
 import java.io.IOException
 import javax.inject.Inject
 

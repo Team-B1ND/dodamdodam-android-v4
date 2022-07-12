@@ -2,7 +2,7 @@ package kr.hs.dgsw.b1nd.dodamdodam.domain.usecase.bus
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
+import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import retrofit2.HttpException
@@ -12,15 +12,15 @@ import javax.inject.Inject
 class GetMyBus @Inject constructor(
     private val busRepository: BusRepository
 ){
-    operator fun invoke(): Flow<Resource<String>> = flow{
+    operator fun invoke(): Flow<Resource<List<Bus>>> = flow{
         try{
             emit(Resource.Loading())
-            val result = busRepository.getMyBus().message()
-            emit(Resource.Success<String>(result))
+            val result = busRepository.getMyBus()
+            emit(Resource.Success<List<Bus>>(result))
         }catch(e : HttpException){
-            emit(Resource.Error<String>(e.localizedMessage ?: "AN unexpected error occured"))
+            emit(Resource.Error<List<Bus>>(e.localizedMessage ?: "AN unexpected error occured"))
         }catch (e: IOException){
-            Resource.Error<String>("Couldn't reach server. Check your internet connection")
+            Resource.Error<List<Bus>>("Couldn't reach server. Check your internet connection")
         }
     }
 }

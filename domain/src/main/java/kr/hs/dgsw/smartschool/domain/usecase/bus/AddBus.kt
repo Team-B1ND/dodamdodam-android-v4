@@ -15,7 +15,7 @@ class AddBus @Inject constructor(
     operator fun invoke(): Flow<Resource<String>> = flow{
         try{
             emit(Resource.Loading())
-            val result = busRepository.addBus().message()
+            val result = "결과"//busRepository.addBus()
             emit(Resource.Success<String>(result))
         }catch(e : HttpException){
             emit(Resource.Error<String>(e.localizedMessage ?: "AN unexpected error occured"))

@@ -5,7 +5,7 @@ import kr.hs.dgsw.smartschool.data.database.cache.BusCache
 import kr.hs.dgsw.smartschool.data.mapper.BusMapper
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
-import kr.hs.dgsw.smartschool.domain.model.bus.BusList
+import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import javax.inject.Inject
 
 class BusDataSource @Inject constructor(
@@ -17,12 +17,12 @@ class BusDataSource @Inject constructor(
 
 
     suspend fun getBusSelfMonth():List<Bus>{
-        return remote.getMyBusListMonth()
+        return remote.getMyBusListMonth().data
     }
     suspend fun getBusSelf():List<Bus>{
-        return remote.getMyBusList()
+        return remote.getMyBusList().data
     }
-    suspend fun getBusList():List<BusList>{
-        return remote.getBusList()
+    suspend fun getBusList():List<BusByDate>{
+        return remote.getBusList().data
     }
 }
