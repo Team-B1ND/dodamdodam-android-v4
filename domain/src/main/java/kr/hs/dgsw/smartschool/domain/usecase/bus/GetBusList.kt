@@ -12,15 +12,15 @@ import javax.inject.Inject
 class GetBusList @Inject constructor(
     private val busRepository: BusRepository
 ){
-    operator fun invoke(): Flow<Resource<BusByDate>> = flow{
+    operator fun invoke(): Flow<Resource<List<BusByDate>>> = flow{
         try{
             emit(Resource.Loading())
             val result = busRepository.getBusList()
-            emit(Resource.Success<BusByDate>(result))
+            emit(Resource.Success<List<BusByDate>>(result))
         }catch(e : HttpException){
-            emit(Resource.Error<BusByDate>(e.localizedMessage ?: "AN unexpected error occured"))
+            emit(Resource.Error<List<BusByDate>>(e.localizedMessage ?: "AN unexpected error occured"))
         }catch (e: IOException){
-            Resource.Error<BusByDate>("Couldn't reach server. Check your internet connection")
+            Resource.Error<List<BusByDate>>("Couldn't reach server. Check your internet connection")
         }
     }
 }

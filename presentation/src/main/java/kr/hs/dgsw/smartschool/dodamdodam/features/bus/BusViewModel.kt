@@ -25,7 +25,7 @@ class BusViewModel @Inject constructor(
         ).onEach { result ->
             when(result){
                 is Resource.Success -> {
-                    _busState.value = BusState(busList = result.data ?: emptyList<BusByDate>()))
+                    _busState.value = BusState(busList = result.data ?: emptyList<BusByDate>())
                 }
                 is Resource.Loading -> {
                     _busState.value = BusState(isLoading = true)

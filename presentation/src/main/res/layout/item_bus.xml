@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="bus"
+            type="kr.hs.dgsw.smartschool.domain.model.bus.Bus" />
 
     </data>
 
@@ -33,7 +36,7 @@
                 android:padding="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/bus_ride_possible"
+                android:text="@{bus.}"
                 android:textSize="@dimen/title7"
                 android:textColor="@color/color_white"
                 app:layout_constraintTop_toTopOf="@id/tv_bus_title"
@@ -49,6 +52,7 @@
                 android:layout_marginStart="20dp"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title4"
+                android:text="@{bus.busName}"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/iv_bus"
                 app:layout_constraintTop_toTopOf="@id/iv_bus"
