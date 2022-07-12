@@ -135,6 +135,7 @@
             android:backgroundTint="@color/main"
             android:text="@string/text_save"
             android:textSize="@dimen/title4"
+            android:onClick="@{() -> vm.saveInfo()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 

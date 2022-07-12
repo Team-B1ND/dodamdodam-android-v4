@@ -11,6 +11,7 @@ import kr.hs.dgsw.smartschool.domain.repository.TokenRepository
 import kr.hs.dgsw.smartschool.domain.usecase.meal.DeleteMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.member.ChangeMemberInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.GetMyInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.token.*
@@ -40,6 +41,7 @@ class UseCaseModule {
     @Singleton
     fun provideMemberUseCases(studentRepository: StudentRepository, teacherRepository: TeacherRepository): MemberUseCases =
         MemberUseCases(
-            getMyInfo = GetMyInfo(studentRepository)
+            getMyInfo = GetMyInfo(studentRepository),
+            changeMemberInfo = ChangeMemberInfo(studentRepository)
         )
 }
