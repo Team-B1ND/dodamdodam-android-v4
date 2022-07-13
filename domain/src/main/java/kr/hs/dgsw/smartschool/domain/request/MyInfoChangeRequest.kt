@@ -1,7 +1,7 @@
 package kr.hs.dgsw.smartschool.domain.request
 
 import com.google.gson.annotations.SerializedName
-import kr.hs.dgsw.smartschool.domain.model.lostfound.Picture
+import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
 import kr.hs.dgsw.smartschool.domain.util.Utils.encryptSHA512
 import java.security.NoSuchAlgorithmException
 

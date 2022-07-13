@@ -18,6 +18,7 @@ object Constants {
     const val TEST_HOST = "http://110.80.163.92:3000/api/v2/"
     const val AUTH_HOST = "http://auth.dodam.b1nd.com/"
     const val AUTH_TEST_HOST = "http://10.80.163.141:8080/"
+    const val IMAGE_HOST = "http://dodam.b1nd.com/api/image/"
 
     val SERVER_HOST = if(mode == "TEST") TEST_HOST else DEFAULT_HOST
     val AUTH_SERVER_HOST = if(mode == "TEST") AUTH_TEST_HOST else AUTH_HOST

@@ -9,43 +9,43 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.domain.model.lostfound.Picture
+import kr.hs.dgsw.smartschool.dodamdodam.features.upload.UploadImageState
+import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
 import kr.hs.dgsw.smartschool.domain.usecase.member.ChangeMemberInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.upload.UploadImgUseCase
 import kr.hs.dgsw.smartschool.domain.util.Resource
+import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
 class EditProfileViewModel @Inject constructor(
-    private val memberUseCases: MemberUseCases
+    private val memberUseCases: MemberUseCases,
+    private val uploadImgUseCase: UploadImgUseCase
 ) : BaseViewModel() {
 
     private val _editProfileState = MutableStateFlow<EditProfileState>(EditProfileState(isLoading = false))
     val editProfileState: StateFlow<EditProfileState> = _editProfileState
 
+    private val _uploadImageState = MutableStateFlow<UploadImageState>(UploadImageState(isLoading = false))
+    val uploadImageState: StateFlow<UploadImageState> = _uploadImageState
+
+    lateinit var picture: Picture
+
     val email = MutableLiveData<String>()
     val phone = MutableLiveData<String>()
     var memberId: String = ""
     var type: String = ""
-    val profileOriginalName = MutableLiveData<String>()
-    val profileUploadName = MutableLiveData<String>()
 
-
-    // TODO 뒤로가기 누를 시에 전 화면으로 펑
-    // TODO 이미지 가공
+    var file: File? = null
 
     fun saveInfo() {
-        Log.d("TestTest", "saveInfo: ${memberId} ${email.value}")
         memberUseCases.changeMemberInfo(
             ChangeMemberInfo.Params(
                 memberId = memberId,
                 phone = phone.value ?: "",
                 email = email.value ?: "",
-                profileImage = Picture(
-                    originalName = profileOriginalName.value ?: "",
-                    uploadName = profileUploadName.value ?: "",
-                    type = type
-                )
+                profileImage = picture
             )
         ).onEach { result ->
             when(result) {
@@ -64,5 +64,19 @@ class EditProfileViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-
+    fun uploadImg() {
+        uploadImgUseCase(file!!).onEach { result ->
+            when(result) {
+                is Resource.Success -> {
+                    _uploadImageState.value = UploadImageState(picture = result.data)
+                }
+                is Resource.Loading -> {
+                    _uploadImageState.value = UploadImageState(isLoading = true)
+                }
+                is Resource.Error -> {
+                    _uploadImageState.value = UploadImageState(error = result.message ?: "이미지 업로드에 실패했습니다.")
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
 }

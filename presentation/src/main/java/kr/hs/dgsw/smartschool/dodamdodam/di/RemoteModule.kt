@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kr.hs.dgsw.smartschool.data.network.api.FileUploadApi
 import kr.hs.dgsw.smartschool.data.network.api.MealApi
 import kr.hs.dgsw.smartschool.data.network.api.MemberApi
 import kr.hs.dgsw.smartschool.data.network.remote.*
@@ -34,5 +35,10 @@ class RemoteModule {
     @Provides
     fun provideMemberRemote(retrofit: Retrofit): MemberRemote =
         MemberRemote(retrofit.create(MemberApi::class.java))
+
+    @Singleton
+    @Provides
+    fun provideFileUploadRemote(retrofit: Retrofit): FileUploadRemote =
+        FileUploadRemote(retrofit.create(FileUploadApi::class.java))
 
 }

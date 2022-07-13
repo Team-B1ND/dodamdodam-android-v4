@@ -34,4 +34,8 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideTeacherRepository(teacherRepositoryImpl: TeacherRepositoryImpl): TeacherRepository = teacherRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideFileUploadRepository(fileUploadRepositoryImpl: FileUploadRepositoryImpl): FileUploadRepository = fileUploadRepositoryImpl
 }

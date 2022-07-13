@@ -3,7 +3,7 @@ package kr.hs.dgsw.smartschool.domain.usecase.member
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
-import kr.hs.dgsw.smartschool.domain.model.lostfound.Picture
+import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
 import kr.hs.dgsw.smartschool.domain.repository.StudentRepository
 import kr.hs.dgsw.smartschool.domain.request.MyInfoChangeRequest
 import kr.hs.dgsw.smartschool.domain.util.Resource
