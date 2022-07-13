@@ -22,27 +22,27 @@ class BusRepositoryImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun addBus() {
+    override suspend fun addBus():String {
         TODO("Not yet implemented")
     }
 
-    override suspend fun addBusApply() {
+    override suspend fun addBusApply():String {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateBusInfo() {
+    override suspend fun updateBusInfo() :String{
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateBusApply() {
+    override suspend fun updateBusApply() :String{
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteBus() {
+    override suspend fun deleteBus() :String{
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteBusApply(){
+    override suspend fun deleteBusApply():String{
         TODO("Not yet implemented")
     }
 }

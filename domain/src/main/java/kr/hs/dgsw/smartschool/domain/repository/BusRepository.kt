@@ -12,17 +12,17 @@ interface BusRepository {
 
 
     //POST
-    suspend fun addBus()
-    suspend fun addBusApply()
+    suspend fun addBus():String
+    suspend fun addBusApply():String
 
 
     //PUT
-    suspend fun updateBusInfo()
-    suspend fun updateBusApply()
+    suspend fun updateBusInfo():String
+    suspend fun updateBusApply():String
 
 
 
     //DELETE
-    suspend fun deleteBus()
-    suspend fun deleteBusApply()
+    suspend fun deleteBus():String
+    suspend fun deleteBusApply():String
 }

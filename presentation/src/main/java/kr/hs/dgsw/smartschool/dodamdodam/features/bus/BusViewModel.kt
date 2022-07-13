@@ -8,9 +8,10 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
+import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
 import kr.hs.dgsw.smartschool.domain.usecase.bus.BusUseCases
 import kr.hs.dgsw.smartschool.domain.util.Resource
-import java.util.*
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,8 +20,9 @@ class BusViewModel @Inject constructor(
 ): BaseViewModel() {
     private val _busState = MutableStateFlow(BusState(isLoading = false))
     val busState: StateFlow<BusState> = _busState
+    val busInfo : MutableList<BusInfo> = setBusInfo()
 
-    fun getBusList(date: Date){
+    fun getBusList(date: LocalDate){
         busUseCases.getBus(
         ).onEach { result ->
             when(result){
@@ -35,5 +37,19 @@ class BusViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
+    }
+    fun setBusInfo():MutableList<BusInfo>{
+        val list : MutableList<BusInfo> = mutableListOf()
+        var rideable : String = ""
+        busState.value.busList.forEach { d ->
+            if(d.bus.busMemberlength < (d.bus.peopleLimit.toInt()/3*2)){
+                rideable = "탑승가능"
+            }
+            else if(d.bus.busMemberlength >= d.bus.peopleLimit.toInt()){
+                rideable = "탑승불가"
+            }
+            list.add(BusInfo(d.bus.busName,rideable,d.bus.busMemberlength.toString()+" / "+d.bus.peopleLimit.toString(),d.bus.leaveTime))
+        }
+        return list
     }
 }

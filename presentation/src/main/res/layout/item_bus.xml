@@ -6,7 +6,7 @@
     <data>
         <variable
             name="bus"
-            type="kr.hs.dgsw.smartschool.domain.model.bus.Bus" />
+            type="kr.hs.dgsw.smartschool.domain.model.bus.BusInfo" />
 
     </data>
 
@@ -36,7 +36,7 @@
                 android:padding="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{bus.}"
+                android:text="@{bus.rideable}"
                 android:textSize="@dimen/title7"
                 android:textColor="@color/color_white"
                 app:layout_constraintTop_toTopOf="@id/tv_bus_title"
@@ -61,7 +61,7 @@
                 android:id="@+id/count_people"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="50/60"
+                tools:text="@{bus.peopleCount}"
                 tools:textSize="@dimen/title5"
                 app:layout_constraintTop_toTopOf="@+id/tv_bus_title"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/title4"
-                    tools:text="9월 6일 13:30"
+                    tools:text="@{bus.leaveTime}"
                     android:textColor="@color/color_black"
                     android:layout_marginStart="20dp" />
 

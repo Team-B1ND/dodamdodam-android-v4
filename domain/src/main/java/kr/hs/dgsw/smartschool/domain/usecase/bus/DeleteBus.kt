@@ -13,7 +13,7 @@ class DeleteBus @Inject constructor(
     operator fun invoke(): Flow<Resource<String>> = flow {
         try{
             emit(Resource.Loading())
-            val result = busRepository.deleteBus().message()
+            val result = busRepository.deleteBus()
             emit(Resource.Success<String>(result))
         }catch(e : HttpException){
             emit(Resource.Error<String>(e.localizedMessage ?: "AN unexpected error occured"))

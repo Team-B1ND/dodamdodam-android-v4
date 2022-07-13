@@ -7,13 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemBusBinding
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
+import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
 
-class BusAdapter(busList: List<BusByDate>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class BusAdapter(busList: List<BusInfo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val data = busList
     class BusViewHolder(val binding: ItemBusBinding):
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: BusByDate){
-            binding.bus = data.bus
+        fun bind(data: BusInfo){
+            binding.bus = data
         }
     }
 
