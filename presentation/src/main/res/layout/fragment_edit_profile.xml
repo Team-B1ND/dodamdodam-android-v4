@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:maxLength="30"
-                android:text="@{vm.email}" />
+                android:text="@={vm.email}" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

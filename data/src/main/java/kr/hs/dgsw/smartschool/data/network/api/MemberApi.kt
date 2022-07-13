@@ -33,7 +33,7 @@ interface MemberApi {
     @GET("members/teacher")
     suspend fun getTeachers(): Response<TeacherData>
 
-    @PUT("member")
+    @PUT("members")
     suspend fun changeMemberInfo(
         @Query("memberId") memberId: String,
         @Body myInfoChangeRequest: MyInfoChangeRequest

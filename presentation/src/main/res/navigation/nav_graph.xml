@@ -44,5 +44,18 @@
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.profile.edit.EditProfileFragment"
-        android:label="EditProfileFragment" />
+        android:label="EditProfileFragment">
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="phone"
+            app:argType="string" />
+        <argument
+            android:name="profileImage"
+            app:argType="string" />
+        <argument
+            android:name="memberId"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.profile.edit
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,7 +25,8 @@ class EditProfileViewModel @Inject constructor(
 
     val email = MutableLiveData<String>()
     val phone = MutableLiveData<String>()
-    val memberId: String = ""
+    var memberId: String = ""
+    var type: String = ""
     val profileOriginalName = MutableLiveData<String>()
     val profileUploadName = MutableLiveData<String>()
 
@@ -33,16 +35,16 @@ class EditProfileViewModel @Inject constructor(
     // TODO 이미지 가공
 
     fun saveInfo() {
+        Log.d("TestTest", "saveInfo: ${memberId} ${email.value}")
         memberUseCases.changeMemberInfo(
             ChangeMemberInfo.Params(
                 memberId = memberId,
                 phone = phone.value ?: "",
                 email = email.value ?: "",
                 profileImage = Picture(
-                    originalName = profileOriginalName.value,
+                    originalName = profileOriginalName.value ?: "",
                     uploadName = profileUploadName.value ?: "",
-                    type = "",
-                    url = null
+                    type = type
                 )
             )
         ).onEach { result ->

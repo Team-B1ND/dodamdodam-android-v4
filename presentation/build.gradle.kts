@@ -4,6 +4,7 @@ plugins {
     id(Plugins.kotlinKapt)
     id(Plugins.daggerPlugin)
     id(Plugins.extensions)
+    id(Plugins.navigation_safe_args)
 }
 
 android {
