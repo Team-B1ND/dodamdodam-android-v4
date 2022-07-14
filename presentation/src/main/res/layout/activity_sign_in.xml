@@ -74,8 +74,6 @@
                         android:layout_height="match_parent"
                         android:backgroundTint="@android:color/transparent"
                         android:inputType="text"
-                        android:fontFamily="@font/nanum_square_regular"
-                        android:includeFontPadding="false"
                         android:maxLength="15"
                         android:text="@={vm.id}" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -102,8 +100,6 @@
                         android:layout_height="match_parent"
                         android:backgroundTint="@android:color/transparent"
                         android:inputType="textPassword"
-                        android:fontFamily="@font/nanum_square_regular"
-                        android:includeFontPadding="false"
                         android:maxLength="15"
                         android:text="@={vm.pw}" />
                 </com.google.android.material.textfield.TextInputLayout>

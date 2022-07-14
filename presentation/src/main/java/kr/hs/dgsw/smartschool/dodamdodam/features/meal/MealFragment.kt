@@ -1,11 +1,11 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.meal
 
 import android.app.DatePickerDialog
-import android.view.View
-import android.widget.Toast
+import android.graphics.Color
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentMealBinding
@@ -64,7 +64,7 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                                 val month = it.monthValue
                                 val day = it.dayOfMonth
 
-                                DatePickerDialog(requireContext(), { _, y, m, d ->
+                                val datePickerDialog = DatePickerDialog(requireContext(), R.style.MyDatePickerDialogTheme, { _, y, m, d ->
                                     val cal = Calendar.getInstance()
                                     cal.set(y, m + 1, d)
                                     setTargetDate(LocalDate.of(y, m + 1, d))
@@ -73,7 +73,10 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                                         return@DatePickerDialog
                                     }
                                     getMeal(mealList)
-                                }, year, month - 1, day).show()
+                                }, year, month - 1, day)
+                                datePickerDialog.show()
+                                datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(R.color.main);
+                                datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setTextColor(R.color.main);
                             }
                         }
                         MealViewModel.EVENT_UPDATE_DATE -> {
