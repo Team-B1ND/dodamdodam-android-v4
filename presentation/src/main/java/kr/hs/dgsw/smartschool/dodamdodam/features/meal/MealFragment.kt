@@ -95,7 +95,7 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
         meal?.let {
             setMealRecycler(it)
         }
-    } // getMeal()
+    }
 
     private fun setMealRecycler(meal: Meal) {
         val mealAdapter = MealAdapter()
@@ -107,5 +107,5 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                 MealInfo(3, meal.safeDinner)
             )
         )
-    } // setMealRecycler
+    }
 }

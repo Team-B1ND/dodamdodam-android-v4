@@ -246,7 +246,8 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp">
 
                                 <TextView
                                     android:id="@+id/tv_baek_rank"
@@ -294,7 +295,8 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp">
 
                                 <TextView
                                     android:id="@+id/tv_lost_found"
@@ -343,7 +345,8 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp">
 
                                 <TextView
                                     android:id="@+id/tv_it_map"

@@ -23,7 +23,7 @@ class ProfileViewModel @Inject constructor(
         getMyInfo()
     }
 
-    private fun getMyInfo() {
+    fun getMyInfo() {
         memberUseCases.getMyInfo().onEach { result ->
             when(result) {
                 is Resource.Success -> {
