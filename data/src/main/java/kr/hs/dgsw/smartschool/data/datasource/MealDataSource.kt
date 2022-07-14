@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.data.datasource
 
-import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.database.cache.MealCache
 import kr.hs.dgsw.smartschool.data.database.entity.MealEntity

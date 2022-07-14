@@ -40,3 +40,11 @@ fun String?.toNullValue(): String? {
 
 fun String.removeBlankInString(): String =
     this.replace(" ", "")
+
+fun String.getExtension(): String {
+    val idx = this.lastIndexOf('.')
+    var extension: String = ""
+    if (idx > 0)
+        extension = this.substring(idx)
+    return extension
+}

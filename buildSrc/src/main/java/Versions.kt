@@ -31,6 +31,7 @@ object Versions {
     const val ANDROID_BUILD_TOOL = "7.1.3"
     const val KOTLIN = "1.5.21"
 
+    const val NAVIGATION_SAFE_ARGS = "2.5.0"
     const val NAVIGATION = "2.4.2"
     const val MP_ANDROID_CHART = "3.1.0"
     const val SWIPE_REFRESH_LAYOUT = "1.1.0"

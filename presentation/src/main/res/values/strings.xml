@@ -123,4 +123,7 @@
 
     <string name="text_meal_people">급식의 민족</string>
     <string name="text_meal_people_desc">내가 원하는 급식을 먹고 싶다면?</string>
+    <string name="text_edit_profile">프로필 수정</string>
+    <string name="text_change_desc">기본 이미지로 변경</string>
+    <string name="text_save">저장</string>
 </resources>

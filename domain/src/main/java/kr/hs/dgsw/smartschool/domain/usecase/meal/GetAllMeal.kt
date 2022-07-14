@@ -23,7 +23,7 @@ class GetAllMeal @Inject constructor(
         } catch (e: HttpException) {
             emit(Resource.Error<List<Meal>>(Utils.convertErrorBody(e)))
         } catch (e: IOException) {
-            emit(Resource.Error<List<Meal>>("서버에 도달할 수 없습니다. 네트워크 상태를 확인해 주세요."))
+            emit(Resource.Error<List<Meal>>(Utils.NETWORK_ERROR_MESSAGE))
         }
     }
 }
