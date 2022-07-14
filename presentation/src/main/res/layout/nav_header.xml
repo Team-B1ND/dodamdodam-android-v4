@@ -13,6 +13,8 @@
         android:textColor="@color/color_black"
         android:textSize="@dimen/title4"
         android:text="@string/title_menu"
+        android:fontFamily="@font/nanum_square_regular"
+        android:includeFontPadding="false"
         android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"

@@ -15,9 +15,11 @@
         android:layout_marginBottom="20dp"
         app:cardCornerRadius="@dimen/card_corner"
         app:cardElevation="@dimen/card_elevation">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/tv_offbase_type"
                 android:layout_width="wrap_content"
@@ -25,9 +27,10 @@
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="8dp"
+                android:fontFamily="@font/notosans_kr_bold"
+                android:includeFontPadding="false"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:textColor="@color/main"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/divider"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -37,13 +40,15 @@
                 android:id="@+id/tv_offbase_reason"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/title6"
                 android:layout_marginStart="6dp"
+                android:fontFamily="@font/nanum_square_regular"
+                android:includeFontPadding="false"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:textColor="@color/gray700"
+                android:textSize="@dimen/title6"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/tv_offbase_type"
                 app:layout_constraintBaseline_toBaselineOf="@id/tv_offbase_type"
+                app:layout_constraintStart_toEndOf="@id/tv_offbase_type"
                 tools:text="저녁식사" />
 
             <TextView
@@ -51,6 +56,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
+                android:fontFamily="@font/nanum_square_regular"
+                android:includeFontPadding="false"
                 android:textColor="@color/gray700"
                 android:textSize="@dimen/title6"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_offbase_status"
@@ -65,10 +72,10 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="18dp"
                 android:layout_marginBottom="8dp"
-                app:tint="@color/gray700"
                 app:layout_constraintBottom_toTopOf="@+id/divider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/gray700"
                 tools:ignore="ContentDescription"
                 tools:srcCompat="@drawable/ic_btn_unknown" />
 
@@ -96,10 +103,13 @@
                 app:layout_constraintBottom_toTopOf="@+id/layout_time"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider">
+
                 <TextView
                     android:id="@+id/tv_label_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:includeFontPadding="false"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title5"
                     android:textStyle="bold"
@@ -110,6 +120,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:includeFontPadding="false"
                     android:textColor="@color/gray700"
                     android:textSize="@dimen/title6"
                     tools:text="2019-03-13" />
@@ -120,13 +132,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                app:layout_constraintStart_toStartOf="@id/layout_time_end"
                 android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/layout_time_end"
                 app:layout_constraintTop_toTopOf="@id/layout_date">
+
                 <TextView
                     android:id="@+id/tv_label_date_end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:includeFontPadding="false"
                     android:text="@string/text_offbase_leave_date_end"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title5"
@@ -135,8 +150,10 @@
                 <TextView
                     android:id="@+id/tv_date_end"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:includeFontPadding="false"
                     android:textColor="@color/gray700"
                     android:textSize="@dimen/title6"
                     tools:text="2019-03-15" />
@@ -152,10 +169,13 @@
                 app:layout_constraintBottom_toTopOf="@+id/btn_delete"
                 app:layout_constraintStart_toStartOf="@+id/layout_date"
                 app:layout_constraintTop_toBottomOf="@+id/layout_date">
+
                 <TextView
                     android:id="@+id/tv_label_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:includeFontPadding="false"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title5"
                     android:textStyle="bold"
@@ -166,6 +186,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:includeFontPadding="false"
                     android:textColor="@color/gray700"
                     android:textSize="@dimen/title6"
                     tools:text="16:30 - 19:10" />
@@ -181,10 +203,13 @@
                 app:layout_constraintBottom_toTopOf="@+id/btn_delete"
                 app:layout_constraintEnd_toEndOf="@id/divider"
                 app:layout_constraintStart_toEndOf="@id/layout_time">
+
                 <TextView
                     android:id="@+id/tv_label_time_end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:includeFontPadding="false"
                     android:text="@string/text_offbase_time_end"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title5"
@@ -195,6 +220,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:includeFontPadding="false"
                     android:textColor="@color/gray700"
                     android:textSize="@dimen/title6"
                     tools:text="19:10" />

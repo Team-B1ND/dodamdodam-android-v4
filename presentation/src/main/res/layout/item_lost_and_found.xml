@@ -15,11 +15,13 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         app:cardCornerRadius="0dp"
-        app:cardElevation="0dp" >
+        app:cardElevation="0dp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/lost_found_item_root"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:id="@+id/member_info_layout"
                 android:layout_width="match_parent"
@@ -28,6 +30,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_profile_image"
                     android:layout_width="50dp"
@@ -40,11 +43,13 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
+                        android:fontFamily="@font/nanum_square_regular"
                         android:includeFontPadding="false"
                         android:textColor="@color/color_black"
                         tools:text="김도현" />
@@ -54,6 +59,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
+                        android:fontFamily="@font/nanum_square_regular"
                         android:includeFontPadding="false"
                         android:textColor="@color/gray500"
                         android:textSize="@dimen/title5"
@@ -69,8 +75,8 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_margin="8dp"
-                    android:src="@drawable/ic_btn_more_vert"
                     android:backgroundTint="@android:color/transparent"
+                    android:src="@drawable/ic_btn_more_vert"
                     tools:ignore="ContentDescription" />
             </LinearLayout>
 
@@ -78,14 +84,15 @@
                 android:id="@+id/content_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="15dp"
                 android:orientation="vertical"
+                android:padding="15dp"
                 app:layout_constraintTop_toBottomOf="@+id/member_info_layout">
 
                 <TextView
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_regular"
                     android:includeFontPadding="false"
                     android:textColor="@color/color_black"
                     tools:text="여자친구를 찾습니다 ㅠㅠ" />
@@ -95,8 +102,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:textColor="@color/color_black"
+                    android:fontFamily="@font/nanum_square_regular"
                     android:includeFontPadding="false"
+                    android:textColor="@color/color_black"
                     tools:text="태어나서 본 적이 없는 것 같아요 ㅠㅠ \n 제발 찾아주세요 " />
             </LinearLayout>
 
@@ -104,41 +112,43 @@
                 android:id="@+id/iv_lost_and_found_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/content_layout"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription"
+                tools:visibility="gone" />
 
             <ImageView
                 android:id="@+id/iv_location"
                 android:layout_width="17dp"
                 android:layout_height="17dp"
                 android:layout_gravity="center"
-                app:tint="@color/main"
-                app:layout_constraintHorizontal_chainStyle="packed"
                 android:src="@drawable/ic_location"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/tv_place"
-                app:layout_constraintTop_toTopOf="@id/tv_place"
                 app:layout_constraintBottom_toBottomOf="@id/tv_place"
+                app:layout_constraintEnd_toStartOf="@id/tv_place"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_place"
+                app:tint="@color/main"
                 tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/tv_place"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:gravity="center_vertical"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
+                android:fontFamily="@font/nanum_square_regular"
+                android:gravity="center_vertical"
                 android:includeFontPadding="false"
                 android:textColor="@color/gray700"
                 android:textSize="@dimen/title6"
-                tools:text="프로그래밍 실습실"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/center_line"
                 app:layout_constraintStart_toEndOf="@id/iv_location"
-                app:layout_constraintTop_toBottomOf="@+id/iv_lost_and_found_content"/>
+                app:layout_constraintTop_toBottomOf="@+id/iv_lost_and_found_content"
+                tools:text="프로그래밍 실습실" />
 
             <View
                 android:id="@+id/top_line"
@@ -159,33 +169,34 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_lost_and_found_content" />
 
-                <ImageView
-                    android:id="@+id/iv_comment"
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"
-                    android:layout_gravity="center"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toEndOf="@id/center_line"
-                    app:layout_constraintEnd_toStartOf="@id/tv_comment"
-                    app:layout_constraintTop_toTopOf="@id/tv_comment"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_comment"
-                    android:src="@drawable/ic_comment"
-                    tools:ignore="ContentDescription" />
+            <ImageView
+                android:id="@+id/iv_comment"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_comment"
+                app:layout_constraintBottom_toBottomOf="@id/tv_comment"
+                app:layout_constraintEnd_toStartOf="@id/tv_comment"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/center_line"
+                app:layout_constraintTop_toTopOf="@id/tv_comment"
+                tools:ignore="ContentDescription" />
 
-                <TextView
-                    android:id="@+id/tv_comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:includeFontPadding="false"
-                    android:layout_gravity="center"
-                    android:textColor="@color/gray700"
-                    android:text="@string/text_write_comment"
-                    android:textSize="@dimen/title6"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/iv_comment"
-                    app:layout_constraintTop_toBottomOf="@+id/iv_lost_and_found_content"/>
+            <TextView
+                android:id="@+id/tv_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/nanum_square_regular"
+                android:includeFontPadding="false"
+                android:text="@string/text_write_comment"
+                android:textColor="@color/gray700"
+                android:textSize="@dimen/title6"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_comment"
+                app:layout_constraintTop_toBottomOf="@+id/iv_lost_and_found_content" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

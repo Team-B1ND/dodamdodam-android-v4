@@ -21,17 +21,9 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <include
                 android:id="@+id/btn_back"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_btn_back"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/color_black"
-                tools:ignore="ContentDescription" />
+                layout="@layout/item_back_button" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -40,6 +32,9 @@
                 android:text="@string/text_sign_up"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title3"
+                android:layout_marginBottom="3dp"
+                android:fontFamily="@font/nanum_square_regular"
+                android:includeFontPadding="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/btn_back"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -81,6 +76,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:inputType="text"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:includeFontPadding="false"
                         android:maxLength="20"
                         android:text="@={vm.id}" />
 
@@ -107,6 +104,8 @@
                         android:layout_height="match_parent"
                         android:inputType="textPassword"
                         android:maxLength="20"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:includeFontPadding="false"
                         android:text="@={vm.pw}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -132,6 +131,8 @@
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
                         android:maxLength="20"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:includeFontPadding="false"
                         android:text="@={vm.pwRight}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -147,10 +148,11 @@
             android:layout_marginBottom="10dp"
             android:backgroundTint="@color/main"
             android:onClick="@{() -> vm.onClickNext()}"
+            android:fontFamily="@font/gotham_bold"
+            android:includeFontPadding="false"
             android:text="@string/text_next"
             android:textColor="@color/white"
             android:textSize="@dimen/title3"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

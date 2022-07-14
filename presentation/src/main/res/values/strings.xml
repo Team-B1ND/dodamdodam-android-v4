@@ -41,7 +41,7 @@
     <string name="offbase">외출/외박</string>
     <string name="bus">버스 신청</string>
     <string name="offbase_desc">설마 무단 외출은 아니지?</string>
-    <string name="bus_desc">드디어 집에 갈 시간이야!</string>
+    <string name="bus_desc">드디어 집 갈 시간!</string>
     <string name="apply">신청하기</string>
     <string name="text_other">기타</string>
     <string name="text_offbase_leave_date_end">복귀 날짜</string>
