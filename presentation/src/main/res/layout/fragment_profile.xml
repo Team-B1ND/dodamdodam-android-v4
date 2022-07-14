@@ -402,6 +402,7 @@
                         android:layout_marginEnd="20dp"
                         app:cardCornerRadius="@dimen/card_corner"
                         app:cardElevation="@dimen/card_elevation"
+                        android:clickable="true"
                         app:layout_constraintBottom_toBottomOf="@id/card_offbase"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/card_offbase"
@@ -409,7 +410,8 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            >
 
                             <TextView
                                 android:id="@+id/tv_bus"

@@ -55,8 +55,7 @@
                 android:text="@{bus.busName}"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/iv_bus"
-                app:layout_constraintTop_toTopOf="@id/iv_bus"
-                tools:text="용산역" />
+                app:layout_constraintTop_toTopOf="@id/iv_bus" />
             <TextView
                 android:id="@+id/count_people"
                 android:layout_width="0dp"

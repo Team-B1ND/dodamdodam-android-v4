@@ -38,7 +38,7 @@ class BusViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
-    fun setBusInfo():MutableList<BusInfo>{
+    private fun setBusInfo():MutableList<BusInfo>{
         val list : MutableList<BusInfo> = mutableListOf()
         var rideable : String = ""
         busState.value.busList.forEach { d ->
