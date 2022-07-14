@@ -2,9 +2,8 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.profile.edit
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.provider.MediaStore
-import android.util.Log
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -12,10 +11,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
-import kr.hs.dgsw.smartschool.data.util.Constants
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentEditProfileBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.sign.up.SignUpDetailViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getExtension
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getRealPathFromURI
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
@@ -34,6 +33,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfile
         bindClickEvent()
         collectEditProfileResult()
         collectUploadImgResult()
+        bindingViewEvent()
     }
 
     private fun bindClickEvent() {
@@ -42,6 +42,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfile
         }
         mBinding.tvChangeToDefaultImage.setOnClickListener {
             viewModel.picture = Picture("", "", "")
+            setImage(url = "", uri = null)
         }
         mBinding.ivProfile.setOnClickListener {
             selectImage()
@@ -62,7 +63,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfile
             lifecycleScope.launchWhenStarted {
                 editProfileState.collect { state ->
                     if (state.message.isNotEmpty()) {
-                        Toast.makeText(requireContext(), state.message, Toast.LENGTH_SHORT).show()
+                        shortToast(state.message)
                         findNavController().popBackStack()
                     }
 
@@ -80,6 +81,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfile
                 uploadImageState.collect { state ->
                     if (state.picture != null) {
                         shortToast("이미지 업로드에 성공했습니다.")
+                        viewModel.picture = state.picture
                     }
 
                     if (state.error.isNotBlank()) {
@@ -99,12 +101,12 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfile
             viewModel.picture = Picture(args.profileImage, args.profileImage, args.profileImage.getExtension())
         }
 
-        setImage(args.profileImage)
+        setImage(args.profileImage, null)
     }
 
-    private fun setImage(url: String) {
+    private fun setImage(url: String?, uri: Uri?) {
         Glide.with(mBinding.root)
-            .load(url)
+            .load(url ?: uri)
             .error(R.drawable.default_user)
             .centerCrop()
             .into(mBinding.ivProfile)
@@ -114,8 +116,23 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfile
         if (it.resultCode == Activity.RESULT_OK) {
             val uri = it.data?.data?.getRealPathFromURI(context!!)
             viewModel.file = File(uri?.path!!)
-            setImage()
+            setImage(url = null, uri = it.data!!.data)
             viewModel.uploadImg()
+        }
+    }
+
+    private  fun bindingViewEvent() {
+        with(viewModel) {
+            viewEvent.observe(this@EditProfileFragment) {
+                it.getContentIfNotHandled()?.let { event ->
+                    when(event) {
+                        SignUpDetailViewModel.EVENT_EMPTY -> shortToast("입력란을 모두 채워 주세요.")
+                        SignUpDetailViewModel.EVENT_NOT_PHONE_NUMBER -> shortToast("전화번호 형식이 일치하지 않습니다.")
+                        SignUpDetailViewModel.EVENT_NOT_MATCH_FORM -> shortToast("형식이 일치하지 않습니다.")
+                        SignUpDetailViewModel.EVENT_NOT_EMAIL -> shortToast("이메일 형식이 일치하지 않습니다.")
+                    }
+                }
+            }
         }
     }
 }

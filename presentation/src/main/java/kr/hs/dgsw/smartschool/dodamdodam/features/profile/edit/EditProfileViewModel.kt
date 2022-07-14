@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.profile.edit
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -10,6 +9,8 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.upload.UploadImageState
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.isNotEmailValid
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.isNotPhoneNumberValid
 import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
 import kr.hs.dgsw.smartschool.domain.usecase.member.ChangeMemberInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
@@ -39,7 +40,7 @@ class EditProfileViewModel @Inject constructor(
 
     var file: File? = null
 
-    fun saveInfo() {
+    private fun saveInfo() {
         memberUseCases.changeMemberInfo(
             ChangeMemberInfo.Params(
                 memberId = memberId,
@@ -78,5 +79,40 @@ class EditProfileViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun checkForm() {
+        val isEmpty = email.value.isNullOrBlank() || phone.value.isNullOrBlank()
+        if (isEmpty) {
+            viewEvent(EVENT_EMPTY)
+            return
+        }
+
+        val isNotMatchForm = phone.value!!.length != 11 || email.value!!.length !in 10..30
+        if (isNotMatchForm) {
+            viewEvent(EVENT_NOT_MATCH_FORM)
+            return
+        }
+
+        val isNotPhone = phone.value!!.isNotPhoneNumberValid()
+        if (isNotPhone) {
+            viewEvent(EVENT_NOT_PHONE_NUMBER)
+            return
+        }
+
+        val isNotEmail = email.value!!.isNotEmailValid()
+        if (isNotEmail) {
+            viewEvent(EVENT_NOT_EMAIL)
+            return
+        }
+
+        saveInfo()
+    }
+
+    companion object {
+        const val EVENT_EMPTY = 1
+        const val EVENT_NOT_MATCH_FORM = 2
+        const val EVENT_NOT_PHONE_NUMBER = 3
+        const val EVENT_NOT_EMAIL = 4
     }
 }
