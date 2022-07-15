@@ -4,6 +4,7 @@ import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
+import kr.hs.dgsw.smartschool.domain.request.AddBusRequest
 import retrofit2.http.*
 
 interface BusApi {
@@ -19,11 +20,7 @@ interface BusApi {
 
     @POST("bus")
     suspend fun addBus(
-        @Body busName: String,
-        @Body description : String,
-        @Body leaveTime : String,
-        @Body timeRequired : String,
-        @Body peopleLimit : Int
+       @Body addBusRequest: AddBusRequest
     ):Response<Any>
 
     @POST("bus/self")
