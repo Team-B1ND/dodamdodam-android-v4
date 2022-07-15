@@ -1,7 +1,7 @@
 package kr.hs.dgsw.smartschool.data.util
 
 object Constants {
-    const val BASE_URL = "http://10.80.163.92:3000/"
+    const val BASE_URL = "http://dodam.b1nd.com/api/v2/"
 
     const val SOCKET_HOST = "http://dodam.b1nd.com/"
     const val AUTH_HOST = "http://auth.dodam.b1nd.com/"
