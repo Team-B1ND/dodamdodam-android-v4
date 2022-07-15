@@ -9,6 +9,7 @@ buildscript {
         classpath(Android.ANDROID_BUILD_TOOL)
         classpath(Kotlin.KOTLIN_GRADLE_PLUGIN)
         classpath(Google.HILT_ANDROID_PLUGIN)
+        classpath(AndroidX.NAVIGATION_SAFE_ARGS)
     }
 }
 

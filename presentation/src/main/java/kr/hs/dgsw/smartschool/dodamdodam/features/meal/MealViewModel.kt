@@ -50,12 +50,15 @@ class MealViewModel @Inject constructor(
         ).onEach { result ->
             when(result) {
                 is Resource.Success -> {
+                    isLoading.value = false
                     _mealState.value = MealState(meal = result.data ?: emptyList())
                 }
                 is Resource.Loading -> {
+                    isLoading.value = true
                     _mealState.value = MealState(isLoading = true)
                 }
                 is Resource.Error -> {
+                    isLoading.value = false
                     _mealState.value = MealState(
                         error = result.message ?: "급식을 받아오지 못하였습니다."
                     )

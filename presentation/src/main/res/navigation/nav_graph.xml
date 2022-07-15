@@ -22,6 +22,21 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@id/main_profile" />
+            
+       <action
+            android:id="@+id/action_main_profile_to_settingFragment"
+            app:destination="@id/settingFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/main_profile" />
+            
+        <action
+            android:id="@+id/action_main_profile_to_editProfileFragment"
+            app:destination="@id/editProfileFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/main_profile" />
+            
     </fragment>
     <fragment
         android:id="@+id/main_song"
@@ -35,4 +50,25 @@
         android:id="@+id/busFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.bus.BusFragment"
         android:label="BusFragment" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.setting.SettingFragment"
+        android:label="SettingFragment" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.profile.edit.EditProfileFragment"
+        android:label="EditProfileFragment">
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="phone"
+            app:argType="string" />
+        <argument
+            android:name="profileImage"
+            app:argType="string" />
+        <argument
+            android:name="memberId"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -33,9 +33,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/title5"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:includeFontPadding="false"
                     android:textColor="@color/color_black"
                     android:layout_gravity="bottom"
-                    android:includeFontPadding="false"
                     tools:text="최민재" />
 
                 <TextView
@@ -44,6 +45,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:textSize="@dimen/title6"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:includeFontPadding="false"
                     android:textColor="@color/gray500"
                     android:layout_gravity="bottom"
                     tools:text="2020.02.21 11:58" />
@@ -67,11 +70,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 android:textSize="@dimen/title5"
+                android:fontFamily="@font/nanum_square_regular"
                 android:includeFontPadding="false"
                 android:maxLines="6"
                 android:ellipsize="end"
                 android:textColor="@color/color_black"
-                tools:text="그거 없는거 같던데요 ㅋ \n 제가 봤을때 절대 못찾을듯요 ㅋ" />
+                tools:text="그거 없는거 같던데요 ㅋ \n제가 봤을때 절대 못찾을듯요 ㅋ" />
         </LinearLayout>
     </LinearLayout>
 </layout>

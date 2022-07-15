@@ -30,17 +30,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <include
                 android:id="@+id/btn_back"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_btn_back"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/color_black"
-                tools:ignore="ContentDescription" />
+                layout="@layout/item_back_button"/>
 
             <TextView
                 android:id="@+id/tv_study_room_apply_title"
@@ -50,7 +42,6 @@
                 android:text="@string/title_study_room_apply"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title3"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/btn_back"/>
 
@@ -70,6 +61,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:textColor="@color/gray700"
+            android:fontFamily="@font/nanum_square_regular"
+            android:includeFontPadding="false"
             android:textSize="@dimen/title4" />
 
         <androidx.recyclerview.widget.RecyclerView

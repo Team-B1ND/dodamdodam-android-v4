@@ -4,6 +4,7 @@ plugins {
     id(Plugins.kotlinKapt)
     id(Plugins.daggerPlugin)
     id(Plugins.extensions)
+    id(Plugins.navigation_safe_args)
 }
 
 android {
@@ -46,6 +47,9 @@ dependencies {
     testImplementation(UnitTest.JUNIT)
     androidTestImplementation(AndroidTest.ANDROID_JUNIT)
     androidTestImplementation(AndroidTest.ESPRESSO_CORE)
+
+    // splash screen
+    implementation(AndroidX.SPLASH_SCREEN)
 
     // navigation
     implementation(AndroidX.NAVIGATION)

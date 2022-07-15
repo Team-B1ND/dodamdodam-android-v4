@@ -1,14 +1,15 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.meal
 
 import android.app.DatePickerDialog
-import android.view.View
-import android.widget.Toast
+import android.graphics.Color
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentMealBinding
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
 import java.time.LocalDate
@@ -32,17 +33,10 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                 mealState.collect { state ->
                     if (mealState.value.meal.isNotEmpty()) {
                         mealList = mealState.value.meal
-                        mBinding.progressLoading.visibility = View.GONE
-                        mBinding.recyclerMeal.visibility = View.VISIBLE
                         getMeal(mealList)
                     }
-                    if (state.isLoading) {
-                        mBinding.recyclerMeal.visibility = View.GONE
-                        mBinding.progressLoading.visibility = View.VISIBLE
-                    }
+
                     if (state.error.isNotBlank()) {
-                        mBinding.recyclerMeal.visibility = View.VISIBLE
-                        mBinding.progressLoading.visibility = View.GONE
                         setMealRecycler(
                             meal = Meal(
                                 "값을 받아올 수 없습니다.",
@@ -52,7 +46,7 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                                 "값을 받아올 수 없습니다."
                             )
                         )
-                        Toast.makeText(requireContext(), state.error, Toast.LENGTH_SHORT).show()
+                        shortToast(state.error)
                     }
                 }
             }
@@ -70,7 +64,7 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                                 val month = it.monthValue
                                 val day = it.dayOfMonth
 
-                                DatePickerDialog(requireContext(), { _, y, m, d ->
+                                val datePickerDialog = DatePickerDialog(requireContext(), R.style.MyDatePickerDialogTheme, { _, y, m, d ->
                                     val cal = Calendar.getInstance()
                                     cal.set(y, m + 1, d)
                                     setTargetDate(LocalDate.of(y, m + 1, d))
@@ -79,7 +73,10 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                                         return@DatePickerDialog
                                     }
                                     getMeal(mealList)
-                                }, year, month - 1, day).show()
+                                }, year, month - 1, day)
+                                datePickerDialog.show()
+                                datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(R.color.main);
+                                datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setTextColor(R.color.main);
                             }
                         }
                         MealViewModel.EVENT_UPDATE_DATE -> {
@@ -98,7 +95,7 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
         meal?.let {
             setMealRecycler(it)
         }
-    } // getMeal()
+    }
 
     private fun setMealRecycler(meal: Meal) {
         val mealAdapter = MealAdapter()
@@ -110,5 +107,5 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                 MealInfo(3, meal.safeDinner)
             )
         )
-    } // setMealRecycler
+    }
 }

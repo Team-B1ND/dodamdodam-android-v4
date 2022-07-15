@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.data.datasource
 
-import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.database.cache.MealCache
 import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
@@ -23,7 +22,7 @@ class MealDataSource @Inject constructor(
         }
 
     private suspend fun getAllMealRemote(year: Int, month: Int): List<MealEntity> {
-        val mealEntityList = remote.getAllMeals(year, month).data.map { meal ->
+        val mealEntityList = remote.getAllMeals(year, month).data.meals.map { meal ->
             mealMapper.mapToEntity(meal)
         }
         cache.insertMealList(mealEntityList)

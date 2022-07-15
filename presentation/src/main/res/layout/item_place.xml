@@ -23,6 +23,8 @@
             android:paddingHorizontal="15dp"
             android:paddingVertical="8dp"
             android:singleLine="true"
+            android:fontFamily="@font/nanum_square_regular"
+            android:includeFontPadding="false"
             android:textAlignment="center"
             android:textColor="@drawable/selected_text_color"
             android:textSize="@dimen/title7"

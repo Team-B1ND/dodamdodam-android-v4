@@ -58,6 +58,8 @@
                         android:layout_weight="1"
                         android:background="@drawable/background_circle_line"
                         android:button="@null"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:includeFontPadding="false"
                         android:textAlignment="center"
                         android:textColor="?android:textColorPrimary"
                         tools:text="전체 글" />
@@ -80,6 +82,8 @@
                         android:layout_weight="1"
                         android:background="@drawable/background_round_line"
                         android:hint="@string/text_search"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:includeFontPadding="false"
                         android:imeOptions="actionSearch"
                         android:visibility="visible"
                         android:inputType="textPersonName"

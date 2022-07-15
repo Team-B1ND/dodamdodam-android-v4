@@ -3,19 +3,28 @@ package kr.hs.dgsw.smartschool.data.database
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
-import kr.hs.dgsw.smartschool.data.database.dao.MealDao
-import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
-import kr.hs.dgsw.smartschool.data.database.entity.SignInEntity
+import kr.hs.dgsw.smartschool.data.database.dao.*
+import kr.hs.dgsw.smartschool.data.database.entity.*
 import java.util.concurrent.Executors
 
 @Database(
-    entities = [MealEntity::class, SignInEntity::class],
-    version = 1,
+    entities = [
+    MealEntity::class, TokenEntity::class, AccountEntity::class,
+    MemberEntity::class, StudentEntity::class, TeacherEntity::class,
+    HistoryMemberEntity::class
+    ],
+    version = 3,
     exportSchema = false
 )
 abstract class RoomDatabase : androidx.room.RoomDatabase() {
 
     abstract fun mealDao(): MealDao
+    abstract fun tokenDao(): TokenDao
+    abstract fun accountDao(): AccountDao
+    abstract fun memberDao(): MemberDao
+    abstract fun studentDao(): StudentDao
+    abstract fun teacherDao(): TeacherDao
+    abstract fun historyMemberDao(): HistoryMemberDao
 
     companion object {
         private var instance: RoomDatabase? = null

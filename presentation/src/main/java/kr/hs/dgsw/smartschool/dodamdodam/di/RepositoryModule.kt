@@ -8,6 +8,8 @@ import kr.hs.dgsw.smartschool.data.repository.BusRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.MealRepositoryImpl
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.repository.MealRepository
+import kr.hs.dgsw.smartschool.data.repository.*
+import kr.hs.dgsw.smartschool.domain.repository.*
 import javax.inject.Singleton
 
 @Module
@@ -20,4 +22,28 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideBusRepository(busRepositoryImpl: BusRepositoryImpl): BusRepository = busRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideSignInRepository(signInRepositoryImpl: SignInRepositoryImpl): SignInRepository = signInRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun providesSignUpRepository(signUpRepositoryImpl: SignUpRepositoryImpl): SignUpRepository = signUpRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideTokenRepository(tokenRepositoryImpl: TokenRepositoryImpl): TokenRepository = tokenRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideStudentRepository(studentRepositoryImpl: StudentRepositoryImpl): StudentRepository = studentRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideTeacherRepository(teacherRepositoryImpl: TeacherRepositoryImpl): TeacherRepository = teacherRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideFileUploadRepository(fileUploadRepositoryImpl: FileUploadRepositoryImpl): FileUploadRepository = fileUploadRepositoryImpl
 }

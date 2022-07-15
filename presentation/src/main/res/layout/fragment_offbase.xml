@@ -15,16 +15,9 @@
         android:layout_height="match_parent"
         tools:context=".view.fragment.OffbaseFragment">
 
-        <ImageView
-            android:id="@+id/btn_back"
-            android:layout_width="23dp"
-            android:layout_height="23dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/ic_btn_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/back_to_home_desc" />
+       <include
+           android:id="@+id/btn_back"
+           layout="@layout/item_back_button" />
 
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
