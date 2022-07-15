@@ -3,9 +3,7 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.bus
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.BusAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentBusBinding
@@ -26,7 +24,11 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>() {
             lifecycleScope.launchWhenStarted {
                 busState.collect { state ->
                     if (state.busList.isNotEmpty()) {
-                        setBusRecyclerView(setBusInfo(state.busList))
+                        val busList = setBusInfo(state.busList)
+                        if (busList.isNotEmpty()) {
+                            hasBus.value = true
+                        }
+                        setBusRecyclerView(busList)
                     }
 
                     if(state.error.isNotBlank()) {
@@ -41,12 +43,19 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>() {
     private fun setBusInfo(busList: List<BusByDate>) : List<BusInfo>{
         val list : MutableList<BusInfo> = mutableListOf()
 
-        val today = LocalDate.now()
-        val todayBusList = busList.find { it.date.equals("2022-07-22") }
+        //val today = LocalDate.now()
+        val today = LocalDate.of(2022, 7, 19)
 
+        val todayBus = busList.find {
+            val busDateString = it.date.split("-")
+            val busDate = LocalDate.of(busDateString[0].toInt(), busDateString[1].toInt(), busDateString[2].toInt())
+            today.isAfter(busDate.minusDays(6)) && today.isBefore(busDate.plusDays(1))
+        } ?: return emptyList()
+
+        mBinding.tvDate.text = todayBus.date
 
         var rideAble = ""
-        todayBusList?.bustList?.forEach {
+        todayBus.bustList.forEach {
             if(it.busMemberlength < (it.peopleLimit)){
                 rideAble = "탑승가능"
             } else if(it.busMemberlength >= it.peopleLimit){
