@@ -25,7 +25,6 @@ class SignInViewModel @Inject constructor(
 
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
-    val isAutoSignIn = MutableLiveData(false)
 
     private val _signInState = MutableStateFlow(SignInState(isLoading = false))
     val signInState: StateFlow<SignInState> = _signInState
@@ -36,10 +35,6 @@ class SignInViewModel @Inject constructor(
             return
         }
         signIn()
-    }
-
-    fun changeAuthSignIn() {
-        isAutoSignIn.value = isAutoSignIn.value?.not() ?: false
     }
 
     private fun signIn() {
