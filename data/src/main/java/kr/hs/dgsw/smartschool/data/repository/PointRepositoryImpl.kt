@@ -13,5 +13,4 @@ class PointRepositoryImpl @Inject constructor(
 
     override suspend fun getMyPointTarget(target: Int): MyPoint =
         pointDataSource.getMyPointTarget(target)
-
 }
