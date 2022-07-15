@@ -2,6 +2,7 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.profile
 
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -21,6 +22,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     var profileImage: String = ""
 
     override fun observerViewModel() {
+        mBinding.cardBus.setOnClickListener {
+            findNavController().navigate(R.id.action_main_profile_to_busFragment)
+        }
         mBinding.cardSetting.setOnClickListener {
             findNavController().navigate(R.id.action_main_profile_to_settingFragment)
         }

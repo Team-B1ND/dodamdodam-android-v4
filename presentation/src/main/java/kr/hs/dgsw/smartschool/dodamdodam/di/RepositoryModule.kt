@@ -4,6 +4,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kr.hs.dgsw.smartschool.data.repository.BusRepositoryImpl
+import kr.hs.dgsw.smartschool.data.repository.MealRepositoryImpl
+import kr.hs.dgsw.smartschool.domain.repository.BusRepository
+import kr.hs.dgsw.smartschool.domain.repository.MealRepository
 import kr.hs.dgsw.smartschool.data.repository.*
 import kr.hs.dgsw.smartschool.domain.repository.*
 import javax.inject.Singleton
@@ -14,6 +18,10 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideMealRepository(mealRepositoryImpl: MealRepositoryImpl): MealRepository = mealRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideBusRepository(busRepositoryImpl: BusRepositoryImpl): BusRepository = busRepositoryImpl
 
     @Singleton
     @Provides

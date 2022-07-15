@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="bus"
+            type="kr.hs.dgsw.smartschool.domain.model.bus.BusInfo" />
 
     </data>
 
@@ -28,6 +31,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
+            <TextView
+                android:id="@+id/tv_bus_ride_possible"
+                android:padding="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{bus.rideable}"
+                android:textSize="@dimen/title7"
+                android:textColor="@color/color_white"
+                app:layout_constraintTop_toTopOf="@id/tv_bus_title"
+                app:layout_constraintBottom_toBottomOf="@id/tv_bus_title"
+                app:layout_constraintEnd_toStartOf="@id/count_people"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/background_bus_ride_possible"/>
 
             <TextView
                 android:id="@+id/tv_bus_title"
@@ -36,11 +52,23 @@
                 android:layout_marginStart="20dp"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title4"
+                android:text="@{bus.busName}"
+                android:textStyle="bold"
                 android:fontFamily="@font/notosans_kr_bold"
                 android:includeFontPadding="false"
                 app:layout_constraintStart_toEndOf="@id/iv_bus"
-                app:layout_constraintTop_toTopOf="@id/iv_bus"
-                tools:text="용산역" />
+                app:layout_constraintTop_toTopOf="@id/iv_bus" />
+                
+            <TextView
+                android:id="@+id/count_people"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="@{bus.peopleCount}"
+                tools:textSize="@dimen/title5"
+                app:layout_constraintTop_toTopOf="@+id/tv_bus_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="20dp"
+                />
 
             <LinearLayout
                 android:id="@+id/layout_time"
@@ -62,7 +90,7 @@
                     android:fontFamily="@font/nanum_square_regular"
                     android:includeFontPadding="false"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/title6" />
+                    android:textSize="@dimen/title4" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -73,7 +101,6 @@
                     tools:text="9월 6일 12시 30분"
                     android:textColor="@color/color_black"
                     android:layout_marginStart="20dp" />
-
 
             </LinearLayout>
 

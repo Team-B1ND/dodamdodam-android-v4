@@ -29,4 +29,8 @@
 
     <color name="color_card_background">@color/white</color>
     <color name="color_background">#F9F9F9</color>
+    
+    <color name="color_blue_light">#5555FF</color>
+    <color name="color_red_light">#FF5555</color>
+    <color name="color_yellow_light">#FFDD55</color>
 </resources>
