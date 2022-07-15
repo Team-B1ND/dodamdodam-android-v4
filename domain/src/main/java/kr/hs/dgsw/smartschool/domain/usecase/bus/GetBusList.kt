@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.flow
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.util.Resource
+import kr.hs.dgsw.smartschool.domain.util.Utils
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
@@ -18,9 +19,9 @@ class GetBusList @Inject constructor(
             val result = busRepository.getBusList()
             emit(Resource.Success<List<BusByDate>>(result))
         }catch(e : HttpException){
-            emit(Resource.Error<List<BusByDate>>(e.localizedMessage ?: "AN unexpected error occured"))
+            emit(Resource.Error<List<BusByDate>>(Utils.convertErrorBody(e)))
         }catch (e: IOException){
-            Resource.Error<List<BusByDate>>("Couldn't reach server. Check your internet connection")
+            Resource.Error<List<BusByDate>>(Utils.NETWORK_ERROR_MESSAGE)
         }
     }
 }

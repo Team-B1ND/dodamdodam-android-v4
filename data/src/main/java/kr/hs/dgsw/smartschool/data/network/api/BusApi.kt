@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
+import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import retrofit2.http.*
@@ -8,16 +9,13 @@ import retrofit2.http.*
 interface BusApi {
 
     @GET("bus")
-    suspend fun getBusList(
-    ):Response<List<BusByDate>>
+    suspend fun getBusList() : Response<BusData<BusByDate>>
 
     @GET("bus/self")
-    suspend fun getMyBus(
-    ):Response<List<Bus>>
+    suspend fun getMyBus() : Response<BusData<Bus>>
 
     @GET("bus/self/apply")
-    suspend fun getMyBusByMonth(
-    ):Response<List<Bus>>
+    suspend fun getMyBusByMonth() : Response<BusData<Bus>>
 
     @POST("bus")
     suspend fun addBus(
