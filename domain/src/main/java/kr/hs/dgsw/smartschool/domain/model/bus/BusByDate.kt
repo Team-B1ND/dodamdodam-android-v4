@@ -1,8 +1,9 @@
 package kr.hs.dgsw.smartschool.domain.model.bus
 
-import java.util.*
+import com.google.gson.annotations.SerializedName
 
 data class BusByDate(
-    val date: Date,
-    val bus: Bus, // 버스 이름
+    val date: String,
+    @SerializedName("bus")
+    val bustList: List<Bus>
 )

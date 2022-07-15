@@ -44,7 +44,7 @@ class UseCaseModule {
             updateBusApply = UpdateBusApply(repository),
             updateBusInfo = UpdateBusInfo(repository),
             deleteBus = DeleteBus(repository),
-            deleteBusApply = DeleteBusApply(repository)
+            deleteBusApply = DeleteBusApply(repository))
 
     @Provides
     @Singleton

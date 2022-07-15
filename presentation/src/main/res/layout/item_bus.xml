@@ -96,6 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/title4"
+                    android:text="@{bus.leaveTime}"
                     android:fontFamily="@font/nanum_square_regular"
                     android:includeFontPadding="false"
                     tools:text="9월 6일 12시 30분"
