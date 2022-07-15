@@ -70,12 +70,15 @@ class EditProfileViewModel @Inject constructor(
             when(result) {
                 is Resource.Success -> {
                     _uploadImageState.value = UploadImageState(picture = result.data)
+                    isLoading.value = false
                 }
                 is Resource.Loading -> {
                     _uploadImageState.value = UploadImageState(isLoading = true)
+                    isLoading.value = true
                 }
                 is Resource.Error -> {
                     _uploadImageState.value = UploadImageState(error = result.message ?: "이미지 업로드에 실패했습니다.")
+                    isLoading.value = false
                 }
             }
         }.launchIn(viewModelScope)

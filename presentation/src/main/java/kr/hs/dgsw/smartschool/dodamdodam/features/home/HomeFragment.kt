@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.home
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
@@ -52,6 +53,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                         mBinding.viewPagerMealList.visibility = View.VISIBLE
                         mealList = mealState.value.meal
                         getMeal(mealList, date)
+                        setMealCurrentPosition()
                     }
                     if (state.isLoading) {
                         mBinding.progressLoading.visibility = View.VISIBLE
@@ -103,6 +105,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         mBinding.viewPagerMealList.offscreenPageLimit = 3
         mBinding.viewPagerMealList.setPadding(90, 0, 90, 0)
         mBinding.viewPagerMealList.setPageTransformer(getTransform())
+
         mealHomeAdapter.submitList(
             listOf(
                 MealInfo(1, meal.safeBreakfast),
@@ -110,6 +113,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 MealInfo(3, meal.safeDinner)
             )
         )
+    }
+
+    private fun setMealCurrentPosition() {
+        when(LocalDateTime.now().hour) {
+            in 9..13 -> mBinding.viewPagerMealList.currentItem = 1
+            in 14..20 -> mBinding.viewPagerMealList.currentItem = 2
+            else -> mBinding.viewPagerMealList.currentItem = 0
+        }
     }
 
     @SuppressLint("RtlHardcoded")

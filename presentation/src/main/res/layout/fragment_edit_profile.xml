@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
 
         <variable
             name="vm"
@@ -18,6 +20,17 @@
         <include
             android:id="@+id/btn_back"
             layout="@layout/item_back_button" />
+
+        <include
+            android:id="@+id/progress_circular"
+            layout="@layout/item_loading_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,9 +67,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="@string/text_change_desc"
             android:fontFamily="@font/nanum_square_regular"
             android:includeFontPadding="false"
+            android:text="@string/text_change_desc"
             android:textColor="@color/main"
             android:textSize="@dimen/title4"
             app:layout_constraintEnd_toEndOf="@id/iv_profile"
@@ -96,9 +109,9 @@
                 android:id="@+id/edit_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
                 android:fontFamily="@font/nanum_square_regular"
                 android:includeFontPadding="false"
+                android:inputType="textEmailAddress"
                 android:maxLength="30"
                 android:text="@={vm.email}" />
 
@@ -126,9 +139,9 @@
                 android:id="@+id/edit_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
                 android:fontFamily="@font/nanum_square_regular"
                 android:includeFontPadding="false"
+                android:inputType="phone"
                 android:maxLength="11"
                 android:text="@={vm.phone}" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -139,11 +152,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:backgroundTint="@color/main"
-            android:text="@string/text_save"
-            android:textSize="@dimen/title4"
             android:fontFamily="@font/nanum_square_regular"
             android:includeFontPadding="false"
             android:onClick="@{() -> vm.checkForm()}"
+            android:text="@string/text_save"
+            android:textSize="@dimen/title4"
+            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
