@@ -30,6 +30,10 @@ class SignUpDetailActivity : BaseActivity<ActivitySignUpDetailBinding, SignUpDet
         mBinding.btnBack.setOnClickListener {
             finish()
         }
+
+        mBinding.checkboxAgree.setOnClickListener {
+            viewModel.isAgree.value = mBinding.checkboxAgree.isChecked
+        }
     }
 
     private fun collectSignUpState() {

@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`
 
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -39,7 +38,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
                 it.getContentIfNotHandled()?.let { event ->
                     when(event) {
                         SignInViewModel.EVENT_SUCCESS_SIGN_IN -> {
-                            if (isAutoSignIn.value == true)
+                            if (mBinding.checkAutoSignIn.isChecked)
                                 SharedPreferenceManager.signIn(this@SignInActivity)
                             startActivityWithFinishAll(MainActivity::class.java)
                         }

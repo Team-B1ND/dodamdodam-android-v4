@@ -25,6 +25,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
             findNavController().navigate(R.id.action_main_profile_to_settingFragment)
         }
 
+        setSwipeRefresh()
         collectMyInfo()
         goEditProfile()
     }
@@ -38,6 +39,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                             val generation = "%d%d%02d".format(grade, room, number)
                             setProfileInfo(generation, name, email, profileImage ?: "")
                             setNavData(email, phone, id, profileImage ?: "")
+                            endRefreshing()
                         }
 
                         mBinding.btnGoInfoUpdate.visibility = View.VISIBLE
@@ -46,6 +48,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                     if (state.error.isNotBlank()) {
                         setProfileInfo("", "값을 받아올 수 없습니다.", "", "")
                         mBinding.btnGoInfoUpdate.visibility = View.GONE
+                        endRefreshing()
                     }
                 }
             }
@@ -78,4 +81,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         this.profileImage = profileImage
     }
 
+    private fun setSwipeRefresh() {
+        mBinding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getMyInfo()
+        }
+    }
+
+    private fun endRefreshing() {
+        mBinding.swipeRefreshLayout.isRefreshing = false
+    }
 }

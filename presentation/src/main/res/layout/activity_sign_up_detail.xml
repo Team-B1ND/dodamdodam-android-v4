@@ -5,7 +5,6 @@
 
     <data>
         <import type="android.view.View" />
-
         <variable
             name="vm"
             type="kr.hs.dgsw.smartschool.dodamdodam.features.sign.up.SignUpDetailViewModel" />
@@ -22,23 +21,18 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <include
                 android:id="@+id/btn_back"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_btn_back"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/color_black"
-                tools:ignore="ContentDescription" />
+                layout="@layout/item_back_button" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="@string/text_detail_info"
+                android:fontFamily="@font/nanum_square_regular"
+                android:includeFontPadding="false"
+                android:layout_marginBottom="3dp"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title3"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -95,6 +89,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:includeFontPadding="false"
                         android:maxLength="10"
                         android:text="@={vm.name}" />
 
@@ -114,6 +110,8 @@
                         android:layout_weight="1"
                         android:inputType="number"
                         android:maxLength="1"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:includeFontPadding="false"
                         android:gravity="end"
                         android:text="@={vm.grade}"
                         tools:ignore="Autofill,LabelFor" />
@@ -132,6 +130,8 @@
                         android:layout_weight="1"
                         android:inputType="number"
                         android:maxLength="1"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:includeFontPadding="false"
                         android:gravity="end"
                         android:text="@={vm.room}"
                         tools:ignore="Autofill,LabelFor" />
@@ -150,6 +150,8 @@
                         android:layout_weight="1"
                         android:inputType="number"
                         android:gravity="end"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:includeFontPadding="false"
                         android:maxLength="2"
                         android:text="@={vm.number}"
                         tools:ignore="Autofill,LabelFor" />
@@ -182,6 +184,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:includeFontPadding="false"
                         android:maxLength="30"
                         android:text="@={vm.email}" />
 
@@ -207,16 +211,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="phone"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:includeFontPadding="false"
                         android:maxLength="11"
                         android:text="@={vm.phone}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <CheckBox
+                    android:id="@+id/checkbox_agree"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="@{() -> vm.changeAgree()}"
                     android:layout_marginHorizontal="40dp"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:includeFontPadding="false"
                     android:buttonTint="@color/main"
                     android:text="@string/text_use_agree" />
 
@@ -226,6 +234,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="70dp"
                     android:text="@string/text_personal_info"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:includeFontPadding="false"
                     android:textColor="@color/main"
                     android:textSize="@dimen/title6" />
 
@@ -236,6 +246,8 @@
                     android:layout_marginStart="70dp"
                     android:layout_marginTop="5dp"
                     android:text="@string/text_service_operation"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:includeFontPadding="false"
                     android:textColor="@color/main"
                     android:textSize="@dimen/title6" />
 
@@ -251,6 +263,8 @@
             android:backgroundTint="@color/main"
             android:onClick="@{() -> vm.checkForm()}"
             android:text="@string/text_sign_up"
+            android:fontFamily="@font/nanum_square_regular"
+            android:includeFontPadding="false"
             android:textColor="@color/white"
             android:textSize="@dimen/title3"
             android:textStyle="bold"

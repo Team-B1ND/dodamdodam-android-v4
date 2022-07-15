@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.sign.up
 
-import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -33,7 +32,7 @@ class SignUpDetailViewModel @Inject constructor(
     val grade = MutableLiveData<String>()
     val room = MutableLiveData<String>()
     val number = MutableLiveData<String>()
-    private val isAgree = MutableLiveData(false)
+    val isAgree = MutableLiveData<Boolean>()
 
     fun checkForm() {
         val isEmpty = grade.value.isNullOrBlank() || room.value.isNullOrBlank() || number.value.isNullOrBlank() ||
@@ -101,10 +100,6 @@ class SignUpDetailViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
-    }
-
-    fun changeAgree() {
-        isAgree.value = isAgree.value?.not() ?: false
     }
 
     companion object {

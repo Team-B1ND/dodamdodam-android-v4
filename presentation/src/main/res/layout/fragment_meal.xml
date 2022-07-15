@@ -37,6 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:text="@string/title_meal"
+                    android:fontFamily="@font/gotham_bold"
                     android:textColor="@color/main"
                     android:textSize="@dimen/title2"
                     android:textStyle="bold"
@@ -90,6 +91,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/nanum_square_regular"
+                            android:includeFontPadding="false"
                             android:onClick="@{() -> vm.onClickDate()}"
                             android:textColor="@color/color_black"
                             android:textSize="@dimen/title4"
@@ -141,7 +144,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_meal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:overScrollMode="never"
                 android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
@@ -169,6 +172,7 @@
                         android:text="@string/text_meal_people"
                         android:textColor="@color/color_black"
                         android:textSize="@dimen/title3"
+                        android:fontFamily="@font/gotham_bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -180,6 +184,8 @@
                         android:text="@string/text_meal_people_desc"
                         android:textColor="@color/gray700"
                         android:textSize="@dimen/title4"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:includeFontPadding="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/tv_meal_people"
                         app:layout_constraintTop_toBottomOf="@id/tv_meal_people" />

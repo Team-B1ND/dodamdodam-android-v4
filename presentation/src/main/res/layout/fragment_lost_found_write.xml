@@ -23,17 +23,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <include
                 android:id="@+id/btn_back"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_btn_back"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/color_black"
-                tools:ignore="ContentDescription" />
+                layout="@layout/item_back_button" />
 
             <TextView
                 android:id="@+id/tv_lost_found_write_title"
@@ -41,11 +33,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="@string/title_write_lost_found"
+                android:fontFamily="@font/nanum_square_regular"
+                android:includeFontPadding="false"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title3"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btn_back"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@id/btn_back" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -88,6 +81,8 @@
                     android:drawableTint="@color/main"
                     android:padding="15dp"
                     android:text="@string/text_image_add"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:includeFontPadding="false"
                     android:textColor="@color/color_black"
                     app:layout_constraintBottom_toTopOf="@id/btn_image_delete"
                     app:layout_constraintStart_toStartOf="@id/btn_image_delete"
@@ -103,6 +98,8 @@
                     android:drawableTint="@color/main"
                     android:padding="15dp"
                     android:text="@string/text_image_delete"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:includeFontPadding="false"
                     android:textColor="@color/color_black"
                     app:layout_constraintBottom_toBottomOf="@id/card_image"
                     app:layout_constraintStart_toEndOf="@id/card_image"
@@ -139,6 +136,9 @@
                                 android:layout_height="wrap_content"
                                 android:buttonTint="@color/main"
                                 android:checked="true"
+                                android:textColor="@color/color_black"
+                                android:fontFamily="@font/nanum_square_regular"
+                                android:includeFontPadding="false"
                                 android:text="@string/text_lost" />
 
                             <RadioButton
@@ -146,7 +146,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
+                                android:textColor="@color/color_black"
                                 android:buttonTint="@color/main"
+                                android:fontFamily="@font/nanum_square_regular"
+                                android:includeFontPadding="false"
                                 android:text="@string/text_found" />
 
                         </RadioGroup>
@@ -158,6 +161,8 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:hint="@string/text_title"
+                            android:fontFamily="@font/nanum_square_regular"
+                            android:includeFontPadding="false"
                             android:importantForAutofill="no"
                             android:inputType="text"
                             android:maxLines="1"
@@ -172,6 +177,8 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:hint="@string/text_location"
+                            android:fontFamily="@font/nanum_square_regular"
+                            android:includeFontPadding="false"
                             android:importantForAutofill="no"
                             android:inputType="text"
                             android:paddingStart="5dp"
@@ -199,6 +206,8 @@
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="top"
                         android:hint="@string/text_content"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:includeFontPadding="false"
                         android:importantForAutofill="no"
                         android:inputType="text"
                         android:textSize="@dimen/title4" />

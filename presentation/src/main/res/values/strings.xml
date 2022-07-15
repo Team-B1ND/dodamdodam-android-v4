@@ -41,7 +41,7 @@
     <string name="offbase">외출/외박</string>
     <string name="bus">버스 신청</string>
     <string name="offbase_desc">설마 무단 외출은 아니지?</string>
-    <string name="bus_desc">드디어 집에 갈 시간이야!</string>
+    <string name="bus_desc">드디어 집 갈 시간!</string>
     <string name="apply">신청하기</string>
     <string name="text_other">기타</string>
     <string name="text_offbase_leave_date_end">복귀 날짜</string>
@@ -79,7 +79,7 @@
     <string name="title_recommend_music">추천 음악</string>
     <string name="title_study_room_apply">자습실 신청</string>
     <string name="text_more_function">이런 기능도 있어요</string>
-    <string name="text_baek_rank_card_desc">우리 학교 알고리즘 짱은?</string>
+    <string name="text_baek_rank_card_desc">대소고 알고리즘 장인은?</string>
     <string name="title_baek_rank">백랭</string>
     <string name="title_lost_and_found">분실물 찾기</string>
     <string name="text_lost_and_found">내 물건 찾아줘..</string>
