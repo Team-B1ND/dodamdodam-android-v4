@@ -70,7 +70,7 @@
                         app:layout_constraintTop_toBottomOf="@id/layout_profile_title">
 
                         <include
-                            android:id="@+id/progress_circular"
+                            android:id="@+id/progress_circular_info"
                             layout="@layout/item_loading_progressbar"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
@@ -208,6 +208,18 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
+                            <include
+                                android:id="@+id/progress_circular_point"
+                                layout="@layout/item_loading_progressbar"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
                             <TextView
                                 android:id="@+id/tv_point_date"
                                 android:layout_width="wrap_content"
@@ -216,13 +228,14 @@
                                 android:layout_marginTop="20dp"
                                 android:fontFamily="@font/nanum_square_regular"
                                 android:includeFontPadding="false"
-                                android:text="2021.06.10일 기준"
+                                tools:text="2021.06.10일 기준"
                                 android:textColor="@color/color_black"
                                 android:textSize="15sp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <LinearLayout
+                                android:id="@+id/linearLayout"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"

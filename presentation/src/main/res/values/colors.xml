@@ -33,4 +33,7 @@
     <color name="color_blue_light">#5555FF</color>
     <color name="color_red_light">#FF5555</color>
     <color name="color_yellow_light">#FFDD55</color>
+
+    <color name="color_prize">#0067BC</color>
+    <color name="color_penalty">#F97E6D</color>
 </resources>
