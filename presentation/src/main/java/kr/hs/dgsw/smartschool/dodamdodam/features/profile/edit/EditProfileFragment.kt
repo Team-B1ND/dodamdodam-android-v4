@@ -126,10 +126,10 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfile
             viewEvent.observe(this@EditProfileFragment) {
                 it.getContentIfNotHandled()?.let { event ->
                     when(event) {
-                        SignUpDetailViewModel.EVENT_EMPTY -> shortToast("입력란을 모두 채워 주세요.")
-                        SignUpDetailViewModel.EVENT_NOT_PHONE_NUMBER -> shortToast("전화번호 형식이 일치하지 않습니다.")
-                        SignUpDetailViewModel.EVENT_NOT_MATCH_FORM -> shortToast("형식이 일치하지 않습니다.")
-                        SignUpDetailViewModel.EVENT_NOT_EMAIL -> shortToast("이메일 형식이 일치하지 않습니다.")
+                        EditProfileViewModel.EVENT_EMPTY -> shortToast("입력란을 모두 채워 주세요.")
+                        EditProfileViewModel.EVENT_NOT_PHONE_NUMBER -> shortToast("전화번호 형식이 일치하지 않습니다.")
+                        EditProfileViewModel.EVENT_NOT_MATCH_FORM -> shortToast("형식이 일치하지 않습니다.")
+                        EditProfileViewModel.EVENT_NOT_EMAIL -> shortToast("이메일 형식이 일치하지 않습니다.")
                     }
                 }
             }

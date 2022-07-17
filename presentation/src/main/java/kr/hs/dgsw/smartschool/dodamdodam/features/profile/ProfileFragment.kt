@@ -22,15 +22,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     override val hasBottomNav: Boolean = true
 
     private var email: String = ""
-    var phone = ""
+    private var phone = ""
     private var memberId: String = ""
     private var profileImage: String = ""
     private val date: LocalDate = LocalDate.now()
 
-    private val pointList : Array<Float?> = arrayOfNulls(2)
+    private val pointList: Array<Float?> = arrayOfNulls(2)
 
     override fun observerViewModel() {
-        setPieChart()
         mBinding.cardBus.setOnClickListener {
             findNavController().navigate(R.id.action_main_profile_to_busFragment)
         }
@@ -90,12 +89,22 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
 
     private fun goEditProfile() {
         mBinding.btnGoInfoUpdate.setOnClickListener {
-            val navAction = ProfileFragmentDirections.actionMainProfileToEditProfileFragment(email, phone, profileImage, memberId)
+            val navAction = ProfileFragmentDirections.actionMainProfileToEditProfileFragment(
+                email,
+                phone,
+                profileImage,
+                memberId
+            )
             findNavController().navigate(navAction)
         }
     }
 
-    private fun setProfileInfo(generation: String, name: String, email: String, profileImage: String) {
+    private fun setProfileInfo(
+        generation: String,
+        name: String,
+        email: String,
+        profileImage: String
+    ) {
         mBinding.tvGeneration.text = generation
         mBinding.tvId.text = name
         mBinding.tvEmail.text = email
@@ -109,7 +118,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
 
     private fun setMyPoint(myPoint: MyPoint) {
         // type : 1은 상점, 2는 벌점
-        when(myPoint.log.getOrNull(0)?.type ?: 0) {
+        when (myPoint.log.getOrNull(0)?.type ?: 0) {
             0 -> {
                 mBinding.tvPrizePoint.text = "0점"
                 mBinding.tvPenaltyPoint.text = "0점"
@@ -121,7 +130,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
             }
             2 -> {
                 mBinding.tvPenaltyPoint.text = "${myPoint.score.zero}점"
-                setChartListData( -1, myPoint.score.zero)
+                setChartListData(-1, myPoint.score.zero)
             }
         }
     }
@@ -130,13 +139,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         if (prize == 0 && penalty == 0) {
             pointList[1] = penalty.toFloat()
             pointList[0] = prize.toFloat()
-            if (pointList[0] != null && pointList[1] != null)
+            if (pointList[0] != null && pointList[1] != null) {
+                setPieChart()
                 updatePieChart()
+            }
             return
         }
         if (prize == -1) pointList[1] = penalty.toFloat() else pointList[0] = prize.toFloat()
-        if (pointList[0] != null && pointList[1] != null)
+        if (pointList[0] != null && pointList[1] != null) {
+            setPieChart()
             updatePieChart()
+        }
     }
 
     private fun setPieChart() {
@@ -164,9 +177,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
             mBinding.chartPoint.data = PieData(this)
         }
     }
-
-
-
 
     private fun setNavData(email: String, phone: String, memberId: String, profileImage: String) {
         this.email = email

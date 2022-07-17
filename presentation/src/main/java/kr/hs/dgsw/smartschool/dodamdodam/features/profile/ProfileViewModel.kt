@@ -1,5 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.profile
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,6 +26,9 @@ class ProfileViewModel @Inject constructor(
 
     private val _getMyPointState = MutableStateFlow(GetMyPointState(isLoading = false))
     val getMyPointState: StateFlow<GetMyPointState> = _getMyPointState
+
+    private val _dormitorySelected = MutableLiveData<Boolean>()
+    val dormitorySelected: LiveData<Boolean> get() = _dormitorySelected
 
     init {
         getMyInfo()

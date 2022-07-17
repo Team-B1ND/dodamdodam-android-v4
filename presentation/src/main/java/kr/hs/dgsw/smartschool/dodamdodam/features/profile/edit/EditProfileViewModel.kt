@@ -52,14 +52,17 @@ class EditProfileViewModel @Inject constructor(
             when(result) {
                 is Resource.Success -> {
                     _editProfileState.value = EditProfileState(message = result.data ?: "성공하였습니다.")
+                    isLoading.value = false
                 }
                 is Resource.Loading -> {
                     _editProfileState.value = EditProfileState(isLoading = true)
+                    isLoading.value = true
                 }
                 is Resource.Error -> {
                     _editProfileState.value = EditProfileState(
                         error = result.message ?: "프로필 수정에 실패하였습니다."
                     )
+                    isLoading.value = false
                 }
             }
         }.launchIn(viewModelScope)

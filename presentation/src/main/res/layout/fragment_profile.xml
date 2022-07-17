@@ -255,7 +255,7 @@
                                     android:paddingHorizontal="15dp"
                                     android:paddingVertical="3dp"
                                     android:text="@string/text_dormitory"
-                                    android:textColor="@color/color_black"
+                                    android:textColor="@{vm."
                                     android:textSize="12sp" />
 
                                 <TextView
@@ -279,7 +279,7 @@
                                 android:layout_height="10dp"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginBottom="20dp"
-                                android:background="@android:color/holo_blue_bright"
+                                android:background="@color/color_prize"
                                 app:layout_constraintBottom_toTopOf="@id/view_penalty_point"
                                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -316,7 +316,7 @@
                                 android:layout_height="10dp"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginBottom="20dp"
-                                android:background="@android:color/holo_red_light"
+                                android:background="@color/color_penalty"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -358,6 +358,7 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHeight_percent="0.6"
                                 app:layout_constraintTop_toTopOf="parent" />
+
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
 
