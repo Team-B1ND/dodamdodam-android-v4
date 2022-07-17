@@ -77,10 +77,16 @@ class ProfileViewModel @Inject constructor(
     fun selectDormitory() {
         _dormitorySelected.value = true
         _schoolSelected.value = false
+        viewEvent(EVENT_CHANGE_SELECTED)
     }
 
     fun selectSchool() {
         _dormitorySelected.value = false
         _schoolSelected.value = true
+        viewEvent(EVENT_CHANGE_SELECTED)
+    }
+
+    companion object {
+        const val EVENT_CHANGE_SELECTED = 1
     }
 }
