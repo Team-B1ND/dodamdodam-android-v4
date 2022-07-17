@@ -2,6 +2,7 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.profile
 
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -27,7 +28,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     private var profileImage: String = ""
     private val date: LocalDate = LocalDate.now()
 
-    private val pointList: Array<Float?> = arrayOfNulls(2)
+    private val pointList: MutableLiveData<Array<Float?>> = MutableLiveData(arrayOfNulls(2))
 
     override fun observerViewModel() {
         mBinding.cardBus.setOnClickListener {
@@ -40,6 +41,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         mBinding.tvPointDate.text = "$date 기준"
         viewModel.getMyPoint(date.year.toString(), 1)
         viewModel.getMyPoint(date.year.toString(), 2)
+        observeSchoolAndDormitoryState()
         setSwipeRefresh()
         collectMyInfo()
         collectMyPoint()
@@ -68,6 +70,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                     }
                 }
             }
+        }
+    }
+
+    private fun observeSchoolAndDormitoryState() {
+        with(viewModel) {
+
         }
     }
 

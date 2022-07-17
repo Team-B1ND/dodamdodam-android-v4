@@ -228,11 +228,11 @@
                                 android:layout_marginTop="20dp"
                                 android:fontFamily="@font/nanum_square_regular"
                                 android:includeFontPadding="false"
-                                tools:text="2021.06.10일 기준"
                                 android:textColor="@color/color_black"
                                 android:textSize="15sp"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="2021.06.10일 기준" />
 
                             <LinearLayout
                                 android:id="@+id/linearLayout"
@@ -246,30 +246,36 @@
 
                                 <TextView
                                     android:id="@+id/tv_dormitory"
+                                    isSelected="@{vm.dormitorySelected}"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginEnd="5dp"
+                                    android:button="@null"
                                     android:background="@drawable/background_select_box"
                                     android:fontFamily="@font/nanum_square_regular"
                                     android:includeFontPadding="false"
+                                    android:onClick="@{() -> vm.selectDormitory()}"
                                     android:paddingHorizontal="15dp"
-                                    android:paddingVertical="3dp"
+                                    android:paddingVertical="5dp"
                                     android:text="@string/text_dormitory"
-                                    android:textColor="@{vm."
-                                    android:textSize="12sp" />
+                                    android:textColor="@{vm.dormitorySelected ? @color/color_un_selected : @color/color_selected}"
+                                    android:textSize="@dimen/title6" />
 
                                 <TextView
                                     android:id="@+id/tv_school"
+                                    isSelected="@{vm.schoolSelected}"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:button="@null"
                                     android:background="@drawable/background_select_box"
                                     android:fontFamily="@font/nanum_square_regular"
                                     android:includeFontPadding="false"
+                                    android:onClick="@{() -> vm.selectSchool()}"
                                     android:paddingHorizontal="20dp"
-                                    android:paddingVertical="3dp"
+                                    android:paddingVertical="5dp"
                                     android:text="@string/school"
-                                    android:textColor="@color/color_black"
-                                    android:textSize="12sp" />
+                                    android:textColor="@{vm.schoolSelected ? @color/color_un_selected : @color/color_selected}"
+                                    android:textSize="@dimen/title6" />
                             </LinearLayout>
 
 
@@ -436,9 +442,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="16dp"
                                     android:layout_marginTop="7dp"
-                                    android:text="@string/offbase_desc"
                                     android:fontFamily="@font/nanum_square_regular"
                                     android:includeFontPadding="false"
+                                    android:text="@string/offbase_desc"
                                     android:textColor="@color/color_black"
                                     android:textSize="@dimen/title5"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -484,9 +490,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="16dp"
                                     android:layout_marginTop="7dp"
-                                    android:text="@string/bus_desc"
                                     android:fontFamily="@font/nanum_square_regular"
                                     android:includeFontPadding="false"
+                                    android:text="@string/bus_desc"
                                     android:textColor="@color/color_black"
                                     android:textSize="@dimen/title5"
                                     app:layout_constraintStart_toStartOf="parent"

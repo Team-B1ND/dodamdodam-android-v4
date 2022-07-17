@@ -27,8 +27,11 @@ class ProfileViewModel @Inject constructor(
     private val _getMyPointState = MutableStateFlow(GetMyPointState(isLoading = false))
     val getMyPointState: StateFlow<GetMyPointState> = _getMyPointState
 
-    private val _dormitorySelected = MutableLiveData<Boolean>()
+    private val _dormitorySelected = MutableLiveData<Boolean>(true)
     val dormitorySelected: LiveData<Boolean> get() = _dormitorySelected
+
+    private val _schoolSelected = MutableLiveData<Boolean>(false)
+    val schoolSelected: LiveData<Boolean> get() = _schoolSelected
 
     init {
         getMyInfo()
@@ -69,5 +72,15 @@ class ProfileViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun selectDormitory() {
+        _dormitorySelected.value = true
+        _schoolSelected.value = false
+    }
+
+    fun selectSchool() {
+        _dormitorySelected.value = false
+        _schoolSelected.value = true
     }
 }
