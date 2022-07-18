@@ -10,7 +10,7 @@ import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import javax.inject.Inject
 
 class BusDataSource @Inject constructor(
-    override val cache: BusCache,
+    override val cache: Any,
     override val remote: BusRemote
 ) : BaseDataSource<BusRemote,Any>() {
 
