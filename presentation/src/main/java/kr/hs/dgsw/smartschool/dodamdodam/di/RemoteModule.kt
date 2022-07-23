@@ -4,12 +4,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kr.hs.dgsw.smartschool.data.network.api.BusApi
-import kr.hs.dgsw.smartschool.data.network.api.MealApi
+import kr.hs.dgsw.smartschool.data.network.api.*
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.remote.MealRemote
-import kr.hs.dgsw.smartschool.data.network.api.FileUploadApi
-import kr.hs.dgsw.smartschool.data.network.api.MemberApi
 import kr.hs.dgsw.smartschool.data.network.remote.*
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -48,5 +45,10 @@ class RemoteModule {
     @Provides
     fun provideFileUploadRemote(retrofit: Retrofit): FileUploadRemote =
         FileUploadRemote(retrofit.create(FileUploadApi::class.java))
+
+    @Singleton
+    @Provides
+    fun providePointRemote(retrofit: Retrofit): PointRemote =
+        PointRemote(retrofit.create(PointApi::class.java))
 
 }

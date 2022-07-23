@@ -46,4 +46,8 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideFileUploadRepository(fileUploadRepositoryImpl: FileUploadRepositoryImpl): FileUploadRepository = fileUploadRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun providePointRepository(pointRepositoryImpl: PointRepositoryImpl): PointRepository = pointRepositoryImpl
 }

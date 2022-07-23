@@ -74,7 +74,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>() {
     }
 
     private fun setBusRecyclerView(list: List<BusInfo>) {
-        val busAdapter = BusAdapter()
+        val busAdapter = BusAdapter(requireContext())
         mBinding.recyclerBus.adapter = busAdapter
         busAdapter.submitList(list)
     }

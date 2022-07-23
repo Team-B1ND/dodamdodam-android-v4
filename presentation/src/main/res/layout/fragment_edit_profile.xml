@@ -22,7 +22,7 @@
             layout="@layout/item_back_button" />
 
         <include
-            android:id="@+id/progress_circular"
+            android:id="@+id/progress_circular_info"
             layout="@layout/item_loading_progressbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
