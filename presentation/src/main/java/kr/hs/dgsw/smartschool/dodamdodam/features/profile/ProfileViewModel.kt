@@ -9,7 +9,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.dodamdodam.features.profile.point.GetMyPointState
+import kr.hs.dgsw.smartschool.dodamdodam.features.profile.point.MyDormitoryPointState
+import kr.hs.dgsw.smartschool.dodamdodam.features.profile.point.MySchoolPointState
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.point.PointUseCases
 import kr.hs.dgsw.smartschool.domain.util.Resource
@@ -24,8 +25,11 @@ class ProfileViewModel @Inject constructor(
     private val _myInfoState = MutableStateFlow(MyInfoState(isLoading = false))
     val myInfoState: StateFlow<MyInfoState> = _myInfoState
 
-    private val _getMyPointState = MutableStateFlow(GetMyPointState(isLoading = false))
-    val getMyPointState: StateFlow<GetMyPointState> = _getMyPointState
+    private val _myDormitoryPointState = MutableStateFlow(MyDormitoryPointState(isLoading = false))
+    val myDormitoryPointState: StateFlow<MyDormitoryPointState> = _myDormitoryPointState
+
+    private val _mySchoolPointState = MutableStateFlow(MySchoolPointState(isLoading = false))
+    val mySchoolPointState: StateFlow<MySchoolPointState> = _mySchoolPointState
 
     private val _dormitorySelected = MutableLiveData<Boolean>(true)
     val dormitorySelected: LiveData<Boolean> get() = _dormitorySelected
@@ -35,6 +39,8 @@ class ProfileViewModel @Inject constructor(
 
     init {
         getMyInfo()
+        getMyDormitoryPoint()
+        getMySchoolPoint()
     }
 
     fun getMyInfo() {
@@ -55,23 +61,46 @@ class ProfileViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun getMyPoint(year: String, type: Int) {
-        pointUseCases.getMyPoint(year, type).onEach { result ->
+    fun getMyDormitoryPoint() {
+        pointUseCases.getMyPointTarget(0).onEach { result ->
             when(result) {
                 is Resource.Success -> {
-                    _getMyPointState.value = GetMyPointState(myYearPoint = result.data)
+                    _myDormitoryPointState.value = MyDormitoryPointState(myDormitoryPoint = result.data)
                     isLoading.value = false
                 }
                 is Resource.Loading -> {
-                    _getMyPointState.value = GetMyPointState(isLoading = true)
+                    _myDormitoryPointState.value = MyDormitoryPointState(isLoading = true)
                     isLoading.value = true
                 }
                 is Resource.Error -> {
-                    _getMyPointState.value = GetMyPointState(error = result.message ?: "상벌점 조회를 실패했습니다.")
+                    _myDormitoryPointState.value = MyDormitoryPointState(error = result.message ?: "상벌점 조회를 실패했습니다.")
                     isLoading.value = false
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun getMySchoolPoint() {
+        pointUseCases.getMyPointTarget(1).onEach { result ->
+            when(result) {
+                is Resource.Success -> {
+                    _mySchoolPointState.value = MySchoolPointState(mySchoolPoint = result.data)
+                    isLoading.value = false
+                }
+                is Resource.Loading -> {
+                    _mySchoolPointState.value = MySchoolPointState(isLoading = true)
+                    isLoading.value = true
+                }
+                is Resource.Error -> {
+                    _mySchoolPointState.value = MySchoolPointState(error = result.message ?: "상벌점 조회를 실패했습니다.")
+                    isLoading.value = false
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
+
+    fun onClickEditProfile() {
+        viewEvent(EVENT_GO_EDIT_PROFILE)
     }
 
     fun selectDormitory() {
@@ -88,5 +117,6 @@ class ProfileViewModel @Inject constructor(
 
     companion object {
         const val EVENT_CHANGE_SELECTED = 1
+        const val EVENT_GO_EDIT_PROFILE = 2
     }
 }

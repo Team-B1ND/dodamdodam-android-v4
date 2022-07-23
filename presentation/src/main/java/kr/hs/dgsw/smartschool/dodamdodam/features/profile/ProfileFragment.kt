@@ -1,9 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.profile
 
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -15,7 +13,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentProfileBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
-import kr.hs.dgsw.smartschool.domain.model.point.MyYearPoint
+import kr.hs.dgsw.smartschool.domain.model.point.MyTargetPoint
 import java.time.LocalDate
 
 @AndroidEntryPoint
@@ -29,9 +27,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     private var profileImage: String = ""
     private val date: LocalDate = LocalDate.now()
 
-    private val pointList: MutableLiveData<FloatArray> = MutableLiveData(floatArrayOf(0F, 0F))
-
-    private var myYearPoint: MyYearPoint? = null
+    private var dormitoryPoint: MyTargetPoint? = null
+    private var schoolPoint: MyTargetPoint? = null
 
     override fun observerViewModel() {
         mBinding.cardBus.setOnClickListener {
@@ -41,16 +38,41 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
             findNavController().navigate(R.id.action_main_profile_to_settingFragment)
         }
 
+        mBinding.tvPointDate.text = "$date 기준"
+
         setPieChart()
         bindingViewEvent()
-        mBinding.tvPointDate.text = "$date 기준"
-        viewModel.getMyPoint(date.year.toString(), 1)
-        viewModel.getMyPoint(date.year.toString(), 2)
-        observeSchoolAndDormitoryState()
-        setSwipeRefresh()
         collectMyInfo()
-        collectMyPoint()
-        goEditProfile()
+        collectDormitoryPoint()
+        collectSchoolPoint()
+        setSwipeRefresh()
+    }
+
+    private fun bindingViewEvent() {
+        with(viewModel) {
+            viewEvent.observe(this@ProfileFragment) {
+                it.getContentIfNotHandled()?.let { event ->
+                    when(event) {
+                        ProfileViewModel.EVENT_CHANGE_SELECTED -> {
+                            if (dormitorySelected.value == true)
+                                setPointCard(0)
+                            else
+                                setPointCard(1)
+                        }
+                        ProfileViewModel.EVENT_GO_EDIT_PROFILE -> {
+                            val navAction = ProfileFragmentDirections.actionMainProfileToEditProfileFragment(
+                                email,
+                                phone,
+                                profileImage,
+                                memberId
+                            )
+                            findNavController().navigate(navAction)
+                        }
+
+                    }
+                }
+            }
+        }
     }
 
     private fun collectMyInfo() {
@@ -78,29 +100,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         }
     }
 
-    private fun observeSchoolAndDormitoryState() {
-        pointList.observe(this) {
-            PieDataSet(
-                listOf(
-                    PieEntry(pointList.value!![1]),
-                    PieEntry(pointList.value!![0])
-                ), "My Point"
-            ).apply {
-                setColors(intArrayOf(R.color.color_penalty, R.color.color_prize), context)
-                setDrawValues(false)
-                setDrawIcons(false)
-                mBinding.chartPoint.data = PieData(this)
-            }
-        }
-    }
-
-    private fun collectMyPoint() {
+    private fun collectDormitoryPoint() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
-                getMyPointState.collect { state ->
-                    if (state.myYearPoint != null) {
-                        myYearPoint = state.myYearPoint
-                        setMyPoint( viewModel.dormitorySelected.value == true)
+                myDormitoryPointState.collect { state ->
+                    if (state.myDormitoryPoint != null) {
+                        dormitoryPoint = state.myDormitoryPoint
+
                     }
 
                     if (state.error.isNotBlank()) {
@@ -111,15 +117,51 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         }
     }
 
-    private fun goEditProfile() {
-        mBinding.btnGoInfoUpdate.setOnClickListener {
-            val navAction = ProfileFragmentDirections.actionMainProfileToEditProfileFragment(
-                email,
-                phone,
-                profileImage,
-                memberId
-            )
-            findNavController().navigate(navAction)
+    private fun collectSchoolPoint() {
+        with(viewModel) {
+            lifecycleScope.launchWhenStarted {
+                mySchoolPointState.collect { state ->
+                    if (state.mySchoolPoint != null) {
+                        schoolPoint = state.mySchoolPoint
+                        setPointCard(0)
+                    }
+
+                    if (state.error.isNotBlank()) {
+                        shortToast(state.error)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setPointCard(target: Int) {
+        val bonusPoint: Int
+        val minusPoint: Int
+
+        if (target == 0) {
+            bonusPoint = dormitoryPoint?.targetScore?.bonusPoint ?: 0
+            minusPoint = dormitoryPoint?.targetScore?.minusPoint ?: 0
+        } else {
+            bonusPoint = schoolPoint?.targetScore?.bonusPoint ?: 0
+            minusPoint = schoolPoint?.targetScore?.minusPoint ?: 0
+        }
+
+        mBinding.tvBonusPoint.text = bonusPoint.toString()
+        mBinding.tvMinusPoint.text = minusPoint.toString()
+        updatePieChart(bonusPoint, minusPoint)
+    }
+
+    private fun updatePieChart(bonusPoint: Int, minusPoint: Int) {
+        PieDataSet(
+            listOf(
+                PieEntry(minusPoint.toFloat()),
+                PieEntry(bonusPoint.toFloat())
+            ), "My Point"
+        ).apply {
+            setColors(intArrayOf(R.color.color_minus, R.color.color_bous), context)
+            setDrawValues(false)
+            setDrawIcons(false)
+            mBinding.chartPoint.data = PieData(this)
         }
     }
 
@@ -138,46 +180,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
             .centerCrop()
             .error(R.drawable.default_user)
             .into(mBinding.ivProfile)
-    }
-
-    private fun setMyPoint(isDormitory: Boolean) {
-        // type : 1은 상점, 2는 벌점
-        Log.d("TestTest", "setMyPoint: ${myYearPoint?.yearScore}")
-        Log.d("TestTest", "setMyPoint: ${myYearPoint?.log?.getOrNull(0)}")
-        when (myYearPoint?.log?.getOrNull(0)?.type ?: 0) {
-            0 -> {
-                mBinding.tvPrizePoint.text = "0점"
-                mBinding.tvPenaltyPoint.text = "0점"
-                setChartListData(0, 0)
-            }
-            1 -> {
-                if (isDormitory) {
-                    mBinding.tvPrizePoint.text = "${myYearPoint?.yearScore?.zero ?: 0}점"
-                    setChartListData(myYearPoint?.yearScore?.zero ?: 0, -1)
-                } else {
-                    mBinding.tvPrizePoint.text = "${myYearPoint?.yearScore?.one ?: 0}점"
-                    setChartListData(myYearPoint?.yearScore?.one ?: 0, -1)
-                }
-            }
-            2 -> {
-                if (isDormitory) {
-                    mBinding.tvPenaltyPoint.text = "${myYearPoint?.yearScore?.zero ?: 0}점"
-                    setChartListData(-1, myYearPoint?.yearScore?.zero ?: 0)
-                } else {
-                    mBinding.tvPenaltyPoint.text = "${myYearPoint?.yearScore?.one ?: 0}점"
-                    setChartListData(-1, myYearPoint?.yearScore?.one ?: 0)
-                }
-            }
-        }
-    }
-
-    private fun setChartListData(prize: Int, penalty: Int) {
-        if (prize == 0 && penalty == 0) {
-            pointList.value?.set(1, penalty.toFloat())
-            pointList.value?.set(0, prize.toFloat())
-            return
-        }
-        if (prize == -1) pointList.value?.set(1, penalty.toFloat()) else pointList.value?.set(0, prize.toFloat())
     }
 
     private fun setNavData(email: String, phone: String, memberId: String, profileImage: String) {
@@ -206,19 +208,5 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
 
     private fun endRefreshing() {
         mBinding.swipeRefreshLayout.isRefreshing = false
-    }
-
-    private fun bindingViewEvent() {
-        with(viewModel) {
-            viewEvent.observe(this@ProfileFragment) {
-                it.getContentIfNotHandled()?.let { event ->
-                    when(event) {
-                        ProfileViewModel.EVENT_CHANGE_SELECTED -> {
-                            setMyPoint(dormitorySelected.value == true)
-                        }
-                    }
-                }
-            }
-        }
     }
 }

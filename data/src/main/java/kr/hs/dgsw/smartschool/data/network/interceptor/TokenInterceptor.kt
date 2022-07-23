@@ -13,6 +13,7 @@ import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import org.json.JSONException
+import retrofit2.HttpException
 import javax.inject.Inject
 
 class TokenInterceptor @Inject constructor(
@@ -50,10 +51,13 @@ class TokenInterceptor @Inject constructor(
     }
 
     private fun makeTokenRefreshCall(request: Request, chain: Interceptor.Chain): Response {
-        fetchToken()
+        try {
+            fetchToken()
+        } catch (e : HttpException) {
+            getTokenToLogin()
+        }
 
         val newRequest = request.newBuilder().header("x-access-token", token.token).build()
-
         val another = chain.proceed(newRequest)
 
         return if (another.code == TOKEN_ERROR) {
@@ -73,7 +77,6 @@ class TokenInterceptor @Inject constructor(
         val newRequest = request.newBuilder().header("x-access-token", token.token).build()
 
         val another = chain.proceed(newRequest)
-
         if (another.code == TOKEN_ERROR) {
             throw TokenException("세션이 만료되었습니다.")
         } else return another

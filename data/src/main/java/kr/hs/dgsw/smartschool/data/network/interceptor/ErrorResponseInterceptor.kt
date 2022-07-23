@@ -13,6 +13,7 @@ class ErrorResponseInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         val response = chain.proceed(request)
+        response.close()
 
         when(response.code) {
             TIME_OUT_ERROR -> throw Throwable(Constants.TIME_OUT_MESSAGE)
