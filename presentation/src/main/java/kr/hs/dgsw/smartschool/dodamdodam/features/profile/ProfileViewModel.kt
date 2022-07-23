@@ -116,8 +116,18 @@ class ProfileViewModel @Inject constructor(
         viewEvent(EVENT_CHANGE_SELECTED)
     }
 
+    fun onClickBus() {
+        viewEvent(EVENT_ON_CLICK_BUS)
+    }
+
+    fun onClickSetting() {
+        viewEvent(EVENT_ON_CLICK_SETTING)
+    }
+
     companion object {
         const val EVENT_CHANGE_SELECTED = 1
         const val EVENT_GO_EDIT_PROFILE = 2
+        const val EVENT_ON_CLICK_BUS = 3
+        const val EVENT_ON_CLICK_SETTING = 4
     }
 }

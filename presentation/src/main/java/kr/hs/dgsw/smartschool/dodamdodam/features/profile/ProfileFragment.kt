@@ -32,16 +32,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     private var schoolBonusPoint: Int? = null
     private var dormitoryBonusPoint: Int? = null
 
-    private var pointArray = MutableLiveData<Array<Int>>() // 0 : 학교 벌점, 1 : 기숙사 벌점, 2: 학교 상점, 3: 기숙사 상점
-
     override fun observerViewModel() {
-        mBinding.cardBus.setOnClickListener {
-            findNavController().navigate(R.id.action_main_profile_to_busFragment)
-        }
-        mBinding.cardSetting.setOnClickListener {
-            findNavController().navigate(R.id.action_main_profile_to_settingFragment)
-        }
-
         mBinding.tvPointDate.text = "$date 기준"
 
         setPieChart()
@@ -73,7 +64,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                             )
                             findNavController().navigate(navAction)
                         }
-
+                        ProfileViewModel.EVENT_ON_CLICK_BUS -> {
+                            findNavController().navigate(R.id.action_main_profile_to_busFragment)
+                        }
+                        ProfileViewModel.EVENT_ON_CLICK_SETTING -> {
+                            findNavController().navigate(R.id.action_main_profile_to_settingFragment)
+                        }
                     }
                 }
             }
