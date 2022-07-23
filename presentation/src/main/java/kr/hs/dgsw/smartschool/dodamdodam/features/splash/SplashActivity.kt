@@ -27,9 +27,10 @@ class SplashActivity: AppCompatActivity() {
 
     private fun startNextActivity() {
         startActivityWithFinish(
-            if (SharedPreferenceManager.getIsSignIn(this))
-                MainActivity::class.java
-            else SignInActivity::class.java
+            //if (SharedPreferenceManager.getIsSignIn(this))
+             //   MainActivity::class.java
+            //else
+            SignInActivity::class.java
         )
     }
 }

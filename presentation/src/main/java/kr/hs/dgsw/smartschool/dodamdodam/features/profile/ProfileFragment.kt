@@ -2,6 +2,7 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.profile
 
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -13,7 +14,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentProfileBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
-import kr.hs.dgsw.smartschool.domain.model.point.MyTargetPoint
 import java.time.LocalDate
 
 @AndroidEntryPoint
@@ -27,8 +27,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     private var profileImage: String = ""
     private val date: LocalDate = LocalDate.now()
 
-    private var dormitoryPoint: MyTargetPoint? = null
-    private var schoolPoint: MyTargetPoint? = null
+    private var schoolMinusPoint: Int? = null
+    private var dormitoryMinusPoint: Int? = null
+    private var schoolBonusPoint: Int? = null
+    private var dormitoryBonusPoint: Int? = null
+
+    private var pointArray = MutableLiveData<Array<Int>>() // 0 : 학교 벌점, 1 : 기숙사 벌점, 2: 학교 상점, 3: 기숙사 상점
 
     override fun observerViewModel() {
         mBinding.cardBus.setOnClickListener {
@@ -43,8 +47,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         setPieChart()
         bindingViewEvent()
         collectMyInfo()
-        collectDormitoryPoint()
-        collectSchoolPoint()
+        collectBonusPoint()
+        collectMinusPoint()
+        setPointCard(0)
         setSwipeRefresh()
     }
 
@@ -100,13 +105,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         }
     }
 
-    private fun collectDormitoryPoint() {
+    private fun collectBonusPoint() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
-                myDormitoryPointState.collect { state ->
-                    if (state.myDormitoryPoint != null) {
-                        dormitoryPoint = state.myDormitoryPoint
-
+                myBonusPointState.collect { state ->
+                    if (state.bonusPoint != null) {
+                        dormitoryBonusPoint = state.bonusPoint.yearScore.dormitoryPoint
+                        schoolBonusPoint = state.bonusPoint.yearScore.schoolPoint
+                        setPointCard(0)
                     }
 
                     if (state.error.isNotBlank()) {
@@ -117,12 +123,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         }
     }
 
-    private fun collectSchoolPoint() {
+    private fun collectMinusPoint() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
-                mySchoolPointState.collect { state ->
-                    if (state.mySchoolPoint != null) {
-                        schoolPoint = state.mySchoolPoint
+                myMinusPointState.collect { state ->
+                    if (state.minusPoint != null) {
+                        dormitoryMinusPoint = state.minusPoint.yearScore.dormitoryPoint
+                        schoolMinusPoint = state.minusPoint.yearScore.schoolPoint
                         setPointCard(0)
                     }
 
@@ -135,33 +142,36 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     }
 
     private fun setPointCard(target: Int) {
-        val bonusPoint: Int
-        val minusPoint: Int
-
         if (target == 0) {
-            bonusPoint = dormitoryPoint?.targetScore?.bonusPoint ?: 0
-            minusPoint = dormitoryPoint?.targetScore?.minusPoint ?: 0
+            mBinding.tvBonusPoint.text = (dormitoryBonusPoint ?: 0).toString() + "점"
+            mBinding.tvMinusPoint.text = (dormitoryMinusPoint ?: 0).toString() + "점"
+            updatePieChart(dormitoryBonusPoint ?: 0, dormitoryMinusPoint ?: 0)
         } else {
-            bonusPoint = schoolPoint?.targetScore?.bonusPoint ?: 0
-            minusPoint = schoolPoint?.targetScore?.minusPoint ?: 0
+            mBinding.tvBonusPoint.text = (schoolBonusPoint ?: 0).toString() + "점"
+            mBinding.tvMinusPoint.text = (schoolMinusPoint ?: 0).toString() + "점"
+            updatePieChart(schoolBonusPoint ?: 0, schoolMinusPoint ?: 0)
         }
-
-        mBinding.tvBonusPoint.text = bonusPoint.toString()
-        mBinding.tvMinusPoint.text = minusPoint.toString()
-        updatePieChart(bonusPoint, minusPoint)
     }
 
     private fun updatePieChart(bonusPoint: Int, minusPoint: Int) {
-        PieDataSet(
-            listOf(
-                PieEntry(minusPoint.toFloat()),
-                PieEntry(bonusPoint.toFloat())
-            ), "My Point"
-        ).apply {
-            setColors(intArrayOf(R.color.color_minus, R.color.color_bous), context)
-            setDrawValues(false)
-            setDrawIcons(false)
-            mBinding.chartPoint.data = PieData(this)
+        if (bonusPoint == 0 && minusPoint == 0) {
+            mBinding.tvNoData.visibility = View.VISIBLE
+            mBinding.chartPoint.visibility = View.INVISIBLE
+        } else {
+            mBinding.tvNoData.visibility = View.GONE
+            mBinding.chartPoint.visibility = View.VISIBLE
+            PieDataSet(
+                listOf(
+                    PieEntry(minusPoint.toFloat()),
+                    PieEntry(bonusPoint.toFloat())
+                ), "My Point"
+            ).apply {
+                setColors(intArrayOf(R.color.color_minus, R.color.color_bonus), context)
+                setDrawValues(false)
+                setDrawIcons(false)
+                mBinding.chartPoint.data = PieData(this)
+                mBinding.chartPoint.invalidate()
+            }
         }
     }
 

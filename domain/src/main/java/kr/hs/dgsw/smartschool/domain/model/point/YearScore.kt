@@ -6,7 +6,7 @@ data class YearScore(
     // 0 -> 기숙사
     // 1 -> 학교
     @SerializedName("0")
-    val zero: Int,
+    val dormitoryPoint: Int,
     @SerializedName("1")
-    val one: Int
+    val schoolPoint: Int
 )

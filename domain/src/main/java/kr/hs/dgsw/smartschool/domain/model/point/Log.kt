@@ -7,5 +7,6 @@ data class Log (
     val reason: String,
     val studentIdx: Int,
     val teacherIdx: Int,
-    val target: Int
+    val target: Int,
+    val givenTime: String
 )

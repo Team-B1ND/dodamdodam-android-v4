@@ -9,11 +9,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.dodamdodam.features.profile.point.MyDormitoryPointState
-import kr.hs.dgsw.smartschool.dodamdodam.features.profile.point.MySchoolPointState
+import kr.hs.dgsw.smartschool.dodamdodam.features.profile.point.MyBonusPointState
+import kr.hs.dgsw.smartschool.dodamdodam.features.profile.point.MyMinusPointState
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.point.PointUseCases
 import kr.hs.dgsw.smartschool.domain.util.Resource
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,11 +26,11 @@ class ProfileViewModel @Inject constructor(
     private val _myInfoState = MutableStateFlow(MyInfoState(isLoading = false))
     val myInfoState: StateFlow<MyInfoState> = _myInfoState
 
-    private val _myDormitoryPointState = MutableStateFlow(MyDormitoryPointState(isLoading = false))
-    val myDormitoryPointState: StateFlow<MyDormitoryPointState> = _myDormitoryPointState
+    private val _myBonusPointState = MutableStateFlow(MyBonusPointState(isLoading = false))
+    val myBonusPointState: StateFlow<MyBonusPointState> = _myBonusPointState
 
-    private val _mySchoolPointState = MutableStateFlow(MySchoolPointState(isLoading = false))
-    val mySchoolPointState: StateFlow<MySchoolPointState> = _mySchoolPointState
+    private val _myMinusPointState = MutableStateFlow(MyMinusPointState(isLoading = false))
+    val myMinusPointState: StateFlow<MyMinusPointState> = _myMinusPointState
 
     private val _dormitorySelected = MutableLiveData<Boolean>(true)
     val dormitorySelected: LiveData<Boolean> get() = _dormitorySelected
@@ -39,8 +40,8 @@ class ProfileViewModel @Inject constructor(
 
     init {
         getMyInfo()
-        getMyDormitoryPoint()
-        getMySchoolPoint()
+        getMyBonusPoint()
+        getMyMinusPoint()
     }
 
     fun getMyInfo() {
@@ -61,38 +62,38 @@ class ProfileViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun getMyDormitoryPoint() {
-        pointUseCases.getMyPointTarget(0).onEach { result ->
+    private fun getMyBonusPoint() {
+        pointUseCases.getMyPoint(LocalDate.now().year.toString(), 1).onEach { result ->
             when(result) {
                 is Resource.Success -> {
-                    _myDormitoryPointState.value = MyDormitoryPointState(myDormitoryPoint = result.data)
+                    _myBonusPointState.value = MyBonusPointState(bonusPoint = result.data)
                     isLoading.value = false
                 }
                 is Resource.Loading -> {
-                    _myDormitoryPointState.value = MyDormitoryPointState(isLoading = true)
+                    _myBonusPointState.value = MyBonusPointState(isLoading = true)
                     isLoading.value = true
                 }
                 is Resource.Error -> {
-                    _myDormitoryPointState.value = MyDormitoryPointState(error = result.message ?: "상벌점 조회를 실패했습니다.")
+                    _myBonusPointState.value = MyBonusPointState(error = result.message ?: "상벌점 조회를 실패했습니다.")
                     isLoading.value = false
                 }
             }
         }.launchIn(viewModelScope)
     }
 
-    fun getMySchoolPoint() {
-        pointUseCases.getMyPointTarget(1).onEach { result ->
+    private fun getMyMinusPoint() {
+        pointUseCases.getMyPoint(LocalDate.now().year.toString(), 2).onEach { result ->
             when(result) {
                 is Resource.Success -> {
-                    _mySchoolPointState.value = MySchoolPointState(mySchoolPoint = result.data)
+                    _myMinusPointState.value = MyMinusPointState(minusPoint = result.data)
                     isLoading.value = false
                 }
                 is Resource.Loading -> {
-                    _mySchoolPointState.value = MySchoolPointState(isLoading = true)
+                    _myMinusPointState.value = MyMinusPointState(isLoading = true)
                     isLoading.value = true
                 }
                 is Resource.Error -> {
-                    _mySchoolPointState.value = MySchoolPointState(error = result.message ?: "상벌점 조회를 실패했습니다.")
+                    _myMinusPointState.value = MyMinusPointState(error = result.message ?: "상벌점 조회를 실패했습니다.")
                     isLoading.value = false
                 }
             }

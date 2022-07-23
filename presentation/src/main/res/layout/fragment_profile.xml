@@ -287,7 +287,7 @@
                                 android:layout_height="10dp"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginBottom="20dp"
-                                android:background="@color/color_bous"
+                                android:background="@color/color_bonus"
                                 app:layout_constraintBottom_toTopOf="@id/view_penalty_point"
                                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -366,6 +366,19 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHeight_percent="0.6"
                                 app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_no_data"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/text_no_data"
+                                android:textColor="@color/color_black"
+                                android:visibility="gone"
+                                android:fontFamily="@font/nanum_square_regular"
+                                app:layout_constraintEnd_toEndOf="@id/chart_point"
+                                app:layout_constraintStart_toStartOf="@id/chart_point"
+                                app:layout_constraintTop_toTopOf="@id/chart_point"
+                                app:layout_constraintBottom_toBottomOf="@id/chart_point" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>

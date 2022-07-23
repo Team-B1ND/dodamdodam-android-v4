@@ -38,6 +38,6 @@
     <color name="color_red_light">#FF5555</color>
     <color name="color_yellow_light">#FFDD55</color>
 
-    <color name="color_bous">#0067BC</color>
+    <color name="color_bonus">#0067BC</color>
     <color name="color_minus">#F97E6D</color>
 </resources>
