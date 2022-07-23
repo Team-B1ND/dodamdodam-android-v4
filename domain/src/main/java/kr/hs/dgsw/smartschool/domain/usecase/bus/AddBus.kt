@@ -1,4 +1,4 @@
-package kr.hs.dgsw.b1nd.dodamdodam.domain.usecase.bus
+package kr.hs.dgsw.smartschool.domain.usecase.bus
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

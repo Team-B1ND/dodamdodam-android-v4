@@ -14,9 +14,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentProfileBinding
-import kr.hs.dgsw.smartschool.dodamdodam.features.profile.edit.EditProfileViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
-import kr.hs.dgsw.smartschool.domain.model.point.MyPoint
+import kr.hs.dgsw.smartschool.domain.model.point.MyYearPoint
 import java.time.LocalDate
 
 @AndroidEntryPoint
@@ -32,7 +31,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
 
     private val pointList: MutableLiveData<FloatArray> = MutableLiveData(floatArrayOf(0F, 0F))
 
-    private var myPoint: MyPoint? = null
+    private var myYearPoint: MyYearPoint? = null
 
     override fun observerViewModel() {
         mBinding.cardBus.setOnClickListener {
@@ -99,8 +98,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getMyPointState.collect { state ->
-                    if (state.myPoint != null) {
-                        myPoint = state.myPoint
+                    if (state.myYearPoint != null) {
+                        myYearPoint = state.myYearPoint
                         setMyPoint( viewModel.dormitorySelected.value == true)
                     }
 
@@ -143,9 +142,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
 
     private fun setMyPoint(isDormitory: Boolean) {
         // type : 1은 상점, 2는 벌점
-        Log.d("TestTest", "setMyPoint: ${myPoint?.score}")
-        Log.d("TestTest", "setMyPoint: ${myPoint?.log?.getOrNull(0)}")
-        when (myPoint?.log?.getOrNull(0)?.type ?: 0) {
+        Log.d("TestTest", "setMyPoint: ${myYearPoint?.yearScore}")
+        Log.d("TestTest", "setMyPoint: ${myYearPoint?.log?.getOrNull(0)}")
+        when (myYearPoint?.log?.getOrNull(0)?.type ?: 0) {
             0 -> {
                 mBinding.tvPrizePoint.text = "0점"
                 mBinding.tvPenaltyPoint.text = "0점"
@@ -153,20 +152,20 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
             }
             1 -> {
                 if (isDormitory) {
-                    mBinding.tvPrizePoint.text = "${myPoint?.score?.zero ?: 0}점"
-                    setChartListData(myPoint?.score?.zero ?: 0, -1)
+                    mBinding.tvPrizePoint.text = "${myYearPoint?.yearScore?.zero ?: 0}점"
+                    setChartListData(myYearPoint?.yearScore?.zero ?: 0, -1)
                 } else {
-                    mBinding.tvPrizePoint.text = "${myPoint?.score?.one ?: 0}점"
-                    setChartListData(myPoint?.score?.one ?: 0, -1)
+                    mBinding.tvPrizePoint.text = "${myYearPoint?.yearScore?.one ?: 0}점"
+                    setChartListData(myYearPoint?.yearScore?.one ?: 0, -1)
                 }
             }
             2 -> {
                 if (isDormitory) {
-                    mBinding.tvPenaltyPoint.text = "${myPoint?.score?.zero ?: 0}점"
-                    setChartListData(-1, myPoint?.score?.zero ?: 0)
+                    mBinding.tvPenaltyPoint.text = "${myYearPoint?.yearScore?.zero ?: 0}점"
+                    setChartListData(-1, myYearPoint?.yearScore?.zero ?: 0)
                 } else {
-                    mBinding.tvPenaltyPoint.text = "${myPoint?.score?.one ?: 0}점"
-                    setChartListData(-1, myPoint?.score?.one ?: 0)
+                    mBinding.tvPenaltyPoint.text = "${myYearPoint?.yearScore?.one ?: 0}점"
+                    setChartListData(-1, myYearPoint?.yearScore?.one ?: 0)
                 }
             }
         }

@@ -59,7 +59,7 @@ class ProfileViewModel @Inject constructor(
         pointUseCases.getMyPoint(year, type).onEach { result ->
             when(result) {
                 is Resource.Success -> {
-                    _getMyPointState.value = GetMyPointState(myPoint = result.data)
+                    _getMyPointState.value = GetMyPointState(myYearPoint = result.data)
                     isLoading.value = false
                 }
                 is Resource.Loading -> {
