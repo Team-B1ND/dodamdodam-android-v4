@@ -1,7 +1,9 @@
 package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.LocationDataSource
+import kr.hs.dgsw.smartschool.data.datasource.PlaceDataSource
 import kr.hs.dgsw.smartschool.data.datasource.TimeDataSource
+import kr.hs.dgsw.smartschool.data.mapper.PlaceMapper
 import kr.hs.dgsw.smartschool.data.mapper.TimeMapper
 import kr.hs.dgsw.smartschool.domain.model.location.DefaultLocation
 import kr.hs.dgsw.smartschool.domain.model.location.Location
@@ -32,6 +34,10 @@ class LocationRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMyLocation(date: String): List<LocationInfo> {
+        this.locationInfoList = locationDataSource.getMyLocation(date).filterNotNull()
+        this.timeList = timeDataSource.getAllTime().map { timeEntity -> timeMapper.mapToModel(timeEntity) }
+        this.placeList = placeDataSource.getAllPlace().map { placeEntity -> placeMapper.mapToModel(placeEntity) }
+        return getLocationInfoList()
     }
 
     private fun getLocationInfoList(): List<LocationInfo> {
@@ -58,6 +64,10 @@ class LocationRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getDefaultLocation(dayOfWeek: Int): List<DefaultLocation> {
+        this.defaultLocationList = locationDataSource.getDefaultLocation(dayOfWeek)
+        this.timeList = timeDataSource.getAllTime(dayOfWeek).map { timeEntity -> timeMapper.mapToModel(timeEntity) }
+        this.placeList = placeDataSource.getAllPlace().map { placeEntity -> placeMapper.mapToModel(placeEntity) }
+        return getDefaultLocationList()
     }
 
     private fun getDefaultLocationList() : List<DefaultLocation> {
