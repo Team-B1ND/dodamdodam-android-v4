@@ -4,6 +4,7 @@ import kr.hs.dgsw.smartschool.data.datasource.BusDataSource
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
+import kr.hs.dgsw.smartschool.domain.request.MyBusByMonthRequest
 import javax.inject.Inject
 
 class BusRepositoryImpl @Inject constructor(
@@ -15,15 +16,17 @@ class BusRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMyBus(): List<Bus> {
-        TODO("Not yet implemented")
+        return dataSource.getMyBusList().busList
     }
 
-    override suspend fun getMyBusByMonth(): List<Bus> {
-        TODO("Not yet implemented")
+    override suspend fun getMyBusByMonth(
+        request: MyBusByMonthRequest
+    ): List<Bus> {
+        return dataSource.getMyBusByMonth(request).busList
     }
 
     override suspend fun addBus():String {
-        TODO("Not yet implemented")
+        
     }
 
     override suspend fun addBusApply():String {

@@ -6,7 +6,9 @@ import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
+import kr.hs.dgsw.smartschool.domain.request.AddBusRequest
 import kr.hs.dgsw.smartschool.domain.request.MyBusByMonthRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
 import kr.hs.dgsw.smartschool.domain.request.UpdateBusRequest
 import javax.inject.Inject
 
@@ -18,16 +20,24 @@ class BusRemote @Inject constructor(
 
     suspend fun getMyBusList() : BusData<Bus> = api.getMyBus().data
 
-    suspend fun getMyBusListMonth(
+    suspend fun getMyBusByMonth(
         request: MyBusByMonthRequest
     ) : BusData<Bus> = api.getMyBusByMonth(request).data
 
     suspend fun updateBus(
         request: UpdateBusRequest
     ){}
-    suspend fun updateBusApply(){}
-    suspend fun addBus(){}
+    suspend fun updateBusApply(
+        request: UpdateBusApplyRequest
+    ){}
+    suspend fun addBus(
+        request: AddBusRequest
+    ){}
     suspend fun addBusApply(){}
-    suspend fun deleteBus(){}
-    suspend fun deleteBusApply(){}
+    suspend fun deleteBus(
+        idx : Int
+    ){}
+    suspend fun deleteBusApply(
+        idx : Int
+    ){}
 }
