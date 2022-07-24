@@ -40,10 +40,15 @@ interface LocationApi {
         @Body request: LocationRequest
     ): Response<Any>
 
-    @DELETE("location/{idx}")
-    suspend fun deleteLocation(
+    @PUT("location/{idx}")
+    suspend fun putLocation(
         @Path("idx") idx: Int,
         @Body placeIdx: Location
+    ) : Response<Any>
+
+    @DELETE("location/{idx}")
+    suspend fun deleteLocation(
+        @Path("idx") idx: Int
     ): Response<Any>
 
     @PUT("location/check/{idx}")
