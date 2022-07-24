@@ -1,6 +1,8 @@
 package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.LocationDataSource
+import kr.hs.dgsw.smartschool.data.datasource.TimeDataSource
+import kr.hs.dgsw.smartschool.data.mapper.TimeMapper
 import kr.hs.dgsw.smartschool.domain.model.location.DefaultLocation
 import kr.hs.dgsw.smartschool.domain.model.location.Location
 import kr.hs.dgsw.smartschool.domain.model.location.LocationInfo

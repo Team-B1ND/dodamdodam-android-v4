@@ -1,11 +1,34 @@
 package kr.hs.dgsw.smartschool.domain.util
 
+import kr.hs.dgsw.smartschool.domain.model.time.WeekType
 import org.json.JSONObject
 import retrofit2.HttpException
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import java.util.*
 
 object Utils {
+
+    fun getWeekType(): WeekType {
+        if (isWeekend()) {
+            return WeekType.END
+        }
+        return WeekType.DAY
+    }
+
+    fun getWeekType(dayOfWeek: Int): WeekType {
+        if (dayOfWeek == 0 || dayOfWeek == 6 || dayOfWeek == 8) {
+            return WeekType.END
+        }
+        return WeekType.DAY
+    }
+
+    private fun isWeekend(): Boolean {
+        val cal: Calendar = GregorianCalendar()
+        cal.time = Date()
+        val day: Int = cal.get(Calendar.DAY_OF_WEEK)
+        return day == Calendar.SUNDAY || day == Calendar.SATURDAY
+    }
 
     @JvmStatic
     @Throws(NoSuchAlgorithmException::class)
