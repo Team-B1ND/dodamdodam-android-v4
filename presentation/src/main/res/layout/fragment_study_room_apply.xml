@@ -40,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="@string/title_study_room_apply"
+
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title3"
                 app:layout_constraintBottom_toBottomOf="parent"
