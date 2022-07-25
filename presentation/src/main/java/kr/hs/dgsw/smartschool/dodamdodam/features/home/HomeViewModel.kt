@@ -9,8 +9,10 @@ import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.location.GetMyLocationState
 import kr.hs.dgsw.smartschool.dodamdodam.features.meal.MealState
+import kr.hs.dgsw.smartschool.dodamdodam.features.setup.DataSetUpState
 import kr.hs.dgsw.smartschool.domain.usecase.location.LocationUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import java.time.LocalDate
 import javax.inject.Inject
@@ -18,7 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val mealUseCases: MealUseCases,
-    private val locationUseCases: LocationUseCases
+    private val locationUseCases: LocationUseCases,
+    private val setUpUseCases: SetUpUseCases
 ) : BaseViewModel() {
 
     private val _mealState = MutableStateFlow(MealState(isLoading = false))
@@ -27,8 +30,11 @@ class HomeViewModel @Inject constructor(
     private val _getMyLocationState = MutableStateFlow(GetMyLocationState())
     val getMyLocationState: StateFlow<GetMyLocationState> = _getMyLocationState
 
+    private val _dataSetUpState = MutableStateFlow<DataSetUpState>(DataSetUpState())
+    val dataSetUpState: StateFlow<DataSetUpState> = _dataSetUpState
+
     init {
-        getMyLocation()
+        dataSetUp()
     }
 
     fun getMealList(date: LocalDate) {
@@ -52,7 +58,26 @@ class HomeViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    private fun getMyLocation() {
+    private fun dataSetUp() {
+        setUpUseCases.dataSetUp().onEach { result ->
+            when(result) {
+                is Resource.Success -> {
+                    isLoading.value = false
+                    _dataSetUpState.value = DataSetUpState(result = result.data)
+                }
+                is Resource.Loading -> {
+                    isLoading.value = true
+                }
+                is Resource.Error -> {
+                    isLoading.value = false
+                    _dataSetUpState.value = DataSetUpState(error = result.message ?: "데이터를 업데이트 하지 못하였습니다.")
+                }
+            }
+        }.launchIn(viewModelScope)
+    }
+
+
+    fun getMyLocation() {
         locationUseCases.getMyLocation(LocalDate.now().toString()).onEach { result ->
             when(result) {
                 is Resource.Success -> {

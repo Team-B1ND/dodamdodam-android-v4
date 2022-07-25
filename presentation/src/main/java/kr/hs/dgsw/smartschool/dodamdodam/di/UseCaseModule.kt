@@ -20,6 +20,9 @@ import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.point.GetMyPoint
 import kr.hs.dgsw.smartschool.domain.usecase.point.GetMyPointTarget
 import kr.hs.dgsw.smartschool.domain.usecase.point.PointUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.setup.DataSetUp
+import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.setup.TeacherSetUp
 import kr.hs.dgsw.smartschool.domain.usecase.token.*
 import javax.inject.Singleton
 
@@ -78,5 +81,13 @@ class UseCaseModule {
     fun provideLocationUseCases(locationRepository: LocationRepository) : LocationUseCases =
         LocationUseCases(
             getMyLocation = GetMyLocation(locationRepository)
+        )
+
+    @Provides
+    @Singleton
+    fun provideSetUpDataUseCases(dataSetUpRepository: DataSetUpRepository) : SetUpUseCases =
+        SetUpUseCases(
+            dataSetUp = DataSetUp(dataSetUpRepository),
+            teacherSetUp = TeacherSetUp(dataSetUpRepository)
         )
 }

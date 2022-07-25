@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.home
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
@@ -11,12 +10,13 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealHomeAdapter
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.StudyRoomAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.adapter.LocationCheckAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.TodaySongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentHomeBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
-import kr.hs.dgsw.smartschool.domain.model.location.Location
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
+import kr.hs.dgsw.smartschool.domain.model.location.LocationInfo
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
 import kr.hs.dgsw.smartschool.domain.model.song.Song
@@ -30,14 +30,50 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override val hasBottomNav: Boolean = true
 
     private var mealList = listOf<Meal>()
+    private var date: LocalDate = LocalDate.now()
 
 
     override fun observerViewModel() {
-        var date = LocalDate.now()
-        setUpStudyRoom()
         setUpTodaySong()
+        collectMealState()
+        collectDataSetUpDate()
+        collectMyLocation()
         bindViews()
+    }
 
+    private fun collectDataSetUpDate() {
+        with(viewModel) {
+            lifecycleScope.launchWhenStarted {
+                dataSetUpState.collect { state ->
+                    if (state.result != null) {
+                        getMyLocation()
+                    }
+
+                    if (state.error.isNotBlank()) {
+                        shortToast(state.error)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun collectMyLocation() {
+        with(viewModel) {
+            lifecycleScope.launchWhenStarted {
+                getMyLocationState.collect { state ->
+                    if (state.myLocations.isNotEmpty()) {
+                        setUpStudyRoom(state.myLocations)
+                    }
+
+                    if (state.error.isNotBlank()) {
+                        shortToast(state.error)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun collectMealState() {
         with(viewModel) {
             if(LocalDateTime.now().hour >= 19) {
                 date = date.plusDays(1)
@@ -143,17 +179,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         )
     }
 
-    private fun setUpStudyRoom() {
-        val studyRoomAdapter = StudyRoomAdapter()
-        mBinding.recyclerStudyRoom.adapter = studyRoomAdapter
-        studyRoomAdapter.submitList(
-            listOf(
-                Location("17:00 ~ 17:20", "시간대가 지났습니다."),
-                Location("17:00 ~ 17:20", "시간대가 지났습니다."),
-                Location("17:00 ~ 17:20", "시간대가 지났습니다."),
-                Location("17:00 ~ 17:20", "시간대가 지났습니다.")
-            )
-        )
+    private fun setUpStudyRoom(myLocations: List<LocationInfo>) {
+        val locationCheckAdapter = LocationCheckAdapter {
+            shortToast("이동 : $it")
+        }
+        mBinding.recyclerLocationCheck.adapter = locationCheckAdapter
+        locationCheckAdapter.submitList(myLocations)
     }
 
     companion object {

@@ -62,4 +62,12 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun providePlaceRepository(placeRepositoryImpl: PlaceRepositoryImpl): PlaceRepository = placeRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideClassInfoRepository(classInfoRepositoryImpl: ClassInfoRepositoryImpl): ClassInfoRepository = classInfoRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideDataSetUpRepository(dataSetUpRepositoryImpl: DataSetUpRepositoryImpl): DataSetUpRepository = dataSetUpRepositoryImpl
 }
