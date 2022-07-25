@@ -11,7 +11,8 @@ import java.util.concurrent.Executors
     entities = [
     MealEntity::class, TokenEntity::class, AccountEntity::class,
     MemberEntity::class, StudentEntity::class, TeacherEntity::class,
-    HistoryMemberEntity::class, TimeEntity::class, PlaceEntity::class
+    HistoryMemberEntity::class, TimeEntity::class, PlaceEntity::class,
+    ClassInfoEntity::class
     ],
     version = 3,
     exportSchema = false
@@ -27,6 +28,7 @@ abstract class RoomDatabase : androidx.room.RoomDatabase() {
     abstract fun historyMemberDao(): HistoryMemberDao
     abstract fun timeDao(): TimeDao
     abstract fun placeDao(): PlaceDao
+    abstract fun classInfoDao(): ClassInfoDao
 
     companion object {
         private var instance: RoomDatabase? = null

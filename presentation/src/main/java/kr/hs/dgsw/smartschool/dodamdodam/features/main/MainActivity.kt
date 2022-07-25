@@ -23,7 +23,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         val navController = navHostFragment.navController
         mBinding.mainBottomNav
             .setupWithNavController(navController)
-
     }
 
     fun setNavVisible(demand: Boolean) {

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="vm"
-            type="kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.StudyRoomApplyViewModel" />
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.location.StudyRoomApplyViewModel" />
     </data>
 
     <LinearLayout

@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.studyroom
+package kr.hs.dgsw.smartschool.dodamdodam.features.location
 
 import androidx.fragment.app.viewModels
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment

@@ -66,4 +66,9 @@ class RemoteModule {
     @Provides
     fun provideLocationRemote(retrofit: Retrofit): LocationRemote =
         LocationRemote(retrofit.create(LocationApi::class.java))
+
+    @Singleton
+    @Provides
+    fun provideClassInfoRemote(retrofit: Retrofit): ClassInfoRemote =
+        ClassInfoRemote(retrofit.create(ClassInfoApi::class.java))
 }
