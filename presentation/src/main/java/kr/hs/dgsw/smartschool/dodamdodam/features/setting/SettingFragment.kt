@@ -22,4 +22,5 @@ class SettingFragment : BaseFragment<FragmentSettingBinding, SettingViewModel>()
         }
     }
 
+    override fun bindingViewEvent() {}
 }

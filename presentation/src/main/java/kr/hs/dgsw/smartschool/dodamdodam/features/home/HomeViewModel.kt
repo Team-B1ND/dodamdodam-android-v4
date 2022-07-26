@@ -76,7 +76,6 @@ class HomeViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-
     fun getMyLocation() {
         locationUseCases.getMyLocation(LocalDate.now().toString()).onEach { result ->
             when(result) {
@@ -95,5 +94,23 @@ class HomeViewModel @Inject constructor(
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun onClickSongMore() {
+        viewEvent(ON_CLICK_SONG_MORE)
+    }
+
+    fun onClickMealMore() {
+        viewEvent(ON_CLICK_MEAL_MORE)
+    }
+
+    fun onClickMenu() {
+        viewEvent(ON_CLICK_MENU)
+    }
+
+    companion object {
+        const val ON_CLICK_SONG_MORE = 0
+        const val ON_CLICK_MEAL_MORE = 1
+        const val ON_CLICK_MENU = 2
     }
 }

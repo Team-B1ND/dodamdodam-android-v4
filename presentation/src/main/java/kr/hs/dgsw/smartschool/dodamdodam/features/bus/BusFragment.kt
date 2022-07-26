@@ -79,4 +79,5 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>() {
         busAdapter.submitList(list)
     }
 
+    override fun bindingViewEvent() {}
 }

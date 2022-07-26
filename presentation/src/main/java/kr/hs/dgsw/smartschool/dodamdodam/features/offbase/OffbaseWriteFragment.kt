@@ -11,4 +11,6 @@ class OffbaseWriteFragment: BaseFragment<FragmentOffbaseBinding, OffbaseWriteVie
 
     }
 
+    override fun bindingViewEvent() {}
+
 }

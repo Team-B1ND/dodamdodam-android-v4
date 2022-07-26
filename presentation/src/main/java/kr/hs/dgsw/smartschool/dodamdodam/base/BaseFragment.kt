@@ -26,6 +26,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     protected abstract val viewModel: VM
 
     protected abstract fun observerViewModel()
+    protected abstract fun bindingViewEvent()
 
     protected open val hasBottomNav: Boolean = false
 
@@ -59,6 +60,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
         }
         observerViewModel()
         (activity as? MainActivity)?.setNavVisible(!hasBottomNav)
+        bindingViewEvent()
     }
 
     private fun setUp() {

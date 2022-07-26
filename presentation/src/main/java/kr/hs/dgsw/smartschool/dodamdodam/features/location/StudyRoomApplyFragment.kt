@@ -9,4 +9,6 @@ class StudyRoomApplyFragment : BaseFragment<FragmentStudyRoomApplyBinding, Study
 
     override fun observerViewModel() {
     }
+
+    override fun bindingViewEvent() {}
 }

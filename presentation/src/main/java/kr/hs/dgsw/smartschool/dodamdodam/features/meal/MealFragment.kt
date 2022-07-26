@@ -53,7 +53,7 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
         }
     }
 
-    private fun bindingViewEvent() {
+    override fun bindingViewEvent() {
         with(viewModel) {
             viewEvent.observe(this@MealFragment) { it ->
                 it.getContentIfNotHandled()?.let { event ->

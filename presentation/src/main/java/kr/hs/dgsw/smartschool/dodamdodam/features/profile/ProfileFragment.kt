@@ -36,7 +36,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         mBinding.tvPointDate.text = "$date 기준"
 
         setPieChart()
-        bindingViewEvent()
         collectMyInfo()
         collectBonusPoint()
         collectMinusPoint()
@@ -44,7 +43,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         setSwipeRefresh()
     }
 
-    private fun bindingViewEvent() {
+    override fun bindingViewEvent() {
         with(viewModel) {
             viewEvent.observe(this@ProfileFragment) {
                 it.getContentIfNotHandled()?.let { event ->

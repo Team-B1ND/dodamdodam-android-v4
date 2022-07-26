@@ -2,27 +2,25 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.home
 
 import android.annotation.SuppressLint
 import android.view.Gravity
-import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.viewpager2.widget.CompositePageTransformer
-import androidx.viewpager2.widget.MarginPageTransformer
 import dagger.hilt.android.AndroidEntryPoint
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealHomeAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.LocationCheckAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealHomeAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.TodaySongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentHomeBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
+import kr.hs.dgsw.smartschool.dodamdodam.util.ViewPagerUtils.getTransform
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
 import kr.hs.dgsw.smartschool.domain.model.location.LocationInfo
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
 import kr.hs.dgsw.smartschool.domain.model.song.Song
 import java.time.LocalDate
 import java.time.LocalDateTime
-import kotlin.math.abs
+import java.util.*
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
@@ -31,14 +29,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private var mealList = listOf<Meal>()
     private var date: LocalDate = LocalDate.now()
-
+    private lateinit var mealHomeAdapter: MealHomeAdapter
 
     override fun observerViewModel() {
         setUpTodaySong()
+        setMealListViewPager()
         collectMealState()
         collectDataSetUpDate()
         collectMyLocation()
-        bindViews()
+    }
+
+
+    override fun bindingViewEvent() {
+        with(viewModel) {
+            viewEvent.observe(this@HomeFragment) {
+                it.getContentIfNotHandled()?.let { event ->
+                    when (event) {
+                        HomeViewModel.ON_CLICK_MEAL_MORE -> (activity as? MainActivity)?.moveHomeToMeal()
+                        HomeViewModel.ON_CLICK_SONG_MORE -> (activity as? MainActivity)?.moveHomeToSong()
+                        HomeViewModel.ON_CLICK_MENU -> openDrawer()
+                    }
+                }
+            }
+        }
     }
 
     private fun collectDataSetUpDate() {
@@ -84,45 +97,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
             lifecycleScope.launchWhenStarted {
                 mealState.collect { state ->
-                    if (mealState.value.meal.isNotEmpty()) {
-                        mBinding.progressLoading.visibility = View.GONE
-                        mBinding.viewPagerMealList.visibility = View.VISIBLE
+                    if (state.meal.isNotEmpty()) {
                         mealList = mealState.value.meal
                         getMeal(mealList, date)
-                        setMealCurrentPosition()
-                    }
-                    if (state.isLoading) {
-                        mBinding.progressLoading.visibility = View.VISIBLE
-                        mBinding.viewPagerMealList.visibility = View.GONE
                     }
                     if (state.error.isNotBlank()) {
-                        mBinding.progressLoading.visibility = View.GONE
-                        mBinding.viewPagerMealList.visibility = View.VISIBLE
-                        setMealViewPager(
-                            meal = Meal(
-                                "값을 받아올 수 없습니다.",
-                                "",
-                                "값을 받아올 수 없습니다.",
-                                false,
-                                "값을 받아올 수 없습니다."
-                            )
-                        )
-                        Toast.makeText(requireContext(), state.error, Toast.LENGTH_SHORT).show()
+                        setMealList(Meal("값을 받아올 수 없습니다.", "", "값을 받아올 수 없습니다.", false, "값을 받아올 수 없습니다."))
+                        shortToast(state.error)
                     }
                 }
             }
-        }
-    }
-
-    private fun bindViews() {
-        mBinding.tvSongMore.setOnClickListener {
-            (activity as? MainActivity)?.moveHomeToSong()
-        }
-        mBinding.tvMealMore.setOnClickListener {
-            (activity as? MainActivity)?.moveHomeToMeal()
-        }
-        mBinding.btnMenu.setOnClickListener {
-            openDrawer()
         }
     }
 
@@ -131,32 +115,33 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             meal.date == date.toString()
         }
         meal?.let {
-            setMealViewPager(it)
+            setMealList(it)
         }
-    } // getMeal()
+    }
 
-    private fun setMealViewPager(meal: Meal) {
-        val mealHomeAdapter = MealHomeAdapter()
+    private fun setMealListViewPager() {
+        mealHomeAdapter = MealHomeAdapter()
         mBinding.viewPagerMealList.adapter = mealHomeAdapter
         mBinding.viewPagerMealList.offscreenPageLimit = 3
         mBinding.viewPagerMealList.setPadding(90, 0, 90, 0)
         mBinding.viewPagerMealList.setPageTransformer(getTransform())
-
-        mealHomeAdapter.submitList(
-            listOf(
-                MealInfo(1, meal.safeBreakfast),
-                MealInfo(2, meal.safeLunch),
-                MealInfo(3, meal.safeDinner)
-            )
-        )
     }
 
-    private fun setMealCurrentPosition() {
-        when(LocalDateTime.now().hour) {
-            in 9..13 -> mBinding.viewPagerMealList.currentItem = 1
-            in 14..20 -> mBinding.viewPagerMealList.currentItem = 2
-            else -> mBinding.viewPagerMealList.currentItem = 0
-        }
+    private fun setMealList(meal: Meal) {
+        mealHomeAdapter.submitList(listOf(
+            MealInfo(1, meal.safeBreakfast),
+            MealInfo(2, meal.safeLunch),
+            MealInfo(3, meal.safeDinner)
+        ))
+
+        val currentTime = Date().timeFormat()
+        mBinding.viewPagerMealList.postDelayed({
+            mBinding.viewPagerMealList.currentItem = when {
+                currentTime < "09:00" -> minOf(0, mealList.size - 1)
+                currentTime < "13:20" -> minOf(1, mealList.size - 1)
+                else -> minOf(2, mealList.size - 1)
+            }
+       }, 800)
     }
 
     @SuppressLint("RtlHardcoded")
@@ -185,19 +170,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         }
         mBinding.recyclerLocationCheck.adapter = locationCheckAdapter
         locationCheckAdapter.submitList(myLocations)
-    }
-
-    companion object {
-        fun getTransform() : CompositePageTransformer {
-            val transform = CompositePageTransformer()
-            transform.addTransformer(MarginPageTransformer(10))
-
-            transform.addTransformer { view: View, fl: Float ->
-                val v = 1 - abs(fl)
-                view.scaleY = 0.8f + v * 0.2f
-            }
-
-            return transform
-        }
     }
 }

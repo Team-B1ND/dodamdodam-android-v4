@@ -9,4 +9,6 @@ class OffbaseFragment : BaseFragment<FragmentOffbaseBinding, OffbaseViewModel>()
 
     override fun observerViewModel() {
     }
+
+    override fun bindingViewEvent() {}
 }

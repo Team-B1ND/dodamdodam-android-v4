@@ -121,7 +121,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfile
         }
     }
 
-    private  fun bindingViewEvent() {
+    override fun bindingViewEvent() {
         with(viewModel) {
             viewEvent.observe(this@EditProfileFragment) {
                 it.getContentIfNotHandled()?.let { event ->
