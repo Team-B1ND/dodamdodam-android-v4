@@ -6,7 +6,7 @@
     <data>
         <variable
             name="vm"
-            type="kr.hs.dgsw.smartschool.dodamdodam.features.location.StudyRoomApplyViewModel" />
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.location.LocationApplyViewModel" />
     </data>
 
     <LinearLayout
@@ -53,6 +53,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabGravity="fill"
+            android:layout_marginTop="10dp"
+            android:textSize="@dimen/title6"
+            app:tabSelectedTextColor="@color/main"
             app:tabIndicatorColor="@android:color/transparent"
             app:tabIndicatorGravity="bottom" />
 

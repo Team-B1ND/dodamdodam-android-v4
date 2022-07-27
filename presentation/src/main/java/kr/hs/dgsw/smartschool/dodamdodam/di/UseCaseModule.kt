@@ -23,6 +23,9 @@ import kr.hs.dgsw.smartschool.domain.usecase.point.PointUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.setup.DataSetUp
 import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.setup.TeacherSetUp
+import kr.hs.dgsw.smartschool.domain.usecase.time.GetAllTime
+import kr.hs.dgsw.smartschool.domain.usecase.time.GetStartTime
+import kr.hs.dgsw.smartschool.domain.usecase.time.TimeUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.token.*
 import javax.inject.Singleton
 
@@ -89,5 +92,13 @@ class UseCaseModule {
         SetUpUseCases(
             dataSetUp = DataSetUp(dataSetUpRepository),
             teacherSetUp = TeacherSetUp(dataSetUpRepository)
+        )
+
+    @Provides
+    @Singleton
+    fun provideTimeUseCases(timeRepository: TimeRepository): TimeUseCases =
+        TimeUseCases(
+            getAllTime = GetAllTime(timeRepository),
+            getStartTime = GetStartTime(timeRepository)
         )
 }

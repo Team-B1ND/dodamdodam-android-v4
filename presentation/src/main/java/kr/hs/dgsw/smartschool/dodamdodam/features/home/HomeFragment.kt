@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.Gravity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.LocationCheckAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealHomeAdapter
@@ -166,7 +167,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private fun setUpStudyRoom(myLocations: List<LocationInfo>) {
         val locationCheckAdapter = LocationCheckAdapter {
-            shortToast("이동 : $it")
+            val action = HomeFragmentDirections.actionMainHomeToStudyRoomApplyFragment(it)
+            findNavController().navigate(action)
         }
         mBinding.recyclerLocationCheck.adapter = locationCheckAdapter
         locationCheckAdapter.submitList(myLocations)
