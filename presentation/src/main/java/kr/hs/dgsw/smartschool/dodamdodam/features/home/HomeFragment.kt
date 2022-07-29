@@ -18,6 +18,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
 import kr.hs.dgsw.smartschool.domain.model.location.LocationInfo
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
+import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.song.Song
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -166,8 +167,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun setUpStudyRoom(myLocations: List<LocationInfo>) {
-        val locationCheckAdapter = LocationCheckAdapter {
-            val action = HomeFragmentDirections.actionMainHomeToStudyRoomApplyFragment(it)
+        val locationCheckAdapter = LocationCheckAdapter { position ->
+            val currentPlace = myLocations.map { it.place ?: Place() }.toTypedArray()
+            val action = HomeFragmentDirections.actionMainHomeToStudyRoomApplyFragment(currentPlace, position)
             findNavController().navigate(action)
         }
         mBinding.recyclerLocationCheck.adapter = locationCheckAdapter

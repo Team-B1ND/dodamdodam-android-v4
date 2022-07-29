@@ -27,7 +27,7 @@
             android:includeFontPadding="false"
             android:textAlignment="center"
             android:textColor="@drawable/selected_text_color"
-            android:textSize="@dimen/title7"
+            android:textSize="@dimen/title6"
             tools:text="랩1실" />
 
     </LinearLayout>

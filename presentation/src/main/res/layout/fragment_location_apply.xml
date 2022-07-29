@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/color_white"
         tools:context=".view.fragment.LocationApplyFragment">
 
         <ProgressBar
@@ -32,6 +33,7 @@
 
             <include
                 android:id="@+id/btn_back"
+                android:onClick="@{() -> vm.onClickBack()}"
                 layout="@layout/item_back_button"/>
 
             <TextView
@@ -40,7 +42,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="@string/title_study_room_apply"
-
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title3"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -55,8 +56,9 @@
             app:tabGravity="fill"
             android:layout_marginTop="10dp"
             android:textSize="@dimen/title6"
+            android:layout_marginBottom="5dp"
             app:tabSelectedTextColor="@color/main"
-            app:tabIndicatorColor="@android:color/transparent"
+            app:tabIndicatorColor="@color/main"
             app:tabIndicatorGravity="bottom" />
 
         <TextView
@@ -67,7 +69,8 @@
             android:textColor="@color/gray700"
             android:fontFamily="@font/nanum_square_regular"
             android:includeFontPadding="false"
-            android:textSize="@dimen/title4" />
+            android:layout_marginVertical="5dp"
+            android:textSize="@dimen/title6" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_place"
