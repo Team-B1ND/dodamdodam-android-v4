@@ -9,8 +9,7 @@ import kr.hs.dgsw.smartschool.domain.repository.*
 import kr.hs.dgsw.smartschool.domain.usecase.bus.AddBus
 import kr.hs.dgsw.smartschool.domain.usecase.bus.BusUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.bus.GetBusList
-import kr.hs.dgsw.smartschool.domain.usecase.location.GetMyLocation
-import kr.hs.dgsw.smartschool.domain.usecase.location.LocationUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.location.*
 import kr.hs.dgsw.smartschool.domain.usecase.meal.DeleteMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
@@ -83,7 +82,10 @@ class UseCaseModule {
     @Singleton
     fun provideLocationUseCases(locationRepository: LocationRepository) : LocationUseCases =
         LocationUseCases(
-            getMyLocation = GetMyLocation(locationRepository)
+            getMyLocation = GetMyLocation(locationRepository),
+            postLocation = PostLocation(locationRepository),
+            putLocation = PutLocation(locationRepository),
+            deleteLocation = DeleteLocation(locationRepository)
         )
 
     @Provides
