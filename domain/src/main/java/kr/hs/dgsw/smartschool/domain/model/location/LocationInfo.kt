@@ -46,5 +46,4 @@ data class LocationInfo(
     public override fun clone(): LocationInfo {
         return super.clone() as LocationInfo
     }
-
 }
