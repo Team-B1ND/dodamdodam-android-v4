@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -22,376 +23,382 @@
             android:background="@color/color_background"
             android:orientation="vertical">
 
-            <androidx.core.widget.NestedScrollView
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_refresh_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
-                <LinearLayout
+                <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="?attr/actionBarSize"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/action_bar"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize">
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="?attr/actionBarSize"
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/btn_menu"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginStart="20dp"
-                            android:src="@drawable/ic_btn_menu"
-                            android:onClick="@{() -> vm.onClickMenu()}"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:ignore="ContentDescription" />
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/action_bar"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize">
 
-                        <TextView
+                            <ImageView
+                                android:id="@+id/btn_menu"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="20dp"
+                                android:onClick="@{() -> vm.onClickMenu()}"
+                                android:src="@drawable/ic_btn_menu"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:ignore="ContentDescription" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanum_square_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/project_name"
+                                android:textColor="@color/main"
+                                android:textSize="@dimen/title2"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="15sp"
+                                android:fontFamily="@font/notosans_kr_bold"
+                                android:includeFontPadding="false"
+                                android:text="@string/study_room_apply"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/title4"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycler_location_check"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanum_square_regular"
-                            android:includeFontPadding="false"
-                            android:text="@string/project_name"
-                            android:textColor="@color/main"
-                            android:textSize="@dimen/title2"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:layout_gravity="center_horizontal"
+                            android:overScrollMode="never"
+                            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:spanCount="2"
+                            tools:itemCount="4"
+                            tools:listitem="@layout/item_location_check" />
+
+                        <include
+                            android:id="@+id/progress_loading_location"
+                            layout="@layout/item_loading_progressbar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv_meal_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="15sp"
+                                android:fontFamily="@font/notosans_kr_bold"
+                                android:includeFontPadding="false"
+                                android:text="@string/home_meal"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/title4"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_meal_date"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:fontFamily="@font/nanum_square_regular"
+                                android:includeFontPadding="false"
+                                android:textColor="@color/gray500"
+                                android:textSize="@dimen/title6"
+                                app:layout_constraintBaseline_toBaselineOf="@id/tv_meal_title"
+                                app:layout_constraintStart_toEndOf="@id/tv_meal_title"
+                                tools:text="6.10" />
+
+                            <TextView
+                                android:id="@+id/tv_meal_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="15dp"
+                                android:fontFamily="@font/nanum_square_regular"
+                                android:includeFontPadding="false"
+                                android:onClick="@{() -> vm.onClickMealMore()}"
+                                android:text="@string/more"
+                                android:textColor="@color/gray500"
+                                app:layout_constraintBaseline_toBaselineOf="@id/tv_meal_title"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <include
+                            android:id="@+id/progress_loading_meal"
+                            layout="@layout/item_loading_progressbar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}" />
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/view_pager_meal_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipChildren="false"
+                            android:clipToPadding="false"
+                            android:orientation="horizontal"
+                            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintStart_toStartOf="parent" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/tv_today_song_home"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="15sp"
+                                android:fontFamily="@font/notosans_kr_bold"
+                                android:includeFontPadding="false"
+                                android:text="@string/home_song"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/title4"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                            <TextView
+                                android:id="@+id/tv_song_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="15dp"
+                                android:fontFamily="@font/nanum_square_regular"
+                                android:includeFontPadding="false"
+                                android:onClick="@{() -> vm.onClickSongMore()}"
+                                android:text="@string/more"
+                                android:textColor="@color/gray500"
+                                app:layout_constraintBaseline_toBaselineOf="@id/tv_today_song_home"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/view_pager_today_song"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="15sp"
-                            android:fontFamily="@font/notosans_kr_bold"
-                            android:includeFontPadding="false"
-                            android:text="@string/study_room_apply"
-                            android:textColor="@color/color_black"
-                            android:textSize="@dimen/title4"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycler_location_check"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:overScrollMode="never"
-                        android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                        app:spanCount="2"
-                        tools:itemCount="4"
-                        tools:listitem="@layout/item_location_check" />
-
-                    <include
-                        android:id="@+id/progress_loading_location"
-                        layout="@layout/item_loading_progressbar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/tv_meal_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="15sp"
-                            android:fontFamily="@font/notosans_kr_bold"
-                            android:includeFontPadding="false"
-                            android:text="@string/home_meal"
-                            android:textColor="@color/color_black"
-                            android:textSize="@dimen/title4"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tv_meal_date"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:fontFamily="@font/nanum_square_regular"
-                            android:includeFontPadding="false"
-                            android:textColor="@color/gray500"
-                            android:textSize="@dimen/title6"
-                            app:layout_constraintBaseline_toBaselineOf="@id/tv_meal_title"
-                            app:layout_constraintStart_toEndOf="@id/tv_meal_title"
-                            tools:text="6.10" />
-
-                        <TextView
-                            android:id="@+id/tv_meal_more"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="15dp"
-                            android:fontFamily="@font/nanum_square_regular"
-                            android:includeFontPadding="false"
-                            android:onClick="@{() -> vm.onClickMealMore()}"
-                            android:text="@string/more"
-                            android:textColor="@color/gray500"
-                            app:layout_constraintBaseline_toBaselineOf="@id/tv_meal_title"
-                            app:layout_constraintEnd_toEndOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <include
-                        android:id="@+id/progress_loading_meal"
-                        layout="@layout/item_loading_progressbar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
-                        android:layout_gravity="center" />
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/view_pager_meal_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        android:orientation="horizontal"
-                        android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/tv_today_song_home"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="15sp"
-                            android:fontFamily="@font/notosans_kr_bold"
-                            android:includeFontPadding="false"
-                            android:text="@string/home_song"
-                            android:textColor="@color/color_black"
-                            android:textSize="@dimen/title4"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tv_song_more"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="15dp"
-                            android:fontFamily="@font/nanum_square_regular"
-                            android:includeFontPadding="false"
-                            android:onClick="@{() -> vm.onClickSongMore()}"
-                            android:text="@string/more"
-                            android:textColor="@color/gray500"
-                            app:layout_constraintBaseline_toBaselineOf="@id/tv_today_song_home"
-                            app:layout_constraintEnd_toEndOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/view_pager_today_song"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipChildren="false"
-                        android:clipToPadding="false"
-                        android:orientation="horizontal"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/tv_more_function"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/notosans_kr_bold"
-                            android:includeFontPadding="false"
-                            android:text="@string/text_more_function"
-                            android:textColor="@color/color_black"
-                            android:textSize="@dimen/title4"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layout_more_card"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_baek_rank"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_marginBottom="10dp"
-                            app:cardCornerRadius="@dimen/card_corner"
-                            app:cardElevation="@dimen/card_elevation"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintDimensionRatio="1:0.8"
-                            app:layout_constraintEnd_toStartOf="@id/card_lost_found"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_margin="5dp">
-
-                                <TextView
-                                    android:id="@+id/tv_baek_rank"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="16dp"
-                                    android:fontFamily="@font/nanum_square_regular"
-                                    android:includeFontPadding="false"
-                                    android:text="@string/title_baek_rank"
-                                    android:textColor="@color/main"
-                                    android:textSize="@dimen/title3"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
-
-                                <TextView
-                                    android:id="@+id/tv_baek_rank_desc"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginHorizontal="16dp"
-                                    android:layout_marginTop="7dp"
-                                    android:fontFamily="@font/nanum_square_regular"
-                                    android:includeFontPadding="false"
-                                    android:text="@string/text_baek_rank_card_desc"
-                                    android:textColor="@color/color_black"
-                                    android:textSize="@dimen/title5"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@id/tv_baek_rank" />
-
-
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_lost_found"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="20dp"
-                            app:cardCornerRadius="@dimen/card_corner"
-                            app:cardElevation="@dimen/card_elevation"
-                            app:layout_constraintBottom_toBottomOf="@id/card_baek_rank"
+                            android:clipChildren="false"
+                            android:clipToPadding="false"
+                            android:orientation="horizontal"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@id/card_baek_rank"
-                            app:layout_constraintTop_toTopOf="@id/card_baek_rank">
+                            app:layout_constraintStart_toStartOf="parent" />
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_margin="5dp">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                                <TextView
-                                    android:id="@+id/tv_lost_found"
+                            <TextView
+                                android:id="@+id/tv_more_function"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="15dp"
+                                android:layout_marginTop="15dp"
+                                android:layout_marginBottom="10dp"
+                                android:fontFamily="@font/notosans_kr_bold"
+                                android:includeFontPadding="false"
+                                android:text="@string/text_more_function"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/title4"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/layout_more_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/card_baek_rank"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginBottom="10dp"
+                                app:cardCornerRadius="@dimen/card_corner"
+                                app:cardElevation="@dimen/card_elevation"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintDimensionRatio="1:0.8"
+                                app:layout_constraintEnd_toStartOf="@id/card_lost_found"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="16dp"
-                                    android:fontFamily="@font/nanum_square_regular"
-                                    android:includeFontPadding="false"
-                                    android:text="@string/title_lost_and_found"
-                                    android:textColor="@color/main"
-                                    android:textSize="@dimen/title3"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="5dp">
 
-                                <TextView
-                                    android:id="@+id/tv_lost_found_desc"
+                                    <TextView
+                                        android:id="@+id/tv_baek_rank"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="16dp"
+                                        android:fontFamily="@font/nanum_square_regular"
+                                        android:includeFontPadding="false"
+                                        android:text="@string/title_baek_rank"
+                                        android:textColor="@color/main"
+                                        android:textSize="@dimen/title3"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <TextView
+                                        android:id="@+id/tv_baek_rank_desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginHorizontal="16dp"
+                                        android:layout_marginTop="7dp"
+                                        android:fontFamily="@font/nanum_square_regular"
+                                        android:includeFontPadding="false"
+                                        android:text="@string/text_baek_rank_card_desc"
+                                        android:textColor="@color/color_black"
+                                        android:textSize="@dimen/title5"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/tv_baek_rank" />
+
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/card_lost_found"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginEnd="20dp"
+                                app:cardCornerRadius="@dimen/card_corner"
+                                app:cardElevation="@dimen/card_elevation"
+                                app:layout_constraintBottom_toBottomOf="@id/card_baek_rank"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/card_baek_rank"
+                                app:layout_constraintTop_toTopOf="@id/card_baek_rank">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginHorizontal="16dp"
-                                    android:layout_marginTop="7dp"
-                                    android:fontFamily="@font/nanum_square_regular"
-                                    android:includeFontPadding="false"
-                                    android:text="@string/text_lost_and_found"
-                                    android:textColor="@color/color_black"
-                                    android:textSize="@dimen/title5"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@id/tv_lost_found" />
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="5dp">
 
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                        </androidx.cardview.widget.CardView>
+                                    <TextView
+                                        android:id="@+id/tv_lost_found"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="16dp"
+                                        android:fontFamily="@font/nanum_square_regular"
+                                        android:includeFontPadding="false"
+                                        android:text="@string/title_lost_and_found"
+                                        android:textColor="@color/main"
+                                        android:textSize="@dimen/title3"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_it_map"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginHorizontal="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="20dp"
-                            app:cardCornerRadius="@dimen/card_corner"
-                            app:cardElevation="@dimen/card_elevation"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintDimensionRatio="2.5:1"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/card_lost_found">
+                                    <TextView
+                                        android:id="@+id/tv_lost_found_desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginHorizontal="16dp"
+                                        android:layout_marginTop="7dp"
+                                        android:fontFamily="@font/nanum_square_regular"
+                                        android:includeFontPadding="false"
+                                        android:text="@string/text_lost_and_found"
+                                        android:textColor="@color/color_black"
+                                        android:textSize="@dimen/title5"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/tv_lost_found" />
 
-                            <androidx.constraintlayout.widget.ConstraintLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_margin="5dp">
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                            </androidx.cardview.widget.CardView>
 
-                                <TextView
-                                    android:id="@+id/tv_it_map"
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/card_it_map"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_marginHorizontal="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="20dp"
+                                app:cardCornerRadius="@dimen/card_corner"
+                                app:cardElevation="@dimen/card_elevation"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintDimensionRatio="2.5:1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/card_lost_found">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_margin="16dp"
-                                    android:fontFamily="@font/nanum_square_regular"
-                                    android:includeFontPadding="false"
-                                    android:text="@string/title_it_map"
-                                    android:textColor="@color/main"
-                                    android:textSize="@dimen/title3"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="5dp">
 
-                                <TextView
-                                    android:id="@+id/tv_it_map_desc"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginHorizontal="16dp"
-                                    android:layout_marginTop="7dp"
-                                    android:fontFamily="@font/nanum_square_regular"
-                                    android:includeFontPadding="false"
-                                    android:text="@string/text_it_map_desc"
-                                    android:textColor="@color/color_black"
-                                    android:textSize="@dimen/title5"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@id/tv_it_map" />
+                                    <TextView
+                                        android:id="@+id/tv_it_map"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="16dp"
+                                        android:fontFamily="@font/nanum_square_regular"
+                                        android:includeFontPadding="false"
+                                        android:text="@string/title_it_map"
+                                        android:textColor="@color/main"
+                                        android:textSize="@dimen/title3"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
 
-                            </androidx.constraintlayout.widget.ConstraintLayout>
-                        </androidx.cardview.widget.CardView>
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
-            </androidx.core.widget.NestedScrollView>
+                                    <TextView
+                                        android:id="@+id/tv_it_map_desc"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginHorizontal="16dp"
+                                        android:layout_marginTop="7dp"
+                                        android:fontFamily="@font/nanum_square_regular"
+                                        android:includeFontPadding="false"
+                                        android:text="@string/text_it_map_desc"
+                                        android:textColor="@color/color_black"
+                                        android:textSize="@dimen/title5"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@id/tv_it_map" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+                            </androidx.cardview.widget.CardView>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         </LinearLayout>
 
         <com.google.android.material.navigation.NavigationView

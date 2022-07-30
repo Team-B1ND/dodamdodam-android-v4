@@ -33,6 +33,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private lateinit var mealHomeAdapter: MealHomeAdapter
 
     override fun observerViewModel() {
+        setSwipeRefresh()
         setUpTodaySong()
         setMealListViewPager()
         collectMealState()
@@ -77,10 +78,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 getMyLocationState.collect { state ->
                     if (state.myLocations.isNotEmpty()) {
                         setUpStudyRoom(state.myLocations)
+                        endRefreshing()
                     }
 
                     if (state.error.isNotBlank()) {
                         shortToast(state.error)
+                        endRefreshing()
                     }
                 }
             }
@@ -172,5 +175,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         }
         mBinding.recyclerLocationCheck.adapter = locationCheckAdapter
         locationCheckAdapter.submitList(myLocations)
+    }
+
+    private fun setSwipeRefresh() {
+        mBinding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getMyLocation()
+        }
+    }
+
+    private fun endRefreshing() {
+        mBinding.swipeRefreshLayout.isRefreshing = false
     }
 }

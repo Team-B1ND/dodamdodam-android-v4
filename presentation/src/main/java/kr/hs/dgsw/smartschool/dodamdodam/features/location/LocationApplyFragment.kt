@@ -50,6 +50,7 @@ class LocationApplyFragment : BaseFragment<FragmentLocationApplyBinding, Locatio
     private fun initPlaceRecyclerView() {
         placeAdapter = PlaceAdapter(this) {
             viewModel.changeLocation(it)
+            PlaceAdapter.currentPlace.value = it
         }
         mBinding.rvPlace.adapter = placeAdapter
     }

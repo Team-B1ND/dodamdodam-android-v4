@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.location
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -147,6 +148,7 @@ class LocationApplyViewModel @Inject constructor(
     }
 
     private fun putLocationRemote(params: PutLocation.Params, timeName: String) {
+        Log.d("TestTest", "putLocationRemote: ${params.location.placeIdx}  ${params.idx}")
         locationUseCases.putLocation(params).onEach { result ->
             handleApplyLocationState(result, "$timeName 위치 수정 성공")
         }.launchIn(viewModelScope)
