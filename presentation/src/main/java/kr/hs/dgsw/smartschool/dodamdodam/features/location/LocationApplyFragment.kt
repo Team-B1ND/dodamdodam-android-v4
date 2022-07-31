@@ -27,7 +27,6 @@ class LocationApplyFragment : BaseFragment<FragmentLocationApplyBinding, Locatio
         collectApplyLocation()
         collectMyLocation()
 
-
         viewModel.currentCheckPlaces.observe(this) {
             PlaceAdapter.currentPlace.value = it[viewModel.currentTime.value ?: 0]
         }
@@ -110,7 +109,7 @@ class LocationApplyFragment : BaseFragment<FragmentLocationApplyBinding, Locatio
             viewModel.applyLocationState.collect { state ->
                 if (state.message.isNotBlank()) {
                     mBinding.layout.shortSnack(state.message)
-                    viewModel.getMyLocation(false)
+                    viewModel.getMyLocation()
                 }
 
                 if (state.error.isNotBlank()) {

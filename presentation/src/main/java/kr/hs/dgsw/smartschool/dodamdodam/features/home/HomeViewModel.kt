@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.home
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -33,7 +34,12 @@ class HomeViewModel @Inject constructor(
     private val _dataSetUpState = MutableStateFlow<DataSetUpState>(DataSetUpState())
     val dataSetUpState: StateFlow<DataSetUpState> = _dataSetUpState
 
+    private val isDataSetUpLoading = MutableLiveData(false)
+    private val isGetMealLoading = MutableLiveData(false)
+    private val isGetMyLocationLoading = MutableLiveData(false)
+
     init {
+        combineLoadingVariable(isDataSetUpLoading, isGetMealLoading, isGetMyLocationLoading)
         dataSetUp()
     }
 
@@ -44,12 +50,15 @@ class HomeViewModel @Inject constructor(
         ).onEach { result ->
             when(result) {
                 is Resource.Success -> {
+                    isGetMealLoading.value = false
                     _mealState.value = MealState(meal = result.data ?: emptyList())
                 }
                 is Resource.Loading -> {
+                    isGetMealLoading.value = true
                     _mealState.value = MealState(isLoading = true)
                 }
                 is Resource.Error -> {
+                    isGetMealLoading.value = false
                     _mealState.value = MealState(
                         error = result.message ?: "급식을 받아오지 못하였습니다."
                     )
@@ -62,14 +71,14 @@ class HomeViewModel @Inject constructor(
         setUpUseCases.dataSetUp().onEach { result ->
             when(result) {
                 is Resource.Success -> {
-                    isLoading.value = false
+                    isDataSetUpLoading.value = false
                     _dataSetUpState.value = DataSetUpState(result = result.data)
                 }
                 is Resource.Loading -> {
-                    isLoading.value = true
+                    isDataSetUpLoading.value = true
                 }
                 is Resource.Error -> {
-                    isLoading.value = false
+                    isDataSetUpLoading.value = false
                     _dataSetUpState.value = DataSetUpState(error = result.message ?: "데이터를 업데이트 하지 못하였습니다.")
                 }
             }
@@ -80,14 +89,14 @@ class HomeViewModel @Inject constructor(
         locationUseCases.getMyLocation(LocalDate.now().toString()).onEach { result ->
             when(result) {
                 is Resource.Success -> {
-                    isLoading.value = false
+                    isGetMyLocationLoading.value = false
                     _getMyLocationState.value = GetMyLocationState(myLocations = result.data ?: emptyList())
                 }
                 is Resource.Loading -> {
-                    isLoading.value = true
+                    isGetMyLocationLoading.value = true
                 }
                 is Resource.Error -> {
-                    isLoading.value = false
+                    isGetMyLocationLoading.value = false
                     _getMyLocationState.value = GetMyLocationState(
                         error = result.message ?: "위치를 받아오지 못하였습니다."
                     )

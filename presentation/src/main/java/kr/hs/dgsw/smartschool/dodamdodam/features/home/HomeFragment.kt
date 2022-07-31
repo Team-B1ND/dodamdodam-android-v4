@@ -32,8 +32,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private var date: LocalDate = LocalDate.now()
     private lateinit var mealHomeAdapter: MealHomeAdapter
 
+    private lateinit var locationCheckAdapter: LocationCheckAdapter
+
     override fun observerViewModel() {
-        setSwipeRefresh()
+        setLocationRecyclerView()
         setUpTodaySong()
         setMealListViewPager()
         collectMealState()
@@ -77,13 +79,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             lifecycleScope.launchWhenStarted {
                 getMyLocationState.collect { state ->
                     if (state.myLocations.isNotEmpty()) {
-                        setUpStudyRoom(state.myLocations)
-                        endRefreshing()
+                        updateLocation(state.myLocations)
                     }
 
                     if (state.error.isNotBlank()) {
                         shortToast(state.error)
-                        endRefreshing()
                     }
                 }
             }
@@ -168,22 +168,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         )
     }
 
-    private fun setUpStudyRoom(myLocations: List<LocationInfo>) {
-        val locationCheckAdapter = LocationCheckAdapter { position ->
+    private fun setLocationRecyclerView() {
+        locationCheckAdapter = LocationCheckAdapter { position ->
             val action = HomeFragmentDirections.actionMainHomeToStudyRoomApplyFragment(position)
             findNavController().navigate(action)
         }
         mBinding.recyclerLocationCheck.adapter = locationCheckAdapter
+    }
+
+    private fun updateLocation(myLocations: List<LocationInfo>) {
         locationCheckAdapter.submitList(myLocations)
-    }
-
-    private fun setSwipeRefresh() {
-        mBinding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.getMyLocation()
-        }
-    }
-
-    private fun endRefreshing() {
-        mBinding.swipeRefreshLayout.isRefreshing = false
     }
 }

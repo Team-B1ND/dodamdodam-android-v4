@@ -54,9 +54,10 @@ class LocationApplyViewModel @Inject constructor(
     private val isTimeTableLoading = MutableLiveData(false)
     private val isPlaceListLoading = MutableLiveData(false)
     private val isGetMyLocationLoading = MutableLiveData(false)
+    private val isApplyLocationLoading = MutableLiveData(false)
 
     init {
-        combineLoadingVariable(isTimeTableLoading, isPlaceListLoading, isGetMyLocationLoading)
+        combineLoadingVariable(isTimeTableLoading, isPlaceListLoading, isGetMyLocationLoading, isApplyLocationLoading)
         getTimeTable()
         getPlace()
         getMyLocation()
@@ -98,7 +99,7 @@ class LocationApplyViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun getMyLocation(isLoadingRequired: Boolean = true) {
+    fun getMyLocation() {
         val today = LocalDate.now().toString()
         locationUseCases.getMyLocation(today).onEach { result ->
             when (result) {
@@ -107,8 +108,7 @@ class LocationApplyViewModel @Inject constructor(
                     _getMyLocationState.value = GetMyLocationState(myLocations = result.data ?: emptyList())
                 }
                 is Resource.Loading -> {
-                    if (isLoadingRequired)
-                        isGetMyLocationLoading.value = true
+                    isGetMyLocationLoading.value = true
                 }
                 is Resource.Error -> {
                     isGetMyLocationLoading.value = false
@@ -164,10 +164,14 @@ class LocationApplyViewModel @Inject constructor(
         when (result) {
             is Resource.Success -> {
                 _applyLocationState.value = ApplyLocationState(message = message)
+                isApplyLocationLoading.value = false
             }
-            is Resource.Loading -> {}
+            is Resource.Loading -> {
+                isApplyLocationLoading.value = true
+            }
             is Resource.Error -> {
                 _applyLocationState.value = ApplyLocationState(error = result.message ?: "위치 수정에 실패하였습니다.")
+                isApplyLocationLoading.value = false
             }
         }
     }
