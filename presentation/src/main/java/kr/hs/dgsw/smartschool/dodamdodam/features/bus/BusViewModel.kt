@@ -46,4 +46,5 @@ class BusViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
+    private fun applyBus(){}
 }

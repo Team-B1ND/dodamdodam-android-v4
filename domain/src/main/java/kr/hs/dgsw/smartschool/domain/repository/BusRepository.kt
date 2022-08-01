@@ -13,7 +13,7 @@ interface BusRepository {
     suspend fun getBusList(): List<BusByDate>
     suspend fun getMyBus() : List<Bus>
     suspend fun getMyBusByMonth(
-        request: MyBusByMonthRequest
+        request : MyBusByMonthRequest
     ) : List<Bus>
 
 
@@ -40,4 +40,5 @@ interface BusRepository {
     )
     suspend fun deleteBusApply(
         idx : Int
-    )}
+    )
+}
