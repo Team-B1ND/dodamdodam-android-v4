@@ -11,11 +11,13 @@ import javax.inject.Inject
 class DeleteBusApply @Inject constructor(
     private val busRepository: BusRepository
 ){
-    operator fun invoke(): Flow<Resource<String>> = flow{
+    operator fun invoke(
+        idx : Int
+    ): Flow<Resource<String>> = flow{
         try{
             emit(Resource.Loading())
-            val result = busRepository.deleteBusApply()
-            emit(Resource.Success<String>(result))
+            busRepository.deleteBusApply(idx)
+            emit(Resource.Success<String>("버스를 신청 취소합니다"))
         }catch(e : HttpException){
             emit(Resource.Error<String>(e.localizedMessage ?: "AN unexpected error occured"))
         }catch (e: IOException){
