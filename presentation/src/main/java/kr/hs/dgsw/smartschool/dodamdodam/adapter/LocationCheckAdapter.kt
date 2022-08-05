@@ -3,6 +3,7 @@ package kr.hs.dgsw.smartschool.dodamdodam.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import kr.hs.dgsw.smartschool.dodamdodam.R
@@ -12,7 +13,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
 import kr.hs.dgsw.smartschool.domain.model.location.Location
 import java.util.*
 
-class LocationCheckAdapter(val onClickLocationCard: (Int) -> Unit ) : ListAdapter<Location, LocationCheckAdapter.LocationCheckViewHolder>(StudyRoomDiffUtilCallback) {
+class LocationCheckAdapter(val onClickLocationCard: (Int) -> Unit) : ListAdapter<Location, LocationCheckAdapter.LocationCheckViewHolder>(StudyRoomDiffUtilCallback) {
 
     inner class LocationCheckViewHolder(
         private val binding: ItemLocationCheckBinding

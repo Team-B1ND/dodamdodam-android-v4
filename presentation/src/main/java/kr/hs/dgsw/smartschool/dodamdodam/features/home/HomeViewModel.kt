@@ -6,15 +6,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.location.GetMyLocationState
 import kr.hs.dgsw.smartschool.dodamdodam.features.meal.MealState
 import kr.hs.dgsw.smartschool.dodamdodam.features.setup.DataSetUpState
 import kr.hs.dgsw.smartschool.domain.usecase.location.LocationUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
-import kr.hs.dgsw.smartschool.domain.util.Resource
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -45,64 +44,28 @@ class HomeViewModel @Inject constructor(
 
     fun getMealList(date: LocalDate) {
         mealUseCases.getAllMeal(
-            date.year,
-            date.monthValue
-        ).onEach { result ->
-            when(result) {
-                is Resource.Success -> {
-                    isGetMealLoading.value = false
-                    _mealState.value = MealState(meal = result.data ?: emptyList())
-                }
-                is Resource.Loading -> {
-                    isGetMealLoading.value = true
-                    _mealState.value = MealState(isLoading = true)
-                }
-                is Resource.Error -> {
-                    isGetMealLoading.value = false
-                    _mealState.value = MealState(
-                        error = result.message ?: "급식을 받아오지 못하였습니다."
-                    )
-                }
-            }
-        }.launchIn(viewModelScope)
+            GetAllMeal.Params(
+                date.year,
+                date.monthValue
+            )
+        ).divideResult(
+            { _mealState.value = MealState(meal = it ?: emptyList()) },
+            { _mealState.value = MealState(error = it ?: "급식을 받아오지 못하였습니다.") }
+        ).launchIn(viewModelScope)
     }
 
     private fun dataSetUp() {
-        setUpUseCases.dataSetUp().onEach { result ->
-            when(result) {
-                is Resource.Success -> {
-                    isDataSetUpLoading.value = false
-                    _dataSetUpState.value = DataSetUpState(result = result.data)
-                }
-                is Resource.Loading -> {
-                    isDataSetUpLoading.value = true
-                }
-                is Resource.Error -> {
-                    isDataSetUpLoading.value = false
-                    _dataSetUpState.value = DataSetUpState(error = result.message ?: "데이터를 업데이트 하지 못하였습니다.")
-                }
-            }
-        }.launchIn(viewModelScope)
+        setUpUseCases.dataSetUp(Unit).divideResult(
+            { _dataSetUpState.value = DataSetUpState(result = it) },
+            { _dataSetUpState.value = DataSetUpState(error = it ?: "데이터를 업데이트 하지 못하였습니다.") }
+        ).launchIn(viewModelScope)
     }
 
     fun getMyLocation() {
-        locationUseCases.getMyLocation(LocalDate.now().toString()).onEach { result ->
-            when(result) {
-                is Resource.Success -> {
-                    isGetMyLocationLoading.value = false
-                    _getMyLocationState.value = GetMyLocationState(myLocations = result.data ?: emptyList())
-                }
-                is Resource.Loading -> {
-                    isGetMyLocationLoading.value = true
-                }
-                is Resource.Error -> {
-                    isGetMyLocationLoading.value = false
-                    _getMyLocationState.value = GetMyLocationState(
-                        error = result.message ?: "위치를 받아오지 못하였습니다."
-                    )
-                }
-            }
-        }.launchIn(viewModelScope)
+        locationUseCases.getMyLocation(LocalDate.now().toString()).divideResult(
+            { _getMyLocationState.value = GetMyLocationState(myLocations = it ?: emptyList()) },
+            { _getMyLocationState.value = GetMyLocationState(error = it?: "위치를 받아오지 못하였습니다.") }
+        ).launchIn(viewModelScope)
     }
 
     fun onClickSongMore() {

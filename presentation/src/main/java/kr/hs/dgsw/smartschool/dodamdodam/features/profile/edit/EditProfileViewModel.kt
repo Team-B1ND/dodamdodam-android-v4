@@ -6,7 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.upload.UploadImageState
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.isNotEmailValid
@@ -15,7 +14,6 @@ import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
 import kr.hs.dgsw.smartschool.domain.usecase.member.ChangeMemberInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.upload.UploadImgUseCase
-import kr.hs.dgsw.smartschool.domain.util.Resource
 import java.io.File
 import javax.inject.Inject
 
@@ -48,43 +46,17 @@ class EditProfileViewModel @Inject constructor(
                 email = email.value ?: "",
                 profileImage = picture
             )
-        ).onEach { result ->
-            when(result) {
-                is Resource.Success -> {
-                    _editProfileState.value = EditProfileState(message = result.data ?: "성공하였습니다.")
-                    isLoading.value = false
-                }
-                is Resource.Loading -> {
-                    _editProfileState.value = EditProfileState(isLoading = true)
-                    isLoading.value = true
-                }
-                is Resource.Error -> {
-                    _editProfileState.value = EditProfileState(
-                        error = result.message ?: "프로필 수정에 실패하였습니다."
-                    )
-                    isLoading.value = false
-                }
-            }
-        }.launchIn(viewModelScope)
+        ).divideResult(
+            { _editProfileState.value = EditProfileState(message = it ?: "성공하였습니다.") },
+            { _editProfileState.value = EditProfileState(error = it ?: "프로필 수정에 실패하였습니다.") }
+        ).launchIn(viewModelScope)
     }
 
     fun uploadImg() {
-        uploadImgUseCase(file!!).onEach { result ->
-            when(result) {
-                is Resource.Success -> {
-                    _uploadImageState.value = UploadImageState(picture = result.data)
-                    isLoading.value = false
-                }
-                is Resource.Loading -> {
-                    _uploadImageState.value = UploadImageState(isLoading = true)
-                    isLoading.value = true
-                }
-                is Resource.Error -> {
-                    _uploadImageState.value = UploadImageState(error = result.message ?: "이미지 업로드에 실패했습니다.")
-                    isLoading.value = false
-                }
-            }
-        }.launchIn(viewModelScope)
+        uploadImgUseCase(file!!).divideResult(
+            {_uploadImageState.value = UploadImageState(picture = it)},
+            {_uploadImageState.value = UploadImageState(error = it ?: "이미지 업로드에 실패했습니다.")}
+        ).launchIn(viewModelScope)
     }
 
     fun checkForm() {

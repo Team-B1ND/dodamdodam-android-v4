@@ -4,7 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.widget.Event
+import kr.hs.dgsw.smartschool.domain.util.Resource
 
 open class BaseViewModel : ViewModel() {
 
@@ -24,6 +28,25 @@ open class BaseViewModel : ViewModel() {
     fun combineLoadingVariable(vararg lives: MutableLiveData<Boolean>) {
         lives.forEach { liveData ->
             isLoading.addSource(liveData) { isLoading.value = lives.any { it.value == true } }
+        }
+    }
+
+    fun <T> Flow<Resource<T>>.divideResult(
+        successAction: (T?) -> Unit,
+        errorAction: (String?) -> Unit
+    ) = onEach { resource ->
+        when(resource) {
+            is Resource.Success -> {
+                isLoading.value = false
+                successAction.invoke(resource.data)
+            }
+            is Resource.Loading -> {
+                isLoading.value = true
+            }
+            is Resource.Error -> {
+                isLoading.value = false
+                errorAction.invoke(resource.message)
+            }
         }
     }
 

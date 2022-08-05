@@ -68,59 +68,29 @@ class LocationApplyViewModel @Inject constructor(
     }
 
     private fun getPlace() {
-        getAllPlaceUseCase().onEach { result ->
-            when(result) {
-                is Resource.Success -> {
-                    isPlaceListLoading.value = false
-                    _getPlaceState.value = GetPlaceState(place = result.data ?: emptyList())
-                }
-                is Resource.Loading -> isPlaceListLoading.value = true
-                is Resource.Error ->  {
-                    isTimeTableLoading.value = false
-                    _getPlaceState.value = GetPlaceState(error = result.message ?: "장소를 받아오지 못하였습니다.")
-                }
-            }
-        }.launchIn(viewModelScope)
+        getAllPlaceUseCase(Unit).divideResult(
+            { _getPlaceState.value = GetPlaceState(place = it ?: emptyList()) },
+            { _getPlaceState.value = GetPlaceState(error = it ?: "장소를 받아오지 못하였습니다.") }
+        ).launchIn(viewModelScope)
     }
 
     private fun getTimeTable() {
-        timeUseCases.getAllTime().onEach { result ->
-            when(result) {
-                is Resource.Success -> {
-                    isTimeTableLoading.value = false
-                    _getAllTimeState.value = GetAllTimeState(timeTable = result.data ?: emptyList())
-                }
-                is Resource.Loading -> isTimeTableLoading.value = true
-                is Resource.Error -> {
-                    isTimeTableLoading.value = false
-                    _getAllTimeState.value = GetAllTimeState(error = result.message ?: "시간을 받아오지 못하였습니다.")
-                }
-            }
-        }.launchIn(viewModelScope)
+        timeUseCases.getAllTime(Unit).divideResult(
+            { _getAllTimeState.value = GetAllTimeState(timeTable = it ?: emptyList()) },
+            { _getAllTimeState.value = GetAllTimeState(error = it ?: "시간을 받아오지 못하였습니다.") }
+        ).launchIn(viewModelScope)
     }
 
     fun getMyLocation() {
         val today = LocalDate.now().toString()
-        locationUseCases.getMyLocation(today).onEach { result ->
-            when (result) {
-                is Resource.Success -> {
-                    isGetMyLocationLoading.value = false
-                    _getMyLocationState.value = GetMyLocationState(myLocations = result.data ?: emptyList())
-                }
-                is Resource.Loading -> {
-                    isGetMyLocationLoading.value = true
-                }
-                is Resource.Error -> {
-                    isGetMyLocationLoading.value = false
-                    _getMyLocationState.value = GetMyLocationState(error = result.message ?: "자신의 위치를 받아오지 못하였습니다.")
-                }
-            }
-        }.launchIn(viewModelScope)
+        locationUseCases.getMyLocation(today).divideResult(
+            { _getMyLocationState.value = GetMyLocationState(myLocations = it ?: emptyList()) },
+            { _getMyLocationState.value = GetMyLocationState(error = it ?: "자신의 위치를 받아오지 못하였습니다.") }
+        ).launchIn(viewModelScope)
     }
 
     fun changeLocation(place: Place) {
         currentTime.value?.apply {
-
             val currentTimeTable = timeTable.value?.get(this) ?: return
 
             when {

@@ -1,6 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.home
 
-import android.annotation.SuppressLint
+import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -15,7 +15,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
 import kr.hs.dgsw.smartschool.dodamdodam.util.ViewPagerUtils.getTransform
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
-import kr.hs.dgsw.smartschool.domain.model.location.LocationInfo
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
 import kr.hs.dgsw.smartschool.domain.model.song.Song
@@ -51,7 +50,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                     when (event) {
                         HomeViewModel.ON_CLICK_MEAL_MORE -> (activity as? MainActivity)?.moveHomeToMeal()
                         HomeViewModel.ON_CLICK_SONG_MORE -> (activity as? MainActivity)?.moveHomeToSong()
-                        HomeViewModel.ON_CLICK_MENU -> openDrawer()
+                        HomeViewModel.ON_CLICK_MENU -> mBinding.layoutDrawer.openDrawer(Gravity.LEFT, true)
                     }
                 }
             }
@@ -79,7 +78,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             lifecycleScope.launchWhenStarted {
                 getMyLocationState.collect { state ->
                     if (state.myLocations.isNotEmpty()) {
-                        updateLocation(state.myLocations)
+                        state.myLocations.forEach {
+                            Log.d("TestTest", "collectMyLocation: ${it.place?.name}")
+                        }
+                        locationCheckAdapter.submitList(state.myLocations)
                     }
 
                     if (state.error.isNotBlank()) {
@@ -148,11 +150,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
        }, 800)
     }
 
-    @SuppressLint("RtlHardcoded")
-    private fun openDrawer() {
-        mBinding.layoutDrawer.openDrawer(Gravity.LEFT, true)
-    }
-
     private fun setUpTodaySong() {
         val todaySongAdapter = TodaySongAdapter()
         mBinding.viewPagerTodaySong.adapter = todaySongAdapter
@@ -174,9 +171,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             findNavController().navigate(action)
         }
         mBinding.recyclerLocationCheck.adapter = locationCheckAdapter
-    }
-
-    private fun updateLocation(myLocations: List<LocationInfo>) {
-        locationCheckAdapter.submitList(myLocations)
     }
 }

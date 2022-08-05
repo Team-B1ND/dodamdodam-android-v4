@@ -17,8 +17,7 @@ class LocationApplyFragment : BaseFragment<FragmentLocationApplyBinding, Locatio
 
     override val viewModel: LocationApplyViewModel by viewModels()
     private lateinit var placeAdapter: PlaceAdapter
-
-
+    
     override fun observerViewModel() {
         initTimeTab()
         initPlaceRecyclerView()

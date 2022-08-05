@@ -4,11 +4,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kr.hs.dgsw.b1nd.dodamdodam.domain.usecase.bus.*
 import kr.hs.dgsw.smartschool.domain.repository.*
-import kr.hs.dgsw.smartschool.domain.usecase.bus.AddBus
-import kr.hs.dgsw.smartschool.domain.usecase.bus.BusUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.bus.GetBusList
+import kr.hs.dgsw.smartschool.domain.usecase.bus.*
 import kr.hs.dgsw.smartschool.domain.usecase.location.*
 import kr.hs.dgsw.smartschool.domain.usecase.meal.DeleteMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
@@ -51,7 +48,8 @@ class UseCaseModule {
             updateBusApply = UpdateBusApply(repository),
             updateBusInfo = UpdateBusInfo(repository),
             deleteBus = DeleteBus(repository),
-            deleteBusApply = DeleteBusApply(repository))
+            deleteBusApply = DeleteBusApply(repository)
+        )
 
     @Provides
     @Singleton

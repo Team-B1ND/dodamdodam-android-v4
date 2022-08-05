@@ -1,26 +1,15 @@
 package kr.hs.dgsw.smartschool.domain.usecase.location
 
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
 import kr.hs.dgsw.smartschool.domain.repository.LocationRepository
 import kr.hs.dgsw.smartschool.domain.util.Resource
-import retrofit2.HttpException
-import java.io.IOException
 import javax.inject.Inject
 
 class DeleteLocation @Inject constructor(
-    override val repository: LocationRepository
-) : BaseUseCase<LocationRepository>() {
-    operator fun invoke(idx: Int): Flow<Resource<String>> = flow {
-        try {
-            emit(Resource.Loading())
-            val result = repository.deleteLocation(idx)
-            emit(Resource.Success<String>(result))
-        } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "알 수 없는 오류가 발생했습니다."))
-        } catch (e: IOException) {
-            emit(Resource.Error("서버에 도달 할 수 없습니다. 네트워크 상태를 확인해 주세요."))
-        }
+    val repository: LocationRepository
+) : BaseUseCase<Int, String>() {
+    override fun invoke(params: Int): Flow<Resource<String>> = execute {
+        repository.deleteLocation(params)
     }
 }
