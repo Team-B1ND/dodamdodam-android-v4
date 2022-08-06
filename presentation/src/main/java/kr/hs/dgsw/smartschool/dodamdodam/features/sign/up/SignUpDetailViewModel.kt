@@ -79,6 +79,7 @@ class SignUpDetailViewModel @Inject constructor(
                 number = number.value ?: "0"
             )
         ).divideResult(
+            isLoading,
             { _signUpState.value = SignUpState(result = it ?: "") },
             { _signUpState.value = SignUpState(error = it ?: "회원가입에 실패했습니다.") }
         ).launchIn(viewModelScope)

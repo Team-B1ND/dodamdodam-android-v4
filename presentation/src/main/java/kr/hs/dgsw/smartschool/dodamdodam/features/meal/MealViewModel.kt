@@ -48,6 +48,7 @@ class MealViewModel @Inject constructor(
            _targetDate.value?.monthValue ?: todayDate.monthValue
            )
         ).divideResult(
+            isLoading,
             { _mealState.value = MealState(meal = it ?: emptyList()) },
             { _mealState.value = MealState(error = it ?: "급식을 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)

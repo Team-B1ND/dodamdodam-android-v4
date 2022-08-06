@@ -30,7 +30,7 @@ class HomeViewModel @Inject constructor(
     private val _getMyLocationState = MutableStateFlow(GetMyLocationState())
     val getMyLocationState: StateFlow<GetMyLocationState> = _getMyLocationState
 
-    private val _dataSetUpState = MutableStateFlow<DataSetUpState>(DataSetUpState())
+    private val _dataSetUpState = MutableStateFlow(DataSetUpState())
     val dataSetUpState: StateFlow<DataSetUpState> = _dataSetUpState
 
     private val isDataSetUpLoading = MutableLiveData(false)
@@ -43,12 +43,8 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getMealList(date: LocalDate) {
-        mealUseCases.getAllMeal(
-            GetAllMeal.Params(
-                date.year,
-                date.monthValue
-            )
-        ).divideResult(
+        mealUseCases.getAllMeal(GetAllMeal.Params(date.year, date.monthValue)).divideResult(
+            isGetMealLoading,
             { _mealState.value = MealState(meal = it ?: emptyList()) },
             { _mealState.value = MealState(error = it ?: "급식을 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)
@@ -56,6 +52,7 @@ class HomeViewModel @Inject constructor(
 
     private fun dataSetUp() {
         setUpUseCases.dataSetUp(Unit).divideResult(
+            isDataSetUpLoading,
             { _dataSetUpState.value = DataSetUpState(result = it) },
             { _dataSetUpState.value = DataSetUpState(error = it ?: "데이터를 업데이트 하지 못하였습니다.") }
         ).launchIn(viewModelScope)
@@ -63,6 +60,7 @@ class HomeViewModel @Inject constructor(
 
     fun getMyLocation() {
         locationUseCases.getMyLocation(LocalDate.now().toString()).divideResult(
+            isGetMyLocationLoading,
             { _getMyLocationState.value = GetMyLocationState(myLocations = it ?: emptyList()) },
             { _getMyLocationState.value = GetMyLocationState(error = it?: "위치를 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)

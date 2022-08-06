@@ -37,7 +37,12 @@ class ProfileViewModel @Inject constructor(
     private val _schoolSelected = MutableLiveData<Boolean>(false)
     val schoolSelected: LiveData<Boolean> get() = _schoolSelected
 
+    private val isGetMyInfoLoading = MutableLiveData(false)
+    private val isGetMyBonusLoading = MutableLiveData(false)
+    private val isGetMyMinusLoading = MutableLiveData(false)
+
     init {
+        combineLoadingVariable(isGetMyBonusLoading, isGetMyMinusLoading, isGetMyInfoLoading)
         getMyInfo()
         getMyBonusPoint()
         getMyMinusPoint()
@@ -45,6 +50,7 @@ class ProfileViewModel @Inject constructor(
 
     fun getMyInfo() {
         memberUseCases.getMyInfo(Unit).divideResult(
+            isGetMyInfoLoading,
             { _myInfoState.value = MyInfoState(myInfo = it) },
             { _myInfoState.value = MyInfoState(error = it ?: "프로필 정보를 받아오지 못하였습니다.") },
         ).launchIn(viewModelScope)
@@ -55,6 +61,7 @@ class ProfileViewModel @Inject constructor(
             LocalDate.now().year.toString(),
             1)
         ).divideResult(
+            isGetMyBonusLoading,
             { _myBonusPointState.value = MyBonusPointState(bonusPoint = it) },
             { _myBonusPointState.value = MyBonusPointState(error = it ?: "상벌점 조회를 실패했습니다.") }
         ).launchIn(viewModelScope)
@@ -63,6 +70,7 @@ class ProfileViewModel @Inject constructor(
     private fun getMyMinusPoint() {
         pointUseCases.getMyPoint(
             GetMyPoint.Params(LocalDate.now().year.toString(), 2)).divideResult(
+            isGetMyMinusLoading,
             { _myMinusPointState.value = MyMinusPointState(minusPoint = it) },
             { _myMinusPointState.value = MyMinusPointState(error = it ?: "상벌점 조회를 실패했습니다.") }
         ).launchIn(viewModelScope)

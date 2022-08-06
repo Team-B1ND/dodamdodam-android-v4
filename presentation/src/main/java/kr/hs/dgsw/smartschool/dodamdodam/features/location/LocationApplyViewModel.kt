@@ -69,6 +69,7 @@ class LocationApplyViewModel @Inject constructor(
 
     private fun getPlace() {
         getAllPlaceUseCase(Unit).divideResult(
+            isGetMyLocationLoading,
             { _getPlaceState.value = GetPlaceState(place = it ?: emptyList()) },
             { _getPlaceState.value = GetPlaceState(error = it ?: "장소를 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)
@@ -76,6 +77,7 @@ class LocationApplyViewModel @Inject constructor(
 
     private fun getTimeTable() {
         timeUseCases.getAllTime(Unit).divideResult(
+            isTimeTableLoading,
             { _getAllTimeState.value = GetAllTimeState(timeTable = it ?: emptyList()) },
             { _getAllTimeState.value = GetAllTimeState(error = it ?: "시간을 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)
@@ -84,6 +86,7 @@ class LocationApplyViewModel @Inject constructor(
     fun getMyLocation() {
         val today = LocalDate.now().toString()
         locationUseCases.getMyLocation(today).divideResult(
+            isGetMyLocationLoading,
             { _getMyLocationState.value = GetMyLocationState(myLocations = it ?: emptyList()) },
             { _getMyLocationState.value = GetMyLocationState(error = it ?: "자신의 위치를 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)

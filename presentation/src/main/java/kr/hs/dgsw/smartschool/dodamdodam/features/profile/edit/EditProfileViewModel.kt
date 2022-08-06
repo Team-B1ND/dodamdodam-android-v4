@@ -38,6 +38,13 @@ class EditProfileViewModel @Inject constructor(
 
     var file: File? = null
 
+    private val isChangeMemberInfoLoading = MutableLiveData(false)
+    private val isUploadImgLoading = MutableLiveData(false)
+
+    init {
+        combineLoadingVariable(isChangeMemberInfoLoading, isUploadImgLoading)
+    }
+
     private fun saveInfo() {
         memberUseCases.changeMemberInfo(
             ChangeMemberInfo.Params(
@@ -47,6 +54,7 @@ class EditProfileViewModel @Inject constructor(
                 profileImage = picture
             )
         ).divideResult(
+            isChangeMemberInfoLoading,
             { _editProfileState.value = EditProfileState(message = it ?: "성공하였습니다.") },
             { _editProfileState.value = EditProfileState(error = it ?: "프로필 수정에 실패하였습니다.") }
         ).launchIn(viewModelScope)
@@ -54,6 +62,7 @@ class EditProfileViewModel @Inject constructor(
 
     fun uploadImg() {
         uploadImgUseCase(file!!).divideResult(
+            isUploadImgLoading,
             {_uploadImageState.value = UploadImageState(picture = it)},
             {_uploadImageState.value = UploadImageState(error = it ?: "이미지 업로드에 실패했습니다.")}
         ).launchIn(viewModelScope)

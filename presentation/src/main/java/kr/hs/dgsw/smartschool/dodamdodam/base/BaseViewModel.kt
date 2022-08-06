@@ -32,6 +32,7 @@ open class BaseViewModel : ViewModel() {
     }
 
     fun <T> Flow<Resource<T>>.divideResult(
+        isLoading: MutableLiveData<Boolean>,
         successAction: (T?) -> Unit,
         errorAction: (String?) -> Unit
     ) = onEach { resource ->

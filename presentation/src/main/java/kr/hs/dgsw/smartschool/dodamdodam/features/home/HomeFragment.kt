@@ -43,7 +43,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         initViewEvent()
     }
 
-
     private fun initViewEvent() {
         bindingViewEvent { event ->
             when (event) {
