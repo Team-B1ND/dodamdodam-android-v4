@@ -11,7 +11,4 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
     override fun observerViewModel() {
 
     }
-
-    override fun bindingViewEvent() {}
-
 }

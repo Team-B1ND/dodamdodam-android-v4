@@ -34,6 +34,4 @@ class NewsFragment : BaseFragment<FragmentNewsBinding, NewsViewModel>() {
         transaction.replace(R.id.fcb_news_tab_container, tabList[position ?: 0], tabList[position ?: 0].tag)
         transaction.commit()
     }
-
-    override fun bindingViewEvent() {}
 }

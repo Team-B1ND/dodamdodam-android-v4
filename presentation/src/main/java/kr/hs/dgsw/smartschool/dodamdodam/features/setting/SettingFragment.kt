@@ -21,6 +21,4 @@ class SettingFragment : BaseFragment<FragmentSettingBinding, SettingViewModel>()
             startActivityWithFinishAll(SignInActivity::class.java)
         }
     }
-
-    override fun bindingViewEvent() {}
 }

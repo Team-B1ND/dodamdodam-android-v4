@@ -20,6 +20,7 @@ class LocationApplyFragment : BaseFragment<FragmentLocationApplyBinding, Locatio
     
     override fun observerViewModel() {
         initTimeTab()
+        initViewEvent()
         initPlaceRecyclerView()
         collectAllTime()
         collectPlace()
@@ -119,15 +120,11 @@ class LocationApplyFragment : BaseFragment<FragmentLocationApplyBinding, Locatio
         }
     }
 
-    override fun bindingViewEvent() {
-        with(viewModel) {
-            viewEvent.observe(this@LocationApplyFragment) {
-                it.getContentIfNotHandled()?.let { event ->
-                    when (event) {
-                        LocationApplyViewModel.EVENT_ON_CLICK_BACK -> findNavController().popBackStack()
-                        LocationApplyViewModel.EVENT_NO_TIME -> shortToast("시간표가 없습니다.")
-                    }
-                }
+    private fun initViewEvent() {
+        bindingViewEvent { event ->
+            when (event) {
+                LocationApplyViewModel.EVENT_ON_CLICK_BACK -> findNavController().popBackStack()
+                LocationApplyViewModel.EVENT_NO_TIME -> shortToast("시간표가 없습니다.")
             }
         }
     }

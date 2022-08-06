@@ -10,7 +10,4 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     override fun observerViewModel() {
 
     }
-
-    override fun bindingViewEvent() {}
-
 }

@@ -59,6 +59,4 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
             )
         )
     }
-
-    override fun bindingViewEvent() {}
 }

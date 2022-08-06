@@ -11,6 +11,4 @@ class MyNewsFragment : BaseFragment<FragmentMyNewsBinding, MyNewsViewModel>() {
     override fun observerViewModel() {
 
     }
-
-    override fun bindingViewEvent() {}
 }

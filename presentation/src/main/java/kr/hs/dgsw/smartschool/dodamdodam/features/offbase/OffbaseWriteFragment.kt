@@ -10,7 +10,4 @@ class OffbaseWriteFragment: BaseFragment<FragmentOffbaseBinding, OffbaseWriteVie
     override fun observerViewModel() {
 
     }
-
-    override fun bindingViewEvent() {}
-
 }

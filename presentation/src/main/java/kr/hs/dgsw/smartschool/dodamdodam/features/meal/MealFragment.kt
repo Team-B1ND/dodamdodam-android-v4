@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.meal
 
 import android.app.DatePickerDialog
-import android.graphics.Color
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,15 +22,59 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
     private var mealList = listOf<Meal>()
 
     override fun observerViewModel() {
-        bindingViewEvent()
-        with(viewModel) {
-            targetDate.observe(this@MealFragment) {
-                mBinding.tvDate.text = it.toString()
+        bindingViewEvent { event ->
+            when (event) {
+                MealViewModel.EVENT_CLICK_DATE -> showDateDialog()
+                MealViewModel.EVENT_UPDATE_DATE -> getMeal(mealList)
             }
+        }
 
+        viewModel.targetDate.observe(this@MealFragment) {
+            mBinding.tvDate.text = it.toString()
+        }
+
+        collectMealState()
+    }
+
+    private fun showDateDialog() {
+        with(viewModel) {
+            targetDate.value?.also {
+                val year = it.year
+                val month = it.monthValue
+                val day = it.dayOfMonth
+
+                val datePickerDialog =
+                    DatePickerDialog(
+                        requireContext(),
+                        R.style.MyDatePickerDialogTheme,
+                        { _, y, m, d ->
+                            val cal = Calendar.getInstance()
+                            cal.set(y, m + 1, d)
+                            setTargetDate(LocalDate.of(y, m + 1, d))
+                            if (month != m + 1) {
+                                getMealList()
+                                return@DatePickerDialog
+                            }
+                            getMeal(mealList)
+                        },
+                        year,
+                        month - 1,
+                        day
+                    )
+                datePickerDialog.show()
+                datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE)
+                    .setTextColor(R.color.main)
+                datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)
+                    .setTextColor(R.color.main)
+            }
+        }
+    }
+
+    private fun collectMealState() {
+        with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 mealState.collect { state ->
-                    if (mealState.value.meal.isNotEmpty()) {
+                    if (state.meal.isNotEmpty()) {
                         mealList = mealState.value.meal
                         getMeal(mealList)
                     }
@@ -47,41 +90,6 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                             )
                         )
                         shortToast(state.error)
-                    }
-                }
-            }
-        }
-    }
-
-    override fun bindingViewEvent() {
-        with(viewModel) {
-            viewEvent.observe(this@MealFragment) { it ->
-                it.getContentIfNotHandled()?.let { event ->
-                    when (event) {
-                        MealViewModel.EVENT_CLICK_DATE -> {
-                            targetDate.value?.also {
-                                val year = it.year
-                                val month = it.monthValue
-                                val day = it.dayOfMonth
-
-                                val datePickerDialog = DatePickerDialog(requireContext(), R.style.MyDatePickerDialogTheme, { _, y, m, d ->
-                                    val cal = Calendar.getInstance()
-                                    cal.set(y, m + 1, d)
-                                    setTargetDate(LocalDate.of(y, m + 1, d))
-                                    if (month != m + 1) {
-                                        getMealList()
-                                        return@DatePickerDialog
-                                    }
-                                    getMeal(mealList)
-                                }, year, month - 1, day)
-                                datePickerDialog.show()
-                                datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(R.color.main);
-                                datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setTextColor(R.color.main);
-                            }
-                        }
-                        MealViewModel.EVENT_UPDATE_DATE -> {
-                            getMeal(mealList)
-                        }
                     }
                 }
             }
