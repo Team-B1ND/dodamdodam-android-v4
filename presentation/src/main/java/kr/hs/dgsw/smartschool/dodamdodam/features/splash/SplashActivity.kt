@@ -4,9 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceManager
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
 import kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`.SignInActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinish
 
