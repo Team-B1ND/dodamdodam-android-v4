@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.home
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -61,7 +62,10 @@ class HomeViewModel @Inject constructor(
     fun getMyLocation() {
         locationUseCases.getMyLocation(LocalDate.now().toString()).divideResult(
             isGetMyLocationLoading,
-            { _getMyLocationState.value = GetMyLocationState(myLocations = it ?: emptyList()) },
+            {
+                _getMyLocationState.value = GetMyLocationState(myLocations = it ?: emptyList())
+                it?.forEach { placeList -> Log.d("TestTest", "getMyLocation: ${placeList.place?.name}") }
+            },
             { _getMyLocationState.value = GetMyLocationState(error = it?: "위치를 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)
     }

@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.LocationCheckAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealHomeAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.TodaySongAdapter
@@ -39,7 +40,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         setMealListViewPager()
         collectMealState()
         collectDataSetUpDate()
-        collectMyLocation()
         initViewEvent()
     }
 
@@ -59,6 +59,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 dataSetUpState.collect { state ->
                     if (state.result != null) {
                         getMyLocation()
+                        collectMyLocation()
                     }
 
                     if (state.error.isNotBlank()) {

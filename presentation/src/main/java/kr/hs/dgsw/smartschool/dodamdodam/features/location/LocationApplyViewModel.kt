@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.location
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -8,7 +7,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.domain.model.location.Location
 import kr.hs.dgsw.smartschool.domain.model.location.LocationInfo
@@ -19,7 +17,6 @@ import kr.hs.dgsw.smartschool.domain.usecase.location.PostLocation
 import kr.hs.dgsw.smartschool.domain.usecase.location.PutLocation
 import kr.hs.dgsw.smartschool.domain.usecase.place.GetAllPlaceUseCase
 import kr.hs.dgsw.smartschool.domain.usecase.time.TimeUseCases
-import kr.hs.dgsw.smartschool.domain.util.Resource
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -67,31 +64,6 @@ class LocationApplyViewModel @Inject constructor(
         _currentTime.value = time
     }
 
-    private fun getPlace() {
-        getAllPlaceUseCase(Unit).divideResult(
-            isGetMyLocationLoading,
-            { _getPlaceState.value = GetPlaceState(place = it ?: emptyList()) },
-            { _getPlaceState.value = GetPlaceState(error = it ?: "장소를 받아오지 못하였습니다.") }
-        ).launchIn(viewModelScope)
-    }
-
-    private fun getTimeTable() {
-        timeUseCases.getAllTime(Unit).divideResult(
-            isTimeTableLoading,
-            { _getAllTimeState.value = GetAllTimeState(timeTable = it ?: emptyList()) },
-            { _getAllTimeState.value = GetAllTimeState(error = it ?: "시간을 받아오지 못하였습니다.") }
-        ).launchIn(viewModelScope)
-    }
-
-    fun getMyLocation() {
-        val today = LocalDate.now().toString()
-        locationUseCases.getMyLocation(today).divideResult(
-            isGetMyLocationLoading,
-            { _getMyLocationState.value = GetMyLocationState(myLocations = it ?: emptyList()) },
-            { _getMyLocationState.value = GetMyLocationState(error = it ?: "자신의 위치를 받아오지 못하였습니다.") }
-        ).launchIn(viewModelScope)
-    }
-
     fun changeLocation(place: Place) {
         currentTime.value?.apply {
             val currentTimeTable = timeTable.value?.get(this) ?: return
@@ -135,6 +107,31 @@ class LocationApplyViewModel @Inject constructor(
             isApplyLocationLoading,
             { _applyLocationState.value = ApplyLocationState(message = "$timeName 위치 삭제 성공") },
             { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 삭제에 실패했습니다.")}
+        ).launchIn(viewModelScope)
+    }
+
+    private fun getPlace() {
+        getAllPlaceUseCase(Unit).divideResult(
+            isGetMyLocationLoading,
+            { _getPlaceState.value = GetPlaceState(place = it ?: emptyList()) },
+            { _getPlaceState.value = GetPlaceState(error = it ?: "장소를 받아오지 못하였습니다.") }
+        ).launchIn(viewModelScope)
+    }
+
+    private fun getTimeTable() {
+        timeUseCases.getAllTime(Unit).divideResult(
+            isTimeTableLoading,
+            { _getAllTimeState.value = GetAllTimeState(timeTable = it ?: emptyList()) },
+            { _getAllTimeState.value = GetAllTimeState(error = it ?: "시간을 받아오지 못하였습니다.") }
+        ).launchIn(viewModelScope)
+    }
+
+    fun getMyLocation() {
+        val today = LocalDate.now().toString()
+        locationUseCases.getMyLocation(today).divideResult(
+            isGetMyLocationLoading,
+            { _getMyLocationState.value = GetMyLocationState(myLocations = it ?: emptyList()) },
+            { _getMyLocationState.value = GetMyLocationState(error = it ?: "자신의 위치를 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)
     }
 
