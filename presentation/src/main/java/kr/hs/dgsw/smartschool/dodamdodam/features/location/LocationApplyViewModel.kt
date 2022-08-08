@@ -115,38 +115,27 @@ class LocationApplyViewModel @Inject constructor(
     }
 
     private fun changeLocationRemote(params: PostLocation.Params, timeName: String) {
-        locationUseCases.postLocation(params).onEach { result ->
-            handleApplyLocationState(result, "$timeName 위치 신청 성공")
-        }.launchIn(viewModelScope)
+        locationUseCases.postLocation(params).divideResult(
+            isApplyLocationLoading,
+            { _applyLocationState.value = ApplyLocationState(message = "$timeName 위치 신청 성공") },
+            { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 신청에 실패했습니다.")}
+        ).launchIn(viewModelScope)
     }
 
     private fun putLocationRemote(params: PutLocation.Params, timeName: String) {
-        Log.d("TestTest", "putLocationRemote: ${params.location.placeIdx}  ${params.idx}")
-        locationUseCases.putLocation(params).onEach { result ->
-            handleApplyLocationState(result, "$timeName 위치 수정 성공")
-        }.launchIn(viewModelScope)
+        locationUseCases.putLocation(params).divideResult(
+            isApplyLocationLoading,
+            { _applyLocationState.value = ApplyLocationState(message = "$timeName 위치 수정 성공") },
+            { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 수정에 실패했습니다.")}
+        ).launchIn(viewModelScope)
     }
 
     private fun deleteLocationRemote(idx: Int, timeName: String) {
-        locationUseCases.deleteLocation(idx).onEach { result ->
-            handleApplyLocationState(result, "$timeName 위치 삭제 성공")
-        }.launchIn(viewModelScope)
-    }
-
-    private fun handleApplyLocationState(result: Resource<String>, message: String) {
-        when (result) {
-            is Resource.Success -> {
-                _applyLocationState.value = ApplyLocationState(message = message)
-                isApplyLocationLoading.value = false
-            }
-            is Resource.Loading -> {
-                isApplyLocationLoading.value = true
-            }
-            is Resource.Error -> {
-                _applyLocationState.value = ApplyLocationState(error = result.message ?: "위치 수정에 실패하였습니다.")
-                isApplyLocationLoading.value = false
-            }
-        }
+        locationUseCases.deleteLocation(idx).divideResult(
+            isApplyLocationLoading,
+            { _applyLocationState.value = ApplyLocationState(message = "$timeName 위치 삭제 성공") },
+            { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 삭제에 실패했습니다.")}
+        ).launchIn(viewModelScope)
     }
 
     fun setTimeTable(timeTable: List<Time>) {
