@@ -62,9 +62,6 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUp()
-        mViewModel.onErrorEvent.observe(viewLifecycleOwner) {
-            onErrorEvent(it)
-        }
         observerViewModel()
         (activity as? MainActivity)?.setNavVisible(!hasBottomNav)
     }

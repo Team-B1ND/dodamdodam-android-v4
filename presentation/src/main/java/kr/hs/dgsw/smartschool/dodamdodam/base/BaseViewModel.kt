@@ -11,7 +11,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.Event
 import kr.hs.dgsw.smartschool.domain.util.Resource
 
 open class BaseViewModel : ViewModel() {
-
     protected val isLoading: MediatorLiveData<Boolean> = MediatorLiveData()
     fun getIsLoading(): LiveData<Boolean> {
         return isLoading
@@ -50,6 +49,4 @@ open class BaseViewModel : ViewModel() {
             }
         }
     }
-
-    val onErrorEvent = MutableLiveData<Throwable>()
 }

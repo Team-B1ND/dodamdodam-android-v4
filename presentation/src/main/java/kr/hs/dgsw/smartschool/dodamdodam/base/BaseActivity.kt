@@ -45,10 +45,6 @@ abstract class BaseActivity<VB : ViewDataBinding, VM: BaseViewModel> : AppCompat
 
         performDataBinding()
         observerViewModel()
-
-        mViewModel.onErrorEvent.observe(this) {
-            onErrorEvent(it)
-        }
     }
 
     private fun performDataBinding() {

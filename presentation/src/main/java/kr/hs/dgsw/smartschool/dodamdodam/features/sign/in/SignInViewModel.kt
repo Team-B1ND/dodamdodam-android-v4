@@ -28,7 +28,6 @@ class SignInViewModel @Inject constructor(
 
     fun onClickSignIn() {
         if (id.value.isNullOrBlank() || pw.value.isNullOrBlank()) {
-            onErrorEvent.value = Throwable("아이디와 패스워드를 입력해 주세요")
             return
         }
         signIn()
