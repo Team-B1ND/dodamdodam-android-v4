@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
+
         <variable
             name="vm"
-            type="kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.StudyRoomApplyViewModel" />
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.location.LocationApplyViewModel" />
     </data>
 
     <LinearLayout
@@ -14,13 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/color_white"
         tools:context=".view.fragment.LocationApplyFragment">
-
-        <ProgressBar
-            android:layout_width="30dp"
-            android:visibility="gone"
-            android:layout_height="match_parent"
-            android:layout_gravity="center" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_title"
@@ -32,6 +29,7 @@
 
             <include
                 android:id="@+id/btn_back"
+                android:onClick="@{() -> vm.onClickBack()}"
                 layout="@layout/item_back_button"/>
 
             <TextView
@@ -52,7 +50,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabGravity="fill"
-            app:tabIndicatorColor="@android:color/transparent"
+            android:layout_marginTop="10dp"
+            android:textSize="@dimen/title6"
+            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
+            android:layout_marginBottom="5dp"
+            app:tabSelectedTextColor="@color/main"
+            app:tabIndicatorColor="@color/main"
             app:tabIndicatorGravity="bottom" />
 
         <TextView
@@ -63,13 +66,22 @@
             android:textColor="@color/gray700"
             android:fontFamily="@font/nanum_square_regular"
             android:includeFontPadding="false"
-            android:textSize="@dimen/title4" />
+            android:layout_marginVertical="5dp"
+            android:textSize="@dimen/title6" />
+
+        <ProgressBar
+            visibility="@{vm.isLoading}"
+            android:indeterminateTint="@color/main"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_place"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="15dp"
+            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="3"
             tools:itemCount="30"

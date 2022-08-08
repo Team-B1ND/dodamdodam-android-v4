@@ -22,10 +22,18 @@ import java.util.*
 abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
 
     protected lateinit var mBinding: VB
-    protected lateinit var mViewModel: VM
+    private lateinit var mViewModel: VM
     protected abstract val viewModel: VM
 
     protected abstract fun observerViewModel()
+
+    protected fun bindingViewEvent(action: (event: Any) -> Unit) {
+        viewModel.viewEvent.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let { event ->
+                action.invoke(event)
+            }
+        }
+    }
 
     protected open val hasBottomNav: Boolean = false
 
@@ -54,9 +62,6 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUp()
-        mViewModel.onErrorEvent.observe(viewLifecycleOwner) {
-            onErrorEvent(it)
-        }
         observerViewModel()
         (activity as? MainActivity)?.setNavVisible(!hasBottomNav)
     }

@@ -36,44 +36,41 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         mBinding.tvPointDate.text = "$date 기준"
 
         setPieChart()
-        bindingViewEvent()
         collectMyInfo()
         collectBonusPoint()
         collectMinusPoint()
         setPointCard(0)
         setSwipeRefresh()
+        initViewEvent()
     }
 
-    private fun bindingViewEvent() {
-        with(viewModel) {
-            viewEvent.observe(this@ProfileFragment) {
-                it.getContentIfNotHandled()?.let { event ->
-                    when(event) {
-                        ProfileViewModel.EVENT_CHANGE_SELECTED -> {
-                            if (dormitorySelected.value == true)
-                                setPointCard(0)
-                            else
-                                setPointCard(1)
-                        }
-                        ProfileViewModel.EVENT_GO_EDIT_PROFILE -> {
-                            val navAction = ProfileFragmentDirections.actionMainProfileToEditProfileFragment(
-                                email,
-                                phone,
-                                profileImage,
-                                memberId
-                            )
-                            findNavController().navigate(navAction)
-                        }
-                        ProfileViewModel.EVENT_ON_CLICK_BUS -> {
-                            findNavController().navigate(R.id.action_main_profile_to_busFragment)
-                        }
-                        ProfileViewModel.EVENT_ON_CLICK_SETTING -> {
-                            findNavController().navigate(R.id.action_main_profile_to_settingFragment)
-                        }
-                    }
-                }
+    private fun initViewEvent() {
+        bindingViewEvent { event ->
+            when (event) {
+                ProfileViewModel.EVENT_CHANGE_SELECTED -> changePointCard()
+                ProfileViewModel.EVENT_GO_EDIT_PROFILE -> startEditProfileFragment()
+                ProfileViewModel.EVENT_ON_CLICK_BUS -> findNavController().navigate(R.id.action_main_profile_to_busFragment)
+                ProfileViewModel.EVENT_ON_CLICK_SETTING -> findNavController().navigate(R.id.action_main_profile_to_settingFragment)
             }
         }
+    }
+
+    private fun changePointCard() {
+        if (viewModel.dormitorySelected.value == true)
+            setPointCard(0)
+        else
+            setPointCard(1)
+    }
+
+    private fun startEditProfileFragment() {
+        val navAction =
+            ProfileFragmentDirections.actionMainProfileToEditProfileFragment(
+                email,
+                phone,
+                profileImage,
+                memberId
+            )
+        findNavController().navigate(navAction)
     }
 
     private fun collectMyInfo() {

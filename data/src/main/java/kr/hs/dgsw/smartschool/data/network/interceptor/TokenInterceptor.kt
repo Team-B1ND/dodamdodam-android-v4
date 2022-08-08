@@ -96,7 +96,7 @@ class TokenInterceptor @Inject constructor(
     private fun getTokenToLogin() {
         runBlocking(appDispatcher.io) {
             val account = accountDataSource.getAccount()
-            signInUseCase(account.id, account.pw, false).onEach {
+            signInUseCase(SignInUseCase.Params(account.id, account.pw, false)).onEach {
                 if (it is Resource.Success)
                     setToken()
             }

@@ -14,7 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentEditProfileBinding
-import kr.hs.dgsw.smartschool.dodamdodam.features.sign.up.SignUpDetailViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getExtension
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getRealPathFromURI
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
@@ -33,7 +32,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfile
         bindClickEvent()
         collectEditProfileResult()
         collectUploadImgResult()
-        bindingViewEvent()
+        initViewEvent()
     }
 
     private fun bindClickEvent() {
@@ -121,17 +120,13 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfile
         }
     }
 
-    private  fun bindingViewEvent() {
-        with(viewModel) {
-            viewEvent.observe(this@EditProfileFragment) {
-                it.getContentIfNotHandled()?.let { event ->
-                    when(event) {
-                        EditProfileViewModel.EVENT_EMPTY -> shortToast("입력란을 모두 채워 주세요.")
-                        EditProfileViewModel.EVENT_NOT_PHONE_NUMBER -> shortToast("전화번호 형식이 일치하지 않습니다.")
-                        EditProfileViewModel.EVENT_NOT_MATCH_FORM -> shortToast("형식이 일치하지 않습니다.")
-                        EditProfileViewModel.EVENT_NOT_EMAIL -> shortToast("이메일 형식이 일치하지 않습니다.")
-                    }
-                }
+    private fun initViewEvent() {
+        bindingViewEvent { event ->
+            when (event) {
+                EditProfileViewModel.EVENT_EMPTY -> shortToast("입력란을 모두 채워 주세요.")
+                EditProfileViewModel.EVENT_NOT_PHONE_NUMBER -> shortToast("전화번호 형식이 일치하지 않습니다.")
+                EditProfileViewModel.EVENT_NOT_MATCH_FORM -> shortToast("형식이 일치하지 않습니다.")
+                EditProfileViewModel.EVENT_NOT_EMAIL -> shortToast("이메일 형식이 일치하지 않습니다.")
             }
         }
     }

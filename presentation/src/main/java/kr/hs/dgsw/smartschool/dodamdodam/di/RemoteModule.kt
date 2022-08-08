@@ -8,6 +8,7 @@ import kr.hs.dgsw.smartschool.data.network.api.*
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.remote.MealRemote
 import kr.hs.dgsw.smartschool.data.network.remote.*
+import kr.hs.dgsw.smartschool.domain.model.place.Place
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -51,4 +52,23 @@ class RemoteModule {
     fun providePointRemote(retrofit: Retrofit): PointRemote =
         PointRemote(retrofit.create(PointApi::class.java))
 
+    @Singleton
+    @Provides
+    fun provideTimeRemote(retrofit: Retrofit): TimeRemote =
+        TimeRemote(retrofit.create(TimeApi::class.java))
+
+    @Singleton
+    @Provides
+    fun providePlaceRemote(retrofit: Retrofit): PlaceRemote =
+        PlaceRemote(retrofit.create(PlaceApi::class.java))
+
+    @Singleton
+    @Provides
+    fun provideLocationRemote(retrofit: Retrofit): LocationRemote =
+        LocationRemote(retrofit.create(LocationApi::class.java))
+
+    @Singleton
+    @Provides
+    fun provideClassInfoRemote(retrofit: Retrofit): ClassInfoRemote =
+        ClassInfoRemote(retrofit.create(ClassInfoApi::class.java))
 }

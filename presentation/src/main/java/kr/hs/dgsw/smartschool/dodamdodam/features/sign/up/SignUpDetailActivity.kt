@@ -22,6 +22,7 @@ class SignUpDetailActivity : BaseActivity<ActivitySignUpDetailBinding, SignUpDet
     override fun observerViewModel() {
         collectSignUpState()
         setLinkedTextView()
+        initViewEvent()
 
         val intent = intent
         viewModel.id = intent.getStringExtra("id") ?: ""
@@ -80,18 +81,14 @@ class SignUpDetailActivity : BaseActivity<ActivitySignUpDetailBinding, SignUpDet
         mBinding.btnSignUp.isEnabled = !state
     }
 
-    override fun bindingViewEvent() {
-        with(viewModel) {
-            viewEvent.observe(this@SignUpDetailActivity) {
-                it.getContentIfNotHandled()?.let { event ->
-                    when(event) {
-                        SignUpDetailViewModel.EVENT_EMPTY -> shortToast("입력란을 모두 채워 주세요.")
-                        SignUpDetailViewModel.EVENT_NOT_PHONE_NUMBER -> shortToast("전화번호 형식이 일치하지 않습니다.")
-                        SignUpDetailViewModel.EVENT_NOT_AGREE -> shortToast("방침에 동의해 주세요.")
-                        SignUpDetailViewModel.EVENT_NOT_MATCH_FORM -> shortToast("형식이 일치하지 않습니다.")
-                        SignUpDetailViewModel.EVENT_NOT_EMAIL -> shortToast("이메일 형식이 일치하지 않습니다.")
-                    }
-                }
+    private fun initViewEvent() {
+        bindingViewEvent { event ->
+            when(event) {
+                SignUpDetailViewModel.EVENT_EMPTY -> shortToast("입력란을 모두 채워 주세요.")
+                SignUpDetailViewModel.EVENT_NOT_PHONE_NUMBER -> shortToast("전화번호 형식이 일치하지 않습니다.")
+                SignUpDetailViewModel.EVENT_NOT_AGREE -> shortToast("방침에 동의해 주세요.")
+                SignUpDetailViewModel.EVENT_NOT_MATCH_FORM -> shortToast("형식이 일치하지 않습니다.")
+                SignUpDetailViewModel.EVENT_NOT_EMAIL -> shortToast("이메일 형식이 일치하지 않습니다.")
             }
         }
     }

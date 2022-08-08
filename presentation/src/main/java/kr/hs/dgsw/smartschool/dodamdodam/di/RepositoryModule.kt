@@ -50,4 +50,24 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun providePointRepository(pointRepositoryImpl: PointRepositoryImpl): PointRepository = pointRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideLocationRepository(locationRepositoryImpl: LocationRepositoryImpl): LocationRepository = locationRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideTimeRepository(timeRepositoryImpl: TimeRepositoryImpl): TimeRepository = timeRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun providePlaceRepository(placeRepositoryImpl: PlaceRepositoryImpl): PlaceRepository = placeRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideClassInfoRepository(classInfoRepositoryImpl: ClassInfoRepositoryImpl): ClassInfoRepository = classInfoRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideDataSetUpRepository(dataSetUpRepositoryImpl: DataSetUpRepositoryImpl): DataSetUpRepository = dataSetUpRepositoryImpl
 }

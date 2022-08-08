@@ -1,28 +1,21 @@
 package kr.hs.dgsw.smartschool.domain.usecase.point
 
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
 import kr.hs.dgsw.smartschool.domain.model.point.MyYearPoint
 import kr.hs.dgsw.smartschool.domain.repository.PointRepository
 import kr.hs.dgsw.smartschool.domain.util.Resource
-import kr.hs.dgsw.smartschool.domain.util.Utils
-import retrofit2.HttpException
-import java.io.IOException
 import javax.inject.Inject
 
 class GetMyPoint @Inject constructor(
-    override val repository: PointRepository
-): BaseUseCase<PointRepository>() {
-    operator fun invoke(year: String, type: Int): Flow<Resource<MyYearPoint>> = flow {
-        try {
-            emit(Resource.Loading())
-            val result = repository.getMyPoint(year, type)
-            emit(Resource.Success<MyYearPoint>(result))
-        } catch (e: HttpException) {
-            emit(Resource.Error(Utils.convertErrorBody(e)))
-        } catch (e: IOException) {
-            emit(Resource.Error(Utils.NETWORK_ERROR_MESSAGE))
-        }
+    val repository: PointRepository
+): BaseUseCase<GetMyPoint.Params, MyYearPoint>() {
+    override operator fun invoke(params: Params): Flow<Resource<MyYearPoint>> = execute {
+        repository.getMyPoint(params.year, params.type)
     }
+
+    data class Params(
+        val year: String,
+        val type: Int
+    )
 }

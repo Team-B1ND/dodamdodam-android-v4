@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="kr.hs.dgsw.smartschool.dodamdodam.features.home.HomeViewModel" />
@@ -13,17 +15,17 @@
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/layout_drawer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/color_background"
             android:orientation="vertical">
 
-            <androidx.core.widget.NestedScrollView
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="?attr/actionBarSize">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -41,21 +43,23 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginStart="20dp"
+                            android:onClick="@{() -> vm.onClickMenu()}"
                             android:src="@drawable/ic_btn_menu"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/color_black"
                             tools:ignore="ContentDescription" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_regular"
+                            android:includeFontPadding="false"
                             android:text="@string/project_name"
                             android:textColor="@color/main"
                             android:textSize="@dimen/title2"
                             android:textStyle="bold"
-                            android:fontFamily="@font/nanum_square_regular"
-                            android:includeFontPadding="false"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -71,11 +75,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="15sp"
+                            android:fontFamily="@font/notosans_kr_bold"
+                            android:includeFontPadding="false"
                             android:text="@string/study_room_apply"
                             android:textColor="@color/color_black"
                             android:textSize="@dimen/title4"
-                            android:fontFamily="@font/notosans_kr_bold"
-                            android:includeFontPadding="false"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -83,15 +87,24 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycler_study_room"
+                        android:id="@+id/recycler_location_check"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:overScrollMode="never"
+                        android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:spanCount="2"
                         tools:itemCount="4"
-                        tools:listitem="@layout/item_study_room" />
+                        tools:listitem="@layout/item_location_check" />
+
+                    <include
+                        android:id="@+id/progress_loading_location"
+                        layout="@layout/item_loading_progressbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -102,9 +115,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="15sp"
-                            android:text="@string/home_meal"
                             android:fontFamily="@font/notosans_kr_bold"
                             android:includeFontPadding="false"
+                            android:text="@string/home_meal"
                             android:textColor="@color/color_black"
                             android:textSize="@dimen/title4"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -115,23 +128,23 @@
                             android:id="@+id/tv_meal_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="6.10"
+                            android:layout_marginStart="5dp"
                             android:fontFamily="@font/nanum_square_regular"
                             android:includeFontPadding="false"
                             android:textColor="@color/gray500"
                             android:textSize="@dimen/title6"
-                            android:layout_marginStart="5dp"
+                            app:layout_constraintBaseline_toBaselineOf="@id/tv_meal_title"
                             app:layout_constraintStart_toEndOf="@id/tv_meal_title"
-                            app:layout_constraintBaseline_toBaselineOf="@id/tv_meal_title" />
+                            tools:text="6.10" />
 
                         <TextView
                             android:id="@+id/tv_meal_more"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="15dp"
-                            android:onClick="on"
                             android:fontFamily="@font/nanum_square_regular"
                             android:includeFontPadding="false"
+                            android:onClick="@{() -> vm.onClickMealMore()}"
                             android:text="@string/more"
                             android:textColor="@color/gray500"
                             app:layout_constraintBaseline_toBaselineOf="@id/tv_meal_title"
@@ -139,13 +152,13 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <ProgressBar
-                        android:id="@+id/progress_loading"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                    <include
+                        android:id="@+id/progress_loading_meal"
+                        layout="@layout/item_loading_progressbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:indeterminateTint="@color/main"
-                        />
+                        android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}" />
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/view_pager_meal_list"
@@ -154,6 +167,7 @@
                         android:clipChildren="false"
                         android:clipToPadding="false"
                         android:orientation="horizontal"
+                        android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -166,9 +180,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="15sp"
-                            android:text="@string/home_song"
                             android:fontFamily="@font/notosans_kr_bold"
                             android:includeFontPadding="false"
+                            android:text="@string/home_song"
                             android:textColor="@color/color_black"
                             android:textSize="@dimen/title4"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -180,10 +194,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="15dp"
-                            android:onClick="on"
-                            android:text="@string/more"
                             android:fontFamily="@font/nanum_square_regular"
                             android:includeFontPadding="false"
+                            android:onClick="@{() -> vm.onClickSongMore()}"
+                            android:text="@string/more"
                             android:textColor="@color/gray500"
                             app:layout_constraintBaseline_toBaselineOf="@id/tv_today_song_home"
                             app:layout_constraintEnd_toEndOf="parent" />
@@ -209,12 +223,12 @@
                             android:id="@+id/tv_more_function"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
                             android:layout_marginStart="15dp"
+                            android:layout_marginTop="15dp"
                             android:layout_marginBottom="10dp"
-                            android:text="@string/text_more_function"
                             android:fontFamily="@font/notosans_kr_bold"
                             android:includeFontPadding="false"
+                            android:text="@string/text_more_function"
                             android:textColor="@color/color_black"
                             android:textSize="@dimen/title4"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -232,8 +246,8 @@
                             android:id="@+id/card_baek_rank"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:layout_marginTop="5dp"
                             android:layout_marginStart="20dp"
+                            android:layout_marginTop="5dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="10dp"
                             app:cardCornerRadius="@dimen/card_corner"
@@ -254,9 +268,9 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="16dp"
-                                    android:text="@string/title_baek_rank"
                                     android:fontFamily="@font/nanum_square_regular"
                                     android:includeFontPadding="false"
+                                    android:text="@string/title_baek_rank"
                                     android:textColor="@color/main"
                                     android:textSize="@dimen/title3"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -268,9 +282,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="16dp"
                                     android:layout_marginTop="7dp"
-                                    android:text="@string/text_baek_rank_card_desc"
                                     android:fontFamily="@font/nanum_square_regular"
                                     android:includeFontPadding="false"
+                                    android:text="@string/text_baek_rank_card_desc"
                                     android:textColor="@color/color_black"
                                     android:textSize="@dimen/title5"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -303,9 +317,9 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="16dp"
-                                    android:text="@string/title_lost_and_found"
                                     android:fontFamily="@font/nanum_square_regular"
                                     android:includeFontPadding="false"
+                                    android:text="@string/title_lost_and_found"
                                     android:textColor="@color/main"
                                     android:textSize="@dimen/title3"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -317,11 +331,11 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="16dp"
                                     android:layout_marginTop="7dp"
+                                    android:fontFamily="@font/nanum_square_regular"
+                                    android:includeFontPadding="false"
                                     android:text="@string/text_lost_and_found"
                                     android:textColor="@color/color_black"
                                     android:textSize="@dimen/title5"
-                                    android:fontFamily="@font/nanum_square_regular"
-                                    android:includeFontPadding="false"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@id/tv_lost_found" />
 
@@ -367,9 +381,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="16dp"
                                     android:layout_marginTop="7dp"
-                                    android:text="@string/text_it_map_desc"
                                     android:fontFamily="@font/nanum_square_regular"
                                     android:includeFontPadding="false"
+                                    android:text="@string/text_it_map_desc"
                                     android:textColor="@color/color_black"
                                     android:textSize="@dimen/title5"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -379,19 +393,19 @@
                         </androidx.cardview.widget.CardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
-            </androidx.core.widget.NestedScrollView>
+            </ScrollView>
         </LinearLayout>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"
-            android:background="@drawable/background_drawer"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:itemIconSize="@dimen/drawer_icon_size"
-            app:itemIconTint="@color/main"
+            android:background="@drawable/background_drawer"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/nav_header"
+            app:itemIconSize="@dimen/drawer_icon_size"
+            app:itemIconTint="@color/main"
             app:menu="@menu/nav_drawer_menu" />
 
     </androidx.drawerlayout.widget.DrawerLayout>
