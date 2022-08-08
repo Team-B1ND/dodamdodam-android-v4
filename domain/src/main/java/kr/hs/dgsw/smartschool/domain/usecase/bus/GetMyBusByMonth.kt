@@ -1,17 +1,16 @@
-package kr.hs.dgsw.b1nd.dodamdodam.domain.usecase.bus
+package kr.hs.dgsw.smartschool.domain.usecase.bus
 
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.request.MyBusByMonthRequest
 import kr.hs.dgsw.smartschool.domain.util.Resource
-import retrofit2.HttpException
-import java.io.IOException
 import javax.inject.Inject
 
 class GetMyBusByMonth @Inject constructor(
     private val busRepository: BusRepository
+<<<<<<< HEAD
 ){
     operator fun invoke(
         request: MyBusByMonthRequest
@@ -25,5 +24,10 @@ class GetMyBusByMonth @Inject constructor(
         }catch (e: IOException){
             Resource.Error<List<Bus>>("Couldn't reach server. Check your internet connection")
         }
+=======
+): BaseUseCase<Unit, List<Bus>>() {
+    override fun invoke(params: Unit): Flow<Resource<List<Bus>>> = execute {
+        busRepository.getMyBusByMonth()
+>>>>>>> dev
     }
 }

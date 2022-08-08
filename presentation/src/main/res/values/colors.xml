@@ -13,12 +13,16 @@
     <color name="main_500">#500067BC</color>
     <color name="main_700">#700067BC</color>
 
+    <color name="color_shadow">#66000000</color>
+
     <color name="color_white">#FFFFFF</color>
     <color name="color_black">#000000</color>
 
     <color name="gray200">#CACACA</color>
     <color name="gray500">#999999</color>
     <color name="gray700">#6A6A6A</color>
+    <color name="color_soft_gray">#EEEEEE</color>
+    <color name="color_light_gray">#FAFAFA</color>
 
     <color name="color_breakfast">#FCA800</color>
     <color name="color_lunch">#3DBDE5</color>
@@ -33,4 +37,7 @@
     <color name="color_blue_light">#5555FF</color>
     <color name="color_red_light">#FF5555</color>
     <color name="color_yellow_light">#FFDD55</color>
+
+    <color name="color_bonus">#0067BC</color>
+    <color name="color_minus">#F97E6D</color>
 </resources>

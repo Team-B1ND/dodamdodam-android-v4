@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.data.mapper
 
-import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseEntityMapper
 import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal

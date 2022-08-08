@@ -22,7 +22,14 @@ abstract class BaseActivity<VB : ViewDataBinding, VM: BaseViewModel> : AppCompat
     protected abstract val viewModel: VM
 
     protected abstract fun observerViewModel()
-    protected abstract fun bindingViewEvent()
+
+    protected fun bindingViewEvent(action: (event: Any) -> Unit) {
+        viewModel.viewEvent.observe(this@BaseActivity) {
+            it.getContentIfNotHandled()?.let { event ->
+                action.invoke(event)
+            }
+        }
+    }
 
     protected open fun onErrorEvent(e: Throwable) {
         shortToast(e.message)
@@ -38,11 +45,6 @@ abstract class BaseActivity<VB : ViewDataBinding, VM: BaseViewModel> : AppCompat
 
         performDataBinding()
         observerViewModel()
-        bindingViewEvent()
-
-        mViewModel.onErrorEvent.observe(this) {
-            onErrorEvent(it)
-        }
     }
 
     private fun performDataBinding() {

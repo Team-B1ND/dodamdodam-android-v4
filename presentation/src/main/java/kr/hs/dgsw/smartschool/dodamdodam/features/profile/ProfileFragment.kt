@@ -2,44 +2,83 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.profile
 
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentProfileBinding
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
+import java.time.LocalDate
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>() {
     override val viewModel: ProfileViewModel by viewModels()
     override val hasBottomNav: Boolean = true
 
-    var email: String = ""
-    var phone: String = ""
-    var memberId: String = ""
-    var profileImage: String = ""
+    private var email: String = ""
+    private var phone = ""
+    private var memberId: String = ""
+    private var profileImage: String = ""
+    private val date: LocalDate = LocalDate.now()
+
+    private var schoolMinusPoint: Int? = null
+    private var dormitoryMinusPoint: Int? = null
+    private var schoolBonusPoint: Int? = null
+    private var dormitoryBonusPoint: Int? = null
 
     override fun observerViewModel() {
-        mBinding.cardBus.setOnClickListener {
-            findNavController().navigate(R.id.action_main_profile_to_busFragment)
-        }
-        mBinding.cardSetting.setOnClickListener {
-            findNavController().navigate(R.id.action_main_profile_to_settingFragment)
-        }
+        mBinding.tvPointDate.text = "$date 기준"
 
-        setSwipeRefresh()
+        setPieChart()
         collectMyInfo()
-        goEditProfile()
+        collectBonusPoint()
+        collectMinusPoint()
+        setPointCard(0)
+        setSwipeRefresh()
+        initViewEvent()
+    }
+
+    private fun initViewEvent() {
+        bindingViewEvent { event ->
+            when (event) {
+                ProfileViewModel.EVENT_CHANGE_SELECTED -> changePointCard()
+                ProfileViewModel.EVENT_GO_EDIT_PROFILE -> startEditProfileFragment()
+                ProfileViewModel.EVENT_ON_CLICK_BUS -> findNavController().navigate(R.id.action_main_profile_to_busFragment)
+                ProfileViewModel.EVENT_ON_CLICK_SETTING -> findNavController().navigate(R.id.action_main_profile_to_settingFragment)
+            }
+        }
+    }
+
+    private fun changePointCard() {
+        if (viewModel.dormitorySelected.value == true)
+            setPointCard(0)
+        else
+            setPointCard(1)
+    }
+
+    private fun startEditProfileFragment() {
+        val navAction =
+            ProfileFragmentDirections.actionMainProfileToEditProfileFragment(
+                email,
+                phone,
+                profileImage,
+                memberId
+            )
+        findNavController().navigate(navAction)
     }
 
     private fun collectMyInfo() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 myInfoState.collect { state ->
-                    if (myInfoState.value.myInfo != null) {
-                        with(myInfoState.value.myInfo!!) {
+                    if (state.myInfo != null) {
+                        with(state.myInfo) {
                             val generation = "%d%d%02d".format(grade, room, number)
                             setProfileInfo(generation, name, email, profileImage ?: "")
                             setNavData(email, phone, id, profileImage ?: "")
@@ -59,14 +98,82 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         }
     }
 
-    private fun goEditProfile() {
-        mBinding.btnGoInfoUpdate.setOnClickListener {
-            val navAction = ProfileFragmentDirections.actionMainProfileToEditProfileFragment(email, phone, profileImage, memberId)
-            findNavController().navigate(navAction)
+    private fun collectBonusPoint() {
+        with(viewModel) {
+            lifecycleScope.launchWhenStarted {
+                myBonusPointState.collect { state ->
+                    if (state.bonusPoint != null) {
+                        dormitoryBonusPoint = state.bonusPoint.yearScore.dormitoryPoint
+                        schoolBonusPoint = state.bonusPoint.yearScore.schoolPoint
+                        setPointCard(0)
+                    }
+
+                    if (state.error.isNotBlank()) {
+                        shortToast(state.error)
+                    }
+                }
+            }
         }
     }
 
-    private fun setProfileInfo(generation: String, name: String, email: String, profileImage: String) {
+    private fun collectMinusPoint() {
+        with(viewModel) {
+            lifecycleScope.launchWhenStarted {
+                myMinusPointState.collect { state ->
+                    if (state.minusPoint != null) {
+                        dormitoryMinusPoint = state.minusPoint.yearScore.dormitoryPoint
+                        schoolMinusPoint = state.minusPoint.yearScore.schoolPoint
+                        setPointCard(0)
+                    }
+
+                    if (state.error.isNotBlank()) {
+                        shortToast(state.error)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setPointCard(target: Int) {
+        if (target == 0) {
+            mBinding.tvBonusPoint.text = (dormitoryBonusPoint ?: 0).toString() + "점"
+            mBinding.tvMinusPoint.text = (dormitoryMinusPoint ?: 0).toString() + "점"
+            updatePieChart(dormitoryBonusPoint ?: 0, dormitoryMinusPoint ?: 0)
+        } else {
+            mBinding.tvBonusPoint.text = (schoolBonusPoint ?: 0).toString() + "점"
+            mBinding.tvMinusPoint.text = (schoolMinusPoint ?: 0).toString() + "점"
+            updatePieChart(schoolBonusPoint ?: 0, schoolMinusPoint ?: 0)
+        }
+    }
+
+    private fun updatePieChart(bonusPoint: Int, minusPoint: Int) {
+        if (bonusPoint == 0 && minusPoint == 0) {
+            mBinding.tvNoData.visibility = View.VISIBLE
+            mBinding.chartPoint.visibility = View.INVISIBLE
+        } else {
+            mBinding.tvNoData.visibility = View.GONE
+            mBinding.chartPoint.visibility = View.VISIBLE
+            PieDataSet(
+                listOf(
+                    PieEntry(minusPoint.toFloat()),
+                    PieEntry(bonusPoint.toFloat())
+                ), "My Point"
+            ).apply {
+                setColors(intArrayOf(R.color.color_minus, R.color.color_bonus), context)
+                setDrawValues(false)
+                setDrawIcons(false)
+                mBinding.chartPoint.data = PieData(this)
+                mBinding.chartPoint.invalidate()
+            }
+        }
+    }
+
+    private fun setProfileInfo(
+        generation: String,
+        name: String,
+        email: String,
+        profileImage: String
+    ) {
         mBinding.tvGeneration.text = generation
         mBinding.tvId.text = name
         mBinding.tvEmail.text = email
@@ -83,6 +190,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         this.phone = phone
         this.memberId = memberId
         this.profileImage = profileImage
+    }
+
+    private fun setPieChart() {
+        mBinding.chartPoint.apply {
+            isRotationEnabled = false
+            description.isEnabled = false
+            holeRadius = 0F
+            isDrawHoleEnabled = false
+            legend.isEnabled = false
+            setNoDataText("데이터가 없습니다.")
+        }
     }
 
     private fun setSwipeRefresh() {

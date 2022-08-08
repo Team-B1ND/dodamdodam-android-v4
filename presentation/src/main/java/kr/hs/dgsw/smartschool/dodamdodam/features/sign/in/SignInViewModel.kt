@@ -6,12 +6,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.removeBlankInString
 import kr.hs.dgsw.smartschool.domain.usecase.auth.SignInUseCase
-import kr.hs.dgsw.smartschool.domain.util.Resource
-import kr.hs.dgsw.smartschool.domain.util.Utils
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,33 +28,19 @@ class SignInViewModel @Inject constructor(
 
     fun onClickSignIn() {
         if (id.value.isNullOrBlank() || pw.value.isNullOrBlank()) {
-            onErrorEvent.value = Throwable("아이디와 패스워드를 입력해 주세요")
             return
         }
         signIn()
     }
 
     private fun signIn() {
-        signInUseCase(
+        signInUseCase(SignInUseCase.Params(
             id = id.value?.removeBlankInString() ?: "",
             pw = pw.value?.removeBlankInString() ?: ""
-        ).onEach { result ->
-            when(result) {
-                is Resource.Success -> {
-                    viewEvent(EVENT_SUCCESS_SIGN_IN)
-                    isLoading.value = false
-                }
-                is Resource.Loading -> {
-                    _signInState.value = SignInState(isLoading = true)
-                    isLoading.value = true
-                }
-                is Resource.Error -> {
-                    _signInState.value = SignInState(
-                        error = result.message ?: "로그인에 실패하였습니다."
-                    )
-                    isLoading.value = false
-                }
-            }
-        }.launchIn(viewModelScope)
+        )).divideResult(
+            isLoading,
+            { viewEvent(EVENT_SUCCESS_SIGN_IN) },
+            { _signInState.value = SignInState(error = it ?: "로그인에 실패하였습니다.") }
+        ).launchIn(viewModelScope)
     }
 }

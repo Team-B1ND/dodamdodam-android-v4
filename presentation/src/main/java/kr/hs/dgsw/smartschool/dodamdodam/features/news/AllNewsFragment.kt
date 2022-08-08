@@ -10,5 +10,4 @@ class AllNewsFragment: BaseFragment<FragmentAllNewsBinding, AllNewsViewModel>() 
 
     override fun observerViewModel() {
     }
-
 }

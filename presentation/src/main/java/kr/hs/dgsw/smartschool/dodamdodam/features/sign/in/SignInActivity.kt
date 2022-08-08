@@ -26,25 +26,20 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
                 }
             }
         }
+        bindingViewEvent { event ->
+            when(event) {
+                SignInViewModel.EVENT_SUCCESS_SIGN_IN -> startMainActivity()
+            }
+        }
 
         mBinding.tvSignUp.setOnClickListener {
             startActivity(SignUpActivity::class.java)
         }
     }
 
-    override fun bindingViewEvent() {
-        with(viewModel) {
-            viewEvent.observe(this@SignInActivity) {
-                it.getContentIfNotHandled()?.let { event ->
-                    when(event) {
-                        SignInViewModel.EVENT_SUCCESS_SIGN_IN -> {
-                            if (mBinding.checkAutoSignIn.isChecked)
-                                SharedPreferenceManager.signIn(this@SignInActivity)
-                            startActivityWithFinishAll(MainActivity::class.java)
-                        }
-                    }
-                }
-            }
-        }
+    private fun startMainActivity() {
+        if (mBinding.checkAutoSignIn.isChecked)
+            SharedPreferenceManager.signIn(this@SignInActivity)
+        startActivityWithFinishAll(MainActivity::class.java)
     }
 }

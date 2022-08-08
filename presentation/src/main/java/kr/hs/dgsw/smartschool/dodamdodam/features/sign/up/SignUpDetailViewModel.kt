@@ -1,18 +1,15 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.sign.up
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.isNotEmailValid
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.isNotPhoneNumberValid
 import kr.hs.dgsw.smartschool.domain.usecase.auth.SignUpUseCase
-import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 
 @HiltViewModel
@@ -70,7 +67,6 @@ class SignUpDetailViewModel @Inject constructor(
     }
 
     private fun signUp() {
-        Log.d("TestTest", "signUp: $id $pw ${email.value} ${phone.value} ${name.value} ${grade.value} ${room.value} ${number.value}")
         signUpUseCase(
             SignUpUseCase.Params(
                 id = id,
@@ -82,24 +78,11 @@ class SignUpDetailViewModel @Inject constructor(
                 classroom = room.value ?: "0",
                 number = number.value ?: "0"
             )
-        ).onEach { result ->
-            when(result) {
-                is Resource.Success -> {
-                    isLoading.value = false
-                    _signUpState.value = SignUpState(result = result.data ?: "")
-                }
-                is Resource.Loading -> {
-                    isLoading.value = true
-                    _signUpState.value = SignUpState(isLoading = true)
-                }
-                is Resource.Error -> {
-                    isLoading.value = false
-                    _signUpState.value = SignUpState(
-                        error = result.message ?: "회원가입에 실패했습니다."
-                    )
-                }
-            }
-        }.launchIn(viewModelScope)
+        ).divideResult(
+            isLoading,
+            { _signUpState.value = SignUpState(result = it ?: "") },
+            { _signUpState.value = SignUpState(error = it ?: "회원가입에 실패했습니다.") }
+        ).launchIn(viewModelScope)
     }
 
     companion object {

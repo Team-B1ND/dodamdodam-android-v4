@@ -1,15 +1,14 @@
-package kr.hs.dgsw.b1nd.dodamdodam.domain.usecase.bus
+package kr.hs.dgsw.smartschool.domain.usecase.bus
 
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.util.Resource
-import retrofit2.HttpException
-import java.io.IOException
 import javax.inject.Inject
 
 class DeleteBusApply @Inject constructor(
     private val busRepository: BusRepository
+<<<<<<< HEAD
 ){
     operator fun invoke(
         idx : Int
@@ -23,5 +22,10 @@ class DeleteBusApply @Inject constructor(
         }catch (e: IOException){
             Resource.Error<String>("Couldn't reach server. Check your internet connection")
         }
+=======
+) : BaseUseCase<Unit, String>() {
+    override fun invoke(params: Unit): Flow<Resource<String>> = execute {
+        busRepository.deleteBusApply()
+>>>>>>> dev
     }
 }

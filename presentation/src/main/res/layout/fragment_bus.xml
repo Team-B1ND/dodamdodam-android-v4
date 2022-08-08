@@ -57,7 +57,7 @@
             android:textSize="@dimen/title3" />
 
         <include
-            android:id="@+id/progress_circular"
+            android:id="@+id/progress_circular_info"
             layout="@layout/item_loading_progressbar"
             android:layout_width="50dp"
             android:layout_height="50dp"
