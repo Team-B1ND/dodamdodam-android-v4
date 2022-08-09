@@ -1,14 +1,18 @@
 package kr.hs.dgsw.smartschool.dodamdodam.di
 
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceManager
 import kr.hs.dgsw.smartschool.data.network.api.*
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.remote.MealRemote
 import kr.hs.dgsw.smartschool.data.network.remote.*
+import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.domain.model.place.Place
+import kr.hs.dgsw.smartschool.domain.repository.SongRepository
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -71,4 +75,11 @@ class RemoteModule {
     @Provides
     fun provideClassInfoRemote(retrofit: Retrofit): ClassInfoRemote =
         ClassInfoRemote(retrofit.create(ClassInfoApi::class.java))
+
+    @Singleton
+    @Provides
+    fun provideSongRemote(retrofit: Retrofit, context: Context): SongRemote =
+        SongRemote(retrofit.create(SongApi::class.java),
+            SharedPreferenceManager.getDefaultSharedPreferences(context)
+                .getString(context.getString(R.string.pref_key_thumbnail), "default")!!)
 }
