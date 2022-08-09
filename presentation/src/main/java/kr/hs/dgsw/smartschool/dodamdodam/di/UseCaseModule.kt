@@ -19,6 +19,7 @@ import kr.hs.dgsw.smartschool.domain.usecase.point.PointUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.setup.DataSetUp
 import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.setup.TeacherSetUp
+import kr.hs.dgsw.smartschool.domain.usecase.song.*
 import kr.hs.dgsw.smartschool.domain.usecase.time.GetAllTime
 import kr.hs.dgsw.smartschool.domain.usecase.time.GetStartTime
 import kr.hs.dgsw.smartschool.domain.usecase.time.TimeUseCases
@@ -100,5 +101,15 @@ class UseCaseModule {
         TimeUseCases(
             getAllTime = GetAllTime(timeRepository),
             getStartTime = GetStartTime(timeRepository)
+        )
+
+    @Provides
+    @Singleton
+    fun provideSongUseCases(songRepository: SongRepository): SongUseCases =
+        SongUseCases(
+            getAllowSong = GetAllowSong(songRepository),
+            getMySong = GetMySong(songRepository),
+            getPendingSong = GetPendingSong(songRepository),
+            postSong = PostSong(songRepository)
         )
 }

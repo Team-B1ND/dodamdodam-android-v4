@@ -33,5 +33,4 @@ class SongRepositoryImpl @Inject constructor(
     override suspend fun postDenySong(request: SongCheckRequest): String {
         return songDataSource.postDenySong(request)
     }
-
 }
