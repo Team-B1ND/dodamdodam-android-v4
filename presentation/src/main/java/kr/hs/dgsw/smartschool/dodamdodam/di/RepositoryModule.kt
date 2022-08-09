@@ -70,4 +70,8 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideDataSetUpRepository(dataSetUpRepositoryImpl: DataSetUpRepositoryImpl): DataSetUpRepository = dataSetUpRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideSongRepository(songRepositoryImpl: SongRepositoryImpl): SongRepository = songRepositoryImpl
 }

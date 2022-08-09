@@ -73,9 +73,9 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
     private fun collectMealState() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
-                mealState.collect { state ->
+                getMealState.collect { state ->
                     if (state.meal.isNotEmpty()) {
-                        mealList = mealState.value.meal
+                        mealList = getMealState.value.meal
                         getMeal(mealList)
                     }
 

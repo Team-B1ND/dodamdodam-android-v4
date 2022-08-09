@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="song"
+            type="kr.hs.dgsw.smartschool.domain.model.song.Video" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -52,6 +54,7 @@
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="5dp"
                     android:src="@drawable/default_img"
+                    android:text="@{song.videoTitle}"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/title6"
                     tools:text="오늘의 노래 히히" />

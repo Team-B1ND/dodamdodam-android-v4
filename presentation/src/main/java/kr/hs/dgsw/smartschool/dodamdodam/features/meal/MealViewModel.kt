@@ -23,8 +23,8 @@ class MealViewModel @Inject constructor(
         const val EVENT_UPDATE_DATE = 2
     }
 
-    private val _mealState = MutableStateFlow(MealState(isLoading = false))
-    val mealState: StateFlow<MealState> = _mealState
+    private val _getMealState = MutableStateFlow(GetMealState(isLoading = false))
+    val getMealState: StateFlow<GetMealState> = _getMealState
 
     private val _targetDate = MutableLiveData<LocalDate>()
     val targetDate: LiveData<LocalDate> get() = _targetDate
@@ -49,8 +49,8 @@ class MealViewModel @Inject constructor(
            )
         ).divideResult(
             isLoading,
-            { _mealState.value = MealState(meal = it ?: emptyList()) },
-            { _mealState.value = MealState(error = it ?: "급식을 받아오지 못하였습니다.") }
+            { _getMealState.value = GetMealState(meal = it ?: emptyList()) },
+            { _getMealState.value = GetMealState(error = it ?: "급식을 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)
     }
 

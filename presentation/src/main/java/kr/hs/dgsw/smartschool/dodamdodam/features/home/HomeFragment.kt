@@ -2,14 +2,14 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.home
 
 import android.util.Log
 import android.view.Gravity
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.LocationCheckAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealHomeAdapter
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.TodaySongAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.adapter.SongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentHomeBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
@@ -18,7 +18,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
-import kr.hs.dgsw.smartschool.domain.model.song.Song
+import kr.hs.dgsw.smartschool.domain.model.song.VideoYoutubeData
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
@@ -33,6 +33,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private lateinit var mealHomeAdapter: MealHomeAdapter
 
     private lateinit var locationCheckAdapter: LocationCheckAdapter
+    private lateinit var songAdapter: SongAdapter
 
     override fun observerViewModel() {
         setLocationRecyclerView()
@@ -40,6 +41,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         setMealListViewPager()
         collectMealState()
         collectDataSetUpDate()
+        collectSongList()
         initViewEvent()
     }
 
@@ -99,9 +101,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             getMealList(date)
 
             lifecycleScope.launchWhenStarted {
-                mealState.collect { state ->
+                getMealState.collect { state ->
                     if (state.meal.isNotEmpty()) {
-                        mealList = mealState.value.meal
+                        mealList = getMealState.value.meal
                         getMeal(mealList, date)
                     }
                     if (state.error.isNotBlank()) {
@@ -118,6 +120,34 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                     }
                 }
             }
+        }
+    }
+
+    private fun collectSongList() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.getAllowSongState.collect { state ->
+                if (state.songList.isNotEmpty()) {
+                    songAdapter.submitList(state.songList.mapNotNull(VideoYoutubeData::source))
+                    setEmptySongView(false)
+                } else {
+                    setEmptySongView(true)
+                }
+
+                if (state.error.isNotBlank()) {
+                    shortToast(state.error)
+                    setEmptySongView(true)
+                }
+            }
+        }
+    }
+
+    private fun setEmptySongView(isEmptySongList: Boolean) {
+        if (isEmptySongList) {
+            mBinding.tvEmptySong.visibility = View.VISIBLE
+            mBinding.viewPagerMealList.visibility = View.GONE
+        } else {
+            mBinding.tvEmptySong.visibility = View.GONE
+            mBinding.viewPagerMealList.visibility = View.VISIBLE
         }
     }
 
@@ -158,30 +188,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun setUpTodaySong() {
-        val todaySongAdapter = TodaySongAdapter()
-        mBinding.viewPagerTodaySong.adapter = todaySongAdapter
+        songAdapter = SongAdapter()
+        mBinding.viewPagerTodaySong.adapter = songAdapter
         mBinding.viewPagerTodaySong.offscreenPageLimit = 3
         mBinding.viewPagerTodaySong.setPadding(90, 0, 90, 0)
         mBinding.viewPagerTodaySong.setPageTransformer(getTransform())
-        todaySongAdapter.submitList(
-            listOf(
-                Song(
-                    "(G)I-DLE 'TOMBOY' Lyrics ((여자)아이들 TOMBOY 가사) (Color Coded Lyrics)",
-                    "https://i.ytimg.com/vi/E6W835snlNg/maxresdefault.jpg",
-                    ""
-                ),
-                Song(
-                    "BTS X Coldplay My Universe Lyrics (방탄소년단 콜드플레이 My Universe 가사) [Color Coded Lyrics/Han/Rom/Eng]",
-                    "https://i.ytimg.com/vi/nHKk8MTXgds/maxresdefault.jpg",
-                    ""
-                ),
-                Song(
-                    "\uD83C\uDFC6발매와 함께 빌보드 1위 달성 : Harry Styles - As It Was [가사/해석/번역/lyrics]",
-                    "https://i.ytimg.com/vi/OMRZevAb_jU/maxresdefault.jpg",
-                    ""
-                )
-            )
-        )
     }
 
     private fun setLocationRecyclerView() {

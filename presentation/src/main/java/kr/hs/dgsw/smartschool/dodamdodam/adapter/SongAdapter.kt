@@ -9,19 +9,19 @@ import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.SongDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemTodaySongBinding
-import kr.hs.dgsw.smartschool.domain.model.song.Song
+import kr.hs.dgsw.smartschool.domain.model.song.Video
 
-class TodaySongAdapter : ListAdapter<Song, TodaySongAdapter.TodaySongViewHolder>(SongDiffUtilCallback) {
+class SongAdapter : ListAdapter<Video, SongAdapter.TodaySongViewHolder>(SongDiffUtilCallback) {
 
     class TodaySongViewHolder(val binding: ItemTodaySongBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Song) {
-            binding.tvTodaySong.text = item.songTitle
-
-            Glide.with(binding.root)
-                .load(item.songImage)
-                .error(R.drawable.default_img)
+        fun bind(item: Video) {
+            Glide.with(binding.ivTodaySong)
+                .load(item.thumbnail)
                 .centerCrop()
+                .error(R.drawable.default_img)
                 .into(binding.ivTodaySong)
+
+            binding.song = item
         }
     }
 
