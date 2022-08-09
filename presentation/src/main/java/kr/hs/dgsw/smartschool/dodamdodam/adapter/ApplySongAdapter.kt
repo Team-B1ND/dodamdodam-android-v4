@@ -8,19 +8,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.SongDiffUtilCallback
-import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemSongBinding
+import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemApplySongBinding
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.dateFormat
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateFormat
 import kr.hs.dgsw.smartschool.domain.model.song.Video
 
-class SongAdapter : ListAdapter<Video, SongAdapter.TodaySongViewHolder>(SongDiffUtilCallback) {
+class ApplySongAdapter : ListAdapter<Video, ApplySongAdapter.TodaySongViewHolder>(SongDiffUtilCallback) {
 
-    class TodaySongViewHolder(val binding: ItemSongBinding) : RecyclerView.ViewHolder(binding.root) {
+    class TodaySongViewHolder(val binding: ItemApplySongBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Video) {
-            Glide.with(binding.ivTodaySong)
+            Glide.with(binding.ivSong)
                 .load(item.thumbnail)
                 .centerCrop()
                 .error(R.drawable.default_img)
-                .into(binding.ivTodaySong)
+                .into(binding.ivSong)
 
+            binding.tvApplySongDate.text = item.submitDate?.yearDateFormat()
             binding.song = item
         }
     }
@@ -29,7 +32,7 @@ class SongAdapter : ListAdapter<Video, SongAdapter.TodaySongViewHolder>(SongDiff
         return TodaySongViewHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.item_song,
+                R.layout.item_apply_song,
                 parent,
                 false
             )

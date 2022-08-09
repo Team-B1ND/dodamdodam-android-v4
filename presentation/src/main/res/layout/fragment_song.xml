@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="kr.hs.dgsw.smartschool.dodamdodam.features.song.SongViewModel" />
@@ -54,22 +56,54 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/view_pager_today_song"
-            android:layout_width="match_parent"
+        <include
+            android:id="@+id/progress_circular"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/constraint_main_text_container" />
+            app:layout_constraintTop_toBottomOf="@id/constraint_main_text_container"
+            layout="@layout/item_loading_progressbar"
+            android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_tomorrow_song_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/constraint_main_text_container">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager_tomorrow_song"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <include
+                android:id="@+id/tv_empty_song"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                layout="@layout/item_empty_song"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraint_body_text_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/view_pager_today_song">
+            app:layout_constraintTop_toBottomOf="@id/layout_tomorrow_song_container">
 
             <TextView
                 android:id="@+id/tv_application"
@@ -85,17 +119,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_my"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
-                app:thumbTint="@color/main"
-                app:trackTint="@color/gray200"
-                android:text="@string/my"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <ToggleButton
+                android:layout_width="78dp"
+                android:layout_height="26dp"
+                android:background="@drawable/background_song_toggle"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="15dp"
+                android:textOff=""
+                android:textOn="" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -108,16 +141,17 @@
             app:layout_constraintTop_toBottomOf="@id/constraint_body_text_container" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_now_song"
+            android:id="@+id/recycler_apply_song"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
+            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/constraint_body_text_container"
-            tools:listitem="@layout/item_now_song" />
+            tools:listitem="@layout/item_apply_song" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:layout_width="wrap_content"

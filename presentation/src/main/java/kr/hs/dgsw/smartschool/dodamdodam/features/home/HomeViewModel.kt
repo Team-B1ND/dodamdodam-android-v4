@@ -83,18 +83,19 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getAllowSong() {
-        val today = Date()
-        /*songUseCases.getAllowSong(GetAllowSong.Params(
-            year = today.yearFormat().toInt(),
-            month = today.monthFormat().toInt(),
-            date = today.monthFormat().toInt(),
+        val today = LocalDate.now()
+        songUseCases.getAllowSong(GetAllowSong.Params(
+            year = today.year,
+            month = today.monthValue,
+            date = today.dayOfMonth,
         )).divideResult(
             isGetAllowSongLoading,
             { songList -> _getAllowSongState.value = GetAllowSongState(songList = songList ?: emptyList()) },
             { message -> _getAllowSongState.value = GetAllowSongState(error = message ?: "기상송을 받아오지 못했습니다.")}
-        ).launchIn(viewModelScope)*/
+        ).launchIn(viewModelScope)
 
-        songUseCases.getAllowSong(GetAllowSong.Params(
+        // test
+        /*songUseCases.getAllowSong(GetAllowSong.Params(
             year = 2022,
             month = 6,
             date = 13,
@@ -102,7 +103,7 @@ class HomeViewModel @Inject constructor(
             isGetAllowSongLoading,
             { songList -> _getAllowSongState.value = GetAllowSongState(songList = songList ?: emptyList()) },
             { message -> _getAllowSongState.value = GetAllowSongState(error = message ?: "기상송을 받아오지 못했습니다.")}
-        ).launchIn(viewModelScope)
+        ).launchIn(viewModelScope)*/
     }
 
     fun onClickSongMore() {
