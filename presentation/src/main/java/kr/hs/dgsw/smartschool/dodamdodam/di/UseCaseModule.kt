@@ -5,6 +5,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.domain.repository.*
+import kr.hs.dgsw.smartschool.domain.usecase.account.AccountUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.account.DeleteAccount
+import kr.hs.dgsw.smartschool.domain.usecase.account.GetAccount
 import kr.hs.dgsw.smartschool.domain.usecase.bus.*
 import kr.hs.dgsw.smartschool.domain.usecase.location.*
 import kr.hs.dgsw.smartschool.domain.usecase.meal.DeleteMeal
@@ -111,5 +114,13 @@ class UseCaseModule {
             getMySong = GetMySong(songRepository),
             getPendingSong = GetPendingSong(songRepository),
             postSong = PostSong(songRepository)
+        )
+
+    @Provides
+    @Singleton
+    fun provideAccountUseCases(accountRepository: AccountRepository): AccountUseCases =
+        AccountUseCases(
+            getAccount = GetAccount(accountRepository),
+            deleteAccount = DeleteAccount(accountRepository)
         )
 }

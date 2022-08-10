@@ -10,6 +10,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentSongBinding
 import kr.hs.dgsw.smartschool.dodamdodam.util.ViewPagerUtils.getTransform
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
+import kr.hs.dgsw.smartschool.domain.model.song.Video
 import kr.hs.dgsw.smartschool.domain.model.song.VideoYoutubeData
 import java.time.LocalDate
 
@@ -21,12 +22,22 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
     private lateinit var songAdapter: SongAdapter
     private lateinit var applySongAdapter: ApplySongAdapter
 
+    private var pendingSongList: List<Video> = emptyList()
+    private var mySongList: List<Video> = emptyList()
+
     override fun observerViewModel() {
         mBinding.tvSongDate.text = LocalDate.now().plusDays(1).toString()
         setUpTomorrowSong()
         setUpPendingSong()
         collectSongList()
+        collectMySongList()
         collectPendingSongList()
+
+        bindingViewEvent { event ->
+            when(event) {
+                SongViewModel.EVENT_ON_CLICK_TOGGLE -> changeRecyclerShow()
+            }
+        }
     }
 
     private fun collectSongList() {
@@ -50,14 +61,47 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
     private fun collectPendingSongList() {
         lifecycleScope.launchWhenStarted {
             viewModel.getPendingSongState.collect { state ->
-                if (state.songList.isNotEmpty())
-                    applySongAdapter.submitList(state.songList.mapNotNull(VideoYoutubeData::source).sortedBy {
-                        it.submitDate
-                    })
+                if (state.songList.isNotEmpty()) {
+                    pendingSongList = state.songList.mapNotNull(VideoYoutubeData::source)
+                        .sortedBy { it.submitDate }
+                    changeRecyclerShow()
+                }
 
                 if (state.error.isNotBlank())
                     shortToast(state.error)
             }
+        }
+    }
+
+    private fun collectMySongList() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.getMySongState.collect { state ->
+                if (state.songList.isNotEmpty()) {
+                    mySongList = state.songList.mapNotNull(VideoYoutubeData::source)
+                        .sortedBy { it.submitDate }
+                        .filter { it.playDate == null }
+                    changeRecyclerShow()
+                }
+
+                if (state.error.isNotBlank())
+                    shortToast(state.error)
+            }
+        }
+    }
+
+    private fun changeRecyclerShow() {
+        if (viewModel.songType.value == true) {
+            if(pendingSongList.isEmpty()) {
+                viewModel.getApplySong()
+                return
+            }
+            applySongAdapter.submitList(pendingSongList)
+        } else {
+            if(mySongList.isEmpty()) {
+                viewModel.getMySong()
+                return
+            }
+            applySongAdapter.submitList(mySongList)
         }
     }
 

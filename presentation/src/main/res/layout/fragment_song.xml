@@ -31,8 +31,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="@string/tomorrow_song"
                 android:fontFamily="@font/gotham_bold"
+                android:text="@string/tomorrow_song"
                 android:textColor="@color/main"
                 android:textSize="@dimen/title2"
                 android:textStyle="bold"
@@ -58,13 +58,13 @@
 
         <include
             android:id="@+id/progress_circular"
+            layout="@layout/item_loading_progressbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/constraint_main_text_container"
-            layout="@layout/item_loading_progressbar"
-            android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"/>
+            app:layout_constraintTop_toBottomOf="@id/constraint_main_text_container" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_tomorrow_song_container"
@@ -82,20 +82,20 @@
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <include
                 android:id="@+id/tv_empty_song"
+                layout="@layout/item_empty_song"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                layout="@layout/item_empty_song"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -110,9 +110,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:text="@string/now_song_application"
                 android:fontFamily="@font/notosans_kr_bold"
                 android:includeFontPadding="false"
+                android:text="@string/now_song_application"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title4"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -122,13 +122,15 @@
             <ToggleButton
                 android:layout_width="78dp"
                 android:layout_height="26dp"
-                android:background="@drawable/background_song_toggle"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginEnd="15dp"
+                android:background="@drawable/background_song_toggle"
+                android:checked="@{vm.songType}"
+                android:onClick="@{() -> vm.onClickToggle()}"
                 android:textOff=""
-                android:textOn="" />
+                android:textOn=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -159,9 +161,9 @@
             android:layout_margin="16dp"
             android:backgroundTint="@color/main"
             android:contentDescription="@string/fab_content_desc"
-            android:text="@string/add_wakeup_song"
             android:fontFamily="@font/nanum_square_regular"
             android:includeFontPadding="false"
+            android:text="@string/add_wakeup_song"
             android:textColor="@color/white"
             app:fabSize="auto"
             app:icon="@drawable/ic_btn_add"

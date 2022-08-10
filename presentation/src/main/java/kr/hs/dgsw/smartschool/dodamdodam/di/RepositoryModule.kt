@@ -74,4 +74,8 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideSongRepository(songRepositoryImpl: SongRepositoryImpl): SongRepository = songRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideAccountRepository(accountRepositoryImpl: AccountRepositoryImpl): AccountRepository = accountRepositoryImpl
 }
