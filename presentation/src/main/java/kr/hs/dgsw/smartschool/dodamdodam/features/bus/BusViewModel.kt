@@ -31,4 +31,5 @@ class BusViewModel @Inject constructor(
             { _busState.value = BusState(error = it ?: "버스를 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)
     }
+    private fun applyBus(){}
 }

@@ -4,10 +4,12 @@ data class BusUseCases(
     val getBus: GetBusList,
     val getMyBus : GetMyBus,
     val getMyBusMonth: GetMyBusByMonth,
-    val addBus: AddBus,
     val addBusApply: AddBusApply,
-    val updateBusInfo: UpdateBusInfo,
     val updateBusApply: UpdateBusApply,
     val deleteBusApply: DeleteBusApply,
+
+    //도담 티쳐
+    val addBus: AddBus,
+    val updateBusInfo: UpdateBusInfo,
     val deleteBus: DeleteBus
 )

@@ -5,6 +5,9 @@ import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.request.AddBusRequest
+import kr.hs.dgsw.smartschool.domain.request.MyBusByMonthRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusRequest
 import retrofit2.http.*
 
 interface BusApi {
@@ -16,7 +19,9 @@ interface BusApi {
     suspend fun getMyBus() : Response<BusData<Bus>>
 
     @GET("bus/self/apply")
-    suspend fun getMyBusByMonth() : Response<BusData<Bus>>
+    suspend fun getMyBusByMonth(
+        @Body myBusByMonthRequest: MyBusByMonthRequest
+    ) : Response<BusData<Bus>>
 
     @POST("bus")
     suspend fun addBus(
@@ -31,18 +36,12 @@ interface BusApi {
 
     @PUT("bus")
     suspend fun updateBus(
-        @Body busIdx : Int,
-        @Body busName : String,
-        @Body description: String,
-        @Body leaveTime: String,
-        @Body timeRequired: String,
-        @Body peopleLimit: Int
+        @Body updateBusRequest: UpdateBusRequest
     ):Response<Any>
 
     @PUT("bus/self")
     suspend fun updateBusApply(
-        @Body originBusIdx : Int,
-        @Body busIdx: Int
+        @Body updateBusApplyRequest: UpdateBusApplyRequest
     ):Response<Any>
 
 
