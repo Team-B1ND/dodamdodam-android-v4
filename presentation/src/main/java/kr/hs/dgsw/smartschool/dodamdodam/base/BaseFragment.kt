@@ -5,28 +5,46 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.isInvisible
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceManager
+import kr.hs.dgsw.smartschool.data.exception.TokenException
 import kr.hs.dgsw.smartschool.dodamdodam.BR
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
+import kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`.SignInActivity
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
 import java.lang.reflect.ParameterizedType
-import java.lang.reflect.Type
 import java.util.*
 
 abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
 
     protected lateinit var mBinding: VB
-    protected lateinit var mViewModel: VM
+    private lateinit var mViewModel: VM
     protected abstract val viewModel: VM
 
     protected abstract fun observerViewModel()
 
+    protected fun bindingViewEvent(action: (event: Any) -> Unit) {
+        viewModel.viewEvent.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let { event ->
+                action.invoke(event)
+            }
+        }
+    }
+
     protected open val hasBottomNav: Boolean = false
+
+    protected open fun onErrorEvent(e: Throwable) {
+        if (e is TokenException) {
+            SharedPreferenceManager.signOut(this.context!!.applicationContext)
+            startActivityWithFinishAll(SignInActivity::class.java)
+            shortToast(e.message)
+            return
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

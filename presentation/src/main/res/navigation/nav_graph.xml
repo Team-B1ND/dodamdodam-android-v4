@@ -7,6 +7,14 @@
         android:id="@+id/main_home"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.home.HomeFragment"
         android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_main_home_to_studyRoomApplyFragment"
+            app:destination="@id/studyRoomApplyFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/main_home" />
     </fragment>
     <fragment
         android:id="@+id/main_news"
@@ -70,5 +78,14 @@
         <argument
             android:name="memberId"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/studyRoomApplyFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.location.LocationApplyFragment"
+        android:label="StudyRoomApplyFragment" >
+        <argument
+            android:name="timeTable"
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
 </navigation>

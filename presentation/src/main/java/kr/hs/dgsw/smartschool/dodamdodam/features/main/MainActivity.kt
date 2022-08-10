@@ -23,7 +23,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         val navController = navHostFragment.navController
         mBinding.mainBottomNav
             .setupWithNavController(navController)
-
     }
 
     fun setNavVisible(demand: Boolean) {
@@ -37,6 +36,4 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     fun moveHomeToMeal() {
         mBinding.mainBottomNav.selectedItemId = R.id.main_meal
     }
-
-    override fun bindingViewEvent() {}
 }

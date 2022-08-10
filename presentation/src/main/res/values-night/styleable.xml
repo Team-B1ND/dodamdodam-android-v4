@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MealCardView">
+        <attr name="typeText" format="string" />
+        <attr name="mealText" format="string" />
+        <attr name="errorText" format="string" />
+        <attr name="dividerColor" format="color" />
+        <attr name="showLoading" format="boolean" />
+        <attr name="showError" format="boolean" />
+        <attr name="typeTextSize" format="float" />
+        <attr name="mealTextSize" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="DodamImageViewLayout">
+        <attr name="src" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="FloatingActionButton">
+        <attr name="fabDrawable" format="reference" />
+    </declare-styleable>
+</resources>

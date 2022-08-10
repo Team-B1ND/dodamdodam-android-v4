@@ -26,7 +26,9 @@ class TokenDataSource @Inject constructor(
     suspend fun getToken(): TokenEntity = cache.getToken()
 
     suspend fun updateNewToken(): TokenEntity =
-        insertNewToken(getToken().let { tokenEntity -> tokenMapper.mapToModel(tokenEntity) })
+        getToken()
+            .let { tokenEntity -> tokenMapper.mapToModel(tokenEntity) }
+            .let { insertNewToken(it) }
 
     suspend fun deleteToken() = cache.deleteToken()
 
