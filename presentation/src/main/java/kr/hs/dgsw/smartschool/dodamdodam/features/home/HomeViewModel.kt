@@ -4,9 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.location.GetMyLocationState
 import kr.hs.dgsw.smartschool.dodamdodam.features.meal.GetMealState
@@ -35,8 +34,8 @@ class HomeViewModel @Inject constructor(
     private val _getMealState = MutableStateFlow(GetMealState(isLoading = false))
     val getMealState: StateFlow<GetMealState> = _getMealState
 
-    private val _getMyLocationState = MutableStateFlow(GetMyLocationState())
-    val getMyLocationState: StateFlow<GetMyLocationState> = _getMyLocationState
+    private val _getMyLocationState = MutableSharedFlow<GetMyLocationState>()
+    val getMyLocationState: SharedFlow<GetMyLocationState> = _getMyLocationState
 
     private val _dataSetUpState = MutableStateFlow(DataSetUpState())
     val dataSetUpState: StateFlow<DataSetUpState> = _dataSetUpState
@@ -75,10 +74,10 @@ class HomeViewModel @Inject constructor(
         locationUseCases.getMyLocation(LocalDate.now().toString()).divideResult(
             isGetMyLocationLoading,
             {
-                _getMyLocationState.value = GetMyLocationState(myLocations = it ?: emptyList())
+                viewModelScope.launch { _getMyLocationState.emit(GetMyLocationState(myLocations = it ?: emptyList())) }
                 it?.forEach { placeList -> Log.d("TestTest", "getMyLocation: ${placeList.place?.name}") }
             },
-            { _getMyLocationState.value = GetMyLocationState(error = it?: "위치를 받아오지 못하였습니다.") }
+            { viewModelScope.launch { _getMyLocationState.emit(GetMyLocationState(error = it?: "위치를 받아오지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
 
