@@ -72,7 +72,7 @@ class SongViewModel @Inject constructor(
                 viewModelScope.launch { _getPendingSongState.emit(GetPendingSongState(songList = songList ?: emptyList())) }
             },
             { message -> viewModelScope.launch { _getPendingSongState.emit(GetPendingSongState(error = message ?: "기상송을 받아오지 못했습니다.")) } }
-        )
+        ).launchIn(viewModelScope)
     }
 
     fun getMySong() {
@@ -94,7 +94,12 @@ class SongViewModel @Inject constructor(
         viewEvent(EVENT_ON_CLICK_TOGGLE)
     }
 
+    fun onClickApplySong() {
+        viewEvent(EVENT_ON_CLICK_APPLY_SONG)
+    }
+
     companion object {
         const val EVENT_ON_CLICK_TOGGLE = 1
+        const val EVENT_ON_CLICK_APPLY_SONG = 2
     }
 }

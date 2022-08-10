@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="vm"
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.SongApplyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +23,8 @@
 
             <include
                 android:id="@+id/btn_back"
-                layout="@layout/item_back_button" />
+                layout="@layout/item_back_button"
+                android:onClick="@{() -> vm.onClickBack()}"/>
 
             <TextView
                 android:id="@+id/tv_song_apply_title"
@@ -73,7 +76,9 @@
                     android:hint="@string/text_youtube_link_hint"
                     android:padding="15dp"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:importantForAutofill="no"
+                    android:inputType="textUri" />
 
             </androidx.cardview.widget.CardView>
 

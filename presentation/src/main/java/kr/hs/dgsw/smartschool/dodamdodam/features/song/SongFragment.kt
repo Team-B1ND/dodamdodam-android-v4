@@ -4,7 +4,9 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.ApplySongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.SongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
@@ -38,6 +40,7 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
         bindingViewEvent { event ->
             when(event) {
                 SongViewModel.EVENT_ON_CLICK_TOGGLE -> changeRecyclerShow()
+                SongViewModel.EVENT_ON_CLICK_APPLY_SONG -> findNavController().navigate(R.id.action_main_song_to_songApplyFragment)
             }
         }
     }

@@ -17,10 +17,6 @@
             app:popUpTo="@id/main_home" />
     </fragment>
     <fragment
-        android:id="@+id/main_news"
-        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.news.NewsFragment"
-        android:label="NewsFragment" />
-    <fragment
         android:id="@+id/main_profile"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.profile.ProfileFragment"
         android:label="ProfileFragment" >
@@ -49,7 +45,17 @@
     <fragment
         android:id="@+id/main_song"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.SongFragment"
-        android:label="SongFragment" />
+        android:label="SongFragment" >
+        <action
+            android:id="@+id/action_main_song_to_songApplyFragment"
+            app:destination="@id/songApplyFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/main_song"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/main_meal"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.meal.MealFragment"
@@ -88,4 +94,8 @@
             android:defaultValue="0"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/songApplyFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.SongApplyFragment"
+        android:label="SongApplyFragment" />
 </navigation>
