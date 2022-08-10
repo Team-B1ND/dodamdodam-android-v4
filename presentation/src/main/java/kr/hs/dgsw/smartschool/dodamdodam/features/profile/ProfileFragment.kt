@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.profile
 
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData

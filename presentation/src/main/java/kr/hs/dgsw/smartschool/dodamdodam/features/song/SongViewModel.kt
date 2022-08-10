@@ -1,14 +1,13 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.song
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.domain.usecase.account.AccountUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetAllowSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
 import java.time.LocalDate
@@ -23,8 +22,8 @@ class SongViewModel @Inject constructor(
     private val _getAllowSongState = MutableStateFlow<GetAllowSongState>(GetAllowSongState())
     val getAllowSongState: StateFlow<GetAllowSongState> = _getAllowSongState
 
-    private val _getPendingSongState = MutableStateFlow<GetPendingSongState>(GetPendingSongState())
-    val getPendingSongState: StateFlow<GetPendingSongState> = _getPendingSongState
+    private val _getPendingSongState = MutableSharedFlow<GetPendingSongState>()
+    val getPendingSongState: SharedFlow<GetPendingSongState> = _getPendingSongState
 
     private val _getMySongState = MutableStateFlow<GetMySongState>(GetMySongState())
     val getMySongState: StateFlow<GetMySongState> = _getMySongState
@@ -41,7 +40,7 @@ class SongViewModel @Inject constructor(
         getApplySong()
     }
     
-    private fun getTomorrowSong() {
+    fun getTomorrowSong() {
         val today = LocalDate.now().plusDays(1)
         /*songUseCases.getAllowSong(
             GetAllowSong.Params(
@@ -68,9 +67,12 @@ class SongViewModel @Inject constructor(
     fun getApplySong() {
         songUseCases.getPendingSong(Unit).divideResult(
             isGetPendingSongLoading,
-            { songList -> _getPendingSongState.value = GetPendingSongState(songList = songList ?: emptyList()) },
-            { message -> _getPendingSongState.value = GetPendingSongState(error = message ?: "기상송을 받아오지 못했습니다.")}
-        ).launchIn(viewModelScope)
+            { songList ->
+                Log.d("Refreshing", "getApplySong: viewmodel")
+                viewModelScope.launch { _getPendingSongState.emit(GetPendingSongState(songList = songList ?: emptyList())) }
+            },
+            { message -> viewModelScope.launch { _getPendingSongState.emit(GetPendingSongState(error = message ?: "기상송을 받아오지 못했습니다.")) } }
+        )
     }
 
     fun getMySong() {

@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.song
 
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -29,7 +30,8 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
         mBinding.tvSongDate.text = LocalDate.now().plusDays(1).toString()
         setUpTomorrowSong()
         setUpPendingSong()
-        collectSongList()
+        setSwipeRefresh()
+        collectTomorrowSong()
         collectMySongList()
         collectPendingSongList()
 
@@ -40,7 +42,7 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
         }
     }
 
-    private fun collectSongList() {
+    private fun collectTomorrowSong() {
         lifecycleScope.launchWhenStarted {
             viewModel.getAllowSongState.collect { state ->
                 if (state.songList.isNotEmpty()) {
@@ -65,10 +67,14 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
                     pendingSongList = state.songList.mapNotNull(VideoYoutubeData::source)
                         .sortedBy { it.submitDate }
                     changeRecyclerShow()
+                    Log.d("Refreshing", "collectPendingSongList: dodo")
+                    endRefreshing()
                 }
 
-                if (state.error.isNotBlank())
+                if (state.error.isNotBlank()) {
                     shortToast(state.error)
+                    endRefreshing()
+                }
             }
         }
     }
@@ -126,5 +132,18 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
     private fun setUpPendingSong() {
         applySongAdapter = ApplySongAdapter()
         mBinding.recyclerApplySong.adapter = applySongAdapter
+    }
+
+    private fun setSwipeRefresh() {
+        mBinding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getMySong()
+            viewModel.getApplySong()
+            viewModel.getTomorrowSong()
+        }
+    }
+
+    private fun endRefreshing() {
+        Log.d("Refreshing", "endRefreshing: Hello")
+        mBinding.swipeRefreshLayout.isRefreshing = false
     }
 }
