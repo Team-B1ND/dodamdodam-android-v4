@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/notosans_kr_bold"
+        android:includeFontPadding="false"
+        android:text="@string/text_now_selected_song_empty"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/title3"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@id/tv_sub"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_wait"
+        android:fontFamily="@font/notosans_kr_regular"
+        android:layout_marginTop="3dp"
+        android:includeFontPadding="false"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tv_main"
+        app:layout_constraintStart_toStartOf="@id/tv_main"
+        app:layout_constraintTop_toBottomOf="@id/tv_main"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

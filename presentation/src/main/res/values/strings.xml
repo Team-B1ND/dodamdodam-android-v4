@@ -130,4 +130,9 @@
     <string name="text_save">저장</string>
     <string name="text_bus_not">버스가 없어요ㅠㅠ</string>
     <string name="text_no_data">값이 없습니다.</string>
+
+    <string name="pref_key_thumbnail" translatable="false">pref_thumbnail</string>
+    <string name="text_now_selected_song_empty">아직 기상송이 선정되지 않았어요!</string>
+    <string name="text_wait">조금만 기다려주시기 바랍니다.</string>
+    <string name="text_please_apply_song">기상송을 신청해주세요!</string>
 </resources>

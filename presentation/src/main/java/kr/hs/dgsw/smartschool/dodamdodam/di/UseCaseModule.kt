@@ -5,6 +5,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.domain.repository.*
+import kr.hs.dgsw.smartschool.domain.usecase.account.AccountUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.account.DeleteAccount
+import kr.hs.dgsw.smartschool.domain.usecase.account.GetAccount
 import kr.hs.dgsw.smartschool.domain.usecase.bus.*
 import kr.hs.dgsw.smartschool.domain.usecase.location.*
 import kr.hs.dgsw.smartschool.domain.usecase.meal.DeleteMeal
@@ -19,6 +22,7 @@ import kr.hs.dgsw.smartschool.domain.usecase.point.PointUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.setup.DataSetUp
 import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.setup.TeacherSetUp
+import kr.hs.dgsw.smartschool.domain.usecase.song.*
 import kr.hs.dgsw.smartschool.domain.usecase.time.GetAllTime
 import kr.hs.dgsw.smartschool.domain.usecase.time.GetStartTime
 import kr.hs.dgsw.smartschool.domain.usecase.time.TimeUseCases
@@ -100,5 +104,24 @@ class UseCaseModule {
         TimeUseCases(
             getAllTime = GetAllTime(timeRepository),
             getStartTime = GetStartTime(timeRepository)
+        )
+
+    @Provides
+    @Singleton
+    fun provideSongUseCases(songRepository: SongRepository): SongUseCases =
+        SongUseCases(
+            getAllowSong = GetAllowSong(songRepository),
+            getMySong = GetMySong(songRepository),
+            getPendingSong = GetPendingSong(songRepository),
+            postSong = PostSong(songRepository),
+            getMelonChart = GetMelonChart(songRepository)
+        )
+
+    @Provides
+    @Singleton
+    fun provideAccountUseCases(accountRepository: AccountRepository): AccountUseCases =
+        AccountUseCases(
+            getAccount = GetAccount(accountRepository),
+            deleteAccount = DeleteAccount(accountRepository)
         )
 }

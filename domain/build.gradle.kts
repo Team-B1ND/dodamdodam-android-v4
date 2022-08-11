@@ -47,6 +47,8 @@ dependencies {
     implementation(Google.HILT_ANDROID)
     kapt(Google.HILT_ANDROID_COMPILER)
 
+    implementation(Libraries.JSOUP)
+
     // room
     implementation(AndroidX.ROOM_RUNTIME)
     kapt(AndroidX.ROOM_COMPILER)

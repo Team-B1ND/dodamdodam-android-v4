@@ -1,62 +1,163 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.song
 
+import android.util.Log
+import android.view.View
 import androidx.fragment.app.viewModels
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.NowSongAdapter
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.TodaySongAdapter
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
+import kr.hs.dgsw.smartschool.dodamdodam.R
+import kr.hs.dgsw.smartschool.dodamdodam.adapter.ApplySongAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.adapter.SongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentSongBinding
 import kr.hs.dgsw.smartschool.dodamdodam.util.ViewPagerUtils.getTransform
-import kr.hs.dgsw.smartschool.domain.model.song.Song
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.openVideoFromUrl
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
+import kr.hs.dgsw.smartschool.domain.model.song.Video
+import kr.hs.dgsw.smartschool.domain.model.song.VideoYoutubeData
 import java.time.LocalDate
 
+@AndroidEntryPoint
 class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
     override val viewModel: SongViewModel by viewModels()
     override val hasBottomNav: Boolean = true
 
+    private lateinit var songAdapter: SongAdapter
+    private lateinit var applySongAdapter: ApplySongAdapter
+
+    private var pendingSongList: List<Video> = emptyList()
+    private var mySongList: List<Video> = emptyList()
+
     override fun observerViewModel() {
-        setUpTodaySong()
-        setUpNowSong()
-        initDate()
+        mBinding.tvSongDate.text = LocalDate.now().plusDays(1).toString()
+        setUpTomorrowSong()
+        setUpPendingSong()
+        setSwipeRefresh()
+        collectTomorrowSong()
+        collectMySongList()
+        collectPendingSongList()
+
+        bindingViewEvent { event ->
+            when(event) {
+                SongViewModel.EVENT_ON_CLICK_TOGGLE -> changeRecyclerShow()
+                SongViewModel.EVENT_ON_CLICK_APPLY_SONG -> findNavController().navigate(R.id.action_main_song_to_songApplyFragment)
+            }
+        }
     }
 
-    private fun initDate() {
-        mBinding.tvSongDate.text = LocalDate.now().toString()
+    private fun collectTomorrowSong() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.getAllowSongState.collect { state ->
+                if (state.songList.isNotEmpty()) {
+                    songAdapter.submitList(state.songList.mapNotNull(VideoYoutubeData::source))
+                    setEmptySongView(false)
+                } else {
+                    setEmptySongView(true)
+                }
+
+                if (state.error.isNotBlank()) {
+                    shortToast(state.error)
+                    setEmptySongView(true)
+                }
+            }
+        }
     }
 
-    private fun setUpNowSong() {
-        val nowSongAdapter = NowSongAdapter()
-        mBinding.recyclerNowSong.adapter = nowSongAdapter
-        nowSongAdapter.submitList(
-            listOf(
-                Song("(G)I-DLE 'TOMBOY' Lyrics ((여자)아이들 TOMBOY 가사) (Color Coded Lyrics)", "https://i.ytimg.com/vi/E6W835snlNg/maxresdefault.jpg", "신청일 : 2022-05-25"),
-                Song("(G)I-DLE 'TOMBOY' Lyrics ((여자)아이들 TOMBOY 가사) (Color Coded Lyrics)", "https://i.ytimg.com/vi/E6W835snlNg/maxresdefault.jpg", "신청일 : 2022-05-25"),
-                Song("(G)I-DLE 'TOMBOY' Lyrics ((여자)아이들 TOMBOY 가사) (Color Coded Lyrics)", "https://i.ytimg.com/vi/E6W835snlNg/maxresdefault.jpg", "신청일 : 2022-05-25"),
-                Song("(G)I-DLE 'TOMBOY' Lyrics ((여자)아이들 TOMBOY 가사) (Color Coded Lyrics)", "https://i.ytimg.com/vi/E6W835snlNg/maxresdefault.jpg", "신청일 : 2022-05-25"),
-                Song("BTS X Coldplay My Universe Lyrics (방탄소년단 콜드플레이 My Universe 가사) [Color Coded Lyrics/Han/Rom/Eng]", "https://i.ytimg.com/vi/nHKk8MTXgds/maxresdefault.jpg", "신청일 : 2022-06-23"),
-                Song("BTS X Coldplay My Universe Lyrics (방탄소년단 콜드플레이 My Universe 가사) [Color Coded Lyrics/Han/Rom/Eng]", "https://i.ytimg.com/vi/nHKk8MTXgds/maxresdefault.jpg", "신청일 : 2022-06-23"),
-                Song("BTS X Coldplay My Universe Lyrics (방탄소년단 콜드플레이 My Universe 가사) [Color Coded Lyrics/Han/Rom/Eng]", "https://i.ytimg.com/vi/nHKk8MTXgds/maxresdefault.jpg", "신청일 : 2022-06-23"),
-                Song("BTS X Coldplay My Universe Lyrics (방탄소년단 콜드플레이 My Universe 가사) [Color Coded Lyrics/Han/Rom/Eng]", "https://i.ytimg.com/vi/nHKk8MTXgds/maxresdefault.jpg", "신청일 : 2022-06-23"),
-                Song("BTS X Coldplay My Universe Lyrics (방탄소년단 콜드플레이 My Universe 가사) [Color Coded Lyrics/Han/Rom/Eng]", "https://i.ytimg.com/vi/nHKk8MTXgds/maxresdefault.jpg", "신청일 : 2022-06-23"),
-                Song("\uD83C\uDFC6발매와 함께 빌보드 1위 달성 : Harry Styles - As It Was [가사/해석/번역/lyrics]", "https://i.ytimg.com/vi/OMRZevAb_jU/maxresdefault.jpg", "신청일 : 2022-06-23"),
-                Song("\uD83C\uDFC6발매와 함께 빌보드 1위 달성 : Harry Styles - As It Was [가사/해석/번역/lyrics]", "https://i.ytimg.com/vi/OMRZevAb_jU/maxresdefault.jpg", "신청일 : 2022-06-23"),
-                Song("\uD83C\uDFC6발매와 함께 빌보드 1위 달성 : Harry Styles - As It Was [가사/해석/번역/lyrics]", "https://i.ytimg.com/vi/OMRZevAb_jU/maxresdefault.jpg", "신청일 : 2022-06-23"),
-                Song("\uD83C\uDFC6발매와 함께 빌보드 1위 달성 : Harry Styles - As It Was [가사/해석/번역/lyrics]", "https://i.ytimg.com/vi/OMRZevAb_jU/maxresdefault.jpg", "신청일 : 2022-06-23")
-            )
-        )
+    private fun collectPendingSongList() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.getPendingSongState.collect { state ->
+                if (state.songList.isNotEmpty()) {
+                    pendingSongList = state.songList.mapNotNull(VideoYoutubeData::source)
+                        .sortedBy { it.submitDate }
+                    changeRecyclerShow()
+                    Log.d("Refreshing", "collectPendingSongList: dodo")
+                    endRefreshing()
+                }
+
+                if (state.error.isNotBlank()) {
+                    shortToast(state.error)
+                    endRefreshing()
+                }
+            }
+        }
     }
 
-    private fun setUpTodaySong() {
-        val todaySongAdapter = TodaySongAdapter()
-        mBinding.viewPagerTodaySong.adapter = todaySongAdapter
-        mBinding.viewPagerTodaySong.offscreenPageLimit = 3
-        mBinding.viewPagerTodaySong.setPadding(90, 0, 90, 0)
-        mBinding.viewPagerTodaySong.setPageTransformer(getTransform())
-        todaySongAdapter.submitList(
-            listOf(
-                Song("(G)I-DLE 'TOMBOY' Lyrics ((여자)아이들 TOMBOY 가사) (Color Coded Lyrics)", "https://i.ytimg.com/vi/E6W835snlNg/maxresdefault.jpg", ""),
-                Song("BTS X Coldplay My Universe Lyrics (방탄소년단 콜드플레이 My Universe 가사) [Color Coded Lyrics/Han/Rom/Eng]", "https://i.ytimg.com/vi/nHKk8MTXgds/maxresdefault.jpg", ""),
-                Song("\uD83C\uDFC6발매와 함께 빌보드 1위 달성 : Harry Styles - As It Was [가사/해석/번역/lyrics]", "https://i.ytimg.com/vi/OMRZevAb_jU/maxresdefault.jpg", "")
-            )
-        )
+    private fun collectMySongList() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.getMySongState.collect { state ->
+                if (state.songList.isNotEmpty()) {
+                    if (state.songList[0].quality == "-1") {
+                        changeRecyclerShow()
+                    }
+                    mySongList = state.songList.mapNotNull(VideoYoutubeData::source)
+                        .sortedBy { it.submitDate }
+                        .filter { it.playDate == null }
+                    changeRecyclerShow()
+                }
+
+                if (state.error.isNotBlank())
+                    shortToast(state.error)
+            }
+        }
+    }
+
+    private fun changeRecyclerShow() {
+        if (viewModel.songType.value == true) {
+            Log.d("CRS", "changeRecyclerShow: 진입 true")
+            if(pendingSongList.isEmpty()) {
+                viewModel.getApplySong()
+            }
+            applySongAdapter.submitList(pendingSongList)
+        } else {
+            mySongList.forEach { mySong ->
+                Log.d("CRS", mySong.videoTitle)
+            }
+            if(mySongList.isEmpty()) {
+                viewModel.getMySong()
+            }
+            applySongAdapter.submitList(mySongList)
+        }
+    }
+
+
+    private fun setEmptySongView(isEmptySongList: Boolean = false) {
+        if (isEmptySongList) {
+            mBinding.tvEmptySong.visibility = View.VISIBLE
+            mBinding.viewPagerTomorrowSong.visibility = View.GONE
+        } else {
+            mBinding.tvEmptySong.visibility = View.GONE
+            mBinding.viewPagerTomorrowSong.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setUpTomorrowSong() {
+        songAdapter = SongAdapter { url ->
+            this.openVideoFromUrl(url)
+        }
+        mBinding.viewPagerTomorrowSong.adapter = songAdapter
+        mBinding.viewPagerTomorrowSong.offscreenPageLimit = 3
+        mBinding.viewPagerTomorrowSong.setPadding(90, 0, 90, 0)
+        mBinding.viewPagerTomorrowSong.setPageTransformer(getTransform())
+    }
+
+    private fun setUpPendingSong() {
+        applySongAdapter = ApplySongAdapter { url ->
+            this@SongFragment.openVideoFromUrl(url)
+        }
+        mBinding.recyclerApplySong.adapter = applySongAdapter
+    }
+
+    private fun setSwipeRefresh() {
+        mBinding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getMySong()
+            viewModel.getApplySong()
+            viewModel.getTomorrowSong()
+        }
+    }
+
+    private fun endRefreshing() {
+        Log.d("Refreshing", "endRefreshing: Hello")
+        mBinding.swipeRefreshLayout.isRefreshing = false
     }
 }

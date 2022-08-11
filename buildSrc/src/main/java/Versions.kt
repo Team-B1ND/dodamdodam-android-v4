@@ -37,4 +37,5 @@ object Versions {
     const val SWIPE_REFRESH_LAYOUT = "1.1.0"
 
     const val SPLASH_SCREEN = "1.0.0-rc01"
+    const val JSOUP = "1.15.2"
 }

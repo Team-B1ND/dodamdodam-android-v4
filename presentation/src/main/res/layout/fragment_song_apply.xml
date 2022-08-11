@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View" />
+        <variable
+            name="vm"
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.SongApplyViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +24,8 @@
 
             <include
                 android:id="@+id/btn_back"
-                layout="@layout/item_back_button" />
+                layout="@layout/item_back_button"
+                android:onClick="@{() -> vm.onClickBack()}"/>
 
             <TextView
                 android:id="@+id/tv_song_apply_title"
@@ -35,11 +39,23 @@
                 app:layout_constraintStart_toEndOf="@id/btn_back" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <include
+            android:id="@+id/progress_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
+            layout="@layout/item_loading_progressbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_title"
+            android:layout_marginTop="10dp" />
+
         <LinearLayout
             android:id="@+id/layout_song_apply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
             app:layout_constraintTop_toBottomOf="@id/layout_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -69,8 +85,11 @@
                     android:layout_height="match_parent"
                     android:background="@null"
                     android:fontFamily="@font/nanum_square_regular"
-                    android:includeFontPadding="false"
                     android:hint="@string/text_youtube_link_hint"
+                    android:importantForAutofill="no"
+                    android:text="@={vm.applyUrl}"
+                    android:includeFontPadding="false"
+                    android:inputType="textUri"
                     android:padding="15dp"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
@@ -85,6 +104,7 @@
                 android:backgroundTint="@color/main"
                 android:paddingVertical="10dp"
                 android:text="@string/text_apply"
+                android:onClick="@{() -> vm.checkUrl()}"
                 android:fontFamily="@font/nanum_square_regular"
                 android:includeFontPadding="false"
                 android:textColor="@color/color_white"
@@ -121,6 +141,7 @@
             android:id="@+id/recycler_recommend_song"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
             tools:listitem="@layout/item_recommend_song"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="vertical"

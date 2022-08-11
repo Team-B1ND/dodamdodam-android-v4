@@ -87,6 +87,8 @@ dependencies {
     // Swipe refresh layout
     implementation(AndroidX.SWIPE_REFRESH_LAYOUT)
 
+    implementation(Libraries.JSOUP)
+
     implementation(project(":data"))
     implementation(project(":domain"))
 }
