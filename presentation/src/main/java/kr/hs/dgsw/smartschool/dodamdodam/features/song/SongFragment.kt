@@ -86,6 +86,9 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
         lifecycleScope.launchWhenStarted {
             viewModel.getMySongState.collect { state ->
                 if (state.songList.isNotEmpty()) {
+                    if (state.songList[0].quality == "-1") {
+                        changeRecyclerShow(true)
+                    }
                     mySongList = state.songList.mapNotNull(VideoYoutubeData::source)
                         .sortedBy { it.submitDate }
                         .filter { it.playDate == null }
@@ -98,23 +101,26 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
         }
     }
 
-    private fun changeRecyclerShow() {
+    private fun changeRecyclerShow(isRealEmpty: Boolean = false) {
         if (viewModel.songType.value == true) {
+            Log.d("CRS", "changeRecyclerShow: 진입 true")
             if(pendingSongList.isEmpty()) {
                 viewModel.getApplySong()
-                return
             }
             applySongAdapter.submitList(pendingSongList)
         } else {
+            mySongList.forEach { mySong ->
+                Log.d("CRS", mySong.videoTitle)
+            }
             if(mySongList.isEmpty()) {
                 viewModel.getMySong()
-                return
             }
             applySongAdapter.submitList(mySongList)
         }
     }
 
-    private fun setEmptySongView(isEmptySongList: Boolean) {
+
+    private fun setEmptySongView(isEmptySongList: Boolean = false) {
         if (isEmptySongList) {
             mBinding.tvEmptySong.visibility = View.VISIBLE
             mBinding.viewPagerTomorrowSong.visibility = View.GONE
