@@ -3,13 +3,17 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.song.apply
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kr.hs.dgsw.smartschool.dodamdodam.adapter.RecommendSongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentSongApplyBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
+import kr.hs.dgsw.smartschool.domain.model.song.MelonChart
 
 @AndroidEntryPoint
 class SongApplyFragment : BaseFragment<FragmentSongApplyBinding, SongApplyViewModel>() {
     override val viewModel: SongApplyViewModel by viewModels()
+
+    lateinit var recommendSongAdapter: RecommendSongAdapter
 
     override fun observerViewModel() {
         bindingViewEvent { event ->
@@ -19,6 +23,20 @@ class SongApplyFragment : BaseFragment<FragmentSongApplyBinding, SongApplyViewMo
                 SongApplyViewModel.EVENT_ON_SUCCESS_APPLY -> successApplySong()
             }
         }
+        setRecommendSongAdapter()
+
+        viewModel.melonChartList.observe(this) {
+            updateRecommendSongRecyclerView(it)
+        }
+    }
+
+    private fun setRecommendSongAdapter() {
+        recommendSongAdapter = RecommendSongAdapter()
+        mBinding.recyclerRecommendSong.adapter = recommendSongAdapter
+    }
+
+    private fun updateRecommendSongRecyclerView(list: List<MelonChart>) {
+        recommendSongAdapter.submitList(list)
     }
 
     private fun successApplySong() {

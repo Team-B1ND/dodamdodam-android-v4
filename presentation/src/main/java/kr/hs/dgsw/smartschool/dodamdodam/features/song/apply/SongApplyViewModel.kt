@@ -1,11 +1,21 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.song.apply
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
+import kr.hs.dgsw.smartschool.domain.model.song.MelonChart
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import org.jsoup.select.Elements
+import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,9 +27,13 @@ class SongApplyViewModel @Inject constructor(
     var errorMessage = ""
 
     private val isApplySongLoading = MutableLiveData(false)
+    val melonChartList = MutableLiveData<List<MelonChart>>()
 
     init {
         combineLoadingVariable(isApplySongLoading)
+        CoroutineScope(Dispatchers.Main).launch {
+            getMelonChart()
+        }
     }
 
     fun onClickBack() {
@@ -50,6 +64,32 @@ class SongApplyViewModel @Inject constructor(
                 viewEvent(EVENT_ON_URL_ERROR)
             }
         }
+    }
+
+    private suspend fun getMelonChart() = withContext(Dispatchers.IO) {
+        try {
+            val jsoup = Jsoup.connect("https://www.melon.com/chart/")
+            val doc: Document = jsoup.get()
+            // 크롤링 하고자 하는 엘리먼트들을 저장
+            val titleElements: Elements = doc
+                .select("#lst50 > td:nth-child(6) > div > div > div.ellipsis.rank01 > span > a")
+            val artistElements: Elements = doc.select("#lst50 > td:nth-child(6) > div > div > div.ellipsis.rank02 > a")
+            val thumbnailElements: Elements = doc.select("#lst50 > td:nth-child(4) > div > a > img")
+
+            val melonChartList = mutableListOf<MelonChart>()
+            for (i in 0..49) {
+                Log.d("melon", titleElements[i].text())
+                melonChartList.add(
+                    MelonChart(
+                        title = titleElements[i].text(),
+                        artist = artistElements[i].text(),
+                        thumbnail = thumbnailElements[i].attr("src"),
+                        rank = (i + 1).toString()
+                    )
+                )
+            }
+            this@SongApplyViewModel.melonChartList.postValue(melonChartList)
+        } catch (e : IOException) {}
     }
 
     private fun applyWakeUpSong(url: String) {
