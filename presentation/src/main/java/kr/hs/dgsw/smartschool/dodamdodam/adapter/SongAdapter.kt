@@ -11,9 +11,9 @@ import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.SongDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemSongBinding
 import kr.hs.dgsw.smartschool.domain.model.song.Video
 
-class SongAdapter : ListAdapter<Video, SongAdapter.TodaySongViewHolder>(SongDiffUtilCallback) {
+class SongAdapter(private val action: (url: String) -> Unit) : ListAdapter<Video, SongAdapter.TodaySongViewHolder>(SongDiffUtilCallback) {
 
-    class TodaySongViewHolder(val binding: ItemSongBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TodaySongViewHolder(val binding: ItemSongBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Video) {
             Glide.with(binding.ivTodaySong)
                 .load(item.thumbnail)
@@ -22,6 +22,9 @@ class SongAdapter : ListAdapter<Video, SongAdapter.TodaySongViewHolder>(SongDiff
                 .into(binding.ivTodaySong)
 
             binding.song = item
+            binding.root.setOnClickListener {
+                action.invoke(item.videoUrl)
+            }
         }
     }
 

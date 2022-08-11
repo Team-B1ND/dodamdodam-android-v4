@@ -12,6 +12,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.adapter.SongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentSongBinding
 import kr.hs.dgsw.smartschool.dodamdodam.util.ViewPagerUtils.getTransform
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.openVideoFromUrl
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.song.Video
 import kr.hs.dgsw.smartschool.domain.model.song.VideoYoutubeData
@@ -131,7 +132,9 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
     }
 
     private fun setUpTomorrowSong() {
-        songAdapter = SongAdapter()
+        songAdapter = SongAdapter { url ->
+            this.openVideoFromUrl(url)
+        }
         mBinding.viewPagerTomorrowSong.adapter = songAdapter
         mBinding.viewPagerTomorrowSong.offscreenPageLimit = 3
         mBinding.viewPagerTomorrowSong.setPadding(90, 0, 90, 0)
@@ -139,7 +142,9 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
     }
 
     private fun setUpPendingSong() {
-        applySongAdapter = ApplySongAdapter()
+        applySongAdapter = ApplySongAdapter { url ->
+            this@SongFragment.openVideoFromUrl(url)
+        }
         mBinding.recyclerApplySong.adapter = applySongAdapter
     }
 

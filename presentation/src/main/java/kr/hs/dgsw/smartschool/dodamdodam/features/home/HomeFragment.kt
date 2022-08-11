@@ -14,6 +14,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentHomeBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
 import kr.hs.dgsw.smartschool.dodamdodam.util.ViewPagerUtils.getTransform
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.openVideoFromUrl
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
@@ -188,7 +189,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun setUpTodaySong() {
-        songAdapter = SongAdapter()
+        songAdapter = SongAdapter { url ->
+            this@HomeFragment.openVideoFromUrl(url)
+        }
         mBinding.viewPagerTodaySong.adapter = songAdapter
         mBinding.viewPagerTodaySong.offscreenPageLimit = 3
         mBinding.viewPagerTodaySong.setPadding(90, 0, 90, 0)

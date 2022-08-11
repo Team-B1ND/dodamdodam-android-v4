@@ -9,13 +9,12 @@ import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.SongDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemApplySongBinding
-import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.dateFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateFormat
 import kr.hs.dgsw.smartschool.domain.model.song.Video
 
-class ApplySongAdapter : ListAdapter<Video, ApplySongAdapter.TodaySongViewHolder>(SongDiffUtilCallback) {
+class ApplySongAdapter(private val action: (url: String) -> Unit) : ListAdapter<Video, ApplySongAdapter.TodaySongViewHolder>(SongDiffUtilCallback) {
 
-    class TodaySongViewHolder(val binding: ItemApplySongBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class TodaySongViewHolder(val binding: ItemApplySongBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Video) {
             Glide.with(binding.ivSong)
                 .load(item.thumbnail)
@@ -25,6 +24,9 @@ class ApplySongAdapter : ListAdapter<Video, ApplySongAdapter.TodaySongViewHolder
 
             binding.tvApplySongDate.text = item.submitDate?.yearDateFormat()
             binding.song = item
+            binding.root.setOnClickListener {
+                action.invoke(item.videoUrl)
+            }
         }
     }
 
