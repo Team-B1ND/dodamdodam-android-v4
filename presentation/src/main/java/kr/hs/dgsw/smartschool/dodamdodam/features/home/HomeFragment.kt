@@ -51,7 +51,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             when (event) {
                 HomeViewModel.ON_CLICK_MEAL_MORE -> (activity as? MainActivity)?.moveHomeToMeal()
                 HomeViewModel.ON_CLICK_SONG_MORE -> (activity as? MainActivity)?.moveHomeToSong()
-                HomeViewModel.ON_CLICK_MENU -> mBinding.layoutDrawer.openDrawer(Gravity.LEFT, true)
             }
         }
     }

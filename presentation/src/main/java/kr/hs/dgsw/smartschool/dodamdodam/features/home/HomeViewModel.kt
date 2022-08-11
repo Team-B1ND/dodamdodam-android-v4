@@ -11,8 +11,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.location.GetMyLocationState
 import kr.hs.dgsw.smartschool.dodamdodam.features.meal.GetMealState
 import kr.hs.dgsw.smartschool.dodamdodam.features.setup.DataSetUpState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.GetAllowSongState
-import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.monthFormat
-import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearFormat
 import kr.hs.dgsw.smartschool.domain.usecase.location.LocationUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
@@ -20,7 +18,6 @@ import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetAllowSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
 import java.time.LocalDate
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -102,13 +99,8 @@ class HomeViewModel @Inject constructor(
         viewEvent(ON_CLICK_MEAL_MORE)
     }
 
-    fun onClickMenu() {
-        viewEvent(ON_CLICK_MENU)
-    }
-
     companion object {
         const val ON_CLICK_SONG_MORE = 0
         const val ON_CLICK_MEAL_MORE = 1
-        const val ON_CLICK_MENU = 2
     }
 }
