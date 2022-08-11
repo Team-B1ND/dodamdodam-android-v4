@@ -51,5 +51,7 @@ dependencies {
     kapt(AndroidX.ROOM_COMPILER)
     implementation(AndroidX.ROOM_KTX)
 
+    implementation(Libraries.JSOUP)
+
     implementation(project(":domain"))
 }

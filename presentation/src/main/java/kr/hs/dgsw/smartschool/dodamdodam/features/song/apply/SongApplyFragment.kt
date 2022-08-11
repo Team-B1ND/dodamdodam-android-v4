@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.song.apply
 
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.RecommendSongAdapter
@@ -24,9 +25,19 @@ class SongApplyFragment : BaseFragment<FragmentSongApplyBinding, SongApplyViewMo
             }
         }
         setRecommendSongAdapter()
+        collectMelonChart()
+    }
 
-        viewModel.melonChartList.observe(this) {
-            updateRecommendSongRecyclerView(it)
+    private fun collectMelonChart() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.getMelonChartState.collect { state ->
+                if (state.melonChartList.isNotEmpty()) {
+                    updateRecommendSongRecyclerView(state.melonChartList)
+                }
+
+                if (state.error.isNotBlank())
+                    shortToast(state.error)
+            }
         }
     }
 

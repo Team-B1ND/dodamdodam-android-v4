@@ -42,7 +42,7 @@ class SongViewModel @Inject constructor(
     
     fun getTomorrowSong() {
         val today = LocalDate.now().plusDays(1)
-        /*songUseCases.getAllowSong(
+        songUseCases.getAllowSong(
             GetAllowSong.Params(
             year = today.year,
             month = today.monthValue,
@@ -51,9 +51,10 @@ class SongViewModel @Inject constructor(
             isGetAllowSongLoading,
             { songList -> _getAllowSongState.value = GetAllowSongState(songList = songList ?: emptyList()) },
             { message -> _getAllowSongState.value = GetAllowSongState(error = message ?: "기상송을 받아오지 못했습니다.")}
-        ).launchIn(viewModelScope)*/
+        ).launchIn(viewModelScope)
 
-        songUseCases.getAllowSong(GetAllowSong.Params(
+        // test function
+        /*songUseCases.getAllowSong(GetAllowSong.Params(
             year = 2022,
             month = 6,
             date = 13,
@@ -61,7 +62,7 @@ class SongViewModel @Inject constructor(
             isGetAllowSongLoading,
             { songList -> _getAllowSongState.value = GetAllowSongState(songList = songList ?: emptyList()) },
             { error -> _getAllowSongState.value = GetAllowSongState(error = error ?: "기상송을 받아오지 못했습니다.")}
-        ).launchIn(viewModelScope)
+        ).launchIn(viewModelScope)*/
     }
 
     fun getApplySong() {

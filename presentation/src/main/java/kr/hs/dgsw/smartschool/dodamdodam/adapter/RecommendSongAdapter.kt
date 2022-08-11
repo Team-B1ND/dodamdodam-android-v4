@@ -8,13 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.MelonChartDiffUtilCallback
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.SongDiffUtilCallback
-import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemApplySongBinding
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemRecommendSongBinding
-import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.dateFormat
-import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateFormat
 import kr.hs.dgsw.smartschool.domain.model.song.MelonChart
-import kr.hs.dgsw.smartschool.domain.model.song.Video
 
 class RecommendSongAdapter : ListAdapter<MelonChart, RecommendSongAdapter.RecommendSongViewHolder>(MelonChartDiffUtilCallback) {
 

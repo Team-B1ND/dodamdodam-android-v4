@@ -87,7 +87,7 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
             viewModel.getMySongState.collect { state ->
                 if (state.songList.isNotEmpty()) {
                     if (state.songList[0].quality == "-1") {
-                        changeRecyclerShow(true)
+                        changeRecyclerShow()
                     }
                     mySongList = state.songList.mapNotNull(VideoYoutubeData::source)
                         .sortedBy { it.submitDate }
@@ -101,7 +101,7 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
         }
     }
 
-    private fun changeRecyclerShow(isRealEmpty: Boolean = false) {
+    private fun changeRecyclerShow() {
         if (viewModel.songType.value == true) {
             Log.d("CRS", "changeRecyclerShow: 진입 true")
             if(pendingSongList.isEmpty()) {

@@ -113,7 +113,8 @@ class UseCaseModule {
             getAllowSong = GetAllowSong(songRepository),
             getMySong = GetMySong(songRepository),
             getPendingSong = GetPendingSong(songRepository),
-            postSong = PostSong(songRepository)
+            postSong = PostSong(songRepository),
+            getMelonChart = GetMelonChart(songRepository)
         )
 
     @Provides

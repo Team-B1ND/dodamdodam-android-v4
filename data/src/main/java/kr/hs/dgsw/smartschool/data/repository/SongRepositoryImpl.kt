@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.SongDataSource
+import kr.hs.dgsw.smartschool.domain.model.song.MelonChart
 import kr.hs.dgsw.smartschool.domain.model.song.VideoYoutubeData
 import kr.hs.dgsw.smartschool.domain.repository.SongRepository
 import kr.hs.dgsw.smartschool.domain.request.SongCheckRequest
@@ -32,5 +33,9 @@ class SongRepositoryImpl @Inject constructor(
 
     override suspend fun postDenySong(request: SongCheckRequest): String {
         return songDataSource.postDenySong(request)
+    }
+
+    override suspend fun getMelonChart(): List<MelonChart> {
+        return songDataSource.getMelonChart()
     }
 }
