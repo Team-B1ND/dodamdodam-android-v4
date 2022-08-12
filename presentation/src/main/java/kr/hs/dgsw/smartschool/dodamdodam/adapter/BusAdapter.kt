@@ -2,7 +2,9 @@ package kr.hs.dgsw.smartschool.dodamdodam.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -11,6 +13,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.BusDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemBusBinding
 import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
+
 
 class BusAdapter(val context: Context) : ListAdapter<BusInfo, BusAdapter.BusViewHolder>(BusDiffUtilCallback) {
 
@@ -24,6 +27,25 @@ class BusAdapter(val context: Context) : ListAdapter<BusInfo, BusAdapter.BusView
             }
 
             binding.bus = data
+
+            binding.menu.setOnClickListener(View.OnClickListener {
+                val pm : PopupMenu = PopupMenu(context,binding.menu)
+                pm.inflate(R.menu.bus_item_menu)
+
+                pm.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        R.id.apply_bus ->                         //handle menu1 click
+                            true
+                        R.id.cancel_bus ->                         //handle menu2 click
+                            true
+                        else -> false
+                    }
+                })
+                //displaying the popup
+                //displaying the popup
+                pm.show()
+
+            })
         }
     }
 
