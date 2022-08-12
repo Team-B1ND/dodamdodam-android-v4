@@ -7,10 +7,10 @@ import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 
 class DeleteBusApply @Inject constructor(
-    private val busRepository: BusRepository,
-    private val idx : Int
-) : BaseUseCase<Unit, String>() {
-    override fun invoke(params: Unit): Flow<Resource<String>> = execute {
-        busRepository.deleteBusApply(idx).toString()
+    private val busRepository: BusRepository
+) : BaseUseCase<Int, String>() {
+    override fun invoke(params: Int): Flow<Resource<String>> = execute {
+        busRepository.deleteBusApply(params)
+        "버스 신청을 취소하였습니다."
     }
 }

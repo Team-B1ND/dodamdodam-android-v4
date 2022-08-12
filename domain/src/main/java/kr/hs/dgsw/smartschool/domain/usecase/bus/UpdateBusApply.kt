@@ -9,10 +9,10 @@ import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 
 class UpdateBusApply @Inject constructor(
-    private val busRepository: BusRepository,
-    private val request: UpdateBusApplyRequest
-) : BaseUseCase<Unit, String>() {
-    override fun invoke(params: Unit): Flow<Resource<String>> = execute {
-        busRepository.updateBusApply(request).toString()
+    private val busRepository: BusRepository
+) : BaseUseCase<UpdateBusApplyRequest, String>() {
+    override fun invoke(params: UpdateBusApplyRequest): Flow<Resource<String>> = execute {
+        busRepository.updateBusApply(params)
+        "버스 신청을 수정하였습니다."
     }
 }
