@@ -7,9 +7,10 @@ import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 
 class DeleteBus @Inject constructor(
-    private val busRepository: BusRepository
+    private val busRepository: BusRepository,
+    private val idx : Int
 ) : BaseUseCase<Unit, String>() {
     override operator fun invoke(params: Unit): Flow<Resource<String>> = execute {
-        busRepository.deleteBus()
+        busRepository.deleteBus(idx).toString()
     }
 }
