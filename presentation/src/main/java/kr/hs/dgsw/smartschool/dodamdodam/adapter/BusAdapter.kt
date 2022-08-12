@@ -34,15 +34,13 @@ class BusAdapter(val context: Context) : ListAdapter<BusInfo, BusAdapter.BusView
 
                 pm.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
                     when (item.itemId) {
-                        R.id.apply_bus ->                         //handle menu1 click
+                        R.id.apply_bus ->
                             true
-                        R.id.cancel_bus ->                         //handle menu2 click
+                        R.id.cancel_bus ->
                             true
                         else -> false
                     }
                 })
-                //displaying the popup
-                //displaying the popup
                 pm.show()
 
             })
