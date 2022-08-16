@@ -1,8 +1,8 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.home
 
 import android.util.Log
-import android.view.Gravity
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -31,10 +31,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private var mealList = listOf<Meal>()
     private var date: LocalDate = LocalDate.now()
-    private lateinit var mealHomeAdapter: MealHomeAdapter
 
     private lateinit var locationCheckAdapter: LocationCheckAdapter
     private lateinit var songAdapter: SongAdapter
+    lateinit var mealHomeAdapter: MealHomeAdapter
 
     override fun observerViewModel() {
         setLocationRecyclerView()
@@ -93,7 +93,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private fun collectMealState() {
         with(viewModel) {
-            if (LocalDateTime.now().hour >= 19) {
+            if (LocalDateTime.now().hour >= 20) {
+                date = LocalDate.now()
                 date = date.plusDays(1)
                 mBinding.tvMealTitle.text = "내일의 급식"
             }
@@ -176,15 +177,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 MealInfo(3, meal.safeDinner)
             )
         )
+        changeMealPageToTime()
+    }
 
+    private fun changeMealPageToTime() {
         val currentTime = Date().timeFormat()
-        mBinding.viewPagerMealList.postDelayed({
+        mBinding.viewPagerMealList.post {
             mBinding.viewPagerMealList.currentItem = when {
                 currentTime < "09:00" -> minOf(0, mealList.size - 1)
                 currentTime < "13:20" -> minOf(1, mealList.size - 1)
-                else -> minOf(2, mealList.size - 1)
+                currentTime < "20:00" -> minOf(2, mealList.size - 1)
+                else -> minOf(1, mealList.size - 1)
             }
-        }, 800)
+        }
     }
 
     private fun setUpTodaySong() {
