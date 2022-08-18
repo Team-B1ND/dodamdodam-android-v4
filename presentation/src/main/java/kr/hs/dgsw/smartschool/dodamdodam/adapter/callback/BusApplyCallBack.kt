@@ -1,6 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.adapter.callback
 
 interface BusApplyCallBack {
-    fun applyBus()
-    fun cancelBus()
+    fun applyBus(idx: Int)
+    fun cancelBus(idx: Int)
 }
