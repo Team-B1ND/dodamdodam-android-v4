@@ -13,10 +13,10 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.BusDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemBusBinding
 import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
+import kr.hs.dgsw.smartschool.domain.usecase.bus.BusUseCases
 
 
 class BusAdapter(val context: Context) : ListAdapter<BusInfo, BusAdapter.BusViewHolder>(BusDiffUtilCallback) {
-
     inner class BusViewHolder(private val binding: ItemBusBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: BusInfo){
             with(binding.tvBusRidePossible) {

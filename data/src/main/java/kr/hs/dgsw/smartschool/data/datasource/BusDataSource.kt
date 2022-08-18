@@ -43,8 +43,10 @@ class BusDataSource @Inject constructor(
         request: AddBusRequest
     ) = remote.addBus(request)
 
-    suspend fun addBusApply()
-    = remote.addBusApply()
+    suspend fun addBusApply(
+        idx:Int
+    )
+    = remote.addBusApply(idx)
 
     suspend fun deleteBus(
         idx : Int

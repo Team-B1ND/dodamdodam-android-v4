@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 class AddBusApply @Inject constructor(
     private val busRepository: BusRepository
-) : BaseUseCase<Unit, String>() {
-    override operator fun invoke(params: Unit): Flow<Resource<String>> = execute {
-        busRepository.addBusApply().toString()
+) : BaseUseCase<Int, String>() {
+    override operator fun invoke(params: Int): Flow<Resource<String>> = execute {
+        busRepository.addBusApply(params).toString()
     }
 }

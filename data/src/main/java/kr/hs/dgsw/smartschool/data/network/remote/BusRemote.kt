@@ -26,18 +26,25 @@ class BusRemote @Inject constructor(
 
     suspend fun updateBus(
         request: UpdateBusRequest
-    ){}
+    ) : String = api.updateBus(request).message
+
     suspend fun updateBusApply(
         request: UpdateBusApplyRequest
-    ){}
+    ):String = api.updateBusApply(request).message
+
     suspend fun addBus(
         request: AddBusRequest
-    ){}
-    suspend fun addBusApply(){}
+    ): String = api.addBus(request).message
+
+    suspend fun addBusApply(
+        idx:Int
+    ):String = api.addBusApply(idx).message
+
     suspend fun deleteBus(
         idx : Int
-    ){}
+    ): String = api.deleteBus(idx).message
+
     suspend fun deleteBusApply(
         idx : Int
-    ){}
+    ): String = api.deleteBusApply(idx).message
 }

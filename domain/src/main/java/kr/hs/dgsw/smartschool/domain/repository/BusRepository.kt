@@ -20,25 +20,27 @@ interface BusRepository {
     //POST
     suspend fun addBus(
         request: AddBusRequest
-    )
-    suspend fun addBusApply()
+    ):String
+    suspend fun addBusApply(
+        idx: Int
+    ):String
 
 
     //PUT
     suspend fun updateBusInfo(
         request : UpdateBusRequest
-    )
+    ):String
     suspend fun updateBusApply(
         request: UpdateBusApplyRequest
-    )
+    ):String
 
 
 
     //DELETE
     suspend fun deleteBus(
         idx : Int
-    )
+    ):String
     suspend fun deleteBusApply(
         idx : Int
-    )
+    ):String
 }
