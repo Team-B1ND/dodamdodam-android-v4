@@ -37,9 +37,10 @@ class BusViewModel @Inject constructor(
     private fun getMyBus(){
         val list : Flow<Resource<List<Bus>>> = busUseCases.getMyBus(Unit)
     }
-    private fun applyBus(idx:Int){
-        if()
+    fun applyBus(idx:Int){
         busUseCases.addBusApply(idx)
     }
-    private fun
+    fun cancelBus(idx:Int){
+        busUseCases.deleteBusApply(idx)
+    }
 }

@@ -81,10 +81,10 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(),BusApplyCal
     }
 
     override fun applyBus(idx: Int) {
-        viewModel.
+        viewModel.applyBus(idx)
     }
 
     override fun cancelBus(idx: Int) {
-        TODO("Not yet implemented")
+        viewModel.cancelBus(idx)
     }
 }
