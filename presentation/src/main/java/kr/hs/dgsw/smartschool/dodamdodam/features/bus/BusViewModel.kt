@@ -37,7 +37,9 @@ class BusViewModel @Inject constructor(
     private fun getMyBus(){
         val list : Flow<Resource<List<Bus>>> = busUseCases.getMyBus(Unit)
     }
+
     fun applyBus(idx:Int){
+        //TODO 자신이 버스를 신청한 상태인지 구분하여 버스 신청을 변경할건지 신청할건지 정할 수 잇는 함수 구현
         busUseCases.addBusApply(idx)
     }
     fun cancelBus(idx:Int){
