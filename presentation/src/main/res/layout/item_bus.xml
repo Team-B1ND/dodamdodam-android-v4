@@ -76,7 +76,7 @@
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/iv_bus"
                     app:layout_constraintTop_toTopOf="@id/iv_bus"
-                    tools:text="김도현 모쏠 버스" />
+                    tools:text="버스 이름" />
 
                 <TextView
                     android:id="@+id/tv_bus_ride_possible"
@@ -135,6 +135,15 @@
                     tools:text="9월 6일 12시 30분" />
 
             </LinearLayout>
+            <TextView
+                android:id="@+id/menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_kebab"
+                android:textAppearance="?android:textAppearanceLarge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/layout_bus_info"
+                android:layout_marginEnd="15dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

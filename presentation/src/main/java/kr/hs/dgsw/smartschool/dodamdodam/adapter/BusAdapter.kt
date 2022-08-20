@@ -2,7 +2,9 @@ package kr.hs.dgsw.smartschool.dodamdodam.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -11,9 +13,10 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.BusDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemBusBinding
 import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
+import kr.hs.dgsw.smartschool.domain.usecase.bus.BusUseCases
+
 
 class BusAdapter(val context: Context) : ListAdapter<BusInfo, BusAdapter.BusViewHolder>(BusDiffUtilCallback) {
-
     inner class BusViewHolder(private val binding: ItemBusBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: BusInfo){
             with(binding.tvBusRidePossible) {
@@ -24,6 +27,23 @@ class BusAdapter(val context: Context) : ListAdapter<BusInfo, BusAdapter.BusView
             }
 
             binding.bus = data
+
+            binding.menu.setOnClickListener(View.OnClickListener {
+                val pm : PopupMenu = PopupMenu(context,binding.menu)
+                pm.inflate(R.menu.bus_item_menu)
+
+                pm.setOnMenuItemClickListener(PopupMenu.OnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        R.id.apply_bus ->
+                            true
+                        R.id.cancel_bus ->
+                            true
+                        else -> false
+                    }
+                })
+                pm.show()
+
+            })
         }
     }
 

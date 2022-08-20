@@ -5,6 +5,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.BusAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.BusApplyCallBack
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentBusBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
@@ -13,7 +14,7 @@ import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
 import java.time.LocalDate
 
 @AndroidEntryPoint
-class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>() {
+class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(),BusApplyCallBack {
     override val viewModel: BusViewModel by viewModels()
     override fun observerViewModel() {
         mBinding.btnBack.setOnClickListener {
@@ -77,5 +78,13 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>() {
         val busAdapter = BusAdapter(requireContext())
         mBinding.recyclerBus.adapter = busAdapter
         busAdapter.submitList(list)
+    }
+
+    override fun applyBus(idx: Int) {
+        viewModel.
+    }
+
+    override fun cancelBus(idx: Int) {
+        TODO("Not yet implemented")
     }
 }
