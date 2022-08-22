@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.data.repository
 
-import android.util.Log
 import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
 import kr.hs.dgsw.smartschool.data.datasource.AccountDataSource
 import kr.hs.dgsw.smartschool.data.datasource.SignInDataSource
@@ -14,12 +13,11 @@ class SignInRepositoryImpl @Inject constructor(
     private val signInDataSource: SignInDataSource,
     private val tokenDataSource: TokenDataSource,
     private val accountDataSource: AccountDataSource
-): SignInRepository {
+) : SignInRepository {
     override suspend fun signIn(signInRequest: SignInRequest) {
         signInDataSource.signIn(signInRequest).also {
             accountDataSource.insertAccount(AccountEntity(signInRequest.id!!, signInRequest.pw!!))
             tokenDataSource.insertToken(Token(it.token, it.refreshToken))
         }
     }
-
 }

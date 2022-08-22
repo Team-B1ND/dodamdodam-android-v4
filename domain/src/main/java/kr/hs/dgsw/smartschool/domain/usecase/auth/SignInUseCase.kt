@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class SignInUseCase @Inject constructor(
     val repository: SignInRepository
-): BaseUseCase<SignInUseCase.Params, Unit>() {
+) : BaseUseCase<SignInUseCase.Params, Unit>() {
 
     override fun invoke(params: Params): Flow<Resource<Unit>> = execute {
         repository.signIn(SignInRequest(params.id, params.pw, params.encryption))
@@ -20,5 +20,4 @@ class SignInUseCase @Inject constructor(
         val pw: String,
         val encryption: Boolean = true
     )
-
 }

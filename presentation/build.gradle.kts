@@ -5,6 +5,7 @@ plugins {
     id(Plugins.daggerPlugin)
     id(Plugins.extensions)
     id(Plugins.navigation_safe_args)
+    id(Plugins.kt_lint) version Versions.KT_LINT
 }
 
 android {
@@ -35,7 +36,7 @@ android {
         jvmTarget = Versions.JVM_TARGET
     }
 
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
     }
 }

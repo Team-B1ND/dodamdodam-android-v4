@@ -12,4 +12,3 @@ data class TokenEntity(
 ) {
     constructor(token: String, refreshToken: String) : this(0, token, refreshToken)
 }
-

@@ -9,6 +9,5 @@ class MyNewsFragment : BaseFragment<FragmentMyNewsBinding, MyNewsViewModel>() {
     override val hasBottomNav: Boolean = true
 
     override fun observerViewModel() {
-
     }
 }

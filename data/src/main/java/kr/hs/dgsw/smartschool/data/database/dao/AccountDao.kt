@@ -13,5 +13,4 @@ interface AccountDao : BaseDao<AccountEntity> {
 
     @Query("DELETE FROM account_table")
     suspend fun deleteAccount()
-
 }

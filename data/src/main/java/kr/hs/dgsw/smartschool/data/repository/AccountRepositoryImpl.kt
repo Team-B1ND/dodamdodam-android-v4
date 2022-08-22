@@ -23,5 +23,4 @@ class AccountRepositoryImpl @Inject constructor(
     override suspend fun deleteAccount() {
         accountDataSource.deleteAccount()
     }
-
 }

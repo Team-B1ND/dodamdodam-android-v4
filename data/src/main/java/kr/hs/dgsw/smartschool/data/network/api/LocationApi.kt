@@ -44,7 +44,7 @@ interface LocationApi {
     suspend fun putLocation(
         @Path("idx") idx: Int,
         @Body placeIdx: Location
-    ) : Response<Any>
+    ): Response<Any>
 
     @DELETE("location/{idx}")
     suspend fun deleteLocation(
@@ -54,7 +54,7 @@ interface LocationApi {
     @PUT("location/check/{idx}")
     suspend fun checkLocation(
         @Path("idx") idx: Int
-    ) : Response<Any>
+    ): Response<Any>
 
     @PUT("location/uncheck/{idx}")
     suspend fun unCheckLocation(

@@ -10,7 +10,7 @@ import javax.inject.Inject
 class GetBusList @Inject constructor(
     private val busRepository: BusRepository
 ) : BaseUseCase<Unit, List<BusByDate>>() {
-    override fun invoke(params: Unit): Flow<Resource<List<BusByDate>>> = execute{
+    override fun invoke(params: Unit): Flow<Resource<List<BusByDate>>> = execute {
         busRepository.getBusList()
     }
 }

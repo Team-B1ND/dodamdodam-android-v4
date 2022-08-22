@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "userInfo_table")
-data class UserInfoEntity (
+data class UserInfoEntity(
     val id: String,
     @PrimaryKey
     val generation: Int,

@@ -14,7 +14,7 @@ class ErrorResponseInterceptor : Interceptor {
         val request = chain.request()
         val response = chain.proceed(request)
 
-        when(response.code) {
+        when (response.code) {
             TIME_OUT_ERROR -> throw Throwable(Constants.TIME_OUT_MESSAGE)
             NOT_FOUND_ERROR, SERVER_ERROR -> throw Throwable(Constants.SERVER_ERROR_MESSAGE)
             else -> return response

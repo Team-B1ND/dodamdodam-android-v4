@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.home
 
 import android.util.Log
-import android.view.Gravity
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope

@@ -18,7 +18,7 @@ class SongViewModel @Inject constructor(
     private val songUseCases: SongUseCases,
     private val accountUseCases: AccountUseCases
 ) : BaseViewModel() {
-    
+
     private val _getAllowSongState = MutableStateFlow<GetAllowSongState>(GetAllowSongState())
     val getAllowSongState: StateFlow<GetAllowSongState> = _getAllowSongState
 
@@ -39,18 +39,19 @@ class SongViewModel @Inject constructor(
         getTomorrowSong()
         getApplySong()
     }
-    
+
     fun getTomorrowSong() {
         val today = LocalDate.now().plusDays(1)
         songUseCases.getAllowSong(
             GetAllowSong.Params(
-            year = today.year,
-            month = today.monthValue,
-            date = today.dayOfMonth,
-        )).divideResult(
+                year = today.year,
+                month = today.monthValue,
+                date = today.dayOfMonth,
+            )
+        ).divideResult(
             isGetAllowSongLoading,
             { songList -> _getAllowSongState.value = GetAllowSongState(songList = songList ?: emptyList()) },
-            { message -> _getAllowSongState.value = GetAllowSongState(error = message ?: "기상송을 받아오지 못했습니다.")}
+            { message -> _getAllowSongState.value = GetAllowSongState(error = message ?: "기상송을 받아오지 못했습니다.") }
         ).launchIn(viewModelScope)
 
         // test function

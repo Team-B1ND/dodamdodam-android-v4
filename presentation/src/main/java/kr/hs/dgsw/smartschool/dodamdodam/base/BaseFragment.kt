@@ -47,14 +47,14 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         mBinding = DataBindingUtil.inflate(
             inflater,
             layoutRes(),
-            container
-            , false
+            container, false
         )!!
         return mBinding.root
     }

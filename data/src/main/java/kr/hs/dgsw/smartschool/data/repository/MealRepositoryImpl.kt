@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class MealRepositoryImpl @Inject constructor (
     private val mealDataSource: MealDataSource
-): MealRepository {
+) : MealRepository {
     private val mealMapper = MealMapper()
 
     override suspend fun getAllMeal(year: Int, month: Int): List<Meal> =

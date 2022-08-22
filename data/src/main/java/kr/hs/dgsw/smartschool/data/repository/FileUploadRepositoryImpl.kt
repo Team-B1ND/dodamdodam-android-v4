@@ -46,5 +46,4 @@ class FileUploadRepositoryImpl @Inject constructor(
         val fileNameArray: Array<String> = file.name.split(".").toTypedArray()
         return fileNameArray[fileNameArray.size - 1]
     }
-
 }

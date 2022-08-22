@@ -70,7 +70,7 @@ class LocationRepositoryImpl @Inject constructor(
         return getDefaultLocationList()
     }
 
-    private fun getDefaultLocationList() : List<DefaultLocation> {
+    private fun getDefaultLocationList(): List<DefaultLocation> {
         val result: ArrayList<DefaultLocation> = ArrayList()
 
         defaultLocationList.forEach { defaultLocation ->

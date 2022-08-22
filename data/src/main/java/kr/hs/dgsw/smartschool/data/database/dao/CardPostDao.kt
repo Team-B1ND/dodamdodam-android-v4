@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Query
 import kr.hs.dgsw.smartschool.data.base.BaseDao
 import kr.hs.dgsw.smartschool.data.database.entity.CardPostEntity
-import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
 
 @Dao
 interface CardPostDao : BaseDao<CardPostEntity> {

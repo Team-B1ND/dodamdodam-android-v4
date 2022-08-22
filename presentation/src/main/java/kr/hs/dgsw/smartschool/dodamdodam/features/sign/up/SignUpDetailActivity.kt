@@ -83,7 +83,7 @@ class SignUpDetailActivity : BaseActivity<ActivitySignUpDetailBinding, SignUpDet
 
     private fun initViewEvent() {
         bindingViewEvent { event ->
-            when(event) {
+            when (event) {
                 SignUpDetailViewModel.EVENT_EMPTY -> shortToast("입력란을 모두 채워 주세요.")
                 SignUpDetailViewModel.EVENT_NOT_PHONE_NUMBER -> shortToast("전화번호 형식이 일치하지 않습니다.")
                 SignUpDetailViewModel.EVENT_NOT_AGREE -> shortToast("방침에 동의해 주세요.")

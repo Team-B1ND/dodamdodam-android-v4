@@ -3,7 +3,6 @@ package kr.hs.dgsw.smartschool.dodamdodam.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import kr.hs.dgsw.smartschool.dodamdodam.R
@@ -30,7 +29,7 @@ class LocationCheckAdapter(val onClickLocationCard: (Int) -> Unit) : ListAdapter
             binding.tvTimeTable.text = item.time?.name
 
             binding.root.setOnClickListener {
-                //onOpenLocationApply.value = item.timeTableIdx ?: 0
+                // onOpenLocationApply.value = item.timeTableIdx ?: 0
                 onClickLocationCard(item.timeTableIdx ?: 0)
             }
         }

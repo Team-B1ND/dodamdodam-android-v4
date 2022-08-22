@@ -13,11 +13,11 @@ object SharedPreferenceManager {
         return getDefaultSharedPreferences(context).getBoolean(PREF_IS_LOGIN, false)
     }
 
-    fun signIn(context: Context){
+    fun signIn(context: Context) {
         getDefaultSharedPreferences(context).edit().putBoolean(PREF_IS_LOGIN, true).apply()
     }
 
-    fun signOut(context: Context){
+    fun signOut(context: Context) {
         getDefaultSharedPreferences(context).edit().putBoolean(PREF_IS_LOGIN, false).apply()
     }
 

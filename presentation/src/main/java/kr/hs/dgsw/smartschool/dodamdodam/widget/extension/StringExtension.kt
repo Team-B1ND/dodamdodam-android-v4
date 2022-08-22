@@ -28,7 +28,7 @@ fun String.isNotEmailValid(): Boolean {
 }
 
 fun String.isNotPhoneNumberValid(): Boolean {
-    if(!TextUtils.isEmpty(this) && !Pattern.matches("[a-zA-Z]+", this)) {
+    if (!TextUtils.isEmpty(this) && !Pattern.matches("[a-zA-Z]+", this)) {
         return this.length != 11
     }
     return true

@@ -82,7 +82,6 @@ class LocationApplyViewModel @Inject constructor(
                     deleteLocationRemote(idx = idx, currentTimeTable.name)
                 }
             }
-
         } ?: viewEvent(EVENT_NO_TIME)
     }
 
@@ -90,7 +89,7 @@ class LocationApplyViewModel @Inject constructor(
         locationUseCases.postLocation(params).divideResult(
             isApplyLocationLoading,
             { _applyLocationState.value = ApplyLocationState(message = "$timeName 위치 신청 성공") },
-            { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 신청에 실패했습니다.")}
+            { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 신청에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 
@@ -98,7 +97,7 @@ class LocationApplyViewModel @Inject constructor(
         locationUseCases.putLocation(params).divideResult(
             isApplyLocationLoading,
             { _applyLocationState.value = ApplyLocationState(message = "$timeName 위치 수정 성공") },
-            { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 수정에 실패했습니다.")}
+            { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 수정에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 
@@ -106,7 +105,7 @@ class LocationApplyViewModel @Inject constructor(
         locationUseCases.deleteLocation(idx).divideResult(
             isApplyLocationLoading,
             { _applyLocationState.value = ApplyLocationState(message = "$timeName 위치 삭제 성공") },
-            { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 삭제에 실패했습니다.")}
+            { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 삭제에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 
@@ -147,5 +146,4 @@ class LocationApplyViewModel @Inject constructor(
         const val EVENT_ON_CLICK_BACK = 0
         const val EVENT_NO_TIME = 1
     }
-
 }

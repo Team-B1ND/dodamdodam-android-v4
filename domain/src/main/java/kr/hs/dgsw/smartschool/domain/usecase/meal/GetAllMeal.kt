@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class GetAllMeal @Inject constructor(
     private val repository: MealRepository
-): BaseUseCase<GetAllMeal.Params, List<Meal>>() {
+) : BaseUseCase<GetAllMeal.Params, List<Meal>>() {
 
     override operator fun invoke(params: Params): Flow<Resource<List<Meal>>> = execute {
         repository.getAllMeal(params.year, params.month)

@@ -8,6 +8,5 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     override val viewModel: LostFoundViewModel by viewModels()
 
     override fun observerViewModel() {
-
     }
 }

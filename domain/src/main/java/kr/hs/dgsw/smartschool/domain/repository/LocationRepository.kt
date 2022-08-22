@@ -21,5 +21,4 @@ interface LocationRepository {
     suspend fun putLocation(idx: Int, placeIdx: Location): String
 
     suspend fun deleteLocation(idx: Int): String
-
 }

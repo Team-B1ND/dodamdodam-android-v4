@@ -30,7 +30,7 @@ class MealHomeAdapter : ListAdapter<MealInfo, MealHomeAdapter.MealHomeViewHolder
 
             val context = binding.root.context
 
-            when(item.type) {
+            when (item.type) {
                 1 -> {
                     binding.tvMealName.text = "조식"
                     binding.tvMealName.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.color_breakfast))

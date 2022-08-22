@@ -15,7 +15,7 @@ import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
 class BusAdapter(val context: Context) : ListAdapter<BusInfo, BusAdapter.BusViewHolder>(BusDiffUtilCallback) {
 
     inner class BusViewHolder(private val binding: ItemBusBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: BusInfo){
+        fun bind(data: BusInfo) {
             with(binding.tvBusRidePossible) {
                 background = if (data.rideable == "탑승가능")
                     ContextCompat.getDrawable(context, R.drawable.background_bus_ride_possible)

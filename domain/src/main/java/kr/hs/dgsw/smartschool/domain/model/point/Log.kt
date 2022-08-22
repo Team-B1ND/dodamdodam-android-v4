@@ -1,6 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.model.point
 
-data class Log (
+data class Log(
     val idx: Int,
     val type: Int,
     val score: Int,

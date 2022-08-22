@@ -32,5 +32,4 @@ class MemberRemote @Inject constructor(
 
     suspend fun changeMemberInfo(memberId: String, request: MyInfoChangeRequest) =
         api.changeMemberInfo(memberId, request)
-
 }

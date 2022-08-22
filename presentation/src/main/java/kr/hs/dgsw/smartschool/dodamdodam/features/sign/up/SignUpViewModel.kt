@@ -3,7 +3,7 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.sign.up
 import androidx.lifecycle.MutableLiveData
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 
-class SignUpViewModel: BaseViewModel() {
+class SignUpViewModel : BaseViewModel() {
 
     companion object {
         const val EVENT_ON_CLICK_NEXT = 0
@@ -36,6 +36,4 @@ class SignUpViewModel: BaseViewModel() {
 
         viewEvent(EVENT_ON_CLICK_NEXT)
     }
-
 }
-

@@ -9,5 +9,4 @@ enum class MemberAllowedType(val value: Int) {
     companion object {
         fun fromInt(value: Int) = values().first { it.value == value }
     }
-
 }

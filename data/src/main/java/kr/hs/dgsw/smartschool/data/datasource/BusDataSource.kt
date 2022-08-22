@@ -12,17 +12,17 @@ import javax.inject.Inject
 class BusDataSource @Inject constructor(
     override val cache: BusCache,
     override val remote: BusRemote
-) : BaseDataSource<BusRemote,Any>() {
+) : BaseDataSource<BusRemote, Any>() {
 
     private val mapper = BusMapper()
 
     suspend fun getBusSelfMonth(): BusData<Bus> {
         return remote.getMyBusListMonth()
     }
-    suspend fun getBusSelf(): BusData<Bus>{
+    suspend fun getBusSelf(): BusData<Bus> {
         return remote.getMyBusList()
     }
-    suspend fun getBusList(): BusData<BusByDate>{
+    suspend fun getBusList(): BusData<BusByDate> {
         return remote.getBusList()
     }
 }

@@ -16,4 +16,4 @@ data class Video(
     @SerializedName("checkMemberId") val checkMemberId: String?,
     @SerializedName("submitDate") val submitDate: Date?,
     @SerializedName("playDate") val playDate: Date?
-): Serializable
+) : Serializable

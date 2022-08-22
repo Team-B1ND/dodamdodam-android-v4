@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.MealDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemMealBinding
-import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemMealHomeBinding
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
 
 class MealAdapter : ListAdapter<MealInfo, MealAdapter.MealViewHolder>(MealDiffUtilCallback) {
@@ -31,7 +30,7 @@ class MealAdapter : ListAdapter<MealInfo, MealAdapter.MealViewHolder>(MealDiffUt
 
             val context = binding.root.context
 
-            when(item.type) {
+            when (item.type) {
                 1 -> {
                     binding.tvMealName.text = "조식"
                     binding.tvMealName.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.color_breakfast))

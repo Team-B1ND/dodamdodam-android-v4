@@ -34,10 +34,12 @@ class SignInViewModel @Inject constructor(
     }
 
     private fun signIn() {
-        signInUseCase(SignInUseCase.Params(
-            id = id.value?.removeBlankInString() ?: "",
-            pw = pw.value?.removeBlankInString() ?: ""
-        )).divideResult(
+        signInUseCase(
+            SignInUseCase.Params(
+                id = id.value?.removeBlankInString() ?: "",
+                pw = pw.value?.removeBlankInString() ?: ""
+            )
+        ).divideResult(
             isLoading,
             { viewEvent(EVENT_SUCCESS_SIGN_IN) },
             { _signInState.value = SignInState(error = it ?: "로그인에 실패하였습니다.") }

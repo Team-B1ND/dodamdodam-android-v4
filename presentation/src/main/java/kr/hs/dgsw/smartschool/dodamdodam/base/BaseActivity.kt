@@ -15,7 +15,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinis
 import java.lang.reflect.ParameterizedType
 import java.util.*
 
-abstract class BaseActivity<VB : ViewDataBinding, VM: BaseViewModel> : AppCompatActivity() {
+abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity() {
     protected lateinit var mBinding: VB
     protected lateinit var mViewModel: VM
 
@@ -57,7 +57,7 @@ abstract class BaseActivity<VB : ViewDataBinding, VM: BaseViewModel> : AppCompat
 
     override fun onDestroy() {
         super.onDestroy()
-        if(::mBinding.isInitialized) mBinding.unbind()
+        if (::mBinding.isInitialized) mBinding.unbind()
     }
 
     /**

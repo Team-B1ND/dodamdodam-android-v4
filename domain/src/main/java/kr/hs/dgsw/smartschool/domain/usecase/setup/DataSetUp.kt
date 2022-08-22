@@ -10,7 +10,7 @@ class DataSetUp @Inject constructor(
     val repository: DataSetUpRepository
 ) : BaseUseCase<Unit, String>() {
     override operator fun invoke(params: Unit): Flow<Resource<String>> = execute {
-         repository.setUpData()
-         "데이터 업데이트에 성공했습니다."
+        repository.setUpData()
+        "데이터 업데이트에 성공했습니다."
     }
 }

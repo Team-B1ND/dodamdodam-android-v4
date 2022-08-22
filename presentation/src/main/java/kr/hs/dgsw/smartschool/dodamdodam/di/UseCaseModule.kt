@@ -74,7 +74,7 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun providePointUseCases(pointRepository: PointRepository) : PointUseCases =
+    fun providePointUseCases(pointRepository: PointRepository): PointUseCases =
         PointUseCases(
             getMyPoint = GetMyPoint(pointRepository),
             getMyPointTarget = GetMyPointTarget(pointRepository)
@@ -82,7 +82,7 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideLocationUseCases(locationRepository: LocationRepository) : LocationUseCases =
+    fun provideLocationUseCases(locationRepository: LocationRepository): LocationUseCases =
         LocationUseCases(
             getMyLocation = GetMyLocation(locationRepository),
             postLocation = PostLocation(locationRepository),
@@ -92,7 +92,7 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideSetUpDataUseCases(dataSetUpRepository: DataSetUpRepository) : SetUpUseCases =
+    fun provideSetUpDataUseCases(dataSetUpRepository: DataSetUpRepository): SetUpUseCases =
         SetUpUseCases(
             dataSetUp = DataSetUp(dataSetUpRepository),
             teacherSetUp = TeacherSetUp(dataSetUpRepository)

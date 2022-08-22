@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.data.database.cache
 
 import android.app.Application
-import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseCache
 import kr.hs.dgsw.smartschool.data.database.dao.MealDao
 import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
@@ -9,7 +8,7 @@ import kr.hs.dgsw.smartschool.data.exception.NullMealException
 import javax.inject.Inject
 import kotlin.jvm.Throws
 
-class MealCache @Inject constructor(application: Application): BaseCache(application) {
+class MealCache @Inject constructor(application: Application) : BaseCache(application) {
     private val mealDao: MealDao = database.mealDao()
 
     suspend fun insertMealList(mealEntities: List<MealEntity>) = mealDao.insert(mealEntities)

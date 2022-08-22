@@ -4,7 +4,7 @@ import kr.hs.dgsw.smartschool.domain.model.account.Account
 
 interface AccountRepository {
 
-    suspend fun getAccount() : Account
+    suspend fun getAccount(): Account
 
     suspend fun insertAccount(account: Account)
 
