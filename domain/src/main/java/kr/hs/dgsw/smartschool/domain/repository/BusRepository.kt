@@ -10,7 +10,7 @@ import kr.hs.dgsw.smartschool.domain.request.UpdateBusRequest
 interface BusRepository {
 
     //GET
-    suspend fun getBusList(): List<Bus>
+    suspend fun getBusList(): List<BusByDate>
     suspend fun getMyBus() : List<Bus>
     suspend fun getMyBusByMonth(
         request : MyBusByMonthRequest

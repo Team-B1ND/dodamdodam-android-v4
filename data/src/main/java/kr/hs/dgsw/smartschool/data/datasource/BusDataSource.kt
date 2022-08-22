@@ -4,6 +4,7 @@ import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
+import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.request.AddBusRequest
 import kr.hs.dgsw.smartschool.domain.request.MyBusByMonthRequest
 import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
@@ -23,7 +24,7 @@ class BusDataSource @Inject constructor(
     suspend fun getMyBusList(): BusData<Bus>
     = remote.getMyBusList()
 
-    suspend fun getBusList(): BusData<Bus>
+    suspend fun getBusList(): BusData<BusByDate>
     = remote.getBusList()
 
     suspend fun updateBus(

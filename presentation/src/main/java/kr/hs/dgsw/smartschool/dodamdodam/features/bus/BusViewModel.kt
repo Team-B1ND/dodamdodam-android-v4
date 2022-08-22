@@ -31,7 +31,7 @@ class BusViewModel @Inject constructor(
     private fun getBusList(){
         busUseCases.getBus(Unit).divideResult(
             isLoading,
-            { _busState.value = BusState(busList = it ?: emptyList<Bus>()) },
+            { _busState.value = BusState(busByDateList = it ?: emptyList<BusByDate>()) },
             { _busState.value = BusState(error = it ?: "버스를 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)
     }

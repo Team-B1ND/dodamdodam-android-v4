@@ -27,7 +27,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
             lifecycleScope.launchWhenStarted {
                 busState.collect { state ->
                     if (state.busList.isNotEmpty()) {
-                        val busList = setBusInfo(state.busList)
+                        val busList = setBusInfo(state.busByDateList)
                         if (busList.isNotEmpty()) {
                             hasBus.value = true
                         }
@@ -43,14 +43,11 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
 
     }
 
-    private fun setBusInfo(busList: List<Bus>) : List<BusInfo>{
+    private fun setBusInfo(busList: List<BusByDate>) : List<BusInfo>{
         val list : MutableList<BusInfo> = mutableListOf()
 
         //val today = LocalDate.now()
         val today = LocalDate.of(2022, 9, 2)
-
-
-        //TODO 날짜에 따른 버스 목록을 불러 올 수 있도록 구현
         val todayBus = busList.find {
             val busDateString = it.date.split("-")
             val busDate = LocalDate.of(busDateString[0].toInt(), busDateString[1].toInt(), busDateString[2].toInt())
