@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.data.datasource
 
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
+import kr.hs.dgsw.smartschool.data.database.cache.BusCache
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
@@ -12,20 +13,21 @@ import kr.hs.dgsw.smartschool.domain.request.UpdateBusRequest
 import javax.inject.Inject
 
 class BusDataSource @Inject constructor(
-    override val cache: Any,
+    override val cache: BusCache,
     override val remote: BusRemote
 ) : BaseDataSource<BusRemote,Any>() {
 
     suspend fun getMyBusByMonth(
         request: MyBusByMonthRequest
     ): BusData<Bus>
-    = remote.getMyBusByMonth(request)
+    = remote.getMyBusByMonth(request).data
 
     suspend fun getMyBusList(): BusData<Bus>
-    = remote.getMyBusList()
+    = remote.getMyBusList().data
 
-    suspend fun getBusList(): BusData<BusByDate>
-    = remote.getBusList()
+    suspend fun getBusList(): BusData<BusByDate> {
+        return remote.getBusList().data
+    }
 
     suspend fun updateBus(
         request: UpdateBusRequest

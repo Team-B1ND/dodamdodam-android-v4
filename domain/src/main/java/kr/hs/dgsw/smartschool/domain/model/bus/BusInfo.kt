@@ -5,5 +5,6 @@ data class BusInfo(
     val busName : String,
     val rideable : String,
     val peopleCount : String,
-    val leaveTime : String
+    val leaveTime : String,
+    val isSelected : Boolean
 )

@@ -16,13 +16,13 @@ class BusRemote @Inject constructor(
     override val api: BusApi
 ) : BaseRemote<BusApi>() {
 
-    suspend fun getBusList(): BusData<BusByDate> = api.getBusList().data
+    suspend fun getBusList(): Response<BusData<BusByDate>> = api.getBusList()
 
-    suspend fun getMyBusList() : BusData<Bus> = api.getMyBus().data
+    suspend fun getMyBusList() : Response<BusData<Bus>> = api.getMyBus()
 
     suspend fun getMyBusByMonth(
         request: MyBusByMonthRequest
-    ) : BusData<Bus> = api.getMyBusByMonth(request).data
+    ) : Response<BusData<Bus>> = api.getMyBusByMonth(request)
 
     suspend fun updateBus(
         request: UpdateBusRequest

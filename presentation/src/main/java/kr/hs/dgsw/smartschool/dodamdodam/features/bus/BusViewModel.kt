@@ -48,8 +48,13 @@ class BusViewModel @Inject constructor(
     }
     fun applyBus(idx:Int){
         when(checkBus()){
-            0-> busUseCases.addBusApply(idx)
-            else -> busUseCases.updateBusApply(UpdateBusApplyRequest(originBusIdx = checkBus(), busIdx = idx))
+            0-> {
+                busUseCases.addBusApply(idx)
+            }
+            else -> {
+                busId.value = idx
+                busUseCases.updateBusApply(UpdateBusApplyRequest(originBusIdx = checkBus(), busIdx = idx))
+            }
         }
     }
     fun cancelBus(idx:Int){

@@ -12,7 +12,7 @@ import java.util.concurrent.Executors
     MealEntity::class, TokenEntity::class, AccountEntity::class,
     MemberEntity::class, StudentEntity::class, TeacherEntity::class,
     HistoryMemberEntity::class, TimeEntity::class, PlaceEntity::class,
-    ClassInfoEntity::class
+    ClassInfoEntity::class, BusEntity::class,
     ],
     version = 4,
     exportSchema = false
