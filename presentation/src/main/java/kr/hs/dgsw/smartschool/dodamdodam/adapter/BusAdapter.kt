@@ -26,8 +26,8 @@ class BusAdapter(val context: Context, val listener: BusAdapter.BusApplyCallBack
 
     inner class BusViewHolder(private val binding: ItemBusBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: BusInfo){
-            if (data.isSelected)
-            binding.busCard.background = ContextCompat.getDrawable(context,R.drawable.background_bus_card_selected)
+            if (data.isSelected) binding.busCard.background = ContextCompat.getDrawable(context,R.drawable.background_bus_card_selected)
+
             with(binding.tvBusRidePossible) {
                 background = if (data.rideable == "탑승가능")
                     ContextCompat.getDrawable(context, R.drawable.background_bus_ride_possible)

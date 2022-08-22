@@ -144,7 +144,8 @@
                 android:textAppearance="?android:textAppearanceLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="@id/layout_bus_info"
-                android:layout_marginEnd="15dp" />
+               android:padding="5dp"
+                android:paddingEnd="15dp"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

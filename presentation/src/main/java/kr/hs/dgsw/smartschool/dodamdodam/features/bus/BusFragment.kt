@@ -26,7 +26,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 busState.collect { state ->
-                    if (state.busList.isNotEmpty()) {
+                    if (state.busByDateList.isNotEmpty()) {
                         val busList = setBusInfo(state.busByDateList)
                         if (busList.isNotEmpty()) {
                             hasBus.value = true
@@ -63,7 +63,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
             } else if(it.busMemberlength >= it.peopleLimit){
                 rideAble = "탑승불가"
             }
-            if(it.idx == viewModel.busId.toString().toInt())
+            if(it.idx == viewModel.busId.value)
                 isSelected = true
             list.add(
                 BusInfo(
@@ -76,11 +76,13 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
                 )
             )
         }
+        Log.e("setBusInfo",list.toString())
         return list
     }
 
     private fun setBusRecyclerView(list: List<BusInfo>) {
         val busAdapter = BusAdapter(requireContext(),this)
+        Log.e("setBusRecyclerView",list.toString())
         mBinding.recyclerBus.adapter = busAdapter
         busAdapter.submitList(list)
     }

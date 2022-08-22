@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.data.datasource
 
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
-import kr.hs.dgsw.smartschool.data.database.cache.BusCache
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
@@ -13,7 +12,7 @@ import kr.hs.dgsw.smartschool.domain.request.UpdateBusRequest
 import javax.inject.Inject
 
 class BusDataSource @Inject constructor(
-    override val cache: BusCache,
+    override val cache: Any,
     override val remote: BusRemote
 ) : BaseDataSource<BusRemote,Any>() {
 
