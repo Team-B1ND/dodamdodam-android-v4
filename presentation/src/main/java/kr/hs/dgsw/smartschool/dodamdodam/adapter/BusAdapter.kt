@@ -18,7 +18,7 @@ import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
 
 
 
-class BusAdapter(val context: Context, private val callback: BusAdapter.BusApplyCallBack) : ListAdapter<BusInfo, BusAdapter.BusViewHolder>(BusDiffUtilCallback) {
+class BusAdapter(val context: Context, val listener: BusAdapter.BusApplyCallBack) : ListAdapter<BusInfo, BusAdapter.BusViewHolder>(BusDiffUtilCallback) {
 
     interface BusApplyCallBack {
         fun applyBus(idx: Int)
@@ -46,12 +46,12 @@ class BusAdapter(val context: Context, private val callback: BusAdapter.BusApply
                     when (item.itemId) {
                         R.id.apply_bus ->
                         {
-                            listner.applyBus(data.idx)
+                            listener.applyBus(data.idx)
                             true
                         }
                         R.id.cancel_bus ->
                         {
-                            listner.cancelBus(data.idx)
+                            listener.cancelBus(data.idx)
                             true
                         }
                         else -> false
