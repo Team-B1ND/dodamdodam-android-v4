@@ -1,11 +1,12 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.bus
 
+import android.bluetooth.BluetoothAdapter.ERROR
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.BusAdapter
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.BusApplyCallBack
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentBusBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
@@ -15,7 +16,7 @@ import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
 import java.time.LocalDate
 
 @AndroidEntryPoint
-class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(),BusApplyCallBack {
+class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter.BusApplyCallBack {
     override val viewModel: BusViewModel by viewModels()
     override fun observerViewModel() {
         mBinding.btnBack.setOnClickListener {
@@ -86,9 +87,11 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(),BusApplyCal
 
     override fun applyBus(idx: Int) {
         viewModel.applyBus(idx)
+        Log.e("applyBus override","정상적 실행")
     }
 
     override fun cancelBus(idx: Int) {
         viewModel.cancelBus(idx)
+        Log.e("cancelBus override","정상적 실행")
     }
 }

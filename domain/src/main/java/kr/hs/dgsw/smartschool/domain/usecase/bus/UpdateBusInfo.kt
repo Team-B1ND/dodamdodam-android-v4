@@ -10,6 +10,7 @@ import javax.inject.Inject
 
 class UpdateBusInfo @Inject constructor(
     private val busRepository: BusRepository
+
 ) : BaseUseCase<UpdateBusRequest, String>() {
     override fun invoke(params: UpdateBusRequest): Flow<Resource<String>> = execute {
         busRepository.updateBusInfo(params)

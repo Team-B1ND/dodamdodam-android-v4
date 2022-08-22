@@ -15,12 +15,20 @@ import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.BusDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemBusBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.bus.BusFragment
 import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
-import kr.hs.dgsw.smartschool.domain.usecase.bus.BusUseCases
 
 
-class BusAdapter(val context: Context,val listner : BusApplyCallBack) : ListAdapter<BusInfo, BusAdapter.BusViewHolder>(BusDiffUtilCallback) {
+
+class BusAdapter(val context: Context, private val callback: BusAdapter.BusApplyCallBack) : ListAdapter<BusInfo, BusAdapter.BusViewHolder>(BusDiffUtilCallback) {
+
+    interface BusApplyCallBack {
+        fun applyBus(idx: Int)
+        fun cancelBus(idx: Int)
+    }
+
     inner class BusViewHolder(private val binding: ItemBusBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: BusInfo){
+
+            //TODO 버스 카드 선택에 따른 background color 설정 필요, BusInfo 구조 변경 필요
             with(binding.tvBusRidePossible) {
                 background = if (data.rideable == "탑승가능")
                     ContextCompat.getDrawable(context, R.drawable.background_bus_ride_possible)

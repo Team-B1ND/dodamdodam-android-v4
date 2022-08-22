@@ -10,6 +10,7 @@ class AddBusApply @Inject constructor(
     private val busRepository: BusRepository
 ) : BaseUseCase<Int, String>() {
     override operator fun invoke(params: Int): Flow<Resource<String>> = execute {
-        busRepository.addBusApply(params).toString()
+        busRepository.addBusApply(params)
+        "버스를 신청하였습니다"
     }
 }
