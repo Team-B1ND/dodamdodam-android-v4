@@ -9,6 +9,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.BusApplyCallBack
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentBusBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
+import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
 import java.time.LocalDate
@@ -41,12 +42,14 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(),BusApplyCal
 
     }
 
-    private fun setBusInfo(busList: List<BusByDate>) : List<BusInfo>{
+    private fun setBusInfo(busList: List<Bus>) : List<BusInfo>{
         val list : MutableList<BusInfo> = mutableListOf()
 
         //val today = LocalDate.now()
-        val today = LocalDate.of(2022, 7, 19)
+        val today = LocalDate.of(2022, 9, 2)
 
+
+        //TODO 날짜에 따른 버스 목록을 불러 올 수 있도록 구현
         val todayBus = busList.find {
             val busDateString = it.date.split("-")
             val busDate = LocalDate.of(busDateString[0].toInt(), busDateString[1].toInt(), busDateString[2].toInt())
@@ -64,6 +67,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(),BusApplyCal
             }
             list.add(
                 BusInfo(
+                    it.idx,
                     it.busName,
                     rideAble,
                     it.busMemberlength.toString()+" / "+it.peopleLimit.toString(),
@@ -75,16 +79,16 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(),BusApplyCal
     }
 
     private fun setBusRecyclerView(list: List<BusInfo>) {
-        val busAdapter = BusAdapter(requireContext())
+        val busAdapter = BusAdapter(requireContext(),this)
         mBinding.recyclerBus.adapter = busAdapter
         busAdapter.submitList(list)
     }
 
     override fun applyBus(idx: Int) {
-        viewModel.
+        viewModel.applyBus(idx)
     }
 
     override fun cancelBus(idx: Int) {
-        TODO("Not yet implemented")
+        viewModel.cancelBus(idx)
     }
 }
