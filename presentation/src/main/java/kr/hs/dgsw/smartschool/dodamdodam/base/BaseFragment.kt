@@ -17,7 +17,8 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`.SignInActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
 import java.lang.reflect.ParameterizedType
-import java.util.*
+import java.util.Locale
+import java.util.Objects
 
 abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
 

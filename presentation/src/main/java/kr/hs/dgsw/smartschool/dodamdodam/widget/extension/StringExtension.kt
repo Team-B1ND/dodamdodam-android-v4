@@ -2,7 +2,8 @@ package kr.hs.dgsw.smartschool.dodamdodam.widget.extension
 
 import android.text.TextUtils
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 import java.util.regex.Pattern
 
 fun String.getTime(): Date {

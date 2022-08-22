@@ -8,7 +8,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
-import java.util.*
+import java.util.Random
 import javax.inject.Inject
 
 class FileUploadRepositoryImpl @Inject constructor(

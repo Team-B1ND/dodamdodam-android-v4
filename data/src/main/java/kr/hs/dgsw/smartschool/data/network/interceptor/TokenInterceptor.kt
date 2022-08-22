@@ -1,7 +1,7 @@
 package kr.hs.dgsw.smartschool.data.network.interceptor
 
-import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.runBlocking
 import kr.hs.dgsw.smartschool.data.datasource.AccountDataSource
 import kr.hs.dgsw.smartschool.data.exception.TokenException
 import kr.hs.dgsw.smartschool.data.util.AppDispatchers

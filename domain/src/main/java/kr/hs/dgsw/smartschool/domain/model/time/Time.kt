@@ -3,7 +3,7 @@ package kr.hs.dgsw.smartschool.domain.model.time
 import android.annotation.SuppressLint
 import com.google.gson.annotations.SerializedName
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 class Time(
     val idx: Int,

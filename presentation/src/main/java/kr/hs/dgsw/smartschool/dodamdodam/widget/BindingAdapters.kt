@@ -16,7 +16,7 @@ import com.google.android.material.card.MaterialCardView
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getParentActivity
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 @BindingAdapter("adapter")
 fun setAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {

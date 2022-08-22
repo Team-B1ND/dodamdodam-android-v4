@@ -7,7 +7,13 @@ import kr.hs.dgsw.smartschool.domain.model.location.Locations
 import kr.hs.dgsw.smartschool.domain.request.DefaultLocationRequest
 import kr.hs.dgsw.smartschool.domain.request.LocationControlRequest
 import kr.hs.dgsw.smartschool.domain.request.LocationRequest
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface LocationApi {
     @POST("location")

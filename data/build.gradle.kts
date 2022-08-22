@@ -1,5 +1,6 @@
 plugins {
     id(Plugins.androidLibrary)
+    kotlin(Plugins.extensions)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinKapt)
     id(Plugins.daggerPlugin)

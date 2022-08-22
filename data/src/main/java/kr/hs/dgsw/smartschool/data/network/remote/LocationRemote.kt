@@ -10,7 +10,8 @@ import kr.hs.dgsw.smartschool.domain.request.DefaultLocationRequest
 import kr.hs.dgsw.smartschool.domain.request.LocationControlRequest
 import kr.hs.dgsw.smartschool.domain.request.LocationRequest
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 class LocationRemote(override val api: LocationApi) : BaseRemote<LocationApi>() {
 

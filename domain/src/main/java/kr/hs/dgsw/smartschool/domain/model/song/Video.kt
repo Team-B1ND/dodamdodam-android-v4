@@ -2,7 +2,7 @@ package kr.hs.dgsw.smartschool.domain.model.song
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
-import java.util.*
+import java.util.Date
 
 data class Video(
     @SerializedName("idx") val idx: Int,

@@ -1,6 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam
 
-import org.junit.Assert.*
+import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
 /**
