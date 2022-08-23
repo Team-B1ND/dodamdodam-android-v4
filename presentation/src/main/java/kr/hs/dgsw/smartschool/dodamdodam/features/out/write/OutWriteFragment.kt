@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.out
+package kr.hs.dgsw.smartschool.dodamdodam.features.out.write
 
 import androidx.fragment.app.viewModels
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
