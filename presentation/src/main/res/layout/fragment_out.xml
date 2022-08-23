@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="kr.hs.dgsw.smartschool.dodamdodam.features.offbase.OffbaseViewModel" />
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.out.OutViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
