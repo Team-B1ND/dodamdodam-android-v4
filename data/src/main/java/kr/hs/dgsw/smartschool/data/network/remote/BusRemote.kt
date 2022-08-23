@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.data.network.remote
 
+import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.BusApi
 import kr.hs.dgsw.smartschool.data.network.response.Response
@@ -18,7 +19,10 @@ class BusRemote @Inject constructor(
 
     suspend fun getBusList(): Response<BusData<BusByDate>> = api.getBusList()
 
-    suspend fun getMyBusList() : Response<BusData<Bus>> = api.getMyBus()
+    suspend fun getMyBusList() : Response<BusData<Bus>> {
+        Log.e("getMyBus","실행")
+        return api.getMyBus()
+    }
 
     suspend fun getMyBusByMonth(
         request: MyBusByMonthRequest
@@ -57,7 +61,10 @@ class BusRemote @Inject constructor(
 
     suspend fun addBusApply(
         idx:Int
-    ) :Response<Any> = api.addBusApply(idx)
+    ) :Response<Any> {
+        Log.e("addBusApply","실행")
+        return api.addBusApply(idx)
+    }
 
     suspend fun deleteBus(
         idx : Int

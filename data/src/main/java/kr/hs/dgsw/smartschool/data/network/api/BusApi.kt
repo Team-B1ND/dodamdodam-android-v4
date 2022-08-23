@@ -14,7 +14,7 @@ interface BusApi {
     @GET("bus/self")
     suspend fun getMyBus() : Response<BusData<Bus>>
 
-    @GET("bus/self/month")
+    @GET("bus/self/apply")
     suspend fun getMyBusByMonth(
         @Body month : Int,
         @Body year : Int
@@ -31,7 +31,7 @@ interface BusApi {
 
     @POST("bus/self")
     suspend fun addBusApply(
-        @Body busIdx : Int
+        @Query("busIdx") busIdx : Int
     ):Response<Any>
 
 
