@@ -155,7 +155,7 @@
                         android:layout_marginTop="15dp"
                         android:orientation="vertical"
                         visibility="@{vm.isOutGoing()}"
-                        tools:visibility="gone"
+                        tools:visibility="visible"
                         app:layout_constraintBottom_toTopOf="@id/btn_add_offbase"
                         app:layout_constraintEnd_toStartOf="@+id/guideline2"
                         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -182,6 +182,7 @@
                                 android:layout_weight="1" />
 
                             <TextView
+                                mutableDateText="@{vm.startOutGoingDate}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -350,7 +351,7 @@
                         app:layout_constraintEnd_toStartOf="@+id/guideline2"
                         app:layout_constraintStart_toStartOf="@+id/guideline"
                         app:layout_constraintTop_toBottomOf="@+id/et_reason"
-                        tools:visibility="visible">
+                        tools:visibility="gone">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/layout_out"
@@ -384,6 +385,7 @@
                                     android:layout_weight="1" />
 
                                 <TextView
+                                    mutableDateText="@{vm.startOutSleepingDate}"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
@@ -406,7 +408,7 @@
                             </LinearLayout>
 
                             <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/layout_leave_start_time"
+                                android:id="@+id/layout_out_sleeping_start_time"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
@@ -415,7 +417,7 @@
                                 app:layout_constraintTop_toBottomOf="@+id/layout_out_sleeping_start_date">
 
                                 <TextView
-                                    android:id="@+id/tv_start_leave_time"
+                                    android:id="@+id/tv_start_out_sleeping_time"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginVertical="15dp"
@@ -425,7 +427,7 @@
                                     android:textColor="@color/color_black"
                                     android:textSize="@dimen/title4"
                                     app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="@+id/layout_leave_start_time"
+                                    app:layout_constraintStart_toStartOf="@+id/layout_out_sleeping_start_time"
                                     app:layout_constraintTop_toTopOf="parent" />
 
                                 <androidx.cardview.widget.CardView
@@ -447,7 +449,7 @@
                                         android:paddingVertical="10dp">
 
                                         <EditText
-                                            android:id="@+id/et_start_leave_hour"
+                                            android:id="@+id/et_start_out_sleeping_hour"
                                             android:layout_width="0dp"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
@@ -467,7 +469,7 @@
                                             android:text="@string/colon" />
 
                                         <EditText
-                                            android:id="@+id/et_start_leave_minute"
+                                            android:id="@+id/et_start_out_sleeping_minute"
                                             android:layout_width="0dp"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
@@ -486,12 +488,12 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <LinearLayout
-                                android:id="@+id/layout_leave_end_date"
+                                android:id="@+id/layout_out_sleeping_end_date"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:orientation="horizontal"
-                                app:layout_constraintTop_toBottomOf="@+id/layout_leave_start_time"
+                                app:layout_constraintTop_toBottomOf="@+id/layout_out_sleeping_start_time"
                                 tools:ignore="MissingConstraints">
 
                                 <TextView
@@ -510,6 +512,7 @@
                                     android:layout_weight="1" />
 
                                 <TextView
+                                    mutableDateText="@{vm.endOutSleepingDate}"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
@@ -532,13 +535,13 @@
                             </LinearLayout>
 
                             <androidx.constraintlayout.widget.ConstraintLayout
-                                android:id="@+id/layout_leave_end_time"
+                                android:id="@+id/layout_out_sleeping_end_time"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/layout_leave_end_date">
+                                app:layout_constraintTop_toBottomOf="@+id/layout_out_sleeping_end_date">
 
                                 <TextView
                                     android:id="@+id/textView2"
@@ -551,11 +554,11 @@
                                     android:textColor="@color/color_black"
                                     android:textSize="@dimen/title4"
                                     app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintStart_toStartOf="@+id/layout_leave_end_time"
+                                    app:layout_constraintStart_toStartOf="@+id/layout_out_sleeping_end_time"
                                     app:layout_constraintTop_toTopOf="parent" />
 
                                 <androidx.cardview.widget.CardView
-                                    android:id="@+id/cv_leave_time_end"
+                                    android:id="@+id/cv_out_sleeping_time_end"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginEnd="5dp"
@@ -573,7 +576,7 @@
                                         android:paddingVertical="10dp">
 
                                         <EditText
-                                            android:id="@+id/et_end_leave_hour"
+                                            android:id="@+id/et_end_out_sleeping_hour"
                                             android:layout_width="0dp"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
@@ -593,7 +596,7 @@
                                             android:text="@string/colon" />
 
                                         <EditText
-                                            android:id="@+id/et_end_leave_minute"
+                                            android:id="@+id/et_end_out_sleeping_minute"
                                             android:layout_width="0dp"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
@@ -621,6 +624,7 @@
                         android:fontFamily="@font/nanum_square_regular"
                         android:includeFontPadding="false"
                         android:text="@string/text_ok"
+                        android:onClick="@{() -> vm.onClickApply()}"
                         android:textColor="@color/color_white"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"

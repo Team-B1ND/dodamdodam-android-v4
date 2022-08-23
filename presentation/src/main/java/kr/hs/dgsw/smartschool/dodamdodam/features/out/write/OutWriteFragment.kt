@@ -3,10 +3,14 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.out.write
 import android.app.DatePickerDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentOutWriteBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.dateFormat
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getDate
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.monthFormat
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearFormat
 import java.util.*
 
@@ -21,6 +25,26 @@ class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel
                 OutWriteViewModel.EVENT_ON_CLICK_START_OUT_GOING_DATE -> openDatePicker(0)
                 OutWriteViewModel.EVENT_ON_CLICK_START_OUT_SLEEPING_DATE -> openDatePicker(1)
                 OutWriteViewModel.EVENT_ON_CLICK_END_OUT_SLEEPING_DATE -> openDatePicker(2)
+                OutWriteViewModel.EVENT_ON_CLICK_APPLY -> setApplyValue()
+                OutWriteViewModel.EVENT_ON_ERROR -> shortToast(OutWriteViewModel.EVENT_ON_ERROR)
+            }
+        }
+    }
+
+    private fun setApplyValue() {
+        with(viewModel) {
+            if (isOutGoing.value == true) {
+                val startDate =
+                    "${startOutGoingDate.value?.yearDateFormat()} ${mBinding.etStartOutGoingHour.text}:${mBinding.etStartOutGoingMinute.text}".getDate()
+                val endDate =
+                    "${startOutGoingDate.value?.yearDateFormat()} ${mBinding.etEndOutGoingHour.text}:${mBinding.etEndOutGoingMinute.text}".getDate()
+                invalidOutGoing(startDate, endDate)
+            } else if (isOutSleeping.value == true) {
+                val startDate =
+                    "${startOutSleepingDate.value?.yearDateFormat()} ${mBinding.etStartOutSleepingHour.text}:${mBinding.etStartOutSleepingMinute.text}".getDate()
+                val endDate =
+                    "${endOutSleepingDate.value?.yearDateFormat()} ${mBinding.etEndOutSleepingHour.text}:${mBinding.etEndOutSleepingMinute.text}".getDate()
+                invalidOutSleeping(startDate, endDate)
             }
         }
     }
@@ -38,11 +62,18 @@ class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel
             val month = monthFormat().toInt() - 1
             val date = dateFormat().toInt()
 
-            DatePickerDialog(this@OutWriteFragment.requireContext(), { _, y, m, d ->
-                val cal = Calendar.getInstance()
-                cal.set(y, m, d)
-                targetDate.value = cal.time
-            }, year, month, date).show()
+            val datePickerDialog = DatePickerDialog(
+                this@OutWriteFragment.requireContext(),
+                R.style.MyDatePickerDialogTheme,
+                { _, y, m, d ->
+                    val cal = Calendar.getInstance()
+                    cal.set(y, m, d)
+                    targetDate.value = cal.time
+            }, year, month, date)
+
+            datePickerDialog.show()
+            datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(R.color.main)
+            datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setTextColor(R.color.main)
         }
     }
 }
