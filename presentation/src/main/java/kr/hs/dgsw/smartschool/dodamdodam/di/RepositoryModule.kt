@@ -11,6 +11,7 @@ import kr.hs.dgsw.smartschool.data.repository.DataSetUpRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.FileUploadRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.LocationRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.MealRepositoryImpl
+import kr.hs.dgsw.smartschool.data.repository.OutRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.PlaceRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.PointRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.SignInRepositoryImpl
@@ -27,6 +28,7 @@ import kr.hs.dgsw.smartschool.domain.repository.DataSetUpRepository
 import kr.hs.dgsw.smartschool.domain.repository.FileUploadRepository
 import kr.hs.dgsw.smartschool.domain.repository.LocationRepository
 import kr.hs.dgsw.smartschool.domain.repository.MealRepository
+import kr.hs.dgsw.smartschool.domain.repository.OutRepository
 import kr.hs.dgsw.smartschool.domain.repository.PlaceRepository
 import kr.hs.dgsw.smartschool.domain.repository.PointRepository
 import kr.hs.dgsw.smartschool.domain.repository.SignInRepository
@@ -104,4 +106,8 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideAccountRepository(accountRepositoryImpl: AccountRepositoryImpl): AccountRepository = accountRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideOutRepository(outRepositoryImpl: OutRepositoryImpl): OutRepository = outRepositoryImpl
 }

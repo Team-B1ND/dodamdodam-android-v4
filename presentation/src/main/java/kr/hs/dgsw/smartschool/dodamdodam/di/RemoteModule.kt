@@ -12,6 +12,7 @@ import kr.hs.dgsw.smartschool.data.network.api.FileUploadApi
 import kr.hs.dgsw.smartschool.data.network.api.LocationApi
 import kr.hs.dgsw.smartschool.data.network.api.MealApi
 import kr.hs.dgsw.smartschool.data.network.api.MemberApi
+import kr.hs.dgsw.smartschool.data.network.api.OutApi
 import kr.hs.dgsw.smartschool.data.network.api.PlaceApi
 import kr.hs.dgsw.smartschool.data.network.api.PointApi
 import kr.hs.dgsw.smartschool.data.network.api.SongApi
@@ -22,6 +23,7 @@ import kr.hs.dgsw.smartschool.data.network.remote.FileUploadRemote
 import kr.hs.dgsw.smartschool.data.network.remote.LocationRemote
 import kr.hs.dgsw.smartschool.data.network.remote.MealRemote
 import kr.hs.dgsw.smartschool.data.network.remote.MemberRemote
+import kr.hs.dgsw.smartschool.data.network.remote.OutRemote
 import kr.hs.dgsw.smartschool.data.network.remote.PlaceRemote
 import kr.hs.dgsw.smartschool.data.network.remote.PointRemote
 import kr.hs.dgsw.smartschool.data.network.remote.SignInRemote
@@ -101,4 +103,9 @@ class RemoteModule {
             SharedPreferenceManager.getDefaultSharedPreferences(context)
                 .getString(context.getString(R.string.pref_key_thumbnail), "default")!!
         )
+
+    @Singleton
+    @Provides
+    fun provideOutRemote(retrofit: Retrofit): OutRemote =
+        OutRemote(retrofit.create(OutApi::class.java))
 }
