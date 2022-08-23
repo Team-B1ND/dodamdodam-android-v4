@@ -189,7 +189,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 currentTime < "09:00" -> minOf(0, mealList.size - 1)
                 currentTime < "13:20" -> minOf(1, mealList.size - 1)
                 currentTime < "20:00" -> minOf(2, mealList.size - 1)
-                else -> minOf(1, mealList.size - 1)
+                else -> minOf(0, mealList.size - 1)
             }
         }
     }

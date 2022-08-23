@@ -109,5 +109,18 @@
     <fragment
         android:id="@+id/outFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.out.OutFragment"
-        android:label="OutFragment" />
+        android:label="OutFragment" >
+        <action
+            android:id="@+id/action_outFragment_to_outWriteFragment"
+            app:destination="@id/outWriteFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/outFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/outWriteFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.out.write.OutWriteFragment"
+        android:label="OutWriteFragment" />
 </navigation>

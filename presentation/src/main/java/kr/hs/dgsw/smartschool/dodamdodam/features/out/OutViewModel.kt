@@ -39,7 +39,12 @@ class OutViewModel @Inject constructor(
         viewEvent(ON_CLICK_BACK)
     }
 
+    fun onClickOutWrite() {
+        viewEvent(ON_CLICK_OUT_WRITE)
+    }
+
     companion object {
         const val ON_CLICK_BACK = 0
+        const val ON_CLICK_OUT_WRITE = 1
     }
 }

@@ -4,6 +4,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentOutBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.adapter.OutListAdapter
@@ -22,6 +23,7 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
         bindingViewEvent { event ->
             when (event) {
                 OutViewModel.ON_CLICK_BACK -> findNavController().popBackStack()
+                OutViewModel.ON_CLICK_OUT_WRITE -> findNavController().navigate(R.id.action_outFragment_to_outWriteFragment)
             }
         }
     }

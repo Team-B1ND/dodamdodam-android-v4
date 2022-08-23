@@ -147,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_regular"
                     android:includeFontPadding="false"
-                    android:text="@string/text_offbase_leave_date_end"
+                    android:text="@string/text_out_sleeping_date_end"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title5"
                     android:textStyle="bold" />
@@ -215,7 +215,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_regular"
                     android:includeFontPadding="false"
-                    android:text="@string/text_offbase_time_end"
+                    android:text="@string/text_out_time_end"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title5"
                     android:textStyle="bold" />

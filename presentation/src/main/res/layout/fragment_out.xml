@@ -15,8 +15,6 @@
         android:layout_height="match_parent"
         tools:context=".view.fragment.OffbaseFragment">
 
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_title_out"
             android:layout_width="match_parent"
@@ -80,6 +78,7 @@
             android:layout_margin="16dp"
             android:backgroundTint="@color/main"
             android:src="@drawable/ic_btn_add"
+            android:onClick="@{() -> vm.onClickOutWrite()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:tint="@color/white"
