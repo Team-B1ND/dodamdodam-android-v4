@@ -4,10 +4,8 @@ import kr.hs.dgsw.smartschool.data.datasource.BusDataSource
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
-import kr.hs.dgsw.smartschool.domain.request.AddBusRequest
-import kr.hs.dgsw.smartschool.domain.request.MyBusByMonthRequest
-import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
-import kr.hs.dgsw.smartschool.domain.request.UpdateBusRequest
+import kr.hs.dgsw.smartschool.domain.request.CreateBusDtoRequest
+import kr.hs.dgsw.smartschool.domain.request.ModifyBusDtoRequest
 import javax.inject.Inject
 
 class BusRepositoryImpl @Inject constructor(
@@ -29,32 +27,32 @@ class BusRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addBus(
-        request: AddBusRequest
-    )
+        request: CreateBusDtoRequest
+    ):String
     = dataSource.addBus(request)
 
     override suspend fun addBusApply(
         idx:Int
-    )
+    ) : String
     = dataSource.addBusApply(idx)
 
     override suspend fun updateBusInfo(
-        request: UpdateBusRequest
-    )
+        request: ModifyBusDtoRequest
+    ) : String
     = dataSource.updateBus(request)
 
     override suspend fun updateBusApply(
-        request: UpdateBusApplyRequest
-    )
+        request: ApplyBusDtoRequest
+    ) : String
     =dataSource.updateBusApply(request)
 
     override suspend fun deleteBus(
         idx : Int
-    )
+    ) : String
     = dataSource.deleteBus(idx)
 
     override suspend fun deleteBusApply(
         idx : Int
-    )
+    ) : String
     = dataSource.deleteBusApply(idx)
 }

@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.launchIn
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
 import kr.hs.dgsw.smartschool.domain.usecase.bus.BusUseCases
 import javax.inject.Inject
 
@@ -65,21 +64,21 @@ class BusViewModel @Inject constructor(
     fun applyBus(idx:Int){
         when(checkBus()){
             0-> {
-                Log.e("applyBus","정상적 실행")
+                Log.e("BusViewModel", "applyBus: "+checkBus() )
                 busUseCases.addBusApply(idx).divideResult(
                     isAddBusApplyLoading,
-                    {_addBusApplyState.value = AddBusApplyState(success = "정상적으로 버스를 가져왔습니다.") },
-                    {_addBusApplyState.value = AddBusApplyState(error = "정상적으로 버스를 가져오는데에 실패하였습니다.")}
-                )
+                    {_addBusApplyState.value = AddBusApplyState(success = "버스 신청에 성공했습니다.") },
+                    {_addBusApplyState.value = AddBusApplyState(error = "버스 신청에 실패했습니다.") }
+                ).launchIn(viewModelScope)
             }
             else -> {
                 busId.value = idx
-                Log.e("changeBus","정상적 실행")
-                busUseCases.updateBusApply(UpdateBusApplyRequest(originBusIdx = checkBus(), busIdx = idx)).divideResult(
-                        isUpdateBusApplyLoading,
-                        {_updateBusApplyState.value = UpdateBusApplyState(success = "정상적으로 버스를 가져왔습니다.") },
-                    {_updateBusApplyState.value = UpdateBusApplyState(error = "정상적으로 버스를 가져오는데에 실패하였습니다.")}
-                )
+                busUseCases.updateBusApply(ApplyBusDtoRequest(originBusIdx = checkBus(), busIdx = idx)).divideResult(
+                    isUpdateBusApplyLoading,
+                    {_updateBusApplyState.value = UpdateBusApplyState(success = "버스 신청에 성공했습니다.") },
+                    {_updateBusApplyState.value = UpdateBusApplyState(error = "버스 신청에 실패했습니다.") }
+                ).launchIn(viewModelScope)
+                Log.e("BusViewModel", "changeBus: "+checkBus() )
             }
         }
     }
