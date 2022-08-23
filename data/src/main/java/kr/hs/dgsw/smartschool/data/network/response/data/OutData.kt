@@ -21,4 +21,9 @@ data class OutData(
         list.addAll(outGoing)
         return list.sortedBy { it.startTime }.filter { !it.isPassTime() }
     }
+
+    fun getAllows(): List<OutItem> {
+        val allOutItem = getAll()
+        return allOutItem.filter { it.isAllow == 1 }
+    }
 }
