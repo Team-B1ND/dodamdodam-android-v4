@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.bus
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -64,6 +65,7 @@ class BusViewModel @Inject constructor(
     fun applyBus(idx:Int){
         when(checkBus()){
             0-> {
+                Log.e("applyBus","정상적 실행")
                 busUseCases.addBusApply(idx).divideResult(
                     isAddBusApplyLoading,
                     {_addBusApplyState.value = AddBusApplyState(success = "정상적으로 버스를 가져왔습니다.") },
@@ -72,6 +74,7 @@ class BusViewModel @Inject constructor(
             }
             else -> {
                 busId.value = idx
+                Log.e("changeBus","정상적 실행")
                 busUseCases.updateBusApply(UpdateBusApplyRequest(originBusIdx = checkBus(), busIdx = idx)).divideResult(
                         isUpdateBusApplyLoading,
                         {_updateBusApplyState.value = UpdateBusApplyState(success = "정상적으로 버스를 가져왔습니다.") },
@@ -81,6 +84,7 @@ class BusViewModel @Inject constructor(
         }
     }
     fun cancelBus(idx:Int){
+        Log.e("cancelBus","정상적 실행")
         busUseCases.deleteBusApply(idx).divideResult(
             isDeleteBusApplyLoading,
             {_deleteBusApplyState.value = DeleteBusApplyState(success = "정상적으로 버스를 삭제했습니다.") },

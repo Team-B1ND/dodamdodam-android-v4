@@ -30,26 +30,25 @@ class BusDataSource @Inject constructor(
 
     suspend fun updateBus(
         request: UpdateBusRequest
-    ) = remote.updateBus(request)
+    ) : String = remote.updateBus(request)
 
     suspend fun updateBusApply(
         request: UpdateBusApplyRequest
-    ) = remote.updateBusApply(request)
+    ) : String = remote.updateBusApply(request)
 
     suspend fun addBus(
         request: AddBusRequest
-    ) = remote.addBus(request)
+    ) : String = remote.addBus(request)
 
     suspend fun addBusApply(
         idx:Int
-    )
-    = remote.addBusApply(idx)
+    ): String = remote.addBusApply(idx)
 
     suspend fun deleteBus(
         idx : Int
-    ) = remote.deleteBus(idx)
+    ) : String = remote.deleteBus(idx)
 
     suspend fun deleteBusApply(
         idx: Int
-    ) = remote.deleteBusApply(idx)
+    ) : String = remote.deleteBusApply(idx)
 }

@@ -25,9 +25,9 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
 
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
-                busState.collect { state ->
-                    if (state.busByDateList.isNotEmpty()) {
-                        val busList = setBusInfo(state.busByDateList)
+                getBusListState.collect { state ->
+                    if (state.busList.isNotEmpty()) {
+                        val busList = setBusInfo(state.busList)
                         if (busList.isNotEmpty()) {
                             hasBus.value = true
                         }
