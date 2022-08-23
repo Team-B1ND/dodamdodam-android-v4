@@ -84,11 +84,11 @@ class BusViewModel @Inject constructor(
         }
     }
     fun cancelBus(idx:Int){
-        Log.e("cancelBus","정상적 실행")
         busUseCases.deleteBusApply(idx).divideResult(
             isDeleteBusApplyLoading,
             {_deleteBusApplyState.value = DeleteBusApplyState(success = "정상적으로 버스를 삭제했습니다.") },
             {_deleteBusApplyState.value = DeleteBusApplyState(error = "정상적으로 버스를 삭제하는데에 실패하였습니다.")}
-        )
+        ).launchIn(viewModelScope)
+        Log.e("BusViewModel","cancelBus: "+checkBus())
     }
 }

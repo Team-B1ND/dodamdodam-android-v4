@@ -7,6 +7,7 @@ import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
+import kr.hs.dgsw.smartschool.domain.request.AddBusApplyRequest
 import kr.hs.dgsw.smartschool.domain.request.AddBusRequest
 import kr.hs.dgsw.smartschool.domain.request.MyBusByMonthRequest
 import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
@@ -63,7 +64,7 @@ class BusRemote @Inject constructor(
         idx:Int
     ) :Response<Any> {
         Log.e("addBusApply","실행")
-        return api.addBusApply(idx)
+        return api.addBusApply(AddBusApplyRequest(idx.toString()))
     }
 
     suspend fun deleteBus(

@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.data.repository
 
+import android.util.Log
 import kr.hs.dgsw.smartschool.data.datasource.BusDataSource
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
@@ -56,5 +57,8 @@ class BusRepositoryImpl @Inject constructor(
     override suspend fun deleteBusApply(
         idx : Int
     ) : String
-    = dataSource.deleteBusApply(idx)
+    {
+        Log.e("deleteBusApply","정상적 실행")
+        return dataSource.deleteBusApply(idx)
+    }
 }

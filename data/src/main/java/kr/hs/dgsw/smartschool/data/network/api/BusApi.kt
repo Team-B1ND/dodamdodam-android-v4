@@ -4,6 +4,7 @@ import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
+import kr.hs.dgsw.smartschool.domain.request.AddBusApplyRequest
 import retrofit2.http.*
 import java.time.Month
 
@@ -31,7 +32,7 @@ interface BusApi {
 
     @POST("bus/self")
     suspend fun addBusApply(
-        @Query("busIdx") busIdx : Int
+        @Body addBusApplyRequest: AddBusApplyRequest
     ):Response<Any>
 
 
@@ -59,6 +60,6 @@ interface BusApi {
 
     @DELETE("bus/self")
     suspend fun deleteBusApply(
-        @Body idx : Int
+        @Query("idx") busIdx: Int
     ):Response<Any>
 }
