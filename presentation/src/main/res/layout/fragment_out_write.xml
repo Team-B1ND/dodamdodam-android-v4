@@ -155,6 +155,7 @@
                         android:layout_marginTop="15dp"
                         android:orientation="vertical"
                         visibility="@{vm.isOutGoing()}"
+                        tools:visibility="gone"
                         app:layout_constraintBottom_toTopOf="@id/btn_add_offbase"
                         app:layout_constraintEnd_toStartOf="@+id/guideline2"
                         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -196,6 +197,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:src="@drawable/ic_btn_calendar"
+                                android:onClick="@{() -> vm.onClickStartOutGoingDate()}"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -348,7 +350,7 @@
                         app:layout_constraintEnd_toStartOf="@+id/guideline2"
                         app:layout_constraintStart_toStartOf="@+id/guideline"
                         app:layout_constraintTop_toBottomOf="@+id/et_reason"
-                        tools:visibility="gone">
+                        tools:visibility="visible">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/layout_out"
@@ -397,6 +399,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
                                     android:padding="5dp"
+                                    android:onClick="@{() -> vm.onClickStartOutSleepingDate()}"
                                     android:src="@drawable/ic_btn_calendar"
                                     tools:ignore="ContentDescription" />
 
@@ -522,6 +525,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
                                     android:padding="5dp"
+                                    android:onClick="@{() -> vm.onClickEndOutSleepingDate()}"
                                     android:src="@drawable/ic_btn_calendar"
                                     tools:ignore="ContentDescription" />
 
