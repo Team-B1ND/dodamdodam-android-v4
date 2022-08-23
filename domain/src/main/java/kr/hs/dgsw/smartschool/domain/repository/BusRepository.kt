@@ -2,8 +2,10 @@ package kr.hs.dgsw.smartschool.domain.repository
 
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.request.CreateBusDtoRequest
-import kr.hs.dgsw.smartschool.domain.request.ModifyBusDtoRequest
+import kr.hs.dgsw.smartschool.domain.request.AddBusRequest
+import kr.hs.dgsw.smartschool.domain.request.MyBusByMonthRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusRequest
 
 interface BusRepository {
 
@@ -17,8 +19,9 @@ interface BusRepository {
 
     //POST
     suspend fun addBus(
-        request: CreateBusDtoRequest
+        request: AddBusRequest
     ):String
+
     suspend fun addBusApply(
         idx: Int
     ):String
@@ -26,10 +29,10 @@ interface BusRepository {
 
     //PUT
     suspend fun updateBusInfo(
-        request : ModifyBusDtoRequest
+        request : UpdateBusRequest
     ):String
     suspend fun updateBusApply(
-        request: ApplyBusDtoRequest
+        request: UpdateBusApplyRequest
     ):String
 
 

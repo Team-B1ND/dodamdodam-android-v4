@@ -4,9 +4,6 @@ import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.request.CreateBusDtoRequest
-import kr.hs.dgsw.smartschool.domain.request.BusDtoRequest
-import kr.hs.dgsw.smartschool.domain.request.ModifyBusDtoRequest
 import retrofit2.http.*
 import java.time.Month
 
@@ -14,45 +11,54 @@ interface BusApi {
     @GET("bus")
     suspend fun getBusList() : Response<BusData<BusByDate>>
 
-    @GET("bus/apply")
+    @GET("bus/self")
     suspend fun getMyBus() : Response<BusData<Bus>>
 
-    @GET("bus/apply/month")
+    @GET("bus/self/month")
     suspend fun getMyBusByMonth(
-        @Body year : Int,
-        @Body month : Month
+        @Body month : Int,
+        @Body year : Int
     ) : Response<BusData<Bus>>
 
     @POST("bus")
     suspend fun addBus(
-       @Body createBusDto: CreateBusDtoRequest
+       @Body busName: String,
+       @Body description : String,
+       @Body leaveTime : String,
+       @Body timeRequired : String,
+       @Body peopleLimit : Int
     ):Response<Any>
 
-    @POST("bus/apply")
+    @POST("bus/self")
     suspend fun addBusApply(
-        @Body busDto : BusDtoRequest
+        @Body busIdx : Int
     ):Response<Any>
 
 
-    @PATCH("bus/{id}")
+    @PUT("bus")
     suspend fun updateBus(
-        @Path("id") idx : Int,
-        @Body modifyBusDto: ModifyBusDtoRequest
+        @Body busIdx : Int,
+        @Body busName: String,
+        @Body description : String,
+        @Body leaveTime : String,
+        @Body timeRequired : String,
+        @Body peopleLimit : Int
     ):Response<Any>
 
-    @PATCH("bus/apply")
+    @PUT("bus/self")
     suspend fun updateBusApply(
-        @Body busDto: BusDtoRequest
+        @Body originBusIdx : Int,
+        @Body busIdx : Int
     ):Response<Any>
 
 
-    @DELETE("bus/{id}")
+    @DELETE("bus")
     suspend fun deleteBus(
-        @Path("id") idx : Int
+        @Body idx : Int
     ):Response<Any>
 
-    @DELETE("bus/apply")
+    @DELETE("bus/self")
     suspend fun deleteBusApply(
-        @Body applyBusDto : BusDtoRequest
+        @Body idx : Int
     ):Response<Any>
 }

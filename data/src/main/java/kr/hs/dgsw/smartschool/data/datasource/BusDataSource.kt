@@ -6,8 +6,10 @@ import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.request.CreateBusDtoRequest
-import kr.hs.dgsw.smartschool.domain.request.ModifyBusDtoRequest
+import kr.hs.dgsw.smartschool.domain.request.AddBusRequest
+import kr.hs.dgsw.smartschool.domain.request.MyBusByMonthRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusRequest
 import javax.inject.Inject
 
 class BusDataSource @Inject constructor(
@@ -26,21 +28,21 @@ class BusDataSource @Inject constructor(
     }
 
     suspend fun updateBus(
-        request: ModifyBusDtoRequest
+        request: UpdateBusRequest
     ): String {
         Log.e("BusDataSource", remote.updateBus(request).message)
         return remote.updateBus(request).message
     }
 
     suspend fun updateBusApply(
-        request: ApplyBusDtoRequest
+        request: UpdateBusApplyRequest
     ): String {
         Log.e("BusDataSource", remote.updateBusApply(request).message)
         return remote.updateBusApply(request).message
     }
 
     suspend fun addBus(
-        request: CreateBusDtoRequest
+        request: AddBusRequest
     ): String {
         Log.e("BusDataSource", remote.addBus(request).message)
         return remote.addBus(request).message

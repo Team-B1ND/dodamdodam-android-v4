@@ -4,8 +4,10 @@ import kr.hs.dgsw.smartschool.data.datasource.BusDataSource
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
-import kr.hs.dgsw.smartschool.domain.request.CreateBusDtoRequest
-import kr.hs.dgsw.smartschool.domain.request.ModifyBusDtoRequest
+import kr.hs.dgsw.smartschool.domain.request.AddBusRequest
+import kr.hs.dgsw.smartschool.domain.request.MyBusByMonthRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusRequest
 import javax.inject.Inject
 
 class BusRepositoryImpl @Inject constructor(
@@ -27,7 +29,7 @@ class BusRepositoryImpl @Inject constructor(
     }
 
     override suspend fun addBus(
-        request: CreateBusDtoRequest
+        request:AddBusRequest
     ):String
     = dataSource.addBus(request)
 
@@ -37,12 +39,12 @@ class BusRepositoryImpl @Inject constructor(
     = dataSource.addBusApply(idx)
 
     override suspend fun updateBusInfo(
-        request: ModifyBusDtoRequest
+        request: UpdateBusRequest
     ) : String
     = dataSource.updateBus(request)
 
     override suspend fun updateBusApply(
-        request: ApplyBusDtoRequest
+        request: UpdateBusApplyRequest
     ) : String
     =dataSource.updateBusApply(request)
 
