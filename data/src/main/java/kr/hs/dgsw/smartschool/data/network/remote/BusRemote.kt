@@ -6,10 +6,8 @@ import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.request.AddBusRequest
-import kr.hs.dgsw.smartschool.domain.request.MyBusByMonthRequest
-import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
-import kr.hs.dgsw.smartschool.domain.request.UpdateBusRequest
+import kr.hs.dgsw.smartschool.domain.request.CreateBusDtoRequest
+import kr.hs.dgsw.smartschool.domain.request.ModifyBusDtoRequest
 import javax.inject.Inject
 
 class BusRemote @Inject constructor(
@@ -25,26 +23,26 @@ class BusRemote @Inject constructor(
     ) : Response<BusData<Bus>> = api.getMyBusByMonth(request)
 
     suspend fun updateBus(
-        request: UpdateBusRequest
-    ) : String = api.updateBus(request).message
+        request: ModifyBusDtoRequest
+    ):Response<Any> = api.updateBus(request)
 
     suspend fun updateBusApply(
-        request: UpdateBusApplyRequest
-    ):String = api.updateBusApply(request).message
+        request: ApplyBusDtoRequest
+    ):Response<Any> = api.updateBusApply(request)
 
     suspend fun addBus(
-        request: AddBusRequest
-    ): String = api.addBus(request).message
+        request: CreateBusDtoRequest
+    ):Response<Any> = api.addBus(request)
 
     suspend fun addBusApply(
         idx:Int
-    ):String = api.addBusApply(idx).message
+    ) :Response<Any> = api.addBusApply(idx)
 
     suspend fun deleteBus(
         idx : Int
-    ): String = api.deleteBus(idx).message
+    ):Response<Any> = api.deleteBus(idx)
 
     suspend fun deleteBusApply(
         idx : Int
-    ): String = api.deleteBusApply(idx).message
+    ):Response<Any> = api.deleteBusApply(idx)
 }

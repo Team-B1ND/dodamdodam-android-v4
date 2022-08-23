@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +27,10 @@ class BusAdapter(val context: Context, val listener: BusAdapter.BusApplyCallBack
 
     inner class BusViewHolder(private val binding: ItemBusBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: BusInfo){
-            if (data.isSelected) binding.busCard.background = ContextCompat.getDrawable(context,R.drawable.background_bus_card_selected)
+            if (data.isSelected){
+                binding.busCard.background = ContextCompat.getDrawable(context,R.drawable.background_bus_card_selected)
+                Log.e("background",data.isSelected.toString())
+                }
 
             with(binding.tvBusRidePossible) {
                 background = if (data.rideable == "탑승가능")

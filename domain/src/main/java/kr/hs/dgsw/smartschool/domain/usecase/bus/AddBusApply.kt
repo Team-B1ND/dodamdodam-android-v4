@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.usecase.bus
 
+import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
