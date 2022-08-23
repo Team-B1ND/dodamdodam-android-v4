@@ -19,31 +19,40 @@ class BusViewModel @Inject constructor(
 ): BaseViewModel() {
     private val _getBusListState = MutableStateFlow(GetBusListState(isLoading = false))
     private val _getMyBusState = MutableStateFlow(GetMyBusState(isLoading = false))
-    private val _applyBusState = MutableStateFlow(ApplyBusState(isLoading = false))
-    private val _changeBusState = MutableStateFlow(ChangeBusState(isLoading = false))
+    private val _addBusApplyState = MutableStateFlow(AddBusApplyState(isLoading = false))
+    private val _updateBusApplyState = MutableStateFlow(UpdateBusApplyState(isLoading = false))
+    private val _deleteBusApplyState = MutableStateFlow(DeleteBusApplyState(isLoading = false))
 
     val getBusListState: StateFlow<GetBusListState> = _getBusListState
     val getMyBusState: StateFlow<GetMyBusState> = _getMyBusState
-    val applyBusState: StateFlow<ApplyBusState> = _applyBusState
-    val changeBusState: StateFlow<ChangeBusState> = _changeBusState
+    val addBusApplyState: StateFlow<AddBusApplyState> = _addBusApplyState
+    val updateBusApplyState: StateFlow<UpdateBusApplyState> = _updateBusApplyState
+    val deleteBusApplyState: StateFlow<DeleteBusApplyState> = _deleteBusApplyState
 
     val busId = MutableLiveData<Int>(0)
     val hasBus = MutableLiveData<Boolean>(false)
 
+    private val isGetMyBusLoading = MutableLiveData<Boolean>()
+    private val isGetBusLoading = MutableLiveData<Boolean>()
+    private val isAddBusApplyLoading = MutableLiveData<Boolean>()
+    private val isUpdateBusApplyLoading = MutableLiveData<Boolean>()
+    private val isDeleteBusApplyLoading = MutableLiveData<Boolean>()
+
     init {
+        combineLoadingVariable(isGetBusLoading, isGetMyBusLoading,isAddBusApplyLoading,isUpdateBusApplyLoading,isDeleteBusApplyLoading)
         getBusList()
     }
 
     private fun getBusList(){
         busUseCases.getBus(Unit).divideResult(
-            isLoading,
+            isGetBusLoading,
             { _getBusListState.value = GetBusListState(busList = it ?: emptyList<BusByDate>()) },
             { _getBusListState.value = GetBusListState(error = it ?: "버스를 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)
     }
     private fun getMyBus(){
         busUseCases.getMyBus(Unit).divideResult(
-            isLoading,
+            isGetMyBusLoading,
             {_getMyBusState.value = GetMyBusState(busList = it ?: emptyList<Bus>()) },
             {_getMyBusState.value = GetMyBusState(error = it?: "버스를 받아오지 못하였습니다.") }
         )
@@ -56,16 +65,26 @@ class BusViewModel @Inject constructor(
         when(checkBus()){
             0-> {
                 busUseCases.addBusApply(idx).divideResult(
-
+                    isAddBusApplyLoading,
+                    {_addBusApplyState.value = AddBusApplyState(success = "정상적으로 버스를 가져왔습니다.") },
+                    {_addBusApplyState.value = AddBusApplyState(error = "정상적으로 버스를 가져오는데에 실패하였습니다.")}
                 )
             }
             else -> {
                 busId.value = idx
-                busUseCases.updateBusApply(UpdateBusApplyRequest(originBusIdx = checkBus(), busIdx = idx))
+                busUseCases.updateBusApply(UpdateBusApplyRequest(originBusIdx = checkBus(), busIdx = idx)).divideResult(
+                        isUpdateBusApplyLoading,
+                        {_updateBusApplyState.value = UpdateBusApplyState(success = "정상적으로 버스를 가져왔습니다.") },
+                    {_updateBusApplyState.value = UpdateBusApplyState(error = "정상적으로 버스를 가져오는데에 실패하였습니다.")}
+                )
             }
         }
     }
     fun cancelBus(idx:Int){
-        busUseCases.deleteBusApply(idx)
+        busUseCases.deleteBusApply(idx).divideResult(
+            isDeleteBusApplyLoading,
+            {_deleteBusApplyState.value = DeleteBusApplyState(success = "정상적으로 버스를 삭제했습니다.") },
+            {_deleteBusApplyState.value = DeleteBusApplyState(error = "정상적으로 버스를 삭제하는데에 실패하였습니다.")}
+        )
     }
 }
