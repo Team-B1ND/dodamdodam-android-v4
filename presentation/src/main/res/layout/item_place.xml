@@ -26,7 +26,7 @@
             android:fontFamily="@font/nanum_square_regular"
             android:includeFontPadding="false"
             android:textAlignment="center"
-            android:textColor="@drawable/selected_text_color"
+            android:textColor="@drawable/selected_location_text_color"
             android:textSize="@dimen/title6"
             tools:text="랩1실" />
 

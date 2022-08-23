@@ -45,6 +45,8 @@ import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutAllows
 import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutGoingById
 import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutSleepingById
 import kr.hs.dgsw.smartschool.domain.usecase.out.OutUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.out.PostOutGoing
+import kr.hs.dgsw.smartschool.domain.usecase.out.PostOutSleeping
 import kr.hs.dgsw.smartschool.domain.usecase.point.GetMyPoint
 import kr.hs.dgsw.smartschool.domain.usecase.point.GetMyPointTarget
 import kr.hs.dgsw.smartschool.domain.usecase.point.PointUseCases
@@ -169,7 +171,9 @@ class UseCaseModule {
             getOut = GetOut(outRepository),
             getOutAllows = GetOutAllows(outRepository),
             getOutSleepingById = GetOutSleepingById(outRepository),
-            getOutGoingById = GetOutGoingById(outRepository)
+            getOutGoingById = GetOutGoingById(outRepository),
+            postOutGoing = PostOutGoing(outRepository),
+            postOutSleeping = PostOutSleeping(outRepository)
         )
 
 }

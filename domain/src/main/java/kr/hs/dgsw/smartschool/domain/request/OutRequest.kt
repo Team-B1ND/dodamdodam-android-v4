@@ -8,9 +8,11 @@ data class OutRequest(
     @field:SerializedName("leaveIdx")
     val outSleepingIdx: Int?,
     @field:SerializedName("startTime")
-    val startTime: Int?,
+    val startTime: String,
     @field:SerializedName("endTime")
-    val endTime: Int?,
+    val endTime: String,
     @field:SerializedName("reason")
-    val reason: Int?,
-)
+    val reason: String,
+) {
+    constructor(startTime: String, endTime: String, reason: String) : this(null, null, startTime, endTime, reason)
+}

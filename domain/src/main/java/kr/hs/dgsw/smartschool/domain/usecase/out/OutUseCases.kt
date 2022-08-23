@@ -4,5 +4,7 @@ data class OutUseCases(
     val getOut: GetOut,
     val getOutAllows: GetOutAllows,
     val getOutSleepingById: GetOutSleepingById,
-    val getOutGoingById: GetOutGoingById
+    val getOutGoingById: GetOutGoingById,
+    val postOutGoing: PostOutGoing,
+    val postOutSleeping: PostOutSleeping
 )

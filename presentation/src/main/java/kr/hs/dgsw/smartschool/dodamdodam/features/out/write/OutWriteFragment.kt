@@ -2,7 +2,10 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.out.write
 
 import android.app.DatePickerDialog
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentOutWriteBinding
@@ -14,10 +17,14 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearFormat
 import java.util.*
 
+@AndroidEntryPoint
 class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel>() {
     override val viewModel: OutWriteViewModel by viewModels()
 
     override fun observerViewModel() {
+
+        collectOutGoingState()
+        collectOutSleepingState()
 
         bindingViewEvent { event ->
             when (event) {
@@ -27,6 +34,36 @@ class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel
                 OutWriteViewModel.EVENT_ON_CLICK_END_OUT_SLEEPING_DATE -> openDatePicker(2)
                 OutWriteViewModel.EVENT_ON_CLICK_APPLY -> setApplyValue()
                 OutWriteViewModel.EVENT_ON_ERROR -> shortToast(OutWriteViewModel.EVENT_ON_ERROR)
+            }
+        }
+    }
+
+    private fun collectOutGoingState() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.postOutGoingState.collect { state ->
+                if (state.message.isNotBlank()) {
+                    shortToast(state.message)
+                    findNavController().popBackStack()
+                }
+
+                if (state.error.isNotBlank()) {
+                    shortToast(state.error)
+                }
+            }
+        }
+    }
+
+    private fun collectOutSleepingState() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.postOutSleepingState.collect { state ->
+                if (state.message.isNotBlank()) {
+                    shortToast(state.message)
+                    findNavController().popBackStack()
+                }
+
+                if (state.error.isNotBlank()) {
+                    shortToast(state.error)
+                }
             }
         }
     }

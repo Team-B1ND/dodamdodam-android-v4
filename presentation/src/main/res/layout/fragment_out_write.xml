@@ -26,17 +26,17 @@
 
             <include
                 android:id="@+id/btn_back"
-                android:onClick="@{() -> vm.onClickBack()}"
-                layout="@layout/item_back_button" />
+                layout="@layout/item_back_button"
+                android:onClick="@{() -> vm.onClickBack()}" />
 
             <TextView
                 android:id="@+id/tv_out_write"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@string/title_out_write"
                 android:fontFamily="@font/nanum_square_regular"
                 android:includeFontPadding="false"
+                android:text="@string/title_out_write"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title3"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -142,24 +142,25 @@
                         android:importantForAutofill="no"
                         android:includeFontPadding="false"
                         android:inputType="none"
-                        android:textSize="@dimen/title4"
                         android:padding="15dp"
+                        android:text="@={vm.outReason}"
+                        android:textSize="@dimen/title4"
                         app:layout_constraintEnd_toStartOf="@+id/guideline2"
                         app:layout_constraintStart_toStartOf="@+id/guideline"
                         app:layout_constraintTop_toBottomOf="@+id/cv_off_base" />
 
                     <LinearLayout
                         android:id="@+id/out_going_layout"
+                        visibility="@{vm.isOutGoing()}"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:orientation="vertical"
-                        visibility="@{vm.isOutGoing()}"
-                        tools:visibility="visible"
                         app:layout_constraintBottom_toTopOf="@id/btn_add_offbase"
                         app:layout_constraintEnd_toStartOf="@+id/guideline2"
                         app:layout_constraintStart_toStartOf="@+id/guideline"
-                        app:layout_constraintTop_toBottomOf="@+id/et_reason">
+                        app:layout_constraintTop_toBottomOf="@+id/et_reason"
+                        tools:visibility="visible">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -197,8 +198,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:src="@drawable/ic_btn_calendar"
                                 android:onClick="@{() -> vm.onClickStartOutGoingDate()}"
+                                android:src="@drawable/ic_btn_calendar"
                                 tools:ignore="ContentDescription" />
 
                         </LinearLayout>
@@ -342,11 +343,11 @@
 
                     <LinearLayout
                         android:id="@+id/out_layout"
+                        visibility="@{vm.isOutSleeping()}"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginTop="15dp"
                         android:orientation="vertical"
-                        visibility="@{vm.isOutSleeping()}"
                         app:layout_constraintBottom_toTopOf="@id/btn_add_offbase"
                         app:layout_constraintEnd_toStartOf="@+id/guideline2"
                         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -400,8 +401,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:padding="5dp"
                                     android:onClick="@{() -> vm.onClickStartOutSleepingDate()}"
+                                    android:padding="5dp"
                                     android:src="@drawable/ic_btn_calendar"
                                     tools:ignore="ContentDescription" />
 
@@ -527,8 +528,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:padding="5dp"
                                     android:onClick="@{() -> vm.onClickEndOutSleepingDate()}"
+                                    android:padding="5dp"
                                     android:src="@drawable/ic_btn_calendar"
                                     tools:ignore="ContentDescription" />
 
@@ -623,8 +624,8 @@
                         android:background="@drawable/background_checked"
                         android:fontFamily="@font/nanum_square_regular"
                         android:includeFontPadding="false"
-                        android:text="@string/text_ok"
                         android:onClick="@{() -> vm.onClickApply()}"
+                        android:text="@string/text_ok"
                         android:textColor="@color/color_white"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
