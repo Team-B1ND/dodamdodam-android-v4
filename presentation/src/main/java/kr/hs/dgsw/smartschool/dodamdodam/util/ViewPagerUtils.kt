@@ -6,7 +6,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import kotlin.math.abs
 
 object ViewPagerUtils {
-    fun getTransform() : CompositePageTransformer {
+    fun getTransform(): CompositePageTransformer {
         val transform = CompositePageTransformer()
         transform.addTransformer(MarginPageTransformer(10))
 

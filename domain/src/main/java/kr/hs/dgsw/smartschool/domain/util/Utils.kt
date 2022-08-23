@@ -5,7 +5,9 @@ import org.json.JSONObject
 import retrofit2.HttpException
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.GregorianCalendar
 
 object Utils {
 
@@ -32,7 +34,7 @@ object Utils {
 
     @JvmStatic
     @Throws(NoSuchAlgorithmException::class)
-    fun encryptSHA512(target: String): String? {
+    fun encryptSHA512(target: String): String {
         val messageDigest =
             MessageDigest.getInstance("SHA-512")
         val encryptedPassword = StringBuilder()

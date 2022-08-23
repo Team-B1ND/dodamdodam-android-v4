@@ -5,5 +5,5 @@ data class HistoryMember(
     val name: String,
     val profileImage: String?
 ) {
-    constructor() : this("" ,"", "")
+    constructor() : this("", "", "")
 }

@@ -20,5 +20,4 @@ class TokenMapper : BaseEntityMapper<Token, TokenEntity> {
             model.refreshToken
         )
     }
-
 }

@@ -33,7 +33,7 @@ class SignUpDetailViewModel @Inject constructor(
 
     fun checkForm() {
         val isEmpty = grade.value.isNullOrBlank() || room.value.isNullOrBlank() || number.value.isNullOrBlank() ||
-                name.value.isNullOrBlank() || phone.value.isNullOrBlank() || email.value.isNullOrBlank()
+            name.value.isNullOrBlank() || phone.value.isNullOrBlank() || email.value.isNullOrBlank()
         if (isEmpty) {
             viewEvent(EVENT_EMPTY)
             return
@@ -58,7 +58,7 @@ class SignUpDetailViewModel @Inject constructor(
         }
 
         val isNotAgree = !isAgree.value!!
-        if (isNotAgree){
+        if (isNotAgree) {
             viewEvent(EVENT_NOT_AGREE)
             return
         }

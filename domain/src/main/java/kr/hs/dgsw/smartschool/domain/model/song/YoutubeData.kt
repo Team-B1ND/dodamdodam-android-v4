@@ -1,6 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.model.song
 
-import java.util.*
+import java.util.Locale
 
 open class YoutubeData(
     val videoId: String?,

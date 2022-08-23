@@ -8,7 +8,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`.SignInActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinish
 
-class SplashActivity: AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,9 +25,9 @@ class SplashActivity: AppCompatActivity() {
 
     private fun startNextActivity() {
         startActivityWithFinish(
-            //if (SharedPreferenceManager.getIsSignIn(this))
-             //   MainActivity::class.java
-            //else
+            // if (SharedPreferenceManager.getIsSignIn(this))
+            //   MainActivity::class.java
+            // else
             SignInActivity::class.java
         )
     }

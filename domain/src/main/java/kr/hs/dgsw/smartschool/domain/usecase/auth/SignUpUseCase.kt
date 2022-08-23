@@ -8,7 +8,6 @@ import kr.hs.dgsw.smartschool.domain.request.SignUpRequest
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 
-
 class SignUpUseCase @Inject constructor(
     private val signUpRepository: SignUpRepository
 ) : BaseUseCase<SignUpUseCase.Params, String>() {

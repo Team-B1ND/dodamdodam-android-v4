@@ -27,7 +27,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
             }
         }
         bindingViewEvent { event ->
-            when(event) {
+            when (event) {
                 SignInViewModel.EVENT_SUCCESS_SIGN_IN -> startMainActivity()
             }
         }

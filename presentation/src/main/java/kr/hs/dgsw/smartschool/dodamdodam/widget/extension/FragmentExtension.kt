@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import java.util.*
 
 fun Fragment.shortToast(message: String?) {
     Toast.makeText(context!!.applicationContext, message, Toast.LENGTH_SHORT).show()

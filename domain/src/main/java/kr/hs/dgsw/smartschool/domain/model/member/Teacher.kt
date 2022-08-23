@@ -1,6 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.model.member
 
-import java.util.*
+import java.util.Date
 
 class Teacher(
     idx: Int,

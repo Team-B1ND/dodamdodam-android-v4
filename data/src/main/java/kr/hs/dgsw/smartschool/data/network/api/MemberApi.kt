@@ -38,6 +38,4 @@ interface MemberApi {
         @Query("memberId") memberId: String,
         @Body myInfoChangeRequest: MyInfoChangeRequest
     )
-
-
 }

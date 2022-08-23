@@ -4,7 +4,11 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.location.GetMyLocationState
@@ -74,20 +78,22 @@ class HomeViewModel @Inject constructor(
                 viewModelScope.launch { _getMyLocationState.emit(GetMyLocationState(myLocations = it ?: emptyList())) }
                 it?.forEach { placeList -> Log.d("TestTest", "getMyLocation: ${placeList.place?.name}") }
             },
-            { viewModelScope.launch { _getMyLocationState.emit(GetMyLocationState(error = it?: "위치를 받아오지 못하였습니다.")) } }
+            { viewModelScope.launch { _getMyLocationState.emit(GetMyLocationState(error = it ?: "위치를 받아오지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
 
     private fun getAllowSong() {
         val today = LocalDate.now()
-        songUseCases.getAllowSong(GetAllowSong.Params(
-            year = today.year,
-            month = today.monthValue,
-            date = today.dayOfMonth,
-        )).divideResult(
+        songUseCases.getAllowSong(
+            GetAllowSong.Params(
+                year = today.year,
+                month = today.monthValue,
+                date = today.dayOfMonth,
+            )
+        ).divideResult(
             isGetAllowSongLoading,
             { songList -> _getAllowSongState.value = GetAllowSongState(songList = songList ?: emptyList()) },
-            { message -> _getAllowSongState.value = GetAllowSongState(error = message ?: "기상송을 받아오지 못했습니다.")}
+            { message -> _getAllowSongState.value = GetAllowSongState(error = message ?: "기상송을 받아오지 못했습니다.") }
         ).launchIn(viewModelScope)
     }
 

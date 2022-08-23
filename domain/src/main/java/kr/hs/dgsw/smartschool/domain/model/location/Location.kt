@@ -4,8 +4,7 @@ import com.google.gson.annotations.SerializedName
 import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.time.Time
 
-
-open class Location (
+open class Location(
     var time: Time?,
     var place: Place?,
     @SerializedName("timeTableIdx")
@@ -13,7 +12,7 @@ open class Location (
     @SerializedName("placeIdx")
     var placeIdx: Int?
 ) {
-    constructor(): this(null, null, null, null)
+    constructor() : this(null, null, null, null)
 
-    constructor(timeTableIdx: Int, placeIdx: Int): this(null, null, timeTableIdx, placeIdx)
+    constructor(timeTableIdx: Int, placeIdx: Int) : this(null, null, timeTableIdx, placeIdx)
 }

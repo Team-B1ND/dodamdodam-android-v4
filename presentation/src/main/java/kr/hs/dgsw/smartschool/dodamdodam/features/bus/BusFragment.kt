@@ -31,19 +31,18 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>() {
                         setBusRecyclerView(busList)
                     }
 
-                    if(state.error.isNotBlank()) {
+                    if (state.error.isNotBlank()) {
                         shortToast(state.error)
                     }
                 }
             }
         }
-
     }
 
-    private fun setBusInfo(busList: List<BusByDate>) : List<BusInfo>{
-        val list : MutableList<BusInfo> = mutableListOf()
+    private fun setBusInfo(busList: List<BusByDate>): List<BusInfo> {
+        val list: MutableList<BusInfo> = mutableListOf()
 
-        //val today = LocalDate.now()
+        // val today = LocalDate.now()
         val today = LocalDate.of(2022, 7, 19)
 
         val todayBus = busList.find {
@@ -56,16 +55,16 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>() {
 
         var rideAble = ""
         todayBus.bustList.forEach {
-            if(it.busMemberlength < (it.peopleLimit)){
+            if (it.busMemberlength < (it.peopleLimit)) {
                 rideAble = "탑승가능"
-            } else if(it.busMemberlength >= it.peopleLimit){
+            } else if (it.busMemberlength >= it.peopleLimit) {
                 rideAble = "탑승불가"
             }
             list.add(
                 BusInfo(
                     it.busName,
                     rideAble,
-                    it.busMemberlength.toString()+" / "+it.peopleLimit.toString(),
+                    it.busMemberlength.toString() + " / " + it.peopleLimit.toString(),
                     it.leaveTime
                 )
             )

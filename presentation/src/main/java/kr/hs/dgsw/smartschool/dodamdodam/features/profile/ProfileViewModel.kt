@@ -20,7 +20,7 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val memberUseCases: MemberUseCases,
     private val pointUseCases: PointUseCases
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val _myInfoState = MutableStateFlow(MyInfoState(isLoading = false))
     val myInfoState: StateFlow<MyInfoState> = _myInfoState
@@ -57,9 +57,11 @@ class ProfileViewModel @Inject constructor(
     }
 
     private fun getMyBonusPoint() {
-        pointUseCases.getMyPoint(GetMyPoint.Params(
-            LocalDate.now().year.toString(),
-            1)
+        pointUseCases.getMyPoint(
+            GetMyPoint.Params(
+                LocalDate.now().year.toString(),
+                1
+            )
         ).divideResult(
             isGetMyBonusLoading,
             { _myBonusPointState.value = MyBonusPointState(bonusPoint = it) },
@@ -69,7 +71,8 @@ class ProfileViewModel @Inject constructor(
 
     private fun getMyMinusPoint() {
         pointUseCases.getMyPoint(
-            GetMyPoint.Params(LocalDate.now().year.toString(), 2)).divideResult(
+            GetMyPoint.Params(LocalDate.now().year.toString(), 2)
+        ).divideResult(
             isGetMyMinusLoading,
             { _myMinusPointState.value = MyMinusPointState(minusPoint = it) },
             { _myMinusPointState.value = MyMinusPointState(error = it ?: "상벌점 조회를 실패했습니다.") }

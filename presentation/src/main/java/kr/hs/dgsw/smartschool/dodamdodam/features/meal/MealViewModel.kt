@@ -30,7 +30,7 @@ class MealViewModel @Inject constructor(
     val targetDate: LiveData<LocalDate> get() = _targetDate
 
     private val todayDate by lazy {
-         LocalDate.now()
+        LocalDate.now()
     }
 
     init {
@@ -43,10 +43,10 @@ class MealViewModel @Inject constructor(
      */
     fun getMealList() {
         mealUseCases.getAllMeal(
-           GetAllMeal.Params(
-               _targetDate.value?.year ?: todayDate.year,
-           _targetDate.value?.monthValue ?: todayDate.monthValue
-           )
+            GetAllMeal.Params(
+                _targetDate.value?.year ?: todayDate.year,
+                _targetDate.value?.monthValue ?: todayDate.monthValue
+            )
         ).divideResult(
             isLoading,
             { _getMealState.value = GetMealState(meal = it ?: emptyList()) },

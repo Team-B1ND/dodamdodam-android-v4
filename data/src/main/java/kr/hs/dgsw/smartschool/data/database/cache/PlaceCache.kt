@@ -6,7 +6,7 @@ import kr.hs.dgsw.smartschool.data.database.dao.PlaceDao
 import kr.hs.dgsw.smartschool.data.database.entity.PlaceEntity
 import javax.inject.Inject
 
-class PlaceCache @Inject constructor(application: Application): BaseCache(application) {
+class PlaceCache @Inject constructor(application: Application) : BaseCache(application) {
 
     private val placeDao: PlaceDao = database.placeDao()
 
@@ -14,5 +14,5 @@ class PlaceCache @Inject constructor(application: Application): BaseCache(applic
 
     suspend fun deleteAll() = placeDao.deleteAll()
 
-    suspend fun getAllPlace() : List<PlaceEntity> = placeDao.getAllPlace()
+    suspend fun getAllPlace(): List<PlaceEntity> = placeDao.getAllPlace()
 }

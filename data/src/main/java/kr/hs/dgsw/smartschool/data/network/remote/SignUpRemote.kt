@@ -9,6 +9,6 @@ class SignUpRemote : RetrofitRemote<SignUpApi>() {
         get() = createApi(SignUpApi::class.java)
 
     suspend fun signUp(signUpRequest: SignUpRequest): String {
-       return api.signUp(signUpRequest).message
+        return api.signUp(signUpRequest).message
     }
 }

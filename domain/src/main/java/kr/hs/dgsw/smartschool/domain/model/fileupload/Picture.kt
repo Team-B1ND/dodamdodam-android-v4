@@ -12,7 +12,7 @@ data class Picture(
     val url: String?
 ) : Serializable {
 
-    constructor(originalName: String?, uploadName: String, type : String): this(originalName, uploadName, type, null)
+    constructor(originalName: String?, uploadName: String, type: String) : this(originalName, uploadName, type, null)
 
     companion object {
         fun toMemberPicture(picture: Picture?): Picture? =

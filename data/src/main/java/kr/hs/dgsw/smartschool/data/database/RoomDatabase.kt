@@ -9,10 +9,10 @@ import java.util.concurrent.Executors
 
 @Database(
     entities = [
-    MealEntity::class, TokenEntity::class, AccountEntity::class,
-    MemberEntity::class, StudentEntity::class, TeacherEntity::class,
-    HistoryMemberEntity::class, TimeEntity::class, PlaceEntity::class,
-    ClassInfoEntity::class
+        MealEntity::class, TokenEntity::class, AccountEntity::class,
+        MemberEntity::class, StudentEntity::class, TeacherEntity::class,
+        HistoryMemberEntity::class, TimeEntity::class, PlaceEntity::class,
+        ClassInfoEntity::class
     ],
     version = 4,
     exportSchema = false
@@ -43,11 +43,12 @@ abstract class RoomDatabase : androidx.room.RoomDatabase() {
                     .setQueryCallback({ sqlQuery, bindArgs ->
                         println("SQL Query: $sqlQuery SQL Args: $bindArgs")
                     }, Executors.newSingleThreadExecutor())
-                    .fallbackToDestructiveMigration()
-                    .allowMainThreadQueries()
-                    .build()
+                        .fallbackToDestructiveMigration()
+                        .allowMainThreadQueries()
+                        .build()
+                }
+                return instance
             }
-            return instance
         }
     }
-}
+    

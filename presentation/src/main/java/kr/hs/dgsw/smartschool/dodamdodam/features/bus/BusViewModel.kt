@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class BusViewModel @Inject constructor(
     private val busUseCases: BusUseCases
-): BaseViewModel() {
+) : BaseViewModel() {
     private val _busState = MutableStateFlow(BusState(isLoading = false))
     val busState: StateFlow<BusState> = _busState
 
@@ -24,7 +24,7 @@ class BusViewModel @Inject constructor(
         getBusList()
     }
 
-    private fun getBusList(){
+    private fun getBusList() {
         busUseCases.getBus(Unit).divideResult(
             isLoading,
             { _busState.value = BusState(busList = it ?: emptyList<BusByDate>()) },

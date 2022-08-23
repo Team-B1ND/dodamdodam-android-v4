@@ -1,11 +1,9 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.profile
 
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
-import androidx.navigation.fragment.findNavController
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -158,7 +156,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                 listOf(
                     PieEntry(minusPoint.toFloat()),
                     PieEntry(bonusPoint.toFloat())
-                ), "My Point"
+                ),
+                "My Point"
             ).apply {
                 setColors(intArrayOf(R.color.color_minus, R.color.color_bonus), context)
                 setDrawValues(false)

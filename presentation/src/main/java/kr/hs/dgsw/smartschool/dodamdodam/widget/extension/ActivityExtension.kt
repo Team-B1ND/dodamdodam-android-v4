@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import java.util.*
 
 fun AppCompatActivity.shortToast(message: String?) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

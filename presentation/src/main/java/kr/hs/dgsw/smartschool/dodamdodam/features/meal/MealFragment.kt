@@ -12,7 +12,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
 import java.time.LocalDate
-import java.util.*
+import java.util.Calendar
 
 @AndroidEntryPoint
 class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {

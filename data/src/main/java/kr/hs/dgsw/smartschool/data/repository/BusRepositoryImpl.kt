@@ -8,9 +8,9 @@ import javax.inject.Inject
 
 class BusRepositoryImpl @Inject constructor(
     val dataSource: BusDataSource
-): BusRepository {
+) : BusRepository {
 
-    override suspend fun getBusList() : List<BusByDate> {
+    override suspend fun getBusList(): List<BusByDate> {
         return dataSource.getBusList().busList
     }
 
@@ -22,27 +22,27 @@ class BusRepositoryImpl @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun addBus():String {
+    override suspend fun addBus(): String {
         TODO("Not yet implemented")
     }
 
-    override suspend fun addBusApply():String {
+    override suspend fun addBusApply(): String {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateBusInfo() :String{
+    override suspend fun updateBusInfo(): String {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateBusApply() :String{
+    override suspend fun updateBusApply(): String {
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteBus() :String{
+    override suspend fun deleteBus(): String {
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteBusApply():String{
+    override suspend fun deleteBusApply(): String {
         TODO("Not yet implemented")
     }
 }

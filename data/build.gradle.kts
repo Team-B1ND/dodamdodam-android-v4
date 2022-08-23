@@ -1,10 +1,11 @@
 plugins {
     id(Plugins.androidLibrary)
+    kotlin(Plugins.extensions)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinKapt)
     id(Plugins.daggerPlugin)
+    id(Plugins.kt_lint) version Versions.KT_LINT
 }
-
 
 android {
     compileSdk = Versions.COMPILE_SDK_VERSION

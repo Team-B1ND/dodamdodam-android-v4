@@ -8,6 +8,5 @@ class LostFoundWriteFragment : BaseFragment<FragmentLostFoundWriteBinding, LostF
     override val viewModel: LostFoundWriteViewModel by viewModels()
 
     override fun observerViewModel() {
-
     }
 }

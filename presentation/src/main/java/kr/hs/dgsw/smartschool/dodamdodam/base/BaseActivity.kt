@@ -13,9 +13,10 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`.SignInActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
 import java.lang.reflect.ParameterizedType
-import java.util.*
+import java.util.Locale
+import java.util.Objects
 
-abstract class BaseActivity<VB : ViewDataBinding, VM: BaseViewModel> : AppCompatActivity() {
+abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity() {
     protected lateinit var mBinding: VB
     protected lateinit var mViewModel: VM
 
@@ -57,7 +58,7 @@ abstract class BaseActivity<VB : ViewDataBinding, VM: BaseViewModel> : AppCompat
 
     override fun onDestroy() {
         super.onDestroy()
-        if(::mBinding.isInitialized) mBinding.unbind()
+        if (::mBinding.isInitialized) mBinding.unbind()
     }
 
     /**

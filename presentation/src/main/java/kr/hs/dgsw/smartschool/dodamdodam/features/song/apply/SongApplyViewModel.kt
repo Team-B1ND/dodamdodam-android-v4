@@ -39,8 +39,8 @@ class SongApplyViewModel @Inject constructor(
     }
 
     fun checkUrl() {
-        //case 1) https://www.youtube.com/watch?v=Tn25KXWIeqQ
-        //case 2) https://youtu.be/o_nxIQTM_B0
+        // case 1) https://www.youtube.com/watch?v=Tn25KXWIeqQ
+        // case 2) https://youtu.be/o_nxIQTM_B0
         val youtube = "https://www.youtube.com/watch?v="
         val mYoutube = "https://youtu.be/"
 

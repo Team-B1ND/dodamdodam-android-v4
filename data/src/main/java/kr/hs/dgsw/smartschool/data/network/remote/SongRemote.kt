@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.data.network.remote
 
 import android.util.Log
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
@@ -18,7 +17,7 @@ import javax.inject.Inject
 class SongRemote @Inject constructor(
     override val api: SongApi,
     private val quality: String
-): BaseRemote<SongApi>() {
+) : BaseRemote<SongApi>() {
 
     suspend fun getAllowSong(year: Int, month: Int, date: Int): List<VideoYoutubeData> =
         api.getAllowSong(year, month, date).data.allow?.map { video -> VideoYoutubeData(video, quality) } ?: emptyList()

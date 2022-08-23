@@ -39,7 +39,7 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
         collectPendingSongList()
 
         bindingViewEvent { event ->
-            when(event) {
+            when (event) {
                 SongViewModel.EVENT_ON_CLICK_TOGGLE -> changeRecyclerShow()
                 SongViewModel.EVENT_ON_CLICK_APPLY_SONG -> findNavController().navigate(R.id.action_main_song_to_songApplyFragment)
             }
@@ -105,7 +105,7 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
     private fun changeRecyclerShow() {
         if (viewModel.songType.value == true) {
             Log.d("CRS", "changeRecyclerShow: 진입 true")
-            if(pendingSongList.isEmpty()) {
+            if (pendingSongList.isEmpty()) {
                 viewModel.getApplySong()
             }
             applySongAdapter.submitList(pendingSongList)
@@ -113,13 +113,12 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
             mySongList.forEach { mySong ->
                 Log.d("CRS", mySong.videoTitle)
             }
-            if(mySongList.isEmpty()) {
+            if (mySongList.isEmpty()) {
                 viewModel.getMySong()
             }
             applySongAdapter.submitList(mySongList)
         }
     }
-
 
     private fun setEmptySongView(isEmptySongList: Boolean = false) {
         if (isEmptySongList) {

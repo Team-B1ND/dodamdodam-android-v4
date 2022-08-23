@@ -10,6 +10,6 @@ class GetStartTime @Inject constructor(
     val repository: TimeRepository
 ) : BaseUseCase<Unit, String>() {
     override operator fun invoke(params: Unit): Flow<Resource<String>> = execute {
-         repository.getStartTime()
+        repository.getStartTime()
     }
 }

@@ -37,7 +37,4 @@ class ClassInfoDataSource @Inject constructor(
 
     private suspend fun insertClassInfoList(classInfoList: List<ClassInfo>) =
         cache.insertClassInfoList(classInfoList.map { classInfo -> classInfoMapper.mapToEntity(classInfo) })
-
-
-
 }

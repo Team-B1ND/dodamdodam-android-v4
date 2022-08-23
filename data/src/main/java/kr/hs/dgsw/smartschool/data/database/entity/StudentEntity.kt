@@ -1,9 +1,7 @@
 package kr.hs.dgsw.smartschool.data.database.entity
 
 import androidx.room.Entity
-import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import java.util.*
 
 @Entity(tableName = "student_table")
 data class StudentEntity(

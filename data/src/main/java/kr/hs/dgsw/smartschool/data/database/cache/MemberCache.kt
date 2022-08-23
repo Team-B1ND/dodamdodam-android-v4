@@ -50,5 +50,4 @@ class MemberCache @Inject constructor(application: Application) : BaseCache(appl
     suspend fun getAllTeacher(): List<TeacherEntity> = teacherDao.getAllTeacher()
 
     suspend fun getAllHistoryMember(): List<HistoryMemberEntity> = historyMemberDao.getAllHistoryMember()
-
 }
