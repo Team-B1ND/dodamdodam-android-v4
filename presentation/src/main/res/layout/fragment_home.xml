@@ -5,7 +5,9 @@
     android:background="@color/color_background">
 
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="vm"
             type="kr.hs.dgsw.smartschool.dodamdodam.features.home.HomeViewModel" />
@@ -214,13 +216,14 @@
                 android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/card_baek_rank"
+                    android:id="@+id/card_out"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="10dp"
+                    android:onClick="@{() -> vm.onClickOut()}"
                     app:cardCornerRadius="@dimen/card_corner"
                     app:cardElevation="@dimen/card_elevation"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -235,31 +238,31 @@
                         android:layout_margin="5dp">
 
                         <TextView
-                            android:id="@+id/tv_baek_rank"
+                            android:id="@+id/tv_out"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="16dp"
                             android:fontFamily="@font/nanum_square_regular"
                             android:includeFontPadding="false"
-                            android:text="@string/title_baek_rank"
+                            android:text="@string/title_out"
                             android:textColor="@color/main"
                             android:textSize="@dimen/title3"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/tv_baek_rank_desc"
+                            android:id="@+id/tv_out_desc"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="16dp"
                             android:layout_marginTop="7dp"
                             android:fontFamily="@font/nanum_square_regular"
                             android:includeFontPadding="false"
-                            android:text="@string/text_baek_rank_card_desc"
+                            android:text="@string/text_out_desc"
                             android:textColor="@color/color_black"
                             android:textSize="@dimen/title5"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_baek_rank" />
+                            app:layout_constraintTop_toBottomOf="@id/tv_out" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -273,10 +276,10 @@
                     android:layout_marginEnd="20dp"
                     app:cardCornerRadius="@dimen/card_corner"
                     app:cardElevation="@dimen/card_elevation"
-                    app:layout_constraintBottom_toBottomOf="@id/card_baek_rank"
+                    app:layout_constraintBottom_toBottomOf="@id/card_out"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/card_baek_rank"
-                    app:layout_constraintTop_toTopOf="@id/card_baek_rank">
+                    app:layout_constraintStart_toEndOf="@id/card_out"
+                    app:layout_constraintTop_toTopOf="@id/card_out">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"

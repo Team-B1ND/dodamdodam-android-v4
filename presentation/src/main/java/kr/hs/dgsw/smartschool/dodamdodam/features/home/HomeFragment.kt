@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.LocationCheckAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealHomeAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.SongAdapter
@@ -51,6 +52,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             when (event) {
                 HomeViewModel.ON_CLICK_MEAL_MORE -> (activity as? MainActivity)?.moveHomeToMeal()
                 HomeViewModel.ON_CLICK_SONG_MORE -> (activity as? MainActivity)?.moveHomeToSong()
+                HomeViewModel.ON_CLICK_OUT -> findNavController().navigate(R.id.action_main_home_to_outFragment)
             }
         }
     }

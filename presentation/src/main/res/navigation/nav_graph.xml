@@ -15,6 +15,14 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/main_home" />
+        <action
+            android:id="@+id/action_main_home_to_outFragment"
+            app:destination="@id/outFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/main_home" />
     </fragment>
     <fragment
         android:id="@+id/main_profile"
@@ -98,4 +106,8 @@
         android:id="@+id/songApplyFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.SongApplyFragment"
         android:label="SongApplyFragment" />
+    <fragment
+        android:id="@+id/outFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.out.OutFragment"
+        android:label="OutFragment" />
 </navigation>

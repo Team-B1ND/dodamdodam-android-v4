@@ -15,9 +15,35 @@
         android:layout_height="match_parent"
         tools:context=".view.fragment.OffbaseFragment">
 
-       <include
-           android:id="@+id/btn_back"
-           layout="@layout/item_back_button" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_title_out"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/btn_back"
+                android:onClick="@{() -> vm.onClickBack()}"
+                layout="@layout/item_back_button" />
+
+            <TextView
+                android:id="@+id/tv_lost_found_write_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/title_out"
+                android:fontFamily="@font/nanum_square_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/title3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_back" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -28,7 +54,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_back">
+            app:layout_constraintTop_toBottomOf="@id/layout_title_out">
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
@@ -56,7 +82,8 @@
             android:src="@drawable/ic_btn_add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/white" />
+            app:tint="@color/white"
+            tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
