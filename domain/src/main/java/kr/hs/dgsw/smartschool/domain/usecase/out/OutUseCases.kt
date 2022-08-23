@@ -6,5 +6,7 @@ data class OutUseCases(
     val getOutSleepingById: GetOutSleepingById,
     val getOutGoingById: GetOutGoingById,
     val postOutGoing: PostOutGoing,
-    val postOutSleeping: PostOutSleeping
+    val postOutSleeping: PostOutSleeping,
+    val deleteOutGoing: DeleteOutGoing,
+    val deleteOutSleeping: DeleteOutSleeping
 )

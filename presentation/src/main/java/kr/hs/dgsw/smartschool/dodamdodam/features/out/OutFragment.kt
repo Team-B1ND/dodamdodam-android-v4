@@ -17,8 +17,11 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
     private lateinit var outListAdapter: OutListAdapter
 
     override fun observerViewModel() {
+        setSwipeRefresh()
         initOutListAdapter()
         collectOutList()
+        collectDeleteOutGoing()
+        collectDeleteOutSleeping()
 
         bindingViewEvent { event ->
             when (event) {
@@ -34,6 +37,42 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
 
                 if (state.outList.isNotEmpty()) {
                     outListAdapter.submitList(state.outList)
+                    endRefreshing()
+                }
+
+                if (state.error.isNotBlank()) {
+                    shortToast(state.error)
+                    endRefreshing()
+                }
+
+            }
+        }
+    }
+
+    private fun collectDeleteOutGoing() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.deleteOutGoingState.collect { state ->
+
+                if (state.message.isNotBlank()) {
+                    shortToast(state.message)
+                    viewModel.getMyOutApplies()
+                }
+
+                if (state.error.isNotBlank()) {
+                    shortToast(state.error)
+                }
+
+            }
+        }
+    }
+
+    private fun collectDeleteOutSleeping() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.deleteOutSleepingState.collect { state ->
+
+                if (state.message.isNotBlank()) {
+                    shortToast(state.message)
+                    viewModel.getMyOutApplies()
                 }
 
                 if (state.error.isNotBlank()) {
@@ -45,10 +84,23 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
     }
 
     private fun initOutListAdapter() {
-        outListAdapter = OutListAdapter {
-            shortToast("클릭")
+        outListAdapter = OutListAdapter { state, idx ->
+            if (state == 0)
+                viewModel.deleteOutGoing(idx)
+            else
+                viewModel.deleteOutSleeping(idx)
         }
 
         mBinding.rvOutList.adapter = outListAdapter
+    }
+
+    private fun setSwipeRefresh() {
+        mBinding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getMyOutApplies()
+        }
+    }
+
+    private fun endRefreshing() {
+        mBinding.swipeRefreshLayout.isRefreshing = false
     }
 }

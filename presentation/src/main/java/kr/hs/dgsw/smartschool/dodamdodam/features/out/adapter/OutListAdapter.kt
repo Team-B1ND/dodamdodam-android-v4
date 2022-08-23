@@ -13,7 +13,7 @@ import kr.hs.dgsw.smartschool.domain.model.out.OutGoing
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 
 class OutListAdapter(
-    private val onClickDelete: () -> Unit
+    private val onClickDelete: (state: Int, idx: Int) -> Unit
 ) : BaseListAdapter<OutItem, ItemOutBinding>(R.layout.item_out, OutItemDiffUtil) {
 
     override fun action(item: OutItem, binding: ItemOutBinding) {
@@ -62,7 +62,7 @@ class OutListAdapter(
         }
 
         binding.btnDelete.setOnClickListener {
-            onClickDelete.invoke()
+            onClickDelete.invoke(if (item is OutGoing) 0 else 1, item.idx)
         }
     }
 

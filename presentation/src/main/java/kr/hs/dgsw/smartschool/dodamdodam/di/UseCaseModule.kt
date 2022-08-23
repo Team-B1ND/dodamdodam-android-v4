@@ -40,6 +40,8 @@ import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.member.ChangeMemberInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.GetMyInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.out.DeleteOutGoing
+import kr.hs.dgsw.smartschool.domain.usecase.out.DeleteOutSleeping
 import kr.hs.dgsw.smartschool.domain.usecase.out.GetOut
 import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutAllows
 import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutGoingById
@@ -173,7 +175,9 @@ class UseCaseModule {
             getOutSleepingById = GetOutSleepingById(outRepository),
             getOutGoingById = GetOutGoingById(outRepository),
             postOutGoing = PostOutGoing(outRepository),
-            postOutSleeping = PostOutSleeping(outRepository)
+            postOutSleeping = PostOutSleeping(outRepository),
+            deleteOutGoing = DeleteOutGoing(outRepository),
+            deleteOutSleeping = DeleteOutSleeping(outRepository)
         )
 
 }
