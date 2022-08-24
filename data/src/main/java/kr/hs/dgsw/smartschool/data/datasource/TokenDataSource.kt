@@ -15,7 +15,7 @@ import javax.inject.Inject
 class TokenDataSource @Inject constructor(
     override val remote: TokenRemote,
     override val cache: TokenCache
-) : BaseDataSource<TokenRemote, TokenCache>() {
+) : BaseDataSource<TokenRemote, TokenCache> {
 
     private val tokenMapper = TokenMapper()
 

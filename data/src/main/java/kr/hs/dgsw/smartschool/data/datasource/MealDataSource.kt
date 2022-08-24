@@ -11,7 +11,7 @@ import javax.inject.Inject
 class MealDataSource @Inject constructor(
     override val remote: MealRemote,
     override val cache: MealCache
-) : BaseDataSource<MealRemote, Any>() {
+) : BaseDataSource<MealRemote, Any> {
     private val mealMapper = MealMapper()
 
     suspend fun getAllMeal(year: Int, month: Int): List<MealEntity> =

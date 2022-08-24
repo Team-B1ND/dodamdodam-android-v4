@@ -8,39 +8,39 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 fun Fragment.shortToast(message: String?) {
-    Toast.makeText(context!!.applicationContext, message, Toast.LENGTH_SHORT).show()
+    Toast.makeText(requireContext().applicationContext, message, Toast.LENGTH_SHORT).show()
 }
 
 fun Fragment.shortToast(message: Int) {
-    Toast.makeText(context!!.applicationContext, message, Toast.LENGTH_SHORT).show()
+    Toast.makeText(requireContext().applicationContext, message, Toast.LENGTH_SHORT).show()
 }
 
 fun Fragment.longToast(message: String?) {
-    Toast.makeText(context!!.applicationContext, message, Toast.LENGTH_LONG).show()
+    Toast.makeText(requireContext().applicationContext, message, Toast.LENGTH_LONG).show()
 }
 
 fun Fragment.longToast(message: Int) {
-    Toast.makeText(context!!.applicationContext, message, Toast.LENGTH_LONG).show()
+    Toast.makeText(requireContext().applicationContext, message, Toast.LENGTH_LONG).show()
 }
 
 fun Fragment.startActivity(activity: Class<*>) {
-    startActivity(Intent(context!!.applicationContext, activity).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
+    startActivity(Intent(requireContext().applicationContext, activity).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
 }
 
 fun Fragment.startActivityWithFinish(activity: Class<*>) {
-    startActivityWithFinish(Intent(context!!.applicationContext, activity).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
+    startActivityWithFinish(Intent(requireContext().applicationContext, activity).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
 }
 
 fun Fragment.startActivityWithFinish(intent: Intent) {
     startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
-    this.activity!!.finish()
+    this.requireActivity().finish()
 }
 
 fun Fragment.startActivityWithFinishAll(activity: Class<*>) {
     val intent = Intent(context!!.applicationContext, activity)
     intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
     startActivity(intent)
-    this.activity!!.finishAffinity()
+    this.requireActivity().finishAffinity()
 }
 
 fun Fragment.startActivitiesWithFinish(vararg activity: Class<*>) {
@@ -50,8 +50,8 @@ fun Fragment.startActivitiesWithFinish(vararg activity: Class<*>) {
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         intents.add(intent)
     }
-    this.activity!!.startActivities(intents.toArray(arrayOf<Intent?>()))
-    this.activity!!.finish()
+    this.requireActivity().startActivities(intents.toArray(arrayOf<Intent?>()))
+    this.requireActivity().finish()
 }
 
 inline fun <reified T : ViewModel> Fragment.getViewModel(factory: ViewModelProvider.Factory): T =

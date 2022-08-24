@@ -38,16 +38,21 @@
 
             <TextView
                 android:id="@+id/tv_offbase_reason"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
+                android:layout_marginEnd="5dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/nanum_square_regular"
                 android:includeFontPadding="false"
+                android:maxLines="1"
+                android:singleLine="true"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:textColor="@color/gray700"
                 android:textSize="@dimen/title6"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toBaselineOf="@id/tv_offbase_type"
+                app:layout_constraintEnd_toStartOf="@+id/tv_offbase_status"
                 app:layout_constraintStart_toEndOf="@id/tv_offbase_type"
                 tools:text="저녁식사" />
 
@@ -142,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_regular"
                     android:includeFontPadding="false"
-                    android:text="@string/text_offbase_leave_date_end"
+                    android:text="@string/text_out_sleeping_date_end"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title5"
                     android:textStyle="bold" />
@@ -210,7 +215,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_regular"
                     android:includeFontPadding="false"
-                    android:text="@string/text_offbase_time_end"
+                    android:text="@string/text_out_time_end"
                     android:textColor="@color/black"
                     android:textSize="@dimen/title5"
                     android:textStyle="bold" />

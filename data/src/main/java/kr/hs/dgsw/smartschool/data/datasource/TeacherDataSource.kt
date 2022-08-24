@@ -11,7 +11,7 @@ import javax.inject.Inject
 class TeacherDataSource @Inject constructor(
     override val remote: MemberRemote,
     override val cache: MemberCache
-) : BaseDataSource<MemberRemote, MemberCache>() {
+) : BaseDataSource<MemberRemote, MemberCache> {
 
     private val teacherMapper = TeacherMapper()
 

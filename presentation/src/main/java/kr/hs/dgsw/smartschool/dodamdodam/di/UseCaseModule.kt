@@ -9,6 +9,7 @@ import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.repository.DataSetUpRepository
 import kr.hs.dgsw.smartschool.domain.repository.LocationRepository
 import kr.hs.dgsw.smartschool.domain.repository.MealRepository
+import kr.hs.dgsw.smartschool.domain.repository.OutRepository
 import kr.hs.dgsw.smartschool.domain.repository.PointRepository
 import kr.hs.dgsw.smartschool.domain.repository.SongRepository
 import kr.hs.dgsw.smartschool.domain.repository.StudentRepository
@@ -39,6 +40,15 @@ import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.member.ChangeMemberInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.GetMyInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.out.DeleteOutGoing
+import kr.hs.dgsw.smartschool.domain.usecase.out.DeleteOutSleeping
+import kr.hs.dgsw.smartschool.domain.usecase.out.GetOut
+import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutAllows
+import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutGoingById
+import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutSleepingById
+import kr.hs.dgsw.smartschool.domain.usecase.out.OutUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.out.PostOutGoing
+import kr.hs.dgsw.smartschool.domain.usecase.out.PostOutSleeping
 import kr.hs.dgsw.smartschool.domain.usecase.point.GetMyPoint
 import kr.hs.dgsw.smartschool.domain.usecase.point.GetMyPointTarget
 import kr.hs.dgsw.smartschool.domain.usecase.point.PointUseCases
@@ -154,5 +164,19 @@ class UseCaseModule {
         AccountUseCases(
             getAccount = GetAccount(accountRepository),
             deleteAccount = DeleteAccount(accountRepository)
+        )
+
+    @Provides
+    @Singleton
+    fun provideOutUseCases(outRepository: OutRepository): OutUseCases =
+        OutUseCases(
+            getOut = GetOut(outRepository),
+            getOutAllows = GetOutAllows(outRepository),
+            getOutSleepingById = GetOutSleepingById(outRepository),
+            getOutGoingById = GetOutGoingById(outRepository),
+            postOutGoing = PostOutGoing(outRepository),
+            postOutSleeping = PostOutSleeping(outRepository),
+            deleteOutGoing = DeleteOutGoing(outRepository),
+            deleteOutSleeping = DeleteOutSleeping(outRepository)
         )
 }

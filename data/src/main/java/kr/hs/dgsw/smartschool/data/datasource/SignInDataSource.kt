@@ -9,7 +9,7 @@ import javax.inject.Inject
 class SignInDataSource @Inject constructor(
     override val remote: SignInRemote,
     override val cache: Any
-) : BaseDataSource<SignInRemote, Any>() {
+) : BaseDataSource<SignInRemote, Any> {
     suspend fun signIn(signInRequest: SignInRequest): SignInData =
         remote.signIn(signInRequest).data
 }

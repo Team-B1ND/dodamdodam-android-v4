@@ -13,7 +13,7 @@ import javax.inject.Inject
 class TimeDataSource @Inject constructor(
     override val remote: TimeRemote,
     override val cache: TimeCache
-) : BaseDataSource<TimeRemote, TimeCache>() {
+) : BaseDataSource<TimeRemote, TimeCache> {
 
     private val timeMapper = TimeMapper()
 

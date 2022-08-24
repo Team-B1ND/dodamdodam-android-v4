@@ -7,7 +7,6 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_sign_up_detail.*
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivitySignUpDetailBinding
@@ -62,13 +61,13 @@ class SignUpDetailActivity : BaseActivity<ActivitySignUpDetailBinding, SignUpDet
         mBinding.tvServicePolicy.paintFlags = Paint.UNDERLINE_TEXT_FLAG
         mBinding.tvPersonalInfo.paintFlags = Paint.UNDERLINE_TEXT_FLAG
 
-        tv_service_policy.setOnClickListener {
+        mBinding.tvServicePolicy.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(resources.getString(R.string.link_service_policy))
             startActivity(intent)
         }
 
-        tv_personal_info.setOnClickListener {
+        mBinding.tvPersonalInfo.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(resources.getString(R.string.link_personal_info))
             startActivity(intent)

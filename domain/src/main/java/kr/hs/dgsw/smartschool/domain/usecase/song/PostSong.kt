@@ -10,7 +10,7 @@ import javax.inject.Inject
 class PostSong @Inject constructor(
     private val songRepository: SongRepository
 ) : BaseUseCase<String, String>() {
-    override fun invoke(videoUrl: String): Flow<Resource<String>> = execute {
-        songRepository.postSong(SongRequest(videoUrl = videoUrl))
+    override fun invoke(params: String): Flow<Resource<String>> = execute {
+        songRepository.postSong(SongRequest(videoUrl = params))
     }
 }

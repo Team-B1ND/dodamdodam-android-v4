@@ -68,8 +68,12 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
      */
     @LayoutRes
     private fun layoutRes(): Int {
-        val split = ((Objects.requireNonNull(javaClass.genericSuperclass) as ParameterizedType).actualTypeArguments[0] as Class<*>)
-            .simpleName.replace("Binding$".toRegex(), "").split("(?<=.)(?=\\p{Upper})".toRegex())
+        val split = (
+            (Objects.requireNonNull(javaClass.genericSuperclass) as ParameterizedType)
+                .actualTypeArguments[0] as Class<*>
+            )
+            .simpleName.replace("Binding$".toRegex(), "")
+            .split("(?<=.)(?=\\p{Upper})".toRegex())
             .dropLastWhile { it.isEmpty() }.toTypedArray()
 
         val name = StringBuilder()

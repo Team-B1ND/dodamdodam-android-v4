@@ -11,7 +11,7 @@ import javax.inject.Inject
 class PlaceDataSource @Inject constructor(
     override val remote: PlaceRemote,
     override val cache: PlaceCache
-) : BaseDataSource<PlaceRemote, PlaceCache>() {
+) : BaseDataSource<PlaceRemote, PlaceCache> {
 
     private val placeMapper = PlaceMapper()
 

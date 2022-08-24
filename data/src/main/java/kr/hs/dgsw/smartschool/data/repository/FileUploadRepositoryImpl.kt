@@ -7,6 +7,7 @@ import kr.hs.dgsw.smartschool.domain.repository.FileUploadRepository
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.util.Random
 import javax.inject.Inject
@@ -31,7 +32,7 @@ class FileUploadRepositoryImpl @Inject constructor(
 
         val extension = getExtension(file)
         val mediaType = getMediaType(extension)
-        val imageBody: RequestBody = RequestBody.create(mediaType.toMediaTypeOrNull(), file)
+        val imageBody: RequestBody = file.asRequestBody(mediaType.toMediaTypeOrNull())
 
         imagePart = MultipartBody.Part.createFormData("image", "$uploadName.$extension", imageBody)
         namePart = MultipartBody.Part.createFormData("name", uploadName)

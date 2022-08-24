@@ -12,7 +12,7 @@ import javax.inject.Inject
 class BusDataSource @Inject constructor(
     override val cache: BusCache,
     override val remote: BusRemote
-) : BaseDataSource<BusRemote, Any>() {
+) : BaseDataSource<BusRemote, Any> {
 
     private val mapper = BusMapper()
 
