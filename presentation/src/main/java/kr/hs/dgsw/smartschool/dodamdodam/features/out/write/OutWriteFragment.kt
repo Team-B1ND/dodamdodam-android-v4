@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.out.write
 
 import android.app.DatePickerDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -125,10 +126,11 @@ class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel
                     targetDate.value = cal.time
                 }, year, month, date
             )
-
             datePickerDialog.show()
-            datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(R.color.main)
-            datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setTextColor(R.color.main)
+            datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE)
+                .setTextColor(ContextCompat.getColor(requireContext(), R.color.main))
+            datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)
+                .setTextColor(ContextCompat.getColor(requireContext(), R.color.main))
         }
     }
 }
