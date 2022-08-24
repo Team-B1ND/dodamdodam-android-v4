@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
             name="vm"
             type="kr.hs.dgsw.smartschool.dodamdodam.features.out.write.OutWriteViewModel" />
@@ -98,6 +98,17 @@
 
 
                     </androidx.cardview.widget.CardView>
+
+                    <include
+                        android:id="@+id/progress_loading"
+                        layout="@layout/item_loading_progressbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="@id/cv_out_going"
+                        app:layout_constraintEnd_toStartOf="@id/cv_off_base"
+                        app:layout_constraintStart_toEndOf="@id/cv_out_going"
+                        app:layout_constraintTop_toTopOf="@id/cv_out_going"/>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cv_off_base"
@@ -624,6 +635,7 @@
                         android:background="@drawable/background_checked"
                         android:fontFamily="@font/nanum_square_regular"
                         android:includeFontPadding="false"
+                        android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
                         android:onClick="@{() -> vm.onClickApply()}"
                         android:text="@string/text_ok"
                         android:textColor="@color/color_white"
