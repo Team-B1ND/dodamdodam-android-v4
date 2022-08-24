@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.BusAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
@@ -19,6 +20,7 @@ import java.time.LocalDate
 @AndroidEntryPoint
 class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter.BusApplyCallBack {
     override val viewModel: BusViewModel by viewModels()
+    var busId :  Int = 0
     override fun observerViewModel() {
         mBinding.btnBack.setOnClickListener {
             findNavController().popBackStack()
@@ -40,10 +42,6 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
                     }
                 }
             }
-        }
-        mBinding.swipeRefreshLayout.setOnRefreshListener {
-            Toast.makeText(context,"Refresh", Toast.LENGTH_SHORT).show();
-            viewModel.doRefresh()
         }
     }
 
@@ -67,7 +65,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
             } else if(it.busMemberlength >= it.peopleLimit){
                 rideAble = "탑승불가"
             }
-            isSelected = it.idx == viewModel.busApplyState.value.busId
+            isSelected = it.idx == busId//viewModel.busApplyState.value.busId
             list.add(
                 BusInfo(
                     it.idx,
@@ -93,11 +91,13 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
 
     override fun applyBus(idx:Int) {
         viewModel.applyBus(idx)
+        busId= idx
         Log.e("applyBus override","정상적 실행")
     }
 
     override fun cancelBus(idx: Int) {
         viewModel.cancelBus(idx)
+        busId= idx
         Log.e("cancelBus override","정상적 실행")
     }
 }
