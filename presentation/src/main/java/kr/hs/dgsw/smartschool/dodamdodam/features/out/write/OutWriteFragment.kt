@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.out.write
 
 import android.app.DatePickerDialog
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -71,18 +72,36 @@ class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel
     private fun setApplyValue() {
         with(viewModel) {
             if (isOutGoing.value == true) {
+                if (checkEmptyOutGoingTime().not()) return
                 val startDate =
                     "${startOutGoingDate.value?.yearDateFormat()} ${mBinding.etStartOutGoingHour.text}:${mBinding.etStartOutGoingMinute.text}".getDate()
                 val endDate =
                     "${startOutGoingDate.value?.yearDateFormat()} ${mBinding.etEndOutGoingHour.text}:${mBinding.etEndOutGoingMinute.text}".getDate()
                 invalidOutGoing(startDate, endDate)
             } else if (isOutSleeping.value == true) {
+                if (checkEmptyOutSleepingTime().not()) return
                 val startDate =
                     "${startOutSleepingDate.value?.yearDateFormat()} ${mBinding.etStartOutSleepingHour.text}:${mBinding.etStartOutSleepingMinute.text}".getDate()
                 val endDate =
                     "${endOutSleepingDate.value?.yearDateFormat()} ${mBinding.etEndOutSleepingHour.text}:${mBinding.etEndOutSleepingMinute.text}".getDate()
                 invalidOutSleeping(startDate, endDate)
             }
+        }
+    }
+    private fun checkEmptyOutGoingTime(): Boolean {
+        return if (mBinding.etStartOutGoingHour.text.isEmpty() or mBinding.etStartOutGoingMinute.text.isEmpty() or mBinding.etEndOutGoingHour.text.isEmpty() or mBinding.etEndOutGoingMinute.text.isEmpty()) {
+            shortToast("시간을 입력해주세요.")
+            false
+        } else {
+            true
+        }
+    }
+    private fun checkEmptyOutSleepingTime(): Boolean {
+        return if (mBinding.etStartOutSleepingHour.text.isEmpty() or mBinding.etStartOutSleepingMinute.text.isEmpty() or mBinding.etEndOutSleepingHour.text.isEmpty() or mBinding.etEndOutSleepingMinute.text.isEmpty()) {
+            shortToast("시간을 입력해주세요.")
+            false
+        } else {
+            true
         }
     }
 
