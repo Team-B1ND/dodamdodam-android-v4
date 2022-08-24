@@ -8,6 +8,6 @@ import javax.inject.Inject
 class FileUploadDataSource @Inject constructor(
     override val remote: FileUploadRemote,
     override val cache: Any
-) : BaseDataSource<FileUploadRemote, Any>() {
+) : BaseDataSource<FileUploadRemote, Any> {
     suspend fun uploadImg(image: MultipartBody.Part, name: MultipartBody.Part): String = remote.uploadImg(image, name)
 }

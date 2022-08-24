@@ -11,7 +11,7 @@ import javax.inject.Inject
 class SongDataSource @Inject constructor(
     override val remote: SongRemote,
     override val cache: Any
-) : BaseDataSource<SongRemote, Any>() {
+) : BaseDataSource<SongRemote, Any> {
 
     suspend fun getAllowSong(year: Int, month: Int, date: Int): List<VideoYoutubeData> = remote.getAllowSong(year, month, date)
 

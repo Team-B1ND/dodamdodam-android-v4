@@ -11,7 +11,7 @@ import javax.inject.Inject
 class ClassInfoDataSource @Inject constructor(
     override val remote: ClassInfoRemote,
     override val cache: ClassInfoCache
-) : BaseDataSource<ClassInfoRemote, ClassInfoCache>() {
+) : BaseDataSource<ClassInfoRemote, ClassInfoCache> {
 
     private val classInfoMapper = ClassInfoMapper()
 

@@ -8,4 +8,5 @@ object Plugins {
     const val extensions = "android.extensions"
     const val navigation_safe_args = "androidx.navigation.safeargs.kotlin"
     const val kt_lint = "org.jlleitschuh.gradle.ktlint"
+    const val kt_dete = "io.gitlab.arturbosch.detekt"
 }

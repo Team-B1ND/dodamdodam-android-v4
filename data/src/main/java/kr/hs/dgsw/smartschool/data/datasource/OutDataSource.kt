@@ -11,7 +11,7 @@ import javax.inject.Inject
 class OutDataSource @Inject constructor(
     override val remote: OutRemote,
     override val cache: Any
-) : BaseDataSource<OutRemote, Any>() {
+) : BaseDataSource<OutRemote, Any> {
 
     suspend fun getOut(date: String): List<OutItem> = remote.getOut(date)
 

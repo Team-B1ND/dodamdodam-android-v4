@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.data.network.remote
 
 import android.util.Log
+import android.util.Range
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
@@ -18,6 +19,8 @@ class SongRemote @Inject constructor(
     override val api: SongApi,
     private val quality: String
 ) : BaseRemote<SongApi>() {
+
+    private val melonRange: IntRange = IntRange(0, 49)
 
     suspend fun getAllowSong(year: Int, month: Int, date: Int): List<VideoYoutubeData> =
         api.getAllowSong(year, month, date).data.allow?.map { video -> VideoYoutubeData(video, quality) } ?: emptyList()
@@ -48,7 +51,8 @@ class SongRemote @Inject constructor(
         val thumbnailElements: Elements = doc.select("#lst50 > td:nth-child(4) > div > a > img")
 
         val melonChartList = mutableListOf<MelonChart>()
-        for (i in 0..49) {
+
+        for (i in melonRange) {
             Log.d("melon", titleElements[i].text())
             melonChartList.add(
                 MelonChart(
