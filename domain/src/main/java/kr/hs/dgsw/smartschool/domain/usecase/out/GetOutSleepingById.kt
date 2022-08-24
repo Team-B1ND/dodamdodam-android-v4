@@ -11,7 +11,7 @@ class GetOutSleepingById @Inject constructor(
     private val outRepository: OutRepository
 ) : BaseUseCase<Int, OutSleeping>() {
 
-    override fun invoke(outSleepingIdx: Int): Flow<Resource<OutSleeping>> = execute {
-        outRepository.getOutSleepingById(outSleepingIdx)
+    override fun invoke(params: Int): Flow<Resource<OutSleeping>> = execute {
+        outRepository.getOutSleepingById(params)
     }
 }

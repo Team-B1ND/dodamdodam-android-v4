@@ -1,7 +1,5 @@
 package kr.hs.dgsw.smartschool.data.util
 
-import android.os.Environment
-
 /*
     광용 192.168.0.20
     진영 192.168.0.19
@@ -11,7 +9,6 @@ import android.os.Environment
     SOCKET_HOST socket.dodam.b1nd.com/
 */
 object Constants {
-    val DIRECTORY_DOWNLOADS = Environment.getExternalStorageDirectory().toString() + "/DodamDodam"
     const val mode = "RELEASE"
     const val DEFAULT_HOST = "http://dodam.b1nd.com:80/api/v2/"
     const val SOCKET_HOST = "http://dodam.b1nd.com/"

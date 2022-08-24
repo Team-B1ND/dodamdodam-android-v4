@@ -5,7 +5,6 @@ plugins {
     id(Plugins.kotlinParcelize)
     id(Plugins.daggerPlugin)
     id(Plugins.kt_lint) version Versions.KT_LINT
-    id(Plugins.kt_dete) version Versions.KT_DETE
 }
 
 android {

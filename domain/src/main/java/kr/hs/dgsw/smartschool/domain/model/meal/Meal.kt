@@ -29,7 +29,7 @@ data class Meal(
 
         var matcher: Matcher = pattern.matcher(text)
         var pureText = text
-        var removeTextArea = ""
+        var removeTextArea: String
 
         while (matcher.find()) {
             val startIndex: Int = matcher.start()

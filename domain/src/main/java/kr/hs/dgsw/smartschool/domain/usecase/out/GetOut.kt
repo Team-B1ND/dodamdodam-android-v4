@@ -11,7 +11,7 @@ class GetOut @Inject constructor(
     private val outRepository: OutRepository
 ) : BaseUseCase<String, List<OutItem>>() {
 
-    override fun invoke(date: String): Flow<Resource<List<OutItem>>> = execute {
-        outRepository.getOut(date)
+    override fun invoke(params: String): Flow<Resource<List<OutItem>>> = execute {
+        outRepository.getOut(params)
     }
 }

@@ -11,7 +11,7 @@ class GetMySong @Inject constructor(
     private val songRepository: SongRepository
 ) : BaseUseCase<String, List<VideoYoutubeData>>() {
 
-    override fun invoke(id: String): Flow<Resource<List<VideoYoutubeData>>> = execute {
-        songRepository.getMySong(id)
+    override fun invoke(params: String): Flow<Resource<List<VideoYoutubeData>>> = execute {
+        songRepository.getMySong(params)
     }
 }

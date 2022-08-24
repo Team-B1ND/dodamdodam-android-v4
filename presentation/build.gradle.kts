@@ -5,7 +5,6 @@ plugins {
     id(Plugins.daggerPlugin)
     id(Plugins.kotlinParcelize)
     id(Plugins.navigation_safe_args)
-    id(Plugins.kt_dete) version Versions.KT_DETE
     id(Plugins.kt_lint) version Versions.KT_LINT
 }
 

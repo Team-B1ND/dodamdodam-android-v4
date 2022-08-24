@@ -11,7 +11,7 @@ class GetOutGoingById @Inject constructor(
     private val outRepository: OutRepository
 ) : BaseUseCase<Int, OutGoing>() {
 
-    override fun invoke(outGoingById: Int): Flow<Resource<OutGoing>> = execute {
-        outRepository.getOutGoingById(outGoingById)
+    override fun invoke(params: Int): Flow<Resource<OutGoing>> = execute {
+        outRepository.getOutGoingById(params)
     }
 }
