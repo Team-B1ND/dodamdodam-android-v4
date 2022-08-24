@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class OutRemote @Inject constructor(
     override val api: OutApi
-): BaseRemote<OutApi>() {
+) : BaseRemote<OutApi>() {
 
     suspend fun getOut(date: String): List<OutItem> =
         api.getOut(date).data.getAll()

@@ -12,8 +12,8 @@ class PlaceAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val onClickCheckPlace: (place: Place) -> Unit
 ) : BaseListAdapter<Place, ItemPlaceBinding>(
-        R.layout.item_place,
-        PlaceDiffUtilCallback
+    R.layout.item_place,
+    PlaceDiffUtilCallback
 ) {
     companion object {
         val currentPlace = MutableLiveData<Place>()

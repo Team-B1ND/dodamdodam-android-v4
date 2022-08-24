@@ -62,7 +62,6 @@
             android:text="@string/text_no_out"
             android:textColor="@color/color_black"
             android:textSize="@dimen/title4"
-            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
             android:fontFamily="@font/notosans_kr_regular"
             android:includeFontPadding="false"
             app:layout_constraintEnd_toEndOf="parent"

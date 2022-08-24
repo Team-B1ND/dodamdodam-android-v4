@@ -52,7 +52,6 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
                     mBinding.tvNoData.visibility = View.GONE
                     endRefreshing()
                 }
-
             }
         }
     }
@@ -69,7 +68,6 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
                 if (state.error.isNotBlank()) {
                     shortToast(state.error)
                 }
-
             }
         }
     }
@@ -86,7 +84,6 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
                 if (state.error.isNotBlank()) {
                     shortToast(state.error)
                 }
-
             }
         }
     }

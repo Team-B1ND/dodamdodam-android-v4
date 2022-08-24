@@ -26,5 +26,4 @@ interface OutRepository {
     suspend fun putOutGoing(request: OutRequest): String
 
     suspend fun deleteOutGoing(outGoingIdx: Int): String
-
 }

@@ -1,12 +1,10 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.out.write
 
 import android.app.DatePickerDialog
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentOutWriteBinding
@@ -16,7 +14,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.monthFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearFormat
-import java.util.*
+import java.util.Calendar
 
 @AndroidEntryPoint
 class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel>() {
@@ -125,7 +123,8 @@ class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel
                     val cal = Calendar.getInstance()
                     cal.set(y, m, d)
                     targetDate.value = cal.time
-            }, year, month, date)
+                }, year, month, date
+            )
 
             datePickerDialog.show()
             datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE).setTextColor(R.color.main)

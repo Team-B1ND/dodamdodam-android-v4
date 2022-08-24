@@ -20,5 +20,4 @@ class PostOutGoing @Inject constructor(
         val endTime: String,
         val reason: String
     )
-
 }

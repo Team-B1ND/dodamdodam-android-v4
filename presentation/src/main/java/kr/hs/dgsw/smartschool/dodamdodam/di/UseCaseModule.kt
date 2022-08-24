@@ -179,5 +179,4 @@ class UseCaseModule {
             deleteOutGoing = DeleteOutGoing(outRepository),
             deleteOutSleeping = DeleteOutSleeping(outRepository)
         )
-
 }

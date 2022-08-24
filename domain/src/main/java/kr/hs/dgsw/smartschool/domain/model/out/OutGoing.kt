@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.domain.model.out
 
 import java.util.Date
 
-
 class OutGoing(
     idx: Int,
     studentIdx: Int,
@@ -13,7 +12,7 @@ class OutGoing(
     allowTeacherIdx: Int,
     allowTeacherTime: Date,
     createdAt: Date,
-): OutItem(
+) : OutItem(
     idx,
     studentIdx,
     startTime,

@@ -28,7 +28,7 @@ class MealAdapter : BaseListAdapter<MealInfo, ItemMealBinding>(
 
         val context = binding.root.context
 
-        when(data.type) {
+        when (data.type) {
             1 -> {
                 binding.tvMealName.text = "조식"
                 binding.tvMealName.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.color_breakfast))

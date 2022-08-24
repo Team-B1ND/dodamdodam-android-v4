@@ -13,7 +13,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.state.DeleteOutGoingState
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.state.DeleteOutSleepingState
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.state.GetOutState
-import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 import kr.hs.dgsw.smartschool.domain.usecase.out.OutUseCases
 import java.time.LocalDate
 import javax.inject.Inject
@@ -44,22 +43,23 @@ class OutViewModel @Inject constructor(
     fun getMyOutApplies() {
         outUseCases.getOut(LocalDate.now().toString()).divideResult(
             isGetOutLoading,
-            { outList -> viewModelScope.launch {
+            { outList ->
+                viewModelScope.launch {
                     outList?.let {
                         if (outList.isEmpty()) _getOutState.emit(GetOutState(isEmptyList = true))
                         else _getOutState.emit(GetOutState(outList = it))
                     } ?: _getOutState.emit(GetOutState(isEmptyList = true))
                 }
             },
-            { error -> viewModelScope.launch { _getOutState.emit(GetOutState(error = error ?: "외출 외박을 받아올 수 없습니다.")) }}
+            { error -> viewModelScope.launch { _getOutState.emit(GetOutState(error = error ?: "외출 외박을 받아올 수 없습니다.")) } }
         ).launchIn(viewModelScope)
     }
 
-    fun deleteOutGoing(idx: Int){
+    fun deleteOutGoing(idx: Int) {
         outUseCases.deleteOutGoing(idx).divideResult(
             isDeleteOutGoingLoading,
             { message -> _deleteOutGoingState.value = DeleteOutGoingState(message = message ?: "외출 삭제에 성공했습니다.") },
-            { error -> _deleteOutGoingState.value = DeleteOutGoingState(error = error ?: "외출 삭제에 실패했습니다.")}
+            { error -> _deleteOutGoingState.value = DeleteOutGoingState(error = error ?: "외출 삭제에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 
@@ -67,7 +67,7 @@ class OutViewModel @Inject constructor(
         outUseCases.deleteOutSleeping(idx).divideResult(
             isDeleteOutSleepingLoading,
             { message -> _deleteOutSleepingState.value = DeleteOutSleepingState(message = message ?: "외박 삭제에 성공했습니다.") },
-            { error -> _deleteOutSleepingState.value = DeleteOutSleepingState(error = error ?: "외박 삭제에 실패했습니다.")}
+            { error -> _deleteOutSleepingState.value = DeleteOutSleepingState(error = error ?: "외박 삭제에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 

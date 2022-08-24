@@ -24,7 +24,7 @@ class LocationCheckAdapter(val onClickLocationCard: (Int) -> Unit) : BaseListAda
         binding.tvTimeTable.text = item.time?.name
 
         binding.root.setOnClickListener {
-            //onOpenLocationApply.value = item.timeTableIdx ?: 0
+            // onOpenLocationApply.value = item.timeTableIdx ?: 0
             onClickLocationCard(item.timeTableIdx ?: 0)
         }
     }

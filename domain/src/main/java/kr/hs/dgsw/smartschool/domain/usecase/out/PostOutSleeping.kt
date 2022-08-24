@@ -20,5 +20,4 @@ class PostOutSleeping @Inject constructor(
         val endTime: String,
         val reason: String
     )
-
 }

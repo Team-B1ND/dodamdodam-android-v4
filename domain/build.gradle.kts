@@ -3,7 +3,7 @@ plugins {
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinKapt)
     id(Plugins.daggerPlugin)
-    kotlin(Plugins.extensions)
+    id(Plugins.kotlinParcelize)
     id(Plugins.kt_lint) version Versions.KT_LINT
 }
 

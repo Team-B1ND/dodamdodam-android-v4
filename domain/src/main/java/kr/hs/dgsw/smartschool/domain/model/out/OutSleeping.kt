@@ -12,4 +12,4 @@ data class OutSleeping(
     val arrivedTime: Date,
     @field:SerializedName("isAllowTeacher")
     val isAllowTeacher: Int
-): OutItem()
+) : OutItem()

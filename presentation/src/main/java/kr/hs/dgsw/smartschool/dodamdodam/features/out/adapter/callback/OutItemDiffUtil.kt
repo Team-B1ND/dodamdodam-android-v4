@@ -12,5 +12,4 @@ object OutItemDiffUtil : DiffUtil.ItemCallback<OutItem>() {
     override fun areContentsTheSame(oldItem: OutItem, newItem: OutItem): Boolean {
         return oldItem == newItem
     }
-
 }

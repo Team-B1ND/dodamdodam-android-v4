@@ -20,11 +20,11 @@ class OutListAdapter(
         val theme = binding.root.context.theme
         val resources = binding.root.resources
         val icon = when (item.isAllow) {
-            -1 ->  {
+            -1 -> {
                 binding.tvOffbaseStatus.text = "거절됨"
                 ResourcesCompat.getDrawable(resources, R.drawable.ic_out_refuse, theme)
             }
-            0 ->  {
+            0 -> {
                 binding.tvOffbaseStatus.text = "대기중"
                 ResourcesCompat.getDrawable(resources, R.drawable.ic_out_unknown, theme)
             }
@@ -42,7 +42,7 @@ class OutListAdapter(
         binding.tvOffbaseType.text = if (item is OutGoing) "외출" else "외박"
         binding.tvOffbaseReason.text = item.reason
 
-        if(item is OutGoing) {
+        if (item is OutGoing) {
             binding.tvLabelDate.text = "외출 날짜"
             binding.tvLabelTime.text = "외출 시간"
             binding.layoutDateEnd.visibility = View.INVISIBLE
@@ -65,5 +65,4 @@ class OutListAdapter(
             onClickDelete.invoke(if (item is OutGoing) 0 else 1, item.idx)
         }
     }
-
 }

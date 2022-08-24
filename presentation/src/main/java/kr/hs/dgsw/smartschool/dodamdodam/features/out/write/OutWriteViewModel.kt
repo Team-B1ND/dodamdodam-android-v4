@@ -15,7 +15,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateTimeFormat
 import kr.hs.dgsw.smartschool.domain.usecase.out.OutUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.out.PostOutGoing
 import kr.hs.dgsw.smartschool.domain.usecase.out.PostOutSleeping
-import java.util.*
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
@@ -51,10 +51,10 @@ class OutWriteViewModel @Inject constructor(
                 applyError("사유를 입력해주세요")
                 return
             }
-            startDate.hourFormat().toInt() >= 24
-                    || startDate.minuteFormat().toInt() >= 60
-                    || endDate.hourFormat().toInt() >= 24
-                    || endDate.minuteFormat().toInt() >= 60
+            startDate.hourFormat().toInt() >= 24 ||
+                startDate.minuteFormat().toInt() >= 60 ||
+                endDate.hourFormat().toInt() >= 24 ||
+                endDate.minuteFormat().toInt() >= 60
             -> {
                 applyError("시간을 확인해주세요")
                 return
@@ -78,10 +78,10 @@ class OutWriteViewModel @Inject constructor(
                 applyError("사유를 입력해주세요")
                 return
             }
-            startDate.hourFormat().toInt() >= 24
-                    || startDate.minuteFormat().toInt() >= 60
-                    || endDate.hourFormat().toInt() >= 24
-                    || endDate.minuteFormat().toInt() >= 60
+            startDate.hourFormat().toInt() >= 24 ||
+                startDate.minuteFormat().toInt() >= 60 ||
+                endDate.hourFormat().toInt() >= 24 ||
+                endDate.minuteFormat().toInt() >= 60
             -> {
                 applyError("시간을 확인해주세요")
                 return
@@ -116,9 +116,9 @@ class OutWriteViewModel @Inject constructor(
     private fun applyOutSleeping(startDate: Date, endDate: Date) {
         outUseCases.postOutSleeping(
             PostOutSleeping.Params(
-                    startDate.yearDateTimeFormat(),
-                    endDate.yearDateTimeFormat(),
-                    outReason.value ?: ""
+                startDate.yearDateTimeFormat(),
+                endDate.yearDateTimeFormat(),
+                outReason.value ?: ""
             )
         ).divideResult(
             isPostOutSleepingLoading,

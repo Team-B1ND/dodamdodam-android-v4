@@ -9,10 +9,9 @@ import javax.inject.Inject
 
 class GetOut @Inject constructor(
     private val outRepository: OutRepository
-): BaseUseCase<String, List<OutItem>>() {
+) : BaseUseCase<String, List<OutItem>>() {
 
     override fun invoke(date: String): Flow<Resource<List<OutItem>>> = execute {
         outRepository.getOut(date)
     }
-
 }

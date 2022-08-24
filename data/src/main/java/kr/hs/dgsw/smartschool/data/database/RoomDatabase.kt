@@ -3,8 +3,26 @@ package kr.hs.dgsw.smartschool.data.database
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
-import kr.hs.dgsw.smartschool.data.database.dao.*
-import kr.hs.dgsw.smartschool.data.database.entity.*
+import kr.hs.dgsw.smartschool.data.database.dao.AccountDao
+import kr.hs.dgsw.smartschool.data.database.dao.ClassInfoDao
+import kr.hs.dgsw.smartschool.data.database.dao.HistoryMemberDao
+import kr.hs.dgsw.smartschool.data.database.dao.MealDao
+import kr.hs.dgsw.smartschool.data.database.dao.MemberDao
+import kr.hs.dgsw.smartschool.data.database.dao.PlaceDao
+import kr.hs.dgsw.smartschool.data.database.dao.StudentDao
+import kr.hs.dgsw.smartschool.data.database.dao.TeacherDao
+import kr.hs.dgsw.smartschool.data.database.dao.TimeDao
+import kr.hs.dgsw.smartschool.data.database.dao.TokenDao
+import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
+import kr.hs.dgsw.smartschool.data.database.entity.ClassInfoEntity
+import kr.hs.dgsw.smartschool.data.database.entity.HistoryMemberEntity
+import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
+import kr.hs.dgsw.smartschool.data.database.entity.MemberEntity
+import kr.hs.dgsw.smartschool.data.database.entity.PlaceEntity
+import kr.hs.dgsw.smartschool.data.database.entity.StudentEntity
+import kr.hs.dgsw.smartschool.data.database.entity.TeacherEntity
+import kr.hs.dgsw.smartschool.data.database.entity.TimeEntity
+import kr.hs.dgsw.smartschool.data.database.entity.TokenEntity
 import java.util.concurrent.Executors
 
 @Database(

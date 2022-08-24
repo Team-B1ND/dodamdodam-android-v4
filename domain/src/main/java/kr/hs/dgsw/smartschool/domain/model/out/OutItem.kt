@@ -25,9 +25,9 @@ open class OutItem(
     val allowTeacherTime: Date,
     @field:SerializedName("createdAt")
     val createdAt: Date
-): Serializable {
+) : Serializable {
 
-    constructor(): this(0, 0, Date(), Date(), 0, "", 0, Date(), Date())
+    constructor() : this(0, 0, Date(), Date(), 0, "", 0, Date(), Date())
 
     override fun toString(): String {
         val format = SimpleDateFormat("HH-dd HH:mm (E)", Locale.getDefault())
@@ -43,5 +43,4 @@ open class OutItem(
         val now = Date()
         return now.after(endTime)
     }
-
 }
