@@ -87,7 +87,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
         busAdapter.submitList(list)
     }
 
-    override fun applyBus(idx: Int) {
+    override fun applyBus(idx:Int) {
         viewModel.applyBus(idx)
         Log.e("applyBus override","정상적 실행")
     }

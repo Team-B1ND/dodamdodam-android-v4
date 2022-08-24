@@ -20,6 +20,7 @@ class BusRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMyBus(): List<Bus> {
+        Log.e("BusRepository","getMyBus")
         return dataSource.getMyBusList().busList
     }
 

@@ -56,30 +56,31 @@ class BusViewModel @Inject constructor(
             isGetMyBusLoading,
             {_getMyBusState.value = GetMyBusState(busList = it ?: emptyList<Bus>()) },
             {_getMyBusState.value = GetMyBusState(error = it?: "버스를 받아오지 못하였습니다.") }
-        )
+        ).launchIn(viewModelScope)
+        Log.e("BusViewModel", "getMyBus: ")
     }
-    private fun checkBus():Int{
-        if(_getMyBusState.value.busList.isEmpty()) return 0
-        else return _getMyBusState.value.busList.get(0).idx
+    private fun checkBus():Boolean{
+        getMyBus()
+        Log.e("BusViewModel",_getMyBusState.value.busList.toString())
+        return !_getMyBusState.value.busList.isEmpty()
     }
     fun applyBus(idx:Int){
         when(checkBus()){
-            0-> {
-                Log.e("BusViewModel", "applyBus: "+checkBus() )
+            false -> {
                 busUseCases.addBusApply(idx).divideResult(
                     isAddBusApplyLoading,
                     {_addBusApplyState.value = AddBusApplyState(success = "버스 신청에 성공했습니다.") },
                     {_addBusApplyState.value = AddBusApplyState(error = "버스 신청에 실패했습니다.") }
                 ).launchIn(viewModelScope)
             }
-            else -> {
+            true -> {
                 busId.value = idx
-                busUseCases.updateBusApply(UpdateBusApplyRequest(originBusIdx = checkBus(), busIdx = idx)).divideResult(
+                busUseCases.updateBusApply(UpdateBusApplyRequest(busIdx = idx.toString(),originBusIdx = _getMyBusState.value.busList.get(0).idx.toString())).divideResult(
                     isUpdateBusApplyLoading,
                     {_updateBusApplyState.value = UpdateBusApplyState(success = "버스 신청에 성공했습니다.") },
                     {_updateBusApplyState.value = UpdateBusApplyState(error = "버스 신청에 실패했습니다.") }
                 ).launchIn(viewModelScope)
-                Log.e("BusViewModel", "changeBus: "+checkBus() )
+                Log.e("BusViewModel", "changeBus: "+_getMyBusState.value.busList.get(0).idx.toString())
             }
         }
     }
@@ -89,6 +90,6 @@ class BusViewModel @Inject constructor(
             {_deleteBusApplyState.value = DeleteBusApplyState(success = "정상적으로 버스를 삭제했습니다.") },
             {_deleteBusApplyState.value = DeleteBusApplyState(error = "정상적으로 버스를 삭제하는데에 실패하였습니다.")}
         ).launchIn(viewModelScope)
-        Log.e("BusViewModel","cancelBus: "+checkBus())
+        Log.e("BusViewModel","cancelBus: "+_getMyBusState.value.busList.get(0).idx.toString())
     }
 }

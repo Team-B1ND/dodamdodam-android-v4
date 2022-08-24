@@ -1,6 +1,10 @@
 package kr.hs.dgsw.smartschool.domain.request
 
+import com.google.gson.annotations.SerializedName
+
 data class UpdateBusApplyRequest(
-    val originBusIdx : Int,
-    val busIdx : Int
+    @SerializedName("busIdx")
+    val busIdx: String,
+    @SerializedName("originBusIdx")
+    val originBusIdx: String
 )

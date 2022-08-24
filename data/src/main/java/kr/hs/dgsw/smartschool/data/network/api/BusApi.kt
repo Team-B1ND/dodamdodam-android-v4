@@ -5,6 +5,7 @@ import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.request.AddBusApplyRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
 import retrofit2.http.*
 import java.time.Month
 
@@ -48,8 +49,7 @@ interface BusApi {
 
     @PUT("bus/self")
     suspend fun updateBusApply(
-        @Body originBusIdx : Int,
-        @Body busIdx : Int
+        @Body request : UpdateBusApplyRequest
     ):Response<Any>
 
 

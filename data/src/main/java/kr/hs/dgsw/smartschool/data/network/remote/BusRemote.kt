@@ -46,8 +46,9 @@ class BusRemote @Inject constructor(
     suspend fun updateBusApply(
         request: UpdateBusApplyRequest
     ):Response<Any> = api.updateBusApply(
-        request.originBusIdx,
-        request.busIdx
+        UpdateBusApplyRequest(
+            request.busIdx,
+            request.originBusIdx)
     )
 
     suspend fun addBus(
