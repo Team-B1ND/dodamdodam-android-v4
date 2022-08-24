@@ -1,9 +1,9 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.sign.up
+package kr.hs.dgsw.smartschool.dodamdodam.features.auth.join
 
 import androidx.lifecycle.MutableLiveData
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 
-class SignUpViewModel : BaseViewModel() {
+class JoinViewModel : BaseViewModel() {
 
     companion object {
         const val EVENT_ON_CLICK_NEXT = 0

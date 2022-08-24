@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`
+package kr.hs.dgsw.smartschool.dodamdodam.features.auth.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -8,12 +8,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.removeBlankInString
-import kr.hs.dgsw.smartschool.domain.usecase.auth.SignInUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.auth.LoginUseCase
 import javax.inject.Inject
 
 @HiltViewModel
-class SignInViewModel @Inject constructor(
-    private val signInUseCase: SignInUseCase
+class LoginViewModel @Inject constructor(
+    private val loginUseCase: LoginUseCase
 ) : BaseViewModel() {
 
     companion object {
@@ -23,8 +23,8 @@ class SignInViewModel @Inject constructor(
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
 
-    private val _signInState = MutableStateFlow(SignInState(isLoading = false))
-    val signInState: StateFlow<SignInState> = _signInState
+    private val _loginState = MutableStateFlow(LoginState(isLoading = false))
+    val loginState: StateFlow<LoginState> = _loginState
 
     fun onClickSignIn() {
         if (id.value.isNullOrBlank() || pw.value.isNullOrBlank()) {
@@ -34,15 +34,15 @@ class SignInViewModel @Inject constructor(
     }
 
     private fun signIn() {
-        signInUseCase(
-            SignInUseCase.Params(
+        loginUseCase(
+            LoginUseCase.Params(
                 id = id.value?.removeBlankInString() ?: "",
                 pw = pw.value?.removeBlankInString() ?: ""
             )
         ).divideResult(
             isLoading,
             { viewEvent(EVENT_SUCCESS_SIGN_IN) },
-            { _signInState.value = SignInState(error = it ?: "로그인에 실패하였습니다.") }
+            { _loginState.value = LoginState(error = it ?: "로그인에 실패하였습니다.") }
         ).launchIn(viewModelScope)
     }
 }

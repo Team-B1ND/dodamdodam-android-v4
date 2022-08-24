@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.sign.up
+package kr.hs.dgsw.smartschool.dodamdodam.features.auth.join
 
 import android.content.Intent
 import android.graphics.Paint
@@ -10,13 +10,13 @@ import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivitySignUpDetailBinding
-import kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`.SignInActivity
+import kr.hs.dgsw.smartschool.dodamdodam.features.auth.login.LoginActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
 
 @AndroidEntryPoint
-class SignUpDetailActivity : BaseActivity<ActivitySignUpDetailBinding, SignUpDetailViewModel>() {
-    override val viewModel: SignUpDetailViewModel by viewModels()
+class JoinDetailActivity : BaseActivity<ActivitySignUpDetailBinding, JoinDetailViewModel>() {
+    override val viewModel: JoinDetailViewModel by viewModels()
 
     override fun observerViewModel() {
         collectSignUpState()
@@ -38,10 +38,10 @@ class SignUpDetailActivity : BaseActivity<ActivitySignUpDetailBinding, SignUpDet
 
     private fun collectSignUpState() {
         lifecycleScope.launchWhenStarted {
-            viewModel.signUpState.collect { state ->
+            viewModel.joinState.collect { state ->
                 if (state.result.isNotEmpty()) {
                     shortToast("회원가입에 성공하였습니다.")
-                    startActivityWithFinishAll(SignInActivity::class.java)
+                    startActivityWithFinishAll(LoginActivity::class.java)
                 }
 
                 if (state.isLoading) {
@@ -83,11 +83,11 @@ class SignUpDetailActivity : BaseActivity<ActivitySignUpDetailBinding, SignUpDet
     private fun initViewEvent() {
         bindingViewEvent { event ->
             when (event) {
-                SignUpDetailViewModel.EVENT_EMPTY -> shortToast("입력란을 모두 채워 주세요.")
-                SignUpDetailViewModel.EVENT_NOT_PHONE_NUMBER -> shortToast("전화번호 형식이 일치하지 않습니다.")
-                SignUpDetailViewModel.EVENT_NOT_AGREE -> shortToast("방침에 동의해 주세요.")
-                SignUpDetailViewModel.EVENT_NOT_MATCH_FORM -> shortToast("형식이 일치하지 않습니다.")
-                SignUpDetailViewModel.EVENT_NOT_EMAIL -> shortToast("이메일 형식이 일치하지 않습니다.")
+                JoinDetailViewModel.EVENT_EMPTY -> shortToast("입력란을 모두 채워 주세요.")
+                JoinDetailViewModel.EVENT_NOT_PHONE_NUMBER -> shortToast("전화번호 형식이 일치하지 않습니다.")
+                JoinDetailViewModel.EVENT_NOT_AGREE -> shortToast("방침에 동의해 주세요.")
+                JoinDetailViewModel.EVENT_NOT_MATCH_FORM -> shortToast("형식이 일치하지 않습니다.")
+                JoinDetailViewModel.EVENT_NOT_EMAIL -> shortToast("이메일 형식이 일치하지 않습니다.")
             }
         }
     }

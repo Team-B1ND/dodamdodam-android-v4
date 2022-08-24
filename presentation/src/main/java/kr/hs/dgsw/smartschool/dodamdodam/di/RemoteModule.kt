@@ -26,8 +26,7 @@ import kr.hs.dgsw.smartschool.data.network.remote.MemberRemote
 import kr.hs.dgsw.smartschool.data.network.remote.OutRemote
 import kr.hs.dgsw.smartschool.data.network.remote.PlaceRemote
 import kr.hs.dgsw.smartschool.data.network.remote.PointRemote
-import kr.hs.dgsw.smartschool.data.network.remote.SignInRemote
-import kr.hs.dgsw.smartschool.data.network.remote.SignUpRemote
+import kr.hs.dgsw.smartschool.data.network.remote.AuthRemote
 import kr.hs.dgsw.smartschool.data.network.remote.SongRemote
 import kr.hs.dgsw.smartschool.data.network.remote.TimeRemote
 import kr.hs.dgsw.smartschool.data.network.remote.TokenRemote
@@ -50,11 +49,7 @@ class RemoteModule {
 
     @Singleton
     @Provides
-    fun provideSignInRemote(): SignInRemote = SignInRemote()
-
-    @Singleton
-    @Provides
-    fun provideSignUpRemote(): SignUpRemote = SignUpRemote()
+    fun provideAuthRemote(): AuthRemote = AuthRemote()
 
     @Singleton
     @Provides

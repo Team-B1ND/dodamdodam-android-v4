@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="kr.hs.dgsw.smartschool.dodamdodam.features.sign.up.SignUpViewModel" />
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.auth.join.JoinViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

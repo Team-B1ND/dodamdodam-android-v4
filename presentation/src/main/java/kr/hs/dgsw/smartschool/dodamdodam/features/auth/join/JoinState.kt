@@ -1,6 +1,6 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.sign.up
+package kr.hs.dgsw.smartschool.dodamdodam.features.auth.join
 
-data class SignUpState(
+data class JoinState(
     val isLoading: Boolean = false,
     val result: String = "",
     val error: String = ""

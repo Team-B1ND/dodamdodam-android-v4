@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`
+package kr.hs.dgsw.smartschool.dodamdodam.features.auth.login
 
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -8,38 +8,38 @@ import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceMa
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivitySignInBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
-import kr.hs.dgsw.smartschool.dodamdodam.features.sign.up.SignUpActivity
+import kr.hs.dgsw.smartschool.dodamdodam.features.auth.join.JoinActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
 
 @AndroidEntryPoint
-class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
-    override val viewModel: SignInViewModel by viewModels()
+class LoginActivity : BaseActivity<ActivitySignInBinding, LoginViewModel>() {
+    override val viewModel: LoginViewModel by viewModels()
 
     override fun observerViewModel() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
-                signInState.collect { state ->
+                loginState.collect { state ->
                     if (state.error.isNotBlank()) {
-                        Toast.makeText(this@SignInActivity, state.error, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, state.error, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
         bindingViewEvent { event ->
             when (event) {
-                SignInViewModel.EVENT_SUCCESS_SIGN_IN -> startMainActivity()
+                LoginViewModel.EVENT_SUCCESS_SIGN_IN -> startMainActivity()
             }
         }
 
         mBinding.tvSignUp.setOnClickListener {
-            startActivity(SignUpActivity::class.java)
+            startActivity(JoinActivity::class.java)
         }
     }
 
     private fun startMainActivity() {
         if (mBinding.checkAutoSignIn.isChecked)
-            SharedPreferenceManager.signIn(this@SignInActivity)
+            SharedPreferenceManager.signIn(this@LoginActivity)
         startActivityWithFinishAll(MainActivity::class.java)
     }
 }

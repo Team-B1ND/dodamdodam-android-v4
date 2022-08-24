@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.sign.up
+package kr.hs.dgsw.smartschool.dodamdodam.features.auth.join
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -9,19 +9,19 @@ import kotlinx.coroutines.flow.launchIn
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.isNotEmailValid
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.isNotPhoneNumberValid
-import kr.hs.dgsw.smartschool.domain.usecase.auth.SignUpUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.auth.JoinUseCase
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpDetailViewModel @Inject constructor(
-    private val signUpUseCase: SignUpUseCase
+class JoinDetailViewModel @Inject constructor(
+    private val joinUseCase: JoinUseCase
 ) : BaseViewModel() {
 
     var id: String = ""
     var pw: String = ""
 
-    private val _signUpState = MutableStateFlow<SignUpState>(SignUpState(isLoading = false))
-    val signUpState: StateFlow<SignUpState> = _signUpState
+    private val _joinState = MutableStateFlow<JoinState>(JoinState(isLoading = false))
+    val joinState: StateFlow<JoinState> = _joinState
 
     val email = MutableLiveData<String>()
     val phone = MutableLiveData<String>()
@@ -67,8 +67,8 @@ class SignUpDetailViewModel @Inject constructor(
     }
 
     private fun signUp() {
-        signUpUseCase(
-            SignUpUseCase.Params(
+        joinUseCase(
+            JoinUseCase.Params(
                 id = id,
                 pw = pw,
                 email = email.value ?: "",
@@ -80,8 +80,8 @@ class SignUpDetailViewModel @Inject constructor(
             )
         ).divideResult(
             isLoading,
-            { _signUpState.value = SignUpState(result = it ?: "") },
-            { _signUpState.value = SignUpState(error = it ?: "회원가입에 실패했습니다.") }
+            { _joinState.value = JoinState(result = it ?: "") },
+            { _joinState.value = JoinState(error = it ?: "회원가입에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 
