@@ -137,4 +137,5 @@
     <string name="text_wait">조금만 기다려주시기 바랍니다.</string>
     <string name="text_please_apply_song">기상송을 신청해주세요!</string>
     <string name="title_out_write">외출/외박 신청</string>
+    <string name="text_no_out">신청된 외출/외박이 없어요</string>
 </resources>

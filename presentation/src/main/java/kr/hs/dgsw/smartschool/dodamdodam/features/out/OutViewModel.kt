@@ -13,6 +13,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.state.DeleteOutGoingState
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.state.DeleteOutSleepingState
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.state.GetOutState
+import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 import kr.hs.dgsw.smartschool.domain.usecase.out.OutUseCases
 import java.time.LocalDate
 import javax.inject.Inject
@@ -43,7 +44,13 @@ class OutViewModel @Inject constructor(
     fun getMyOutApplies() {
         outUseCases.getOut(LocalDate.now().toString()).divideResult(
             isGetOutLoading,
-            { outList -> viewModelScope.launch { _getOutState.emit(GetOutState(outList = outList ?: emptyList())) }},
+            { outList -> viewModelScope.launch {
+                    outList?.let {
+                        if (outList.isEmpty()) _getOutState.emit(GetOutState(isEmptyList = true))
+                        else _getOutState.emit(GetOutState(outList = it))
+                    } ?: _getOutState.emit(GetOutState(isEmptyList = true))
+                }
+            },
             { error -> viewModelScope.launch { _getOutState.emit(GetOutState(error = error ?: "외출 외박을 받아올 수 없습니다.")) }}
         ).launchIn(viewModelScope)
     }

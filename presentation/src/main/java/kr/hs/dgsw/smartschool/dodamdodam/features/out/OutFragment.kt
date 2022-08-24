@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.out
 
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -37,11 +38,18 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
 
                 if (state.outList.isNotEmpty()) {
                     outListAdapter.submitList(state.outList)
+                    mBinding.tvNoData.visibility = View.GONE
+                    endRefreshing()
+                }
+
+                if (state.isEmptyList) {
+                    mBinding.tvNoData.visibility = View.VISIBLE
                     endRefreshing()
                 }
 
                 if (state.error.isNotBlank()) {
                     shortToast(state.error)
+                    mBinding.tvNoData.visibility = View.GONE
                     endRefreshing()
                 }
 
