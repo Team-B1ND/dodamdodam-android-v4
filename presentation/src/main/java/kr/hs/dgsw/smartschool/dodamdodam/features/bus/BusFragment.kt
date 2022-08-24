@@ -2,6 +2,7 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.bus
 
 import android.bluetooth.BluetoothAdapter.ERROR
 import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -40,7 +41,10 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
                 }
             }
         }
-
+        mBinding.swipeRefreshLayout.setOnRefreshListener {
+            Toast.makeText(context,"Refresh", Toast.LENGTH_SHORT).show();
+            viewModel.doRefresh()
+        }
     }
 
     private fun setBusInfo(busList: List<BusByDate>) : List<BusInfo>{
@@ -63,8 +67,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
             } else if(it.busMemberlength >= it.peopleLimit){
                 rideAble = "탑승불가"
             }
-            if(it.idx == viewModel.busId.value)
-                isSelected = true
+            isSelected = it.idx == viewModel.busApplyState.value.busId
             list.add(
                 BusInfo(
                     it.idx,
@@ -75,6 +78,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
                     isSelected
                 )
             )
+
         }
         Log.e("setBusInfo",list.toString())
         return list

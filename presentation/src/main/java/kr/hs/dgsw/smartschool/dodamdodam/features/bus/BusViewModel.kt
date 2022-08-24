@@ -1,12 +1,17 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.bus
 
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
@@ -18,19 +23,20 @@ import javax.inject.Inject
 class BusViewModel @Inject constructor(
     private val busUseCases: BusUseCases
 ): BaseViewModel() {
-    private val _getBusListState = MutableStateFlow(GetBusListState(isLoading = false))
+    private val _getBusListState = MutableSharedFlow<GetBusListState>()
     private val _getMyBusState = MutableStateFlow(GetMyBusState(isLoading = false))
     private val _addBusApplyState = MutableStateFlow(AddBusApplyState(isLoading = false))
     private val _updateBusApplyState = MutableStateFlow(UpdateBusApplyState(isLoading = false))
     private val _deleteBusApplyState = MutableStateFlow(DeleteBusApplyState(isLoading = false))
+    private val _busApplyState = MutableStateFlow(BusApplyState(isLoading = false))
 
-    val getBusListState: StateFlow<GetBusListState> = _getBusListState
+    val busApplyState : StateFlow<BusApplyState> = _busApplyState
+    val getBusListState: SharedFlow<GetBusListState> = _getBusListState
     val getMyBusState: StateFlow<GetMyBusState> = _getMyBusState
     val addBusApplyState: StateFlow<AddBusApplyState> = _addBusApplyState
     val updateBusApplyState: StateFlow<UpdateBusApplyState> = _updateBusApplyState
     val deleteBusApplyState: StateFlow<DeleteBusApplyState> = _deleteBusApplyState
 
-    val busId = MutableLiveData<Int>(0)
     val hasBus = MutableLiveData<Boolean>(false)
 
     private val isGetMyBusLoading = MutableLiveData<Boolean>()
@@ -42,54 +48,61 @@ class BusViewModel @Inject constructor(
     init {
         combineLoadingVariable(isGetBusLoading, isGetMyBusLoading,isAddBusApplyLoading,isUpdateBusApplyLoading,isDeleteBusApplyLoading)
         getBusList()
+        getMyBus()
     }
 
+    public fun doRefresh(){
+        getBusList()
+    }
     private fun getBusList(){
         busUseCases.getBus(Unit).divideResult(
             isGetBusLoading,
-            { _getBusListState.value = GetBusListState(busList = it ?: emptyList<BusByDate>()) },
-            { _getBusListState.value = GetBusListState(error = it ?: "버스를 받아오지 못하였습니다.") }
+            { viewModelScope.launch { _getBusListState.emit(GetBusListState(busList = it ?: emptyList())) } },
+            { viewModelScope.launch { _getBusListState.emit(GetBusListState(error = it ?: "버스를 받아오지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
     private fun getMyBus(){
         busUseCases.getMyBus(Unit).divideResult(
             isGetMyBusLoading,
-            {_getMyBusState.value = GetMyBusState(busList = it ?: emptyList<Bus>()) },
-            {_getMyBusState.value = GetMyBusState(error = it?: "버스를 받아오지 못하였습니다.") }
+            {_getMyBusState.value = GetMyBusState(busList = it ?: emptyList<Bus>())
+            _busApplyState.value = BusApplyState(busId =
+                if(_getMyBusState.value.busList.isNotEmpty()) _getMyBusState.value.busList[0].idx
+                else 0
+            ) },
+            {_getMyBusState.value = GetMyBusState(error = it?: "버스를 받아오지 못하였습니다.")
+                _busApplyState.value = BusApplyState(error = it?: "버스를 받아오지 못하였습니다.")
+            }
         ).launchIn(viewModelScope)
-        Log.e("BusViewModel", "getMyBus: ")
-    }
-    private fun checkBus():Boolean{
-        getMyBus()
-        Log.e("BusViewModel",_getMyBusState.value.busList.toString())
-        return !_getMyBusState.value.busList.isEmpty()
     }
     fun applyBus(idx:Int){
-        when(checkBus()){
-            false -> {
+        when(_busApplyState.value.busId){
+            0 -> {
                 busUseCases.addBusApply(idx).divideResult(
                     isAddBusApplyLoading,
-                    {_addBusApplyState.value = AddBusApplyState(success = "버스 신청에 성공했습니다.") },
+                    {_addBusApplyState.value = AddBusApplyState(success = "버스 신청에 성공했습니다.")
+                        _busApplyState.value = BusApplyState(busId = idx)},
                     {_addBusApplyState.value = AddBusApplyState(error = "버스 신청에 실패했습니다.") }
                 ).launchIn(viewModelScope)
+                doRefresh()
             }
-            true -> {
-                busId.value = idx
-                busUseCases.updateBusApply(UpdateBusApplyRequest(busIdx = idx.toString(),originBusIdx = _getMyBusState.value.busList.get(0).idx.toString())).divideResult(
+            else -> {
+                busUseCases.updateBusApply(UpdateBusApplyRequest(busIdx = idx.toString(),originBusIdx = _busApplyState.value.busId.toString())).divideResult(
                     isUpdateBusApplyLoading,
-                    {_updateBusApplyState.value = UpdateBusApplyState(success = "버스 신청에 성공했습니다.") },
+                    {_updateBusApplyState.value = UpdateBusApplyState(success = "버스 신청에 성공했습니다.")
+                        _busApplyState.value = BusApplyState(busId = idx)},
                     {_updateBusApplyState.value = UpdateBusApplyState(error = "버스 신청에 실패했습니다.") }
                 ).launchIn(viewModelScope)
-                Log.e("BusViewModel", "changeBus: "+_getMyBusState.value.busList.get(0).idx.toString())
+                doRefresh()
             }
         }
     }
     fun cancelBus(idx:Int){
         busUseCases.deleteBusApply(idx).divideResult(
             isDeleteBusApplyLoading,
-            {_deleteBusApplyState.value = DeleteBusApplyState(success = "정상적으로 버스를 삭제했습니다.") },
+            {_deleteBusApplyState.value = DeleteBusApplyState(success = "정상적으로 버스를 삭제했습니다.")
+                _busApplyState.value = BusApplyState(busId = 0)},
             {_deleteBusApplyState.value = DeleteBusApplyState(error = "정상적으로 버스를 삭제하는데에 실패하였습니다.")}
         ).launchIn(viewModelScope)
-        Log.e("BusViewModel","cancelBus: "+_getMyBusState.value.busList.get(0).idx.toString())
+        doRefresh()
     }
 }
