@@ -26,5 +26,4 @@ class AuthRepositoryImpl @Inject constructor(
             tokenDataSource.insertToken(Token(it.token, it.refreshToken))
         }
     }
-
 }

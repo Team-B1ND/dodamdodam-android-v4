@@ -19,5 +19,4 @@ class AuthDataSource @Inject constructor(
     suspend fun login(loginRequest: LoginRequest): LoginData {
         return remote.login(loginRequest).data
     }
-
 }

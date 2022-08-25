@@ -10,4 +10,4 @@ class Student(
     val member: Member,
     val number: Int,
     val phone: String
-): Member(member.email, member.id, member.joinDate, member.name, member.profileImage, member.role, member.status)
+) : Member(member.email, member.id, member.joinDate, member.name, member.profileImage, member.role, member.status)

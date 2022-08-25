@@ -8,5 +8,4 @@ interface AuthRepository {
     suspend fun join(joinRequest: JoinRequest): String
 
     suspend fun login(loginRequest: LoginRequest)
-
 }

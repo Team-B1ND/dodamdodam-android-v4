@@ -17,6 +17,7 @@ import kr.hs.dgsw.smartschool.data.network.api.PlaceApi
 import kr.hs.dgsw.smartschool.data.network.api.PointApi
 import kr.hs.dgsw.smartschool.data.network.api.SongApi
 import kr.hs.dgsw.smartschool.data.network.api.TimeApi
+import kr.hs.dgsw.smartschool.data.network.remote.AuthRemote
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.remote.ClassInfoRemote
 import kr.hs.dgsw.smartschool.data.network.remote.FileUploadRemote
@@ -26,7 +27,6 @@ import kr.hs.dgsw.smartschool.data.network.remote.MemberRemote
 import kr.hs.dgsw.smartschool.data.network.remote.OutRemote
 import kr.hs.dgsw.smartschool.data.network.remote.PlaceRemote
 import kr.hs.dgsw.smartschool.data.network.remote.PointRemote
-import kr.hs.dgsw.smartschool.data.network.remote.AuthRemote
 import kr.hs.dgsw.smartschool.data.network.remote.SongRemote
 import kr.hs.dgsw.smartschool.data.network.remote.TimeRemote
 import kr.hs.dgsw.smartschool.data.network.remote.TokenRemote
