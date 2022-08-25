@@ -5,7 +5,8 @@ import java.security.NoSuchAlgorithmException
 
 class LoginRequest(
     id: String,
-    pw: String
+    pw: String,
+    encryption: Boolean
 ) {
     var id: String? = null
     var pw: String? = null
@@ -13,7 +14,7 @@ class LoginRequest(
     init {
         try {
             this.id = id
-            this.pw = Utils.encryptSHA512(pw)
+            this.pw = if (encryption) Utils.encryptSHA512(pw) else pw
         } catch (e: NoSuchAlgorithmException) {
             e.printStackTrace()
         }

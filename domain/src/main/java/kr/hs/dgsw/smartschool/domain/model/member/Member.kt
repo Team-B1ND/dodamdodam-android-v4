@@ -6,10 +6,9 @@ import java.util.Date
 open class Member(
     val email: String,
     val id: String,
-    val joinDate: Date?,
+    val joinDate: String?,
     val name: String,
     val profileImage: String?,
     val role: String,
-    val status: String,
-    val phone: String,
+    val status: String
 ) : Serializable

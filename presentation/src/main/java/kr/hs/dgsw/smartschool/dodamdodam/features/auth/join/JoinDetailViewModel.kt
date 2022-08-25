@@ -29,7 +29,7 @@ class JoinDetailViewModel @Inject constructor(
     val grade = MutableLiveData<String>()
     val room = MutableLiveData<String>()
     val number = MutableLiveData<String>()
-    val isAgree = MutableLiveData<Boolean>()
+    val isAgree = MutableLiveData(false)
 
     fun checkForm() {
         val isEmpty = grade.value.isNullOrBlank() || room.value.isNullOrBlank() || number.value.isNullOrBlank() ||
@@ -69,14 +69,14 @@ class JoinDetailViewModel @Inject constructor(
     private fun signUp() {
         joinUseCase(
             JoinUseCase.Params(
-                id = id,
-                pw = pw,
                 email = email.value ?: "",
-                phone = phone.value ?: "",
+                grade = grade.value?.toInt() ?: 0,
+                id = id,
                 name = name.value ?: "",
-                grade = grade.value ?: "0",
-                classroom = room.value ?: "0",
-                number = number.value ?: "0"
+                number = number.value?.toInt() ?: 0,
+                phone = phone.value ?: "",
+                pw = pw,
+                room = room.value?.toInt() ?: 0
             )
         ).divideResult(
             isLoading,

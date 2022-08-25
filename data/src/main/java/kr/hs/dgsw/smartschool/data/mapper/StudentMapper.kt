@@ -2,45 +2,51 @@ package kr.hs.dgsw.smartschool.data.mapper
 
 import kr.hs.dgsw.smartschool.data.base.BaseEntityMapper
 import kr.hs.dgsw.smartschool.data.database.entity.StudentEntity
-import kr.hs.dgsw.smartschool.domain.model.member.MemberAllowedType
+import kr.hs.dgsw.smartschool.domain.model.classroom.Classroom
+import kr.hs.dgsw.smartschool.domain.model.member.Member
 import kr.hs.dgsw.smartschool.domain.model.member.Student
 
 class StudentMapper : BaseEntityMapper<Student, StudentEntity> {
 
     override fun mapToModel(entity: StudentEntity): Student {
         return Student(
-            entity.idx,
-            entity.phone,
-            entity.id,
-            entity.name,
-            entity.classroomIdx,
+            Classroom(
+                grade = entity.grade,
+                id = entity.id,
+                placeId = entity.placeId,
+                room = entity.room,
+            ),
+            entity.studentId,
+            Member(
+                entity.email,
+                entity.memberId,
+                entity.joinDate,
+                entity.name,
+                entity.profileImage,
+                entity.role,
+                entity.status
+            ),
             entity.number,
-            entity.email,
-            entity.accessLevel,
-            MemberAllowedType.fromInt(entity.allowed),
-            null,
-            entity.profileImage,
-            entity.grade,
-            entity.room,
-            entity.placeIdx
+            entity.phone
         )
     }
 
     override fun mapToEntity(model: Student): StudentEntity {
         return StudentEntity(
-            model.idx,
-            model.phone,
-            model.id,
-            model.name,
-            model.classroomIdx,
+            model.studentId,
+            model.classroom.grade,
+            model.classroom.id,
+            model.classroom.placeId,
+            model.classroom.grade,
             model.number,
+            model.phone,
             model.email,
-            model.accessLevel,
-            model.allowed.value,
-            model.profileImage,
-            model.grade,
-            model.room,
-            model.placeIdx
+            model.id,
+            model.joinDate ?: "",
+            model.name,
+            model.profileImage ?: "",
+            model.role,
+            model.status
         )
     }
 }

@@ -8,7 +8,7 @@ import kr.hs.dgsw.smartschool.data.database.entity.TeacherEntity
 @Dao
 interface TeacherDao : BaseDao<TeacherEntity> {
 
-    @Query("SELECT * FROM teacher_table WHERE idx=:idx")
+    @Query("SELECT * FROM teacher_table WHERE teacherId=:idx")
     suspend fun getTeacher(idx: Int): TeacherEntity
 
     @Query("SELECT * FROM teacher_table")

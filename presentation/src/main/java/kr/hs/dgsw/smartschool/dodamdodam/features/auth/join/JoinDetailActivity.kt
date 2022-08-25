@@ -9,13 +9,13 @@ import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
-import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivitySignUpDetailBinding
+import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivityJoinDetailBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.auth.login.LoginActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
 
 @AndroidEntryPoint
-class JoinDetailActivity : BaseActivity<ActivitySignUpDetailBinding, JoinDetailViewModel>() {
+class JoinDetailActivity : BaseActivity<ActivityJoinDetailBinding, JoinDetailViewModel>() {
     override val viewModel: JoinDetailViewModel by viewModels()
 
     override fun observerViewModel() {

@@ -1,19 +1,20 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.auth.login
 
-import android.widget.Toast
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceManager
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
-import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivitySignInBinding
+import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivityLoginBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
 import kr.hs.dgsw.smartschool.dodamdodam.features.auth.join.JoinActivity
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
 
 @AndroidEntryPoint
-class LoginActivity : BaseActivity<ActivitySignInBinding, LoginViewModel>() {
+class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
     override val viewModel: LoginViewModel by viewModels()
 
     override fun observerViewModel() {
@@ -21,7 +22,8 @@ class LoginActivity : BaseActivity<ActivitySignInBinding, LoginViewModel>() {
             lifecycleScope.launchWhenStarted {
                 loginState.collect { state ->
                     if (state.error.isNotBlank()) {
-                        Toast.makeText(this@LoginActivity, state.error, Toast.LENGTH_SHORT).show()
+                        Log.e("LoginError", state.error)
+                        shortToast(state.error)
                     }
                 }
             }

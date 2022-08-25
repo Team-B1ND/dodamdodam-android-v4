@@ -12,11 +12,12 @@ class LoginUseCase @Inject constructor(
 ) : BaseUseCase<LoginUseCase.Params, Unit>() {
 
     override fun invoke(params: Params): Flow<Resource<Unit>> = execute {
-        repository.login(LoginRequest(params.id, params.pw))
+        repository.login(LoginRequest(params.id, params.pw, params.encryption))
     }
 
     data class Params(
         val id: String,
-        val pw: String
+        val pw: String,
+        val encryption: Boolean = true
     )
 }
