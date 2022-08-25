@@ -16,10 +16,6 @@ interface BusRepository {
         request : MyBusByMonthRequest
     ) : List<Bus>
 
-    // POST
-    suspend fun addBus(): String
-    suspend fun addBusApply(): String
-
     //POST
     suspend fun addBus(
         request: AddBusRequest

@@ -32,10 +32,6 @@ class BusViewModel @Inject constructor(
 
     val busApplyState : StateFlow<BusApplyState> = _busApplyState
     val getBusListState: SharedFlow<GetBusListState> = _getBusListState
-    val getMyBusState: StateFlow<GetMyBusState> = _getMyBusState
-    val addBusApplyState: StateFlow<AddBusApplyState> = _addBusApplyState
-    val updateBusApplyState: StateFlow<UpdateBusApplyState> = _updateBusApplyState
-    val deleteBusApplyState: StateFlow<DeleteBusApplyState> = _deleteBusApplyState
 
     val hasBus = MutableLiveData<Boolean>(false)
 
@@ -48,13 +44,9 @@ class BusViewModel @Inject constructor(
     init {
         combineLoadingVariable(isGetBusLoading, isGetMyBusLoading,isAddBusApplyLoading,isUpdateBusApplyLoading,isDeleteBusApplyLoading)
         getBusList()
-        getMyBus()
-    }
-
-    public fun doRefresh(){
-        getBusList()
     }
     private fun getBusList(){
+        getMyBus()
         busUseCases.getBus(Unit).divideResult(
             isGetBusLoading,
             { viewModelScope.launch { _getBusListState.emit(GetBusListState(busList = it ?: emptyList())) } },
@@ -75,24 +67,27 @@ class BusViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
     fun applyBus(idx:Int){
+        getMyBus()
         when(_busApplyState.value.busId){
             0 -> {
                 busUseCases.addBusApply(idx).divideResult(
                     isAddBusApplyLoading,
                     {_addBusApplyState.value = AddBusApplyState(success = "버스 신청에 성공했습니다.")
-                        _busApplyState.value = BusApplyState(busId = idx)},
-                    {_addBusApplyState.value = AddBusApplyState(error = "버스 신청에 실패했습니다.") }
+                        _busApplyState.value = BusApplyState(busId = idx)
+                    getBusList()},
+                    {_addBusApplyState.value = AddBusApplyState(error = "버스 신청에 실패했습니다.")
+                        getBusList()}
                 ).launchIn(viewModelScope)
-                doRefresh()
             }
             else -> {
                 busUseCases.updateBusApply(UpdateBusApplyRequest(busIdx = idx.toString(),originBusIdx = _busApplyState.value.busId.toString())).divideResult(
                     isUpdateBusApplyLoading,
                     {_updateBusApplyState.value = UpdateBusApplyState(success = "버스 신청에 성공했습니다.")
-                        _busApplyState.value = BusApplyState(busId = idx)},
-                    {_updateBusApplyState.value = UpdateBusApplyState(error = "버스 신청에 실패했습니다.") }
+                        _busApplyState.value = BusApplyState(busId = idx)
+                        getBusList()},
+                    {_updateBusApplyState.value = UpdateBusApplyState(error = "버스 신청에 실패했습니다.")
+                        getBusList()}
                 ).launchIn(viewModelScope)
-                doRefresh()
             }
         }
     }
@@ -100,9 +95,10 @@ class BusViewModel @Inject constructor(
         busUseCases.deleteBusApply(idx).divideResult(
             isDeleteBusApplyLoading,
             {_deleteBusApplyState.value = DeleteBusApplyState(success = "정상적으로 버스를 삭제했습니다.")
-                _busApplyState.value = BusApplyState(busId = 0)},
-            {_deleteBusApplyState.value = DeleteBusApplyState(error = "정상적으로 버스를 삭제하는데에 실패하였습니다.")}
+                _busApplyState.value = BusApplyState(busId = 0)
+                getBusList()},
+            {_deleteBusApplyState.value = DeleteBusApplyState(error = "정상적으로 버스를 삭제하는데에 실패하였습니다.")
+                getBusList()}
         ).launchIn(viewModelScope)
-        doRefresh()
     }
 }

@@ -30,10 +30,12 @@ class BusRepositoryImpl @Inject constructor(
         return dataSource.getMyBusByMonth(request).busList
     }
 
+
     override suspend fun addBus(
         request:AddBusRequest
     ):String
     = dataSource.addBus(request)
+
 
     override suspend fun addBusApply(
         idx:Int

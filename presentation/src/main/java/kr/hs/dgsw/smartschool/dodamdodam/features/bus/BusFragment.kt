@@ -56,6 +56,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
         } ?: return emptyList()
 
         mBinding.tvDate.text = todayBus.date
+        busId = viewModel.busApplyState.value.busId
 
         var rideAble = ""
         var isSelected : Boolean = false
@@ -65,7 +66,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
             } else if (it.busMemberlength >= it.peopleLimit) {
                 rideAble = "탑승불가"
             }
-            isSelected = it.idx == busId//viewModel.busApplyState.value.busId
+            isSelected = it.idx == busId
             list.add(
                 BusInfo(
                     it.idx,
@@ -78,26 +79,24 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
             )
 
         }
-        Log.e("setBusInfo",list.toString())
         return list
     }
 
     private fun setBusRecyclerView(list: List<BusInfo>) {
         val busAdapter = BusAdapter(requireContext(),this)
-        Log.e("setBusRecyclerView",list.toString())
         mBinding.recyclerBus.adapter = busAdapter
         busAdapter.submitList(list)
     }
 
     override fun applyBus(idx:Int) {
         viewModel.applyBus(idx)
-        busId= idx
-        Log.e("applyBus override","정상적 실행")
+        busId=idx
+        Log.e("cancelBus override","정상적 실행 : "+ (viewModel.busApplyState.value.busId-261))
     }
 
     override fun cancelBus(idx: Int) {
         viewModel.cancelBus(idx)
-        busId= idx
-        Log.e("cancelBus override","정상적 실행")
+        busId=idx
+        Log.e("cancelBus override","정상적 실행 : "+ (viewModel.busApplyState.value.busId-261))
     }
 }
