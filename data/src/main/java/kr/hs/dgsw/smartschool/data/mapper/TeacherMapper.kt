@@ -3,7 +3,6 @@ package kr.hs.dgsw.smartschool.data.mapper
 import kr.hs.dgsw.smartschool.data.base.BaseEntityMapper
 import kr.hs.dgsw.smartschool.data.database.entity.TeacherEntity
 import kr.hs.dgsw.smartschool.domain.model.member.Member
-import kr.hs.dgsw.smartschool.domain.model.member.MemberAllowedType
 import kr.hs.dgsw.smartschool.domain.model.member.Teacher
 
 class TeacherMapper : BaseEntityMapper<Teacher, TeacherEntity> {

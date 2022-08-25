@@ -7,7 +7,6 @@ import kr.hs.dgsw.smartschool.data.network.response.data.MyInfoData
 import kr.hs.dgsw.smartschool.data.network.response.data.StudentData
 import kr.hs.dgsw.smartschool.data.network.response.data.TeacherData
 import kr.hs.dgsw.smartschool.domain.model.member.Member
-import kr.hs.dgsw.smartschool.domain.model.member.MemberAllowedType
 import kr.hs.dgsw.smartschool.domain.request.MyInfoChangeRequest
 import javax.inject.Inject
 
@@ -16,7 +15,7 @@ class MemberRemote @Inject constructor(
 ) : BaseRemote<MemberApi>() {
 
     suspend fun getAllMember(): MemberData =
-        api.getAllMembers(MemberAllowedType.ALLOW.value).data
+        api.getAllMembers().data
 
     suspend fun getMember(id: String): Member =
         api.getMember(id).data

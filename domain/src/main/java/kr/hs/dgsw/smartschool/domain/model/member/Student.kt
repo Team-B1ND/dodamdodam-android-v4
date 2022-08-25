@@ -7,7 +7,7 @@ class Student(
     val classroom: Classroom,
     @SerializedName("id")
     val studentId: Int,
-    member: Member,
+    val member: Member,
     val number: Int,
     val phone: String
 ): Member(member.email, member.id, member.joinDate, member.name, member.profileImage, member.role, member.status)

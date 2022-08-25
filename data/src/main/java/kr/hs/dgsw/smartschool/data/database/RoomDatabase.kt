@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import kr.hs.dgsw.smartschool.data.database.dao.AccountDao
 import kr.hs.dgsw.smartschool.data.database.dao.ClassroomDao
-import kr.hs.dgsw.smartschool.data.database.dao.HistoryMemberDao
 import kr.hs.dgsw.smartschool.data.database.dao.MealDao
 import kr.hs.dgsw.smartschool.data.database.dao.MemberDao
 import kr.hs.dgsw.smartschool.data.database.dao.PlaceDao
@@ -15,7 +14,6 @@ import kr.hs.dgsw.smartschool.data.database.dao.TimeDao
 import kr.hs.dgsw.smartschool.data.database.dao.TokenDao
 import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
 import kr.hs.dgsw.smartschool.data.database.entity.ClassroomEntity
-import kr.hs.dgsw.smartschool.data.database.entity.HistoryMemberEntity
 import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
 import kr.hs.dgsw.smartschool.data.database.entity.MemberEntity
 import kr.hs.dgsw.smartschool.data.database.entity.PlaceEntity
@@ -29,10 +27,10 @@ import java.util.concurrent.Executors
     entities = [
         MealEntity::class, TokenEntity::class, AccountEntity::class,
         MemberEntity::class, StudentEntity::class, TeacherEntity::class,
-        HistoryMemberEntity::class, TimeEntity::class, PlaceEntity::class,
+        TimeEntity::class, PlaceEntity::class,
         ClassroomEntity::class
     ],
-    version = 5,
+    version = 6,
     exportSchema = false
 )
 abstract class RoomDatabase : androidx.room.RoomDatabase() {
@@ -43,7 +41,6 @@ abstract class RoomDatabase : androidx.room.RoomDatabase() {
     abstract fun memberDao(): MemberDao
     abstract fun studentDao(): StudentDao
     abstract fun teacherDao(): TeacherDao
-    abstract fun historyMemberDao(): HistoryMemberDao
     abstract fun timeDao(): TimeDao
     abstract fun placeDao(): PlaceDao
     abstract fun classInfoDao(): ClassroomDao
