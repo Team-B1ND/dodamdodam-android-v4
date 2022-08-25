@@ -3,7 +3,7 @@ package kr.hs.dgsw.smartschool.domain.model.meal
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-data class Meal (
+data class Meal(
     val breakfast: String,
     val date: String,
     val dinner: String,
@@ -11,19 +11,17 @@ data class Meal (
     val lunch: String
 ) {
 
-    val safeBreakfast : String
+    val safeBreakfast: String
         get() = if (breakfast == "null") "조식이 없습니다." else trimMealInfo(breakfast)
 
-    val safeLunch : String
+    val safeLunch: String
         get() = if (lunch == "null") "중식이 없습니다." else trimMealInfo(lunch)
 
     val safeDinner: String
         get() = if (dinner == "null") "석식이 없습니다." else trimMealInfo(dinner)
 
-
     private fun trimMealInfo(meal: String): String =
         deleteBracket(meal).replace(" \n", ", ")
-
 
     private fun deleteBracket(text: String): String {
         val pattern: Pattern = Pattern.compile("\\([^\\(\\)]+\\)")
@@ -31,7 +29,7 @@ data class Meal (
 
         var matcher: Matcher = pattern.matcher(text)
         var pureText = text
-        var removeTextArea = ""
+        var removeTextArea: String
 
         while (matcher.find()) {
             val startIndex: Int = matcher.start()
@@ -44,6 +42,3 @@ data class Meal (
         return pureText
     }
 }
-
-
-

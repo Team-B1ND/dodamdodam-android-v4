@@ -12,7 +12,7 @@ import javax.inject.Inject
 class StudentDataSource @Inject constructor(
     override val remote: MemberRemote,
     override val cache: MemberCache
-) : BaseDataSource<MemberRemote, MemberCache>() {
+) : BaseDataSource<MemberRemote, MemberCache> {
 
     private val studentMapper = StudentMapper()
 

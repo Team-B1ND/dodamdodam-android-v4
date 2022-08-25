@@ -15,7 +15,7 @@ import javax.inject.Inject
 class LocationDataSource @Inject constructor(
     override val remote: LocationRemote,
     override val cache: Any
-) : BaseDataSource<LocationRemote, Any>() {
+) : BaseDataSource<LocationRemote, Any> {
 
     suspend fun postLocation(locationRequest: LocationRequest): String =
         remote.postLocation(locationRequest)

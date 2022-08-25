@@ -22,5 +22,4 @@ interface MemberDao : BaseDao<MemberEntity> {
 
     @Query("DELETE FROM member_table")
     suspend fun deleteAll()
-
 }

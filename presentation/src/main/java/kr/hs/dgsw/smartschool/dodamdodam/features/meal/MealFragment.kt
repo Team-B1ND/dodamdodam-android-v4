@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.meal
 
 import android.app.DatePickerDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
@@ -12,7 +13,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
 import java.time.LocalDate
-import java.util.*
+import java.util.Calendar
 
 @AndroidEntryPoint
 class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
@@ -63,9 +64,9 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                     )
                 datePickerDialog.show()
                 datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE)
-                    .setTextColor(R.color.main)
+                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.main))
                 datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)
-                    .setTextColor(R.color.main)
+                    .setTextColor(ContextCompat.getColor(requireContext(), R.color.main))
             }
         }
     }
@@ -73,9 +74,9 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
     private fun collectMealState() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
-                mealState.collect { state ->
+                getMealState.collect { state ->
                     if (state.meal.isNotEmpty()) {
-                        mealList = mealState.value.meal
+                        mealList = getMealState.value.meal
                         getMeal(mealList)
                     }
 

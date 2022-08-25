@@ -13,11 +13,11 @@ data class MyInfoChangeRequest(
     var pw: String?
 ) {
 
-    constructor(phone: String?, email: String?, profileImage: Picture?): this(null, email, profileImage, null) {
+    constructor(phone: String?, email: String?, profileImage: Picture?) : this(null, email, profileImage, null) {
         this.phone = phone
     }
 
-    constructor(pw: String?): this(null, null, null, null) {
+    constructor(pw: String?) : this(null, null, null, null) {
         try {
             this.pw = encryptSHA512(pw!!)
         } catch (e: NoSuchAlgorithmException) {

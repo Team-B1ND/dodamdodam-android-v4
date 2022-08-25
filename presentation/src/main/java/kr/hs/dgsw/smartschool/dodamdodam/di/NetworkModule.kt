@@ -6,7 +6,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kr.hs.dgsw.smartschool.data.network.interceptor.ErrorResponseInterceptor
 import kr.hs.dgsw.smartschool.data.network.interceptor.TokenInterceptor
 import kr.hs.dgsw.smartschool.data.util.Constants
 import okhttp3.OkHttpClient
@@ -31,11 +30,11 @@ class NetworkModule {
     fun provideHttpClient(tokenInterceptor: TokenInterceptor): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
-        //val errorResponseInterceptor = ErrorResponseInterceptor()
+        // val errorResponseInterceptor = ErrorResponseInterceptor()
         val okhttpBuilder = OkHttpClient().newBuilder()
             .addInterceptor(interceptor)
             .addInterceptor(tokenInterceptor)
-            //.addInterceptor(errorResponseInterceptor)
+        // .addInterceptor(errorResponseInterceptor)
         return okhttpBuilder.build()
     }
 
@@ -49,5 +48,4 @@ class NetworkModule {
             .callbackExecutor(Executors.newSingleThreadExecutor())
             .build()
     }
-
 }

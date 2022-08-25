@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.BusDiffUtilCallback
+import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemBusBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.bus.BusFragment
 import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
@@ -64,20 +62,7 @@ class BusAdapter(val context: Context, val listener: BusAdapter.BusApplyCallBack
 
             })
         }
-    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BusViewHolder {
-        return BusViewHolder(
-            DataBindingUtil.inflate(
-                LayoutInflater.from(parent.context),
-                R.layout.item_bus,
-                parent,
-                false
-            )
-        )
-    }
-
-    override fun onBindViewHolder(holder: BusViewHolder, position: Int) {
-        return holder.bind(getItem(position))
+        binding.bus = item
     }
 }

@@ -15,28 +15,28 @@ data class LocationInfo(
     val date: String?
 ) : Location(), Cloneable {
 
-    constructor(time: Time, place: Place): this(null, null, null, null, null) {
+    constructor(time: Time, place: Place) : this(null, null, null, null, null) {
         this.timeTableIdx = time.idx
         this.time = time
         this.placeIdx = place.idx
         this.place = place
     }
 
-    constructor(timeTableIdx: Int, placeIdx: Int): this(null, null, null, null, null) {
+    constructor(timeTableIdx: Int, placeIdx: Int) : this(null, null, null, null, null) {
         this.timeTableIdx = timeTableIdx
         this.time = null
         this.placeIdx = placeIdx
         this.place = null
     }
 
-    constructor(time: Time): this(null, null, null, null, null) {
+    constructor(time: Time) : this(null, null, null, null, null) {
         this.timeTableIdx = time.idx
         this.time = time
         this.placeIdx = null
         this.place = null
     }
 
-    constructor(time: Time, locationInfo: LocationInfo): this(locationInfo.idx, locationInfo.studentIdx, locationInfo.isChecked, locationInfo.checkTeacherIdx, locationInfo.date) {
+    constructor(time: Time, locationInfo: LocationInfo) : this(locationInfo.idx, locationInfo.studentIdx, locationInfo.isChecked, locationInfo.checkTeacherIdx, locationInfo.date) {
         this.timeTableIdx = time.idx
         this.time = time
         this.placeIdx = locationInfo.placeIdx

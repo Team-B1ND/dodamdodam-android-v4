@@ -1,9 +1,10 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="card_corner">20dp</dimen>
+    <dimen name="card_corner">10dp</dimen>
     <dimen name="drawer_icon_size">17dp</dimen>
     <dimen name="card_small_corner">5dp</dimen>
     <dimen name="card_elevation">5dp</dimen>
+    <dimen name="card_small_elevation">2dp</dimen>
     <dimen name="sign_horizontal_margin">30dp</dimen>
     <dimen name="default_margin">20dp</dimen>
     <dimen name="title1">25sp</dimen>

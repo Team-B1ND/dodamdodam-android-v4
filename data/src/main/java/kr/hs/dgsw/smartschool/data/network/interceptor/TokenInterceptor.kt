@@ -1,7 +1,7 @@
 package kr.hs.dgsw.smartschool.data.network.interceptor
 
-import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.runBlocking
 import kr.hs.dgsw.smartschool.data.datasource.AccountDataSource
 import kr.hs.dgsw.smartschool.data.exception.TokenException
 import kr.hs.dgsw.smartschool.data.util.AppDispatchers
@@ -21,7 +21,7 @@ class TokenInterceptor @Inject constructor(
     private val tokenUseCases: TokenUseCases,
     private val accountDataSource: AccountDataSource,
     private val appDispatcher: AppDispatchers
-): Interceptor {
+) : Interceptor {
     private val TOKEN_ERROR = 410
 
     private lateinit var token: Token
@@ -53,7 +53,7 @@ class TokenInterceptor @Inject constructor(
     private fun makeTokenRefreshCall(request: Request, chain: Interceptor.Chain): Response {
         try {
             fetchToken()
-        } catch (e : HttpException) {
+        } catch (e: HttpException) {
             getTokenToLogin()
         }
 
@@ -91,7 +91,6 @@ class TokenInterceptor @Inject constructor(
     private fun fetchToken() = runBlocking(appDispatcher.io) {
         tokenUseCases.updateNewToken().let { token = it }
     }
-
 
     private fun getTokenToLogin() {
         runBlocking(appDispatcher.io) {

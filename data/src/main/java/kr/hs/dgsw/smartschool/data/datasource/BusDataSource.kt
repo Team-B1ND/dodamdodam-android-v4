@@ -15,7 +15,7 @@ import javax.inject.Inject
 class BusDataSource @Inject constructor(
     override val cache: Any,
     override val remote: BusRemote
-) : BaseDataSource<BusRemote,Any>() {
+) : BaseDataSource<BusRemote, Any> {
 
     suspend fun getMyBusByMonth(
         request: MyBusByMonthRequest

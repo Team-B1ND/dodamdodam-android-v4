@@ -13,5 +13,4 @@ interface HistoryMemberDao : BaseDao<HistoryMemberEntity> {
 
     @Query("DELETE FROM history_member_table")
     suspend fun deleteAll()
-
 }

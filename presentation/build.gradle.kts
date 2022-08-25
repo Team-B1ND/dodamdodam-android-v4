@@ -3,8 +3,9 @@ plugins {
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinKapt)
     id(Plugins.daggerPlugin)
-    id(Plugins.extensions)
+    id(Plugins.kotlinParcelize)
     id(Plugins.navigation_safe_args)
+    id(Plugins.kt_lint) version Versions.KT_LINT
 }
 
 android {
@@ -35,7 +36,7 @@ android {
         jvmTarget = Versions.JVM_TARGET
     }
 
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
     }
 }
@@ -86,6 +87,8 @@ dependencies {
 
     // Swipe refresh layout
     implementation(AndroidX.SWIPE_REFRESH_LAYOUT)
+
+    implementation(Libraries.JSOUP)
 
     implementation(project(":data"))
     implementation(project(":domain"))

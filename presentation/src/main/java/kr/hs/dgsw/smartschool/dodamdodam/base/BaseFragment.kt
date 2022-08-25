@@ -17,7 +17,8 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`.SignInActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
 import java.lang.reflect.ParameterizedType
-import java.util.*
+import java.util.Locale
+import java.util.Objects
 
 abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
 
@@ -47,14 +48,14 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         mBinding = DataBindingUtil.inflate(
             inflater,
             layoutRes(),
-            container
-            , false
+            container, false
         )!!
         return mBinding.root
     }
@@ -81,7 +82,10 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     @LayoutRes
     private fun layoutRes(): Int {
         val split =
-            ((Objects.requireNonNull(javaClass.genericSuperclass) as ParameterizedType).actualTypeArguments[0] as Class<*>)
+            (
+                (Objects.requireNonNull(javaClass.genericSuperclass) as ParameterizedType)
+                    .actualTypeArguments[0] as Class<*>
+                )
                 .simpleName.replace("Binding$".toRegex(), "")
                 .split("(?<=.)(?=\\p{Upper})".toRegex())
                 .dropLastWhile { it.isEmpty() }.toTypedArray()

@@ -8,10 +8,9 @@ import javax.inject.Inject
 
 class SignUpRepositoryImpl @Inject constructor(
     private val signUpDataSource: SignUpDataSource
-): SignUpRepository {
+) : SignUpRepository {
     override suspend fun signUp(signUpRequest: SignUpRequest): String {
         Log.d("TestTest", "signUp: repository")
         return signUpDataSource.signUp(signUpRequest)
     }
-
 }

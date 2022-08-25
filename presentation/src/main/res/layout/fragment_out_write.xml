@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="vm"
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.out.write.OutWriteViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_title_out_write"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/btn_back"
+                layout="@layout/item_back_button"
+                android:onClick="@{() -> vm.onClickBack()}" />
+
+            <TextView
+                android:id="@+id/tv_out_write"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/nanum_square_regular"
+                android:includeFontPadding="false"
+                android:text="@string/title_out_write"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/title3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_back" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_out_going"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_begin="41dp"
+                        app:layout_constraintGuide_percent="0.07" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_out_going"
+                        isSelected="@{vm.isOutGoing()}"
+                        android:layout_width="75dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="15dp"
+                        android:onClick="@{() -> vm.selectOutGoing()}"
+                        app:cardCornerRadius="@dimen/card_corner"
+                        app:cardElevation="@dimen/card_small_elevation"
+                        app:layout_constraintStart_toStartOf="@+id/guideline"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            isSelected="@{vm.isOutGoing()}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/notosans_kr_medium"
+                            android:includeFontPadding="false"
+                            android:text="@string/text_out_going"
+                            android:textColor="@drawable/selected_text_color" />
+
+
+                    </androidx.cardview.widget.CardView>
+
+                    <include
+                        android:id="@+id/progress_loading"
+                        layout="@layout/item_loading_progressbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="@id/cv_out_going"
+                        app:layout_constraintEnd_toStartOf="@id/cv_off_base"
+                        app:layout_constraintStart_toEndOf="@id/cv_out_going"
+                        app:layout_constraintTop_toTopOf="@id/cv_out_going"/>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_off_base"
+                        isSelected="@{vm.isOutSleeping()}"
+                        android:layout_width="75dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="15dp"
+                        android:onClick="@{() -> vm.selectOutSleeping()}"
+                        app:cardCornerRadius="@dimen/card_corner"
+                        app:cardElevation="@dimen/card_small_elevation"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            isSelected="@{vm.isOutSleeping()}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/notosans_kr_medium"
+                            android:includeFontPadding="false"
+                            android:text="@string/text_out_sleeping"
+                            android:textColor="@drawable/selected_text_color" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.93" />
+
+                    <EditText
+                        android:id="@+id/et_reason"
+                        android:layout_width="0dp"
+                        android:layout_height="300dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@drawable/background_offbase_write_edittext"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:gravity="top"
+                        android:hint="@string/text_reason"
+                        android:importantForAutofill="no"
+                        android:includeFontPadding="false"
+                        android:inputType="none"
+                        android:padding="15dp"
+                        android:text="@={vm.outReason}"
+                        android:textSize="@dimen/title4"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                        app:layout_constraintStart_toStartOf="@+id/guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/cv_off_base" />
+
+                    <LinearLayout
+                        android:id="@+id/out_going_layout"
+                        visibility="@{vm.isOutGoing()}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toTopOf="@id/btn_add_offbase"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                        app:layout_constraintStart_toStartOf="@+id/guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/et_reason"
+                        tools:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:fontFamily="@font/nanum_square_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/text_out_going_date"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/title4" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                mutableDateText="@{vm.startOutGoingDate}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="20dp"
+                                android:fontFamily="@font/nanum_square_regular"
+                                android:includeFontPadding="false"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/title4"
+                                tools:text="2021/07/17" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:onClick="@{() -> vm.onClickStartOutGoingDate()}"
+                                android:src="@drawable/ic_btn_calendar"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nanum_square_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/text_out_going_time"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/title4" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="20dp"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_weight="1"
+                                    app:cardCornerRadius="5dp"
+                                    app:cardElevation="@dimen/card_small_elevation">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        android:padding="10dp"
+                                        android:paddingVertical="10dp"
+                                        tools:ignore="TooDeepLayout">
+
+                                        <EditText
+                                            android:id="@+id/et_start_out_going_hour"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="@android:color/transparent"
+                                            android:fontFamily="@font/nanum_square_regular"
+                                            android:gravity="center"
+                                            android:hint="@string/text_range_hour"
+                                            android:importantForAutofill="no"
+                                            android:includeFontPadding="false"
+                                            android:inputType="number"
+                                            android:maxLength="2"
+                                            android:textSize="15sp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/colon" />
+
+                                        <EditText
+                                            android:id="@+id/et_start_out_going_minute"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="@android:color/transparent"
+                                            android:fontFamily="@font/nanum_square_regular"
+                                            android:gravity="center"
+                                            android:hint="@string/text_range_minutes"
+                                            android:importantForAutofill="no"
+                                            android:includeFontPadding="false"
+                                            android:inputType="number"
+                                            android:maxLength="2"
+                                            android:textSize="15sp" />
+
+                                    </LinearLayout>
+
+                                </androidx.cardview.widget.CardView>
+
+                                <TextView
+                                    android:layout_width="30dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_horizontal"
+                                    android:text="@string/text_wave" />
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="20dp"
+                                    android:layout_marginEnd="5dp"
+                                    android:layout_weight="1"
+                                    app:cardCornerRadius="5dp"
+                                    app:cardElevation="@dimen/card_small_elevation">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        android:paddingVertical="10dp">
+
+                                        <EditText
+                                            android:id="@+id/et_end_out_going_hour"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="@android:color/transparent"
+                                            android:fontFamily="@font/nanum_square_regular"
+                                            android:gravity="center"
+                                            android:hint="@string/text_range_hour"
+                                            android:importantForAutofill="no"
+                                            android:includeFontPadding="false"
+                                            android:inputType="number"
+                                            android:maxLength="2"
+                                            android:textSize="15sp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/colon" />
+
+                                        <EditText
+                                            android:id="@+id/et_end_out_going_minute"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="@android:color/transparent"
+                                            android:gravity="center"
+                                            android:hint="@string/text_range_minutes"
+                                            android:importantForAutofill="no"
+                                            android:includeFontPadding="false"
+                                            android:inputType="number"
+                                            android:maxLength="2"
+                                            android:textSize="15sp" />
+
+                                    </LinearLayout>
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/out_layout"
+                        visibility="@{vm.isOutSleeping()}"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toTopOf="@id/btn_add_offbase"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                        app:layout_constraintStart_toStartOf="@+id/guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/et_reason"
+                        tools:visibility="gone">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/layout_out"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="20dp"
+                            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                            app:layout_constraintTop_toBottomOf="@+id/et_reason"
+                            tools:ignore="MissingConstraints">
+
+                            <LinearLayout
+                                android:id="@+id/layout_out_sleeping_start_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                tools:ignore="MissingConstraints">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:fontFamily="@font/nanum_square_regular"
+                                    android:includeFontPadding="false"
+                                    android:text="@string/text_out_sleeping_date"
+                                    android:textColor="@color/color_black"
+                                    android:textSize="@dimen/title4" />
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1" />
+
+                                <TextView
+                                    mutableDateText="@{vm.startOutSleepingDate}"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginEnd="20dp"
+                                    android:fontFamily="@font/nanum_square_regular"
+                                    android:includeFontPadding="false"
+                                    android:textColor="@color/color_black"
+                                    android:textSize="@dimen/title4"
+                                    tools:text="2021/07/17" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:onClick="@{() -> vm.onClickStartOutSleepingDate()}"
+                                    android:padding="5dp"
+                                    android:src="@drawable/ic_btn_calendar"
+                                    tools:ignore="ContentDescription" />
+
+                            </LinearLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/layout_out_sleeping_start_time"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/layout_out_sleeping_start_date">
+
+                                <TextView
+                                    android:id="@+id/tv_start_out_sleeping_time"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="15dp"
+                                    android:fontFamily="@font/nanum_square_regular"
+                                    android:includeFontPadding="false"
+                                    android:text="@string/text_out_sleeping_time"
+                                    android:textColor="@color/color_black"
+                                    android:textSize="@dimen/title4"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/layout_out_sleeping_start_time"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/cardView"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="5dp"
+                                    android:layout_weight="1"
+                                    app:cardCornerRadius="@dimen/card_small_corner"
+                                    app:cardElevation="@dimen/card_small_elevation"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <LinearLayout
+                                        android:layout_width="200dp"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        android:paddingVertical="10dp">
+
+                                        <EditText
+                                            android:id="@+id/et_start_out_sleeping_hour"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="@android:color/transparent"
+                                            android:fontFamily="@font/nanum_square_regular"
+                                            android:gravity="center"
+                                            android:hint="@string/text_range_hour"
+                                            android:importantForAutofill="no"
+                                            android:includeFontPadding="false"
+                                            android:inputType="number"
+                                            android:maxLength="2"
+                                            android:textSize="15sp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/colon" />
+
+                                        <EditText
+                                            android:id="@+id/et_start_out_sleeping_minute"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="@android:color/transparent"
+                                            android:fontFamily="@font/nanum_square_regular"
+                                            android:gravity="center"
+                                            android:hint="@string/text_range_minutes"
+                                            android:importantForAutofill="no"
+                                            android:includeFontPadding="false"
+                                            android:inputType="number"
+                                            android:maxLength="2"
+                                            android:textSize="15sp" />
+
+                                    </LinearLayout>
+                                </androidx.cardview.widget.CardView>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <LinearLayout
+                                android:id="@+id/layout_out_sleeping_end_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:orientation="horizontal"
+                                app:layout_constraintTop_toBottomOf="@+id/layout_out_sleeping_start_time"
+                                tools:ignore="MissingConstraints">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:fontFamily="@font/nanum_square_regular"
+                                    android:includeFontPadding="false"
+                                    android:text="@string/text_out_sleeping_date_end"
+                                    android:textColor="@color/color_black"
+                                    android:textSize="@dimen/title4" />
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1" />
+
+                                <TextView
+                                    mutableDateText="@{vm.endOutSleepingDate}"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginEnd="20dp"
+                                    android:fontFamily="@font/nanum_square_regular"
+                                    android:includeFontPadding="false"
+                                    android:textColor="@color/color_black"
+                                    android:textSize="@dimen/title4"
+                                    tools:text="2021/07/17" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:onClick="@{() -> vm.onClickEndOutSleepingDate()}"
+                                    android:padding="5dp"
+                                    android:src="@drawable/ic_btn_calendar"
+                                    tools:ignore="ContentDescription" />
+
+                            </LinearLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/layout_out_sleeping_end_time"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/layout_out_sleeping_end_date">
+
+                                <TextView
+                                    android:id="@+id/textView2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="15dp"
+                                    android:fontFamily="@font/nanum_square_regular"
+                                    android:includeFontPadding="false"
+                                    android:text="@string/text_out_time_end"
+                                    android:textColor="@color/color_black"
+                                    android:textSize="@dimen/title4"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="@+id/layout_out_sleeping_end_time"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/cv_out_sleeping_time_end"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="5dp"
+                                    android:layout_weight="1"
+                                    app:cardCornerRadius="@dimen/card_small_corner"
+                                    app:cardElevation="@dimen/card_small_elevation"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <LinearLayout
+                                        android:layout_width="200dp"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        android:paddingVertical="10dp">
+
+                                        <EditText
+                                            android:id="@+id/et_end_out_sleeping_hour"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="@android:color/transparent"
+                                            android:fontFamily="@font/nanum_square_regular"
+                                            android:gravity="center"
+                                            android:hint="@string/text_range_hour"
+                                            android:importantForAutofill="no"
+                                            android:includeFontPadding="false"
+                                            android:inputType="number"
+                                            android:maxLength="2"
+                                            android:textSize="15sp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/colon" />
+
+                                        <EditText
+                                            android:id="@+id/et_end_out_sleeping_minute"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            android:background="@android:color/transparent"
+                                            android:fontFamily="@font/nanum_square_regular"
+                                            android:gravity="center"
+                                            android:hint="@string/text_range_minutes"
+                                            android:importantForAutofill="no"
+                                            android:includeFontPadding="false"
+                                            android:inputType="number"
+                                            android:maxLength="2"
+                                            android:textSize="15sp" />
+
+                                    </LinearLayout>
+                                </androidx.cardview.widget.CardView>
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_add_offbase"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/background_checked"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:includeFontPadding="false"
+                        android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
+                        android:onClick="@{() -> vm.onClickApply()}"
+                        android:text="@string/text_ok"
+                        android:textColor="@color/color_white"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline2" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

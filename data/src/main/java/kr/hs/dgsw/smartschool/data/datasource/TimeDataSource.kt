@@ -13,7 +13,7 @@ import javax.inject.Inject
 class TimeDataSource @Inject constructor(
     override val remote: TimeRemote,
     override val cache: TimeCache
-) : BaseDataSource<TimeRemote, TimeCache>() {
+) : BaseDataSource<TimeRemote, TimeCache> {
 
     private val timeMapper = TimeMapper()
 
@@ -22,9 +22,9 @@ class TimeDataSource @Inject constructor(
 
     suspend fun getAllTime(): List<TimeEntity> =
         if (Utils.getWeekType() == WeekType.DAY)
-            cache.getAllWeekdayTime().also { if(it.isEmpty()) getTimeRemote() }
+            cache.getAllWeekdayTime().also { if (it.isEmpty()) getTimeRemote() }
         else
-            cache.getAllWeekendTime().also { if(it.isEmpty()) getTimeRemote() }
+            cache.getAllWeekendTime().also { if (it.isEmpty()) getTimeRemote() }
 
     suspend fun getAllTime(dayOfWeek: Int): List<TimeEntity> =
         if (Utils.getWeekType(dayOfWeek) == WeekType.DAY)

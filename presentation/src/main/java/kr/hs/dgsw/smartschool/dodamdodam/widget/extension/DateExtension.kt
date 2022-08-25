@@ -1,7 +1,8 @@
 package kr.hs.dgsw.smartschool.dodamdodam.widget.extension
 
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 fun Date.monthDateTimeWeekFormat(): String {
     val format = SimpleDateFormat("MM-dd HH:mm (E)", Locale.getDefault())

@@ -5,7 +5,6 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.widget.Event
 import kr.hs.dgsw.smartschool.domain.util.Resource
@@ -35,7 +34,7 @@ open class BaseViewModel : ViewModel() {
         successAction: (T?) -> Unit,
         errorAction: (String?) -> Unit
     ) = onEach { resource ->
-        when(resource) {
+        when (resource) {
             is Resource.Success -> {
                 isLoading.value = false
                 successAction.invoke(resource.data)

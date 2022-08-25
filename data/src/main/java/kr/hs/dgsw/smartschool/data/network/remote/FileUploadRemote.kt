@@ -7,9 +7,8 @@ import javax.inject.Inject
 
 class FileUploadRemote @Inject constructor(
     override val api: FileUploadApi
-): BaseRemote<FileUploadApi>() {
+) : BaseRemote<FileUploadApi>() {
 
     suspend fun uploadImg(image: MultipartBody.Part, name: MultipartBody.Part): String =
         api.uploadImg(image, name).message()
-
 }

@@ -113,7 +113,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfile
 
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == Activity.RESULT_OK) {
-            val uri = it.data?.data?.getRealPathFromURI(context!!)
+            val uri = it.data?.data?.getRealPathFromURI(requireContext())
             viewModel.file = File(uri?.path!!)
             setImage(url = null, uri = it.data!!.data)
             viewModel.uploadImg()

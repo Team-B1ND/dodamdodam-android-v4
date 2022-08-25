@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.data.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import kotlinx.coroutines.flow.Flow
 import kr.hs.dgsw.smartschool.data.base.BaseDao
 import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
 

@@ -2,9 +2,10 @@ plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinKapt)
+    id(Plugins.kotlinParcelize)
     id(Plugins.daggerPlugin)
+    id(Plugins.kt_lint) version Versions.KT_LINT
 }
-
 
 android {
     compileSdk = Versions.COMPILE_SDK_VERSION
@@ -50,6 +51,8 @@ dependencies {
     implementation(AndroidX.ROOM_RUNTIME)
     kapt(AndroidX.ROOM_COMPILER)
     implementation(AndroidX.ROOM_KTX)
+
+    implementation(Libraries.JSOUP)
 
     implementation(project(":domain"))
 }

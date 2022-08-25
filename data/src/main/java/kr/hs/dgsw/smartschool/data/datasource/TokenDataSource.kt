@@ -15,7 +15,7 @@ import javax.inject.Inject
 class TokenDataSource @Inject constructor(
     override val remote: TokenRemote,
     override val cache: TokenCache
-) : BaseDataSource<TokenRemote, TokenCache>() {
+) : BaseDataSource<TokenRemote, TokenCache> {
 
     private val tokenMapper = TokenMapper()
 
@@ -43,7 +43,7 @@ class TokenDataSource @Inject constructor(
         return try {
             val payload = decodedPayloadObject(token.token)
             payload!!.getString(PAYLOAD_MEMBER_ID)
-        } catch(ignore: JSONException) {
+        } catch (ignore: JSONException) {
             throw Throwable("아이디 오류")
         }
     }

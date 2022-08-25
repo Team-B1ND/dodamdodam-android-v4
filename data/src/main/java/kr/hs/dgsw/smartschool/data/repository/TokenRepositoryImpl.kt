@@ -15,12 +15,9 @@ class TokenRepositoryImpl @Inject constructor(
     override suspend fun getToken(): Token =
         tokenDataSource.getToken().let { tokenMapper.mapToModel(it) }
 
-
     override suspend fun updateNewToken(): Token =
         tokenDataSource.updateNewToken().let { tokenMapper.mapToModel(it) }
 
     override suspend fun deleteToken() =
         tokenDataSource.deleteToken()
-
-
 }

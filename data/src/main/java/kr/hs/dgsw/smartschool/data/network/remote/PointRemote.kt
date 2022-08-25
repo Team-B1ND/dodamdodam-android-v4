@@ -8,11 +8,11 @@ import javax.inject.Inject
 
 class PointRemote @Inject constructor(
     override val api: PointApi
-): BaseRemote<PointApi>() {
+) : BaseRemote<PointApi>() {
 
-    suspend fun getMyPoint(year: String, type: Int) : MyYearPoint =
+    suspend fun getMyPoint(year: String, type: Int): MyYearPoint =
         api.getMyPoint(year, type).data.point
 
-    suspend fun getMyPointTarget(target: Int) : MyTargetPoint =
+    suspend fun getMyPointTarget(target: Int): MyTargetPoint =
         api.getMyPointTarget(target).data.point
 }

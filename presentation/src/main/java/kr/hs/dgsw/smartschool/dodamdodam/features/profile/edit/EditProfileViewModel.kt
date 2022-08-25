@@ -63,8 +63,8 @@ class EditProfileViewModel @Inject constructor(
     fun uploadImg() {
         uploadImgUseCase(file!!).divideResult(
             isUploadImgLoading,
-            {_uploadImageState.value = UploadImageState(picture = it)},
-            {_uploadImageState.value = UploadImageState(error = it ?: "이미지 업로드에 실패했습니다.")}
+            { _uploadImageState.value = UploadImageState(picture = it) },
+            { _uploadImageState.value = UploadImageState(error = it ?: "이미지 업로드에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 

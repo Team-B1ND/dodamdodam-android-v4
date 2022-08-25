@@ -11,10 +11,10 @@ import java.time.Month
 
 interface BusApi {
     @GET("bus")
-    suspend fun getBusList() : Response<BusData<BusByDate>>
+    suspend fun getBusList(): Response<BusData<BusByDate>>
 
     @GET("bus/self")
-    suspend fun getMyBus() : Response<BusData<Bus>>
+    suspend fun getMyBus(): Response<BusData<Bus>>
 
     @GET("bus/self/apply")
     suspend fun getMyBusByMonth(
@@ -36,7 +36,6 @@ interface BusApi {
         @Body addBusApplyRequest: AddBusApplyRequest
     ):Response<Any>
 
-
     @PUT("bus")
     suspend fun updateBus(
         @Body busIdx : Int,
@@ -52,11 +51,10 @@ interface BusApi {
         @Body request : UpdateBusApplyRequest
     ):Response<Any>
 
-
     @DELETE("bus")
     suspend fun deleteBus(
-        @Body idx : Int
-    ):Response<Any>
+        @Body idx: Int
+    ): Response<Any>
 
     @DELETE("bus/self")
     suspend fun deleteBusApply(

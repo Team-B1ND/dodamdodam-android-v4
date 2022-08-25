@@ -13,12 +13,12 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_image_container"
-            android:layout_width="100dp"
+            android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginVertical="15dp"
+            android:layout_marginVertical="10dp"
             android:layout_marginStart="15dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp"
+            app:cardCornerRadius="@dimen/card_small_corner"
+            app:cardElevation="@dimen/card_elevation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -41,27 +41,43 @@
             android:maxLines="3"
             android:fontFamily="@font/nanum_square_regular"
             android:includeFontPadding="false"
-            android:textColor="@color/black"
+            android:textColor="@color/color_black"
             android:textSize="@dimen/title5"
-            app:layout_constraintEnd_toStartOf="@id/tv_apply_recommend_song"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_rank"
+            app:layout_constraintBottom_toTopOf="@id/tv_recommend_song_artist"
             app:layout_constraintStart_toEndOf="@id/card_image_container"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:text="(G)I-DLE 'TOMBOY' Lyrics ((여자)아이들 TOMBOY 가사) (Color Coded Lyrics)" />
+            app:layout_constraintTop_toTopOf="@id/card_image_container"
+            app:layout_constraintVertical_chainStyle="spread"
+            tools:text="My Back" />
 
         <TextView
-            android:id="@+id/tv_apply_recommend_song"
-            android:layout_width="wrap_content"
-            android:layout_marginEnd="15dp"
+            android:id="@+id/tv_recommend_song_artist"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/text_simple_apply"
-            android:textColor="@color/main"
+            android:ellipsize="end"
+            android:maxLines="3"
             android:fontFamily="@font/nanum_square_regular"
             android:includeFontPadding="false"
-            android:textSize="@dimen/title5"
-            app:layout_constraintTop_toTopOf="@id/tv_recommend_song_title"
-            app:layout_constraintBottom_toBottomOf="@id/tv_recommend_song_title"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:textColor="@color/gray500"
+            android:textSize="@dimen/title6"
+            app:layout_constraintEnd_toEndOf="@id/tv_recommend_song_title"
+            app:layout_constraintStart_toStartOf="@id/tv_recommend_song_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_recommend_song_title"
+            app:layout_constraintBottom_toBottomOf="@id/card_image_container"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="여자 아이들(idle)" />
+
+        <TextView
+            android:id="@+id/tv_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="1위"
+            android:textColor="@color/main"
+            android:textSize="@dimen/title4"
+            app:layout_constraintTop_toTopOf="@id/card_image_container"
+            app:layout_constraintBottom_toBottomOf="@id/card_image_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

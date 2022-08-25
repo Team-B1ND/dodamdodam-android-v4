@@ -14,7 +14,8 @@ class ChangeMemberInfo @Inject constructor(
 
     override operator fun invoke(params: Params): Flow<Resource<String>> = execute {
         repository.changeMemberInfo(
-            params.memberId, MyInfoChangeRequest(
+            params.memberId,
+            MyInfoChangeRequest(
                 params.phone,
                 params.email,
                 params.profileImage

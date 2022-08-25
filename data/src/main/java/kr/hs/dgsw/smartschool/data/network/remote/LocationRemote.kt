@@ -10,7 +10,8 @@ import kr.hs.dgsw.smartschool.domain.request.DefaultLocationRequest
 import kr.hs.dgsw.smartschool.domain.request.LocationControlRequest
 import kr.hs.dgsw.smartschool.domain.request.LocationRequest
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 class LocationRemote(override val api: LocationApi) : BaseRemote<LocationApi>() {
 
@@ -34,7 +35,7 @@ class LocationRemote(override val api: LocationApi) : BaseRemote<LocationApi>() 
     suspend fun putAllLocation(request: LocationRequest): String =
         api.putAllLocation(request).message
 
-    suspend fun putLocation(idx: Int, placeIdx: Location): String  =
+    suspend fun putLocation(idx: Int, placeIdx: Location): String =
         api.putLocation(idx, placeIdx).message
 
     suspend fun deleteLocation(idx: Int): String =

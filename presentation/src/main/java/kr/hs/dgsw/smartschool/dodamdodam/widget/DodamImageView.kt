@@ -7,7 +7,6 @@ import android.util.AttributeSet
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
 
-
 class DodamImageView : androidx.appcompat.widget.AppCompatImageView {
 
     private var mContext: Context? = null

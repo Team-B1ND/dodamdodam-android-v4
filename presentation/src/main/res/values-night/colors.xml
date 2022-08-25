@@ -5,4 +5,7 @@
 
     <color name="color_card_background">#202020</color>
     <color name="color_background">#171717</color>
+
+    <color name="color_background_toggle">#434343</color>
+
 </resources>

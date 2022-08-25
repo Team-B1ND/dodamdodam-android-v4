@@ -7,7 +7,6 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_sign_up_detail.*
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivitySignUpDetailBinding
@@ -62,13 +61,13 @@ class SignUpDetailActivity : BaseActivity<ActivitySignUpDetailBinding, SignUpDet
         mBinding.tvServicePolicy.paintFlags = Paint.UNDERLINE_TEXT_FLAG
         mBinding.tvPersonalInfo.paintFlags = Paint.UNDERLINE_TEXT_FLAG
 
-        tv_service_policy.setOnClickListener {
+        mBinding.tvServicePolicy.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(resources.getString(R.string.link_service_policy))
             startActivity(intent)
         }
 
-        tv_personal_info.setOnClickListener {
+        mBinding.tvPersonalInfo.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(resources.getString(R.string.link_personal_info))
             startActivity(intent)
@@ -83,7 +82,7 @@ class SignUpDetailActivity : BaseActivity<ActivitySignUpDetailBinding, SignUpDet
 
     private fun initViewEvent() {
         bindingViewEvent { event ->
-            when(event) {
+            when (event) {
                 SignUpDetailViewModel.EVENT_EMPTY -> shortToast("입력란을 모두 채워 주세요.")
                 SignUpDetailViewModel.EVENT_NOT_PHONE_NUMBER -> shortToast("전화번호 형식이 일치하지 않습니다.")
                 SignUpDetailViewModel.EVENT_NOT_AGREE -> shortToast("방침에 동의해 주세요.")

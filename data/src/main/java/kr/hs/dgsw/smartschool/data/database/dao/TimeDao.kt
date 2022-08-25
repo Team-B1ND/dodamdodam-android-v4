@@ -22,5 +22,4 @@ interface TimeDao : BaseDao<TimeEntity> {
 
     @Query("DELETE FROM time_table")
     suspend fun deleteAll()
-
 }

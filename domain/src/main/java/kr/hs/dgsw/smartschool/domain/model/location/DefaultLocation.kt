@@ -16,9 +16,9 @@ data class DefaultLocation(
     var time: Time?,
     var place: Place?
 ) {
-    constructor(time: Time): this(0, 0, time.idx, 0, time, null)
+    constructor(time: Time) : this(0, 0, time.idx, 0, time, null)
 
-    constructor(time: Time, defaultLocation: DefaultLocation): this(
+    constructor(time: Time, defaultLocation: DefaultLocation) : this(
         defaultLocation.day,
         defaultLocation.studentIdx,
         defaultLocation.timeTableIdx,

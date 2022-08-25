@@ -4,11 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="bus"
             type="kr.hs.dgsw.smartschool.domain.model.bus.BusInfo" />
-
     </data>
 
     <androidx.cardview.widget.CardView

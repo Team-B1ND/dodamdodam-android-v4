@@ -34,5 +34,4 @@ class TeacherMapper : BaseEntityMapper<Teacher, TeacherEntity> {
             model.role
         )
     }
-
 }

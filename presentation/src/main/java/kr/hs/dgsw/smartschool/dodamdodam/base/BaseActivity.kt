@@ -13,9 +13,10 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`.SignInActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
 import java.lang.reflect.ParameterizedType
-import java.util.*
+import java.util.Locale
+import java.util.Objects
 
-abstract class BaseActivity<VB : ViewDataBinding, VM: BaseViewModel> : AppCompatActivity() {
+abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity() {
     protected lateinit var mBinding: VB
     protected lateinit var mViewModel: VM
 
@@ -57,7 +58,7 @@ abstract class BaseActivity<VB : ViewDataBinding, VM: BaseViewModel> : AppCompat
 
     override fun onDestroy() {
         super.onDestroy()
-        if(::mBinding.isInitialized) mBinding.unbind()
+        if (::mBinding.isInitialized) mBinding.unbind()
     }
 
     /**
@@ -67,8 +68,12 @@ abstract class BaseActivity<VB : ViewDataBinding, VM: BaseViewModel> : AppCompat
      */
     @LayoutRes
     private fun layoutRes(): Int {
-        val split = ((Objects.requireNonNull(javaClass.genericSuperclass) as ParameterizedType).actualTypeArguments[0] as Class<*>)
-            .simpleName.replace("Binding$".toRegex(), "").split("(?<=.)(?=\\p{Upper})".toRegex())
+        val split = (
+            (Objects.requireNonNull(javaClass.genericSuperclass) as ParameterizedType)
+                .actualTypeArguments[0] as Class<*>
+            )
+            .simpleName.replace("Binding$".toRegex(), "")
+            .split("(?<=.)(?=\\p{Upper})".toRegex())
             .dropLastWhile { it.isEmpty() }.toTypedArray()
 
         val name = StringBuilder()

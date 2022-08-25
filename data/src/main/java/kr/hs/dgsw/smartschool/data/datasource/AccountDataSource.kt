@@ -8,7 +8,7 @@ import javax.inject.Inject
 class AccountDataSource @Inject constructor(
     override val remote: Any,
     override val cache: AccountCache
-) : BaseDataSource<Any, AccountCache>() {
+) : BaseDataSource<Any, AccountCache> {
 
     suspend fun getAccount(): AccountEntity = cache.getAccount()
 

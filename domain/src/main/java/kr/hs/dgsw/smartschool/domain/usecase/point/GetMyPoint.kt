@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class GetMyPoint @Inject constructor(
     val repository: PointRepository
-): BaseUseCase<GetMyPoint.Params, MyYearPoint>() {
+) : BaseUseCase<GetMyPoint.Params, MyYearPoint>() {
     override operator fun invoke(params: Params): Flow<Resource<MyYearPoint>> = execute {
         repository.getMyPoint(params.year, params.type)
     }

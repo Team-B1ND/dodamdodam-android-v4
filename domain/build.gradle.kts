@@ -3,8 +3,9 @@ plugins {
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinKapt)
     id(Plugins.daggerPlugin)
+    id(Plugins.kotlinParcelize)
+    id(Plugins.kt_lint) version Versions.KT_LINT
 }
-
 
 android {
 
@@ -46,6 +47,8 @@ dependencies {
     // hilt
     implementation(Google.HILT_ANDROID)
     kapt(Google.HILT_ANDROID_COMPILER)
+
+    implementation(Libraries.JSOUP)
 
     // room
     implementation(AndroidX.ROOM_RUNTIME)

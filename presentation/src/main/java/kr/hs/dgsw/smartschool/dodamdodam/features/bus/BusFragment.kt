@@ -37,7 +37,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
                         setBusRecyclerView(busList)
                     }
 
-                    if(state.error.isNotBlank()) {
+                    if (state.error.isNotBlank()) {
                         shortToast(state.error)
                     }
                 }
@@ -60,9 +60,9 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
         var rideAble = ""
         var isSelected : Boolean = false
         todayBus.bustList.forEach {
-            if(it.busMemberlength < (it.peopleLimit)){
+            if (it.busMemberlength < (it.peopleLimit)) {
                 rideAble = "탑승가능"
-            } else if(it.busMemberlength >= it.peopleLimit){
+            } else if (it.busMemberlength >= it.peopleLimit) {
                 rideAble = "탑승불가"
             }
             isSelected = it.idx == busId//viewModel.busApplyState.value.busId
