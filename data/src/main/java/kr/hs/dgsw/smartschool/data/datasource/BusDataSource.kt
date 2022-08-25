@@ -22,7 +22,7 @@ class BusDataSource @Inject constructor(
     ): BusData<Bus> = remote.getMyBusByMonth(request).data
 
     suspend fun getMyBusList(): BusData<Bus> {
-        Log.e("BusDataSource","getMyBus")
+        Log.e("BusDataSource", "getMyBus")
         return remote.getMyBusList().data
     }
 
@@ -33,31 +33,31 @@ class BusDataSource @Inject constructor(
     suspend fun updateBus(
         request: UpdateBusRequest
     ): String {
-        Log.e("BusDataSource",return remote.updateBus(request).message)
+        Log.e("BusDataSource", return remote.updateBus(request).message)
     }
 
     suspend fun updateBusApply(
         request: UpdateBusApplyRequest
     ): String {
-        Log.e("BusDataSource",return remote.updateBusApply(request).message)
+        Log.e("BusDataSource", return remote.updateBusApply(request).message)
     }
 
     suspend fun addBus(
         request: AddBusRequest
     ): String {
-        Log.e("BusDataSource",return remote.addBus(request).message)
+        Log.e("BusDataSource", return remote.addBus(request).message)
     }
 
     suspend fun addBusApply(
         idx: Int
     ): String {
-        Log.e("BusDataSource",return remote.addBusApply(idx).message)
+        Log.e("BusDataSource", return remote.addBusApply(idx).message)
     }
 
     suspend fun deleteBus(
         idx: Int
     ): String {
-        Log.e("BusDataSource",return remote.deleteBus(idx).message)
+        Log.e("BusDataSource", return remote.deleteBus(idx).message)
     }
 
     suspend fun deleteBusApply(

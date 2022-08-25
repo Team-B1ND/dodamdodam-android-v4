@@ -11,36 +11,33 @@ interface BusRepository {
 
     // GET
     suspend fun getBusList(): List<BusByDate>
-    suspend fun getMyBus() : List<Bus>
+    suspend fun getMyBus(): List<Bus>
     suspend fun getMyBusByMonth(
-        request : MyBusByMonthRequest
-    ) : List<Bus>
+        request: MyBusByMonthRequest
+    ): List<Bus>
 
-    //POST
+    // POST
     suspend fun addBus(
         request: AddBusRequest
-    ):String
+    ): String
 
     suspend fun addBusApply(
         idx: Int
-    ):String
+    ): String
 
-
-    //PUT
+    // PUT
     suspend fun updateBusInfo(
-        request : UpdateBusRequest
-    ):String
+        request: UpdateBusRequest
+    ): String
     suspend fun updateBusApply(
         request: UpdateBusApplyRequest
-    ):String
+    ): String
 
-
-
-    //DELETE
+    // DELETE
     suspend fun deleteBus(
-        idx : Int
-    ):String
+        idx: Int
+    ): String
     suspend fun deleteBusApply(
-        idx : Int
-    ):String
+        idx: Int
+    ): String
 }

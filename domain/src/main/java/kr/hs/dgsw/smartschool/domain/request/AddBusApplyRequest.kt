@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class AddBusApplyRequest(
     @SerializedName("busIdx")
-    val busIdx : String
+    val busIdx: String
 )

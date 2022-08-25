@@ -8,7 +8,7 @@ data class BusUseCases(
     val updateBusApply: UpdateBusApply,
     val deleteBusApply: DeleteBusApply,
 
-    //도담 티쳐
+    // 도담 티쳐
     val addBus: AddBus,
     val updateBusInfo: UpdateBusInfo,
     val deleteBus: DeleteBus

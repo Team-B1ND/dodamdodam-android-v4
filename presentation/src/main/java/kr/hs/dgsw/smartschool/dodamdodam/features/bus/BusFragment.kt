@@ -1,18 +1,14 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.bus
 
-import android.bluetooth.BluetoothAdapter.ERROR
 import android.util.Log
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.BusAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentBusBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
-import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
 import java.time.LocalDate
@@ -20,7 +16,7 @@ import java.time.LocalDate
 @AndroidEntryPoint
 class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter.BusApplyCallBack {
     override val viewModel: BusViewModel by viewModels()
-    var busId :  Int = 0
+    var busId: Int = 0
     override fun observerViewModel() {
         mBinding.btnBack.setOnClickListener {
             findNavController().popBackStack()
@@ -45,9 +41,9 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
         }
     }
 
-    private fun setBusInfo(busList: List<BusByDate>) : List<BusInfo>{
-        val list : MutableList<BusInfo> = mutableListOf()
-        //val today = LocalDate.now()
+    private fun setBusInfo(busList: List<BusByDate>): List<BusInfo> {
+        val list: MutableList<BusInfo> = mutableListOf()
+        // val today = LocalDate.now()
         val today = LocalDate.of(2022, 9, 2)
         val todayBus = busList.find {
             val busDateString = it.date.split("-")
@@ -59,7 +55,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
         busId = viewModel.busApplyState.value.busId
 
         var rideAble = ""
-        var isSelected : Boolean = false
+        var isSelected: Boolean = false
         todayBus.bustList.forEach {
             if (it.busMemberlength < (it.peopleLimit)) {
                 rideAble = "탑승가능"
@@ -72,31 +68,30 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
                     it.idx,
                     it.busName,
                     rideAble,
-                    it.busMemberlength.toString()+" / "+it.peopleLimit.toString(),
+                    it.busMemberlength.toString() + " / " + it.peopleLimit.toString(),
                     it.leaveTime,
                     isSelected
                 )
             )
-
         }
         return list
     }
 
     private fun setBusRecyclerView(list: List<BusInfo>) {
-        val busAdapter = BusAdapter(requireContext(),this)
+        val busAdapter = BusAdapter(requireContext(), this)
         mBinding.recyclerBus.adapter = busAdapter
         busAdapter.submitList(list)
     }
 
-    override fun applyBus(idx:Int) {
+    override fun applyBus(idx: Int) {
         viewModel.applyBus(idx)
-        busId=idx
-        Log.e("cancelBus override","정상적 실행 : "+ (viewModel.busApplyState.value.busId-261))
+        busId = idx
+        Log.e("cancelBus override", "정상적 실행 : " + (viewModel.busApplyState.value.busId - 261))
     }
 
     override fun cancelBus(idx: Int) {
         viewModel.cancelBus(idx)
-        busId=idx
-        Log.e("cancelBus override","정상적 실행 : "+ (viewModel.busApplyState.value.busId-261))
+        busId = idx
+        Log.e("cancelBus override", "정상적 실행 : " + (viewModel.busApplyState.value.busId - 261))
     }
 }

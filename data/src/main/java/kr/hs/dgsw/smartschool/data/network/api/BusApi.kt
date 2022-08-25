@@ -6,8 +6,12 @@ import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.request.AddBusApplyRequest
 import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
-import retrofit2.http.*
-import java.time.Month
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.PUT
+import retrofit2.http.Query
 
 interface BusApi {
     @GET("bus")
@@ -18,38 +22,38 @@ interface BusApi {
 
     @GET("bus/self/apply")
     suspend fun getMyBusByMonth(
-        @Body month : Int,
-        @Body year : Int
-    ) : Response<BusData<Bus>>
+        @Body month: Int,
+        @Body year: Int
+    ): Response<BusData<Bus>>
 
     @POST("bus")
     suspend fun addBus(
-       @Body busName: String,
-       @Body description : String,
-       @Body leaveTime : String,
-       @Body timeRequired : String,
-       @Body peopleLimit : Int
-    ):Response<Any>
+        @Body busName: String,
+        @Body description: String,
+        @Body leaveTime: String,
+        @Body timeRequired: String,
+        @Body peopleLimit: Int
+    ): Response<Any>
 
     @POST("bus/self")
     suspend fun addBusApply(
         @Body addBusApplyRequest: AddBusApplyRequest
-    ):Response<Any>
+    ): Response<Any>
 
     @PUT("bus")
     suspend fun updateBus(
-        @Body busIdx : Int,
+        @Body busIdx: Int,
         @Body busName: String,
-        @Body description : String,
-        @Body leaveTime : String,
-        @Body timeRequired : String,
-        @Body peopleLimit : Int
-    ):Response<Any>
+        @Body description: String,
+        @Body leaveTime: String,
+        @Body timeRequired: String,
+        @Body peopleLimit: Int
+    ): Response<Any>
 
     @PUT("bus/self")
     suspend fun updateBusApply(
-        @Body request : UpdateBusApplyRequest
-    ):Response<Any>
+        @Body request: UpdateBusApplyRequest
+    ): Response<Any>
 
     @DELETE("bus")
     suspend fun deleteBus(
@@ -59,5 +63,5 @@ interface BusApi {
     @DELETE("bus/self")
     suspend fun deleteBusApply(
         @Query("idx") busIdx: Int
-    ):Response<Any>
+    ): Response<Any>
 }

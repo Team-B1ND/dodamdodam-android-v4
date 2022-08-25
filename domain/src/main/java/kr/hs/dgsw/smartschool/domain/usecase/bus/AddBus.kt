@@ -9,8 +9,8 @@ import javax.inject.Inject
 
 class AddBus @Inject constructor(
     private val busRepository: BusRepository
-): BaseUseCase<AddBusRequest, String>() {
-    override operator fun invoke(params:AddBusRequest): Flow<Resource<String>> = execute {
+) : BaseUseCase<AddBusRequest, String>() {
+    override operator fun invoke(params: AddBusRequest): Flow<Resource<String>> = execute {
         busRepository.addBus(params)
         "버스를 추가하였습니다"
     }

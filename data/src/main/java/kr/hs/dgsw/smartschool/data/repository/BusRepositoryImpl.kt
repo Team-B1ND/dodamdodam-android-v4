@@ -20,7 +20,7 @@ class BusRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMyBus(): List<Bus> {
-        Log.e("BusRepository","getMyBus")
+        Log.e("BusRepository", "getMyBus")
         return dataSource.getMyBusList().busList
     }
 
@@ -30,38 +30,35 @@ class BusRepositoryImpl @Inject constructor(
         return dataSource.getMyBusByMonth(request).busList
     }
 
-
     override suspend fun addBus(
-        request:AddBusRequest
-    ):String
-    = dataSource.addBus(request)
-
+        request: AddBusRequest
+    ): String =
+        dataSource.addBus(request)
 
     override suspend fun addBusApply(
-        idx:Int
-    ) : String
-    = dataSource.addBusApply(idx)
+        idx: Int
+    ): String =
+        dataSource.addBusApply(idx)
 
     override suspend fun updateBusInfo(
         request: UpdateBusRequest
-    ) : String
-    = dataSource.updateBus(request)
+    ): String =
+        dataSource.updateBus(request)
 
     override suspend fun updateBusApply(
         request: UpdateBusApplyRequest
-    ) : String
-    =dataSource.updateBusApply(request)
+    ): String =
+        dataSource.updateBusApply(request)
 
     override suspend fun deleteBus(
-        idx : Int
-    ) : String
-    = dataSource.deleteBus(idx)
+        idx: Int
+    ): String =
+        dataSource.deleteBus(idx)
 
     override suspend fun deleteBusApply(
-        idx : Int
-    ) : String
-    {
-        Log.e("deleteBusApply","정상적 실행")
+        idx: Int
+    ): String {
+        Log.e("deleteBusApply", "정상적 실행")
         return dataSource.deleteBusApply(idx)
     }
 }
