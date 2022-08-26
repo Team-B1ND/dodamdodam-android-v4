@@ -1,7 +1,5 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
-import kr.hs.dgsw.b1nd.dodamdodam.domain.request.LostFoundCommentPostRequest
-import kr.hs.dgsw.b1nd.dodamdodam.domain.request.LostFoundCommentPutRequest
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.POST
@@ -10,6 +8,10 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFoundData
+import kr.hs.dgsw.smartschool.domain.request.LostFoundRequest
+import kr.hs.dgsw.smartschool.domain.request.LostFoundCommentPostRequest
+import kr.hs.dgsw.smartschool.domain.request.LostFoundCommentPutRequest
+
 
 interface LostFoundApi {
     @GET("lost")

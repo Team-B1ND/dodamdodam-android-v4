@@ -1,4 +1,4 @@
-package kr.hs.dgsw.b1nd.dodamdodam.domain.request
+package kr.hs.dgsw.smartschool.domain.request
 
 data class LostFoundCommentPutRequest(
     val comment: String,

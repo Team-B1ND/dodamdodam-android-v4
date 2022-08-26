@@ -10,8 +10,7 @@ data class LostFoundRequest(
     val place: String?,
     val picture: List<Picture>?,
     val content: String
-) {
-
+){
     constructor(type: Int, title: String, place: String?, picture: List<Picture>?, content: String) :
             this(null, type, title, place, picture, content)
 }

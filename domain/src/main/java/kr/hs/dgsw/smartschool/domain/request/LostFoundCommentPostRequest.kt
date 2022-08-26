@@ -1,6 +1,6 @@
-package kr.hs.dgsw.b1nd.dodamdodam.domain.request
+package kr.hs.dgsw.smartschool.domain.request
 
 data class LostFoundCommentPostRequest(
     val comment: String,
-    val lostfoundIdx: Int
+    val lostFoundIdx: Int
 )
