@@ -4,7 +4,7 @@ import android.net.Uri
 import java.io.Serializable
 import java.util.*
 
-data class LostFoundComments(
+data class LostFoundComment(
     val idx: Int,
     val memberId: String,
     val type: LostFoundType,

@@ -1,4 +1,4 @@
-package kr.hs.dgsw.b1nd.dodamdodam.domain.model.lostfound
+package kr.hs.dgsw.smartschool.domain.model.lostfound
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

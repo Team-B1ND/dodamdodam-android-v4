@@ -1,6 +1,7 @@
-package kr.hs.dgsw.b1nd.dodamdodam.domain.request
+package kr.hs.dgsw.smartschool.domain.request
 
-import kr.hs.dgsw.b1nd.dodamdodam.domain.model.lostfound.Picture
+import kr.hs.dgsw.smartschool.domain.model.lostfound.Picture
+
 
 data class LostFoundRequest(
     val idx: Int?,
