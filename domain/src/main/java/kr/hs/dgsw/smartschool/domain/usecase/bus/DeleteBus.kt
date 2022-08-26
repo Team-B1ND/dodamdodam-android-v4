@@ -8,8 +8,10 @@ import javax.inject.Inject
 
 class DeleteBus @Inject constructor(
     private val busRepository: BusRepository
-) : BaseUseCase<Unit, String>() {
-    override operator fun invoke(params: Unit): Flow<Resource<String>> = execute {
-        busRepository.deleteBus()
+
+) : BaseUseCase<Int, String>() {
+    override operator fun invoke(params: Int): Flow<Resource<String>> = execute {
+        busRepository.deleteBus(params)
+        "버스를 삭제하였습니다"
     }
 }

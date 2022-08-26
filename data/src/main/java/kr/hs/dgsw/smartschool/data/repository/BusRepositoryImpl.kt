@@ -1,9 +1,14 @@
 package kr.hs.dgsw.smartschool.data.repository
 
+import android.util.Log
 import kr.hs.dgsw.smartschool.data.datasource.BusDataSource
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
+import kr.hs.dgsw.smartschool.domain.request.AddBusRequest
+import kr.hs.dgsw.smartschool.domain.request.MyBusByMonthRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusRequest
 import javax.inject.Inject
 
 class BusRepositoryImpl @Inject constructor(
@@ -15,34 +20,45 @@ class BusRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMyBus(): List<Bus> {
-        TODO("Not yet implemented")
+        Log.e("BusRepository", "getMyBus")
+        return dataSource.getMyBusList().busList
     }
 
-    override suspend fun getMyBusByMonth(): List<Bus> {
-        TODO("Not yet implemented")
+    override suspend fun getMyBusByMonth(
+        request: MyBusByMonthRequest
+    ): List<Bus> {
+        return dataSource.getMyBusByMonth(request).busList
     }
 
-    override suspend fun addBus(): String {
-        TODO("Not yet implemented")
-    }
+    override suspend fun addBus(
+        request: AddBusRequest
+    ): String =
+        dataSource.addBus(request)
 
-    override suspend fun addBusApply(): String {
-        TODO("Not yet implemented")
-    }
+    override suspend fun addBusApply(
+        idx: Int
+    ): String =
+        dataSource.addBusApply(idx)
 
-    override suspend fun updateBusInfo(): String {
-        TODO("Not yet implemented")
-    }
+    override suspend fun updateBusInfo(
+        request: UpdateBusRequest
+    ): String =
+        dataSource.updateBus(request)
 
-    override suspend fun updateBusApply(): String {
-        TODO("Not yet implemented")
-    }
+    override suspend fun updateBusApply(
+        request: UpdateBusApplyRequest
+    ): String =
+        dataSource.updateBusApply(request)
 
-    override suspend fun deleteBus(): String {
-        TODO("Not yet implemented")
-    }
+    override suspend fun deleteBus(
+        idx: Int
+    ): String =
+        dataSource.deleteBus(idx)
 
-    override suspend fun deleteBusApply(): String {
-        TODO("Not yet implemented")
+    override suspend fun deleteBusApply(
+        idx: Int
+    ): String {
+        Log.e("deleteBusApply", "정상적 실행")
+        return dataSource.deleteBusApply(idx)
     }
 }

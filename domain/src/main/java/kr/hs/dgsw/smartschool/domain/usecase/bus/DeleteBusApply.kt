@@ -8,8 +8,9 @@ import javax.inject.Inject
 
 class DeleteBusApply @Inject constructor(
     private val busRepository: BusRepository
-) : BaseUseCase<Unit, String>() {
-    override fun invoke(params: Unit): Flow<Resource<String>> = execute {
-        busRepository.deleteBusApply()
+) : BaseUseCase<Int, String>() {
+    override fun invoke(params: Int): Flow<Resource<String>> = execute {
+        busRepository.deleteBusApply(params)
+        "버스 신청을 취소하였습니다."
     }
 }
