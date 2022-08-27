@@ -1,12 +1,10 @@
 package kr.hs.dgsw.smartschool.data.network.remote
 
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
-import kr.hs.dgsw.smartschool.data.network.api.BusApi
 import kr.hs.dgsw.smartschool.data.network.api.LostFoundApi
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.util.Constants
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
-import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFoundComment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFoundData
 import kr.hs.dgsw.smartschool.domain.request.LostFoundCommentPostRequest
 import kr.hs.dgsw.smartschool.domain.request.LostFoundCommentPutRequest
@@ -20,8 +18,8 @@ class LostFoundRemote @Inject constructor(
     fun getLostFound(page: Int, type: Int): Response<LostFoundData> =
         api.getLostFound(Constants.INFINITE_SCROLL_LIMIT, page, type)
 
-    fun getLostFoundComment(lostfoundIdx: Int): Response<LostFoundData>  =
-        api.getLostFoundComment(lostfoundIdx)
+    fun getLostFoundComment(lostFoundIdx: Int): Response<LostFoundData>  =
+        api.getLostFoundComment(lostFoundIdx)
 
     fun postCreateLostFound(request: LostFoundRequest):Response<Any> =
         api.postCreateLostFound(request)
@@ -41,6 +39,6 @@ class LostFoundRemote @Inject constructor(
     fun deleteLostFoundComment(commentIdx: Int):Response<Any> =
         api.deleteLostFoundComment(commentIdx)
 
-    fun getLostFoundSearch(search: String): Response<Any> =
+    fun getLostFoundSearch(search: String): Response<LostFoundData> =
         api.getLostFoundSearch(search)
 }

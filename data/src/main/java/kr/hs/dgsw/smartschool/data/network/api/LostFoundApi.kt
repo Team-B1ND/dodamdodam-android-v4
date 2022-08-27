@@ -59,5 +59,5 @@ interface LostFoundApi {
     @GET("lost/find")
     fun getLostFoundSearch(
         @Query("title") title: String
-    ): Response<Any>
+    ): Response<LostFoundData>
 }
