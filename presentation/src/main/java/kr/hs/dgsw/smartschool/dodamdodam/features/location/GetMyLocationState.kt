@@ -1,8 +1,8 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.location
 
-import kr.hs.dgsw.smartschool.domain.model.location.LocationInfo
+import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 
 data class GetMyLocationState(
-    val myLocations: List<LocationInfo> = emptyList(),
+    val myLocations: List<StudyRoom> = emptyList(),
     val error: String = ""
 )

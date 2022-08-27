@@ -2,7 +2,7 @@ package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.TimeDataSource
 import kr.hs.dgsw.smartschool.data.mapper.TimeMapper
-import kr.hs.dgsw.smartschool.domain.model.time.Time
+import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
 import kr.hs.dgsw.smartschool.domain.repository.TimeRepository
 import javax.inject.Inject
 
@@ -12,7 +12,7 @@ class TimeRepositoryImpl @Inject constructor(
 
     private val timeMapper = TimeMapper()
 
-    override suspend fun getAllTime(): List<Time> {
+    override suspend fun getAllTime(): List<TimeTable> {
         return timeDataSource.getAllTime().map { timeEntity -> timeMapper.mapToModel(timeEntity) }
     }
 

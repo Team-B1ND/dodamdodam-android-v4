@@ -10,7 +10,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLocationApplyBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortSnack
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
-import kr.hs.dgsw.smartschool.domain.model.location.LocationInfo
+import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 
 @AndroidEntryPoint
 class LocationApplyFragment : BaseFragment<FragmentLocationApplyBinding, LocationApplyViewModel>() {
@@ -93,8 +93,8 @@ class LocationApplyFragment : BaseFragment<FragmentLocationApplyBinding, Locatio
         lifecycleScope.launchWhenStarted {
             viewModel.getMyLocationState.collect { state ->
                 if (state.myLocations.isNotEmpty()) {
-                    viewModel.myLocationInfoList = state.myLocations as ArrayList<LocationInfo>
-                    viewModel.currentCheckPlaces.value = state.myLocations.map(LocationInfo::place)
+                    viewModel.myLocationInfoList = state.myLocations as ArrayList<StudyRoom>
+                    viewModel.currentCheckPlaces.value = state.myLocations.map(StudyRoom::place)
                 }
 
                 if (state.error.isNotBlank()) {

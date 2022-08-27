@@ -5,7 +5,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.StudyRoomDiffUtilCallb
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemLocationCheckBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
-import kr.hs.dgsw.smartschool.domain.model.location.Location
 import java.util.Date
 
 class LocationCheckAdapter(val onClickLocationCard: (Int) -> Unit) : BaseListAdapter<Location, ItemLocationCheckBinding>(

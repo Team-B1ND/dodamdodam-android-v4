@@ -8,10 +8,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.domain.model.location.Location
-import kr.hs.dgsw.smartschool.domain.model.location.LocationInfo
+import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 import kr.hs.dgsw.smartschool.domain.model.place.Place
-import kr.hs.dgsw.smartschool.domain.model.time.Time
+import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
 import kr.hs.dgsw.smartschool.domain.usecase.location.LocationUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.location.PostLocation
 import kr.hs.dgsw.smartschool.domain.usecase.location.PutLocation
@@ -30,8 +29,8 @@ class LocationApplyViewModel @Inject constructor(
     private val _currentTime = MutableLiveData<Int>()
     val currentTime: LiveData<Int> get() = _currentTime
 
-    private val _timeTable = MutableLiveData<List<Time>>()
-    val timeTable: LiveData<List<Time>> get() = _timeTable
+    private val _timeTable = MutableLiveData<List<TimeTable>>()
+    val timeTable: LiveData<List<TimeTable>> get() = _timeTable
 
     private val _getAllTimeState = MutableStateFlow(GetAllTimeState())
     val getAllTimeState: StateFlow<GetAllTimeState> = _getAllTimeState
@@ -45,7 +44,7 @@ class LocationApplyViewModel @Inject constructor(
     private val _getMyLocationState = MutableStateFlow(GetMyLocationState())
     val getMyLocationState: StateFlow<GetMyLocationState> = _getMyLocationState
 
-    var myLocationInfoList = ArrayList<LocationInfo>()
+    var myLocationInfoList = ArrayList<StudyRoom>()
     val currentCheckPlaces = MutableLiveData<List<Place?>>()
 
     private val isTimeTableLoading = MutableLiveData(false)
@@ -70,15 +69,15 @@ class LocationApplyViewModel @Inject constructor(
 
             when {
                 currentCheckPlaces.value?.get(this) == null -> {
-                    changeLocationRemote(params = PostLocation.Params(LocationInfo(currentTimeTable, place)), currentTimeTable.name)
+                    changeLocationRemote(params = PostLocation.Params(StudyRoom(currentTimeTable, place)), currentTimeTable.name)
                 }
                 currentCheckPlaces.value?.get(this) != place -> {
-                    val idx: Int = myLocationInfoList.find { it.timeTableIdx == currentTimeTable.idx }?.idx ?: return
-                    val location = Location(null, null, null, place.idx)
+                    val idx: Int = myLocationInfoList.find { it.timeTableIdx == currentTimeTable.id }?.id ?: return
+                    val location = Location(null, null, null, place.id)
                     putLocationRemote(params = PutLocation.Params(idx = idx, location = location), currentTimeTable.name)
                 }
                 else -> {
-                    val idx: Int = myLocationInfoList.find { it.timeTableIdx == currentTimeTable.idx }?.idx ?: return
+                    val idx: Int = myLocationInfoList.find { it.timeTableIdx == currentTimeTable.id }?.id ?: return
                     deleteLocationRemote(idx = idx, currentTimeTable.name)
                 }
             }
@@ -134,7 +133,7 @@ class LocationApplyViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
-    fun setTimeTable(timeTable: List<Time>) {
+    fun setTimeTable(timeTable: List<TimeTable>) {
         _timeTable.value = timeTable
     }
 

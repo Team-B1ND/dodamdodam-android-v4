@@ -1,39 +1,37 @@
 package kr.hs.dgsw.smartschool.data.network.remote
 
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
-import kr.hs.dgsw.smartschool.data.network.api.LocationApi
-import kr.hs.dgsw.smartschool.domain.model.location.DefaultLocation
-import kr.hs.dgsw.smartschool.domain.model.location.Location
-import kr.hs.dgsw.smartschool.domain.model.location.LocationInfo
-import kr.hs.dgsw.smartschool.domain.model.location.Locations
+import kr.hs.dgsw.smartschool.data.network.api.StudyRoomApi
+import kr.hs.dgsw.smartschool.domain.model.studyroom.DefaultStudyRoom
+import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
+import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRooms
 import kr.hs.dgsw.smartschool.domain.request.DefaultLocationRequest
-import kr.hs.dgsw.smartschool.domain.request.LocationControlRequest
-import kr.hs.dgsw.smartschool.domain.request.LocationRequest
+import kr.hs.dgsw.smartschool.domain.request.StudyRoomRequest
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class LocationRemote(override val api: LocationApi) : BaseRemote<LocationApi>() {
+class LocationRemote(override val api: StudyRoomApi) : BaseRemote<StudyRoomApi>() {
 
     private val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
-    suspend fun postLocation(locationRequest: LocationRequest): String =
-        api.postLocation(locationRequest).message
+    suspend fun postLocation(studyRoomRequest: StudyRoomRequest): String =
+        api.applyStudyRoom(studyRoomRequest).message
 
-    suspend fun getMyLocation(date: String): List<LocationInfo?> =
-        api.getMyLocation(date).data.locations
+    suspend fun getMyLocation(date: String): List<StudyRoom?> =
+        api.getMyStudyRoom(date).data.locations
 
-    suspend fun getLocation(): List<Locations> =
-        api.getLocation(format.format(Date())).data
+    suspend fun getLocation(): List<StudyRooms> =
+        api.getStudyRooms(format.format(Date())).data
 
-    suspend fun getDefaultLocation(day: Int): List<DefaultLocation> =
-        api.getDefaultLocation(day).data.defaultLocations.sortedBy { it.timeTableIdx }
+    suspend fun getDefaultLocation(day: Int): List<DefaultStudyRoom> =
+        api.getDefaultStudyRoom(day).data.defaultLocations.sortedBy { it.timeTableIdx }
 
     suspend fun postDefaultLocation(request: DefaultLocationRequest): String =
-        api.postDefaultLocation(request).message
+        api.createDefaultStudyRoom(request).message
 
-    suspend fun putAllLocation(request: LocationRequest): String =
-        api.putAllLocation(request).message
+    suspend fun putAllLocation(request: StudyRoomRequest): String =
+        api.modifyAppliedStudyRoom(request).message
 
     suspend fun putLocation(idx: Int, placeIdx: Location): String =
         api.putLocation(idx, placeIdx).message

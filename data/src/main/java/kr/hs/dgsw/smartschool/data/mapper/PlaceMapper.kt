@@ -14,7 +14,7 @@ class PlaceMapper : BaseEntityMapper<Place, PlaceEntity> {
 
     override fun mapToEntity(model: Place): PlaceEntity {
         return PlaceEntity(
-            model.idx,
+            model.id,
             model.name
         )
     }

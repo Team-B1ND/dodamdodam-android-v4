@@ -9,7 +9,7 @@ import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceMa
 import kr.hs.dgsw.smartschool.data.network.api.BusApi
 import kr.hs.dgsw.smartschool.data.network.api.ClassInfoApi
 import kr.hs.dgsw.smartschool.data.network.api.FileUploadApi
-import kr.hs.dgsw.smartschool.data.network.api.LocationApi
+import kr.hs.dgsw.smartschool.data.network.api.StudyRoomApi
 import kr.hs.dgsw.smartschool.data.network.api.MealApi
 import kr.hs.dgsw.smartschool.data.network.api.MemberApi
 import kr.hs.dgsw.smartschool.data.network.api.OutApi
@@ -83,7 +83,7 @@ class RemoteModule {
     @Singleton
     @Provides
     fun provideLocationRemote(retrofit: Retrofit): LocationRemote =
-        LocationRemote(retrofit.create(LocationApi::class.java))
+        LocationRemote(retrofit.create(StudyRoomApi::class.java))
 
     @Singleton
     @Provides

@@ -5,16 +5,14 @@ import com.google.gson.annotations.SerializedName
 import java.text.SimpleDateFormat
 import java.util.Date
 
-class Time(
-    val idx: Int,
+class TimeTable(
+    val id: Int,
     val name: String,
-    val type: Int,
-    @SerializedName("startTime")
-    val startTime: String,
-    @SerializedName("endTime")
-    val endTime: String
+    val type: WeekType,
+    @field:SerializedName("startTime") val startTime: String,
+    @field:SerializedName("endTime") val endTime: String
 ) {
-    constructor() : this(0, "", 0, "", "")
+    constructor() : this(0, "", WeekType.WEEKDAY, "", "")
 
     @SuppressLint("SimpleDateFormat")
     private val format = SimpleDateFormat("HH:mm")

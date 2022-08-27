@@ -5,8 +5,7 @@ import kr.hs.dgsw.smartschool.domain.model.classroom.Classroom
 
 class Student(
     val classroom: Classroom,
-    @SerializedName("id")
-    val studentId: Int,
+    @SerializedName("id") val studentId: Int,
     val member: Member,
     val number: Int,
     val phone: String
