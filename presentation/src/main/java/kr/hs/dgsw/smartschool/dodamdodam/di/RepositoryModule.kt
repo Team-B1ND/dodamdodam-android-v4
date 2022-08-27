@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.data.repository.AccountRepositoryImpl
+import kr.hs.dgsw.smartschool.data.repository.AuthRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.BusRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.ClassInfoRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.DataSetUpRepositoryImpl
@@ -14,14 +15,13 @@ import kr.hs.dgsw.smartschool.data.repository.MealRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.OutRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.PlaceRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.PointRepositoryImpl
-import kr.hs.dgsw.smartschool.data.repository.SignInRepositoryImpl
-import kr.hs.dgsw.smartschool.data.repository.SignUpRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.SongRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.StudentRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.TeacherRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.TimeRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.TokenRepositoryImpl
 import kr.hs.dgsw.smartschool.domain.repository.AccountRepository
+import kr.hs.dgsw.smartschool.domain.repository.AuthRepository
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.repository.ClassInfoRepository
 import kr.hs.dgsw.smartschool.domain.repository.DataSetUpRepository
@@ -31,8 +31,6 @@ import kr.hs.dgsw.smartschool.domain.repository.MealRepository
 import kr.hs.dgsw.smartschool.domain.repository.OutRepository
 import kr.hs.dgsw.smartschool.domain.repository.PlaceRepository
 import kr.hs.dgsw.smartschool.domain.repository.PointRepository
-import kr.hs.dgsw.smartschool.domain.repository.SignInRepository
-import kr.hs.dgsw.smartschool.domain.repository.SignUpRepository
 import kr.hs.dgsw.smartschool.domain.repository.SongRepository
 import kr.hs.dgsw.smartschool.domain.repository.StudentRepository
 import kr.hs.dgsw.smartschool.domain.repository.TeacherRepository
@@ -53,11 +51,7 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideSignInRepository(signInRepositoryImpl: SignInRepositoryImpl): SignInRepository = signInRepositoryImpl
-
-    @Singleton
-    @Provides
-    fun providesSignUpRepository(signUpRepositoryImpl: SignUpRepositoryImpl): SignUpRepository = signUpRepositoryImpl
+    fun providesAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository = authRepositoryImpl
 
     @Singleton
     @Provides

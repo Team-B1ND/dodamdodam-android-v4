@@ -9,7 +9,7 @@ import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceMa
 import kr.hs.dgsw.smartschool.data.exception.TokenException
 import kr.hs.dgsw.smartschool.dodamdodam.BR
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`.SignInActivity
+import kr.hs.dgsw.smartschool.dodamdodam.features.auth.login.LoginActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
 import java.lang.reflect.ParameterizedType
@@ -36,7 +36,7 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
         shortToast(e.message)
         if (e is TokenException) {
             SharedPreferenceManager.signOut(this)
-            startActivityWithFinishAll(SignInActivity::class.java)
+            startActivityWithFinishAll(LoginActivity::class.java)
             return
         }
     }

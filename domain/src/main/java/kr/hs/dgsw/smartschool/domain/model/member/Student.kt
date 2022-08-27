@@ -1,20 +1,13 @@
 package kr.hs.dgsw.smartschool.domain.model.member
 
-import java.util.Date
+import com.google.gson.annotations.SerializedName
+import kr.hs.dgsw.smartschool.domain.model.classroom.Classroom
 
 class Student(
-    idx: Int,
-    phone: String,
-    id: String,
-    name: String,
-    val classroomIdx: Int,
+    val classroom: Classroom,
+    @SerializedName("id")
+    val studentId: Int,
+    val member: Member,
     val number: Int,
-    email: String,
-    accessLevel: Int,
-    allowed: MemberAllowedType,
-    joinDate: Date?,
-    profileImage: String?,
-    val grade: Int,
-    val room: Int,
-    val placeIdx: Int
-) : Member(idx, phone, id, name, email, accessLevel, allowed, joinDate, profileImage)
+    val phone: String
+) : Member(member.email, member.id, member.joinDate, member.name, member.profileImage, member.role, member.status)

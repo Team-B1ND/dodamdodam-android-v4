@@ -1,25 +1,25 @@
 package kr.hs.dgsw.smartschool.data.mapper
 
 import kr.hs.dgsw.smartschool.data.base.BaseEntityMapper
-import kr.hs.dgsw.smartschool.data.database.entity.ClassInfoEntity
-import kr.hs.dgsw.smartschool.domain.model.classinfo.ClassInfo
+import kr.hs.dgsw.smartschool.data.database.entity.ClassroomEntity
+import kr.hs.dgsw.smartschool.domain.model.classroom.Classroom
 
-class ClassInfoMapper : BaseEntityMapper<ClassInfo, ClassInfoEntity> {
-    override fun mapToModel(entity: ClassInfoEntity): ClassInfo {
-        return ClassInfo(
-            entity.idx,
+class ClassInfoMapper : BaseEntityMapper<Classroom, ClassroomEntity> {
+    override fun mapToModel(entity: ClassroomEntity): Classroom {
+        return Classroom(
+            entity.id,
             entity.grade,
-            entity.placeIdx,
+            entity.placeId,
             entity.room
         )
     }
 
-    override fun mapToEntity(model: ClassInfo): ClassInfoEntity {
-        return ClassInfoEntity(
-            model.idx,
+    override fun mapToEntity(model: Classroom): ClassroomEntity {
+        return ClassroomEntity(
+            model.id,
             model.grade,
             model.room,
-            model.placeIdx
+            model.placeId
         )
     }
 }

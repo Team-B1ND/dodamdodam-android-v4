@@ -8,7 +8,7 @@ import kr.hs.dgsw.smartschool.data.database.entity.StudentEntity
 @Dao
 interface StudentDao : BaseDao<StudentEntity> {
 
-    @Query("SELECT * FROM student_table WHERE id=:id")
+    @Query("SELECT * FROM student_table WHERE studentId=:id")
     suspend fun getStudent(id: String): StudentEntity
 
     @Query("SELECT * FROM student_table")

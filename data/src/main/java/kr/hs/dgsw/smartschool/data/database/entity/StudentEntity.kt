@@ -6,17 +6,18 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "student_table")
 data class StudentEntity(
     @PrimaryKey
-    val idx: Int,
-    val phone: String,
-    val id: String,
-    val name: String,
-    val classroomIdx: Int,
-    val number: Int,
-    val email: String,
-    val accessLevel: Int,
-    val allowed: Int,
-    val profileImage: String?,
+    val studentId: Int,
     val grade: Int,
+    val id: Int,
+    val placeId: Int,
     val room: Int,
-    val placeIdx: Int
+    val number: Int,
+    val phone: String,
+    val email: String,
+    val memberId: String,
+    val joinDate: String,
+    val name: String,
+    val profileImage: String,
+    val role: String,
+    val status: String
 )
