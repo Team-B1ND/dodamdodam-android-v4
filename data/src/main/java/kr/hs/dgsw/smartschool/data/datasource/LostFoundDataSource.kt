@@ -23,7 +23,6 @@ class LostFoundDataSource @Inject constructor(
 
     private lateinit var lostFoundList: List<LostFound>
     private lateinit var hiddenLostFoundList: List<HiddenLostFoundEntity>
-    private lateinit var tempList : List<List<LostFound>>
 
     private val lostFoundMapper = LostFoundMapper()
 
