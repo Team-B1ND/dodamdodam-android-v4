@@ -37,11 +37,11 @@ class LocationApplyViewModel @Inject constructor(
     private val _getPlaceState = MutableStateFlow(GetPlaceState())
     val getPlaceState: StateFlow<GetPlaceState> = _getPlaceState
 
-    private val _applyLocationState = MutableStateFlow(ApplyLocationState())
-    val applyLocationState: StateFlow<ApplyLocationState> = _applyLocationState
+    private val _applyStudyRoomState = MutableStateFlow(ApplyStudyRoomState())
+    val applyStudyRoomState: StateFlow<ApplyStudyRoomState> = _applyStudyRoomState
 
-    private val _getMyLocationState = MutableStateFlow(GetMyLocationState())
-    val getMyLocationState: StateFlow<GetMyLocationState> = _getMyLocationState
+    private val _getMyStudyRoomState = MutableStateFlow(GetMyStudyRoomState())
+    val getMyStudyRoomState: StateFlow<GetMyStudyRoomState> = _getMyStudyRoomState
 
     var myLocationInfoList = ArrayList<StudyRoom>()
     val currentCheckPlaces = MutableLiveData<List<Place?>>()
@@ -86,24 +86,24 @@ class LocationApplyViewModel @Inject constructor(
     private fun changeLocationRemote(params: ModifyAppliedStudyRoom.Params, timeName: String) {
         studyRoomUseCases.modifyAppliedStudyRoom(params).divideResult(
             isApplyLocationLoading,
-            { _applyLocationState.value = ApplyLocationState(message = "$timeName 위치 신청 성공") },
-            { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 신청에 실패했습니다.") }
+            { _applyStudyRoomState.value = ApplyStudyRoomState(message = "$timeName 위치 신청 성공") },
+            { _applyStudyRoomState.value = ApplyStudyRoomState(error = it ?: "위치 신청에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 
     private fun putLocationRemote(params: PutLocation.Params, timeName: String) {
         studyRoomUseCases.putLocation(params).divideResult(
             isApplyLocationLoading,
-            { _applyLocationState.value = ApplyLocationState(message = "$timeName 위치 수정 성공") },
-            { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 수정에 실패했습니다.") }
+            { _applyStudyRoomState.value = ApplyStudyRoomState(message = "$timeName 위치 수정 성공") },
+            { _applyStudyRoomState.value = ApplyStudyRoomState(error = it ?: "위치 수정에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 
     private fun deleteLocationRemote(idx: Int, timeName: String) {
         studyRoomUseCases.deleteLocation(idx).divideResult(
             isApplyLocationLoading,
-            { _applyLocationState.value = ApplyLocationState(message = "$timeName 위치 삭제 성공") },
-            { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 삭제에 실패했습니다.") }
+            { _applyStudyRoomState.value = ApplyStudyRoomState(message = "$timeName 위치 삭제 성공") },
+            { _applyStudyRoomState.value = ApplyStudyRoomState(error = it ?: "위치 삭제에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 
@@ -127,8 +127,8 @@ class LocationApplyViewModel @Inject constructor(
         val today = LocalDate.now().toString()
         studyRoomUseCases.getMyStudyRoom(today).divideResult(
             isGetMyLocationLoading,
-            { _getMyLocationState.value = GetMyLocationState(myLocations = it ?: emptyList()) },
-            { _getMyLocationState.value = GetMyLocationState(error = it ?: "자신의 위치를 받아오지 못하였습니다.") }
+            { _getMyStudyRoomState.value = GetMyStudyRoomState(myLocations = it ?: emptyList()) },
+            { _getMyStudyRoomState.value = GetMyStudyRoomState(error = it ?: "자신의 위치를 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)
     }
 

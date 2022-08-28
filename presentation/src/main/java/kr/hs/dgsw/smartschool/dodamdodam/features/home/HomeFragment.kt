@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.LocationCheckAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.adapter.StudyRoomCheckAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealHomeAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.SongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
@@ -32,7 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private var mealList = listOf<Meal>()
     private var date: LocalDate = LocalDate.now()
 
-    private lateinit var locationCheckAdapter: LocationCheckAdapter
+    private lateinit var studyRoomCheckAdapter: StudyRoomCheckAdapter
     private lateinit var songAdapter: SongAdapter
     lateinit var mealHomeAdapter: MealHomeAdapter
 
@@ -61,8 +61,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             lifecycleScope.launchWhenStarted {
                 dataSetUpState.collect { state ->
                     if (state.result != null) {
-                        getMyLocation()
-                        collectMyLocation()
+                        getMyStudyRoom()
+                        collectMyStudyRoom()
                     }
 
                     if (state.error.isNotBlank()) {
@@ -73,15 +73,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         }
     }
 
-    private fun collectMyLocation() {
+    private fun collectMyStudyRoom() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
-                getMyLocationState.collect { state ->
-                    if (state.myLocations.isNotEmpty()) {
-                        state.myLocations.forEach {
+                getMyStudyRoomState.collect { state ->
+                    if (state.myStudyRooms.isNotEmpty()) {
+                        state.myStudyRooms.forEach {
                             Log.d("TestTest", "collectMyLocation: ${it.place?.name}")
                         }
-                        locationCheckAdapter.submitList(state.myLocations)
+                        studyRoomCheckAdapter.submitList(state.myStudyRooms)
                     }
 
                     if (state.error.isNotBlank()) {
@@ -204,10 +204,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun setLocationRecyclerView() {
-        locationCheckAdapter = LocationCheckAdapter { position ->
+        studyRoomCheckAdapter = StudyRoomCheckAdapter { position ->
             val action = HomeFragmentDirections.actionMainHomeToStudyRoomApplyFragment(position)
             findNavController().navigate(action)
         }
-        mBinding.recyclerLocationCheck.adapter = locationCheckAdapter
+        mBinding.recyclerLocationCheck.adapter = studyRoomCheckAdapter
     }
 }

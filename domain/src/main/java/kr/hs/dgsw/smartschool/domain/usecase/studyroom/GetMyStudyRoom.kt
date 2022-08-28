@@ -9,9 +9,9 @@ import javax.inject.Inject
 
 class GetMyStudyRoom @Inject constructor(
     val repository: StudyRoomRepository
-) : BaseUseCase<String, List<StudyRoom>>() {
+) : BaseUseCase<Unit, List<StudyRoom>>() {
 
-    override fun invoke(params: String): Flow<Resource<List<StudyRoom>>> = execute {
+    override fun invoke(params: Unit): Flow<Resource<List<StudyRoom>>> = execute {
         repository.getMyStudyRoom()
     }
 

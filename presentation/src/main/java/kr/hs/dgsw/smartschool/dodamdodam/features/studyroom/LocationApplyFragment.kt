@@ -91,7 +91,7 @@ class LocationApplyFragment : BaseFragment<FragmentLocationApplyBinding, Locatio
 
     private fun collectMyLocation() {
         lifecycleScope.launchWhenStarted {
-            viewModel.getMyLocationState.collect { state ->
+            viewModel.getMyStudyRoomState.collect { state ->
                 if (state.myLocations.isNotEmpty()) {
                     viewModel.myLocationInfoList = state.myLocations as ArrayList<StudyRoom>
                     viewModel.currentCheckPlaces.value = state.myLocations.map(StudyRoom::place)
@@ -106,7 +106,7 @@ class LocationApplyFragment : BaseFragment<FragmentLocationApplyBinding, Locatio
 
     private fun collectApplyLocation() {
         lifecycleScope.launchWhenStarted {
-            viewModel.applyLocationState.collect { state ->
+            viewModel.applyStudyRoomState.collect { state ->
                 if (state.message.isNotBlank()) {
                     mBinding.layout.shortSnack(state.message)
                     viewModel.getMyLocation()

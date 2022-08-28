@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.GetMyLocationState
+import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.GetMyStudyRoomState
 import kr.hs.dgsw.smartschool.dodamdodam.features.meal.GetMealState
 import kr.hs.dgsw.smartschool.dodamdodam.features.setup.DataSetUpState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.GetAllowSongState
@@ -35,8 +35,8 @@ class HomeViewModel @Inject constructor(
     private val _getMealState = MutableStateFlow(GetMealState(isLoading = false))
     val getMealState: StateFlow<GetMealState> = _getMealState
 
-    private val _getMyLocationState = MutableSharedFlow<GetMyLocationState>()
-    val getMyLocationState: SharedFlow<GetMyLocationState> = _getMyLocationState
+    private val _getMyStudyRoomState = MutableSharedFlow<GetMyStudyRoomState>()
+    val getMyStudyRoomState: SharedFlow<GetMyStudyRoomState> = _getMyStudyRoomState
 
     private val _dataSetUpState = MutableStateFlow(DataSetUpState())
     val dataSetUpState: StateFlow<DataSetUpState> = _dataSetUpState
@@ -46,11 +46,11 @@ class HomeViewModel @Inject constructor(
 
     private val isDataSetUpLoading = MutableLiveData(false)
     private val isGetMealLoading = MutableLiveData(false)
-    private val isGetMyLocationLoading = MutableLiveData(false)
+    private val isGetMyStudyRoomLoading = MutableLiveData(false)
     private val isGetAllowSongLoading = MutableLiveData(false)
 
     init {
-        combineLoadingVariable(isDataSetUpLoading, isGetMealLoading, isGetMyLocationLoading, isGetAllowSongLoading)
+        combineLoadingVariable(isDataSetUpLoading, isGetMealLoading, isGetMyStudyRoomLoading, isGetAllowSongLoading)
         dataSetUp()
         getAllowSong()
     }
@@ -71,14 +71,14 @@ class HomeViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
-    fun getMyLocation() {
-        studyRoomUseCases.getMyStudyRoom(LocalDate.now().toString()).divideResult(
-            isGetMyLocationLoading,
+    fun getMyStudyRoom() {
+        studyRoomUseCases.getMyStudyRoom(Unit).divideResult(
+            isGetMyStudyRoomLoading,
             {
-                viewModelScope.launch { _getMyLocationState.emit(GetMyLocationState(myLocations = it ?: emptyList())) }
-                it?.forEach { placeList -> Log.d("TestTest", "getMyLocation: ${placeList.place?.name}") }
+                viewModelScope.launch { _getMyStudyRoomState.emit(GetMyStudyRoomState(myStudyRooms = it ?: emptyList())) }
+                it?.forEach { placeList -> Log.d("TestTest", "getMyLocation: ${placeList.place.name}") }
             },
-            { viewModelScope.launch { _getMyLocationState.emit(GetMyLocationState(error = it ?: "위치를 받아오지 못하였습니다.")) } }
+            { viewModelScope.launch { _getMyStudyRoomState.emit(GetMyStudyRoomState(error = it ?: "위치를 받아오지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
 
