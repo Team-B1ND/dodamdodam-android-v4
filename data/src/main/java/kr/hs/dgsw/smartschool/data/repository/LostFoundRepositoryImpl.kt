@@ -7,7 +7,6 @@ import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
 import kr.hs.dgsw.smartschool.domain.request.LostFoundCommentPostRequest
 import kr.hs.dgsw.smartschool.domain.request.LostFoundCommentPutRequest
 import kr.hs.dgsw.smartschool.domain.request.LostFoundRequest
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class LostFoundRepositoryImpl @Inject constructor(
@@ -19,38 +18,25 @@ class LostFoundRepositoryImpl @Inject constructor(
     private lateinit var lostFoundCommentList: List<LostFoundComment>
     private lateinit var myId: String
 
-    override fun getLostFound(page: Int, type: Int): List<LostFound> {
-        return lostFoundDataSource.getLostFound(page, type)
-            .flatMap { lostFoundList -> this.lostFoundList = lostFoundList
-                tokenDataSource.getMyId()
-                    .flatMap { myId ->
-                        this.myId = myId
-                        Single.just(getLostFoundMemberList())
-                    }
-            }.delay(500, TimeUnit.MILLISECONDS)
+    override suspend fun getLostFound(page: Int, type: Int): List<LostFound> {
+        lostFoundList = lostFoundDataSource.getLostFound(page, type)
+        myId = tokenDataSource.getMyId()
+        getLostFoundMemberList()
+        return lostFoundList
     }
 
-    override fun getLostFoundSearch(search: String): List<LostFound> {
-        return lostFoundDataSource.getLostFoundSearch(search)
-            .flatMap { lostFoundList -> this.lostFoundList = lostFoundList
-                tokenDataSource.getMyId()
-                    .flatMap { myId ->
-                        this.myId = myId
-                        Single.just(getLostFoundMemberList())
-                    }
-            }.delay(500, TimeUnit.MILLISECONDS)
+    override suspend fun getLostFoundSearch(search: String): List<LostFound> {
+        lostFoundList = lostFoundDataSource.getLostFoundSearch(search)
+        myId = tokenDataSource.getMyId()
+        getLostFoundMemberList()
+        return lostFoundList
     }
 
-    override fun getLostFoundComment(lostfoundIdx: Int): List<LostFoundComment> {
-        return lostFoundDataSource.getLostFoundComment(lostfoundIdx)
-            .flatMap { lostFoundCommentList ->
-                this.lostFoundCommentList = lostFoundCommentList
-                tokenDataSource.getMyId()
-                    .flatMap { myId ->
-                        this.myId = myId
-                        Single.just(getLostFoundCommentList())
-                    }
-            }.delay(500, TimeUnit.MILLISECONDS)
+    override suspend fun getLostFoundComment(lostFoundIdx: Int): List<LostFoundComment> {
+        lostFoundCommentList = lostFoundDataSource.getLostFoundComment(lostFoundIdx)
+        myId = tokenDataSource.getMyId()
+        getLostFoundCommentList()
+        return lostFoundCommentList
     }
 
     private fun getLostFoundMemberList(): List<LostFound> {
@@ -67,31 +53,32 @@ class LostFoundRepositoryImpl @Inject constructor(
         return lostFoundCommentList
     }
 
-    override fun postCreateLostFound(request: LostFoundRequest):String {
+    override suspend fun postCreateLostFound(request: LostFoundRequest):String {
         return lostFoundDataSource.postCreateLostFound(request)
     }
 
-    override fun postLostFoundComment(request: LostFoundCommentPostRequest): String {
-        return lostFoundDataSource.postLostFoundComment(request).
+    override suspend fun postLostFoundComment(request: LostFoundCommentPostRequest): String {
+        return lostFoundDataSource.postLostFoundComment(request)
     }
 
-    override fun putLostFound(request: LostFoundRequest):String {
+    override suspend fun putLostFound(request: LostFoundRequest):String {
         return lostFoundDataSource.putLostFound(request)
     }
 
-    override fun putLostFoundComment(request: LostFoundCommentPutRequest): String {
+    override suspend fun putLostFoundComment(request: LostFoundCommentPutRequest): String {
         return lostFoundDataSource.putLostFoundComment(request)
     }
 
-    override fun hideLostFound(lostFound: LostFound): String {
-        return lostFoundDataSource.hideLostFound(lostFound)
+    override suspend fun hideLostFound(lostFound: LostFound): String {
+        lostFoundDataSource.hideLostFound(lostFound)
+        return "분실물 숨김."
     }
 
-    override fun deleteLostFound(idx: Int): String {
+    override suspend fun deleteLostFound(idx: Int): String {
         return lostFoundDataSource.deleteLostFound(idx)
     }
 
-    override fun deleteLostFoundComment(commentIdx: Int): String {
+    override suspend fun deleteLostFoundComment(commentIdx: Int): String {
         return lostFoundDataSource.deleteLostFoundComment(commentIdx)
     }
 }

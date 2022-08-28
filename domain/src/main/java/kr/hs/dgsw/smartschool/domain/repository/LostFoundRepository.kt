@@ -6,23 +6,23 @@ import kr.hs.dgsw.smartschool.domain.request.LostFoundCommentPutRequest
 import kr.hs.dgsw.smartschool.domain.request.LostFoundRequest
 
 interface LostFoundRepository {
-    fun getLostFound(page: Int, type: Int): List<LostFound>
+    suspend fun getLostFound(page: Int, type: Int): List<LostFound>
 
-    fun getLostFoundSearch(search: String): List<LostFound>
+    suspend fun getLostFoundSearch(search: String): List<LostFound>
 
-    fun getLostFoundComment(lostfoundIdx: Int): List<LostFoundComment>
+    suspend fun getLostFoundComment(lostfoundIdx: Int): List<LostFoundComment>
 
-    fun postCreateLostFound(request: LostFoundRequest): String
+    suspend fun postCreateLostFound(request: LostFoundRequest): String
 
-    fun postLostFoundComment(request: LostFoundCommentPostRequest): String
+    suspend fun postLostFoundComment(request: LostFoundCommentPostRequest): String
 
-    fun putLostFound(request: LostFoundRequest): String
+    suspend fun putLostFound(request: LostFoundRequest): String
 
-    fun putLostFoundComment(request: LostFoundCommentPutRequest): String
+    suspend fun putLostFoundComment(request: LostFoundCommentPutRequest): String
 
-    fun hideLostFound(lostFound: LostFound): String
+    suspend fun hideLostFound(lostFound: LostFound): String
 
-    fun deleteLostFound(idx: Int): String
+    suspend fun deleteLostFound(idx: Int): String
 
-    fun deleteLostFoundComment(commentIdx: Int): String
+    suspend fun deleteLostFoundComment(commentIdx: Int): String
 }
