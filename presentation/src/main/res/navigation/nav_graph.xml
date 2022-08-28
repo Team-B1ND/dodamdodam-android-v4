@@ -95,7 +95,7 @@
     </fragment>
     <fragment
         android:id="@+id/studyRoomApplyFragment"
-        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.LocationApplyFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.StudyRoomApplyFragment"
         android:label="StudyRoomApplyFragment" >
         <argument
             android:name="timeTable"

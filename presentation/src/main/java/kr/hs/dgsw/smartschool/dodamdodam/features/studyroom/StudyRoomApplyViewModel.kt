@@ -19,7 +19,7 @@ import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
-class LocationApplyViewModel @Inject constructor(
+class StudyRoomApplyViewModel @Inject constructor(
     private val timeUseCases: TimeUseCases,
     private val studyRoomUseCases: StudyRoomUseCases,
     private val getAllPlaceUseCase: GetAllPlaceUseCase,
@@ -43,16 +43,16 @@ class LocationApplyViewModel @Inject constructor(
     private val _getMyStudyRoomState = MutableStateFlow(GetMyStudyRoomState())
     val getMyStudyRoomState: StateFlow<GetMyStudyRoomState> = _getMyStudyRoomState
 
-    var myLocationInfoList = ArrayList<StudyRoom>()
+    var myStudyRoomList = ArrayList<StudyRoom>()
     val currentCheckPlaces = MutableLiveData<List<Place?>>()
 
     private val isTimeTableLoading = MutableLiveData(false)
     private val isPlaceListLoading = MutableLiveData(false)
-    private val isGetMyLocationLoading = MutableLiveData(false)
-    private val isApplyLocationLoading = MutableLiveData(false)
+    private val isGetMyStudyRoomLoading = MutableLiveData(false)
+    private val isApplyStudRoomyLoading = MutableLiveData(false)
 
     init {
-        combineLoadingVariable(isTimeTableLoading, isPlaceListLoading, isGetMyLocationLoading, isApplyLocationLoading)
+        combineLoadingVariable(isTimeTableLoading, isPlaceListLoading, isGetMyStudyRoomLoading, isApplyStudRoomyLoading)
         getTimeTable()
         getPlace()
         getMyLocation()
@@ -71,12 +71,12 @@ class LocationApplyViewModel @Inject constructor(
                     changeLocationRemote(params = ModifyAppliedStudyRoom.Params(StudyRoom(currentTimeTable, place)), currentTimeTable.name)
                 }
                 currentCheckPlaces.value?.get(this) != place -> {
-                    val idx: Int = myLocationInfoList.find { it.timeTableIdx == currentTimeTable.id }?.id ?: return
+                    val idx: Int = myStudyRoomList.find { it.timeTableIdx == currentTimeTable.id }?.id ?: return
                     val location = Location(null, null, null, place.id)
                     putLocationRemote(params = PutLocation.Params(idx = idx, location = location), currentTimeTable.name)
                 }
                 else -> {
-                    val idx: Int = myLocationInfoList.find { it.timeTableIdx == currentTimeTable.id }?.id ?: return
+                    val idx: Int = myStudyRoomList.find { it.timeTableIdx == currentTimeTable.id }?.id ?: return
                     deleteLocationRemote(idx = idx, currentTimeTable.name)
                 }
             }
@@ -85,7 +85,7 @@ class LocationApplyViewModel @Inject constructor(
 
     private fun changeLocationRemote(params: ModifyAppliedStudyRoom.Params, timeName: String) {
         studyRoomUseCases.modifyAppliedStudyRoom(params).divideResult(
-            isApplyLocationLoading,
+            isApplyStudRoomyLoading,
             { _applyStudyRoomState.value = ApplyStudyRoomState(message = "$timeName 위치 신청 성공") },
             { _applyStudyRoomState.value = ApplyStudyRoomState(error = it ?: "위치 신청에 실패했습니다.") }
         ).launchIn(viewModelScope)
@@ -93,7 +93,7 @@ class LocationApplyViewModel @Inject constructor(
 
     private fun putLocationRemote(params: PutLocation.Params, timeName: String) {
         studyRoomUseCases.putLocation(params).divideResult(
-            isApplyLocationLoading,
+            isApplyStudRoomyLoading,
             { _applyStudyRoomState.value = ApplyStudyRoomState(message = "$timeName 위치 수정 성공") },
             { _applyStudyRoomState.value = ApplyStudyRoomState(error = it ?: "위치 수정에 실패했습니다.") }
         ).launchIn(viewModelScope)
@@ -101,7 +101,7 @@ class LocationApplyViewModel @Inject constructor(
 
     private fun deleteLocationRemote(idx: Int, timeName: String) {
         studyRoomUseCases.deleteLocation(idx).divideResult(
-            isApplyLocationLoading,
+            isApplyStudRoomyLoading,
             { _applyStudyRoomState.value = ApplyStudyRoomState(message = "$timeName 위치 삭제 성공") },
             { _applyStudyRoomState.value = ApplyStudyRoomState(error = it ?: "위치 삭제에 실패했습니다.") }
         ).launchIn(viewModelScope)
@@ -109,7 +109,7 @@ class LocationApplyViewModel @Inject constructor(
 
     private fun getPlace() {
         getAllPlaceUseCase(Unit).divideResult(
-            isGetMyLocationLoading,
+            isGetMyStudyRoomLoading,
             { _getPlaceState.value = GetPlaceState(place = it ?: emptyList()) },
             { _getPlaceState.value = GetPlaceState(error = it ?: "장소를 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)
@@ -126,7 +126,7 @@ class LocationApplyViewModel @Inject constructor(
     fun getMyLocation() {
         val today = LocalDate.now().toString()
         studyRoomUseCases.getMyStudyRoom(today).divideResult(
-            isGetMyLocationLoading,
+            isGetMyStudyRoomLoading,
             { _getMyStudyRoomState.value = GetMyStudyRoomState(myLocations = it ?: emptyList()) },
             { _getMyStudyRoomState.value = GetMyStudyRoomState(error = it ?: "자신의 위치를 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)

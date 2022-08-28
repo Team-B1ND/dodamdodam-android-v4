@@ -7,15 +7,15 @@ import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.PlaceAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
-import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLocationApplyBinding
+import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentStudyRoomApplyBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortSnack
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 
 @AndroidEntryPoint
-class LocationApplyFragment : BaseFragment<FragmentLocationApplyBinding, LocationApplyViewModel>() {
+class StudyRoomApplyFragment : BaseFragment<FragmentStudyRoomApplyBinding, StudyRoomApplyViewModel>() {
 
-    override val viewModel: LocationApplyViewModel by viewModels()
+    override val viewModel: StudyRoomApplyViewModel by viewModels()
     private lateinit var placeAdapter: PlaceAdapter
 
     override fun observerViewModel() {
@@ -92,9 +92,9 @@ class LocationApplyFragment : BaseFragment<FragmentLocationApplyBinding, Locatio
     private fun collectMyLocation() {
         lifecycleScope.launchWhenStarted {
             viewModel.getMyStudyRoomState.collect { state ->
-                if (state.myLocations.isNotEmpty()) {
-                    viewModel.myLocationInfoList = state.myLocations as ArrayList<StudyRoom>
-                    viewModel.currentCheckPlaces.value = state.myLocations.map(StudyRoom::place)
+                if (state.myStudyRooms.isNotEmpty()) {
+                    viewModel.myStudyRoomList = state.myStudyRooms as ArrayList<StudyRoom>
+                    viewModel.currentCheckPlaces.value = state.myStudyRooms.map(StudyRoom::place)
                 }
 
                 if (state.error.isNotBlank()) {
@@ -123,8 +123,8 @@ class LocationApplyFragment : BaseFragment<FragmentLocationApplyBinding, Locatio
     private fun initViewEvent() {
         bindingViewEvent { event ->
             when (event) {
-                LocationApplyViewModel.EVENT_ON_CLICK_BACK -> findNavController().popBackStack()
-                LocationApplyViewModel.EVENT_NO_TIME -> shortToast("시간표가 없습니다.")
+                StudyRoomApplyViewModel.EVENT_ON_CLICK_BACK -> findNavController().popBackStack()
+                StudyRoomApplyViewModel.EVENT_NO_TIME -> shortToast("시간표가 없습니다.")
             }
         }
     }
