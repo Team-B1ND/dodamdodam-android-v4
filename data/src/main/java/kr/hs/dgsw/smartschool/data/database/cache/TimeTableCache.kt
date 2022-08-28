@@ -6,7 +6,7 @@ import kr.hs.dgsw.smartschool.data.database.dao.TimeDao
 import kr.hs.dgsw.smartschool.data.database.entity.TimeEntity
 import javax.inject.Inject
 
-class TimeCache @Inject constructor(application: Application) : BaseCache(application) {
+class TimeTableCache @Inject constructor(application: Application) : BaseCache(application) {
 
     private val timeDao: TimeDao = database.timeDao()
 

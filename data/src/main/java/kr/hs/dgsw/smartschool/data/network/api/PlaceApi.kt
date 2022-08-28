@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface PlaceApi {
     @GET("place")
-    suspend fun getAllPlace(): Response<PlaceData>
+    suspend fun getPlaces(): Response<PlaceData>
 }
