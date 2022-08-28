@@ -124,6 +124,7 @@ class UseCaseModule {
             applyStudyRoom = ApplyStudyRoom(studyRoomRepository),
             modifyAppliedStudyRoom = ModifyAppliedStudyRoom(studyRoomRepository),
             getStudyRoomById = GetStudyRoomById(studyRoomRepository),
+            cancelStudyRoom = CancelStudyRoom(studyRoomRepository),
             getDefaultStudyRoom = GetDefaultStudyRoom(studyRoomRepository),
             createDefaultStudyRoom = CreateDefaultStudyRoom(studyRoomRepository),
             createDefaultStudyRoomByWeekType = CreateDefaultStudyRoomByWeekType(studyRoomRepository),

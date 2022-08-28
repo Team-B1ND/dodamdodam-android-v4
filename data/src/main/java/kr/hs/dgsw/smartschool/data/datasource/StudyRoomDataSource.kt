@@ -22,6 +22,8 @@ class StudyRoomDataSource @Inject constructor(
 
     suspend fun getStudyRoomById(id: Int): StudyRoom = remote.getStudyRoomById(id)
 
+    suspend fun cancelStudyRoom(id: Int): String = remote.cancelStudyRoom(id)
+
     suspend fun getDefaultStudyRoom(): List<DefaultStudyRoom> = remote.getDefaultStudyRoom()
 
     suspend fun createDefaultStudyRoom(request: DefaultStudyRoomRequest): String =

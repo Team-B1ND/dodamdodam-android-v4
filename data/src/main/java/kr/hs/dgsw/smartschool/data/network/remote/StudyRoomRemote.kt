@@ -21,6 +21,9 @@ class StudyRoomRemote(override val api: StudyRoomApi) : BaseRemote<StudyRoomApi>
     suspend fun getStudyRoomById(id: Int): StudyRoom =
         api.getStudyRoomById(id).data
 
+    suspend fun cancelStudyRoom(id: Int): String =
+        api.cancelStudyRoom(id).message
+
     suspend fun getDefaultStudyRoom(): List<DefaultStudyRoom> =
         api.getDefaultStudyRoom().data.defaultStudyRooms
 

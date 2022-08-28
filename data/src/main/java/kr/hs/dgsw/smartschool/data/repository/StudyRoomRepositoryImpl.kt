@@ -63,11 +63,15 @@ class StudyRoomRepositoryImpl @Inject constructor(
     }
 
     override suspend fun modifyAppliedStudyRoom(request: StudyRoomRequest): String {
-        return modifyAppliedStudyRoom(request)
+        return studyRoomDataSource.modifyAppliedStudyRoom(request)
     }
 
     override suspend fun getStudyRoomById(id: Int): StudyRoom {
-        return getStudyRoomById(id)
+        return studyRoomDataSource.getStudyRoomById(id)
+    }
+
+    override suspend fun cancelStudyRoom(id: Int): String {
+        return studyRoomDataSource.cancelStudyRoom(id)
     }
 
     override suspend fun getDefaultStudyRoom(): List<DefaultStudyRoom> {
@@ -100,11 +104,11 @@ class StudyRoomRepositoryImpl @Inject constructor(
     }
 
     override suspend fun createDefaultStudyRoom(request: DefaultStudyRoomRequest): String {
-        return createDefaultStudyRoom(request)
+        return studyRoomDataSource.createDefaultStudyRoom(request)
     }
 
     override suspend fun createDefaultStudyRoomByWeekType(request: DefaultStudyRoomByTypeRequest): String {
-        return createDefaultStudyRoomByWeekType(request)
+        return studyRoomDataSource.createDefaultStudyRoomByWeekType(request)
     }
 
 }

@@ -4,6 +4,7 @@ data class StudyRoomUseCases(
     val applyStudyRoom: ApplyStudyRoom,
     val modifyAppliedStudyRoom: ModifyAppliedStudyRoom,
     val getStudyRoomById: GetStudyRoomById,
+    val cancelStudyRoom: CancelStudyRoom,
     val getDefaultStudyRoom: GetDefaultStudyRoom,
     val createDefaultStudyRoom: CreateDefaultStudyRoom,
     val createDefaultStudyRoomByWeekType: CreateDefaultStudyRoomByWeekType,

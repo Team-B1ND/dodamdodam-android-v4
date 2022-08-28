@@ -14,6 +14,8 @@ interface StudyRoomRepository {
 
     suspend fun getStudyRoomById(id: Int): StudyRoom
 
+    suspend fun cancelStudyRoom(id: Int): String
+
     suspend fun getDefaultStudyRoom(): List<DefaultStudyRoom>
 
     suspend fun createDefaultStudyRoom(request: DefaultStudyRoomRequest): String

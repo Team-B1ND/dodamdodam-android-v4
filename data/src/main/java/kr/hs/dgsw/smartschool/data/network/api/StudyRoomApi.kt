@@ -8,11 +8,7 @@ import kr.hs.dgsw.smartschool.domain.request.DefaultLocationRequest
 import kr.hs.dgsw.smartschool.domain.request.DefaultStudyRoomByTypeRequest
 import kr.hs.dgsw.smartschool.domain.request.DefaultStudyRoomRequest
 import kr.hs.dgsw.smartschool.domain.request.StudyRoomRequest
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface StudyRoomApi {
 
@@ -21,7 +17,7 @@ interface StudyRoomApi {
         @Body request: StudyRoomRequest
     ): Response<Any>
 
-    @PUT("study-room")
+    @PATCH("study-room")
     suspend fun modifyAppliedStudyRoom(
         @Body request: StudyRoomRequest
     ): Response<Any>
@@ -30,6 +26,11 @@ interface StudyRoomApi {
     suspend fun getStudyRoomById(
         @Path("id") id: Int
     ): Response<StudyRoom>
+
+    @DELETE("study-room/{id}")
+    suspend fun cancelStudyRoom(
+        @Path("id") id: Int
+    ): Response<Any>
 
     @GET("study-room/default")
     suspend fun getDefaultStudyRoom(): Response<DefaultStudyRoomData>
