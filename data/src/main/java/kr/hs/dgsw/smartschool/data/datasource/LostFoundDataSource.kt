@@ -5,6 +5,7 @@ import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.database.cache.HiddenLostFoundCache
 import kr.hs.dgsw.smartschool.data.database.dao.HiddenLostFoundDao
 import kr.hs.dgsw.smartschool.data.database.entity.HiddenLostFoundEntity
+import kr.hs.dgsw.smartschool.data.mapper.LostFoundMapper
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.remote.LostFoundRemote
 import kr.hs.dgsw.smartschool.data.network.response.data.BusData
@@ -20,17 +21,20 @@ class LostFoundDataSource @Inject constructor(
     override val remote: LostFoundRemote
 ) : BaseDataSource<LostFoundRemote, Any> {
 
-    private lateinit var lostFoundList: ArrayList<LostFound>
-    private lateinit var hiddenLostFoundList: ArrayList<HiddenLostFoundEntity>
+    private lateinit var lostFoundList: List<LostFound>
+    private lateinit var hiddenLostFoundList: List<HiddenLostFoundEntity>
+    private lateinit var tempList : List<List<LostFound>>
 
     private val lostFoundMapper = LostFoundMapper()
 
-    fun getLostFound(page: Int, type: Int): List<LostFound> {
-        return remote.getLostFound(page, type).flatMap { lostFoundList -> this.lostFoundList = ArrayList(lostFoundList)
-            cache.getAllHiddenLostFound().flatMap { hiddenLostFoundList -> this.hiddenLostFoundList = ArrayList(hiddenLostFoundList)
-                Single.just(getLostFoundList())
+    suspend fun getLostFound(page: Int, type: Int): List<LostFound> {
+        lostFoundList =  tempList.flatMap {
+            remote.getLostFound(page, type).data.pageData
+            cache.getAllHiddenLostFound().map {
+                lostFoundMapper.mapToModel(it)
             }
         }
+        return lostFoundList
     }
 
     private fun getLostFoundList(): List<LostFound> {
