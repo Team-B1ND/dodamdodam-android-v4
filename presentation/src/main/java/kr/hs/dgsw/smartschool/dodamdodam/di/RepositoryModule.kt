@@ -26,7 +26,7 @@ import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.repository.ClassInfoRepository
 import kr.hs.dgsw.smartschool.domain.repository.DataSetUpRepository
 import kr.hs.dgsw.smartschool.domain.repository.FileUploadRepository
-import kr.hs.dgsw.smartschool.domain.repository.LocationRepository
+import kr.hs.dgsw.smartschool.domain.repository.StudyRoomRepository
 import kr.hs.dgsw.smartschool.domain.repository.MealRepository
 import kr.hs.dgsw.smartschool.domain.repository.OutRepository
 import kr.hs.dgsw.smartschool.domain.repository.PlaceRepository
@@ -75,7 +75,7 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideLocationRepository(studyRoomRepositoryImpl: StudyRoomRepositoryImpl): LocationRepository = studyRoomRepositoryImpl
+    fun provideLocationRepository(studyRoomRepositoryImpl: StudyRoomRepositoryImpl): StudyRoomRepository = studyRoomRepositoryImpl
 
     @Singleton
     @Provides

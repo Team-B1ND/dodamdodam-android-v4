@@ -13,16 +13,16 @@ object Utils {
 
     fun getWeekType(): WeekType {
         if (isWeekend()) {
-            return WeekType.END
+            return WeekType.WEEKEND
         }
-        return WeekType.DAY
+        return WeekType.WEEKDAY
     }
 
     fun getWeekType(dayOfWeek: Int): WeekType {
         if (dayOfWeek == 0 || dayOfWeek == 6 || dayOfWeek == 8) {
-            return WeekType.END
+            return WeekType.WEEKEND
         }
-        return WeekType.DAY
+        return WeekType.WEEKDAY
     }
 
     private fun isWeekend(): Boolean {

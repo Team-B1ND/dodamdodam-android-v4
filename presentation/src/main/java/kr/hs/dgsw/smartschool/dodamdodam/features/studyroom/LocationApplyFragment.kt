@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.location
+package kr.hs.dgsw.smartschool.dodamdodam.features.studyroom
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope

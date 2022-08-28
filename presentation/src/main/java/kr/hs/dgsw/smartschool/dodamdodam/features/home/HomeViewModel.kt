@@ -11,11 +11,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.dodamdodam.features.location.GetMyLocationState
+import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.GetMyLocationState
 import kr.hs.dgsw.smartschool.dodamdodam.features.meal.GetMealState
 import kr.hs.dgsw.smartschool.dodamdodam.features.setup.DataSetUpState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.GetAllowSongState
-import kr.hs.dgsw.smartschool.domain.usecase.location.LocationUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.StudyRoomUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
@@ -27,7 +27,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val mealUseCases: MealUseCases,
-    private val locationUseCases: LocationUseCases,
+    private val studyRoomUseCases: StudyRoomUseCases,
     private val setUpUseCases: SetUpUseCases,
     private val songUseCases: SongUseCases
 ) : BaseViewModel() {
@@ -72,7 +72,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getMyLocation() {
-        locationUseCases.getMyLocation(LocalDate.now().toString()).divideResult(
+        studyRoomUseCases.getMyStudyRoom(LocalDate.now().toString()).divideResult(
             isGetMyLocationLoading,
             {
                 viewModelScope.launch { _getMyLocationState.emit(GetMyLocationState(myLocations = it ?: emptyList())) }

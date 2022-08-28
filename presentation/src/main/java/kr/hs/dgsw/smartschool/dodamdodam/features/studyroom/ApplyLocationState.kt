@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.location
+package kr.hs.dgsw.smartschool.dodamdodam.features.studyroom
 
 data class ApplyLocationState(
     val message: String = "",

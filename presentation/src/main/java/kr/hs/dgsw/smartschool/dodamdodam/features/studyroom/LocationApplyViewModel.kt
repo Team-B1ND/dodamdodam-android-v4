@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.location
+package kr.hs.dgsw.smartschool.dodamdodam.features.studyroom
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,9 +11,8 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
-import kr.hs.dgsw.smartschool.domain.usecase.location.LocationUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.location.PostLocation
-import kr.hs.dgsw.smartschool.domain.usecase.location.PutLocation
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.StudyRoomUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ModifyAppliedStudyRoom
 import kr.hs.dgsw.smartschool.domain.usecase.place.GetAllPlaceUseCase
 import kr.hs.dgsw.smartschool.domain.usecase.time.TimeUseCases
 import java.time.LocalDate
@@ -22,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class LocationApplyViewModel @Inject constructor(
     private val timeUseCases: TimeUseCases,
-    private val locationUseCases: LocationUseCases,
+    private val studyRoomUseCases: StudyRoomUseCases,
     private val getAllPlaceUseCase: GetAllPlaceUseCase,
 ) : BaseViewModel() {
 
@@ -69,7 +68,7 @@ class LocationApplyViewModel @Inject constructor(
 
             when {
                 currentCheckPlaces.value?.get(this) == null -> {
-                    changeLocationRemote(params = PostLocation.Params(StudyRoom(currentTimeTable, place)), currentTimeTable.name)
+                    changeLocationRemote(params = ModifyAppliedStudyRoom.Params(StudyRoom(currentTimeTable, place)), currentTimeTable.name)
                 }
                 currentCheckPlaces.value?.get(this) != place -> {
                     val idx: Int = myLocationInfoList.find { it.timeTableIdx == currentTimeTable.id }?.id ?: return
@@ -84,8 +83,8 @@ class LocationApplyViewModel @Inject constructor(
         } ?: viewEvent(EVENT_NO_TIME)
     }
 
-    private fun changeLocationRemote(params: PostLocation.Params, timeName: String) {
-        locationUseCases.postLocation(params).divideResult(
+    private fun changeLocationRemote(params: ModifyAppliedStudyRoom.Params, timeName: String) {
+        studyRoomUseCases.modifyAppliedStudyRoom(params).divideResult(
             isApplyLocationLoading,
             { _applyLocationState.value = ApplyLocationState(message = "$timeName 위치 신청 성공") },
             { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 신청에 실패했습니다.") }
@@ -93,7 +92,7 @@ class LocationApplyViewModel @Inject constructor(
     }
 
     private fun putLocationRemote(params: PutLocation.Params, timeName: String) {
-        locationUseCases.putLocation(params).divideResult(
+        studyRoomUseCases.putLocation(params).divideResult(
             isApplyLocationLoading,
             { _applyLocationState.value = ApplyLocationState(message = "$timeName 위치 수정 성공") },
             { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 수정에 실패했습니다.") }
@@ -101,7 +100,7 @@ class LocationApplyViewModel @Inject constructor(
     }
 
     private fun deleteLocationRemote(idx: Int, timeName: String) {
-        locationUseCases.deleteLocation(idx).divideResult(
+        studyRoomUseCases.deleteLocation(idx).divideResult(
             isApplyLocationLoading,
             { _applyLocationState.value = ApplyLocationState(message = "$timeName 위치 삭제 성공") },
             { _applyLocationState.value = ApplyLocationState(error = it ?: "위치 삭제에 실패했습니다.") }
@@ -126,7 +125,7 @@ class LocationApplyViewModel @Inject constructor(
 
     fun getMyLocation() {
         val today = LocalDate.now().toString()
-        locationUseCases.getMyLocation(today).divideResult(
+        studyRoomUseCases.getMyStudyRoom(today).divideResult(
             isGetMyLocationLoading,
             { _getMyLocationState.value = GetMyLocationState(myLocations = it ?: emptyList()) },
             { _getMyLocationState.value = GetMyLocationState(error = it ?: "자신의 위치를 받아오지 못하였습니다.") }

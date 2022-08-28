@@ -9,7 +9,7 @@ import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
 data class StudyRoom(
     @field:SerializedName("date") val date: String,
     @field:SerializedName("id") val id: Int,
-    @field:SerializedName("place") val place: Place,
+    @field:SerializedName("place") var place: Place,
     @field:SerializedName("status") val status: String,
     @field:SerializedName("student") val student: Student,
     @field:SerializedName("teacher") val teacher: Teacher,
