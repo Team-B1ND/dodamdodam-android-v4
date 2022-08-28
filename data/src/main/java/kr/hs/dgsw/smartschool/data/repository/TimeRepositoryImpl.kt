@@ -1,22 +1,22 @@
 package kr.hs.dgsw.smartschool.data.repository
 
-import kr.hs.dgsw.smartschool.data.datasource.TimeDataSource
-import kr.hs.dgsw.smartschool.data.mapper.TimeMapper
+import kr.hs.dgsw.smartschool.data.datasource.TimeTableDataSource
+import kr.hs.dgsw.smartschool.data.mapper.TimeTableMapper
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
 import kr.hs.dgsw.smartschool.domain.repository.TimeRepository
 import javax.inject.Inject
 
 class TimeRepositoryImpl @Inject constructor(
-    private val timeDataSource: TimeDataSource
+    private val timeTableDataSource: TimeTableDataSource
 ) : TimeRepository {
 
-    private val timeMapper = TimeMapper()
+    private val timeTableMapper = TimeTableMapper()
 
     override suspend fun getAllTime(): List<TimeTable> {
-        return timeDataSource.getAllTime().map { timeEntity -> timeMapper.mapToModel(timeEntity) }
+        return timeTableDataSource.getAllTime().map { timeEntity -> timeTableMapper.mapToModel(timeEntity) }
     }
 
     override suspend fun getStartTime(): String {
-        return timeDataSource.getAllTime()[0].startTime
+        return timeTableDataSource.getAllTime()[0].startTime
     }
 }
