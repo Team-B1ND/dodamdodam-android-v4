@@ -28,12 +28,8 @@ class LostFoundDataSource @Inject constructor(
     private val lostFoundMapper = LostFoundMapper()
 
     suspend fun getLostFound(page: Int, type: Int): List<LostFound> {
-        lostFoundList =  tempList.flatMap {
-            remote.getLostFound(page, type).data.pageData
-            cache.getAllHiddenLostFound().map {
-                lostFoundMapper.mapToModel(it)
-            }
-        }
+        lostFoundList =  remote.getLostFound(page,type).data.pageData
+        hiddenLostFoundList = cache.getAllHiddenLostFound()
         return lostFoundList
     }
 

@@ -19,8 +19,6 @@ class LostFoundMapper : BaseEntityMapper<LostFound, HiddenLostFoundEntity> {
             entity.place,
             entity.content,
             null,
-
-
             entity.placeIdx,
             entity.room
         )

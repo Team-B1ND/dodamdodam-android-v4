@@ -1,24 +1,9 @@
 package kr.hs.dgsw.smartschool.data.repository
-
-import io.reactivex.Completable
-import io.reactivex.Single
-import kr.hs.dgsw.b1nd.dodamdodam.data.datasource.LostFoundDataSource
-import kr.hs.dgsw.b1nd.dodamdodam.data.datasource.StudentDataSource
-import kr.hs.dgsw.b1nd.dodamdodam.data.datasource.TokenDataSource
-import kr.hs.dgsw.b1nd.dodamdodam.data.mapper.MemberMapper
-import kr.hs.dgsw.b1nd.dodamdodam.data.mapper.StudentMapper
-import kr.hs.dgsw.b1nd.dodamdodam.domain.model.lostfound.LostFound
-import kr.hs.dgsw.b1nd.dodamdodam.domain.model.lostfound.LostFoundComment
-import kr.hs.dgsw.b1nd.dodamdodam.domain.model.member.Member
-import kr.hs.dgsw.b1nd.dodamdodam.domain.model.member.Student
-import kr.hs.dgsw.b1nd.dodamdodam.domain.repository.LostFoundRepository
-import kr.hs.dgsw.b1nd.dodamdodam.domain.request.LostFoundCommentPostRequest
-import kr.hs.dgsw.b1nd.dodamdodam.domain.request.LostFoundCommentPutRequest
-import kr.hs.dgsw.b1nd.dodamdodam.domain.request.LostFoundRequest
 import kr.hs.dgsw.smartschool.data.datasource.LostFoundDataSource
 import kr.hs.dgsw.smartschool.data.datasource.TokenDataSource
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFoundComment
+import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
 import kr.hs.dgsw.smartschool.domain.request.LostFoundCommentPostRequest
 import kr.hs.dgsw.smartschool.domain.request.LostFoundCommentPutRequest
 import kr.hs.dgsw.smartschool.domain.request.LostFoundRequest
@@ -83,30 +68,30 @@ class LostFoundRepositoryImpl @Inject constructor(
     }
 
     override fun postCreateLostFound(request: LostFoundRequest):String {
-        return lostFoundDataSource.postCreateLostFound(request).ignoreElement()
+        return lostFoundDataSource.postCreateLostFound(request)
     }
 
-    override fun postLostFoundComment(request: LostFoundCommentPostRequest): Completable {
+    override fun postLostFoundComment(request: LostFoundCommentPostRequest): String {
         return lostFoundDataSource.postLostFoundComment(request).
     }
 
     override fun putLostFound(request: LostFoundRequest):String {
-        return lostFoundDataSource.putLostFound(request).ignoreElement()
+        return lostFoundDataSource.putLostFound(request)
     }
 
-    override fun putLostFoundComment(request: LostFoundCommentPutRequest): Completable {
-        return lostFoundDataSource.putLostFoundComment(request).ignoreElement()
+    override fun putLostFoundComment(request: LostFoundCommentPutRequest): String {
+        return lostFoundDataSource.putLostFoundComment(request)
     }
 
-    override fun hideLostFound(lostFound: LostFound): Completable {
+    override fun hideLostFound(lostFound: LostFound): String {
         return lostFoundDataSource.hideLostFound(lostFound)
     }
 
-    override fun deleteLostFound(idx: Int): Completable {
-        return lostFoundDataSource.deleteLostFound(idx).ignoreElement()
+    override fun deleteLostFound(idx: Int): String {
+        return lostFoundDataSource.deleteLostFound(idx)
     }
 
-    override fun deleteLostFoundComment(commentIdx: Int): Completable {
-        return lostFoundDataSource.deleteLostFoundComment(commentIdx).ignoreElement()
+    override fun deleteLostFoundComment(commentIdx: Int): String {
+        return lostFoundDataSource.deleteLostFoundComment(commentIdx)
     }
 }
