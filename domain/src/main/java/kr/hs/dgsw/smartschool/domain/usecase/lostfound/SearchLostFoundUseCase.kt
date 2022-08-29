@@ -10,7 +10,7 @@ import javax.inject.Inject
 class SearchLostFoundUseCase @Inject constructor(
     private val lostFoundRepository: LostFoundRepository
 ) : BaseUseCase<SearchLostFoundUseCase.Params, List<LostFound>>() {
-    
+
     data class Params(val search: String)
 
     override fun invoke(params: Params): Flow<Resource<List<LostFound>>> = execute{
