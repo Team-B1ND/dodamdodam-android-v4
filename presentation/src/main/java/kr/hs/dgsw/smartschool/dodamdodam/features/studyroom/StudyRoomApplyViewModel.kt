@@ -11,9 +11,11 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
+import kr.hs.dgsw.smartschool.domain.request.StudyRoomRequest
 import kr.hs.dgsw.smartschool.domain.usecase.studyroom.StudyRoomUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ModifyAppliedStudyRoom
 import kr.hs.dgsw.smartschool.domain.usecase.place.GetAllPlaceUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ApplyStudyRoom
 import kr.hs.dgsw.smartschool.domain.usecase.time.TimeUseCases
 import java.time.LocalDate
 import javax.inject.Inject
@@ -68,39 +70,52 @@ class StudyRoomApplyViewModel @Inject constructor(
 
             when {
                 currentCheckPlaces.value?.get(this) == null -> {
-                    changeLocationRemote(params = ModifyAppliedStudyRoom.Params(StudyRoom(currentTimeTable, place)), currentTimeTable.name)
+                    applyLocationRemote(params = ApplyStudyRoom.Params(
+                        studyRoomList = listOf(
+                            StudyRoomRequest.RequestStudyRoom(
+                                placeId = place.id,
+                                timeTableId = currentTimeTable.id,
+                            )
+                        )
+                    ), currentTimeTable.name)
                 }
                 currentCheckPlaces.value?.get(this) != place -> {
-                    val idx: Int = myStudyRoomList.find { it.timeTableIdx == currentTimeTable.id }?.id ?: return
-                    val location = Location(null, null, null, place.id)
-                    putLocationRemote(params = PutLocation.Params(idx = idx, location = location), currentTimeTable.name)
+                    val idx: Int = myStudyRoomList.find { it.timeTable.id == currentTimeTable.id }?.id ?: return
+                    modifyLocationRemote(params = ModifyAppliedStudyRoom.Params(
+                        studyRoomList = listOf(
+                            StudyRoomRequest.RequestStudyRoom(
+                                placeId = place.id,
+                                timeTableId = currentTimeTable.id
+                            )
+                        )
+                    ), currentTimeTable.name)
                 }
                 else -> {
-                    val idx: Int = myStudyRoomList.find { it.timeTableIdx == currentTimeTable.id }?.id ?: return
-                    deleteLocationRemote(idx = idx, currentTimeTable.name)
+                    val idx: Int = myStudyRoomList.find { it.timeTable.id == currentTimeTable.id }?.id ?: return
+                    cancelLocationRemote(idx = idx, currentTimeTable.name)
                 }
             }
         } ?: viewEvent(EVENT_NO_TIME)
     }
 
-    private fun changeLocationRemote(params: ModifyAppliedStudyRoom.Params, timeName: String) {
-        studyRoomUseCases.modifyAppliedStudyRoom(params).divideResult(
+    private fun applyLocationRemote(params: ApplyStudyRoom.Params, timeName: String) {
+        studyRoomUseCases.applyStudyRoom(params).divideResult(
             isApplyStudRoomyLoading,
             { _applyStudyRoomState.value = ApplyStudyRoomState(message = "$timeName 위치 신청 성공") },
             { _applyStudyRoomState.value = ApplyStudyRoomState(error = it ?: "위치 신청에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 
-    private fun putLocationRemote(params: PutLocation.Params, timeName: String) {
-        studyRoomUseCases.putLocation(params).divideResult(
+    private fun modifyLocationRemote(params: ModifyAppliedStudyRoom.Params, timeName: String) {
+        studyRoomUseCases.modifyAppliedStudyRoom(params).divideResult(
             isApplyStudRoomyLoading,
             { _applyStudyRoomState.value = ApplyStudyRoomState(message = "$timeName 위치 수정 성공") },
             { _applyStudyRoomState.value = ApplyStudyRoomState(error = it ?: "위치 수정에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 
-    private fun deleteLocationRemote(idx: Int, timeName: String) {
-        studyRoomUseCases.deleteLocation(idx).divideResult(
+    private fun cancelLocationRemote(idx: Int, timeName: String) {
+        studyRoomUseCases.cancelStudyRoom(idx).divideResult(
             isApplyStudRoomyLoading,
             { _applyStudyRoomState.value = ApplyStudyRoomState(message = "$timeName 위치 삭제 성공") },
             { _applyStudyRoomState.value = ApplyStudyRoomState(error = it ?: "위치 삭제에 실패했습니다.") }
@@ -124,10 +139,9 @@ class StudyRoomApplyViewModel @Inject constructor(
     }
 
     fun getMyLocation() {
-        val today = LocalDate.now().toString()
-        studyRoomUseCases.getMyStudyRoom(today).divideResult(
+        studyRoomUseCases.getMyStudyRoom(Unit).divideResult(
             isGetMyStudyRoomLoading,
-            { _getMyStudyRoomState.value = GetMyStudyRoomState(myLocations = it ?: emptyList()) },
+            { _getMyStudyRoomState.value = GetMyStudyRoomState(myStudyRooms = it ?: emptyList()) },
             { _getMyStudyRoomState.value = GetMyStudyRoomState(error = it ?: "자신의 위치를 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)
     }
