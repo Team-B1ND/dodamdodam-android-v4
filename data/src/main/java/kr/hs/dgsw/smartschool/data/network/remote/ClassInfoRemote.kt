@@ -6,5 +6,5 @@ import kr.hs.dgsw.smartschool.domain.model.classroom.Classroom
 
 class ClassInfoRemote(override val api: ClassInfoApi) : BaseRemote<ClassInfoApi>() {
     suspend fun getClassInfo(): List<Classroom> =
-        api.getAllClass().data.classrooms
+        api.getClassRooms().data
 }

@@ -8,6 +8,6 @@ class TimeTableRemote(
     override val api: TimeTableApi
 ) : BaseRemote<TimeTableApi>() {
 
-    suspend fun getAllTime(): List<TimeTable> = api.getTimeTables().data.timeTables
+    suspend fun getAllTime(): List<TimeTable> = api.getTimeTables().data
 
 }

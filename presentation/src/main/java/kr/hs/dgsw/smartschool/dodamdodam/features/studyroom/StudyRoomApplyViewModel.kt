@@ -80,7 +80,7 @@ class StudyRoomApplyViewModel @Inject constructor(
                     ), currentTimeTable.name)
                 }
                 currentCheckPlaces.value?.get(this) != place -> {
-                    val idx: Int = myStudyRoomList.find { it.timeTable.id == currentTimeTable.id }?.id ?: return
+                    val idx: Int = myStudyRoomList.find { it.timeTable?.id == currentTimeTable.id }?.id ?: return
                     modifyLocationRemote(params = ModifyAppliedStudyRoom.Params(
                         studyRoomList = listOf(
                             StudyRoomRequest.RequestStudyRoom(
@@ -91,7 +91,7 @@ class StudyRoomApplyViewModel @Inject constructor(
                     ), currentTimeTable.name)
                 }
                 else -> {
-                    val idx: Int = myStudyRoomList.find { it.timeTable.id == currentTimeTable.id }?.id ?: return
+                    val idx: Int = myStudyRoomList.find { it.timeTable?.id == currentTimeTable.id }?.id ?: return
                     cancelLocationRemote(idx = idx, currentTimeTable.name)
                 }
             }

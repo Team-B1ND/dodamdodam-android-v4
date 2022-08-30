@@ -13,19 +13,19 @@ class StudyRoomCheckAdapter(val onClickStudyRoomCard: (Int) -> Unit) : BaseListA
     StudyRoomDiffUtilCallback
 ) {
     override fun action(item: StudyRoom, binding: ItemStudyRoomCheckBinding) {
-        val start = item.timeTable.startTime.dropLast(3)
-        val end = item.timeTable.endTime.dropLast(3)
+        val start = item.timeTable?.startTime?.dropLast(3)
+        val end = item.timeTable?.endTime?.dropLast(3)
 
         val currentTime = Date().timeFormat()
 
-        binding.tvLocation.text = item.place?.name ?: if (start >= currentTime) "미신청" else "시간대가 지났습니다"
+        binding.tvLocation.text = item.place?.name ?: if (start!! >= currentTime) "미신청" else "시간대가 지났습니다"
         binding.tvTime.text = "$start ~ $end"
 
-        binding.tvTimeTable.text = item.timeTable.name
+        binding.tvTimeTable.text = item.timeTable!!.name
 
         binding.root.setOnClickListener {
             // onOpenLocationApply.value = item.timeTableIdx ?: 0
-            onClickStudyRoomCard(item.timeTable.id)
+            onClickStudyRoomCard(item.timeTable!!.id)
         }
     }
 }

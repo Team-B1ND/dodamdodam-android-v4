@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.data.network.remote
 
+import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.StudyRoomApi
 import kr.hs.dgsw.smartschool.data.network.response.data.DefaultStudyRoomData
@@ -33,7 +34,10 @@ class StudyRoomRemote(override val api: StudyRoomApi) : BaseRemote<StudyRoomApi>
     suspend fun createDefaultStudyRoomByWeekType(request: DefaultStudyRoomByTypeRequest): String =
         api.createDefaultStudyRoomByWeekType(request).message
 
-    suspend fun getMyStudyRoom(): List<StudyRoom> =
-        api.getMyStudyRoom().data.studyRooms
+    suspend fun getMyStudyRoom(): List<StudyRoom?> {
+        Log.d("TestTest", "getMyStudyRoom: InRemote")
+        return api.getMyStudyRoom().data
+    }
+
 
 }

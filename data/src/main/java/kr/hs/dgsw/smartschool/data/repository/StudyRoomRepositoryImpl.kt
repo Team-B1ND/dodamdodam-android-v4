@@ -24,7 +24,7 @@ class StudyRoomRepositoryImpl @Inject constructor(
     private val timeMapper = TimeTableMapper()
     private val placeMapper = PlaceMapper()
 
-    private lateinit var studyRoomList: List<StudyRoom>
+    private lateinit var studyRoomList: List<StudyRoom?>
     private lateinit var defaultStudyRoomList: List<DefaultStudyRoom>
     private lateinit var timeTableList: List<TimeTable>
     private lateinit var placeList: List<Place>
@@ -45,7 +45,7 @@ class StudyRoomRepositoryImpl @Inject constructor(
 
         studyRoomList.forEach { studyRoom ->
             placeList.forEach { place ->
-                if (studyRoom.place?.id == place.id)
+                if (studyRoom?.place?.id == place.id)
                     studyRoom.place = place
             }
         }
@@ -54,7 +54,7 @@ class StudyRoomRepositoryImpl @Inject constructor(
             result.add(StudyRoom(timeTable))
 
             studyRoomList.forEach { studyRoom ->
-                if (studyRoom.timeTable.id == timeTable.id) {
+                if (studyRoom?.timeTable?.id == timeTable.id) {
                     result[index] = StudyRoom(timeTable, studyRoom)
                 }
             }

@@ -100,7 +100,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 mBinding.tvMealTitle.text = "내일의 급식"
             }
             mBinding.tvMealDate.text = String.format("%d.%d", date.monthValue, date.dayOfMonth)
-            getMealList(date)
+            // getMealList(date)
 
             lifecycleScope.launchWhenStarted {
                 getMealState.collect { state ->

@@ -46,6 +46,6 @@ interface StudyRoomApi {
     ): Response<Any>
 
     @GET("study-room/my")
-    suspend fun getMyStudyRoom(): Response<StudyRoomData>
+    suspend fun getMyStudyRoom(): Response<List<StudyRoom?>>
 
 }

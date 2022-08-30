@@ -7,14 +7,22 @@ import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
 
 data class StudyRoom(
-    @field:SerializedName("date") val date: String?,
-    @field:SerializedName("id") val id: Int?,
-    @field:SerializedName("place") var place: Place?,
-    @field:SerializedName("status") val status: String?,
-    @field:SerializedName("student") val student: Student?,
-    @field:SerializedName("teacher") val teacher: Teacher?,
-    @field:SerializedName("time_table") val timeTable: TimeTable
+    @SerializedName("date") val date: String?,
+    @SerializedName("id") val id: Int?,
+    @SerializedName("place") var place: Place?,
+    @SerializedName("status") val status: StudyRoomStatus?,
+    @SerializedName("student") val student: StudentId?,
+    @SerializedName("teacher") val teacher: TeacherId?,
+    @SerializedName("timeTable") val timeTable: TimeTable?
 ): Cloneable {
+
+    data class StudentId(
+        val id: Int
+    )
+
+    data class TeacherId(
+        val id: Int
+    )
 
     constructor(timetable: TimeTable, place: Place): this(
         null,

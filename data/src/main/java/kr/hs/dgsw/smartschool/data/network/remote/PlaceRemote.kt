@@ -6,6 +6,6 @@ import kr.hs.dgsw.smartschool.domain.model.place.Place
 
 class PlaceRemote(override val api: PlaceApi) : BaseRemote<PlaceApi>() {
 
-    suspend fun getAllPlace(): List<Place> = api.getPlaces().data.places
+    suspend fun getAllPlace(): List<Place> = api.getPlaces().data
 
 }

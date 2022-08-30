@@ -5,11 +5,10 @@ import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
 import kr.hs.dgsw.smartschool.domain.util.Utils.encryptSHA512
 import java.security.NoSuchAlgorithmException
 
-data class MyInfoChangeRequest(
-    var phone: String?,
+data class ModifyMemberInfoRequest(
     var email: String?,
-    @SerializedName("profileImage")
-    var profileImage: Picture?,
+    var phone: String?,
+    @SerializedName("profileImage") var profileImage: Picture?,
     var pw: String?
 ) {
 

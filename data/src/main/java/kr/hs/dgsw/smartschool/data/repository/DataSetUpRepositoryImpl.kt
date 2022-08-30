@@ -14,11 +14,13 @@ class DataSetUpRepositoryImpl @Inject constructor(
     private val timeTableDataSource: TimeTableDataSource
 ) : DataSetUpRepository {
 
-    override suspend fun setUpData() {
+    override suspend fun setUpData(): String {
         classInfoDataSource.updateClassInfoList()
         placeDataSource.updatePlaceList()
         timeTableDataSource.updateTimeList()
         teacherDataSource.updateAllTeacher()
+
+        return "데이터를 업데이트 하였습니다."
     }
 
     override suspend fun setUpTeacher() {

@@ -38,8 +38,8 @@ class HomeViewModel @Inject constructor(
     private val _getMyStudyRoomState = MutableSharedFlow<GetMyStudyRoomState>()
     val getMyStudyRoomState: SharedFlow<GetMyStudyRoomState> = _getMyStudyRoomState
 
-    private val _dataSetUpState = MutableStateFlow(DataSetUpState())
-    val dataSetUpState: StateFlow<DataSetUpState> = _dataSetUpState
+    private val _dataSetUpState = MutableSharedFlow<DataSetUpState>()
+    val dataSetUpState: SharedFlow<DataSetUpState> = _dataSetUpState
 
     private val _getAllowSongState = MutableStateFlow<GetAllowSongState>(GetAllowSongState())
     val getAllowSongState: StateFlow<GetAllowSongState> = _getAllowSongState
@@ -52,7 +52,7 @@ class HomeViewModel @Inject constructor(
     init {
         combineLoadingVariable(isDataSetUpLoading, isGetMealLoading, isGetMyStudyRoomLoading, isGetAllowSongLoading)
         dataSetUp()
-        getAllowSong()
+        //getAllowSong()
     }
 
     fun getMealList(date: LocalDate) {
@@ -66,8 +66,8 @@ class HomeViewModel @Inject constructor(
     private fun dataSetUp() {
         setUpUseCases.dataSetUp(Unit).divideResult(
             isDataSetUpLoading,
-            { _dataSetUpState.value = DataSetUpState(result = it) },
-            { _dataSetUpState.value = DataSetUpState(error = it ?: "데이터를 업데이트 하지 못하였습니다.") }
+            { viewModelScope.launch { _dataSetUpState.emit(DataSetUpState(result = it ?: "데이터 업데이트에 성공하였습니다.")) } },
+            {  viewModelScope.launch { _dataSetUpState.emit(DataSetUpState(error = it ?: "데이터를 업데이트 하지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
 

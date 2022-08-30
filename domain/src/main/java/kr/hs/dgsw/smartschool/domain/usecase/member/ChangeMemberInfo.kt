@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
 import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
 import kr.hs.dgsw.smartschool.domain.repository.StudentRepository
-import kr.hs.dgsw.smartschool.domain.request.MyInfoChangeRequest
+import kr.hs.dgsw.smartschool.domain.request.ModifyMemberInfoRequest
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 
@@ -14,8 +14,7 @@ class ChangeMemberInfo @Inject constructor(
 
     override operator fun invoke(params: Params): Flow<Resource<String>> = execute {
         repository.changeMemberInfo(
-            params.memberId,
-            MyInfoChangeRequest(
+            ModifyMemberInfoRequest(
                 params.phone,
                 params.email,
                 params.profileImage
