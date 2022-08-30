@@ -23,6 +23,9 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/main_home" />
+        <action
+            android:id="@+id/action_main_home_to_lostFoundFragment"
+            app:destination="@id/lostFoundFragment" />
     </fragment>
     <fragment
         android:id="@+id/main_profile"
@@ -123,4 +126,23 @@
         android:id="@+id/outWriteFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.out.write.OutWriteFragment"
         android:label="OutWriteFragment" />
+    <fragment
+        android:id="@+id/lostFoundFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.LostFoundFragment"
+        android:label="LostFoundFragment" >
+        <action
+            android:id="@+id/action_lostFoundFragment_to_lostFoundCommentFragment"
+            app:destination="@id/lostFoundCommentFragment" />
+        <action
+            android:id="@+id/action_lostFoundFragment_to_lostFoundWriteFragment"
+            app:destination="@id/lostFoundWriteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/lostFoundCommentFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.LostFoundCommentFragment"
+        android:label="LostFoundCommentFragment" />
+    <fragment
+        android:id="@+id/lostFoundWriteFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.LostFoundWriteFragment"
+        android:label="LostFoundWriteFragment" />
 </navigation>

@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound
 
 import androidx.lifecycle.MutableLiveData
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
@@ -8,6 +9,7 @@ import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFoundUseCase
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
 import javax.inject.Inject
 
+@HiltViewModel
 class LostFoundViewModel @Inject constructor(
     private val useCases : LostFoundUseCases
 ) : BaseViewModel(){

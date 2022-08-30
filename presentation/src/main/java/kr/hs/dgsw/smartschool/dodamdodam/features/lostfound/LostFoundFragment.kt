@@ -1,15 +1,16 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound
 
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
+import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.LostFoundAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundBinding
-import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostInfo
-import java.time.LocalDate
 
+@AndroidEntryPoint
 class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewModel>(), LostFoundAdapter.LostFoundCallBack {
     override val viewModel: LostFoundViewModel by viewModels()
     private lateinit var lostFoundAdapter: LostFoundAdapter
@@ -19,10 +20,10 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     }
 
     override fun openComment(idx: Int) {
-
+        findNavController().navigate(R.id.action_lostFoundFragment_to_lostFoundCommentFragment)
     }
 
-    private fun setBusInfo(lostFoundList: List<LostFound>): List<LostInfo> {
+    private fun setLostInfo(lostFoundList: List<LostFound>): List<LostInfo> {
         val list: MutableList<LostInfo> = mutableListOf()
         // val today = LocalDate.now()
         lostFoundList.forEach {
@@ -41,6 +42,6 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         return list.toList()
     }
     private fun setRecyclerView(){
-        lostFoundAdapter.submitList(setBusInfo(viewModel.getLostFoundState.value.list))
+        lostFoundAdapter.submitList(setLostInfo(viewModel.getLostFoundState.value.list))
     }
 }

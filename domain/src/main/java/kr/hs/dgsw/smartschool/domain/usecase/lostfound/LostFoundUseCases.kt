@@ -11,5 +11,6 @@ data class LostFoundUseCases(
     val postLostFoundComment : PostLostFoundCommentUseCase,
     val postLostFound: PostLostFoundUseCase,
     val putLostFoundComment : PutLostFoundCommentUseCase,
-    val putLostFound: PutLostFoundUseCase
+    val putLostFound: PutLostFoundUseCase,
+    val searchLostFoundUseCase: SearchLostFoundUseCase
 )

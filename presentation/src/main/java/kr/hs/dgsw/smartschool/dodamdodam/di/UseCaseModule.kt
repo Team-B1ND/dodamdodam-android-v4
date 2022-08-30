@@ -4,18 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kr.hs.dgsw.smartschool.domain.repository.AccountRepository
-import kr.hs.dgsw.smartschool.domain.repository.BusRepository
-import kr.hs.dgsw.smartschool.domain.repository.DataSetUpRepository
-import kr.hs.dgsw.smartschool.domain.repository.LocationRepository
-import kr.hs.dgsw.smartschool.domain.repository.MealRepository
-import kr.hs.dgsw.smartschool.domain.repository.OutRepository
-import kr.hs.dgsw.smartschool.domain.repository.PointRepository
-import kr.hs.dgsw.smartschool.domain.repository.SongRepository
-import kr.hs.dgsw.smartschool.domain.repository.StudentRepository
-import kr.hs.dgsw.smartschool.domain.repository.TeacherRepository
-import kr.hs.dgsw.smartschool.domain.repository.TimeRepository
-import kr.hs.dgsw.smartschool.domain.repository.TokenRepository
+import kr.hs.dgsw.smartschool.domain.repository.*
 import kr.hs.dgsw.smartschool.domain.usecase.account.AccountUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.account.DeleteAccount
 import kr.hs.dgsw.smartschool.domain.usecase.account.GetAccount
@@ -34,6 +23,7 @@ import kr.hs.dgsw.smartschool.domain.usecase.location.GetMyLocation
 import kr.hs.dgsw.smartschool.domain.usecase.location.LocationUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.location.PostLocation
 import kr.hs.dgsw.smartschool.domain.usecase.location.PutLocation
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.*
 import kr.hs.dgsw.smartschool.domain.usecase.meal.DeleteMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
@@ -79,6 +69,22 @@ class UseCaseModule {
         MealUseCases(
             getAllMeal = GetAllMeal(repository),
             deleteMeal = DeleteMeal(repository)
+        )
+
+    @Provides
+    @Singleton
+    fun provideLostFoundUseCases(repository: LostFoundRepository): LostFoundUseCases =
+        LostFoundUseCases(
+            deleteLostFound = DeleteLostFoundUseCase(repository),
+            deleteLostFoundComment = DeleteLostFoundCommentUseCase(repository),
+            getLostFound = GetLostFoundUseCase(repository),
+            getLostFoundComment = GetLostFoundCommentUseCase(repository),
+            hideLostFound = HideLostFoundUseCase(repository),
+            postLostFound = PostLostFoundUseCase(repository),
+            postLostFoundComment = PostLostFoundCommentUseCase(repository),
+            putLostFound = PutLostFoundUseCase(repository),
+            putLostFoundComment = PutLostFoundCommentUseCase(repository),
+            searchLostFoundUseCase = SearchLostFoundUseCase(repository)
         )
 
     @Provides
