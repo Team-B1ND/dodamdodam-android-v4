@@ -8,13 +8,13 @@ import kr.hs.dgsw.smartschool.data.database.entity.TimeEntity
 @Dao
 interface TimeDao : BaseDao<TimeEntity> {
 
-    @Query("SELECT * FROM time_table WHERE type=1")
+    @Query("SELECT * FROM time_table WHERE type='WEEKDAY'")
     suspend fun getAllWeekdayTime(): List<TimeEntity>
 
-    @Query("SELECT * FROM time_table WHERE type=2")
+    @Query("SELECT * FROM time_table WHERE type='WEEKEND'")
     suspend fun getAllWeekendTime(): List<TimeEntity>
 
-    @Query("SELECT * FROM time_table WHERE idx=:idx")
+    @Query("SELECT * FROM time_table WHERE id=:idx")
     suspend fun getTime(idx: Int): TimeEntity
 
     @Query("SELECT * FROM time_table")

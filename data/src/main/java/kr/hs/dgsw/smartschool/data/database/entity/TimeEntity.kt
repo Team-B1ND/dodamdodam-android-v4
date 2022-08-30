@@ -6,7 +6,7 @@ import kr.hs.dgsw.smartschool.domain.model.time.WeekType
 
 @Entity(tableName = "time_table")
 data class TimeEntity(
-    @PrimaryKey val idx: Int,
+    @PrimaryKey val id: Int,
     val name: String,
     val type: String,
     val startTime: String,

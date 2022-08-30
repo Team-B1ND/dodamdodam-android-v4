@@ -20,6 +20,8 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
 import kr.hs.dgsw.smartschool.domain.model.song.VideoYoutubeData
+import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
+import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.Date

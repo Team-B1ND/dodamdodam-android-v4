@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.data.repository
 
+import android.util.Log
 import kr.hs.dgsw.smartschool.data.datasource.PlaceDataSource
 import kr.hs.dgsw.smartschool.data.datasource.StudyRoomDataSource
 import kr.hs.dgsw.smartschool.data.datasource.TimeTableDataSource
@@ -35,7 +36,17 @@ class StudyRoomRepositoryImpl @Inject constructor(
 
     override suspend fun getMyStudyRoom(): List<StudyRoom> {
         this.studyRoomList = studyRoomDataSource.getMyStudyRoom()
-        this.timeTableList = timeTableDataSource.getAllTime().map { timeEntity -> timeMapper.mapToModel(timeEntity) }
+        this.timeTableList = timeTableDataSource.getAllTime().map { timeEntity ->
+            Log.d("TestTest", "getMyStudyRoom: $timeEntity")
+            timeMapper.mapToModel(timeEntity)
+        }
+        if (studyRoomList.isEmpty()) {
+            val initStudyRoomList = mutableListOf<StudyRoom>()
+            this.timeTableList.forEach {
+                initStudyRoomList.add(StudyRoom(it))
+            }
+            return initStudyRoomList
+        }
         this.placeList = placeDataSource.getAllPlace().map { placeEntity -> placeMapper.mapToModel(placeEntity) }
         return getStudyRoomList()
     }

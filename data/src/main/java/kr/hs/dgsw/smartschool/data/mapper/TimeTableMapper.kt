@@ -8,7 +8,7 @@ import kr.hs.dgsw.smartschool.domain.model.time.WeekType
 class TimeTableMapper : BaseEntityMapper<TimeTable, TimeEntity> {
     override fun mapToModel(entity: TimeEntity): TimeTable {
         return TimeTable(
-            entity.idx,
+            entity.id,
             entity.name,
             WeekType.valueOf(entity.type),
             entity.startTime,
