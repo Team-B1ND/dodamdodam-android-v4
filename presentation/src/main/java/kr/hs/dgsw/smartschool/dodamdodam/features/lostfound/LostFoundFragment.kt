@@ -15,8 +15,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     override val viewModel: LostFoundViewModel by viewModels()
     private lateinit var lostFoundAdapter: LostFoundAdapter
     override fun observerViewModel() {
-        lostFoundAdapter = LostFoundAdapter(requireContext(), this)
-        mBinding.rvLostAndFound.adapter = lostFoundAdapter
+        setRecyclerView()
     }
 
     override fun openComment(idx: Int) {
@@ -24,6 +23,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     }
 
     private fun setLostInfo(lostFoundList: List<LostFound>): List<LostInfo> {
+        viewModel.getLostFoundList(4,mBinding.lostFoundSpinner.selectedItemPosition)
         val list: MutableList<LostInfo> = mutableListOf()
         // val today = LocalDate.now()
         lostFoundList.forEach {
@@ -42,6 +42,8 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         return list.toList()
     }
     private fun setRecyclerView(){
+        lostFoundAdapter = LostFoundAdapter(requireContext(), this)
+        mBinding.rvLostAndFound.adapter = lostFoundAdapter
         lostFoundAdapter.submitList(setLostInfo(viewModel.getLostFoundState.value.list))
     }
 }

@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.sign.`in`
 
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +23,7 @@ class SignInActivity : BaseActivity<ActivitySignInBinding, SignInViewModel>() {
                 signInState.collect { state ->
                     if (state.error.isNotBlank()) {
                         Toast.makeText(this@SignInActivity, state.error, Toast.LENGTH_SHORT).show()
+                        Log.e("SignInActivity",state.error)
                     }
                 }
             }
