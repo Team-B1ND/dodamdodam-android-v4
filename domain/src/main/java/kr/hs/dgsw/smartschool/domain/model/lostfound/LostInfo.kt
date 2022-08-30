@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.domain.model.lostfound
 
 data class LostInfo(
+    val idx : Int,
     val img : String = "",
     val name : String = "",
     val uploadTime : String = "",

@@ -17,38 +17,30 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         lostFoundAdapter = LostFoundAdapter(requireContext(), this)
         mBinding.rvLostAndFound.adapter = lostFoundAdapter
     }
+
     override fun openComment(idx: Int) {
         viewModel.openComment(idx)
     }
-    private fun setBusInfo(lostFoundList: List<LostFound>): List<BusInfo> {
-        val list: MutableList<LostFound> = mutableListOf()
+
+    private fun setBusInfo(lostFoundList: List<LostFound>): List<LostInfo> {
+        val list: MutableList<LostInfo> = mutableListOf()
         // val today = LocalDate.now()
-       lostFoundList.forEach {
-           list.add(LostInfo(
-               idx =
-           ))
-       }
-
-
-        var rideAble = ""
-        var isSelected: Boolean = false
-        todayBus.bustList.forEach {
-            if (it.busMemberlength < (it.peopleLimit)) {
-                rideAble = "탑승가능"
-            } else if (it.busMemberlength >= it.peopleLimit) {
-                rideAble = "탑승불가"
-            }
-            isSelected = it.idx == busId
+        lostFoundList.forEach {
             list.add(
-                BusInfo(
-                    it.idx,
-                    it.busName,
-                    rideAble,
-                    it.busMemberlength.toString() + " / " + it.peopleLimit.toString(),
-                    it.leaveTime,
-                    isSelected
+                LostInfo(
+                    idx = it.idx,
+                    img = it.profileImage,
+                    name = it.name ?: "작성자 모름",
+                    uploadTime = it.uploadTime.toString(),
+                    title = it.title,
+                    content = it.content,
+                    place = it.place ?: ""
                 )
             )
         }
-        return list
+        return list.toList()
+    }
+    private fun setRecyclerView(){
+        lostFoundAdapter.submitList(setBusInfo(viewModel.getLostFoundState.value.list))
+    }
 }
