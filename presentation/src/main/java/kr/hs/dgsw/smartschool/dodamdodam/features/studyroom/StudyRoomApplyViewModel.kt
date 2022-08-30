@@ -8,6 +8,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
+import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.ApplyStudyRoomState
+import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetAllTimeState
+import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetMyStudyRoomState
+import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetPlaceState
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
@@ -17,7 +21,6 @@ import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ModifyAppliedStudyRoom
 import kr.hs.dgsw.smartschool.domain.usecase.place.GetAllPlaceUseCase
 import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ApplyStudyRoom
 import kr.hs.dgsw.smartschool.domain.usecase.time.TimeUseCases
-import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -57,7 +60,7 @@ class StudyRoomApplyViewModel @Inject constructor(
         combineLoadingVariable(isTimeTableLoading, isPlaceListLoading, isGetMyStudyRoomLoading, isApplyStudRoomyLoading)
         getTimeTable()
         getPlace()
-        getMyLocation()
+        getMyStudyRoom()
     }
 
     fun setCurrentTime(time: Int) {
@@ -138,7 +141,7 @@ class StudyRoomApplyViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
-    fun getMyLocation() {
+    fun getMyStudyRoom() {
         studyRoomUseCases.getMyStudyRoom(Unit).divideResult(
             isGetMyStudyRoomLoading,
             { _getMyStudyRoomState.value = GetMyStudyRoomState(myStudyRooms = it ?: emptyList()) },

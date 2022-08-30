@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.studyroom
+package kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state
 
 import kr.hs.dgsw.smartschool.domain.model.place.Place
 

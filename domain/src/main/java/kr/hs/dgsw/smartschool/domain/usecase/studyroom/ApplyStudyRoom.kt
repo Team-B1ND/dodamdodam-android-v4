@@ -13,7 +13,7 @@ class ApplyStudyRoom @Inject constructor(
 ) : BaseUseCase<ApplyStudyRoom.Params, String>() {
 
     override operator fun invoke(params: Params): Flow<Resource<String>> = execute {
-        repository.modifyAppliedStudyRoom(
+        repository.applyStudyRoom(
             request = StudyRoomRequest(
                 studyRoomList = params.studyRoomList
             )

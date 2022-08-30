@@ -109,12 +109,12 @@ class StudyRoomApplyFragment : BaseFragment<FragmentStudyRoomApplyBinding, Study
             viewModel.applyStudyRoomState.collect { state ->
                 if (state.message.isNotBlank()) {
                     mBinding.layout.shortSnack(state.message)
-                    viewModel.getMyLocation()
+                    viewModel.getMyStudyRoom()
                 }
 
                 if (state.error.isNotBlank()) {
                     shortToast(state.error)
-                    viewModel.getMyLocation()
+                    viewModel.getMyStudyRoom()
                 }
             }
         }

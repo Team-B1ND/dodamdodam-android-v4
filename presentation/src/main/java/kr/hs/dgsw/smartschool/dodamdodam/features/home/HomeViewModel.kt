@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.GetMyStudyRoomState
+import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetMyStudyRoomState
 import kr.hs.dgsw.smartschool.dodamdodam.features.meal.GetMealState
 import kr.hs.dgsw.smartschool.dodamdodam.features.setup.DataSetUpState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.GetAllowSongState
@@ -75,10 +75,12 @@ class HomeViewModel @Inject constructor(
         studyRoomUseCases.getMyStudyRoom(Unit).divideResult(
             isGetMyStudyRoomLoading,
             {
-                viewModelScope.launch { _getMyStudyRoomState.emit(GetMyStudyRoomState(
+                viewModelScope.launch { _getMyStudyRoomState.emit(
+                    GetMyStudyRoomState(
                     isUpdate = true,
                     myStudyRooms = it ?: emptyList()
-                )) }
+                )
+                ) }
                 it?.forEach { placeList -> Log.d("TestTest", "getMyLocation: ${placeList.place?.name}") }
             },
             { viewModelScope.launch { _getMyStudyRoomState.emit(GetMyStudyRoomState(error = it ?: "위치를 받아오지 못하였습니다.")) } }

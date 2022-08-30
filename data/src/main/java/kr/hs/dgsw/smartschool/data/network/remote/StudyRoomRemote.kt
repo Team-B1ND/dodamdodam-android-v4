@@ -3,8 +3,6 @@ package kr.hs.dgsw.smartschool.data.network.remote
 import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.StudyRoomApi
-import kr.hs.dgsw.smartschool.data.network.response.data.DefaultStudyRoomData
-import kr.hs.dgsw.smartschool.data.network.response.data.StudyRoomData
 import kr.hs.dgsw.smartschool.domain.model.studyroom.DefaultStudyRoom
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 import kr.hs.dgsw.smartschool.domain.request.DefaultStudyRoomByTypeRequest
