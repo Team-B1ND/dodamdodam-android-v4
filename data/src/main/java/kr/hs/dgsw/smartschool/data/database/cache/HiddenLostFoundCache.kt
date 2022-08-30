@@ -9,7 +9,7 @@ class HiddenLostFoundCache @Inject constructor(application: Application) : BaseC
 
     private val hiddenLostFoundDao = database.hiddenLostFoundDao()
 
-   suspend fun insertHiddenLostFound(hiddenLostFound: HiddenLostFoundEntity) = hiddenLostFoundDao.insert(hiddenLostFound)
+   suspend fun insertHiddenLostFound(hiddenLostFound: HiddenLostFoundEntity) = hiddenLostFoundDao.insertHiddenLostFound(hiddenLostFound.idx,hiddenLostFound.memberId,hiddenLostFound.title,hiddenLostFound.place?:"", hiddenLostFound.content,hiddenLostFound.contact?:"")
 
    suspend fun deleteAll() = hiddenLostFoundDao.deleteHiddenLostFound()
 

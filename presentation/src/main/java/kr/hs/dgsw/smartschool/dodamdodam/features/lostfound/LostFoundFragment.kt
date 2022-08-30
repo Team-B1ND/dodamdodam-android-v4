@@ -19,7 +19,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     }
 
     override fun openComment(idx: Int) {
-        viewModel.openComment(idx)
+
     }
 
     private fun setBusInfo(lostFoundList: List<LostFound>): List<LostInfo> {
