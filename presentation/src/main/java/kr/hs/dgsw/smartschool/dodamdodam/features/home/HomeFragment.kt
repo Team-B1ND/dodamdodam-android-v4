@@ -77,7 +77,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getMyStudyRoomState.collect { state ->
-                    if (state.myStudyRooms.isNotEmpty()) {
+                    if (state.isUpdate) {
                         state.myStudyRooms.forEach {
                             Log.d("TestTest", "collectMyLocation: ${it.place?.name}")
                         }
