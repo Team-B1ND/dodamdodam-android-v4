@@ -7,6 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.domain.repository.AccountRepository
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.repository.DataSetUpRepository
+import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
 import kr.hs.dgsw.smartschool.domain.repository.MealRepository
 import kr.hs.dgsw.smartschool.domain.repository.OutRepository
 import kr.hs.dgsw.smartschool.domain.repository.PointRepository
@@ -29,6 +30,17 @@ import kr.hs.dgsw.smartschool.domain.usecase.bus.GetMyBus
 import kr.hs.dgsw.smartschool.domain.usecase.bus.GetMyBusByMonth
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusApply
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusInfo
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFoundCommentUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFoundUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFoundCommentUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFoundUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.HideLostFoundUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.PostLostFound
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.PostLostFoundComment
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.PutLostFoundCommentUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.PutLostFoundUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.SearchLostFoundUseCase
 import kr.hs.dgsw.smartschool.domain.usecase.meal.DeleteMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases

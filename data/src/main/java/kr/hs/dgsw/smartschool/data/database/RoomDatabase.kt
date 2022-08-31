@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import kr.hs.dgsw.smartschool.data.database.dao.AccountDao
 import kr.hs.dgsw.smartschool.data.database.dao.ClassroomDao
+import kr.hs.dgsw.smartschool.data.database.dao.HiddenLostFoundDao
 import kr.hs.dgsw.smartschool.data.database.dao.MealDao
 import kr.hs.dgsw.smartschool.data.database.dao.MemberDao
 import kr.hs.dgsw.smartschool.data.database.dao.PlaceDao
@@ -14,6 +15,7 @@ import kr.hs.dgsw.smartschool.data.database.dao.TimeDao
 import kr.hs.dgsw.smartschool.data.database.dao.TokenDao
 import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
 import kr.hs.dgsw.smartschool.data.database.entity.ClassroomEntity
+import kr.hs.dgsw.smartschool.data.database.entity.HiddenLostFoundEntity
 import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
 import kr.hs.dgsw.smartschool.data.database.entity.MemberEntity
 import kr.hs.dgsw.smartschool.data.database.entity.PlaceEntity
@@ -30,7 +32,7 @@ import java.util.concurrent.Executors
         TimeEntity::class, PlaceEntity::class,
         ClassroomEntity::class, HiddenLostFoundEntity::class
     ],
-    version = 8,
+    version = 9,
     exportSchema = false
 )
 abstract class RoomDatabase : androidx.room.RoomDatabase() {
