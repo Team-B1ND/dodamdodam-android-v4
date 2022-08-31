@@ -9,12 +9,13 @@ package kr.hs.dgsw.smartschool.data.util
     SOCKET_HOST socket.dodam.b1nd.com/
 */
 object Constants {
-    const val mode = "RELEASE"
+    const val mode = "TEST"
     const val DEFAULT_HOST = "http://dodam.b1nd.com:80/api/v2/"
     const val SOCKET_HOST = "http://dodam.b1nd.com/"
-    const val TEST_HOST = "http://110.80.163.92:3000/api/v2/"
+    // const val TEST_HOST = "http://10.80.162.15:8080/"
+    const val TEST_HOST = "http://101.101.209.184:8080/"
     const val AUTH_HOST = "http://auth.dodam.b1nd.com/"
-    const val AUTH_TEST_HOST = "http://10.80.163.141:8080/"
+    const val AUTH_TEST_HOST = "http://10.80.162.15:8080/"
     const val IMAGE_HOST = "http://dodam.b1nd.com/api/image/"
 
     val SERVER_HOST = if (mode == "TEST") TEST_HOST else DEFAULT_HOST

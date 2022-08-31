@@ -1,16 +1,13 @@
 package kr.hs.dgsw.smartschool.domain.model.member
 
 import java.io.Serializable
-import java.util.Date
 
 open class Member(
-    val idx: Int,
-    val phone: String,
-    val id: String,
-    val name: String,
     val email: String,
-    val accessLevel: Int,
-    val allowed: MemberAllowedType,
-    val joinDate: Date?,
-    val profileImage: String?
+    val id: String,
+    val joinDate: String?,
+    val name: String,
+    val profileImage: String?,
+    val role: String,
+    val status: String
 ) : Serializable

@@ -2,40 +2,52 @@ package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.data.MemberData
-import kr.hs.dgsw.smartschool.data.network.response.data.MyInfoData
-import kr.hs.dgsw.smartschool.data.network.response.data.StudentData
-import kr.hs.dgsw.smartschool.data.network.response.data.TeacherData
 import kr.hs.dgsw.smartschool.domain.model.member.Member
-import kr.hs.dgsw.smartschool.domain.request.MyInfoChangeRequest
+import kr.hs.dgsw.smartschool.domain.model.member.Parent
+import kr.hs.dgsw.smartschool.domain.model.member.Student
+import kr.hs.dgsw.smartschool.domain.model.member.Teacher
+import kr.hs.dgsw.smartschool.domain.request.ModifyMemberInfoRequest
+import kr.hs.dgsw.smartschool.domain.request.ModifyPwRequest
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
-import retrofit2.http.PUT
-import retrofit2.http.Query
+import retrofit2.http.PATCH
+import retrofit2.http.Path
 
 interface MemberApi {
 
     @GET("members")
-    suspend fun getAllMembers(
-        @Query("allowed") allowed: Int
-    ): Response<MemberData>
+    suspend fun getMembers(): Response<MemberData>
 
-    @GET("members/search")
-    suspend fun getMember(
-        @Query("id") id: String
-    ): Response<Member>
+    @PATCH("members")
+    suspend fun modifyMemberInfo(
+        @Body modifyMemberInfoRequest: ModifyMemberInfoRequest
+    ): Response<Any>
+
+    @DELETE("/members/{memberId}")
+    suspend fun deleteMember(
+        @Path("memberId") memberId: String
+    ): Response<Any>
 
     @GET("members/my")
-    suspend fun getMyInfo(): Response<MyInfoData>
+    suspend fun getMyInfo(): Response<Student>
+
+    @GET("members/parent")
+    suspend fun getParents(): Response<List<Parent>>
+
+    @PATCH("members/pw")
+    suspend fun modifyPw(
+        @Body modifyPwRequest: ModifyPwRequest
+    ): Response<Any>
+
+    @GET("members/search/{memberId}")
+    suspend fun getMember(
+        @Path("memberId") id: String
+    ): Response<Member>
 
     @GET("members/student")
-    suspend fun getStudents(): Response<StudentData>
+    suspend fun getStudents(): Response<List<Student>>
 
     @GET("members/teacher")
-    suspend fun getTeachers(): Response<TeacherData>
-
-    @PUT("members")
-    suspend fun changeMemberInfo(
-        @Query("memberId") memberId: String,
-        @Body myInfoChangeRequest: MyInfoChangeRequest
-    )
+    suspend fun getTeachers(): Response<List<Teacher>>
 }

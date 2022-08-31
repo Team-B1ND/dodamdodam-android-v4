@@ -4,7 +4,18 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kr.hs.dgsw.smartschool.domain.repository.*
+import kr.hs.dgsw.smartschool.domain.repository.AccountRepository
+import kr.hs.dgsw.smartschool.domain.repository.BusRepository
+import kr.hs.dgsw.smartschool.domain.repository.DataSetUpRepository
+import kr.hs.dgsw.smartschool.domain.repository.MealRepository
+import kr.hs.dgsw.smartschool.domain.repository.OutRepository
+import kr.hs.dgsw.smartschool.domain.repository.PointRepository
+import kr.hs.dgsw.smartschool.domain.repository.SongRepository
+import kr.hs.dgsw.smartschool.domain.repository.StudentRepository
+import kr.hs.dgsw.smartschool.domain.repository.StudyRoomRepository
+import kr.hs.dgsw.smartschool.domain.repository.TeacherRepository
+import kr.hs.dgsw.smartschool.domain.repository.TimeRepository
+import kr.hs.dgsw.smartschool.domain.repository.TokenRepository
 import kr.hs.dgsw.smartschool.domain.usecase.account.AccountUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.account.DeleteAccount
 import kr.hs.dgsw.smartschool.domain.usecase.account.GetAccount
@@ -18,12 +29,6 @@ import kr.hs.dgsw.smartschool.domain.usecase.bus.GetMyBus
 import kr.hs.dgsw.smartschool.domain.usecase.bus.GetMyBusByMonth
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusApply
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusInfo
-import kr.hs.dgsw.smartschool.domain.usecase.location.DeleteLocation
-import kr.hs.dgsw.smartschool.domain.usecase.location.GetMyLocation
-import kr.hs.dgsw.smartschool.domain.usecase.location.LocationUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.location.PostLocation
-import kr.hs.dgsw.smartschool.domain.usecase.location.PutLocation
-import kr.hs.dgsw.smartschool.domain.usecase.lostfound.*
 import kr.hs.dgsw.smartschool.domain.usecase.meal.DeleteMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
@@ -51,6 +56,15 @@ import kr.hs.dgsw.smartschool.domain.usecase.song.GetMySong
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetPendingSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.PostSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ApplyStudyRoom
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.CancelStudyRoom
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.CreateDefaultStudyRoom
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.CreateDefaultStudyRoomByWeekType
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.GetDefaultStudyRoom
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.GetMyStudyRoom
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.GetStudyRoomById
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ModifyAppliedStudyRoom
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.StudyRoomUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.time.GetAllTime
 import kr.hs.dgsw.smartschool.domain.usecase.time.GetStartTime
 import kr.hs.dgsw.smartschool.domain.usecase.time.TimeUseCases
@@ -129,12 +143,16 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideLocationUseCases(locationRepository: LocationRepository): LocationUseCases =
-        LocationUseCases(
-            getMyLocation = GetMyLocation(locationRepository),
-            postLocation = PostLocation(locationRepository),
-            putLocation = PutLocation(locationRepository),
-            deleteLocation = DeleteLocation(locationRepository)
+    fun provideLocationUseCases(studyRoomRepository: StudyRoomRepository): StudyRoomUseCases =
+        StudyRoomUseCases(
+            applyStudyRoom = ApplyStudyRoom(studyRoomRepository),
+            modifyAppliedStudyRoom = ModifyAppliedStudyRoom(studyRoomRepository),
+            getStudyRoomById = GetStudyRoomById(studyRoomRepository),
+            cancelStudyRoom = CancelStudyRoom(studyRoomRepository),
+            getDefaultStudyRoom = GetDefaultStudyRoom(studyRoomRepository),
+            createDefaultStudyRoom = CreateDefaultStudyRoom(studyRoomRepository),
+            createDefaultStudyRoomByWeekType = CreateDefaultStudyRoomByWeekType(studyRoomRepository),
+            getMyStudyRoom = GetMyStudyRoom(studyRoomRepository)
         )
 
     @Provides

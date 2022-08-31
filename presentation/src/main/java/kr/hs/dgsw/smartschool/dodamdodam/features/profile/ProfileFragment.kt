@@ -78,9 +78,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                 myInfoState.collect { state ->
                     if (state.myInfo != null) {
                         with(state.myInfo) {
-                            val generation = "%d%d%02d".format(grade, room, number)
-                            setProfileInfo(generation, name, email, profileImage ?: "")
-                            setNavData(email, phone, id, profileImage ?: "")
+                            val generation = "%d%d%02d".format(classroom.grade, classroom.room, number)
+                            setProfileInfo(generation, member.name, member.email, member.profileImage ?: "")
+                            setNavData(member.email, phone, member.id, member.profileImage ?: "")
                             endRefreshing()
                         }
 

@@ -11,6 +11,5 @@ class DataSetUp @Inject constructor(
 ) : BaseUseCase<Unit, String>() {
     override operator fun invoke(params: Unit): Flow<Resource<String>> = execute {
         repository.setUpData()
-        "데이터 업데이트에 성공했습니다."
     }
 }

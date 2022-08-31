@@ -18,14 +18,14 @@ class TeacherDataSource @Inject constructor(
     suspend fun getAllTeacher(): List<TeacherEntity> = cache.getAllTeacher().ifEmpty { getAllTeacherRemote() }
 
     suspend fun getAllTeacherRemote(): List<TeacherEntity> =
-        remote.getAllTeacher().teachers
+        remote.getTeachers()
             .map { teacher -> teacherMapper.mapToEntity(teacher) }
             .also { teacherEntities -> cache.insertTeachers(teacherEntities) }
 
     suspend fun updateAllTeacher() = cache.deleteAllTeacher().also { insertAllTeacherRemote() }
 
     suspend fun insertAllTeacherRemote() =
-        remote.getAllTeacher().also { insertAllTeacher(it.teachers) }
+        remote.getTeachers().also { insertAllTeacher(it) }
 
     suspend fun insertAllTeacher(teacherList: List<Teacher>) =
         cache.insertTeachers(teacherList.map { teacher -> teacherMapper.mapToEntity(teacher) })

@@ -5,9 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "time_table")
 data class TimeEntity(
-    @PrimaryKey val idx: Int,
+    @PrimaryKey val id: Int,
     val name: String,
-    val type: Int,
+    val type: String,
     val startTime: String,
     val endTime: String
 )

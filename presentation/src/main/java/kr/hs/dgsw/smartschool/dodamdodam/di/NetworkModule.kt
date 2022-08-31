@@ -30,11 +30,9 @@ class NetworkModule {
     fun provideHttpClient(tokenInterceptor: TokenInterceptor): OkHttpClient {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
-        // val errorResponseInterceptor = ErrorResponseInterceptor()
         val okhttpBuilder = OkHttpClient().newBuilder()
             .addInterceptor(interceptor)
             .addInterceptor(tokenInterceptor)
-        // .addInterceptor(errorResponseInterceptor)
         return okhttpBuilder.build()
     }
 
