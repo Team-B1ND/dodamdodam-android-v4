@@ -8,10 +8,9 @@ import javax.inject.Inject
 
 class CancelStudyRoom @Inject constructor(
     private val studyRoomRepository: StudyRoomRepository
-): BaseUseCase<Int, String>() {
+) : BaseUseCase<Int, String>() {
 
     override fun invoke(params: Int): Flow<Resource<String>> = execute {
         studyRoomRepository.cancelStudyRoom(params)
     }
-
 }

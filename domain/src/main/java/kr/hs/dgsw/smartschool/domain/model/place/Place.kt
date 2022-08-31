@@ -9,5 +9,4 @@ data class Place(
     override fun toString(): String {
         return name
     }
-
 }

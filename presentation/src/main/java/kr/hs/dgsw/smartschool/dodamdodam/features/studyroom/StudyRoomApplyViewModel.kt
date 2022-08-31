@@ -12,14 +12,14 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.ApplyStudyRoom
 import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetAllTimeState
 import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetMyStudyRoomState
 import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetPlaceState
-import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 import kr.hs.dgsw.smartschool.domain.model.place.Place
+import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
 import kr.hs.dgsw.smartschool.domain.request.StudyRoomRequest
-import kr.hs.dgsw.smartschool.domain.usecase.studyroom.StudyRoomUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ModifyAppliedStudyRoom
 import kr.hs.dgsw.smartschool.domain.usecase.place.GetAllPlaceUseCase
 import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ApplyStudyRoom
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ModifyAppliedStudyRoom
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.StudyRoomUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.time.TimeUseCases
 import javax.inject.Inject
 
@@ -73,25 +73,31 @@ class StudyRoomApplyViewModel @Inject constructor(
 
             when {
                 currentCheckPlaces.value?.get(this) == null -> {
-                    applyLocationRemote(params = ApplyStudyRoom.Params(
-                        studyRoomList = listOf(
-                            StudyRoomRequest.RequestStudyRoom(
-                                placeId = place.id,
-                                timeTableId = currentTimeTable.id,
+                    applyLocationRemote(
+                        params = ApplyStudyRoom.Params(
+                            studyRoomList = listOf(
+                                StudyRoomRequest.RequestStudyRoom(
+                                    placeId = place.id,
+                                    timeTableId = currentTimeTable.id,
+                                )
                             )
-                        )
-                    ), currentTimeTable.name)
+                        ),
+                        currentTimeTable.name
+                    )
                 }
                 currentCheckPlaces.value?.get(this) != place -> {
                     val idx: Int = myStudyRoomList.find { it.timeTable?.id == currentTimeTable.id }?.id ?: return
-                    modifyLocationRemote(params = ModifyAppliedStudyRoom.Params(
-                        studyRoomList = listOf(
-                            StudyRoomRequest.RequestStudyRoom(
-                                placeId = place.id,
-                                timeTableId = currentTimeTable.id
+                    modifyLocationRemote(
+                        params = ModifyAppliedStudyRoom.Params(
+                            studyRoomList = listOf(
+                                StudyRoomRequest.RequestStudyRoom(
+                                    placeId = place.id,
+                                    timeTableId = currentTimeTable.id
+                                )
                             )
-                        )
-                    ), currentTimeTable.name)
+                        ),
+                        currentTimeTable.name
+                    )
                 }
                 else -> {
                     val idx: Int = myStudyRoomList.find { it.timeTable?.id == currentTimeTable.id }?.id ?: return

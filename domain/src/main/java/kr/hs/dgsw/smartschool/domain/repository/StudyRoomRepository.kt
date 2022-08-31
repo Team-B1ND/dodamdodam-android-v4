@@ -23,5 +23,4 @@ interface StudyRoomRepository {
     suspend fun createDefaultStudyRoomByWeekType(request: DefaultStudyRoomByTypeRequest): String
 
     suspend fun getMyStudyRoom(): List<StudyRoom>
-
 }

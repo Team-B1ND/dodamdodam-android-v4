@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
-import kr.hs.dgsw.smartschool.data.network.response.data.ClassInfoData
 import kr.hs.dgsw.smartschool.domain.model.classroom.Classroom
 import retrofit2.http.GET
 

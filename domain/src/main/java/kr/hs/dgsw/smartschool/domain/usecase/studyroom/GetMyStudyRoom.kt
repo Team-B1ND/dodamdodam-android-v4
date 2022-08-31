@@ -14,7 +14,4 @@ class GetMyStudyRoom @Inject constructor(
     override fun invoke(params: Unit): Flow<Resource<List<StudyRoom>>> = execute {
         repository.getMyStudyRoom()
     }
-
 }
-
-

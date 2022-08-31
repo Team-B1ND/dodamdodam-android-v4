@@ -121,5 +121,4 @@ class StudyRoomRepositoryImpl @Inject constructor(
     override suspend fun createDefaultStudyRoomByWeekType(request: DefaultStudyRoomByTypeRequest): String {
         return studyRoomDataSource.createDefaultStudyRoomByWeekType(request)
     }
-
 }

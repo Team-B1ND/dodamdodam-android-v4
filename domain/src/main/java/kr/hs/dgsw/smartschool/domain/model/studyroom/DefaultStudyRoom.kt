@@ -11,21 +11,21 @@ data class DefaultStudyRoom(
     @field:SerializedName("student") val student: Student?,
     @field:SerializedName("timeTable") val timeTable: TimeTable
 ) {
-    constructor(timetable: TimeTable, place: Place): this(
+    constructor(timetable: TimeTable, place: Place) : this(
         null,
         place,
         null,
         timetable
     )
 
-    constructor(timeTable: TimeTable): this(
+    constructor(timeTable: TimeTable) : this(
         null,
         null,
         null,
         timeTable
     )
 
-    constructor(timeTable: TimeTable, defaultStudyRoom: DefaultStudyRoom): this(
+    constructor(timeTable: TimeTable, defaultStudyRoom: DefaultStudyRoom) : this(
         defaultStudyRoom.id,
         defaultStudyRoom.place,
         defaultStudyRoom.student,

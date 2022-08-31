@@ -1,8 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.model.studyroom
 
 import com.google.gson.annotations.SerializedName
-import kr.hs.dgsw.smartschool.domain.model.member.Student
-import kr.hs.dgsw.smartschool.domain.model.member.Teacher
 import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
 
@@ -14,7 +12,7 @@ data class StudyRoom(
     @SerializedName("student") val student: StudentId?,
     @SerializedName("teacher") val teacher: TeacherId?,
     @SerializedName("timeTable") val timeTable: TimeTable?
-): Cloneable {
+) : Cloneable {
 
     data class StudentId(
         val id: Int
@@ -24,7 +22,7 @@ data class StudyRoom(
         val id: Int
     )
 
-    constructor(timetable: TimeTable, place: Place): this(
+    constructor(timetable: TimeTable, place: Place) : this(
         null,
         null,
         place,
@@ -34,7 +32,7 @@ data class StudyRoom(
         timetable
     )
 
-    constructor(timeTable: TimeTable): this(
+    constructor(timeTable: TimeTable) : this(
         null,
         null,
         null,
@@ -44,7 +42,7 @@ data class StudyRoom(
         timeTable
     )
 
-    constructor(timeTable: TimeTable, studyRoom: StudyRoom): this(
+    constructor(timeTable: TimeTable, studyRoom: StudyRoom) : this(
         studyRoom.date,
         studyRoom.id,
         studyRoom.place,
@@ -57,5 +55,4 @@ data class StudyRoom(
     public override fun clone(): StudyRoom {
         return super.clone() as StudyRoom
     }
-
 }

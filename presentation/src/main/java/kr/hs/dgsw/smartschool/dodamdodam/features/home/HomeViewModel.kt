@@ -11,16 +11,16 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetMyStudyRoomState
 import kr.hs.dgsw.smartschool.dodamdodam.features.meal.GetMealState
 import kr.hs.dgsw.smartschool.dodamdodam.features.setup.DataSetUpState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.GetAllowSongState
-import kr.hs.dgsw.smartschool.domain.usecase.studyroom.StudyRoomUseCases
+import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetMyStudyRoomState
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetAllowSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.StudyRoomUseCases
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -52,7 +52,7 @@ class HomeViewModel @Inject constructor(
     init {
         combineLoadingVariable(isDataSetUpLoading, isGetMealLoading, isGetMyStudyRoomLoading, isGetAllowSongLoading)
         dataSetUp()
-        //getAllowSong()
+        // getAllowSong()
     }
 
     fun getMealList(date: LocalDate) {
@@ -67,7 +67,7 @@ class HomeViewModel @Inject constructor(
         setUpUseCases.dataSetUp(Unit).divideResult(
             isDataSetUpLoading,
             { viewModelScope.launch { _dataSetUpState.emit(DataSetUpState(result = it ?: "데이터 업데이트에 성공하였습니다.")) } },
-            {  viewModelScope.launch { _dataSetUpState.emit(DataSetUpState(error = it ?: "데이터를 업데이트 하지 못하였습니다.")) } }
+            { viewModelScope.launch { _dataSetUpState.emit(DataSetUpState(error = it ?: "데이터를 업데이트 하지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
 
@@ -75,12 +75,14 @@ class HomeViewModel @Inject constructor(
         studyRoomUseCases.getMyStudyRoom(Unit).divideResult(
             isGetMyStudyRoomLoading,
             {
-                viewModelScope.launch { _getMyStudyRoomState.emit(
-                    GetMyStudyRoomState(
-                    isUpdate = true,
-                    myStudyRooms = it ?: emptyList()
-                )
-                ) }
+                viewModelScope.launch {
+                    _getMyStudyRoomState.emit(
+                        GetMyStudyRoomState(
+                            isUpdate = true,
+                            myStudyRooms = it ?: emptyList()
+                        )
+                    )
+                }
                 it?.forEach { placeList -> Log.d("TestTest", "getMyLocation: ${placeList.place?.name}") }
             },
             { viewModelScope.launch { _getMyStudyRoomState.emit(GetMyStudyRoomState(error = it ?: "위치를 받아오지 못하였습니다.")) } }

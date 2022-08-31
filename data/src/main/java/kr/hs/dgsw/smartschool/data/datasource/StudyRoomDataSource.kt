@@ -3,8 +3,6 @@ package kr.hs.dgsw.smartschool.data.datasource
 import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.StudyRoomRemote
-import kr.hs.dgsw.smartschool.data.network.response.data.DefaultStudyRoomData
-import kr.hs.dgsw.smartschool.data.network.response.data.StudyRoomData
 import kr.hs.dgsw.smartschool.domain.model.studyroom.DefaultStudyRoom
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 import kr.hs.dgsw.smartschool.domain.request.DefaultStudyRoomByTypeRequest
@@ -30,12 +28,11 @@ class StudyRoomDataSource @Inject constructor(
     suspend fun createDefaultStudyRoom(request: DefaultStudyRoomRequest): String =
         remote.createDefaultStudyRoom(request)
 
-    suspend fun createDefaultStudyRoomByWeekType(request: DefaultStudyRoomByTypeRequest):String =
+    suspend fun createDefaultStudyRoomByWeekType(request: DefaultStudyRoomByTypeRequest): String =
         remote.createDefaultStudyRoomByWeekType(request)
 
     suspend fun getMyStudyRoom(): List<StudyRoom?> {
         Log.d("InRemote", "getMyStudyRoom: go")
         return remote.getMyStudyRoom()
     }
-
 }

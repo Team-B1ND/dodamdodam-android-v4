@@ -14,5 +14,4 @@ class GetStudyRoomById @Inject constructor(
     override fun invoke(params: Int): Flow<Resource<StudyRoom>> = execute {
         repository.getStudyRoomById(params)
     }
-
 }

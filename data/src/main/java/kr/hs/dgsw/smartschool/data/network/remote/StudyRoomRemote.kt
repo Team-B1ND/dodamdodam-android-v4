@@ -36,6 +36,4 @@ class StudyRoomRemote(override val api: StudyRoomApi) : BaseRemote<StudyRoomApi>
         Log.d("TestTest", "getMyStudyRoom: InRemote")
         return api.getMyStudyRoom().data
     }
-
-
 }

@@ -2,13 +2,16 @@ package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.data.DefaultStudyRoomData
-import kr.hs.dgsw.smartschool.data.network.response.data.StudyRoomData
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
-import kr.hs.dgsw.smartschool.domain.request.DefaultLocationRequest
 import kr.hs.dgsw.smartschool.domain.request.DefaultStudyRoomByTypeRequest
 import kr.hs.dgsw.smartschool.domain.request.DefaultStudyRoomRequest
 import kr.hs.dgsw.smartschool.domain.request.StudyRoomRequest
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.PATCH
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface StudyRoomApi {
 
@@ -47,5 +50,4 @@ interface StudyRoomApi {
 
     @GET("study-room/my")
     suspend fun getMyStudyRoom(): Response<List<StudyRoom?>>
-
 }

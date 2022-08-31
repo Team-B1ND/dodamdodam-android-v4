@@ -7,9 +7,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.StudyRoomCheckAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealHomeAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.SongAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.adapter.StudyRoomCheckAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentHomeBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
@@ -20,8 +20,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
 import kr.hs.dgsw.smartschool.domain.model.song.VideoYoutubeData
-import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
-import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.Date

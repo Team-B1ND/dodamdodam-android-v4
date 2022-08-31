@@ -9,5 +9,4 @@ class TimeTableRemote(
 ) : BaseRemote<TimeTableApi>() {
 
     suspend fun getAllTime(): List<TimeTable> = api.getTimeTables().data
-
 }
