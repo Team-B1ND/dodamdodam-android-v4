@@ -1,14 +1,18 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
-import kr.hs.dgsw.smartschool.data.network.response.data.*
+import kr.hs.dgsw.smartschool.data.network.response.data.MemberData
 import kr.hs.dgsw.smartschool.domain.model.member.Member
 import kr.hs.dgsw.smartschool.domain.model.member.Parent
 import kr.hs.dgsw.smartschool.domain.model.member.Student
 import kr.hs.dgsw.smartschool.domain.model.member.Teacher
 import kr.hs.dgsw.smartschool.domain.request.ModifyMemberInfoRequest
 import kr.hs.dgsw.smartschool.domain.request.ModifyPwRequest
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.DELETE
+import retrofit2.http.GET
+import retrofit2.http.PATCH
+import retrofit2.http.Path
 
 interface MemberApi {
 

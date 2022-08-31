@@ -2,7 +2,7 @@ package kr.hs.dgsw.smartschool.data.network.remote
 
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.MemberApi
-import kr.hs.dgsw.smartschool.data.network.response.data.*
+import kr.hs.dgsw.smartschool.data.network.response.data.MemberData
 import kr.hs.dgsw.smartschool.domain.model.member.Member
 import kr.hs.dgsw.smartschool.domain.model.member.Parent
 import kr.hs.dgsw.smartschool.domain.model.member.Student
