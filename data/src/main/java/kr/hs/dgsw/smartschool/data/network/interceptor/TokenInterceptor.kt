@@ -31,7 +31,7 @@ class TokenInterceptor @Inject constructor(
 
         val request =
             if (::token.isInitialized) chain.request().newBuilder()
-                .header("x-access-token", token.token).build()
+                .header("Authorization", "Bearer ${token.token}").build()
             else chain.request()
 
         val response = chain.proceed(request)
@@ -57,7 +57,7 @@ class TokenInterceptor @Inject constructor(
             getTokenToLogin()
         }
 
-        val newRequest = request.newBuilder().header("x-access-token", token.token).build()
+        val newRequest = request.newBuilder().header("Authorization", "Bearer ${token.token}").build()
         val another = chain.proceed(newRequest)
 
         return if (another.code == TOKEN_ERROR) {
@@ -74,7 +74,7 @@ class TokenInterceptor @Inject constructor(
     private fun login(request: Request, chain: Interceptor.Chain): Response {
         getTokenToLogin()
 
-        val newRequest = request.newBuilder().header("x-access-token", token.token).build()
+        val newRequest = request.newBuilder().header("Authorization", "Bearer ${token.token}").build()
 
         val another = chain.proceed(newRequest)
         if (another.code == TOKEN_ERROR) {

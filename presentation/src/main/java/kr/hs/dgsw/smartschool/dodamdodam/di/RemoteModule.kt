@@ -9,26 +9,26 @@ import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceMa
 import kr.hs.dgsw.smartschool.data.network.api.BusApi
 import kr.hs.dgsw.smartschool.data.network.api.ClassInfoApi
 import kr.hs.dgsw.smartschool.data.network.api.FileUploadApi
-import kr.hs.dgsw.smartschool.data.network.api.LocationApi
 import kr.hs.dgsw.smartschool.data.network.api.MealApi
 import kr.hs.dgsw.smartschool.data.network.api.MemberApi
 import kr.hs.dgsw.smartschool.data.network.api.OutApi
 import kr.hs.dgsw.smartschool.data.network.api.PlaceApi
 import kr.hs.dgsw.smartschool.data.network.api.PointApi
 import kr.hs.dgsw.smartschool.data.network.api.SongApi
-import kr.hs.dgsw.smartschool.data.network.api.TimeApi
+import kr.hs.dgsw.smartschool.data.network.api.StudyRoomApi
+import kr.hs.dgsw.smartschool.data.network.api.TimeTableApi
 import kr.hs.dgsw.smartschool.data.network.remote.AuthRemote
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.remote.ClassInfoRemote
 import kr.hs.dgsw.smartschool.data.network.remote.FileUploadRemote
-import kr.hs.dgsw.smartschool.data.network.remote.LocationRemote
 import kr.hs.dgsw.smartschool.data.network.remote.MealRemote
 import kr.hs.dgsw.smartschool.data.network.remote.MemberRemote
 import kr.hs.dgsw.smartschool.data.network.remote.OutRemote
 import kr.hs.dgsw.smartschool.data.network.remote.PlaceRemote
 import kr.hs.dgsw.smartschool.data.network.remote.PointRemote
 import kr.hs.dgsw.smartschool.data.network.remote.SongRemote
-import kr.hs.dgsw.smartschool.data.network.remote.TimeRemote
+import kr.hs.dgsw.smartschool.data.network.remote.StudyRoomRemote
+import kr.hs.dgsw.smartschool.data.network.remote.TimeTableRemote
 import kr.hs.dgsw.smartschool.data.network.remote.TokenRemote
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import retrofit2.Retrofit
@@ -72,8 +72,8 @@ class RemoteModule {
 
     @Singleton
     @Provides
-    fun provideTimeRemote(retrofit: Retrofit): TimeRemote =
-        TimeRemote(retrofit.create(TimeApi::class.java))
+    fun provideTimeRemote(retrofit: Retrofit): TimeTableRemote =
+        TimeTableRemote(retrofit.create(TimeTableApi::class.java))
 
     @Singleton
     @Provides
@@ -82,8 +82,8 @@ class RemoteModule {
 
     @Singleton
     @Provides
-    fun provideLocationRemote(retrofit: Retrofit): LocationRemote =
-        LocationRemote(retrofit.create(LocationApi::class.java))
+    fun provideLocationRemote(retrofit: Retrofit): StudyRoomRemote =
+        StudyRoomRemote(retrofit.create(StudyRoomApi::class.java))
 
     @Singleton
     @Provides

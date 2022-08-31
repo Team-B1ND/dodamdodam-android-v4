@@ -4,7 +4,7 @@ import kr.hs.dgsw.smartschool.data.datasource.StudentDataSource
 import kr.hs.dgsw.smartschool.data.mapper.StudentMapper
 import kr.hs.dgsw.smartschool.domain.model.member.Student
 import kr.hs.dgsw.smartschool.domain.repository.StudentRepository
-import kr.hs.dgsw.smartschool.domain.request.MyInfoChangeRequest
+import kr.hs.dgsw.smartschool.domain.request.ModifyMemberInfoRequest
 import javax.inject.Inject
 
 class StudentRepositoryImpl @Inject constructor(
@@ -16,8 +16,8 @@ class StudentRepositoryImpl @Inject constructor(
     override suspend fun getMyInfo(): Student =
         studentDataSource.getMyInfo()
 
-    override suspend fun changeMemberInfo(memberId: String, request: MyInfoChangeRequest) =
-        studentDataSource.changeMemberInfo(memberId, request)
+    override suspend fun changeMemberInfo(request: ModifyMemberInfoRequest): String =
+        studentDataSource.changeMemberInfo(request)
 
     override suspend fun getAllStudent(): List<Student> =
         studentDataSource.getAllStudent().map { studentEntity -> studentMapper.mapToModel(studentEntity) }

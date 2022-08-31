@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException
 class LoginRequest(
     id: String,
     pw: String,
-    encryption: Boolean
+    encryption: Boolean = true
 ) {
     var id: String? = null
     var pw: String? = null

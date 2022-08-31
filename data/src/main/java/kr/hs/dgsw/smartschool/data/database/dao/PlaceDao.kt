@@ -7,7 +7,7 @@ import kr.hs.dgsw.smartschool.data.database.entity.PlaceEntity
 
 @Dao
 interface PlaceDao : BaseDao<PlaceEntity> {
-    @Query("SELECT * FROM place_table WHERE idx=:idx")
+    @Query("SELECT * FROM place_table WHERE id=:idx")
     suspend fun getPlaceByIdx(idx: Int): PlaceEntity
 
     @Query("SELECT * FROM place_table")

@@ -11,23 +11,23 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.dodamdodam.features.location.GetMyLocationState
 import kr.hs.dgsw.smartschool.dodamdodam.features.meal.GetMealState
 import kr.hs.dgsw.smartschool.dodamdodam.features.setup.DataSetUpState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.GetAllowSongState
-import kr.hs.dgsw.smartschool.domain.usecase.location.LocationUseCases
+import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetMyStudyRoomState
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetAllowSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.StudyRoomUseCases
 import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val mealUseCases: MealUseCases,
-    private val locationUseCases: LocationUseCases,
+    private val studyRoomUseCases: StudyRoomUseCases,
     private val setUpUseCases: SetUpUseCases,
     private val songUseCases: SongUseCases
 ) : BaseViewModel() {
@@ -35,24 +35,24 @@ class HomeViewModel @Inject constructor(
     private val _getMealState = MutableStateFlow(GetMealState(isLoading = false))
     val getMealState: StateFlow<GetMealState> = _getMealState
 
-    private val _getMyLocationState = MutableSharedFlow<GetMyLocationState>()
-    val getMyLocationState: SharedFlow<GetMyLocationState> = _getMyLocationState
+    private val _getMyStudyRoomState = MutableSharedFlow<GetMyStudyRoomState>()
+    val getMyStudyRoomState: SharedFlow<GetMyStudyRoomState> = _getMyStudyRoomState
 
-    private val _dataSetUpState = MutableStateFlow(DataSetUpState())
-    val dataSetUpState: StateFlow<DataSetUpState> = _dataSetUpState
+    private val _dataSetUpState = MutableSharedFlow<DataSetUpState>()
+    val dataSetUpState: SharedFlow<DataSetUpState> = _dataSetUpState
 
     private val _getAllowSongState = MutableStateFlow<GetAllowSongState>(GetAllowSongState())
     val getAllowSongState: StateFlow<GetAllowSongState> = _getAllowSongState
 
     private val isDataSetUpLoading = MutableLiveData(false)
     private val isGetMealLoading = MutableLiveData(false)
-    private val isGetMyLocationLoading = MutableLiveData(false)
+    private val isGetMyStudyRoomLoading = MutableLiveData(false)
     private val isGetAllowSongLoading = MutableLiveData(false)
 
     init {
-        combineLoadingVariable(isDataSetUpLoading, isGetMealLoading, isGetMyLocationLoading, isGetAllowSongLoading)
+        combineLoadingVariable(isDataSetUpLoading, isGetMealLoading, isGetMyStudyRoomLoading, isGetAllowSongLoading)
         dataSetUp()
-        getAllowSong()
+        // getAllowSong()
     }
 
     fun getMealList(date: LocalDate) {
@@ -66,19 +66,26 @@ class HomeViewModel @Inject constructor(
     private fun dataSetUp() {
         setUpUseCases.dataSetUp(Unit).divideResult(
             isDataSetUpLoading,
-            { _dataSetUpState.value = DataSetUpState(result = it) },
-            { _dataSetUpState.value = DataSetUpState(error = it ?: "데이터를 업데이트 하지 못하였습니다.") }
+            { viewModelScope.launch { _dataSetUpState.emit(DataSetUpState(result = it ?: "데이터 업데이트에 성공하였습니다.")) } },
+            { viewModelScope.launch { _dataSetUpState.emit(DataSetUpState(error = it ?: "데이터를 업데이트 하지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
 
-    fun getMyLocation() {
-        locationUseCases.getMyLocation(LocalDate.now().toString()).divideResult(
-            isGetMyLocationLoading,
+    fun getMyStudyRoom() {
+        studyRoomUseCases.getMyStudyRoom(Unit).divideResult(
+            isGetMyStudyRoomLoading,
             {
-                viewModelScope.launch { _getMyLocationState.emit(GetMyLocationState(myLocations = it ?: emptyList())) }
+                viewModelScope.launch {
+                    _getMyStudyRoomState.emit(
+                        GetMyStudyRoomState(
+                            isUpdate = true,
+                            myStudyRooms = it ?: emptyList()
+                        )
+                    )
+                }
                 it?.forEach { placeList -> Log.d("TestTest", "getMyLocation: ${placeList.place?.name}") }
             },
-            { viewModelScope.launch { _getMyLocationState.emit(GetMyLocationState(error = it ?: "위치를 받아오지 못하였습니다.")) } }
+            { viewModelScope.launch { _getMyStudyRoomState.emit(GetMyStudyRoomState(error = it ?: "위치를 받아오지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
 
