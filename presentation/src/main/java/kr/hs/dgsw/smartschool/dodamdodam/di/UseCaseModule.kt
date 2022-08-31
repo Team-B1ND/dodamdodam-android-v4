@@ -80,8 +80,8 @@ class UseCaseModule {
             getLostFound = GetLostFoundUseCase(repository),
             getLostFoundComment = GetLostFoundCommentUseCase(repository),
             hideLostFound = HideLostFoundUseCase(repository),
-            postLostFound = PostLostFoundUseCase(repository),
-            postLostFoundComment = PostLostFoundCommentUseCase(repository),
+            postLostFound = PostLostFound(repository),
+            postLostFoundComment = PostLostFoundComment(repository),
             putLostFound = PutLostFoundUseCase(repository),
             putLostFoundComment = PutLostFoundCommentUseCase(repository),
             searchLostFoundUseCase = SearchLostFoundUseCase(repository)

@@ -13,8 +13,8 @@ import kr.hs.dgsw.smartschool.domain.request.LostFoundRequest
 import javax.inject.Inject
 
 class LostFoundRemote @Inject constructor(
-    override val api: LostFoundApi)
-    : BaseRemote<LostFoundApi>() {
+    override val api: LostFoundApi
+    ) : BaseRemote<LostFoundApi>() {
 
     fun getLostFound(page: Int, type: Int): Response<LostFoundData> {
         Log.d("LostFoundRemote", "실행")

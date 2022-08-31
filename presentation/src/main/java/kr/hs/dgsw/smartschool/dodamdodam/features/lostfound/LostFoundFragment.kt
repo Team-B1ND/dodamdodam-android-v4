@@ -2,12 +2,14 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound
 
 import android.util.Log
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.LostFoundAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundBinding
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostInfo
 
@@ -18,7 +20,20 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         mBinding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
-        setRecyclerView()
+        with(viewModel) {
+            lifecycleScope.launchWhenStarted {
+                getLostFoundState.collect { state ->
+                    if (state.list.isNotEmpty()) {
+                        val list = setLostInfo(state.list)
+                        setRecyclerView(list)
+                    }
+
+                    if (state.error.isNotBlank()) {
+                        shortToast(state.error)
+                    }
+                }
+            }
+        }
     }
 
     override fun openComment(idx: Int) {
@@ -45,9 +60,9 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         }
         return list.toList()
     }
-    private fun setRecyclerView(){
+    private fun setRecyclerView(list : List<LostInfo>){
         val lostFoundAdapter = LostFoundAdapter(requireContext(), this)
         mBinding.rvLostAndFound.adapter = lostFoundAdapter
-        lostFoundAdapter.submitList(setLostInfo(viewModel.getLostFoundState.value.list))
+        lostFoundAdapter.submitList(list)
     }
 }

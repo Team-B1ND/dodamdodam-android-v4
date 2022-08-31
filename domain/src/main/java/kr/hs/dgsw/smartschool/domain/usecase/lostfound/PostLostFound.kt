@@ -8,9 +8,9 @@ import kr.hs.dgsw.smartschool.domain.request.LostFoundRequest
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 
-class PostLostFoundUseCase @Inject constructor(
+class PostLostFound @Inject constructor(
     private val lostFoundRepository: LostFoundRepository
-) : BaseUseCase<PostLostFoundUseCase.Params, String>() {
+) : BaseUseCase<PostLostFound.Params, String>() {
 
     data class Params(
         val type: Int,
