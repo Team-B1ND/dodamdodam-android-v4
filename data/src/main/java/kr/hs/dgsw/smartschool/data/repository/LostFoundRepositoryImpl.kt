@@ -1,4 +1,5 @@
 package kr.hs.dgsw.smartschool.data.repository
+import android.util.Log
 import kr.hs.dgsw.smartschool.data.datasource.LostFoundDataSource
 import kr.hs.dgsw.smartschool.data.datasource.TokenDataSource
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
@@ -22,6 +23,8 @@ class LostFoundRepositoryImpl @Inject constructor(
         lostFoundList = lostFoundDataSource.getLostFound(page, type)
         myId = tokenDataSource.getMyId()
         getLostFoundMemberList()
+        Log.d("LostFoundRepository", lostFoundList.toString())
+        Log.d("LostFoundRemote", "실행")
         return lostFoundList
     }
 

@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.data.network.remote
 
+import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.LostFoundApi
 import kr.hs.dgsw.smartschool.data.network.response.Response
@@ -15,8 +16,10 @@ class LostFoundRemote @Inject constructor(
     override val api: LostFoundApi)
     : BaseRemote<LostFoundApi>() {
 
-    fun getLostFound(page: Int, type: Int): Response<LostFoundData> =
-        api.getLostFound(Constants.INFINITE_SCROLL_LIMIT, page, type)
+    fun getLostFound(page: Int, type: Int): Response<LostFoundData> {
+        Log.d("LostFoundRemote", "실행")
+        return api.getLostFound(Constants.INFINITE_SCROLL_LIMIT, page, type)
+    }
 
     fun getLostFoundComment(lostFoundIdx: Int): Response<LostFoundData>  =
         api.getLostFoundComment(lostFoundIdx)

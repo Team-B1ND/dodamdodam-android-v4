@@ -29,6 +29,8 @@ class LostFoundDataSource @Inject constructor(
     suspend fun getLostFound(page: Int, type: Int): List<LostFound> {
         lostFoundList =  remote.getLostFound(page,type).data.pageData
         hiddenLostFoundList = cache.getAllHiddenLostFound()
+        Log.d("LostFoundDataSource", lostFoundList.toString())
+        Log.d("LostFoundRemote", "실행")
         return lostFoundList
     }
 
