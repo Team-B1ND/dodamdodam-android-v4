@@ -8,9 +8,11 @@ import javax.inject.Inject
 class PointRepositoryImpl @Inject constructor(
     private val pointDataSource: PointDataSource
 ) : PointRepository {
-    override suspend fun getMyPoint(year: String, type: Int): MyYearPoint =
-        pointDataSource.getMyPoint(year, type)
 
-    override suspend fun getMyPointTarget(target: Int): MyTargetPoint =
-        pointDataSource.getMyPointTarget(target)
+    override suspend fun getMyYearPoints(year: Int): List<MyYearPoint> {
+        return pointDataSource.getMyYearPoints(year)
+    }
+
+
+
 }

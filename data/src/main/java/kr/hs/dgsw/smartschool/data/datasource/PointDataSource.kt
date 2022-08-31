@@ -10,7 +10,6 @@ class PointDataSource @Inject constructor(
     override val cache: Any
 ) : BaseDataSource<PointRemote, Any> {
 
-    suspend fun getMyPoint(year: String, type: Int): MyYearPoint = remote.getMyPoint(year, type)
+    suspend fun getMyYearPoints(year: Int): List<MyYearPoint> = remote.getMyYearPoints(year)
 
-    suspend fun getMyPointTarget(target: Int): MyTargetPoint = remote.getMyPointTarget(target)
 }

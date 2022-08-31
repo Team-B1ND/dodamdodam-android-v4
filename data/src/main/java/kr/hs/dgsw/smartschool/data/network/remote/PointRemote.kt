@@ -9,9 +9,7 @@ class PointRemote @Inject constructor(
     override val api: PointApi
 ) : BaseRemote<PointApi>() {
 
-    suspend fun getMyPoint(year: String, type: Int): MyYearPoint =
-        api.getMyPoint(year, type).data.point
+    suspend fun getMyYearPoints(year: Int): List<MyYearPoint> =
+        api.getMyYearPoints(year).data
 
-    suspend fun getMyPointTarget(target: Int): MyTargetPoint =
-        api.getMyPointTarget(target).data.point
 }

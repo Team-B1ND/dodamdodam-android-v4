@@ -13,6 +13,9 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentProfileBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
+import kr.hs.dgsw.smartschool.domain.model.point.MyYearPoint
+import kr.hs.dgsw.smartschool.domain.model.point.PointPlace
+import kr.hs.dgsw.smartschool.domain.model.point.PointType
 import java.time.LocalDate
 
 @AndroidEntryPoint
@@ -37,7 +40,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         setPieChart()
         collectMyInfo()
         collectBonusPoint()
-        collectMinusPoint()
         setPointCard(0)
         setSwipeRefresh()
         initViewEvent()
@@ -100,10 +102,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     private fun collectBonusPoint() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
-                myBonusPointState.collect { state ->
-                    if (state.bonusPoint != null) {
-                        dormitoryBonusPoint = state.bonusPoint.yearScore.dormitoryPoint
-                        schoolBonusPoint = state.bonusPoint.yearScore.schoolPoint
+                getMyYearPointsState.collect { state ->
+                    if (state.isReach) {
+                        dividePoint(yearPointList = state.yearPointList)
                         setPointCard(0)
                     }
 
@@ -115,20 +116,22 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         }
     }
 
-    private fun collectMinusPoint() {
-        with(viewModel) {
-            lifecycleScope.launchWhenStarted {
-                myMinusPointState.collect { state ->
-                    if (state.minusPoint != null) {
-                        dormitoryMinusPoint = state.minusPoint.yearScore.dormitoryPoint
-                        schoolMinusPoint = state.minusPoint.yearScore.schoolPoint
-                        setPointCard(0)
-                    }
+    private fun dividePoint(yearPointList: List<MyYearPoint>) {
+        yearPointList.map { myYearPoint ->
+            if (myYearPoint.pointReason.type == PointType.BONUS) {
 
-                    if (state.error.isNotBlank()) {
-                        shortToast(state.error)
-                    }
-                }
+                if (myYearPoint.pointReason.place == PointPlace.DORMITORY)
+                    dormitoryBonusPoint = myYearPoint.pointReason.score
+                else
+                    schoolBonusPoint = myYearPoint.pointReason.score
+
+            } else if (myYearPoint.pointReason.type == PointType.MINUS) {
+
+                if (myYearPoint.pointReason.place == PointPlace.DORMITORY)
+                    dormitoryMinusPoint = myYearPoint.pointReason.score
+                else
+                    schoolMinusPoint = myYearPoint.pointReason.score
+
             }
         }
     }
