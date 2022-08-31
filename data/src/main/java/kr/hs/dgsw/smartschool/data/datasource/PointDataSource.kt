@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.data.datasource
 
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.PointRemote
-import kr.hs.dgsw.smartschool.domain.model.point.MyTargetPoint
 import kr.hs.dgsw.smartschool.domain.model.point.MyYearPoint
 import javax.inject.Inject
 
