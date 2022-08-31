@@ -9,7 +9,6 @@ import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.repository.DataSetUpRepository
 import kr.hs.dgsw.smartschool.domain.repository.MealRepository
 import kr.hs.dgsw.smartschool.domain.repository.OutRepository
-import kr.hs.dgsw.smartschool.domain.repository.PointRepository
 import kr.hs.dgsw.smartschool.domain.repository.SongRepository
 import kr.hs.dgsw.smartschool.domain.repository.StudentRepository
 import kr.hs.dgsw.smartschool.domain.repository.StudyRoomRepository
@@ -44,9 +43,6 @@ import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutSleepingById
 import kr.hs.dgsw.smartschool.domain.usecase.out.OutUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.out.PostOutGoing
 import kr.hs.dgsw.smartschool.domain.usecase.out.PostOutSleeping
-import kr.hs.dgsw.smartschool.domain.usecase.point.GetMyPoint
-import kr.hs.dgsw.smartschool.domain.usecase.point.GetMyPointTarget
-import kr.hs.dgsw.smartschool.domain.usecase.point.PointUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.setup.DataSetUp
 import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.setup.TeacherSetUp
@@ -115,14 +111,6 @@ class UseCaseModule {
         MemberUseCases(
             getMyInfo = GetMyInfo(studentRepository),
             changeMemberInfo = ChangeMemberInfo(studentRepository)
-        )
-
-    @Provides
-    @Singleton
-    fun providePointUseCases(pointRepository: PointRepository): PointUseCases =
-        PointUseCases(
-            getMyPoint = GetMyPoint(pointRepository),
-            getMyPointTarget = GetMyPointTarget(pointRepository)
         )
 
     @Provides

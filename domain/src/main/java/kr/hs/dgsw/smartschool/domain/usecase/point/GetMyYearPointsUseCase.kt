@@ -7,15 +7,11 @@ import kr.hs.dgsw.smartschool.domain.repository.PointRepository
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 
-class GetMyPoint @Inject constructor(
+class GetMyYearPointsUseCase @Inject constructor(
     val repository: PointRepository
-) : BaseUseCase<GetMyPoint.Params, MyYearPoint>() {
-    override operator fun invoke(params: Params): Flow<Resource<MyYearPoint>> = execute {
-        repository.getMyPoint(params.year, params.type)
-    }
+) : BaseUseCase<Int, List<MyYearPoint>>() {
 
-    data class Params(
-        val year: String,
-        val type: Int
-    )
+    override operator fun invoke(params: Int): Flow<Resource<List<MyYearPoint>>> = execute {
+        repository.getMyYearPoints(params)
+    }
 }
