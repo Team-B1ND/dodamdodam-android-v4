@@ -7,9 +7,8 @@ import retrofit2.http.Query
 
 interface PointApi {
 
-   @GET("point/my/year")
-   suspend fun getMyYearPoints(
-       @Query("year") year: Int
-   ): Response<List<MyYearPoint>>
-
+    @GET("point/my/year")
+    suspend fun getMyYearPoints(
+        @Query("year") year: Int
+    ): Response<List<MyYearPoint>>
 }

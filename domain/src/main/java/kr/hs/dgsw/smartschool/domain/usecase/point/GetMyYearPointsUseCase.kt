@@ -14,5 +14,4 @@ class GetMyYearPointsUseCase @Inject constructor(
     override operator fun invoke(params: Int): Flow<Resource<List<MyYearPoint>>> = execute {
         repository.getMyYearPoints(params)
     }
-
 }

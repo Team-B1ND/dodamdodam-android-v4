@@ -11,5 +11,4 @@ class PointRemote @Inject constructor(
 
     suspend fun getMyYearPoints(year: Int): List<MyYearPoint> =
         api.getMyYearPoints(year).data
-
 }

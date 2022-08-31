@@ -124,14 +124,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                     dormitoryBonusPoint = myYearPoint.pointReason.score
                 else
                     schoolBonusPoint = myYearPoint.pointReason.score
-
             } else if (myYearPoint.pointReason.type == PointType.MINUS) {
 
                 if (myYearPoint.pointReason.place == PointPlace.DORMITORY)
                     dormitoryMinusPoint = myYearPoint.pointReason.score
                 else
                     schoolMinusPoint = myYearPoint.pointReason.score
-
             }
         }
     }

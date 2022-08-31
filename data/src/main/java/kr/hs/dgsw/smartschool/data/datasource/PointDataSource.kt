@@ -11,5 +11,4 @@ class PointDataSource @Inject constructor(
 ) : BaseDataSource<PointRemote, Any> {
 
     suspend fun getMyYearPoints(year: Int): List<MyYearPoint> = remote.getMyYearPoints(year)
-
 }

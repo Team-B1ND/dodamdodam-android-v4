@@ -12,7 +12,4 @@ class PointRepositoryImpl @Inject constructor(
     override suspend fun getMyYearPoints(year: Int): List<MyYearPoint> {
         return pointDataSource.getMyYearPoints(year)
     }
-
-
-
 }

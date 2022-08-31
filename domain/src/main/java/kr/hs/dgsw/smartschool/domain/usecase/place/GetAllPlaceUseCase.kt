@@ -14,5 +14,4 @@ class GetAllPlaceUseCase @Inject constructor(
     override fun invoke(params: Unit): Flow<Resource<List<Place>>> = execute {
         repository.getAllPlace()
     }
-
 }
