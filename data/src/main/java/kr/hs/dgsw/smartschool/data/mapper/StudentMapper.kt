@@ -40,13 +40,13 @@ class StudentMapper : BaseEntityMapper<Student, StudentEntity> {
             model.classroom.grade,
             model.number,
             model.phone,
-            model.email,
-            model.id,
-            model.joinDate ?: "",
-            model.name,
-            model.profileImage ?: "",
-            model.role,
-            model.status
+            model.member.email,
+            model.member.id,
+            model.member.joinDate ?: "",
+            model.member.name,
+            model.member.profileImage ?: "",
+            model.member.role,
+            model.member.status
         )
     }
 }

@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName
 import kr.hs.dgsw.smartschool.domain.model.classroom.Classroom
 
 class Student(
-    val classroom: Classroom,
-    @SerializedName("id") val studentId: Int,
-    val member: Member,
-    val number: Int,
-    val phone: String
-) : Member(member.email, member.id, member.joinDate, member.name, member.profileImage, member.role, member.status)
+    @field:SerializedName("classroom") val classroom: Classroom,
+    @field:SerializedName("id") val studentId: Int,
+    @field:SerializedName("member") val member: Member,
+    @field:SerializedName("number") val number: Int,
+    @field:SerializedName("phone") val phone: String
+)

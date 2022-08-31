@@ -26,7 +26,7 @@ interface MemberApi {
     ): Response<Any>
 
     @GET("members/my")
-    suspend fun getMyInfo(): Response<MyInfoData>
+    suspend fun getMyInfo(): Response<Student>
 
     @GET("members/parent")
     suspend fun getParents(): Response<List<Parent>>

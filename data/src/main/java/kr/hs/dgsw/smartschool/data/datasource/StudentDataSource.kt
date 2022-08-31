@@ -17,7 +17,7 @@ class StudentDataSource @Inject constructor(
     private val studentMapper = StudentMapper()
 
     suspend fun getMyInfo(): Student =
-        remote.getMyInfo().memberData
+        remote.getMyInfo()
 
     suspend fun changeMemberInfo(request: ModifyMemberInfoRequest): String =
         remote.changeMemberInfo(request)

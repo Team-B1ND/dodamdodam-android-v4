@@ -24,7 +24,7 @@ class MemberRemote @Inject constructor(
     suspend fun deleteMember(memberId: String): String =
         api.deleteMember(memberId).message
 
-    suspend fun getMyInfo(): MyInfoData =
+    suspend fun getMyInfo(): Student =
         api.getMyInfo().data
 
     suspend fun getParents(): List<Parent> =
