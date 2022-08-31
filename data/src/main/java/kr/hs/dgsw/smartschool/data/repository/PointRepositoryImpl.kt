@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.PointDataSource
-import kr.hs.dgsw.smartschool.domain.model.point.MyTargetPoint
 import kr.hs.dgsw.smartschool.domain.model.point.MyYearPoint
 import kr.hs.dgsw.smartschool.domain.repository.PointRepository
 import javax.inject.Inject
