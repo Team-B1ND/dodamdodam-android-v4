@@ -9,7 +9,7 @@ class LostFoundMapper : BaseEntityMapper<LostFound, HiddenLostFoundEntity> {
     override fun mapToEntity(model: LostFound): HiddenLostFoundEntity {
         return HiddenLostFoundEntity(
             model.idx,
-            model.memberId,
+            model.member.id,
             model.title,
             model.place,
             model.content,

@@ -41,7 +41,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     }
 
     private fun setLostInfo(lostFoundList: List<LostFound>): List<LostInfo> {
-        viewModel.getLostFoundList(1,mBinding.lostFoundSpinner.selectedItemPosition)
+        viewModel.getLostFoundList(1,if(mBinding.lostFoundSpinner.selectedItemPosition == 0) "LOST" else "FOUND")
         Log.d("LostFoundFragment", "실행")
         val list: MutableList<LostInfo> = mutableListOf()
         // val today = LocalDate.now()
@@ -49,12 +49,12 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
             list.add(
                 LostInfo(
                     idx = it.idx,
-                    img = it.profileImage,
-                    name = it.name ?: "작성자 미상",
-                    uploadTime = it.uploadTime.toString(),
+                    img = it.member.profileImage ?: "",
+                    name = it.member.name,
+                    uploadTime = it.createAt,
                     title = it.title,
                     content = it.content,
-                    place = it.place ?: ""
+                    place = it.place
                 )
             )
         }

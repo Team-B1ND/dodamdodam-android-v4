@@ -20,9 +20,9 @@ class LostFoundViewModel @Inject constructor(
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
 
     init {
-        getLostFoundList(1,0)
+        getLostFoundList(1,"LOST")
     }
-    fun getLostFoundList(page : Int, type : Int){
+    fun getLostFoundList(page : Int, type : String){
         useCases.getLostFound(GetLostFoundUseCase.Params(page = page, type = type)).divideResult(
             isGetLostFoundLoading,
             {viewModelScope.launch {   GetLostFoundState(list = it ?: emptyList())}},
