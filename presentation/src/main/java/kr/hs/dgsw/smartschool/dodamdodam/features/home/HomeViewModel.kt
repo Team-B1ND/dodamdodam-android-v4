@@ -15,7 +15,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.meal.GetMealState
 import kr.hs.dgsw.smartschool.dodamdodam.features.setup.DataSetUpState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.GetAllowSongState
 import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetMyStudyRoomState
-import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
+import kr.hs.dgsw.smartschool.domain.usecase.meal.GetMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetAllowSong
@@ -32,7 +32,7 @@ class HomeViewModel @Inject constructor(
     private val songUseCases: SongUseCases
 ) : BaseViewModel() {
 
-    private val _getMealState = MutableStateFlow(GetMealState(isLoading = false))
+    private val _getMealState = MutableStateFlow(GetMealState())
     val getMealState: StateFlow<GetMealState> = _getMealState
 
     private val _getMyStudyRoomState = MutableSharedFlow<GetMyStudyRoomState>()
@@ -55,10 +55,10 @@ class HomeViewModel @Inject constructor(
         // getAllowSong()
     }
 
-    fun getMealList(date: LocalDate) {
-        mealUseCases.getAllMeal(GetAllMeal.Params(date.year, date.monthValue)).divideResult(
+    fun getMeal(date: LocalDate) {
+        mealUseCases.getMeal(GetMeal.Params(date.year, date.monthValue, date.dayOfMonth)).divideResult(
             isGetMealLoading,
-            { _getMealState.value = GetMealState(meal = it ?: emptyList()) },
+            { _getMealState.value = GetMealState(meal = it, isUpdate = true) },
             { _getMealState.value = GetMealState(error = it ?: "급식을 받아오지 못하였습니다.") }
         ).launchIn(viewModelScope)
     }

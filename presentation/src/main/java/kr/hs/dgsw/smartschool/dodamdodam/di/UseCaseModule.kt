@@ -28,8 +28,8 @@ import kr.hs.dgsw.smartschool.domain.usecase.bus.GetMyBus
 import kr.hs.dgsw.smartschool.domain.usecase.bus.GetMyBusByMonth
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusApply
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusInfo
-import kr.hs.dgsw.smartschool.domain.usecase.meal.DeleteMeal
-import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
+import kr.hs.dgsw.smartschool.domain.usecase.meal.GetCalorieOfMeal
+import kr.hs.dgsw.smartschool.domain.usecase.meal.GetMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.member.ChangeMemberInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.GetMyInfo
@@ -77,8 +77,8 @@ class UseCaseModule {
     @Singleton
     fun provideMealUseCases(repository: MealRepository): MealUseCases =
         MealUseCases(
-            getAllMeal = GetAllMeal(repository),
-            deleteMeal = DeleteMeal(repository)
+            getMeal = GetMeal(repository),
+            getCalorieOfMeal = GetCalorieOfMeal(repository)
         )
 
     @Provides

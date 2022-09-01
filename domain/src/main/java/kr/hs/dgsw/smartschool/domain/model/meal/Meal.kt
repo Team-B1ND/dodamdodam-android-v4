@@ -4,21 +4,21 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 data class Meal(
-    val breakfast: String,
+    val breakfast: String?,
     val date: String,
-    val dinner: String,
+    val dinner: String?,
     val exists: Boolean,
-    val lunch: String
+    val lunch: String?
 ) {
 
     val safeBreakfast: String
-        get() = if (breakfast == "null") "조식이 없습니다." else trimMealInfo(breakfast)
+        get() = if (breakfast == null) "조식이 없습니다." else trimMealInfo(breakfast)
 
     val safeLunch: String
-        get() = if (lunch == "null") "중식이 없습니다." else trimMealInfo(lunch)
+        get() = if (lunch == null) "중식이 없습니다." else trimMealInfo(lunch)
 
     val safeDinner: String
-        get() = if (dinner == "null") "석식이 없습니다." else trimMealInfo(dinner)
+        get() = if (dinner == null) "석식이 없습니다." else trimMealInfo(dinner)
 
     private fun trimMealInfo(meal: String): String =
         deleteBracket(meal).replace(" \n", ", ")

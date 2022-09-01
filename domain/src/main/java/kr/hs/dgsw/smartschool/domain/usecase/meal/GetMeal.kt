@@ -7,16 +7,17 @@ import kr.hs.dgsw.smartschool.domain.repository.MealRepository
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 
-class GetAllMeal @Inject constructor(
+class GetMeal @Inject constructor(
     private val repository: MealRepository
-) : BaseUseCase<GetAllMeal.Params, List<Meal>>() {
+) : BaseUseCase<GetMeal.Params, Meal>() {
 
-    override operator fun invoke(params: Params): Flow<Resource<List<Meal>>> = execute {
-        repository.getAllMeal(params.year, params.month)
+    override operator fun invoke(params: Params): Flow<Resource<Meal>> = execute {
+        repository.getMeal(params.year, params.month, params.day)
     }
 
     data class Params(
         val year: Int,
-        val month: Int
+        val month: Int,
+        val day: Int
     )
 }

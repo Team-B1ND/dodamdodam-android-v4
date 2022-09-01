@@ -6,11 +6,12 @@ import kr.hs.dgsw.smartschool.domain.repository.MealRepository
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 
-class DeleteMeal @Inject constructor(
-    val repository: MealRepository
+class GetCalorieOfMeal @Inject constructor(
+    private val mealRepository: MealRepository
 ) : BaseUseCase<Unit, String>() {
-    override operator fun invoke(params: Unit): Flow<Resource<String>> = execute {
-        repository.deleteAllMeal()
-        "버스를 삭제하였습니다."
+
+    override fun invoke(params: Unit): Flow<Resource<String>> = execute {
+        mealRepository.getCalorieOfMeal()
     }
+
 }
