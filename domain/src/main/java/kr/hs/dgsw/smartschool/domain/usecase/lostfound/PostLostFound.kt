@@ -20,7 +20,7 @@ class PostLostFound @Inject constructor(
     )
 
     override fun invoke(params: Params): Flow<Resource<String>> = execute{
-        lostFoundRepository.postCreateLostFound(
+        lostFoundRepository.addLostFound(
             LostFoundRequest(
                 params.type,
                 params.title,

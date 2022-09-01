@@ -2,11 +2,12 @@ package kr.hs.dgsw.smartschool.data.repository
 import android.util.Log
 import kr.hs.dgsw.smartschool.data.datasource.LostFoundDataSource
 import kr.hs.dgsw.smartschool.data.datasource.TokenDataSource
+import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
 import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
-import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.ModifyCommentRequest
 import javax.inject.Inject
 
 class LostFoundRepositoryImpl @Inject constructor(
@@ -15,13 +16,12 @@ class LostFoundRepositoryImpl @Inject constructor(
 ) : LostFoundRepository {
 
     private lateinit var lostFoundList: List<LostFound>
-    private lateinit var lostFoundCommentList: List<LostFoundComment>
+    private lateinit var lostFoundCommentList: List<Comment>
     private lateinit var myId: String
 
-    override suspend fun getLostFound(page: Int, type: Int): List<LostFound> {
+    override suspend fun getLostFound(page: Int, type: String): List<LostFound> {
         lostFoundList = lostFoundDataSource.getLostFound(page, type)
         myId = tokenDataSource.getMyId()
-        getLostFoundMemberList()
         Log.d("LostFoundRepository", lostFoundList.toString())
         Log.d("LostFoundRemote", "실행")
         return lostFoundList
@@ -30,44 +30,28 @@ class LostFoundRepositoryImpl @Inject constructor(
     override suspend fun getLostFoundSearch(search: String): List<LostFound> {
         lostFoundList = lostFoundDataSource.getLostFoundSearch(search)
         myId = tokenDataSource.getMyId()
-        getLostFoundMemberList()
         return lostFoundList
     }
 
-    override suspend fun getLostFoundComment(lostFoundIdx: Int): List<LostFoundComment> {
+    override suspend fun getComment(lostFoundIdx: Int): List<Comment> {
         lostFoundCommentList = lostFoundDataSource.getComment(lostFoundIdx)
         myId = tokenDataSource.getMyId()
-        getLostFoundCommentList()
         return lostFoundCommentList
     }
 
-    private fun getLostFoundMemberList(): List<LostFound> {
-        lostFoundList.forEach { lostFound ->
-            lostFound.isMine = myId == lostFound.memberId
-        }
-        return lostFoundList
-    }
-
-    private fun getLostFoundCommentList(): List<LostFoundComment> {
-        lostFoundCommentList.forEach { lostFoundComment ->
-            lostFoundComment.isMine = myId == lostFoundComment.memberId
-        }
-        return lostFoundCommentList
-    }
-
-    override suspend fun postCreateLostFound(request: LostFoundRequest):String {
+    override suspend fun addLostFound(request: LostFoundDataRequest):String {
         return lostFoundDataSource.addLostFound(request)
     }
 
-    override suspend fun postLostFoundComment(request: LostFoundDataRequest): String {
+    override suspend fun addComment(request: AddCommentRequest): String {
         return lostFoundDataSource.addComment(request)
     }
 
-    override suspend fun putLostFound(request: LostFoundRequest):String {
+    override suspend fun modifyLostFound(request: LostFoundDataRequest):String {
         return lostFoundDataSource.modifyLostFound(request)
     }
 
-    override suspend fun putLostFoundComment(request: AddCommentRequest): String {
+    override suspend fun modifyComment(request: ModifyCommentRequest): String {
         return lostFoundDataSource.modifyComment(request)
     }
 
@@ -80,7 +64,7 @@ class LostFoundRepositoryImpl @Inject constructor(
         return lostFoundDataSource.deleteLostFound(idx)
     }
 
-    override suspend fun deleteLostFoundComment(commentIdx: Int): String {
+    override suspend fun deleteComment(commentIdx: Int): String {
         return lostFoundDataSource.deleteComment(commentIdx)
     }
 }

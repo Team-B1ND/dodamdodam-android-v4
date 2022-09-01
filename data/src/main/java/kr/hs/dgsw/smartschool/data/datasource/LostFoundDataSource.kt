@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.data.datasource
 
-import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.database.cache.HiddenLostFoundCache
 import kr.hs.dgsw.smartschool.data.database.entity.HiddenLostFoundEntity
@@ -8,7 +7,6 @@ import kr.hs.dgsw.smartschool.data.mapper.LostFoundMapper
 import kr.hs.dgsw.smartschool.data.network.remote.LostFoundRemote
 import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
-import kr.hs.dgsw.smartschool.domain.request.*
 import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
 import kr.hs.dgsw.smartschool.domain.request.lostfound.ModifyCommentRequest
@@ -25,7 +23,7 @@ class LostFoundDataSource @Inject constructor(
     private val lostFoundMapper = LostFoundMapper()
 
     suspend fun getLostFound(page: Int, type:String): List<LostFound> {
-        lostFoundList =  remote.getLostFound(page,type).data
+        lostFoundList = remote.getLostFound(page,type).data
         hiddenLostFoundList = cache.getAllHiddenLostFound()
         return getLostFoundList()
     }

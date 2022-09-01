@@ -13,7 +13,7 @@ class DeleteLostFoundCommentUseCase @Inject constructor(
     data class Params(val commentIdx: Int)
 
     override fun invoke(params: Params): Flow<Resource<String>> = execute{
-        lostFoundRepository.deleteLostFoundComment(params.commentIdx)
+        lostFoundRepository.deleteComment(params.commentIdx)
         "분실물 댓글을 삭제하였습니다."
     }
 }

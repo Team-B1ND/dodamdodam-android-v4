@@ -22,7 +22,7 @@ class PutLostFoundUseCase @Inject constructor(
     )
 
     override fun invoke(params: Params): Flow<Resource<String>> = execute{
-        lostFoundRepository.putLostFound(
+        lostFoundRepository.modifyLostFound(
             LostFoundRequest(
                 params.idx,
                 params.type,
