@@ -5,42 +5,45 @@ import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.LostFoundApi
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.util.Constants
-import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFoundWithComment
+import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
+import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
-import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.ModifyCommentRequest
 import javax.inject.Inject
 
 class LostFoundRemote @Inject constructor(
     override val api: LostFoundApi
     ) : BaseRemote<LostFoundApi>() {
 
-    fun getLostFound(page: Int, type: Int): Response<LostFoundWithComment> {
-        Log.d("LostFoundRemote", "실행")
+    suspend fun getLostFound(page: Int, type: String): Response<List<LostFound>> {
         return api.getLostFound(Constants.INFINITE_SCROLL_LIMIT, page, type)
     }
 
-    fun getLostFoundComment(lostFoundIdx: Int): Response<LostFoundWithComment>  =
-        api.getLostFoundComment(lostFoundIdx)
+    suspend fun getComment(lostFoundIdx: Int): Response<List<Comment>>  =
+        api.getComment(lostFoundIdx)
 
-    fun postCreateLostFound(request: LostFoundRequest):Response<Any> =
-        api.postCreateLostFound(request)
+    suspend fun getLostFoundSearch(search: String): Response<List<LostFound>> =
+        api.getLostFoundSearch(search)
 
-    fun postLostFoundComment(request: LostFoundDataRequest):Response<Any> =
-        api.postLostFoundComment(request)
+    suspend fun getMyLostFound():Response<List<LostFound>> = api.getMyLostFound()
 
-    fun putLostFound(request: LostFoundRequest):Response<Any> =
-        api.putLostFound(request)
+    suspend fun addLostFound(request: LostFoundDataRequest):Response<Any> =
+        api.postLostFound(request)
 
-    fun putLostFoundComment(request: AddCommentRequest):Response<Any> =
-        api.putLostFoundComment(request)
+    suspend fun addComment(request: AddCommentRequest):Response<Any> =
+        api.postComment(request)
 
-    fun deleteLostFound(idx: Int):Response<Any> =
+    suspend fun modifyLostFound(request: LostFoundDataRequest):Response<Any> =
+        api.patchLostFound(request)
+
+    suspend fun modifyComment(request: ModifyCommentRequest):Response<Any> =
+        api.patchComment(request)
+
+    suspend fun deleteLostFound(idx: Int):Response<Any> =
         api.deleteLostFound(idx)
 
-    fun deleteLostFoundComment(commentIdx: Int):Response<Any> =
-        api.deleteLostFoundComment(commentIdx)
+    suspend fun deleteComment(commentIdx: Int):Response<Any> =
+        api.deleteComment(commentIdx)
 
-    fun getLostFoundSearch(search: String): Response<LostFoundWithComment> =
-        api.getLostFoundSearch(search)
 }

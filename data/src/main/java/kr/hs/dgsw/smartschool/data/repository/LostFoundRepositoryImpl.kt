@@ -35,7 +35,7 @@ class LostFoundRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getLostFoundComment(lostFoundIdx: Int): List<LostFoundComment> {
-        lostFoundCommentList = lostFoundDataSource.getLostFoundComment(lostFoundIdx)
+        lostFoundCommentList = lostFoundDataSource.getComment(lostFoundIdx)
         myId = tokenDataSource.getMyId()
         getLostFoundCommentList()
         return lostFoundCommentList
@@ -56,19 +56,19 @@ class LostFoundRepositoryImpl @Inject constructor(
     }
 
     override suspend fun postCreateLostFound(request: LostFoundRequest):String {
-        return lostFoundDataSource.postCreateLostFound(request)
+        return lostFoundDataSource.addLostFound(request)
     }
 
     override suspend fun postLostFoundComment(request: LostFoundDataRequest): String {
-        return lostFoundDataSource.postLostFoundComment(request)
+        return lostFoundDataSource.addComment(request)
     }
 
     override suspend fun putLostFound(request: LostFoundRequest):String {
-        return lostFoundDataSource.putLostFound(request)
+        return lostFoundDataSource.modifyLostFound(request)
     }
 
     override suspend fun putLostFoundComment(request: AddCommentRequest): String {
-        return lostFoundDataSource.putLostFoundComment(request)
+        return lostFoundDataSource.modifyComment(request)
     }
 
     override suspend fun hideLostFound(lostFound: LostFound): String {
@@ -81,6 +81,6 @@ class LostFoundRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deleteLostFoundComment(commentIdx: Int): String {
-        return lostFoundDataSource.deleteLostFoundComment(commentIdx)
+        return lostFoundDataSource.deleteComment(commentIdx)
     }
 }

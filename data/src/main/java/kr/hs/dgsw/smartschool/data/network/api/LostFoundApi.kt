@@ -7,7 +7,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
-import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFoundWithComment
+import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
 import kr.hs.dgsw.smartschool.domain.request.lostfound.ModifyCommentRequest
@@ -21,39 +21,39 @@ interface LostFoundApi {
         @Query("limit") limit: Int,
         @Query("page") page: Int,
         @Query("type") type: String
-    ): Response<LostFound>
+    ): Response<List<LostFound>>
 
     @GET("lostfound/comment")
-    fun getLostFoundComment(
+    fun getComment(
         @Query("lostfoundIdx") lostfoundIdx: Int
-    ): Response<LostFoundWithComment>
+    ): Response<List<Comment>>
 
     @GET("lostfound/search")
     fun getLostFoundSearch(
         @Query("title") title: String
-    ): Response<LostFound>
+    ): Response<List<LostFound>>
 
     @GET("lostfound/my")
     fun getMyLostFound(
-    ): Response<LostFound>
+    ): Response<List<LostFound>>
 
     @POST("lostfound")
-    fun postCreateLostFound(
+    fun postLostFound(
         @Body request: LostFoundDataRequest
     ): Response<Any>
 
     @POST("lostfound/comment")
-    fun postLostFoundComment(
+    fun postComment(
         @Body request: AddCommentRequest
     ): Response<Any>
 
     @PATCH("lostfound")
-    fun putLostFound(
+    fun patchLostFound(
         @Body request: LostFoundDataRequest
     ): Response<Any>
 
     @PATCH("lostfound/comment")
-    fun putLostFoundComment(
+    fun patchComment(
         @Body request: ModifyCommentRequest
     ): Response<Any>
 
@@ -63,7 +63,7 @@ interface LostFoundApi {
     ): Response<Any>
 
     @DELETE("lostfound/comment")
-    fun deleteLostFoundComment(
+    fun deleteComment(
         @Path("id") id : Int
     ): Response<Any>
 }

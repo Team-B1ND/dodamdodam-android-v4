@@ -6,11 +6,12 @@ import kr.hs.dgsw.smartschool.data.database.cache.HiddenLostFoundCache
 import kr.hs.dgsw.smartschool.data.database.entity.HiddenLostFoundEntity
 import kr.hs.dgsw.smartschool.data.mapper.LostFoundMapper
 import kr.hs.dgsw.smartschool.data.network.remote.LostFoundRemote
+import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.request.*
 import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
-import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.ModifyCommentRequest
 import javax.inject.Inject
 
 class LostFoundDataSource @Inject constructor(
@@ -23,11 +24,10 @@ class LostFoundDataSource @Inject constructor(
 
     private val lostFoundMapper = LostFoundMapper()
 
-    suspend fun getLostFound(page: Int, type: Int): List<LostFound> {
-        lostFoundList =  remote.getLostFound(page,type).data.pageData
-        Log.d("LostFoundDatasource",remote.getLostFound(page,type).message)
+    suspend fun getLostFound(page: Int, type:String): List<LostFound> {
+        lostFoundList =  remote.getLostFound(page,type).data
         hiddenLostFoundList = cache.getAllHiddenLostFound()
-        return lostFoundList
+        return getLostFoundList()
     }
 
     private fun getLostFoundList(): List<LostFound> {
@@ -48,21 +48,23 @@ class LostFoundDataSource @Inject constructor(
         return list
     }
 
-   suspend fun getLostFoundComment(lostFoundIdx: Int): List<LostFoundComment> = remote.getLostFoundComment(lostFoundIdx).data.comments
+    suspend fun getMyLostFound() : List<LostFound> = remote.getMyLostFound().data
 
-   suspend fun postCreateLostFound(request: LostFoundRequest): String = remote.postCreateLostFound(request).message
+   suspend fun getComment(lostFoundIdx: Int): List<Comment> = remote.getComment(lostFoundIdx).data
 
-   suspend fun postLostFoundComment(request: LostFoundDataRequest): String = remote.postLostFoundComment(request).message
+   suspend fun addLostFound(request: LostFoundDataRequest): String = remote.addLostFound(request).message
 
-   suspend fun putLostFound(request: LostFoundRequest): String = remote.putLostFound(request).message
+   suspend fun addComment(request: AddCommentRequest): String = remote.addComment(request).message
 
-   suspend fun putLostFoundComment(request: AddCommentRequest): String = remote.putLostFoundComment(request).message
+   suspend fun modifyLostFound(request: LostFoundDataRequest): String = remote.modifyLostFound(request).message
+
+   suspend fun modifyComment(request: ModifyCommentRequest): String = remote.modifyComment(request).message
 
    suspend fun deleteLostFound(idx: Int): String = remote.deleteLostFound(idx).message
 
-   suspend fun deleteLostFoundComment(commentIdx: Int): String = remote.deleteLostFoundComment(commentIdx).message
+   suspend fun deleteComment(commentIdx: Int): String = remote.deleteComment(commentIdx).message
 
-   suspend fun getLostFoundSearch(search: String): List<LostFound> = remote.getLostFoundSearch(search).data.pageData
+   suspend fun getLostFoundSearch(search: String): List<LostFound> = remote.getLostFoundSearch(search).data
 
    suspend fun hideLostFound(lostFound: LostFound) = cache.insertHiddenLostFound(lostFoundMapper.mapToEntity(lostFound))
 }
