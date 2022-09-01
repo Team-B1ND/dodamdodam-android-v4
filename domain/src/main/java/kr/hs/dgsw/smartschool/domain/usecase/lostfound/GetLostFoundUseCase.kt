@@ -15,7 +15,7 @@ class GetLostFoundUseCase @Inject constructor(
 
     data class Params(
         val page: Int,
-        val type: Int
+        val type: String
     )
 
     override fun invoke(params: Params): Flow<Resource<List<LostFound>>> = execute {

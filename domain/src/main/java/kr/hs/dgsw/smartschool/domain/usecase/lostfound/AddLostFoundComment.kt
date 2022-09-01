@@ -7,22 +7,13 @@ import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 
-class PutLostFoundCommentUseCase @Inject constructor(
+class AddLostFoundComment @Inject constructor(
     private val lostFoundRepository: LostFoundRepository
-) : BaseUseCase<PutLostFoundCommentUseCase.Params, String>() {
+) : BaseUseCase<AddCommentRequest, String>() {
 
-
-    data class Params(
-        val comment: String,
-        val lostFoundCommentIdx: Int
-    )
-
-    override fun invoke(params: Params): Flow<Resource<String>> = execute{
-        lostFoundRepository.modifyComment(
-            AddCommentRequest(
-            params.comment,
-            params.lostFoundCommentIdx
-        )
+    override fun invoke(params: AddCommentRequest): Flow<Resource<String>> = execute{
+        lostFoundRepository.addComment(
+            params
         )
     }
 }

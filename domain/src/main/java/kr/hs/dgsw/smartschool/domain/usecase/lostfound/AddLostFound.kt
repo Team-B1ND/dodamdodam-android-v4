@@ -7,20 +7,20 @@ import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 
-class PostLostFoundComment @Inject constructor(
+class AddLostFound @Inject constructor(
     private val lostFoundRepository: LostFoundRepository
-) : BaseUseCase<PostLostFoundComment.Params, String>() {
-    data class Params(
-        val comment: String,
-        val lostFoundIdx: Int
-    )
+) : BaseUseCase<LostFoundDataRequest, String>() {
 
-    override fun invoke(params: Params): Flow<Resource<String>> = execute{
-        lostFoundRepository.addComment(
+    override fun invoke(params: LostFoundDataRequest): Flow<Resource<String>> = execute{
+        lostFoundRepository.addLostFound(
             LostFoundDataRequest(
-            params.comment,
-            params.lostFoundIdx
-        )
+                params.content,
+                params.lostFoundId,
+                params.picture,
+                params.place,
+                params.title,
+                params.type
+            )
         )
     }
 }
