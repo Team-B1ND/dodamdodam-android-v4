@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.domain.request
+package kr.hs.dgsw.smartschool.domain.request.studyroom
 
 data class StudyRoomRequest(
     val studyRoomList: List<RequestStudyRoom>

@@ -1,30 +1,14 @@
 package kr.hs.dgsw.smartschool.domain.model.lostfound
 
-import android.net.Uri
-import java.io.Serializable
-import java.util.*
+import kr.hs.dgsw.smartschool.domain.model.member.Member
 
 data class LostFound(
-    val idx: Int,
-    val memberId: String,
-    val type: LostFoundType,
-    val title: String,
-    val uploadTime: Date,
-    val modifyTime: String,
-    val place: String?,
-    val content: String,
-    val name: String?,
-    val profileImage: String,
-    val picture: List<Picture>?,
+    val content : String,
+    val createAt : String,
+    val id : Int,
+    val member : Member,
+    val place: String,
+    val title : String,
+    val type : String
 
-    var isMine: Boolean
-) : Serializable {
-
-    fun getPictureUrl(): List<String>? {
-        return picture?.map { it.url!! }
-    }
-
-    fun getPictureUri(): List<Uri>? {
-        return getPictureUrl()?.map { Uri.parse(it) }
-    }
-}
+)

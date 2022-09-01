@@ -2,9 +2,8 @@ package kr.hs.dgsw.smartschool.domain.usecase.lostfound
 
 import kotlinx.coroutines.flow.Flow
 import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
-import kr.hs.dgsw.smartschool.domain.model.lostfound.Picture
 import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
-import kr.hs.dgsw.smartschool.domain.request.LostFoundRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundRequest
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 

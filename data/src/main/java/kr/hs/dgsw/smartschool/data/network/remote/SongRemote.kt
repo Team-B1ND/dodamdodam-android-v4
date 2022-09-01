@@ -7,8 +7,8 @@ import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.SongApi
 import kr.hs.dgsw.smartschool.domain.model.song.MelonChart
 import kr.hs.dgsw.smartschool.domain.model.song.VideoYoutubeData
-import kr.hs.dgsw.smartschool.domain.request.SongCheckRequest
-import kr.hs.dgsw.smartschool.domain.request.SongRequest
+import kr.hs.dgsw.smartschool.domain.request.song.SongCheckRequest
+import kr.hs.dgsw.smartschool.domain.request.song.SongRequest
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements

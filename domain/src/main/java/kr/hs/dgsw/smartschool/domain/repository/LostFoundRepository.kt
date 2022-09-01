@@ -1,9 +1,8 @@
 package kr.hs.dgsw.smartschool.domain.repository
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
-import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFoundComment
-import kr.hs.dgsw.smartschool.domain.request.LostFoundCommentPostRequest
-import kr.hs.dgsw.smartschool.domain.request.LostFoundCommentPutRequest
-import kr.hs.dgsw.smartschool.domain.request.LostFoundRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundRequest
 
 interface LostFoundRepository {
     suspend fun getLostFound(page: Int, type: Int): List<LostFound>
@@ -14,11 +13,11 @@ interface LostFoundRepository {
 
     suspend fun postCreateLostFound(request: LostFoundRequest): String
 
-    suspend fun postLostFoundComment(request: LostFoundCommentPostRequest): String
+    suspend fun postLostFoundComment(request: LostFoundDataRequest): String
 
     suspend fun putLostFound(request: LostFoundRequest): String
 
-    suspend fun putLostFoundComment(request: LostFoundCommentPutRequest): String
+    suspend fun putLostFoundComment(request: AddCommentRequest): String
 
     suspend fun hideLostFound(lostFound: LostFound): String
 

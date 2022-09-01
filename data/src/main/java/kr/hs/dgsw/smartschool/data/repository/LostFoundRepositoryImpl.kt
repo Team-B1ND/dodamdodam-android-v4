@@ -3,11 +3,10 @@ import android.util.Log
 import kr.hs.dgsw.smartschool.data.datasource.LostFoundDataSource
 import kr.hs.dgsw.smartschool.data.datasource.TokenDataSource
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
-import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFoundComment
 import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
-import kr.hs.dgsw.smartschool.domain.request.LostFoundCommentPostRequest
-import kr.hs.dgsw.smartschool.domain.request.LostFoundCommentPutRequest
-import kr.hs.dgsw.smartschool.domain.request.LostFoundRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundRequest
 import javax.inject.Inject
 
 class LostFoundRepositoryImpl @Inject constructor(
@@ -60,7 +59,7 @@ class LostFoundRepositoryImpl @Inject constructor(
         return lostFoundDataSource.postCreateLostFound(request)
     }
 
-    override suspend fun postLostFoundComment(request: LostFoundCommentPostRequest): String {
+    override suspend fun postLostFoundComment(request: LostFoundDataRequest): String {
         return lostFoundDataSource.postLostFoundComment(request)
     }
 
@@ -68,7 +67,7 @@ class LostFoundRepositoryImpl @Inject constructor(
         return lostFoundDataSource.putLostFound(request)
     }
 
-    override suspend fun putLostFoundComment(request: LostFoundCommentPutRequest): String {
+    override suspend fun putLostFoundComment(request: AddCommentRequest): String {
         return lostFoundDataSource.putLostFoundComment(request)
     }
 

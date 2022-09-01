@@ -1,7 +1,6 @@
-package kr.hs.dgsw.smartschool.domain.request
+package kr.hs.dgsw.smartschool.domain.request.bus
 
-data class UpdateBusRequest(
-    val idx: Int,
+data class AddBusRequest(
     val busName: String,
     val description: String,
     val leaveTime: String,

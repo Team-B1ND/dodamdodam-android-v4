@@ -3,60 +3,60 @@ package kr.hs.dgsw.smartschool.data.network.api
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.POST
-import retrofit2.http.PUT
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFoundData
-import kr.hs.dgsw.smartschool.domain.request.LostFoundRequest
-import kr.hs.dgsw.smartschool.domain.request.LostFoundCommentPostRequest
-import kr.hs.dgsw.smartschool.domain.request.LostFoundCommentPutRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
+import retrofit2.http.PATCH
 
 
 interface LostFoundApi {
-    @GET("lost")
+    @GET("lostfound")
     fun getLostFound(
         @Query("limit") limit: Int,
         @Query("page") page: Int,
-        @Query("type") type: Int
+        @Query("type") type: String
     ): Response<LostFoundData>
 
-    @GET("lost/comment")
+    @GET("lostfound/comment")
     fun getLostFoundComment(
         @Query("lostfoundIdx") lostfoundIdx: Int
     ): Response<LostFoundData>
 
-    @POST("lost")
+    @POST("lostfound")
     fun postCreateLostFound(
         @Body request: LostFoundRequest
     ): Response<Any>
 
-    @POST("lost/comment")
+    @POST("lostfound/comment")
     fun postLostFoundComment(
-        @Body request: LostFoundCommentPostRequest
+        @Body request: LostFoundDataRequest
     ): Response<Any>
 
-    @PUT("lost")
+    @PATCH("lostfound")
     fun putLostFound(
         @Body request: LostFoundRequest
     ): Response<Any>
 
-    @PUT("lost/comment")
+    @PATCH("lostfound/comment")
     fun putLostFoundComment(
-        @Body request: LostFoundCommentPutRequest
+        @Body request: AddCommentRequest
     ): Response<Any>
 
-    @DELETE("lost")
+    @DELETE("lostfound")
     fun deleteLostFound(
         @Query("idx") idx: Int
     ): Response<Any>
 
-    @DELETE("lost/comment")
+    @DELETE("lostfound/comment")
     fun deleteLostFoundComment(
         @Query("commentIdx") commentIdx: Int
     ): Response<Any>
 
-    @GET("lost/find")
+    @GET("lostfound/find")
     fun getLostFoundSearch(
         @Query("title") title: String
     ): Response<LostFoundData>

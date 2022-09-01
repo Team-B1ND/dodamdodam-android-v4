@@ -3,17 +3,14 @@ package kr.hs.dgsw.smartschool.data.datasource
 import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.database.cache.HiddenLostFoundCache
-import kr.hs.dgsw.smartschool.data.database.dao.HiddenLostFoundDao
 import kr.hs.dgsw.smartschool.data.database.entity.HiddenLostFoundEntity
 import kr.hs.dgsw.smartschool.data.mapper.LostFoundMapper
-import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.remote.LostFoundRemote
-import kr.hs.dgsw.smartschool.data.network.response.data.BusData
-import kr.hs.dgsw.smartschool.domain.model.bus.Bus
-import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
-import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFoundComment
 import kr.hs.dgsw.smartschool.domain.request.*
+import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundRequest
 import javax.inject.Inject
 
 class LostFoundDataSource @Inject constructor(
@@ -55,11 +52,11 @@ class LostFoundDataSource @Inject constructor(
 
    suspend fun postCreateLostFound(request: LostFoundRequest): String = remote.postCreateLostFound(request).message
 
-   suspend fun postLostFoundComment(request: LostFoundCommentPostRequest): String = remote.postLostFoundComment(request).message
+   suspend fun postLostFoundComment(request: LostFoundDataRequest): String = remote.postLostFoundComment(request).message
 
    suspend fun putLostFound(request: LostFoundRequest): String = remote.putLostFound(request).message
 
-   suspend fun putLostFoundComment(request: LostFoundCommentPutRequest): String = remote.putLostFoundComment(request).message
+   suspend fun putLostFoundComment(request: AddCommentRequest): String = remote.putLostFoundComment(request).message
 
    suspend fun deleteLostFound(idx: Int): String = remote.deleteLostFound(idx).message
 

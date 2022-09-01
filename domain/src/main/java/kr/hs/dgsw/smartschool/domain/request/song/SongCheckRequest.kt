@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.domain.request
+package kr.hs.dgsw.smartschool.domain.request.song
 
 import com.google.gson.annotations.SerializedName
 import java.util.Date
