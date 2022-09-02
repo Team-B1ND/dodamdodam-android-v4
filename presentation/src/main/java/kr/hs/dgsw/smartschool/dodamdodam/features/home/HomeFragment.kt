@@ -29,7 +29,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override val viewModel: HomeViewModel by viewModels()
     override val hasBottomNav: Boolean = true
 
-    private var mealList = listOf<Meal>()
     private var date: LocalDate = LocalDate.now()
 
     private lateinit var studyRoomCheckAdapter: StudyRoomCheckAdapter
@@ -100,13 +99,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 mBinding.tvMealTitle.text = "내일의 급식"
             }
             mBinding.tvMealDate.text = String.format("%d.%d", date.monthValue, date.dayOfMonth)
-            // getMealList(date)
+            getMeal(date)
 
             lifecycleScope.launchWhenStarted {
                 getMealState.collect { state ->
-                    if (state.meal.isNotEmpty()) {
-                        mealList = getMealState.value.meal
-                        getMeal(mealList, date)
+                    if (state.isUpdate) {
+                        state.meal?.let {
+                            setMealList(it)
+                        }
                     }
                     if (state.error.isNotBlank()) {
                         setMealList(
@@ -153,15 +153,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         }
     }
 
-    private fun getMeal(mealList: List<Meal>, date: LocalDate) {
-        val meal = mealList.find { meal ->
-            meal.date == date.toString()
-        }
-        meal?.let {
-            setMealList(it)
-        }
-    }
-
     private fun setMealListViewPager() {
         mealHomeAdapter = MealHomeAdapter()
         mBinding.viewPagerMealList.adapter = mealHomeAdapter
@@ -185,10 +176,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         val currentTime = Date().timeFormat()
         mBinding.viewPagerMealList.post {
             mBinding.viewPagerMealList.currentItem = when {
-                currentTime < "09:00" -> minOf(0, mealList.size - 1)
-                currentTime < "13:20" -> minOf(1, mealList.size - 1)
-                currentTime < "20:00" -> minOf(2, mealList.size - 1)
-                else -> minOf(0, mealList.size - 1)
+                currentTime < "09:00" -> minOf(0)
+                currentTime < "13:20" -> minOf(1)
+                currentTime < "20:00" -> minOf(2)
+                else -> minOf(0)
             }
         }
     }

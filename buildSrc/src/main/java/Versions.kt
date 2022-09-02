@@ -40,4 +40,6 @@ object Versions {
 
     const val SPLASH_SCREEN = "1.0.0-rc01"
     const val JSOUP = "1.15.2"
+
+    const val LOTTIE = "5.2.0"
 }

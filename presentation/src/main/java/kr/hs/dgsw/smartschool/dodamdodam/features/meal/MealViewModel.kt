@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
+import kr.hs.dgsw.smartschool.domain.usecase.meal.GetMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
 import java.time.LocalDate
 import javax.inject.Inject
@@ -23,8 +23,11 @@ class MealViewModel @Inject constructor(
         const val EVENT_UPDATE_DATE = 2
     }
 
-    private val _getMealState = MutableStateFlow(GetMealState(isLoading = false))
+    private val _getMealState = MutableStateFlow(GetMealState())
     val getMealState: StateFlow<GetMealState> = _getMealState
+
+    private val _getMealCalorieState = MutableStateFlow(GetMealCalorieState())
+    val getMealCalorieState: StateFlow<GetMealCalorieState> = _getMealCalorieState
 
     private val _targetDate = MutableLiveData<LocalDate>()
     val targetDate: LiveData<LocalDate> get() = _targetDate
@@ -35,22 +38,32 @@ class MealViewModel @Inject constructor(
 
     init {
         _targetDate.value = LocalDate.now()
-        getMealList()
+        getMeal()
+        getMealCalorie()
     }
 
     /**
      * 급식 리스트를 받아오는 함수입니다.
      */
-    fun getMealList() {
-        mealUseCases.getAllMeal(
-            GetAllMeal.Params(
+    fun getMeal() {
+        mealUseCases.getMeal(
+            GetMeal.Params(
                 _targetDate.value?.year ?: todayDate.year,
-                _targetDate.value?.monthValue ?: todayDate.monthValue
+                _targetDate.value?.monthValue ?: todayDate.monthValue,
+                _targetDate.value?.dayOfMonth ?: todayDate.dayOfMonth
             )
         ).divideResult(
             isLoading,
-            { _getMealState.value = GetMealState(meal = it ?: emptyList()) },
+            { _getMealState.value = GetMealState(meal = it, isUpdate = true) },
             { _getMealState.value = GetMealState(error = it ?: "급식을 받아오지 못하였습니다.") }
+        ).launchIn(viewModelScope)
+    }
+
+    private fun getMealCalorie() {
+        mealUseCases.getCalorieOfMeal(Unit).divideResult(
+            isLoading,
+            { _getMealCalorieState.value = GetMealCalorieState(isUpdate = true, calorie = it ?: "") },
+            { _getMealCalorieState.value = GetMealCalorieState(error = it ?: "칼로리를 받아오지 못했습니다.") }
         ).launchIn(viewModelScope)
     }
 
@@ -59,25 +72,18 @@ class MealViewModel @Inject constructor(
     }
 
     fun onClickDate() = viewEvent(EVENT_CLICK_DATE)
+
     fun onClickPlusDate() {
         _targetDate.value?.let {
-            if (it.plusDays(1).month != it.month) {
-                _targetDate.value = it.plusDays(1)
-                getMealList()
-                return
-            }
             _targetDate.value = it.plusDays(1)
+            getMeal()
             viewEvent(EVENT_UPDATE_DATE)
         }
     }
     fun onClickMinusDate() {
         _targetDate.value?.let {
-            if (it.minusDays(1).month != it.month) {
-                _targetDate.value = it.minusDays(1)
-                getMealList()
-                return
-            }
             _targetDate.value = it.minusDays(1)
+            getMeal()
             viewEvent(EVENT_UPDATE_DATE)
         }
     }

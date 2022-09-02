@@ -1,9 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.meal
 
-import kr.hs.dgsw.smartschool.domain.model.meal.Meal
-
-data class GetMealState(
+data class GetMealCalorieState(
     val isUpdate: Boolean = false,
-    val meal: Meal? = null,
+    val calorie: String? = null,
     val error: String = ""
 )

@@ -20,21 +20,19 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
     override val viewModel: MealViewModel by viewModels()
     override val hasBottomNav: Boolean = true
 
-    private var mealList = listOf<Meal>()
-
     override fun observerViewModel() {
         bindingViewEvent { event ->
             when (event) {
                 MealViewModel.EVENT_CLICK_DATE -> showDateDialog()
-                MealViewModel.EVENT_UPDATE_DATE -> getMeal(mealList)
             }
         }
-
+        mBinding.tvCalorieDate.text = LocalDate.now().toString()
         viewModel.targetDate.observe(this@MealFragment) {
             mBinding.tvDate.text = it.toString()
         }
 
         collectMealState()
+        collectMealCalorie()
     }
 
     private fun showDateDialog() {
@@ -52,11 +50,7 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                             val cal = Calendar.getInstance()
                             cal.set(y, m + 1, d)
                             setTargetDate(LocalDate.of(y, m + 1, d))
-                            if (month != m + 1) {
-                                getMealList()
-                                return@DatePickerDialog
-                            }
-                            getMeal(mealList)
+                            getMeal()
                         },
                         year,
                         month - 1,
@@ -75,9 +69,10 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getMealState.collect { state ->
-                    if (state.meal.isNotEmpty()) {
-                        mealList = getMealState.value.meal
-                        getMeal(mealList)
+                    if (state.isUpdate) {
+                        state.meal?.let {
+                            setMealRecycler(it)
+                        }
                     }
 
                     if (state.error.isNotBlank()) {
@@ -97,12 +92,19 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
         }
     }
 
-    private fun getMeal(mealList: List<Meal>) {
-        val meal = mealList.find { meal ->
-            meal.date == viewModel.targetDate.value.toString()
-        }
-        meal?.let {
-            setMealRecycler(it)
+    private fun collectMealCalorie() {
+        with(viewModel) {
+            lifecycleScope.launchWhenStarted {
+                getMealCalorieState.collect { state ->
+                    if (state.isUpdate) {
+                        mBinding.tvCalorie.text = state.calorie ?: "급식이 없군요.."
+                    }
+
+                    if (state.error.isNotBlank()) {
+                        shortToast(state.error)
+                    }
+                }
+            }
         }
     }
 

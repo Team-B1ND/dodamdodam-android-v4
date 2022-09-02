@@ -90,6 +90,8 @@ dependencies {
 
     implementation(Libraries.JSOUP)
 
+    implementation(Libraries.LOTTIE)
+
     implementation(project(":data"))
     implementation(project(":domain"))
 }
