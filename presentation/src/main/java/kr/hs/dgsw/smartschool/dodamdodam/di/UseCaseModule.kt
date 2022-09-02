@@ -52,6 +52,7 @@ import kr.hs.dgsw.smartschool.domain.usecase.song.GetMySong
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetPendingSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.ApplySong
 import kr.hs.dgsw.smartschool.domain.usecase.song.DeleteSong
+import kr.hs.dgsw.smartschool.domain.usecase.song.GetYouTubeVideo
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ApplyStudyRoom
 import kr.hs.dgsw.smartschool.domain.usecase.studyroom.CancelStudyRoom
@@ -153,7 +154,8 @@ class UseCaseModule {
             getPendingSong = GetPendingSong(songRepository),
             applySong = ApplySong(songRepository),
             getMelonChart = GetMelonChart(songRepository),
-            deleteSong = DeleteSong(songRepository)
+            deleteSong = DeleteSong(songRepository),
+            getYouTubeVideo = GetYouTubeVideo(songRepository)
         )
 
     @Provides

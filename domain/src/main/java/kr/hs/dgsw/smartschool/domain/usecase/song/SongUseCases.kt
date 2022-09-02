@@ -6,5 +6,6 @@ data class SongUseCases(
     val getPendingSong: GetPendingSong,
     val applySong: ApplySong,
     val getMelonChart: GetMelonChart,
-    val deleteSong: DeleteSong
+    val deleteSong: DeleteSong,
+    val getYouTubeVideo: GetYouTubeVideo
 )

@@ -5,8 +5,9 @@ import kotlinx.coroutines.withContext
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.SongApi
 import kr.hs.dgsw.smartschool.data.util.SongUtils
-import kr.hs.dgsw.smartschool.domain.model.song.MelonChart
+import kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart
 import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
+import kr.hs.dgsw.smartschool.domain.model.song.youtube.YoutubeVideo
 import kr.hs.dgsw.smartschool.domain.request.SongRequest
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -60,4 +61,7 @@ class SongRemote @Inject constructor(
 
         return@withContext melonChartList.toList()
     }
+
+    suspend fun getYouTubeVideo(content: String): YoutubeVideo =
+        api.getYouTubeVideo(content = content)
 }

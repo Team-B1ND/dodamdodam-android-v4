@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.domain.model.song
+package kr.hs.dgsw.smartschool.domain.model.song.melon
 
 data class MelonChart(
     val title: String,

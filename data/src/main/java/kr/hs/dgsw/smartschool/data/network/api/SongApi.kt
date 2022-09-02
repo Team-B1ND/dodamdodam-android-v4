@@ -1,7 +1,9 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
+import kr.hs.dgsw.smartschool.data.util.Constants
 import kr.hs.dgsw.smartschool.domain.model.song.Song
+import kr.hs.dgsw.smartschool.domain.model.song.youtube.YoutubeVideo
 import kr.hs.dgsw.smartschool.domain.request.SongRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -35,4 +37,12 @@ interface SongApi {
 
     @GET("wakeup-song/pending")
     suspend fun getPendingSong(): Response<List<Song>>
+
+    @GET("search")
+    suspend fun getYouTubeVideo(
+        @Query("part") part: String = "snippet",
+        @Query("maxResults") maxResults: Int = 1,
+        @Query("key") key: String = Constants.YOUTUBE_API_KEY,
+        @Query("q") content: String
+    ): YoutubeVideo
 }

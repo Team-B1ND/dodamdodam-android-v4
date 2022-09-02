@@ -2,8 +2,9 @@ package kr.hs.dgsw.smartschool.data.datasource
 
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.SongRemote
-import kr.hs.dgsw.smartschool.domain.model.song.MelonChart
+import kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart
 import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
+import kr.hs.dgsw.smartschool.domain.model.song.youtube.YoutubeVideo
 import kr.hs.dgsw.smartschool.domain.request.SongRequest
 import javax.inject.Inject
 
@@ -23,4 +24,7 @@ class SongDataSource @Inject constructor(
     suspend fun getMySong(id: String): List<VideoSongData> = remote.getMySong(id)
 
     suspend fun getMelonChart(): List<MelonChart> = remote.getMelonChart()
+
+    suspend fun getYoutubeVideo(content: String): YoutubeVideo = remote.getYouTubeVideo(content)
+
 }

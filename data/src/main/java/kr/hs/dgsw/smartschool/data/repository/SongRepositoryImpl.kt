@@ -1,8 +1,9 @@
 package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.SongDataSource
-import kr.hs.dgsw.smartschool.domain.model.song.MelonChart
+import kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart
 import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
+import kr.hs.dgsw.smartschool.domain.model.song.youtube.YoutubeVideo
 import kr.hs.dgsw.smartschool.domain.repository.SongRepository
 import kr.hs.dgsw.smartschool.domain.request.SongRequest
 import javax.inject.Inject
@@ -33,6 +34,10 @@ class SongRepositoryImpl @Inject constructor(
 
     override suspend fun getMelonChart(): List<MelonChart> {
         return songDataSource.getMelonChart()
+    }
+
+    override suspend fun getYoutubeVideo(content: String): YoutubeVideo {
+        return songDataSource.getYoutubeVideo(content)
     }
 
 }

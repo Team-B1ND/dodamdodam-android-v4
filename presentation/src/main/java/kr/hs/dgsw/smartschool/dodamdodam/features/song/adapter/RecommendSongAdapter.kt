@@ -4,7 +4,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemRecommendSongBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.callback.MelonChartDiffUtilCallback
-import kr.hs.dgsw.smartschool.domain.model.song.MelonChart
+import kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart
 
 class RecommendSongAdapter : BaseListAdapter<MelonChart, ItemRecommendSongBinding>(
     R.layout.item_recommend_song,

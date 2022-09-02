@@ -31,4 +31,6 @@ object Constants {
     const val SERVER_ERROR_MESSAGE = "이용에 불편을 드려 죄송합니다\n추후에 다시 시도해주세요"
 
     const val INFINITE_SCROLL_LIMIT = 20
+
+    const val YOUTUBE_API_KEY = "AIzaSyB7Zuvs0_3KUmD-Averq0pn_Pni99n-x7M"
 }
