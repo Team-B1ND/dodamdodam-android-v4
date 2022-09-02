@@ -5,7 +5,9 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
@@ -26,8 +28,8 @@ class SongApplyViewModel @Inject constructor(
     private val _getMelonChartState = MutableStateFlow<GetMelonChartState>(GetMelonChartState())
     val getMelonChartState: StateFlow<GetMelonChartState> = _getMelonChartState
 
-    private val _getYouTubeVideoState = MutableStateFlow<GetYoutubeVideoState>(GetYoutubeVideoState())
-    val getYouTubeVideoState: StateFlow<GetYoutubeVideoState> = _getYouTubeVideoState
+    private val _getYouTubeVideoState = MutableSharedFlow<GetYoutubeVideoState>()
+    val getYouTubeVideoState: SharedFlow<GetYoutubeVideoState> = _getYouTubeVideoState
 
     private val isApplySongLoading = MutableLiveData(false)
     private val isMelonChartLoading = MutableLiveData(false)
@@ -82,8 +84,8 @@ class SongApplyViewModel @Inject constructor(
     fun getYouTubeVideo(title: String) {
         songUseCases.getYouTubeVideo(title).divideResult(
             isGetYoutubeVideo,
-            { _getYouTubeVideoState.value = GetYoutubeVideoState(youtubeVideo = it) },
-            { _getYouTubeVideoState.value = GetYoutubeVideoState(error = it ?: "영상을 받을 수 없습니다.")}
+            { viewModelScope.launch { _getYouTubeVideoState.emit(GetYoutubeVideoState(youtubeVideo = it)) } },
+            { viewModelScope.launch { _getYouTubeVideoState.emit(GetYoutubeVideoState(error = it ?: "영상을 받을 수 없습니다.")) } }
         ).launchIn(viewModelScope)
     }
 
