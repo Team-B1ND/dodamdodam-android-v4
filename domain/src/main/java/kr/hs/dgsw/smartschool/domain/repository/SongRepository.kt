@@ -7,17 +7,16 @@ import kr.hs.dgsw.smartschool.domain.request.SongRequest
 
 interface SongRepository {
 
-    suspend fun getAllowSong(year: Int, month: Int, date: Int): List<VideoYoutubeData>
+    suspend fun applySong(request: SongRequest): String
+
+    suspend fun deleteSong(id: String): String
+
+    suspend fun getAllowSong(year: Int, month: Int, day: Int): List<VideoYoutubeData>
 
     suspend fun getPendingSong(): List<VideoYoutubeData>
 
     suspend fun getMySong(id: String): List<VideoYoutubeData>
 
-    suspend fun postSong(request: SongRequest): String
-
-    suspend fun postAllowSong(request: SongCheckRequest): String
-
-    suspend fun postDenySong(request: SongCheckRequest): String
-
     suspend fun getMelonChart(): List<MelonChart>
+
 }

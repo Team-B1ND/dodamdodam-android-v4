@@ -50,7 +50,8 @@ import kr.hs.dgsw.smartschool.domain.usecase.song.GetAllowSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetMelonChart
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetMySong
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetPendingSong
-import kr.hs.dgsw.smartschool.domain.usecase.song.PostSong
+import kr.hs.dgsw.smartschool.domain.usecase.song.ApplySong
+import kr.hs.dgsw.smartschool.domain.usecase.song.DeleteSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ApplyStudyRoom
 import kr.hs.dgsw.smartschool.domain.usecase.studyroom.CancelStudyRoom
@@ -150,8 +151,9 @@ class UseCaseModule {
             getAllowSong = GetAllowSong(songRepository),
             getMySong = GetMySong(songRepository),
             getPendingSong = GetPendingSong(songRepository),
-            postSong = PostSong(songRepository),
-            getMelonChart = GetMelonChart(songRepository)
+            applySong = ApplySong(songRepository),
+            getMelonChart = GetMelonChart(songRepository),
+            deleteSong = DeleteSong(songRepository)
         )
 
     @Provides

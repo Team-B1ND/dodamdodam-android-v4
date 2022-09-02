@@ -10,7 +10,9 @@ import javax.inject.Inject
 class GetPendingSong @Inject constructor(
     private val songRepository: SongRepository
 ) : BaseUseCase<Unit, List<VideoYoutubeData>>() {
+
     override fun invoke(params: Unit): Flow<Resource<List<VideoYoutubeData>>> = execute {
         songRepository.getPendingSong()
     }
+
 }

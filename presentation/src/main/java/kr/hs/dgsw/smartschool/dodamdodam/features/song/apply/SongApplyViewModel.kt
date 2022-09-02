@@ -73,7 +73,7 @@ class SongApplyViewModel @Inject constructor(
     }
 
     private fun applyWakeUpSong(url: String) {
-        songUseCases.postSong(url).divideResult(
+        songUseCases.applySong(url).divideResult(
             isApplySongLoading,
             { viewEvent(EVENT_ON_SUCCESS_APPLY) },
             {

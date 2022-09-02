@@ -12,12 +12,12 @@ class GetAllowSong @Inject constructor(
 ) : BaseUseCase<GetAllowSong.Params, List<VideoYoutubeData>>() {
 
     override fun invoke(params: Params): Flow<Resource<List<VideoYoutubeData>>> = execute {
-        songRepository.getAllowSong(params.year, params.month, params.date)
+        songRepository.getAllowSong(params.year, params.month, params.day)
     }
 
     data class Params(
         val year: Int,
         val month: Int,
-        val date: Int
+        val day: Int
     )
 }

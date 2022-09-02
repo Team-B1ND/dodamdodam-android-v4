@@ -50,7 +50,7 @@ class SongViewModel @Inject constructor(
             GetAllowSong.Params(
                 year = today.year,
                 month = today.monthValue,
-                date = today.dayOfMonth,
+                day = today.dayOfMonth,
             )
         ).divideResult(
             isGetAllowSongLoading,
