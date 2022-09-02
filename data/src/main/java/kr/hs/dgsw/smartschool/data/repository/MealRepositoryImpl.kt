@@ -15,5 +15,4 @@ class MealRepositoryImpl @Inject constructor (
     override suspend fun getCalorieOfMeal(): String {
         return mealDataSource.getCalorieOfMeal()
     }
-
 }

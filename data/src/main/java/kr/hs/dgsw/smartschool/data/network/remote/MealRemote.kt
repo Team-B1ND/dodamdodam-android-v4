@@ -16,5 +16,4 @@ class MealRemote @Inject constructor(
     suspend fun getCalorieOfMeal(): String {
         return api.getCalorieOfMeal().data
     }
-
 }

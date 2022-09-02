@@ -98,7 +98,6 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                 getMealCalorieState.collect { state ->
                     if (state.isUpdate) {
                         mBinding.tvCalorie.text = state.calorie ?: "급식이 없군요.."
-
                     }
 
                     if (state.error.isNotBlank()) {

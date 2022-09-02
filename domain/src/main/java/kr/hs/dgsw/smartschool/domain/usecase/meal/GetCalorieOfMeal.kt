@@ -13,5 +13,4 @@ class GetCalorieOfMeal @Inject constructor(
     override fun invoke(params: Unit): Flow<Resource<String>> = execute {
         mealRepository.getCalorieOfMeal()
     }
-
 }

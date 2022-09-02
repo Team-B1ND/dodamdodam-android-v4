@@ -15,5 +15,4 @@ class MealDataSource @Inject constructor(
 
     suspend fun getCalorieOfMeal(): String =
         remote.getCalorieOfMeal()
-
 }
