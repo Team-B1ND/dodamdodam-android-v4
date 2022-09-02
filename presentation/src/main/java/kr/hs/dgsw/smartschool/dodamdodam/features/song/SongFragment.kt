@@ -7,14 +7,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.ApplySongAdapter
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.SongAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.ApplySongAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.SongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentSongBinding
 import kr.hs.dgsw.smartschool.dodamdodam.util.ViewPagerUtils.getTransform
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.openVideoFromUrl
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
-import kr.hs.dgsw.smartschool.domain.model.song.VideoYoutubeData
+import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
 import java.time.LocalDate
 
 @AndroidEntryPoint
@@ -25,8 +25,8 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
     private lateinit var songAdapter: SongAdapter
     private lateinit var applySongAdapter: ApplySongAdapter
 
-    private var pendingSongList: List<Video> = emptyList()
-    private var mySongList: List<Video> = emptyList()
+    private var pendingSongList: List<VideoSongData> = emptyList()
+    private var mySongList: List<VideoSongData> = emptyList()
 
     override fun observerViewModel() {
         mBinding.tvSongDate.text = LocalDate.now().plusDays(1).toString()
@@ -49,7 +49,7 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
         lifecycleScope.launchWhenStarted {
             viewModel.getAllowSongState.collect { state ->
                 if (state.songList.isNotEmpty()) {
-                    songAdapter.submitList(state.songList.mapNotNull(VideoYoutubeData::source))
+                    songAdapter.submitList(state.songList)
                     setEmptySongView(false)
                 } else {
                     setEmptySongView(true)
@@ -67,8 +67,8 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
         lifecycleScope.launchWhenStarted {
             viewModel.getPendingSongState.collect { state ->
                 if (state.songList.isNotEmpty()) {
-                    pendingSongList = state.songList.mapNotNull(VideoYoutubeData::source)
-                        .sortedBy { it.submitDate }
+                    pendingSongList = state.songList
+                        .sortedBy { it.createdDate }
                     changeRecyclerShow()
                     Log.d("Refreshing", "collectPendingSongList: dodo")
                     endRefreshing()
@@ -89,8 +89,8 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
                     if (state.songList[0].quality == "-1") {
                         changeRecyclerShow()
                     }
-                    mySongList = state.songList.mapNotNull(VideoYoutubeData::source)
-                        .sortedBy { it.submitDate }
+                    mySongList = state.songList
+                        .sortedBy { it.createdDate }
                         .filter { it.playDate == null }
                     changeRecyclerShow()
                 }

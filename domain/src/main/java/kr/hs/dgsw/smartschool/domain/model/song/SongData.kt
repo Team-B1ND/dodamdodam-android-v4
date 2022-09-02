@@ -2,11 +2,14 @@ package kr.hs.dgsw.smartschool.domain.model.song
 
 import java.util.Locale
 
-open class YoutubeData(
+open class SongData(
     val videoId: String?,
     val thumbnailUrl: String,
     val videoTitle: String,
-    val channelTitle: String
+    val channelTitle: String,
+    val id: Int,
+    val createdDate: String,
+    val playDate: String?
 ) {
 
     val lowerThumbnailUrl: String

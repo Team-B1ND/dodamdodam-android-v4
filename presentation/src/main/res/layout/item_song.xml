@@ -6,7 +6,7 @@
     <data>
         <variable
             name="song"
-            type="kr.hs.dgsw.smartschool.domain.model.song.Video" />
+            type="kr.hs.dgsw.smartschool.domain.model.song.VideoSongData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,6 +59,7 @@
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/title6"
                     tools:text="오늘의 노래 히히" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>

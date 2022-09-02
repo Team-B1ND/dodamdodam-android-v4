@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.state.GetMelonChartState
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
 import javax.inject.Inject
 
@@ -29,6 +30,7 @@ class SongApplyViewModel @Inject constructor(
 
     init {
         combineLoadingVariable(isApplySongLoading, isMelonChartLoading)
+
         CoroutineScope(Dispatchers.Main).launch {
             getMelonChart()
         }
@@ -54,7 +56,7 @@ class SongApplyViewModel @Inject constructor(
                 applyWakeUpSong(applyUrl.value ?: "")
             }
             applyUrl.value?.startsWith(mYoutube) == true -> {
-                val youtubeUrl = "https://www.youtube.com/watch?v=" + applyUrl.value?.replace(mYoutube, "")
+                val youtubeUrl = youtube + applyUrl.value?.replace(mYoutube, "")
                 applyWakeUpSong(youtubeUrl)
             }
             else -> {

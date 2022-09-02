@@ -6,7 +6,7 @@
     <data>
         <variable
             name="song"
-            type="kr.hs.dgsw.smartschool.domain.model.song.Video" />
+            type="kr.hs.dgsw.smartschool.domain.model.song.VideoSongData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

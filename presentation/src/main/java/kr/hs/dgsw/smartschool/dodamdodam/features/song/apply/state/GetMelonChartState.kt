@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.song.apply
+package kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.state
 
 import kr.hs.dgsw.smartschool.domain.model.song.MelonChart
 

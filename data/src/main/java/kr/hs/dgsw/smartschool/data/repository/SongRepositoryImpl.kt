@@ -2,9 +2,8 @@ package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.SongDataSource
 import kr.hs.dgsw.smartschool.domain.model.song.MelonChart
-import kr.hs.dgsw.smartschool.domain.model.song.VideoYoutubeData
+import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
 import kr.hs.dgsw.smartschool.domain.repository.SongRepository
-import kr.hs.dgsw.smartschool.domain.request.SongCheckRequest
 import kr.hs.dgsw.smartschool.domain.request.SongRequest
 import javax.inject.Inject
 
@@ -20,15 +19,15 @@ class SongRepositoryImpl @Inject constructor(
         return songDataSource.deleteSong(id)
     }
 
-    override suspend fun getAllowSong(year: Int, month: Int, day: Int): List<VideoYoutubeData> {
+    override suspend fun getAllowSong(year: Int, month: Int, day: Int): List<VideoSongData> {
         return songDataSource.getAllowSong(year, month, day)
     }
 
-    override suspend fun getPendingSong(): List<VideoYoutubeData> {
+    override suspend fun getPendingSong(): List<VideoSongData> {
         return songDataSource.getPendingSong()
     }
 
-    override suspend fun getMySong(id: String): List<VideoYoutubeData> {
+    override suspend fun getMySong(id: String): List<VideoSongData> {
         return songDataSource.getMySong(id)
     }
 

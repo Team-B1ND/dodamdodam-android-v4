@@ -11,6 +11,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetAllowSongState
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetMySongState
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetPendingSongState
 import kr.hs.dgsw.smartschool.domain.usecase.account.AccountUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetAllowSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases

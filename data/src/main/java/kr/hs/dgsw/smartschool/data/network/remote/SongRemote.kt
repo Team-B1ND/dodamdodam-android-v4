@@ -6,7 +6,7 @@ import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.SongApi
 import kr.hs.dgsw.smartschool.data.util.SongUtils
 import kr.hs.dgsw.smartschool.domain.model.song.MelonChart
-import kr.hs.dgsw.smartschool.domain.model.song.VideoYoutubeData
+import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
 import kr.hs.dgsw.smartschool.domain.request.SongRequest
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -24,14 +24,14 @@ class SongRemote @Inject constructor(
     suspend fun deleteSong(id: String): String =
         api.deleteSong(id).message
 
-    suspend fun getAllowSong(year: Int, month: Int, day: Int): List<VideoYoutubeData> =
-        api.getAllowSong(year, month, day).data.map { video -> VideoYoutubeData(video, quality) }
+    suspend fun getAllowSong(year: Int, month: Int, day: Int): List<VideoSongData> =
+        api.getAllowSong(year, month, day).data.map { video -> VideoSongData(video, quality) }
 
-    suspend fun getMySong(id: String): List<VideoYoutubeData> =
-        api.getMySong(id).data.map { video -> VideoYoutubeData(video, quality) }
+    suspend fun getMySong(id: String): List<VideoSongData> =
+        api.getMySong(id).data.map { video -> VideoSongData(video, quality) }
 
-    suspend fun getPendingSong(): List<VideoYoutubeData> =
-        api.getPendingSong().data.map { video -> VideoYoutubeData(video, quality) }
+    suspend fun getPendingSong(): List<VideoSongData> =
+        api.getPendingSong().data.map { video -> VideoSongData(video, quality) }
 
     // web crawling -> melon chart 50
     suspend fun getMelonChart(): List<MelonChart> = withContext(Dispatchers.IO) {

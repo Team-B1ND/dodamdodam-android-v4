@@ -1,8 +1,8 @@
-package kr.hs.dgsw.smartschool.dodamdodam.adapter
+package kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter
 
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.MelonChartDiffUtilCallback
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.callback.MelonChartDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemRecommendSongBinding
 import kr.hs.dgsw.smartschool.domain.model.song.MelonChart
