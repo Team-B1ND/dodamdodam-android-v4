@@ -31,13 +31,13 @@ class SongRemote @Inject constructor(
         api.getMySong(id).data.videos?.map { video -> VideoYoutubeData(video, quality) } ?: emptyList()
 
     suspend fun postSong(request: SongRequest): String =
-        api.postSong(request).message
+        api.applySong(request).message
 
     suspend fun postAllowSong(request: SongCheckRequest): String =
         api.postAllowSong(request).message
 
     suspend fun postDenySong(request: SongCheckRequest): String =
-        api.postDenySong(request).message
+        api.deleteSong(request).message
 
     // web crawling -> melon chart 50
     suspend fun getMelonChart(): List<MelonChart> = withContext(Dispatchers.IO) {

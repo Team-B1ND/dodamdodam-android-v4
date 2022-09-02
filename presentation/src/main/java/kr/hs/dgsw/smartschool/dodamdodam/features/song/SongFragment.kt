@@ -14,7 +14,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentSongBinding
 import kr.hs.dgsw.smartschool.dodamdodam.util.ViewPagerUtils.getTransform
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.openVideoFromUrl
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
-import kr.hs.dgsw.smartschool.domain.model.song.Video
 import kr.hs.dgsw.smartschool.domain.model.song.VideoYoutubeData
 import java.time.LocalDate
 

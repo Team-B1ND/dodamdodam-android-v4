@@ -6,7 +6,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.SongDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemApplySongBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateFormat
-import kr.hs.dgsw.smartschool.domain.model.song.Video
 
 class ApplySongAdapter(private val action: (url: String) -> Unit) : BaseListAdapter<Video, ItemApplySongBinding>(
     R.layout.item_apply_song,
