@@ -141,4 +141,6 @@
     <string name="title_out_write">외출/외박 신청</string>
     <string name="text_no_out">신청된 외출/외박이 없어요</string>
     <string name="text_today_meal_calorie">오늘의 급식 칼로리는?</string>
+    <string name="text_is_right">위의 영상이 맞나요?</string>
+    <string name="text_no">아니요</string>
 </resources>
