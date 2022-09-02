@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.di
+package kr.hs.dgsw.smartschool.dodamdodam.di.module
 
 import dagger.Module
 import dagger.Provides

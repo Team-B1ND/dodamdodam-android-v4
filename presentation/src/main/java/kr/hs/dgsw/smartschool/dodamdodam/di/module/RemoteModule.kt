@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.di
+package kr.hs.dgsw.smartschool.dodamdodam.di.module
 
 import android.content.Context
 import dagger.Module
@@ -17,6 +17,7 @@ import kr.hs.dgsw.smartschool.data.network.api.PointApi
 import kr.hs.dgsw.smartschool.data.network.api.SongApi
 import kr.hs.dgsw.smartschool.data.network.api.StudyRoomApi
 import kr.hs.dgsw.smartschool.data.network.api.TimeTableApi
+import kr.hs.dgsw.smartschool.data.network.api.YouTubeApi
 import kr.hs.dgsw.smartschool.data.network.remote.AuthRemote
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.remote.ClassInfoRemote
@@ -32,6 +33,8 @@ import kr.hs.dgsw.smartschool.data.network.remote.TimeTableRemote
 import kr.hs.dgsw.smartschool.data.network.remote.TokenRemote
 import kr.hs.dgsw.smartschool.data.network.remote.YouTubeRemote
 import kr.hs.dgsw.smartschool.dodamdodam.R
+import kr.hs.dgsw.smartschool.dodamdodam.di.OtherRemoteRetrofit
+import kr.hs.dgsw.smartschool.dodamdodam.di.YouTubeRemoteRetrofit
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -40,12 +43,12 @@ import javax.inject.Singleton
 class RemoteModule {
     @Singleton
     @Provides
-    fun provideMealRemote(retrofit: Retrofit): MealRemote =
+    fun provideMealRemote(@OtherRemoteRetrofit retrofit: Retrofit): MealRemote =
         MealRemote(retrofit.create(MealApi::class.java))
 
     @Singleton
     @Provides
-    fun provideBusRemote(retrofit: Retrofit): BusRemote =
+    fun provideBusRemote(@OtherRemoteRetrofit retrofit: Retrofit): BusRemote =
         BusRemote(retrofit.create(BusApi::class.java))
 
     @Singleton
@@ -54,7 +57,8 @@ class RemoteModule {
 
     @Singleton
     @Provides
-    fun provideYouTubeRemote(): YouTubeRemote = YouTubeRemote()
+    fun provideYouTubeRemote(@YouTubeRemoteRetrofit retrofit: Retrofit): YouTubeRemote =
+        YouTubeRemote(retrofit.create(YouTubeApi::class.java))
 
     @Singleton
     @Provides
@@ -62,42 +66,42 @@ class RemoteModule {
 
     @Singleton
     @Provides
-    fun provideMemberRemote(retrofit: Retrofit): MemberRemote =
+    fun provideMemberRemote(@OtherRemoteRetrofit retrofit: Retrofit): MemberRemote =
         MemberRemote(retrofit.create(MemberApi::class.java))
 
     @Singleton
     @Provides
-    fun provideFileUploadRemote(retrofit: Retrofit): FileUploadRemote =
+    fun provideFileUploadRemote(@OtherRemoteRetrofit retrofit: Retrofit): FileUploadRemote =
         FileUploadRemote(retrofit.create(FileUploadApi::class.java))
 
     @Singleton
     @Provides
-    fun providePointRemote(retrofit: Retrofit): PointRemote =
+    fun providePointRemote(@OtherRemoteRetrofit retrofit: Retrofit): PointRemote =
         PointRemote(retrofit.create(PointApi::class.java))
 
     @Singleton
     @Provides
-    fun provideTimeRemote(retrofit: Retrofit): TimeTableRemote =
+    fun provideTimeRemote(@OtherRemoteRetrofit retrofit: Retrofit): TimeTableRemote =
         TimeTableRemote(retrofit.create(TimeTableApi::class.java))
 
     @Singleton
     @Provides
-    fun providePlaceRemote(retrofit: Retrofit): PlaceRemote =
+    fun providePlaceRemote(@OtherRemoteRetrofit retrofit: Retrofit): PlaceRemote =
         PlaceRemote(retrofit.create(PlaceApi::class.java))
 
     @Singleton
     @Provides
-    fun provideLocationRemote(retrofit: Retrofit): StudyRoomRemote =
+    fun provideLocationRemote(@OtherRemoteRetrofit retrofit: Retrofit): StudyRoomRemote =
         StudyRoomRemote(retrofit.create(StudyRoomApi::class.java))
 
     @Singleton
     @Provides
-    fun provideClassInfoRemote(retrofit: Retrofit): ClassInfoRemote =
+    fun provideClassInfoRemote(@OtherRemoteRetrofit retrofit: Retrofit): ClassInfoRemote =
         ClassInfoRemote(retrofit.create(ClassInfoApi::class.java))
 
     @Singleton
     @Provides
-    fun provideSongRemote(retrofit: Retrofit, context: Context): SongRemote =
+    fun provideSongRemote(@OtherRemoteRetrofit retrofit: Retrofit, context: Context): SongRemote =
         SongRemote(
             retrofit.create(SongApi::class.java),
             SharedPreferenceManager.getDefaultSharedPreferences(context)
@@ -106,6 +110,6 @@ class RemoteModule {
 
     @Singleton
     @Provides
-    fun provideOutRemote(retrofit: Retrofit): OutRemote =
+    fun provideOutRemote(@OtherRemoteRetrofit retrofit: Retrofit): OutRemote =
         OutRemote(retrofit.create(OutApi::class.java))
 }
