@@ -17,53 +17,53 @@ import retrofit2.http.Path
 
 interface LostFoundApi {
     @GET("lostfound")
-    fun getLostFound(
+    suspend fun getLostFound(
         @Query("limit") limit: Int,
         @Query("page") page: Int,
         @Query("type") type: String
     ): Response<List<LostFound>>
 
     @GET("lostfound/comment")
-    fun getComment(
+    suspend fun getComment(
         @Query("lostfoundIdx") lostfoundIdx: Int
     ): Response<List<Comment>>
 
     @GET("lostfound/search")
-    fun getLostFoundSearch(
+    suspend fun getLostFoundSearch(
         @Query("title") title: String
     ): Response<List<LostFound>>
 
     @GET("lostfound/my")
-    fun getMyLostFound(
+    suspend fun getMyLostFound(
     ): Response<List<LostFound>>
 
     @POST("lostfound")
-    fun postLostFound(
+    suspend fun postLostFound(
         @Body request: LostFoundDataRequest
     ): Response<Any>
 
     @POST("lostfound/comment")
-    fun postComment(
+    suspend fun postComment(
         @Body request: AddCommentRequest
     ): Response<Any>
 
     @PATCH("lostfound")
-    fun patchLostFound(
+   suspend  fun patchLostFound(
         @Body request: LostFoundDataRequest
     ): Response<Any>
 
     @PATCH("lostfound/comment")
-    fun patchComment(
+    suspend fun patchComment(
         @Body request: ModifyCommentRequest
     ): Response<Any>
 
     @DELETE("lostfound")
-    fun deleteLostFound(
+   suspend fun deleteLostFound(
         @Path("id") id : Int
     ): Response<Any>
 
     @DELETE("lostfound/comment")
-    fun deleteComment(
+   suspend fun deleteComment(
         @Path("id") id : Int
     ): Response<Any>
 }
