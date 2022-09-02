@@ -25,6 +25,20 @@ open class SongData(
             return "https://i.ytimg.com/vi/$videoId/$lowerQuality.jpg"
         }
 
+    val higherThumbnailUrl: String
+        get() {
+            val higherQuality: String
+            val splits = thumbnailUrl.split("/").toTypedArray()
+            higherQuality = when (splits[4]) {
+                "default" -> "mqdefault"
+                "mqdefault", "standard" -> "hqdefault"
+                "hqdefault", "0" -> "sddefault"
+                "sddefault" -> "maxresdefault"
+                else -> "maxresdefault"
+            }
+            return "https://i.ytimg.com/vi/$videoId/$higherQuality.jpg"
+        }
+
     val videoUrl: String
         get() = String.format(
             Locale.getDefault(),

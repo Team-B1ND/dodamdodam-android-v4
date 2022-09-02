@@ -26,6 +26,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                songThumbnail="@{song.thumbnailUrl}"
                 android:id="@+id/iv_song"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -56,6 +57,7 @@
             tools:text="(G)I-DLE 'TOMBOY' Lyrics ((여자)아이들 TOMBOY 가사) (Color Coded Lyrics)asfdsadfasdfas" />
 
         <TextView
+            songApplyDate="@{song.createdDate}"
             android:id="@+id/tv_apply_song_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -5,4 +5,6 @@ data class MelonChart(
     val artist: String,
     val thumbnail: String,
     val rank: String
-)
+) {
+    val showingRank = rank + "위"
+}

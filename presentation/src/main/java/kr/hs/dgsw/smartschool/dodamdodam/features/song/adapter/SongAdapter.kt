@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter
 
-import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.callback.SongDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
@@ -12,12 +11,6 @@ class SongAdapter(private val action: (url: String) -> Unit) : BaseListAdapter<V
     SongDiffUtilCallback
 ) {
     override fun action(item: VideoSongData, binding: ItemSongBinding) {
-        Glide.with(binding.ivTodaySong)
-            .load(item.thumbnailUrl)
-            .centerCrop()
-            .error(R.drawable.default_img)
-            .into(binding.ivTodaySong)
-
         binding.song = item
         binding.root.setOnClickListener {
             action.invoke(item.videoUrl)
