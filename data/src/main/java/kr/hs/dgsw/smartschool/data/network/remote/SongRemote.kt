@@ -62,6 +62,4 @@ class SongRemote @Inject constructor(
         return@withContext melonChartList.toList()
     }
 
-    suspend fun getYouTubeVideo(content: String): YoutubeVideo =
-        api.getYouTubeVideo(content = content)
 }

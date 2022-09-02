@@ -6,11 +6,17 @@ import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemRecommendSongBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.callback.MelonChartDiffUtilCallback
 import kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart
 
-class RecommendSongAdapter : BaseListAdapter<MelonChart, ItemRecommendSongBinding>(
+class RecommendSongAdapter(val action: (title: String) -> Unit) : BaseListAdapter<MelonChart, ItemRecommendSongBinding>(
     R.layout.item_recommend_song,
     MelonChartDiffUtilCallback
 ) {
     override fun action(item: MelonChart, binding: ItemRecommendSongBinding) {
+
         binding.song = item
+
+        binding.root.setOnClickListener {
+            action.invoke(item.title)
+        }
+
     }
 }

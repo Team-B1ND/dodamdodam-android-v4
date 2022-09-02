@@ -30,6 +30,7 @@ import kr.hs.dgsw.smartschool.data.network.remote.SongRemote
 import kr.hs.dgsw.smartschool.data.network.remote.StudyRoomRemote
 import kr.hs.dgsw.smartschool.data.network.remote.TimeTableRemote
 import kr.hs.dgsw.smartschool.data.network.remote.TokenRemote
+import kr.hs.dgsw.smartschool.data.network.remote.YouTubeRemote
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -50,6 +51,10 @@ class RemoteModule {
     @Singleton
     @Provides
     fun provideAuthRemote(): AuthRemote = AuthRemote()
+
+    @Singleton
+    @Provides
+    fun provideYouTubeRemote(): YouTubeRemote = YouTubeRemote()
 
     @Singleton
     @Provides

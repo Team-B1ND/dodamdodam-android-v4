@@ -38,11 +38,4 @@ interface SongApi {
     @GET("wakeup-song/pending")
     suspend fun getPendingSong(): Response<List<Song>>
 
-    @GET("search")
-    suspend fun getYouTubeVideo(
-        @Query("part") part: String = "snippet",
-        @Query("maxResults") maxResults: Int = 1,
-        @Query("key") key: String = Constants.YOUTUBE_API_KEY,
-        @Query("q") content: String
-    ): YoutubeVideo
 }

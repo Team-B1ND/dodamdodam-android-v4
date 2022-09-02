@@ -19,6 +19,4 @@ interface SongRepository {
 
     suspend fun getMelonChart(): List<MelonChart>
 
-    suspend fun getYoutubeVideo(content: String): YoutubeVideo
-
 }

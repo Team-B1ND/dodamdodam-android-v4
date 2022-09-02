@@ -17,6 +17,7 @@ object Constants {
     const val AUTH_HOST = "http://auth.dodam.b1nd.com/"
     const val AUTH_TEST_HOST = "http://10.80.162.15:8080/"
     const val IMAGE_HOST = "http://dodam.b1nd.com/api/image/"
+    const val YOUTUBE_HOST = "https://www.googleapis.com/youtube/v3/"
 
     val SERVER_HOST = if (mode == "TEST") TEST_HOST else DEFAULT_HOST
     val AUTH_SERVER_HOST = if (mode == "TEST") AUTH_TEST_HOST else AUTH_HOST

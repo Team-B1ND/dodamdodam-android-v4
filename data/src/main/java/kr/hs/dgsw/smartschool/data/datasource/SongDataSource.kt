@@ -25,6 +25,4 @@ class SongDataSource @Inject constructor(
 
     suspend fun getMelonChart(): List<MelonChart> = remote.getMelonChart()
 
-    suspend fun getYoutubeVideo(content: String): YoutubeVideo = remote.getYouTubeVideo(content)
-
 }

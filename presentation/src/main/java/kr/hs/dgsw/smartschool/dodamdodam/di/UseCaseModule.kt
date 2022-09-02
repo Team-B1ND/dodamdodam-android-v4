@@ -15,6 +15,7 @@ import kr.hs.dgsw.smartschool.domain.repository.StudyRoomRepository
 import kr.hs.dgsw.smartschool.domain.repository.TeacherRepository
 import kr.hs.dgsw.smartschool.domain.repository.TimeRepository
 import kr.hs.dgsw.smartschool.domain.repository.TokenRepository
+import kr.hs.dgsw.smartschool.domain.repository.YouTubeRepository
 import kr.hs.dgsw.smartschool.domain.usecase.account.AccountUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.account.DeleteAccount
 import kr.hs.dgsw.smartschool.domain.usecase.account.GetAccount
@@ -147,7 +148,7 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideSongUseCases(songRepository: SongRepository): SongUseCases =
+    fun provideSongUseCases(songRepository: SongRepository, youTubeRepository: YouTubeRepository): SongUseCases =
         SongUseCases(
             getAllowSong = GetAllowSong(songRepository),
             getMySong = GetMySong(songRepository),
@@ -155,7 +156,7 @@ class UseCaseModule {
             applySong = ApplySong(songRepository),
             getMelonChart = GetMelonChart(songRepository),
             deleteSong = DeleteSong(songRepository),
-            getYouTubeVideo = GetYouTubeVideo(songRepository)
+            getYouTubeVideo = GetYouTubeVideo(youTubeRepository)
         )
 
     @Provides

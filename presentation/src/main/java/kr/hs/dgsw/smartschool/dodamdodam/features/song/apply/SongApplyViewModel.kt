@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.state.GetMelonChartState
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.state.GetYoutubeVideoState
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
 import javax.inject.Inject
 
@@ -25,11 +26,15 @@ class SongApplyViewModel @Inject constructor(
     private val _getMelonChartState = MutableStateFlow<GetMelonChartState>(GetMelonChartState())
     val getMelonChartState: StateFlow<GetMelonChartState> = _getMelonChartState
 
+    private val _getYouTubeVideoState = MutableStateFlow<GetYoutubeVideoState>(GetYoutubeVideoState())
+    val getYouTubeVideoState: StateFlow<GetYoutubeVideoState> = _getYouTubeVideoState
+
     private val isApplySongLoading = MutableLiveData(false)
     private val isMelonChartLoading = MutableLiveData(false)
+    private val isGetYoutubeVideo = MutableLiveData(false)
 
     init {
-        combineLoadingVariable(isApplySongLoading, isMelonChartLoading)
+        combineLoadingVariable(isApplySongLoading, isMelonChartLoading, isGetYoutubeVideo)
 
         CoroutineScope(Dispatchers.Main).launch {
             getMelonChart()
@@ -74,7 +79,15 @@ class SongApplyViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
-    private fun applyWakeUpSong(url: String) {
+    fun getYouTubeVideo(title: String) {
+        songUseCases.getYouTubeVideo(title).divideResult(
+            isGetYoutubeVideo,
+            { _getYouTubeVideoState.value = GetYoutubeVideoState(youtubeVideo = it) },
+            { _getYouTubeVideoState.value = GetYoutubeVideoState(error = it ?: "영상을 받을 수 없습니다.")}
+        ).launchIn(viewModelScope)
+    }
+
+    fun applyWakeUpSong(url: String) {
         songUseCases.applySong(url).divideResult(
             isApplySongLoading,
             { viewEvent(EVENT_ON_SUCCESS_APPLY) },

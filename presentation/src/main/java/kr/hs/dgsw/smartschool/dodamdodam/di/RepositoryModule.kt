@@ -20,6 +20,7 @@ import kr.hs.dgsw.smartschool.data.repository.StudyRoomRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.TeacherRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.TimeRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.TokenRepositoryImpl
+import kr.hs.dgsw.smartschool.data.repository.YouTubeRepositoryImpl
 import kr.hs.dgsw.smartschool.domain.repository.AccountRepository
 import kr.hs.dgsw.smartschool.domain.repository.AuthRepository
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
@@ -36,6 +37,7 @@ import kr.hs.dgsw.smartschool.domain.repository.StudyRoomRepository
 import kr.hs.dgsw.smartschool.domain.repository.TeacherRepository
 import kr.hs.dgsw.smartschool.domain.repository.TimeRepository
 import kr.hs.dgsw.smartschool.domain.repository.TokenRepository
+import kr.hs.dgsw.smartschool.domain.repository.YouTubeRepository
 import javax.inject.Singleton
 
 @Module
@@ -96,6 +98,10 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideSongRepository(songRepositoryImpl: SongRepositoryImpl): SongRepository = songRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideYouTubeRepository(youTubeRepositoryImpl: YouTubeRepositoryImpl): YouTubeRepository = youTubeRepositoryImpl
 
     @Singleton
     @Provides

@@ -36,8 +36,4 @@ class SongRepositoryImpl @Inject constructor(
         return songDataSource.getMelonChart()
     }
 
-    override suspend fun getYoutubeVideo(content: String): YoutubeVideo {
-        return songDataSource.getYoutubeVideo(content)
-    }
-
 }
