@@ -8,6 +8,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
+import kr.hs.dgsw.smartschool.dodamdodam.features.meal.state.GetMealCalorieState
+import kr.hs.dgsw.smartschool.dodamdodam.features.meal.state.GetMealState
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
 import java.time.LocalDate
@@ -62,7 +64,7 @@ class MealViewModel @Inject constructor(
     private fun getMealCalorie() {
         mealUseCases.getCalorieOfMeal(Unit).divideResult(
             isLoading,
-            { _getMealCalorieState.value = GetMealCalorieState(isUpdate = true, calorie = it ?: "") },
+            { _getMealCalorieState.value = GetMealCalorieState(isUpdate = true, calorie = it ?: "급식이 없군요..") },
             { _getMealCalorieState.value = GetMealCalorieState(error = it ?: "칼로리를 받아오지 못했습니다.") }
         ).launchIn(viewModelScope)
     }

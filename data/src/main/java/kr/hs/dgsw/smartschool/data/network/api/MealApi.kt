@@ -15,5 +15,5 @@ interface MealApi {
     ): Response<Meal>
 
     @GET("meal/calorie")
-    suspend fun getCalorieOfMeal(): Response<String>
+    suspend fun getCalorieOfMeal(): Response<String?>
 }

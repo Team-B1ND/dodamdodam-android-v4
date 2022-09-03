@@ -6,7 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.features.meal.adapter.MealAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentMealBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
@@ -97,7 +97,7 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
             lifecycleScope.launchWhenStarted {
                 getMealCalorieState.collect { state ->
                     if (state.isUpdate) {
-                        mBinding.tvCalorie.text = state.calorie ?: "급식이 없군요.."
+                        mBinding.tvCalorie.text = state.calorie
                     }
 
                     if (state.error.isNotBlank()) {

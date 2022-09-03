@@ -8,9 +8,9 @@ import javax.inject.Inject
 
 class GetCalorieOfMeal @Inject constructor(
     private val mealRepository: MealRepository
-) : BaseUseCase<Unit, String>() {
+) : BaseUseCase<Unit, String?>() {
 
-    override fun invoke(params: Unit): Flow<Resource<String>> = execute {
+    override fun invoke(params: Unit): Flow<Resource<String?>> = execute {
         mealRepository.getCalorieOfMeal()
     }
 }

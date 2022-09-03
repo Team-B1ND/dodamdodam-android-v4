@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.meal
+package kr.hs.dgsw.smartschool.dodamdodam.features.meal.state
 
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 

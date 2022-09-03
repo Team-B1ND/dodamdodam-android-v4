@@ -13,7 +13,7 @@ class MealRemote @Inject constructor(
         return api.getMeal(year, month, day).data
     }
 
-    suspend fun getCalorieOfMeal(): String {
+    suspend fun getCalorieOfMeal(): String? {
         return api.getCalorieOfMeal().data
     }
 }

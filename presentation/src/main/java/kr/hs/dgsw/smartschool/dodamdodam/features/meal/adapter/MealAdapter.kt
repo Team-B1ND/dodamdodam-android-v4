@@ -1,10 +1,10 @@
-package kr.hs.dgsw.smartschool.dodamdodam.adapter
+package kr.hs.dgsw.smartschool.dodamdodam.features.meal.adapter
 
 import android.content.res.ColorStateList
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.MealDiffUtilCallback
+import kr.hs.dgsw.smartschool.dodamdodam.features.meal.adapter.callback.MealDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemMealBinding
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
