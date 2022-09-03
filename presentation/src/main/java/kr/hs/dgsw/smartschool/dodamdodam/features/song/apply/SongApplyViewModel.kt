@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.state.GetMelonChartState
-import kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.state.GetYoutubeVideoState
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetYoutubeVideoState
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
 import javax.inject.Inject
 
@@ -25,11 +25,10 @@ class SongApplyViewModel @Inject constructor(
     val applyUrl = MutableLiveData<String>()
     var errorMessage = ""
 
+    val searchSongTitle = MutableLiveData<String>()
+
     private val _getMelonChartState = MutableStateFlow<GetMelonChartState>(GetMelonChartState())
     val getMelonChartState: StateFlow<GetMelonChartState> = _getMelonChartState
-
-    private val _getYouTubeVideoState = MutableSharedFlow<GetYoutubeVideoState>()
-    val getYouTubeVideoState: SharedFlow<GetYoutubeVideoState> = _getYouTubeVideoState
 
     private val isApplySongLoading = MutableLiveData(false)
     private val isMelonChartLoading = MutableLiveData(false)
@@ -73,6 +72,16 @@ class SongApplyViewModel @Inject constructor(
         }
     }
 
+    fun checkSearchTitle() {
+        if (searchSongTitle.value.isNullOrBlank()) {
+            errorMessage = "검색어를 입력해주세요!"
+            viewEvent(EVENT_ON_SEARCH_TITLE_ERROR)
+            return
+        }
+
+        viewEvent(EVENT_ON_CLICK_SEARCH)
+    }
+
     private fun getMelonChart() {
         songUseCases.getMelonChart(Unit).divideResult(
             isMelonChartLoading,
@@ -81,15 +90,7 @@ class SongApplyViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
-    fun getYouTubeVideo(title: String) {
-        songUseCases.getYouTubeVideo(title).divideResult(
-            isGetYoutubeVideo,
-            { viewModelScope.launch { _getYouTubeVideoState.emit(GetYoutubeVideoState(youtubeVideo = it)) } },
-            { viewModelScope.launch { _getYouTubeVideoState.emit(GetYoutubeVideoState(error = it ?: "영상을 받을 수 없습니다.")) } }
-        ).launchIn(viewModelScope)
-    }
-
-    fun applyWakeUpSong(url: String) {
+    private fun applyWakeUpSong(url: String) {
         songUseCases.applySong(url).divideResult(
             isApplySongLoading,
             { viewEvent(EVENT_ON_SUCCESS_APPLY) },
@@ -104,5 +105,7 @@ class SongApplyViewModel @Inject constructor(
         const val EVENT_ON_CLICK_BACK = 0
         const val EVENT_ON_URL_ERROR = 1
         const val EVENT_ON_SUCCESS_APPLY = 2
+        const val EVENT_ON_CLICK_SEARCH = 3
+        const val EVENT_ON_SEARCH_TITLE_ERROR = 4
     }
 }
