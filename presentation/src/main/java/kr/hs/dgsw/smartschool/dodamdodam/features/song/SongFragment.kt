@@ -32,6 +32,7 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>(), ApplySo
         mBinding.tvSongDate.text = LocalDate.now().plusDays(1).toString()
         setUpTomorrowSong()
         setSwipeRefresh()
+        viewModel.getApplySong()
         collectMyAccount()
         collectTomorrowSong()
         collectMySongList()

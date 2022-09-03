@@ -57,7 +57,6 @@ class SongViewModel @Inject constructor(
         combineLoadingVariable(isGetAllowSongLoading, isGetPendingSongLoading, isGetMySongLoading, isGetAccountLoading, isDeleteSongLoading)
         getMyAccount()
         getTomorrowSong()
-        getApplySong()
     }
 
     fun getTomorrowSong() {
