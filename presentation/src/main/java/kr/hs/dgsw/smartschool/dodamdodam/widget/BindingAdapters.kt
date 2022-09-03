@@ -10,12 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.card.MaterialCardView
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getParentActivity
-import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateFormat
 import java.text.SimpleDateFormat
 import java.util.Date
 

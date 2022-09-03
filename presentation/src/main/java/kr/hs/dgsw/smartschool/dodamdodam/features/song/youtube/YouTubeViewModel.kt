@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class YouTubeViewModel @Inject constructor(
     private val songUseCases: SongUseCases
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val _getYouTubeVideoState = MutableSharedFlow<GetYoutubeVideoState>()
     val getYouTubeVideoState: SharedFlow<GetYoutubeVideoState> = _getYouTubeVideoState
@@ -78,5 +78,4 @@ class YouTubeViewModel @Inject constructor(
         const val EVENT_ON_CLICK_BACK = 2
         const val EVENT_ON_CLICK_THUMBNAIL = 3
     }
-
 }

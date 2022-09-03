@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.song.youtube
 
-import android.text.Html
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -27,7 +26,7 @@ class YouTubeFragment : BaseFragment<FragmentYoutubeBinding, YouTubeViewModel>()
         viewModel.getYouTubeVideo(args.title)
 
         bindingViewEvent { event ->
-            when(event) {
+            when (event) {
                 YouTubeViewModel.EVENT_ON_SEARCH_TITLE_ERROR -> shortToast(viewModel.errorMessage)
                 YouTubeViewModel.EVENT_ON_CLICK_BACK -> findNavController().popBackStack()
                 YouTubeViewModel.EVENT_ON_CLICK_THUMBNAIL -> this.openVideoFromUrl(viewModel.url.value ?: "https://www.youtube.com/watch?v=TqIAndOnd74")
@@ -78,5 +77,4 @@ class YouTubeFragment : BaseFragment<FragmentYoutubeBinding, YouTubeViewModel>()
         mBinding.tvTitle.text = HtmlCompat.fromHtml(item.snippet.title, HtmlCompat.FROM_HTML_MODE_LEGACY)
         mBinding.tvLink.text = viewModel.url.value
     }
-
 }

@@ -2,9 +2,9 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter
 
 import android.view.View
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.callback.SongDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemApplySongBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.callback.SongDiffUtilCallback
 import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
 
 class ApplySongAdapter(private val id: String, val action: Action) : BaseListAdapter<VideoSongData, ItemApplySongBinding>(
@@ -33,6 +33,5 @@ class ApplySongAdapter(private val id: String, val action: Action) : BaseListAda
         fun onClickItem(url: String)
 
         fun onClickDelete(itemId: String)
-
     }
 }

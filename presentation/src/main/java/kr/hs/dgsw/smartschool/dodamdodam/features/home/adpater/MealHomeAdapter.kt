@@ -4,9 +4,9 @@ import android.content.res.ColorStateList
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.features.meal.adapter.callback.MealDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemMealHomeBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.meal.adapter.callback.MealDiffUtilCallback
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
 
 class MealHomeAdapter : BaseListAdapter<MealInfo, ItemMealHomeBinding>(

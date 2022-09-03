@@ -1,8 +1,7 @@
 package kr.hs.dgsw.smartschool.domain.repository
 
-import kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart
 import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
-import kr.hs.dgsw.smartschool.domain.model.song.youtube.YoutubeVideo
+import kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart
 import kr.hs.dgsw.smartschool.domain.request.SongRequest
 
 interface SongRepository {
@@ -18,5 +17,4 @@ interface SongRepository {
     suspend fun getMySong(id: String): List<VideoSongData>
 
     suspend fun getMelonChart(): List<MelonChart>
-
 }

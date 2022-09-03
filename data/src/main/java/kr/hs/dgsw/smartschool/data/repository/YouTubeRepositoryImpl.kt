@@ -12,5 +12,4 @@ class YouTubeRepositoryImpl @Inject constructor(
     override suspend fun getYoutubeVideo(content: String): YoutubeVideo {
         return youTubeDataSource.getYouTubeVideo(content)
     }
-
 }

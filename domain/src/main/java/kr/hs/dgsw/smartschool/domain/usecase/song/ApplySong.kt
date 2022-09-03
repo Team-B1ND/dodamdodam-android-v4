@@ -14,5 +14,4 @@ class ApplySong @Inject constructor(
     override fun invoke(params: String): Flow<Resource<String>> = execute {
         songRepository.applySong(SongRequest(videoUrl = params))
     }
-
 }

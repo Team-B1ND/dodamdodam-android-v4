@@ -17,7 +17,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetMyAccountState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetMySongState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetPendingSongState
 import kr.hs.dgsw.smartschool.domain.usecase.account.AccountUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.song.DeleteSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetAllowSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
 import java.time.LocalDate
@@ -108,7 +107,7 @@ class SongViewModel @Inject constructor(
         songUseCases.deleteSong(id).divideResult(
             isDeleteSongLoading,
             { _deleteSongState.value = DeleteSongState(message = it) },
-            { _deleteSongState.value = DeleteSongState(error = it ?: "기상송 삭제에 실패했습니다.")}
+            { _deleteSongState.value = DeleteSongState(error = it ?: "기상송 삭제에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 

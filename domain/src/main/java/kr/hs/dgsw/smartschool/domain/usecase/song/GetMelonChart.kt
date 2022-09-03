@@ -14,5 +14,4 @@ class GetMelonChart @Inject constructor(
     override fun invoke(params: Unit): Flow<Resource<List<MelonChart>>> = execute {
         songRepository.getMelonChart()
     }
-
 }

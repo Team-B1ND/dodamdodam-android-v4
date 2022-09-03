@@ -17,6 +17,5 @@ class RecommendSongAdapter(val action: (title: String) -> Unit) : BaseListAdapte
         binding.root.setOnClickListener {
             action.invoke(item.title)
         }
-
     }
 }

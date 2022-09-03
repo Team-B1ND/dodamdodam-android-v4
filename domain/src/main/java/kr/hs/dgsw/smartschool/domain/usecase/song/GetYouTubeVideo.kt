@@ -14,5 +14,4 @@ class GetYouTubeVideo @Inject constructor(
     override fun invoke(params: String): Flow<Resource<YoutubeVideo>> = execute {
         youTubeRepository.getYoutubeVideo(params)
     }
-
 }

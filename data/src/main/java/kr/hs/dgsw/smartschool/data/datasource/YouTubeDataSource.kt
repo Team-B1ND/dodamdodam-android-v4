@@ -11,5 +11,4 @@ class YouTubeDataSource @Inject constructor(
 ) : BaseDataSource<YouTubeRemote, Any> {
 
     suspend fun getYouTubeVideo(content: String): YoutubeVideo = remote.getYouTubeVideo(content)
-
 }

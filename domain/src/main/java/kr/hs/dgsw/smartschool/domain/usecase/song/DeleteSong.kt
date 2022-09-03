@@ -13,5 +13,4 @@ class DeleteSong @Inject constructor(
     override fun invoke(params: String): Flow<Resource<String>> = execute {
         songRepository.deleteSong(params)
     }
-
 }

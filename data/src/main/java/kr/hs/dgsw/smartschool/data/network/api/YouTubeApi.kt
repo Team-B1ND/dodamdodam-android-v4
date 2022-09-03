@@ -15,5 +15,4 @@ interface YouTubeApi {
         @Query("type") type: String = "video",
         @Query("q") content: String
     ): YoutubeVideo
-
 }

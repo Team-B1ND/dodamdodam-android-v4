@@ -4,12 +4,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.RecommendSongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentSongApplyBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.RecommendSongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart
-import kr.hs.dgsw.smartschool.domain.model.song.youtube.YoutubeVideo
 
 @AndroidEntryPoint
 class SongApplyFragment : BaseFragment<FragmentSongApplyBinding, SongApplyViewModel>() {

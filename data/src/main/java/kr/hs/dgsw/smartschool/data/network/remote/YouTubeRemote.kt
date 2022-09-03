@@ -7,9 +7,8 @@ import javax.inject.Inject
 
 class YouTubeRemote @Inject constructor(
     override val api: YouTubeApi
-): BaseRemote<YouTubeApi>()  {
+) : BaseRemote<YouTubeApi>() {
 
     suspend fun getYouTubeVideo(content: String): YoutubeVideo =
         api.getYouTubeVideo(content = content)
-
 }
