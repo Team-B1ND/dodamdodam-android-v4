@@ -1,5 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.song.youtube
 
+import android.text.Html
+import androidx.core.text.HtmlCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -73,7 +75,7 @@ class YouTubeFragment : BaseFragment<FragmentYoutubeBinding, YouTubeViewModel>()
             .centerCrop()
             .into(mBinding.ivThumbnail)
 
-        mBinding.tvTitle.text = item.snippet.title
+        mBinding.tvTitle.text = HtmlCompat.fromHtml(item.snippet.title, HtmlCompat.FROM_HTML_MODE_LEGACY)
         mBinding.tvLink.text = viewModel.url.value
     }
 
