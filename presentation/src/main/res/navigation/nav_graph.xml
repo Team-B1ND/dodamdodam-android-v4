@@ -105,7 +105,17 @@
     <fragment
         android:id="@+id/songApplyFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.SongApplyFragment"
-        android:label="SongApplyFragment" />
+        android:label="SongApplyFragment" >
+        <action
+            android:id="@+id/action_songApplyFragment_to_youTubeFragment"
+            app:destination="@id/youTubeFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/main_song"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/outFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.out.OutFragment"
@@ -123,4 +133,13 @@
         android:id="@+id/outWriteFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.out.write.OutWriteFragment"
         android:label="OutWriteFragment" />
+    <fragment
+        android:id="@+id/youTubeFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.youtube.YouTubeFragment"
+        android:label="YouTubeFragment" >
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue="아이와 나의 바다" />
+    </fragment>
 </navigation>
