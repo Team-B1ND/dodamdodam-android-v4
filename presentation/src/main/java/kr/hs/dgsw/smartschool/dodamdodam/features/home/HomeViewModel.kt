@@ -51,8 +51,6 @@ class HomeViewModel @Inject constructor(
 
     init {
         combineLoadingVariable(isDataSetUpLoading, isGetMealLoading, isGetMyStudyRoomLoading, isGetAllowSongLoading)
-        dataSetUp()
-        // getAllowSong()
     }
 
     fun getMeal(date: LocalDate) {
@@ -63,7 +61,7 @@ class HomeViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
-    private fun dataSetUp() {
+    fun dataSetUp() {
         setUpUseCases.dataSetUp(Unit).divideResult(
             isDataSetUpLoading,
             { viewModelScope.launch { _dataSetUpState.emit(DataSetUpState(result = it ?: "데이터 업데이트에 성공하였습니다.")) } },
@@ -89,7 +87,7 @@ class HomeViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
-    private fun getAllowSong() {
+    fun getAllowSong() {
         val today = LocalDate.now()
         songUseCases.getAllowSong(
             GetAllowSong.Params(

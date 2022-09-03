@@ -35,6 +35,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     lateinit var mealHomeAdapter: MealHomeAdapter
 
     override fun observerViewModel() {
+        viewModel.dataSetUp()
+        viewModel.getAllowSong()
         setLocationRecyclerView()
         setUpTodaySong()
         setMealListViewPager()
