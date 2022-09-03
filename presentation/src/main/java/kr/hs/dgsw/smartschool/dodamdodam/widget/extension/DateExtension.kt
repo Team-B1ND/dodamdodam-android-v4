@@ -29,6 +29,12 @@ fun Date.yearDateFormat(): String {
     return format.format(this)
 }
 
+fun String.yearDateFormat(): String {
+    val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val date = format.parse(this)
+    return format.format(date!!)
+}
+
 fun Date.monthDateFormatToKR(): String {
     val format = SimpleDateFormat("MM-dd", Locale.getDefault())
 

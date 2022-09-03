@@ -11,9 +11,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.dodamdodam.features.meal.GetMealState
+import kr.hs.dgsw.smartschool.dodamdodam.features.meal.state.GetMealState
 import kr.hs.dgsw.smartschool.dodamdodam.features.setup.DataSetUpState
-import kr.hs.dgsw.smartschool.dodamdodam.features.song.GetAllowSongState
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetAllowSongState
 import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetMyStudyRoomState
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
@@ -95,7 +95,7 @@ class HomeViewModel @Inject constructor(
             GetAllowSong.Params(
                 year = today.year,
                 month = today.monthValue,
-                date = today.dayOfMonth,
+                day = today.dayOfMonth,
             )
         ).divideResult(
             isGetAllowSongLoading,

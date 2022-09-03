@@ -6,10 +6,11 @@
     <data>
         <variable
             name="song"
-            type="kr.hs.dgsw.smartschool.domain.model.song.Video" />
+            type="kr.hs.dgsw.smartschool.domain.model.song.VideoSongData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -26,6 +27,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                songThumbnail="@{song.thumbnailUrl}"
                 android:id="@+id/iv_song"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -49,13 +51,14 @@
             android:textColor="@color/black"
             android:textSize="@dimen/title5"
             app:layout_constraintBottom_toTopOf="@id/tv_apply_song_date"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_delete"
             app:layout_constraintStart_toEndOf="@id/card_image_container"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
             tools:text="(G)I-DLE 'TOMBOY' Lyrics ((여자)아이들 TOMBOY 가사) (Color Coded Lyrics)asfdsadfasdfas" />
 
         <TextView
+            songApplyDate="@{song.createdDate}"
             android:id="@+id/tv_apply_song_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,6 +72,19 @@
             app:layout_constraintStart_toStartOf="@id/tv_apply_song_title"
             app:layout_constraintTop_toBottomOf="@id/tv_apply_song_title"
             tools:text="신청일 : 2022-05-25" />
+
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_btn_delete"
+            android:layout_marginEnd="15dp"
+            app:tint="@color/color_black"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="ContentDescription" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

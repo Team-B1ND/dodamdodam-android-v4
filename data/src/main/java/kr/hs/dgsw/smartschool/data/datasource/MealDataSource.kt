@@ -13,6 +13,6 @@ class MealDataSource @Inject constructor(
     suspend fun getMeal(year: Int, month: Int, day: Int): Meal =
         remote.getMeal(year, month, day)
 
-    suspend fun getCalorieOfMeal(): String =
+    suspend fun getCalorieOfMeal(): String? =
         remote.getCalorieOfMeal()
 }

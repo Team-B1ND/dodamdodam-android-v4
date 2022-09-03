@@ -141,4 +141,12 @@
     <string name="title_out_write">외출/외박 신청</string>
     <string name="text_no_out">신청된 외출/외박이 없어요</string>
     <string name="text_today_meal_calorie">오늘의 급식 칼로리는?</string>
+    <string name="text_is_right">위의 영상이 맞나요?</string>
+    <string name="text_no">아니요</string>
+    <string name="text_youtube_search_desc">원하는 곡 제목을 입력하여 검색해주세요!</string>
+    <string name="text_do_search">검색하기</string>
+    <string name="text_song_title">곡 제목</string>
+    <string name="title_search_song">기상송 검색</string>
+    <string name="text_youtube_confirm_desc">영상을 꼼꼼히 확인해주세요!</string>
+    <string name="text_re_search_desc">혹시 원하는 영상이 아니라면 다시 검색해주세요</string>
 </resources>
