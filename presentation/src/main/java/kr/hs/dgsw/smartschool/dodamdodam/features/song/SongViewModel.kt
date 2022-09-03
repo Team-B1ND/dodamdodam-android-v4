@@ -11,10 +11,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.DeleteSongState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetAllowSongState
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetMyAccountState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetMySongState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetPendingSongState
 import kr.hs.dgsw.smartschool.domain.usecase.account.AccountUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.song.DeleteSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetAllowSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
 import java.time.LocalDate
@@ -35,14 +38,24 @@ class SongViewModel @Inject constructor(
     private val _getMySongState = MutableStateFlow<GetMySongState>(GetMySongState())
     val getMySongState: StateFlow<GetMySongState> = _getMySongState
 
+    private val _getMyAccountState = MutableStateFlow<GetMyAccountState>(GetMyAccountState())
+    val getMyAccountState: StateFlow<GetMyAccountState> = _getMyAccountState
+
+    private val _deleteSongState = MutableStateFlow<DeleteSongState>(DeleteSongState())
+    val deleteSongState: StateFlow<DeleteSongState> = _deleteSongState
+
+    val myId = MutableLiveData<String>()
     val songType = MutableLiveData(true)
 
     private val isGetAllowSongLoading = MutableLiveData(false)
     private val isGetPendingSongLoading = MutableLiveData(false)
     private val isGetMySongLoading = MutableLiveData(false)
+    private val isGetAccountLoading = MutableLiveData(false)
+    private val isDeleteSongLoading = MutableLiveData(false)
 
     init {
-        combineLoadingVariable(isGetAllowSongLoading, isGetPendingSongLoading, isGetMySongLoading)
+        combineLoadingVariable(isGetAllowSongLoading, isGetPendingSongLoading, isGetMySongLoading, isGetAccountLoading, isDeleteSongLoading)
+        getMyAccount()
         getTomorrowSong()
         getApplySong()
     }
@@ -60,17 +73,6 @@ class SongViewModel @Inject constructor(
             { songList -> _getAllowSongState.value = GetAllowSongState(songList = songList ?: emptyList()) },
             { message -> _getAllowSongState.value = GetAllowSongState(error = message ?: "기상송을 받아오지 못했습니다.") }
         ).launchIn(viewModelScope)
-
-        // test function
-        /*songUseCases.getAllowSong(GetAllowSong.Params(
-            year = 2022,
-            month = 6,
-            date = 13,
-        )).divideResult(
-            isGetAllowSongLoading,
-            { songList -> _getAllowSongState.value = GetAllowSongState(songList = songList ?: emptyList()) },
-            { error -> _getAllowSongState.value = GetAllowSongState(error = error ?: "기상송을 받아오지 못했습니다.")}
-        ).launchIn(viewModelScope)*/
     }
 
     fun getApplySong() {
@@ -84,17 +86,30 @@ class SongViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
-    fun getMySong() {
+    private fun getMyAccount() {
         accountUseCases.getAccount(Unit).divideResult(
-            isGetMySongLoading,
+            isGetAccountLoading,
             { account ->
-                songUseCases.getMySong(account?.id ?: "").divideResult(
-                    isGetMySongLoading,
-                    { songList -> _getMySongState.value = GetMySongState(songList = songList ?: emptyList()) },
-                    { error -> _getMySongState.value = GetMySongState(error = error ?: "기상송을 받아오지 못했습니다.") }
-                ).launchIn(viewModelScope)
+                myId.value = account?.id
+                _getMyAccountState.value = GetMyAccountState(account = account)
             },
-            { error -> _getMySongState.value = GetMySongState(error = error ?: "계정을 받아올 수 없습니다.") }
+            { error -> _getMyAccountState.value = GetMyAccountState(error = error ?: "계정을 받아올 수 없습니다.") },
+        ).launchIn(viewModelScope)
+    }
+
+    fun getMySong() {
+        songUseCases.getMySong(myId.value ?: "").divideResult(
+            isGetMySongLoading,
+            { songList -> _getMySongState.value = GetMySongState(songList = songList ?: emptyList()) },
+            { error -> _getMySongState.value = GetMySongState(error = error ?: "기상송을 받아오지 못했습니다.") }
+        ).launchIn(viewModelScope)
+    }
+
+    fun deleteSong(id: String) {
+        songUseCases.deleteSong(id).divideResult(
+            isDeleteSongLoading,
+            { _deleteSongState.value = DeleteSongState(message = it) },
+            { _deleteSongState.value = DeleteSongState(error = it ?: "기상송 삭제에 실패했습니다.")}
         ).launchIn(viewModelScope)
     }
 

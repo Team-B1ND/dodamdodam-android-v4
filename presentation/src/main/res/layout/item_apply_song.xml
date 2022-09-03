@@ -10,6 +10,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -50,7 +51,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/title5"
             app:layout_constraintBottom_toTopOf="@id/tv_apply_song_date"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_delete"
             app:layout_constraintStart_toEndOf="@id/card_image_container"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
@@ -71,6 +72,19 @@
             app:layout_constraintStart_toStartOf="@id/tv_apply_song_title"
             app:layout_constraintTop_toBottomOf="@id/tv_apply_song_title"
             tools:text="신청일 : 2022-05-25" />
+
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_btn_delete"
+            android:layout_marginEnd="15dp"
+            app:tint="@color/color_black"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="ContentDescription" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

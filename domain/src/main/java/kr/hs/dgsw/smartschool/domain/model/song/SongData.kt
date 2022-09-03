@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.model.song
 
+import kr.hs.dgsw.smartschool.domain.model.member.Member
 import java.util.Locale
 
 open class SongData(
@@ -9,7 +10,8 @@ open class SongData(
     val channelTitle: String,
     val id: Int,
     val createdDate: String,
-    val playDate: String?
+    val playDate: String?,
+    val applyMember: Member
 ) {
 
     val lowerThumbnailUrl: String

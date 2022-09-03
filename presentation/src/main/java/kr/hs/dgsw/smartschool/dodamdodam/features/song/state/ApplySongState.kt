@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.state
+package kr.hs.dgsw.smartschool.dodamdodam.features.song.state
 
 data class ApplySongState(
     val message: String = "",

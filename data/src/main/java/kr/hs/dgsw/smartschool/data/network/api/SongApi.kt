@@ -8,6 +8,7 @@ import kr.hs.dgsw.smartschool.domain.request.SongRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.HTTP
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -18,7 +19,7 @@ interface SongApi {
         @Body request: SongRequest
     ): Response<Any>
 
-    @DELETE("wakeup-song")
+    @HTTP(method = "DELETE", path = "/wakeup-song", hasBody = true)
     suspend fun deleteSong(
         @Body id: String
     ): Response<Any>

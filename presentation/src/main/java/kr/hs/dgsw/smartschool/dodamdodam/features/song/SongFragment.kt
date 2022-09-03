@@ -18,7 +18,7 @@ import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
 import java.time.LocalDate
 
 @AndroidEntryPoint
-class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
+class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>(), ApplySongAdapter.Action {
     override val viewModel: SongViewModel by viewModels()
     override val hasBottomNav: Boolean = true
 
@@ -31,11 +31,12 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
     override fun observerViewModel() {
         mBinding.tvSongDate.text = LocalDate.now().plusDays(1).toString()
         setUpTomorrowSong()
-        setUpPendingSong()
         setSwipeRefresh()
+        collectMyAccount()
         collectTomorrowSong()
         collectMySongList()
         collectPendingSongList()
+        collectDeleteSongState()
 
         bindingViewEvent { event ->
             when (event) {
@@ -59,6 +60,20 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
                     shortToast(state.error)
                     setEmptySongView(true)
                 }
+            }
+        }
+    }
+
+    private fun collectMyAccount() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.getMyAccountState.collect { state ->
+
+                if (state.account != null) {
+                    setUpPendingSong(state.account.id)
+                }
+
+                if(state.error.isNotBlank())
+                    shortToast(state.error)
             }
         }
     }
@@ -101,6 +116,21 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
         }
     }
 
+    private fun collectDeleteSongState() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.deleteSongState.collect { state ->
+                if (state.message != null) {
+                    viewModel.getMySong()
+                    viewModel.getApplySong()
+                }
+
+                if (state.error.isNotBlank()) {
+                    shortToast(state.message)
+                }
+            }
+        }
+    }
+
     private fun changeRecyclerShow() {
         if (viewModel.songType.value == true) {
             Log.d("CRS", "changeRecyclerShow: 진입 true")
@@ -139,11 +169,17 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
         mBinding.viewPagerTomorrowSong.setPageTransformer(getTransform())
     }
 
-    private fun setUpPendingSong() {
-        applySongAdapter = ApplySongAdapter { url ->
-            this@SongFragment.openVideoFromUrl(url)
-        }
+    private fun setUpPendingSong(id: String) {
+        applySongAdapter = ApplySongAdapter(id, this)
         mBinding.recyclerApplySong.adapter = applySongAdapter
+    }
+
+    override fun onClickItem(url: String) {
+        this@SongFragment.openVideoFromUrl(url)
+    }
+
+    override fun onClickDelete(itemId: String) {
+        viewModel.deleteSong(itemId)
     }
 
     private fun setSwipeRefresh() {

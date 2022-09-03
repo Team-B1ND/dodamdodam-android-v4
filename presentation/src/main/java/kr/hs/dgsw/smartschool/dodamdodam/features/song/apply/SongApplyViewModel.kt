@@ -5,15 +5,12 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.state.GetMelonChartState
-import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetYoutubeVideoState
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetMelonChartState
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
 import javax.inject.Inject
 

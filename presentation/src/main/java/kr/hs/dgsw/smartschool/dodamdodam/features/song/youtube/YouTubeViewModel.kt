@@ -8,8 +8,7 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.SongApplyViewModel
-import kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.state.ApplySongState
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.ApplySongState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetYoutubeVideoState
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
 import javax.inject.Inject
