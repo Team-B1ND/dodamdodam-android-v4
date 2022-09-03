@@ -9,6 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentYoutubeBinding
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.openVideoFromUrl
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.song.youtube.YoutubeVideo
 
@@ -27,6 +28,7 @@ class YouTubeFragment : BaseFragment<FragmentYoutubeBinding, YouTubeViewModel>()
             when(event) {
                 YouTubeViewModel.EVENT_ON_SEARCH_TITLE_ERROR -> shortToast(viewModel.errorMessage)
                 YouTubeViewModel.EVENT_ON_CLICK_BACK -> findNavController().popBackStack()
+                YouTubeViewModel.EVENT_ON_CLICK_THUMBNAIL -> this.openVideoFromUrl(viewModel.url.value ?: "https://www.youtube.com/watch?v=TqIAndOnd74")
             }
         }
     }

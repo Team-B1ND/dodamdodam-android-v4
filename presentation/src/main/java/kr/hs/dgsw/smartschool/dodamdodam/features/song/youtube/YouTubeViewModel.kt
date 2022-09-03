@@ -69,9 +69,14 @@ class YouTubeViewModel @Inject constructor(
         viewEvent(EVENT_ON_CLICK_BACK)
     }
 
+    fun onClickThumbnail() {
+        viewEvent(EVENT_ON_CLICK_THUMBNAIL)
+    }
+
     companion object {
         const val EVENT_ON_SEARCH_TITLE_ERROR = 1
         const val EVENT_ON_CLICK_BACK = 2
+        const val EVENT_ON_CLICK_THUMBNAIL = 3
     }
 
 }
