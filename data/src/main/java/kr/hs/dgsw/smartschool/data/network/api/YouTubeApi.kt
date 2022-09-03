@@ -12,6 +12,7 @@ interface YouTubeApi {
         @Query("part") part: String = "snippet",
         @Query("maxResults") maxResults: Int = 1,
         @Query("key") key: String = Constants.YOUTUBE_API_KEY,
+        @Query("type") type: String = "video",
         @Query("q") content: String
     ): YoutubeVideo
 
