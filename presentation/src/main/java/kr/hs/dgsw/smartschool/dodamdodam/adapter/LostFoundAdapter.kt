@@ -10,7 +10,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemLostAndFoundBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.LostFoundFragment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostInfo
 
-class LostFoundAdapter(val context: Context, val listener : LostFoundAdapter.LostFoundCallBack) : BaseListAdapter<LostInfo, ItemLostAndFoundBinding>(R.layout.item_lost_and_found,LostFoundDiffUtilCallback){
+class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack) : BaseListAdapter<LostInfo, ItemLostAndFoundBinding>(R.layout.item_lost_and_found,LostFoundDiffUtilCallback){
 
     interface LostFoundCallBack {
         fun openComment(idx: Int)
@@ -24,8 +24,8 @@ class LostFoundAdapter(val context: Context, val listener : LostFoundAdapter.Los
             .error(R.drawable.default_user)
             .into(binding.ivProfileImage)
 
-        binding.tvComment.setOnClickListener(View.OnClickListener {
+        binding.tvComment.setOnClickListener{
             listener.openComment(item.idx)
-        })
+        }
     }
 }               
