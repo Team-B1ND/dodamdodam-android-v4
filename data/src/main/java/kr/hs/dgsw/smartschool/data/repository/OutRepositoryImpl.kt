@@ -3,7 +3,7 @@ package kr.hs.dgsw.smartschool.data.repository
 import kr.hs.dgsw.smartschool.data.datasource.OutDataSource
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 import kr.hs.dgsw.smartschool.domain.repository.OutRepository
-import kr.hs.dgsw.smartschool.domain.request.OutRequest
+import kr.hs.dgsw.smartschool.domain.request.out.OutRequest
 import javax.inject.Inject
 
 class OutRepositoryImpl @Inject constructor(

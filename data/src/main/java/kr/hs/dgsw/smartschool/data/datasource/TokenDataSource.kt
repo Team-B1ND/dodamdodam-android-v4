@@ -7,7 +7,7 @@ import kr.hs.dgsw.smartschool.data.database.entity.TokenEntity
 import kr.hs.dgsw.smartschool.data.mapper.TokenMapper
 import kr.hs.dgsw.smartschool.data.network.remote.TokenRemote
 import kr.hs.dgsw.smartschool.domain.model.token.Token
-import kr.hs.dgsw.smartschool.domain.request.TokenRequest
+import kr.hs.dgsw.smartschool.domain.request.token.TokenRequest
 import org.json.JSONException
 import org.json.JSONObject
 import javax.inject.Inject

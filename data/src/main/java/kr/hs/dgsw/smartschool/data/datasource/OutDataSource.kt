@@ -3,7 +3,7 @@ package kr.hs.dgsw.smartschool.data.datasource
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.OutRemote
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
-import kr.hs.dgsw.smartschool.domain.request.OutRequest
+import kr.hs.dgsw.smartschool.domain.request.out.OutRequest
 import javax.inject.Inject
 
 class OutDataSource @Inject constructor(

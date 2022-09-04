@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.domain.request
+package kr.hs.dgsw.smartschool.domain.request.bus
 
 data class MyBusByMonthRequest(
     val year: Int,

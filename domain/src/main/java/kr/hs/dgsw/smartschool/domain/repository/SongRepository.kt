@@ -2,7 +2,7 @@ package kr.hs.dgsw.smartschool.domain.repository
 
 import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
 import kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart
-import kr.hs.dgsw.smartschool.domain.request.SongRequest
+import kr.hs.dgsw.smartschool.domain.request.song.SongRequest
 
 interface SongRepository {
 

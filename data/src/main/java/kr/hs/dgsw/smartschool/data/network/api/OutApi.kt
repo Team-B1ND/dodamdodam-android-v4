@@ -4,8 +4,8 @@ import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.domain.model.out.Out
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 import kr.hs.dgsw.smartschool.domain.model.out.OutStatus
-import kr.hs.dgsw.smartschool.domain.request.ModifyOutRequest
-import kr.hs.dgsw.smartschool.domain.request.OutRequest
+import kr.hs.dgsw.smartschool.domain.request.out.ModifyOutRequest
+import kr.hs.dgsw.smartschool.domain.request.out.OutRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET

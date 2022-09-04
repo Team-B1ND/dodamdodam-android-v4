@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.domain.request
+package kr.hs.dgsw.smartschool.domain.request.member
 
 import com.google.gson.annotations.SerializedName
 import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture

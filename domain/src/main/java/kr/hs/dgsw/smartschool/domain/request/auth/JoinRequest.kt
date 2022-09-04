@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.domain.request
+package kr.hs.dgsw.smartschool.domain.request.auth
 
 import kr.hs.dgsw.smartschool.domain.util.Utils
 import java.security.NoSuchAlgorithmException
