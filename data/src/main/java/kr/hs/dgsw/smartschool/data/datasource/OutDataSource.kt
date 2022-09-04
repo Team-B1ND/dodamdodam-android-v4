@@ -15,19 +15,19 @@ class OutDataSource @Inject constructor(
 
     suspend fun getOutAllows(date: String): List<OutItem> = remote.getOutAllows(date)
 
-    suspend fun getOutSleepingById(outSleepingIdx: Int): OutSleeping = remote.getOutSleepingById(outSleepingIdx)
+    suspend fun getOutSleepingById(outSleepingId: Int): OutSleeping = remote.getOutSleepingById(outSleepingId)
 
-    suspend fun getOutGoingById(outGoingIdx: Int): OutGoing = remote.getOutGoingById(outGoingIdx)
+    suspend fun getOutGoingById(outGoingId: Int): OutGoing = remote.getOutGoingById(outGoingId)
 
-    suspend fun postOutSleeping(request: OutRequest): String = remote.postOutSleeping(request)
+    suspend fun postOutSleeping(request: OutRequest): String = remote.applyOutSleeping(request)
 
-    suspend fun putOutSleeping(request: OutRequest): String = remote.putOutSleeping(request)
+    suspend fun putOutSleeping(request: OutRequest): String = remote.modifyOutSleeping(request)
 
     suspend fun deleteOutSleeping(outSleepingOutIdx: Int): String = remote.deleteOutSleeping(outSleepingOutIdx)
 
-    suspend fun postOutGoing(request: OutRequest): String = remote.postOutGoing(request)
+    suspend fun postOutGoing(request: OutRequest): String = remote.applyOutGoing(request)
 
-    suspend fun putOutGoing(request: OutRequest): String = remote.putOutGoing(request)
+    suspend fun putOutGoing(request: OutRequest): String = remote.modifyOutGoing(request)
 
     suspend fun deleteOutGoing(outGoingIdx: Int): String = remote.deleteOutGoing(outGoingIdx)
 }
