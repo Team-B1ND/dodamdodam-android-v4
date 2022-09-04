@@ -1,46 +1,38 @@
 package kr.hs.dgsw.smartschool.domain.model.out
 
-import com.google.gson.annotations.SerializedName
+import kr.hs.dgsw.smartschool.domain.model.member.StudentId
+import kr.hs.dgsw.smartschool.domain.model.member.TeacherId
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 open class OutItem(
-    @field:SerializedName("idx")
-    val idx: Int,
-    @field:SerializedName("studentIdx")
-    val studentIdx: Int,
-    @field:SerializedName("startTime")
-    val startTime: Date,
-    @field:SerializedName("endTime")
-    val endTime: Date,
-    @field:SerializedName("isAllow")
-    var isAllow: Int,
-    @field:SerializedName("reason")
+    val arrivedDate: Date,
+    val checkedDate: Date,
+    val endOutDate: Date,
+    val id: Int,
     val reason: String,
-    @field:SerializedName("allowTeacherIdx")
-    val allowTeacherIdx: Int,
-    @field:SerializedName("allowTeacherTime")
-    val allowTeacherTime: Date,
-    @field:SerializedName("createdAt")
-    val createdAt: Date
+    val startOutDate: Date,
+    val status: OutStatus,
+    val student: StudentId,
+    val teacher: TeacherId
 ) : Serializable {
 
-    constructor() : this(0, 0, Date(), Date(), 0, "", 0, Date(), Date())
+    constructor() : this(Date(), Date(), Date(), 0, "", Date(), OutStatus.PENDING, StudentId(-1), TeacherId(-1))
 
     override fun toString(): String {
-        val format = SimpleDateFormat("HH-dd HH:mm (E)", Locale.getDefault())
-        return "${format.format(startTime)} ~\n ${format.format(endTime)}"
+        val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z", Locale.getDefault())
+        return "${format.format(startOutDate.time)} ~\n ${format.format(endOutDate.time)}"
     }
 
     fun isNow(): Boolean {
         val now = Date()
-        return now.after(startTime) && now.before(endTime)
+        return now.after(startOutDate) && now.before(endOutDate)
     }
 
     fun isPassTime(): Boolean {
         val now = Date()
-        return now.after(endTime)
+        return now.after(endOutDate)
     }
 }

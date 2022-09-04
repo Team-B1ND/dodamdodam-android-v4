@@ -9,7 +9,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemOutBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.adapter.callback.OutItemDiffUtil
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateFormat
-import kr.hs.dgsw.smartschool.domain.model.out.OutGoing
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 
 class OutListAdapter(

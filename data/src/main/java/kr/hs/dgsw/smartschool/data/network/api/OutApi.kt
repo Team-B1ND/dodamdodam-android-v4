@@ -2,8 +2,9 @@ package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.data.OutData
-import kr.hs.dgsw.smartschool.domain.model.out.OutGoing
-import kr.hs.dgsw.smartschool.domain.model.out.OutSleeping
+import kr.hs.dgsw.smartschool.domain.model.out.Out
+import kr.hs.dgsw.smartschool.domain.model.out.OutItem
+import kr.hs.dgsw.smartschool.domain.model.out.OutStatus
 import kr.hs.dgsw.smartschool.domain.request.OutRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -15,20 +16,22 @@ import retrofit2.http.Query
 
 interface OutApi {
 
-    @GET("offbase/date")
+    @GET("out")
     suspend fun getOut(
-        @Query("date") date: String
-    ): Response<OutData>
+        @Query("year") year: Int,
+        @Query("month") month: Int,
+        @Query("status") status: OutStatus
+    ): Response<Out>
 
-    @GET("offbase/leave/{leaveIdx}")
+    @GET("out/outsleeping/{id}")
     suspend fun getOutSleepingById(
-        @Path("leaveIdx") outSleepingIdx: Int
-    ): Response<OutSleeping>
+        @Path("id") outSleepingId: Int
+    ): Response<OutItem>
 
-    @GET("offbase/pass/{passIdx}")
+    @GET("out/outgoing/{id}")
     suspend fun getOutGoingById(
-        @Path("passIdx") outGoingIdx: Int
-    ): Response<OutGoing>
+        @Path("id") outGoingId: Int
+    ): Response<OutItem>
 
     @POST("offbase/leave")
     suspend fun postOutSleeping(

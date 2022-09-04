@@ -1,9 +1,7 @@
 package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.OutDataSource
-import kr.hs.dgsw.smartschool.domain.model.out.OutGoing
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
-import kr.hs.dgsw.smartschool.domain.model.out.OutSleeping
 import kr.hs.dgsw.smartschool.domain.repository.OutRepository
 import kr.hs.dgsw.smartschool.domain.request.OutRequest
 import javax.inject.Inject

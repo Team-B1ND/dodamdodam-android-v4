@@ -1,8 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.repository
 
-import kr.hs.dgsw.smartschool.domain.model.out.OutGoing
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
-import kr.hs.dgsw.smartschool.domain.model.out.OutSleeping
 import kr.hs.dgsw.smartschool.domain.request.OutRequest
 
 interface OutRepository {
