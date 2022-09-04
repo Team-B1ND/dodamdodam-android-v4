@@ -23,19 +23,19 @@ class OutRemote @Inject constructor(
         api.getOutGoingById(outGoingIdx).data
 
     suspend fun postOutSleeping(request: OutRequest): String =
-        api.postOutSleeping(request).message
+        api.applyOutSleeping(request).message
 
     suspend fun putOutSleeping(request: OutRequest): String =
-        api.putOutSleeping(request).message
+        api.modifyOutSleeping(request).message
 
     suspend fun deleteOutSleeping(outSleepingIdx: Int): String =
         api.deleteOutSleeping(outSleepingIdx).message
 
     suspend fun postOutGoing(request: OutRequest): String =
-        api.postOutGoing(request).message
+        api.applyOutGoing(request).message
 
     suspend fun putOutGoing(request: OutRequest): String =
-        api.putOutGoing(request).message
+        api.modifyOutGoing(request).message
 
     suspend fun deleteOutGoing(outGoingIdx: Int): String =
         api.deleteOutGoing(outGoingIdx).message
