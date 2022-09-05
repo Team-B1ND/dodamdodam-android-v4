@@ -44,6 +44,14 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         findNavController().navigate(R.id.action_lostFoundFragment_to_lostFoundCommentFragment)
     }
 
+    override fun modifyLostFound(idx: Int) {
+        findNavController().navigate(R.id.action_lostFoundFragment_to_lostFoundWriteFragment)
+    }
+
+    override fun deleteLostFound(idx: Int) {
+        viewModel.deleteLostFound(idx)
+    }
+
     private fun setLostInfo(lostFoundList: List<LostFound>): List<LostInfo> {
         viewModel.getLostFoundList(1,if(mBinding.lostFoundSpinner.selectedItemPosition == 0) "LOST" else "FOUND")
         Log.d("LostFoundFragment", "실행")

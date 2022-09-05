@@ -2,6 +2,7 @@ package kr.hs.dgsw.smartschool.dodamdodam.adapter
 
 import android.content.Context
 import android.view.View
+import android.widget.PopupMenu
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.LostFoundDiffUtilCallback
@@ -14,6 +15,8 @@ class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack) :
 
     interface LostFoundCallBack {
         fun openComment(idx: Int)
+        fun modifyLostFound(idx : Int)
+        fun deleteLostFound(idx:Int)
     }
 
     override fun action(item: LostInfo, binding: ItemLostAndFoundBinding) {
@@ -26,6 +29,27 @@ class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack) :
 
         binding.tvComment.setOnClickListener{
             listener.openComment(item.idx)
+        }
+        binding.ibBtnMore.setOnClickListener{
+            val pm = PopupMenu(context, binding.ibBtnMore)
+            pm.inflate(R.menu.lost_found_item_menu)
+
+            pm.setOnMenuItemClickListener{ data ->
+                    when (data.itemId) {
+                        R.id.apply_bus ->
+                        {
+                            listener.modifyLostFound(item.idx)
+                            true
+                        }
+                        R.id.cancel_bus ->
+                        {
+                            listener.deleteLostFound(item.idx)
+                            true
+                        }
+                        else -> false
+                    }
+                }
+            pm.show()
         }
     }
 }               

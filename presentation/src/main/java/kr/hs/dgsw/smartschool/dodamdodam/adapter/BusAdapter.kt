@@ -28,8 +28,7 @@ class BusAdapter(val context: Context, val listener: BusAdapter.BusApplyCallBack
 
         binding.bus = item
 
-        binding.menu.setOnClickListener(
-            View.OnClickListener {
+        binding.menu.setOnClickListener {
                 val pm: PopupMenu = PopupMenu(context, binding.menu)
                 pm.inflate(R.menu.bus_item_menu)
 
@@ -52,7 +51,6 @@ class BusAdapter(val context: Context, val listener: BusAdapter.BusApplyCallBack
                 )
                 pm.show()
             }
-        )
     }
 
     interface BusApplyCallBack {

@@ -32,7 +32,7 @@ class LostFoundViewModel @Inject constructor(
     }
 
     fun searchLostFound(title :String){
-        useCases.searchLostFoundUseCase(SearchLostFound.Params(search = title)).divideResult(
+        useCases.searchLostFound(SearchLostFound.Params(search = title)).divideResult(
             isGetLostFoundLoading,
             {viewModelScope.launch { GetLostFoundState(list = it ?: emptyList()) }},
             {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.") }}
