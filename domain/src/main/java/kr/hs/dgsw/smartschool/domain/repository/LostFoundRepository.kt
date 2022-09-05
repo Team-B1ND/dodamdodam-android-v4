@@ -12,6 +12,8 @@ interface LostFoundRepository {
 
     suspend fun getComment(lostfoundIdx: Int): List<Comment>
 
+    suspend fun getMyLostFound() : List<LostFound>
+
     suspend fun addLostFound(request: LostFoundDataRequest): String
 
     suspend fun addComment(request: AddCommentRequest): String

@@ -39,6 +39,10 @@ class LostFoundRepositoryImpl @Inject constructor(
         return lostFoundCommentList
     }
 
+    override suspend fun getMyLostFound(): List<LostFound> {
+        return lostFoundDataSource.getMyLostFound()
+    }
+
     override suspend fun addLostFound(request: LostFoundDataRequest):String {
         return lostFoundDataSource.addLostFound(request)
     }

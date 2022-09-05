@@ -5,6 +5,7 @@ data class LostFoundUseCases(
     val deleteLostFound: DeleteLostFoundUseCase,
     val getLostFoundComment : GetLostFoundCommentUseCase,
     val getLostFound : GetLostFoundUseCase,
+    val getMyLostFound: GetMyLostFound,
     val hideLostFound : HideLostFoundUseCase,
     val addLostFoundComment : AddLostFoundComment,
     val addLostFound: AddLostFound,
