@@ -39,14 +39,14 @@ class LostFoundViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
     fun myLostFound(){
-        useCases.(SearchLostFoundUseCase.Params(search = title)).divideResult(
+        useCases.getMyLostFound(Unit).divideResult(
             isGetLostFoundLoading,
             {viewModelScope.launch { GetLostFoundState(list = it ?: emptyList()) }},
             {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.") }}
         ).launchIn(viewModelScope)
     }
     fun modifyLostFound(){
-
+        
     }
 }
 

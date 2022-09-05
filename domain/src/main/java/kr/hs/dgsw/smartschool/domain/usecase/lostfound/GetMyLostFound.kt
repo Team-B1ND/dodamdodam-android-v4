@@ -10,16 +10,11 @@ import javax.inject.Inject
 
 class GetMyLostFound @Inject constructor(
     private val lostFoundRepository: LostFoundRepository
-) : BaseUseCase<GetMyLostFound.Params, List<LostFound>>() {
+) : BaseUseCase<Unit, List<LostFound>>() {
 
 
-    data class Params(
-        val page: Int,
-        val type: String
-    )
-
-    override fun invoke(params: Params): Flow<Resource<List<LostFound>>> = execute {
-        Log.d("LostFoundUseCase", "실행")
+    override fun invoke(params: Unit): Flow<Resource<List<LostFound>>> = execute {
+        Log.d("MyLostFoundUseCase", "실행")
         lostFoundRepository.getMyLostFound()
     }
 }
