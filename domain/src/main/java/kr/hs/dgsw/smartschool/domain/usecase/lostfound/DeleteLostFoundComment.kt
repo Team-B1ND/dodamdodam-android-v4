@@ -6,14 +6,14 @@ import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 
-class DeleteLostFoundUseCase @Inject constructor(
+class DeleteLostFoundComment @Inject constructor(
     private val lostFoundRepository: LostFoundRepository
-) : BaseUseCase<DeleteLostFoundUseCase.Params, String >() {
+) : BaseUseCase<DeleteLostFoundComment.Params, String>() {
 
-    data class Params(val idx: Int)
+    data class Params(val commentIdx: Int)
 
     override fun invoke(params: Params): Flow<Resource<String>> = execute{
-        lostFoundRepository.deleteLostFound(params.idx)
-        "분실 게시물을 삭제하였습니다."
+        lostFoundRepository.deleteComment(params.commentIdx)
+        "분실물 댓글을 삭제하였습니다."
     }
 }

@@ -1,17 +1,15 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
-import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFoundUseCase
-import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFoundUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFound
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.lostfound.SearchLostFoundUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.SearchLostFound
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,7 +24,7 @@ class LostFoundViewModel @Inject constructor(
         getLostFoundList(1,"LOST")
     }
     fun getLostFoundList(page : Int, type : String){
-        useCases.getLostFound(GetLostFoundUseCase.Params(page = page, type = type)).divideResult(
+        useCases.getLostFound(GetLostFound.Params(page = page, type = type)).divideResult(
             isGetLostFoundLoading,
             {viewModelScope.launch {   GetLostFoundState(list = it ?: emptyList())}},
             {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.")}}
@@ -34,7 +32,7 @@ class LostFoundViewModel @Inject constructor(
     }
 
     fun searchLostFound(title :String){
-        useCases.searchLostFoundUseCase(SearchLostFoundUseCase.Params(search = title)).divideResult(
+        useCases.searchLostFoundUseCase(SearchLostFound.Params(search = title)).divideResult(
             isGetLostFoundLoading,
             {viewModelScope.launch { GetLostFoundState(list = it ?: emptyList()) }},
             {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.") }}
@@ -47,8 +45,8 @@ class LostFoundViewModel @Inject constructor(
             {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.") }}
         ).launchIn(viewModelScope)
     }
-    fun modifyLostFound(idx : Int){
-        useCases.deleteLostFound(DeleteLostFoundUseCase.Params(idx = idx)).divideResult(
+    fun deleteLostFound(idx : Int){
+        useCases.deleteLostFound(DeleteLostFound.Params(idx = idx)).divideResult(
             isGetLostFoundLoading,
             {viewModelScope.launch { GetLostFoundState() }},
             {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.") }}
