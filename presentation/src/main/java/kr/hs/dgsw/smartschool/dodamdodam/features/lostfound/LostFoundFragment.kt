@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.LostFoundAdapter
@@ -19,6 +20,9 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     override fun observerViewModel() {
         mBinding.btnBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+        mBinding.fbAddLostAndFound.setOnClickListener{
+            findNavController().navigate(R.id.action_lostFoundFragment_to_lostFoundWriteFragment)
         }
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
@@ -58,11 +62,12 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                 )
             )
         }
-        return list.toList()
+        return list
     }
     private fun setRecyclerView(list : List<LostInfo>){
         val lostFoundAdapter = LostFoundAdapter(requireContext(), this)
         mBinding.rvLostAndFound.adapter = lostFoundAdapter
+        mBinding.rvLostAndFound.layoutManager = LinearLayoutManager(requireContext())
         lostFoundAdapter.submitList(list)
     }
 }
