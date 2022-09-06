@@ -21,6 +21,7 @@ class LostFoundViewModel @Inject constructor(
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
 
     init {
+        combineLoadingVariable(isGetLostFoundLoading)
         getLostFoundList(1,"LOST")
     }
     fun getLostFoundList(page : Int, type : String){

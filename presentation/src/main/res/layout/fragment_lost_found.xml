@@ -51,7 +51,7 @@
                         app:tint="@color/color_black"
                         tools:ignore="ContentDescription" />
 
-                    <CheckBox
+                    <!--<CheckBox
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="10dp"
@@ -62,24 +62,30 @@
                         android:includeFontPadding="false"
                         android:textAlignment="center"
                         android:textColor="?android:textColorPrimary"
-                        tools:text="전체 글" />
+                        tools:text="전체 글"/>-->
+
 
                     <Spinner
                         android:id="@+id/lost_found_spinner"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/color_black"
+                        android:layout_weight="0.9"
+                        android:background="@drawable/drawble_spinner"
                         android:entries="@array/lost_found_type" />
-
+                    <CheckBox
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:layout_marginStart="7dp"
+                        android:text="@string/my"
+                        android:fontFamily="@font/nanum_square_regular"
+                        />
                     <EditText
                         android:id="@+id/et_search"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="1"
+                        android:layout_marginStart="20dp"
+                        android:layout_weight="1.1"
                         android:background="@drawable/background_round_line"
                         android:hint="@string/text_search"
                         android:fontFamily="@font/nanum_square_regular"
@@ -92,6 +98,14 @@
                         android:textColor="@color/color_black"
                         android:textSize="6pt"
                         tools:ignore="Autofill" />
+                    <ImageButton
+                        android:id="@+id/btn_search"
+                        android:layout_width="0dp"
+                        android:layout_weight="0.3"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_search"
+                        android:background="@color/white"/>
+
 
                 </LinearLayout>
 
