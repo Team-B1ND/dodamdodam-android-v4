@@ -12,7 +12,7 @@ class PostOutSleeping @Inject constructor(
 ) : BaseUseCase<PostOutSleeping.Params, String>() {
 
     override fun invoke(params: Params): Flow<Resource<String>> = execute {
-        outRepository.postOutSleeping(request = OutRequest(params.startTime, params.endTime, params.reason))
+        outRepository.applyOutSleeping(request = OutRequest(params.startTime, params.endTime, params.reason))
     }
 
     data class Params(

@@ -12,7 +12,7 @@ class PostOutGoing @Inject constructor(
 ) : BaseUseCase<PostOutGoing.Params, String>() {
 
     override fun invoke(params: Params): Flow<Resource<String>> = execute {
-        outRepository.postOutGoing(request = OutRequest(params.startTime, params.endTime, params.reason))
+        outRepository.applyOutGoing(request = OutRequest(params.startTime, params.endTime, params.reason))
     }
 
     data class Params(
