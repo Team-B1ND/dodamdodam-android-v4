@@ -79,6 +79,7 @@
                         android:layout_weight="0.5"
                         android:layout_marginStart="7dp"
                         android:text="@string/my"
+                        isSelected="@{vm.isMyChecked}"
                         android:fontFamily="@font/nanum_square_regular"
                         />
                     <EditText

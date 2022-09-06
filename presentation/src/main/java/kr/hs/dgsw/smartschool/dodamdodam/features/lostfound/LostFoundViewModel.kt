@@ -21,6 +21,7 @@ class LostFoundViewModel @Inject constructor(
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
 
     val title = MutableLiveData<String>()
+    val isMyChecked = MutableLiveData<Boolean>()
 
     init {
         combineLoadingVariable(isGetLostFoundLoading)
