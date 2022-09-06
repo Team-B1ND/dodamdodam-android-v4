@@ -31,6 +31,11 @@ open class OutItem(
         return now.after(startOutDate) && now.before(endOutDate)
     }
 
+    fun isOutSleeping(): Boolean {
+        val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return format.format(startOutDate) != format.format(endOutDate)
+    }
+
     fun isPassTime(): Boolean {
         val now = Date()
         return now.after(endOutDate)

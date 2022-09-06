@@ -1,24 +1,22 @@
 package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.OutDataSource
-import kr.hs.dgsw.smartschool.domain.model.out.Out
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 import kr.hs.dgsw.smartschool.domain.model.out.OutStatus
 import kr.hs.dgsw.smartschool.domain.repository.OutRepository
 import kr.hs.dgsw.smartschool.domain.request.out.ModifyOutRequest
 import kr.hs.dgsw.smartschool.domain.request.out.OutRequest
-import java.util.*
 import javax.inject.Inject
 
 class OutRepositoryImpl @Inject constructor(
     private val outDataSource: OutDataSource
 ) : OutRepository {
 
-    override suspend fun getOut(year: Int, month: Int, status: OutStatus): Out {
+    override suspend fun getOut(year: Int, month: Int, status: OutStatus): List<OutItem> {
         return outDataSource.getOut(year, month, status)
     }
 
-    override suspend fun getOutByDate(date: String): Out {
+    override suspend fun getOutByDate(date: String): List<OutItem> {
         return outDataSource.getOutByDate(date)
     }
 

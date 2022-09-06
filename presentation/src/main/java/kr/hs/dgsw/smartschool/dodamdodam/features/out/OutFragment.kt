@@ -20,7 +20,7 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
     override fun observerViewModel() {
         setSwipeRefresh()
         initOutListAdapter()
-        viewModel.getMyOutApplies()
+        viewModel.getOutByDate()
         collectOutList()
         collectDeleteOutGoing()
         collectDeleteOutSleeping()
@@ -35,16 +35,16 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
 
     private fun collectOutList() {
         lifecycleScope.launchWhenStarted {
-            viewModel.getOutState.collect { state ->
+            viewModel.getOutByDateState.collect { state ->
 
-                if (state.outList.isNotEmpty()) {
-                    outListAdapter.submitList(state.outList)
-                    mBinding.tvNoData.visibility = View.GONE
-                    endRefreshing()
-                }
+                if (state.isUpdate) {
+                    if (state.outList.isEmpty()) {
+                        mBinding.tvNoData.visibility = View.VISIBLE
+                    } else {
+                        outListAdapter.submitList(state.outList)
+                        mBinding.tvNoData.visibility = View.GONE
+                    }
 
-                if (state.isEmptyList) {
-                    mBinding.tvNoData.visibility = View.VISIBLE
                     endRefreshing()
                 }
 
@@ -53,6 +53,7 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
                     mBinding.tvNoData.visibility = View.GONE
                     endRefreshing()
                 }
+
             }
         }
     }
@@ -63,7 +64,7 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
 
                 if (state.message.isNotBlank()) {
                     shortToast(state.message)
-                    viewModel.getMyOutApplies()
+                    viewModel.getOutByDate()
                 }
 
                 if (state.error.isNotBlank()) {
@@ -79,7 +80,7 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
 
                 if (state.message.isNotBlank()) {
                     shortToast(state.message)
-                    viewModel.getMyOutApplies()
+                    viewModel.getOutByDate()
                 }
 
                 if (state.error.isNotBlank()) {
@@ -90,11 +91,11 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
     }
 
     private fun initOutListAdapter() {
-        outListAdapter = OutListAdapter { state, idx ->
+        outListAdapter = OutListAdapter { state, id ->
             if (state == 0)
-                viewModel.deleteOutGoing(idx)
+                viewModel.deleteOutGoing(id)
             else
-                viewModel.deleteOutSleeping(idx)
+                viewModel.deleteOutSleeping(id)
         }
 
         mBinding.rvOutList.adapter = outListAdapter
@@ -102,7 +103,7 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
 
     private fun setSwipeRefresh() {
         mBinding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.getMyOutApplies()
+            viewModel.getOutByDate()
         }
     }
 

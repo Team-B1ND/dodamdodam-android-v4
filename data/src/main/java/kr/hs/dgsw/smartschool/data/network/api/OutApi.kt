@@ -1,7 +1,7 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
-import kr.hs.dgsw.smartschool.domain.model.out.Out
+import kr.hs.dgsw.smartschool.data.network.response.data.OutData
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 import kr.hs.dgsw.smartschool.domain.model.out.OutStatus
 import kr.hs.dgsw.smartschool.domain.request.out.ModifyOutRequest
@@ -13,7 +13,6 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
-import java.util.Date
 
 interface OutApi {
 
@@ -22,12 +21,12 @@ interface OutApi {
         @Query("year") year: Int,
         @Query("month") month: Int,
         @Query("status") status: OutStatus
-    ): Response<Out>
+    ): Response<OutData>
 
     @GET("out/date")
     suspend fun getOutByDate(
         @Query("date") date: String
-    ): Response<Out>
+    ): Response<OutData>
 
     @GET("out/outsleeping/{id}")
     suspend fun getOutSleepingById(

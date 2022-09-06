@@ -7,11 +7,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.dodamdodam.features.out.write.state.PostOutGoingState
-import kr.hs.dgsw.smartschool.dodamdodam.features.out.write.state.PostOutSleepingState
+import kr.hs.dgsw.smartschool.dodamdodam.features.out.write.state.ApplyOutGoingState
+import kr.hs.dgsw.smartschool.dodamdodam.features.out.write.state.ApplyOutSleepingState
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.dateTimeFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.hourFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.minuteFormat
-import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateTimeFormat
+import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 import kr.hs.dgsw.smartschool.domain.usecase.out.OutUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutGoing
 import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutSleeping
@@ -32,17 +33,17 @@ class OutWriteViewModel @Inject constructor(
 
     val outReason = MutableLiveData<String>()
 
-    private val _postOutGoingState = MutableStateFlow<PostOutGoingState>(PostOutGoingState())
-    val postOutGoingState: StateFlow<PostOutGoingState> = _postOutGoingState
+    private val _applyOutGoingState = MutableStateFlow<ApplyOutGoingState>(ApplyOutGoingState())
+    val applyOutGoingState: StateFlow<ApplyOutGoingState> = _applyOutGoingState
 
-    private val _postOutSleepingState = MutableStateFlow<PostOutSleepingState>(PostOutSleepingState())
-    val postOutSleepingState: StateFlow<PostOutSleepingState> = _postOutSleepingState
+    private val _applyOutSleepingState = MutableStateFlow<ApplyOutSleepingState>(ApplyOutSleepingState())
+    val applyOutSleepingState: StateFlow<ApplyOutSleepingState> = _applyOutSleepingState
 
-    private val isPostOutGoingLoading = MutableLiveData(false)
-    private val isPostOutSleepingLoading = MutableLiveData(false)
+    private val isApplyOutGoingLoading = MutableLiveData(false)
+    private val isApplyOutSleepingLoading = MutableLiveData(false)
 
     init {
-        combineLoadingVariable(isPostOutGoingLoading, isPostOutSleepingLoading)
+        combineLoadingVariable(isApplyOutGoingLoading, isApplyOutSleepingLoading)
     }
 
     fun invalidOutGoing(startDate: Date, endDate: Date) {
@@ -102,28 +103,28 @@ class OutWriteViewModel @Inject constructor(
     private fun applyOutGoing(startDate: Date, endDate: Date) {
         outUseCases.applyOutGoing(
             ApplyOutGoing.Params(
-                startDate.yearDateTimeFormat(),
-                endDate.yearDateTimeFormat(),
+                startDate.dateTimeFormat(),
+                endDate.dateTimeFormat(),
                 outReason.value ?: ""
             )
         ).divideResult(
-            isPostOutGoingLoading,
-            { successMessage -> _postOutGoingState.value = PostOutGoingState(message = successMessage ?: "외출 신청에 성공하였습니다.") },
-            { errorMessage -> _postOutGoingState.value = PostOutGoingState(error = errorMessage ?: "외출 신청에 실패하였습니다.") }
+            isApplyOutGoingLoading,
+            { outItem -> _applyOutGoingState.value = ApplyOutGoingState(outItem = outItem ?: OutItem()) },
+            { errorMessage -> _applyOutGoingState.value = ApplyOutGoingState(error = errorMessage ?: "외출 신청에 실패하였습니다.") }
         ).launchIn(viewModelScope)
     }
 
     private fun applyOutSleeping(startDate: Date, endDate: Date) {
         outUseCases.applyOutSleeping(
             ApplyOutSleeping.Params(
-                startDate.yearDateTimeFormat(),
-                endDate.yearDateTimeFormat(),
+                startDate.dateTimeFormat(),
+                endDate.dateTimeFormat(),
                 outReason.value ?: ""
             )
         ).divideResult(
-            isPostOutSleepingLoading,
-            { successMessage -> _postOutSleepingState.value = PostOutSleepingState(message = successMessage ?: "외박 신청에 성공하였습니다.") },
-            { errorMessage -> _postOutSleepingState.value = PostOutSleepingState(errorMessage ?: "외박 신청에 실패했습니다.") }
+            isApplyOutSleepingLoading,
+            { outItem -> _applyOutSleepingState.value = ApplyOutSleepingState(outItem = outItem ?: OutItem()) },
+            { errorMessage -> _applyOutSleepingState.value = ApplyOutSleepingState(error = errorMessage ?: "외박 신청에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 
