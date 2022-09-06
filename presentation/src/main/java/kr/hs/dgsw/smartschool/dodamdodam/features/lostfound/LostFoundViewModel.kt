@@ -20,6 +20,8 @@ class LostFoundViewModel @Inject constructor(
     val getLostFoundState : SharedFlow<GetLostFoundState> = _getLostFoundState
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
 
+    val title = MutableLiveData<String>()
+
     init {
         combineLoadingVariable(isGetLostFoundLoading)
         getLostFoundList(1,"LOST")
@@ -32,8 +34,8 @@ class LostFoundViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
-    fun searchLostFound(title :String){
-        useCases.searchLostFound(SearchLostFound.Params(search = title)).divideResult(
+    fun searchLostFound(){
+        useCases.searchLostFound(SearchLostFound.Params(search = title.value ?: "")).divideResult(
             isGetLostFoundLoading,
             {viewModelScope.launch { GetLostFoundState(list = it ?: emptyList()) }},
             {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.") }}

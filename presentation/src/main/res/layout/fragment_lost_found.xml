@@ -73,6 +73,7 @@
                         android:background="@drawable/drawble_spinner"
                         android:entries="@array/lost_found_type" />
                     <CheckBox
+                        android:id="@+id/check_my"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
@@ -92,6 +93,7 @@
                         android:includeFontPadding="false"
                         android:imeOptions="actionSearch"
                         android:visibility="visible"
+                        android:text="@{vm.title}"
                         android:inputType="textPersonName"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"

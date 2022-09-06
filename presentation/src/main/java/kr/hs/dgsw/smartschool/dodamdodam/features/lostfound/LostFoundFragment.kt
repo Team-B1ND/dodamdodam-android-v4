@@ -24,6 +24,12 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         mBinding.fbAddLostAndFound.setOnClickListener{
             findNavController().navigate(R.id.action_lostFoundFragment_to_lostFoundWriteFragment)
         }
+        mBinding.btnSearch.setOnClickListener{
+            viewModel.searchLostFound()
+        }
+        mBinding.checkMy.setOnCheckedChangeListener{buttonView, isChecked ->
+            if(isChecked) viewModel.myLostFound()
+        }
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getLostFoundState.collect { state ->
