@@ -13,8 +13,8 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.hourFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.minuteFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateTimeFormat
 import kr.hs.dgsw.smartschool.domain.usecase.out.OutUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.out.PostOutGoing
-import kr.hs.dgsw.smartschool.domain.usecase.out.PostOutSleeping
+import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutGoing
+import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutSleeping
 import java.util.Date
 import javax.inject.Inject
 
@@ -100,8 +100,8 @@ class OutWriteViewModel @Inject constructor(
     }
 
     private fun applyOutGoing(startDate: Date, endDate: Date) {
-        outUseCases.postOutGoing(
-            PostOutGoing.Params(
+        outUseCases.applyOutGoing(
+            ApplyOutGoing.Params(
                 startDate.yearDateTimeFormat(),
                 endDate.yearDateTimeFormat(),
                 outReason.value ?: ""
@@ -114,8 +114,8 @@ class OutWriteViewModel @Inject constructor(
     }
 
     private fun applyOutSleeping(startDate: Date, endDate: Date) {
-        outUseCases.postOutSleeping(
-            PostOutSleeping.Params(
+        outUseCases.applyOutSleeping(
+            ApplyOutSleeping.Params(
                 startDate.yearDateTimeFormat(),
                 endDate.yearDateTimeFormat(),
                 outReason.value ?: ""

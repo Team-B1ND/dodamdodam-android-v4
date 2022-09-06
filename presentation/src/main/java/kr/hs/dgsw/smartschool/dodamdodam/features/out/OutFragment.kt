@@ -20,6 +20,7 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
     override fun observerViewModel() {
         setSwipeRefresh()
         initOutListAdapter()
+        viewModel.getMyOutApplies()
         collectOutList()
         collectDeleteOutGoing()
         collectDeleteOutSleeping()

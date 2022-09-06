@@ -38,12 +38,14 @@ import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.out.DeleteOutGoing
 import kr.hs.dgsw.smartschool.domain.usecase.out.DeleteOutSleeping
 import kr.hs.dgsw.smartschool.domain.usecase.out.GetOut
-import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutAllows
 import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutGoingById
 import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutSleepingById
 import kr.hs.dgsw.smartschool.domain.usecase.out.OutUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.out.PostOutGoing
-import kr.hs.dgsw.smartschool.domain.usecase.out.PostOutSleeping
+import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutGoing
+import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutSleeping
+import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutByDate
+import kr.hs.dgsw.smartschool.domain.usecase.out.ModifyOutGoing
+import kr.hs.dgsw.smartschool.domain.usecase.out.ModifyOutSleeping
 import kr.hs.dgsw.smartschool.domain.usecase.setup.DataSetUp
 import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.setup.TeacherSetUp
@@ -172,12 +174,14 @@ class UseCaseModule {
     fun provideOutUseCases(outRepository: OutRepository): OutUseCases =
         OutUseCases(
             getOut = GetOut(outRepository),
-            getOutAllows = GetOutAllows(outRepository),
+            getOutByDate = GetOutByDate(outRepository),
             getOutSleepingById = GetOutSleepingById(outRepository),
             getOutGoingById = GetOutGoingById(outRepository),
-            postOutGoing = PostOutGoing(outRepository),
-            postOutSleeping = PostOutSleeping(outRepository),
+            applyOutGoing = ApplyOutGoing(outRepository),
+            applyOutSleeping = ApplyOutSleeping(outRepository),
             deleteOutGoing = DeleteOutGoing(outRepository),
-            deleteOutSleeping = DeleteOutSleeping(outRepository)
+            deleteOutSleeping = DeleteOutSleeping(outRepository),
+            modifyOutGoing = ModifyOutGoing(outRepository),
+            modifyOutSleeping = ModifyOutSleeping(outRepository)
         )
 }

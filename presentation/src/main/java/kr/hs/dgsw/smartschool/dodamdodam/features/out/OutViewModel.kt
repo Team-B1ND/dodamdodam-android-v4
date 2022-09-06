@@ -37,7 +37,6 @@ class OutViewModel @Inject constructor(
 
     init {
         combineLoadingVariable(isGetOutLoading, isDeleteOutGoingLoading, isDeleteOutSleepingLoading)
-        getMyOutApplies()
     }
 
     fun getMyOutApplies() {

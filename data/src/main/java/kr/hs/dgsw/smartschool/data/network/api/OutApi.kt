@@ -26,7 +26,7 @@ interface OutApi {
 
     @GET("out/date")
     suspend fun getOutByDate(
-        @Query("date") date: Date
+        @Query("date") date: String
     ): Response<Out>
 
     @GET("out/outsleeping/{id}")

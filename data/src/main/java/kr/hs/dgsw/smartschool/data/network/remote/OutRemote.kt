@@ -17,7 +17,7 @@ class OutRemote @Inject constructor(
     suspend fun getOut(year: Int, month: Int, status: OutStatus): Out =
         api.getOut(year, month, status).data
 
-    suspend fun getOutByDate(date: Date): Out =
+    suspend fun getOutByDate(date: String): Out =
         api.getOutByDate(date).data
 
     suspend fun getOutSleepingById(outSleepingId: Int): OutItem =

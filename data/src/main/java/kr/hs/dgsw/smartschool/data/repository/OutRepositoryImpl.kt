@@ -18,7 +18,7 @@ class OutRepositoryImpl @Inject constructor(
         return outDataSource.getOut(year, month, status)
     }
 
-    override suspend fun getOutByDate(date: Date): Out {
+    override suspend fun getOutByDate(date: String): Out {
         return outDataSource.getOutByDate(date)
     }
 

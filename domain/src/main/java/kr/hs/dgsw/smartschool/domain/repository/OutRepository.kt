@@ -11,7 +11,7 @@ interface OutRepository {
 
     suspend fun getOut(year: Int, month: Int, status: OutStatus): Out
 
-    suspend fun getOutByDate(date: Date): Out
+    suspend fun getOutByDate(date: String): Out
 
     suspend fun getOutSleepingById(outSleepingId: Int): OutItem
 

@@ -17,7 +17,7 @@ class OutDataSource @Inject constructor(
 
     suspend fun getOut(year: Int, month: Int, status: OutStatus): Out = remote.getOut(year, month, status)
 
-    suspend fun getOutByDate(date: Date): Out = remote.getOutByDate(date)
+    suspend fun getOutByDate(date: String): Out = remote.getOutByDate(date)
 
     suspend fun getOutSleepingById(outSleepingId: Int): OutItem = remote.getOutSleepingById(outSleepingId)
 
