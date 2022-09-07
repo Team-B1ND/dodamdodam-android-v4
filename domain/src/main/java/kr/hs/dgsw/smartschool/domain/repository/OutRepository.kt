@@ -7,9 +7,7 @@ import kr.hs.dgsw.smartschool.domain.request.out.OutRequest
 
 interface OutRepository {
 
-    suspend fun getOut(year: Int, month: Int, status: OutStatus): List<OutItem>
-
-    suspend fun getOutByDate(date: String): List<OutItem>
+    suspend fun getAllOut(): List<OutItem>
 
     suspend fun getOutSleepingById(outSleepingId: Int): OutItem
 

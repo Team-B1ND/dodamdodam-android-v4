@@ -12,6 +12,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.out.write.state.ApplyOutSleepi
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.dateTimeFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.hourFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.minuteFormat
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateTimeFormat
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 import kr.hs.dgsw.smartschool.domain.usecase.out.OutUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutGoing
@@ -103,8 +104,8 @@ class OutWriteViewModel @Inject constructor(
     private fun applyOutGoing(startDate: Date, endDate: Date) {
         outUseCases.applyOutGoing(
             ApplyOutGoing.Params(
-                startDate.dateTimeFormat(),
-                endDate.dateTimeFormat(),
+                startDate.yearDateTimeFormat(),
+                endDate.yearDateTimeFormat(),
                 outReason.value ?: ""
             )
         ).divideResult(
@@ -117,8 +118,8 @@ class OutWriteViewModel @Inject constructor(
     private fun applyOutSleeping(startDate: Date, endDate: Date) {
         outUseCases.applyOutSleeping(
             ApplyOutSleeping.Params(
-                startDate.dateTimeFormat(),
-                endDate.dateTimeFormat(),
+                startDate.yearDateTimeFormat(),
+                endDate.yearDateTimeFormat(),
                 outReason.value ?: ""
             )
         ).divideResult(

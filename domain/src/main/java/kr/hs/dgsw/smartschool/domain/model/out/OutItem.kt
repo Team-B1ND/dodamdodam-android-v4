@@ -23,7 +23,7 @@ open class OutItem(
 
     override fun toString(): String {
         val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-        return "${format.format(startOutDate.time)} ~\n ${format.format(endOutDate.time)}"
+        return "${format.format(startOutDate)} ~\n ${format.format(endOutDate)}"
     }
 
     fun isNow(): Boolean {

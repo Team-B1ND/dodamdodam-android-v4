@@ -41,7 +41,7 @@ class OutViewModel @Inject constructor(
     }
 
     fun getOutByDate() {
-        outUseCases.getOutByDate(Date().yearDateFormat()).divideResult(
+        outUseCases.getAllOut(Unit).divideResult(
             isGetOutByDateLoading,
             { outList -> viewModelScope.launch { _getOutByDateState.emit(GetOutByDateState(isUpdate = true, outList = outList ?: emptyList())) } },
             { error -> viewModelScope.launch { _getOutByDateState.emit(GetOutByDateState(error = error ?: "외출 외박을 받아올 수 없습니다.")) } }

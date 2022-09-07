@@ -37,13 +37,12 @@ import kr.hs.dgsw.smartschool.domain.usecase.member.GetMyInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.out.DeleteOutGoing
 import kr.hs.dgsw.smartschool.domain.usecase.out.DeleteOutSleeping
-import kr.hs.dgsw.smartschool.domain.usecase.out.GetOut
 import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutGoingById
 import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutSleepingById
 import kr.hs.dgsw.smartschool.domain.usecase.out.OutUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutGoing
 import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutSleeping
-import kr.hs.dgsw.smartschool.domain.usecase.out.GetOutByDate
+import kr.hs.dgsw.smartschool.domain.usecase.out.GetAllOut
 import kr.hs.dgsw.smartschool.domain.usecase.out.ModifyOutGoing
 import kr.hs.dgsw.smartschool.domain.usecase.out.ModifyOutSleeping
 import kr.hs.dgsw.smartschool.domain.usecase.setup.DataSetUp
@@ -173,8 +172,7 @@ class UseCaseModule {
     @Singleton
     fun provideOutUseCases(outRepository: OutRepository): OutUseCases =
         OutUseCases(
-            getOut = GetOut(outRepository),
-            getOutByDate = GetOutByDate(outRepository),
+            getAllOut = GetAllOut(outRepository),
             getOutSleepingById = GetOutSleepingById(outRepository),
             getOutGoingById = GetOutGoingById(outRepository),
             applyOutGoing = ApplyOutGoing(outRepository),

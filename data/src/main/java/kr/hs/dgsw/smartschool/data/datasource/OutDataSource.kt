@@ -2,9 +2,7 @@ package kr.hs.dgsw.smartschool.data.datasource
 
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.OutRemote
-import kr.hs.dgsw.smartschool.data.network.response.data.OutData
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
-import kr.hs.dgsw.smartschool.domain.model.out.OutStatus
 import kr.hs.dgsw.smartschool.domain.request.out.ModifyOutRequest
 import kr.hs.dgsw.smartschool.domain.request.out.OutRequest
 import javax.inject.Inject
@@ -13,10 +11,6 @@ class OutDataSource @Inject constructor(
     override val remote: OutRemote,
     override val cache: Any
 ) : BaseDataSource<OutRemote, Any> {
-
-    suspend fun getOut(year: Int, month: Int, status: OutStatus): List<OutItem> = remote.getOut(year, month, status)
-
-    suspend fun getOutByDate(date: String): List<OutItem> = remote.getOutByDate(date)
 
     suspend fun getOutSleepingById(outSleepingId: Int): OutItem = remote.getOutSleepingById(outSleepingId)
 

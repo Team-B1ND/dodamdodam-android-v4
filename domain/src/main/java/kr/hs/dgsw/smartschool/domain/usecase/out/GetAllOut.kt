@@ -7,12 +7,12 @@ import kr.hs.dgsw.smartschool.domain.repository.OutRepository
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 
-class GetOutByDate @Inject constructor(
+class GetAllOut @Inject constructor(
     private val outRepository: OutRepository
-) : BaseUseCase<String, List<OutItem>>() {
+) : BaseUseCase<Unit, List<OutItem>>() {
 
-    override fun invoke(params: String): Flow<Resource<List<OutItem>>> = execute {
-        outRepository.getOutByDate(params)
+    override fun invoke(params: Unit): Flow<Resource<List<OutItem>>> = execute {
+        outRepository.getAllOut()
     }
 
 }

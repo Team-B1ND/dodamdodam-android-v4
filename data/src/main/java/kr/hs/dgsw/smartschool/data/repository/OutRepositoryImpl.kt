@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.OutDataSource
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
-import kr.hs.dgsw.smartschool.domain.model.out.OutStatus
 import kr.hs.dgsw.smartschool.domain.repository.OutRepository
 import kr.hs.dgsw.smartschool.domain.request.out.ModifyOutRequest
 import kr.hs.dgsw.smartschool.domain.request.out.OutRequest
@@ -12,12 +11,14 @@ class OutRepositoryImpl @Inject constructor(
     private val outDataSource: OutDataSource
 ) : OutRepository {
 
-    override suspend fun getOut(year: Int, month: Int, status: OutStatus): List<OutItem> {
-        return outDataSource.getOut(year, month, status)
-    }
+    override suspend fun getAllOut(): List<OutItem> {
+        val myOutSleeping = outDataSource.getMyOutSleeping()
+        val myOutGoing = outDataSource.getMyOutGoing()
 
-    override suspend fun getOutByDate(date: String): List<OutItem> {
-        return outDataSource.getOutByDate(date)
+        val list = ArrayList<OutItem>()
+        list.addAll(myOutSleeping)
+        list.addAll(myOutGoing)
+        return list.sortedBy { it.startOutDate }.filter { !it.isPassTime() }
     }
 
     override suspend fun getOutSleepingById(outSleepingId: Int): OutItem {
