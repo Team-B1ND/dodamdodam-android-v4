@@ -13,7 +13,7 @@ fun String.getTime(): Date {
 }
 
 fun String.getDate(): Date {
-    val format = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+    val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
 
     return format.parse(this)!!
 }

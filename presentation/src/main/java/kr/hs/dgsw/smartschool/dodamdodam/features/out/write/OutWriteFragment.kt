@@ -88,7 +88,7 @@ class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel
     }
 
     private fun makeDateFormat(date: String?, startTime: String, endTime: String): Date {
-        return "${date}T${startTime}:${endTime}:00.000Z".getDate()
+        return "$date ${startTime}:${endTime}:00".getDate()
     }
 
     private fun checkEmptyOutGoingTime(): Boolean {

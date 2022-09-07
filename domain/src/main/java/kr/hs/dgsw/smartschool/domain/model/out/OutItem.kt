@@ -22,7 +22,7 @@ open class OutItem(
     constructor() : this(Date(), Date(), Date(), 0, "", Date(), OutStatus.PENDING, StudentId(-1), TeacherId(-1))
 
     override fun toString(): String {
-        val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z", Locale.getDefault())
+        val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         return "${format.format(startOutDate.time)} ~\n ${format.format(endOutDate.time)}"
     }
 

@@ -13,11 +13,9 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.state.DeleteOutGoingState
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.state.DeleteOutSleepingState
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.state.GetOutByDateState
-import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.dateFormat
-import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.dateTimeFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateFormat
 import kr.hs.dgsw.smartschool.domain.usecase.out.OutUseCases
-import java.util.Date
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
