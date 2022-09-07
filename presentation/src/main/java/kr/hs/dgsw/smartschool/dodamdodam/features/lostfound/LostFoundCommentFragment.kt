@@ -1,12 +1,21 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound
 
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import kr.hs.dgsw.smartschool.dodamdodam.adapter.LostFoundAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.adapter.LostFoundCommentAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundCommentBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
+import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
+import kr.hs.dgsw.smartschool.domain.model.lostfound.CommentInfo
+import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
+import kr.hs.dgsw.smartschool.domain.model.lostfound.LostInfo
+import java.time.LocalDate
 
 class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, LostFoundCommentViewModel>() {
     override val viewModel: LostFoundCommentViewModel by viewModels()
@@ -21,8 +30,8 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
             lifecycleScope.launchWhenStarted {
                 getCommentState.collect { state ->
                     if (state.list.isNotEmpty()) {
-                       // val list = setLostInfo(state.list)
-                        //setRecyclerView(list)
+                        val list = setCommentInfo(state.list)
+                        setRecyclerView(list)
                     }
 
                     if (state.error.isNotBlank()) {
@@ -31,5 +40,29 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
                 }
             }
         }
+    }
+    private fun setCommentInfo(lostFoundList: List<Comment>): List<CommentInfo> {
+        Log.d("LostFoundCommentFragment",lostFoundList.toString())
+
+        val date = LocalDate.now()
+        //viewModel.getComment()
+        val list: MutableList<CommentInfo> = mutableListOf()
+        lostFoundList.forEach {
+            list.add(
+                CommentInfo(
+                    idx = it.idx,
+                    img = it.member.profileImage ?: "",
+                    name = it.member.name,
+                    uploadTime = date.toString(),
+                    content = it.comment
+                )
+            )
+        }
+        return list.toList()
+    }
+    private fun setRecyclerView(list : List<CommentInfo>){
+        val lostFoundAdapter = LostFoundCommentAdapter(requireContext())
+        mBinding.rvComment.adapter = lostFoundAdapter
+        lostFoundAdapter.submitList(list)
     }
 }
