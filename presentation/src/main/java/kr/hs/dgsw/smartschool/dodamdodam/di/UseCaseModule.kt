@@ -38,6 +38,7 @@ import kr.hs.dgsw.smartschool.domain.usecase.lostfound.HideLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.AddLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.AddLostFoundComment
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetMyLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.ModifyLostFoundComment
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.ModifyLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.SearchLostFound
@@ -105,12 +106,13 @@ class UseCaseModule {
             deleteLostFoundComment = DeleteLostFoundComment(repository),
             getLostFound = GetLostFound(repository),
             getLostFoundComment = GetLostFoundComment(repository),
+             getMyLostFound = GetMyLostFound(repository),
             hideLostFound = HideLostFound(repository),
-            postLostFound = AddLostFound(repository),
-            postLostFoundComment = AddLostFoundComment(repository),
-            putLostFound = ModifyLostFound(repository),
-            putLostFoundComment = ModifyLostFoundComment(repository),
-            searchLostFoundUseCase = SearchLostFound(repository)
+            addLostFound = AddLostFound(repository),
+            addLostFoundComment = AddLostFoundComment(repository),
+            modifyLostFound = ModifyLostFound(repository),
+            modifyLostFoundComment = ModifyLostFoundComment(repository),
+            searchLostFound = SearchLostFound(repository)
         )
 
     @Provides
