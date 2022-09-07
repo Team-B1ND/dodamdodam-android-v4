@@ -57,7 +57,7 @@ interface OutApi {
 
     @DELETE("out/outgoing/{outgoingId}")
     suspend fun deleteOutGoing(
-        @Query("outgoingId") outGoingId: Int
+        @Path("outgoingId") outGoingId: Int
     ): Response<Any>
 
 }

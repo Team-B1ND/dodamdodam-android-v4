@@ -104,8 +104,8 @@ class OutWriteViewModel @Inject constructor(
     private fun applyOutGoing(startDate: Date, endDate: Date) {
         outUseCases.applyOutGoing(
             ApplyOutGoing.Params(
-                startDate.yearDateTimeFormat(),
-                endDate.yearDateTimeFormat(),
+                startDate.dateTimeFormat(),
+                endDate.dateTimeFormat(),
                 outReason.value ?: ""
             )
         ).divideResult(
@@ -118,8 +118,8 @@ class OutWriteViewModel @Inject constructor(
     private fun applyOutSleeping(startDate: Date, endDate: Date) {
         outUseCases.applyOutSleeping(
             ApplyOutSleeping.Params(
-                startDate.yearDateTimeFormat(),
-                endDate.yearDateTimeFormat(),
+                startDate.dateTimeFormat(),
+                endDate.dateTimeFormat(),
                 outReason.value ?: ""
             )
         ).divideResult(
