@@ -33,7 +33,7 @@
     </string-array>
 
     <string-array name="lost_found_type">
-        <item>습득물</item>
+        <item >습득물</item>
         <item>분실물</item>
     </string-array>
 
