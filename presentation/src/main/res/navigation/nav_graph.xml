@@ -128,6 +128,14 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/outFragment" />
+        <action
+            android:id="@+id/action_outFragment_to_outDetailFragment"
+            app:destination="@id/outDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/outFragment" />
     </fragment>
     <fragment
         android:id="@+id/outWriteFragment"
@@ -141,5 +149,17 @@
             android:name="title"
             app:argType="string"
             android:defaultValue="아이와 나의 바다" />
+    </fragment>
+    <fragment
+        android:id="@+id/outDetailFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.out.detail.OutDetailFragment"
+        android:label="OutDetailFragment" >
+        <argument
+            android:name="isOutSleeping"
+            app:argType="boolean"
+            android:defaultValue="true" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
     </fragment>
 </navigation>

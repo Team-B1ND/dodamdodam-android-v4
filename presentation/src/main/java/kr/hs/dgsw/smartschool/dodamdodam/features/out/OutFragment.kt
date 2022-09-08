@@ -3,16 +3,18 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.out
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentOutBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.adapter.OutListAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.features.out.etc.OutState
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 
 @AndroidEntryPoint
-class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
+class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>(), OutListAdapter.OutAction {
     override val viewModel: OutViewModel by viewModels()
 
     private lateinit var outListAdapter: OutListAdapter
@@ -91,14 +93,29 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
     }
 
     private fun initOutListAdapter() {
-        outListAdapter = OutListAdapter { state, id ->
-            if (state == 0)
-                viewModel.deleteOutGoing(id)
-            else
-                viewModel.deleteOutSleeping(id)
-        }
-
+        outListAdapter = OutListAdapter(this)
         mBinding.rvOutList.adapter = outListAdapter
+    }
+
+    override fun onClickDelete(state: OutState, id: Int) {
+        if (state == OutState.OutGoing)
+            viewModel.deleteOutGoing(id)
+        else
+            viewModel.deleteOutSleeping(id)
+    }
+
+    override fun onClickItem(state: OutState, id: Int) {
+        val action: NavDirections = if (state == OutState.OutGoing)
+            OutFragmentDirections.actionOutFragmentToOutDetailFragment(
+                isOutSleeping = false,
+                id = id
+            )
+        else
+            OutFragmentDirections.actionOutFragmentToOutDetailFragment(
+                isOutSleeping = true,
+                id = id
+            )
+        findNavController().navigate(action)
     }
 
     private fun setSwipeRefresh() {
@@ -110,4 +127,5 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>() {
     private fun endRefreshing() {
         mBinding.swipeRefreshLayout.isRefreshing = false
     }
+
 }

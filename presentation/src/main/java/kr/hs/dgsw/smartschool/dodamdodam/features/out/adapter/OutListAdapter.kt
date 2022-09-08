@@ -7,13 +7,14 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemOutBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.adapter.callback.OutItemDiffUtil
+import kr.hs.dgsw.smartschool.dodamdodam.features.out.etc.OutState
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateFormat
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 import kr.hs.dgsw.smartschool.domain.model.out.OutStatus
 
 class OutListAdapter(
-    private val onClickDelete: (state: Int, idx: Int) -> Unit
+    private val action: OutAction
 ) : BaseListAdapter<OutItem, ItemOutBinding>(R.layout.item_out, OutItemDiffUtil) {
 
     override fun action(item: OutItem, binding: ItemOutBinding) {
@@ -62,7 +63,16 @@ class OutListAdapter(
         }
 
         binding.btnDelete.setOnClickListener {
-            onClickDelete.invoke(if (!item.isOutSleeping()) 0 else 1, item.id)
+            action.onClickDelete(if (!item.isOutSleeping()) OutState.OutGoing else OutState.OutSleeping, item.id)
         }
+
+        binding.cardBase.setOnClickListener {
+            action.onClickItem(if (!item.isOutSleeping()) OutState.OutGoing else OutState.OutSleeping, item.id)
+        }
+    }
+
+    interface OutAction {
+        fun onClickDelete(state: OutState, id: Int)
+        fun onClickItem(state: OutState, id: Int)
     }
 }
