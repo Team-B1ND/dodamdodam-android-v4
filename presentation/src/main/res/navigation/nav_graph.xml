@@ -128,11 +128,25 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/outFragment" />
+        <action
+            android:id="@+id/action_outFragment_to_outDetailFragment"
+            app:destination="@id/outDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/outFragment" />
     </fragment>
     <fragment
         android:id="@+id/outWriteFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.out.write.OutWriteFragment"
-        android:label="OutWriteFragment" />
+        android:label="OutWriteFragment" >
+        <argument
+            android:name="outItem"
+            app:argType="kr.hs.dgsw.smartschool.domain.model.out.OutItem"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
     <fragment
         android:id="@+id/youTubeFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.youtube.YouTubeFragment"
@@ -141,5 +155,25 @@
             android:name="title"
             app:argType="string"
             android:defaultValue="아이와 나의 바다" />
+    </fragment>
+    <fragment
+        android:id="@+id/outDetailFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.out.detail.OutDetailFragment"
+        android:label="OutDetailFragment" >
+        <argument
+            android:name="isOutSleeping"
+            app:argType="boolean"
+            android:defaultValue="true" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_outDetailFragment_to_outWriteFragment"
+            app:destination="@id/outWriteFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/outFragment" />
     </fragment>
 </navigation>

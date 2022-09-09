@@ -26,6 +26,7 @@ class NetworkModule {
     @Singleton
     fun provideGson(): Gson {
         val gsonBuilder = GsonBuilder()
+            .setDateFormat("yyyy-MM-dd HH:mm:ss")
         return gsonBuilder.create()
     }
 

@@ -12,9 +12,8 @@ import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.state.DeleteOutGoingState
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.state.DeleteOutSleepingState
-import kr.hs.dgsw.smartschool.dodamdodam.features.out.state.GetOutState
+import kr.hs.dgsw.smartschool.dodamdodam.features.out.state.GetOutByDateState
 import kr.hs.dgsw.smartschool.domain.usecase.out.OutUseCases
-import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,8 +21,8 @@ class OutViewModel @Inject constructor(
     private val outUseCases: OutUseCases
 ) : BaseViewModel() {
 
-    private val _getOutState = MutableSharedFlow<GetOutState>()
-    val getOutState: SharedFlow<GetOutState> = _getOutState
+    private val _getOutByDateState = MutableSharedFlow<GetOutByDateState>()
+    val getOutByDateState: SharedFlow<GetOutByDateState> = _getOutByDateState
 
     private val _deleteOutGoingState = MutableStateFlow<DeleteOutGoingState>(DeleteOutGoingState())
     val deleteOutGoingState: StateFlow<DeleteOutGoingState> = _deleteOutGoingState
@@ -31,40 +30,32 @@ class OutViewModel @Inject constructor(
     private val _deleteOutSleepingState = MutableStateFlow<DeleteOutSleepingState>(DeleteOutSleepingState())
     val deleteOutSleepingState: StateFlow<DeleteOutSleepingState> = _deleteOutSleepingState
 
-    private val isGetOutLoading = MutableLiveData(false)
+    private val isGetOutByDateLoading = MutableLiveData(false)
     private val isDeleteOutGoingLoading = MutableLiveData(false)
     private val isDeleteOutSleepingLoading = MutableLiveData(false)
 
     init {
-        combineLoadingVariable(isGetOutLoading, isDeleteOutGoingLoading, isDeleteOutSleepingLoading)
-        getMyOutApplies()
+        combineLoadingVariable(isGetOutByDateLoading, isDeleteOutGoingLoading, isDeleteOutSleepingLoading)
     }
 
-    fun getMyOutApplies() {
-        outUseCases.getOut(LocalDate.now().toString()).divideResult(
-            isGetOutLoading,
-            { outList ->
-                viewModelScope.launch {
-                    outList?.let {
-                        if (outList.isEmpty()) _getOutState.emit(GetOutState(isEmptyList = true))
-                        else _getOutState.emit(GetOutState(outList = it))
-                    } ?: _getOutState.emit(GetOutState(isEmptyList = true))
-                }
-            },
-            { error -> viewModelScope.launch { _getOutState.emit(GetOutState(error = error ?: "외출 외박을 받아올 수 없습니다.")) } }
+    fun getOutByDate() {
+        outUseCases.getAllOut(Unit).divideResult(
+            isGetOutByDateLoading,
+            { outList -> viewModelScope.launch { _getOutByDateState.emit(GetOutByDateState(isUpdate = true, outList = outList ?: emptyList())) } },
+            { error -> viewModelScope.launch { _getOutByDateState.emit(GetOutByDateState(error = error ?: "외출 외박을 받아올 수 없습니다.")) } }
         ).launchIn(viewModelScope)
     }
 
-    fun deleteOutGoing(idx: Int) {
-        outUseCases.deleteOutGoing(idx).divideResult(
+    fun deleteOutGoing(id: Int) {
+        outUseCases.deleteOutGoing(id).divideResult(
             isDeleteOutGoingLoading,
             { message -> _deleteOutGoingState.value = DeleteOutGoingState(message = message ?: "외출 삭제에 성공했습니다.") },
             { error -> _deleteOutGoingState.value = DeleteOutGoingState(error = error ?: "외출 삭제에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 
-    fun deleteOutSleeping(idx: Int) {
-        outUseCases.deleteOutSleeping(idx).divideResult(
+    fun deleteOutSleeping(id: Int) {
+        outUseCases.deleteOutSleeping(id).divideResult(
             isDeleteOutSleepingLoading,
             { message -> _deleteOutSleepingState.value = DeleteOutSleepingState(message = message ?: "외박 삭제에 성공했습니다.") },
             { error -> _deleteOutSleepingState.value = DeleteOutSleepingState(error = error ?: "외박 삭제에 실패했습니다.") }

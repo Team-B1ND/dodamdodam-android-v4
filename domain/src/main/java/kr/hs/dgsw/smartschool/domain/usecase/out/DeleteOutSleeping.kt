@@ -9,6 +9,7 @@ import javax.inject.Inject
 class DeleteOutSleeping @Inject constructor(
     private val outRepository: OutRepository
 ) : BaseUseCase<Int, String>() {
+
     override fun invoke(params: Int): Flow<Resource<String>> = execute {
         outRepository.deleteOutSleeping(params)
     }

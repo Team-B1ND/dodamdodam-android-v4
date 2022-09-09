@@ -106,12 +106,12 @@
                         android:layout_height="wrap_content"
                         android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
                         app:layout_constraintBottom_toBottomOf="@id/cv_out_going"
-                        app:layout_constraintEnd_toStartOf="@id/cv_off_base"
+                        app:layout_constraintEnd_toStartOf="@id/cv_out_sleeping"
                         app:layout_constraintStart_toEndOf="@id/cv_out_going"
                         app:layout_constraintTop_toTopOf="@id/cv_out_going"/>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/cv_off_base"
+                        android:id="@+id/cv_out_sleeping"
                         isSelected="@{vm.isOutSleeping()}"
                         android:layout_width="75dp"
                         android:layout_height="35dp"
@@ -158,7 +158,7 @@
                         android:textSize="@dimen/title4"
                         app:layout_constraintEnd_toStartOf="@+id/guideline2"
                         app:layout_constraintStart_toStartOf="@+id/guideline"
-                        app:layout_constraintTop_toBottomOf="@+id/cv_off_base" />
+                        app:layout_constraintTop_toBottomOf="@+id/cv_out_sleeping" />
 
                     <LinearLayout
                         android:id="@+id/out_going_layout"

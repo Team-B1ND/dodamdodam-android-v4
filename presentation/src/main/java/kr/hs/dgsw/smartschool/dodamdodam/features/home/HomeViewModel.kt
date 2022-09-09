@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.meal.state.GetMealState
-import kr.hs.dgsw.smartschool.dodamdodam.features.setup.DataSetUpState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetAllowSongState
 import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetMyStudyRoomState
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetMeal
@@ -38,9 +37,6 @@ class HomeViewModel @Inject constructor(
     private val _getMyStudyRoomState = MutableSharedFlow<GetMyStudyRoomState>()
     val getMyStudyRoomState: SharedFlow<GetMyStudyRoomState> = _getMyStudyRoomState
 
-    private val _dataSetUpState = MutableSharedFlow<DataSetUpState>()
-    val dataSetUpState: SharedFlow<DataSetUpState> = _dataSetUpState
-
     private val _getAllowSongState = MutableStateFlow<GetAllowSongState>(GetAllowSongState())
     val getAllowSongState: StateFlow<GetAllowSongState> = _getAllowSongState
 
@@ -51,8 +47,6 @@ class HomeViewModel @Inject constructor(
 
     init {
         combineLoadingVariable(isDataSetUpLoading, isGetMealLoading, isGetMyStudyRoomLoading, isGetAllowSongLoading)
-        dataSetUp()
-        // getAllowSong()
     }
 
     fun getMeal(date: LocalDate) {
@@ -60,14 +54,6 @@ class HomeViewModel @Inject constructor(
             isGetMealLoading,
             { _getMealState.value = GetMealState(meal = it, isUpdate = true) },
             { _getMealState.value = GetMealState(error = it ?: "급식을 받아오지 못하였습니다.") }
-        ).launchIn(viewModelScope)
-    }
-
-    private fun dataSetUp() {
-        setUpUseCases.dataSetUp(Unit).divideResult(
-            isDataSetUpLoading,
-            { viewModelScope.launch { _dataSetUpState.emit(DataSetUpState(result = it ?: "데이터 업데이트에 성공하였습니다.")) } },
-            { viewModelScope.launch { _dataSetUpState.emit(DataSetUpState(error = it ?: "데이터를 업데이트 하지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
 
@@ -89,7 +75,7 @@ class HomeViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
-    private fun getAllowSong() {
+    fun getAllowSong() {
         val today = LocalDate.now()
         songUseCases.getAllowSong(
             GetAllowSong.Params(

@@ -1,7 +1,7 @@
 package kr.hs.dgsw.smartschool.domain.repository
 
-import kr.hs.dgsw.smartschool.domain.request.JoinRequest
-import kr.hs.dgsw.smartschool.domain.request.LoginRequest
+import kr.hs.dgsw.smartschool.domain.request.auth.JoinRequest
+import kr.hs.dgsw.smartschool.domain.request.auth.LoginRequest
 
 interface AuthRepository {
 

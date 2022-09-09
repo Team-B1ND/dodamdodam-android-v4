@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.util
 
 import kr.hs.dgsw.smartschool.domain.model.time.WeekType
-import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.HttpException
 import java.security.MessageDigest
@@ -55,11 +54,7 @@ object Utils {
 
     fun convertErrorBody(throwable: HttpException): String {
         val errorBody = JSONObject(throwable.response()?.errorBody()!!.string())
-        return try {
-            errorBody.getString("message")
-        } catch (e: JSONException) {
-            errorBody.getString("error")
-        }
+        return errorBody.getString("message")
     }
 
     const val NETWORK_ERROR_MESSAGE = "서버에 도달할 수 없습니다. 네트워크 상태를 확인해 주세요."
