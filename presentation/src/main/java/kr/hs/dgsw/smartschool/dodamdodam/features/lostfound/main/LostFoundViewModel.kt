@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound
+package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
+import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetLostFoundState
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
@@ -30,8 +31,8 @@ class LostFoundViewModel @Inject constructor(
     fun getLostFoundList(page : Int, type : String){
         useCases.getLostFound(GetLostFound.Params(page = page, type = type)).divideResult(
             isGetLostFoundLoading,
-            {viewModelScope.launch {   GetLostFoundState(list = it ?: emptyList())}},
-            {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.")}}
+            {viewModelScope.launch {   GetLostFoundState(list = it ?: emptyList()) }},
+            {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.") }}
         ).launchIn(viewModelScope)
     }
 

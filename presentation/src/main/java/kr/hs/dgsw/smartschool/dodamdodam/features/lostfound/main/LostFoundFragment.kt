@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound
+package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.main
 
 import android.util.Log
 import androidx.fragment.app.viewModels
@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.LostFoundAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.adapter.LostFoundAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast

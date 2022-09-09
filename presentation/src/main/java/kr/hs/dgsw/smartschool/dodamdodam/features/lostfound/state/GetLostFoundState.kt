@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound
+package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 
 data class GetLostFoundState(
