@@ -23,15 +23,15 @@ class OutListAdapter(
         val icon = when (item.status) {
             OutStatus.DENIED -> {
                 binding.tvOffbaseStatus.text = "거절됨"
-                ResourcesCompat.getDrawable(resources, R.drawable.ic_out_refuse, theme)
+                resources.getDrawable(R.drawable.ic_out_refuse, null)
             }
             OutStatus.PENDING -> {
                 binding.tvOffbaseStatus.text = "대기중"
-                ResourcesCompat.getDrawable(resources, R.drawable.ic_out_unknown, theme)
+                resources.getDrawable(R.drawable.ic_out_unknown, null)
             }
             OutStatus.ALLOWED -> {
                 binding.tvOffbaseStatus.text = "수락됨"
-                ResourcesCompat.getDrawable(resources, R.drawable.ic_out_ok, theme)
+                resources.getDrawable(R.drawable.ic_out_ok, null)
             }
             else -> return
         }
@@ -58,7 +58,7 @@ class OutListAdapter(
 
             binding.tvDate.text = item.startOutDate.yearDateFormat()
             binding.tvDateEnd.text = item.endOutDate.yearDateFormat()
-            binding.tvTime.text = item.endOutDate.timeFormat()
+            binding.tvTime.text = item.startOutDate.timeFormat()
             binding.tvTimeEnd.text = item.endOutDate.timeFormat()
         }
 

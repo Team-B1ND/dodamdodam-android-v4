@@ -12,9 +12,14 @@ fun String.getTime(): Date {
     return format.parse(this)!!
 }
 
-fun String.getDate(): Date {
+fun String.getYearTimeDate(): Date {
     val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sss'Z'", Locale.getDefault())
 
+    return format.parse(this)!!
+}
+
+fun String.getYearDateDate(): Date {
+    val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     return format.parse(this)!!
 }
 

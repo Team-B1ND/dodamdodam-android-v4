@@ -30,7 +30,10 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>(), OutListAda
         bindingViewEvent { event ->
             when (event) {
                 OutViewModel.ON_CLICK_BACK -> findNavController().popBackStack()
-                OutViewModel.ON_CLICK_OUT_WRITE -> findNavController().navigate(R.id.action_outFragment_to_outWriteFragment)
+                OutViewModel.ON_CLICK_OUT_WRITE -> {
+                    val action = OutFragmentDirections.actionOutFragmentToOutWriteFragment(null)
+                    findNavController().navigate(action)
+                }
             }
         }
     }

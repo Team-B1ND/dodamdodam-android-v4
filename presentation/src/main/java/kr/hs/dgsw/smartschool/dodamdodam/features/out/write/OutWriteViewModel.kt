@@ -17,6 +17,8 @@ import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 import kr.hs.dgsw.smartschool.domain.usecase.out.OutUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutGoing
 import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutSleeping
+import kr.hs.dgsw.smartschool.domain.usecase.out.ModifyOutGoing
+import kr.hs.dgsw.smartschool.domain.usecase.out.ModifyOutSleeping
 import java.util.Date
 import javax.inject.Inject
 
@@ -27,6 +29,9 @@ class OutWriteViewModel @Inject constructor(
 
     val isOutGoing = MutableLiveData(true)
     val isOutSleeping = MutableLiveData(false)
+
+    val isModifyOut = MutableLiveData(false)
+    val id = MutableLiveData<Int>()
 
     val startOutSleepingDate = MutableLiveData(Date())
     val endOutSleepingDate = MutableLiveData(Date())
@@ -71,7 +76,7 @@ class OutWriteViewModel @Inject constructor(
             }
         }
 
-        applyOutGoing(startDate, endDate)
+        if (isModifyOut.value == false) applyOutGoing(startDate, endDate) else modifyOutGoing(startDate, endDate)
     }
 
     fun invalidOutSleeping(startDate: Date, endDate: Date) {
@@ -97,8 +102,7 @@ class OutWriteViewModel @Inject constructor(
                 return
             }
         }
-
-        applyOutSleeping(startDate, endDate)
+        if (isModifyOut.value == false) applyOutSleeping(startDate, endDate) else modifyOutSleeping(startDate, endDate)
     }
 
     private fun applyOutGoing(startDate: Date, endDate: Date) {
@@ -126,6 +130,36 @@ class OutWriteViewModel @Inject constructor(
             isApplyOutSleepingLoading,
             { outItem -> _applyOutSleepingState.value = ApplyOutSleepingState(outItem = outItem ?: OutItem()) },
             { errorMessage -> _applyOutSleepingState.value = ApplyOutSleepingState(error = errorMessage ?: "외박 신청에 실패했습니다.") }
+        ).launchIn(viewModelScope)
+    }
+
+    private fun modifyOutGoing(startDate: Date, endDate: Date) {
+        outUseCases.modifyOutGoing(
+            ModifyOutGoing.Params(
+                startDate.dateTimeFormat(),
+                endDate.dateTimeFormat(),
+                outReason.value ?: return,
+                id.value ?: return
+            )
+        ).divideResult(
+            isApplyOutGoingLoading,
+            { outItem -> _applyOutGoingState.value = ApplyOutGoingState(outItem = outItem ?: OutItem()) },
+            { errorMessage -> _applyOutGoingState.value = ApplyOutGoingState(error = errorMessage ?: "외출 수정에 실패하였습니다.") }
+        ).launchIn(viewModelScope)
+    }
+
+    private fun modifyOutSleeping(startDate: Date, endDate: Date) {
+        outUseCases.modifyOutSleeping(
+            ModifyOutSleeping.Params(
+                startDate.dateTimeFormat(),
+                endDate.dateTimeFormat(),
+                outReason.value ?: return,
+                id.value ?: return
+            )
+        ).divideResult(
+            isApplyOutSleepingLoading,
+            { outItem -> _applyOutSleepingState.value = ApplyOutSleepingState(outItem = outItem ?: OutItem()) },
+            { errorMessage -> _applyOutSleepingState.value = ApplyOutSleepingState(error = errorMessage ?: "외박 수정에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 

@@ -1,27 +1,38 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.out.write
 
 import android.app.DatePickerDialog
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentOutWriteBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.dateFormat
-import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getDate
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getYearDate
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getYearDateDate
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getYearTimeDate
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.monthFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearFormat
+import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 import java.util.*
 
 @AndroidEntryPoint
 class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel>() {
+
     override val viewModel: OutWriteViewModel by viewModels()
+    private val args: OutWriteFragmentArgs by navArgs()
 
     override fun observerViewModel() {
+
+        args.outItem?.let {
+            setModifyOutData(it)
+        }
 
         collectOutGoingState()
         collectOutSleepingState()
@@ -88,7 +99,7 @@ class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel
     }
 
     private fun makeDateFormat(date: String?, startTime: String, endTime: String): Date {
-        return "${date}T${startTime}:${endTime}:00.000Z".getDate()
+        return "${date}T${startTime}:${endTime}:00.000Z".getYearTimeDate()
     }
 
     private fun checkEmptyOutGoingTime(): Boolean {
@@ -106,6 +117,43 @@ class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel
             false
         } else {
             true
+        }
+    }
+
+    private fun setModifyOutData(outItem: OutItem) {
+        with(viewModel) {
+
+            isModifyOut.value = true
+            id.value = outItem.id
+            mBinding.tvOutWrite.text = "외출/외박 수정"
+            mBinding.btnAddOffbase.text = "수정"
+
+            isOutSleeping.value = outItem.isOutSleeping()
+            isOutGoing.value = !outItem.isOutSleeping()
+
+            outReason.value = outItem.reason
+
+            if (outItem.isOutSleeping()) {
+                startOutSleepingDate.value = outItem.startDate.getYearDateDate()
+                endOutSleepingDate.value = outItem.endDate.getYearDateDate()
+
+                mBinding.cvOutGoing.visibility = View.INVISIBLE
+
+                mBinding.etEndOutSleepingHour.setText(outItem.endTimeHour)
+                mBinding.etEndOutSleepingMinute.setText(outItem.endTimeMinute)
+                mBinding.etStartOutSleepingHour.setText(outItem.startTimeHour)
+                mBinding.etStartOutSleepingMinute.setText(outItem.startTimeMinute)
+            } else {
+                startOutGoingDate.value = outItem.startDate.getYearDateDate()
+
+                mBinding.cvOutSleeping.visibility = View.INVISIBLE
+
+                mBinding.etEndOutGoingHour.setText(outItem.endTimeHour)
+                mBinding.etEndOutGoingMinute.setText(outItem.endTimeMinute)
+                mBinding.etStartOutGoingHour.setText(outItem.startTimeHour)
+                mBinding.etStartOutGoingMinute.setText(outItem.startTimeMinute)
+            }
+
         }
     }
 

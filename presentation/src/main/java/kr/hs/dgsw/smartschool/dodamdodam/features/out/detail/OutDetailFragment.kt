@@ -20,6 +20,15 @@ class OutDetailFragment : BaseFragment<FragmentOutDetailBinding, OutDetailViewMo
     override fun observerViewModel() {
         viewModel.getDetailOut(args.isOutSleeping, args.id)
         collectOutDetail()
+
+        bindingViewEvent { event ->
+            when (event) {
+                OutDetailViewModel.EVENT_ON_CLICK_UPDATE -> {
+                    val action = OutDetailFragmentDirections.actionOutDetailFragmentToOutWriteFragment(viewModel.outItem.value ?: return@bindingViewEvent)
+                    findNavController().navigate(action)
+                }
+            }
+        }
     }
 
     private fun collectOutDetail() {

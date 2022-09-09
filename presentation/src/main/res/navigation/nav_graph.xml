@@ -140,7 +140,13 @@
     <fragment
         android:id="@+id/outWriteFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.out.write.OutWriteFragment"
-        android:label="OutWriteFragment" />
+        android:label="OutWriteFragment" >
+        <argument
+            android:name="outItem"
+            app:argType="kr.hs.dgsw.smartschool.domain.model.out.OutItem"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
     <fragment
         android:id="@+id/youTubeFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.youtube.YouTubeFragment"
@@ -161,5 +167,13 @@
         <argument
             android:name="id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_outDetailFragment_to_outWriteFragment"
+            app:destination="@id/outWriteFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/outFragment" />
     </fragment>
 </navigation>

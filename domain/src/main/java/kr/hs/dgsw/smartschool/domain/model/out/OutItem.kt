@@ -1,12 +1,18 @@
 package kr.hs.dgsw.smartschool.domain.model.out
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.TypeParceler
 import kr.hs.dgsw.smartschool.domain.model.member.StudentId
 import kr.hs.dgsw.smartschool.domain.model.member.TeacherId
+import kr.hs.dgsw.smartschool.domain.util.parceler.StudentIdParceler
+import kr.hs.dgsw.smartschool.domain.util.parceler.TeacherIdParceler
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+@Parcelize
 open class OutItem(
     val arrivedDate: Date,
     val checkedDate: Date,
@@ -15,9 +21,9 @@ open class OutItem(
     val reason: String,
     val startOutDate: Date,
     val status: OutStatus,
-    val student: StudentId,
-    val teacher: TeacherId
-) : Serializable {
+    @TypeParceler<StudentId, StudentIdParceler> val student: StudentId,
+    @TypeParceler<TeacherId, TeacherIdParceler> val teacher: TeacherId
+) : Serializable, Parcelable {
 
     constructor() : this(Date(), Date(), Date(), 0, "", Date(), OutStatus.PENDING, StudentId(-1), TeacherId(-1))
 
@@ -25,9 +31,20 @@ open class OutItem(
         get() {
             return startOutDate.yearDateFormat()
         }
+
     val startTime: String
         get() {
             return startOutDate.timeFormat()
+        }
+
+    val startTimeHour: String
+        get() {
+            return startTime.split(':')[0]
+        }
+
+    val startTimeMinute: String
+        get() {
+            return startTime.split(':')[1]
         }
 
     val endDate: String
@@ -38,6 +55,16 @@ open class OutItem(
     val endTime: String
         get() {
             return endOutDate.timeFormat()
+        }
+
+    val endTimeHour: String
+        get() {
+            return endTime.split(':')[0]
+        }
+
+    val endTimeMinute: String
+        get() {
+            return endTime.split(':')[1]
         }
 
 

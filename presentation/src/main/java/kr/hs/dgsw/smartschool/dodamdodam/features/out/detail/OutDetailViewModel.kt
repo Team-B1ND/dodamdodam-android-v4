@@ -62,7 +62,11 @@ class OutDetailViewModel @Inject constructor(
     }
 
     fun onClickUpdate() {
-        // TODO 외출외박 수정 화면으로 넘어가기
+        viewEvent(EVENT_ON_CLICK_UPDATE)
+    }
+
+    companion object {
+        const val EVENT_ON_CLICK_UPDATE = 0
     }
 
 }
