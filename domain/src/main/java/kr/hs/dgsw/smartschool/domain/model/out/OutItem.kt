@@ -67,7 +67,6 @@ open class OutItem(
             return endTime.split(':')[1]
         }
 
-
     override fun toString(): String {
         val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
         return "${format.format(startOutDate)} ~\n ${format.format(endOutDate)}"
@@ -87,7 +86,6 @@ open class OutItem(
         val format = SimpleDateFormat("HH:mm", Locale.getDefault())
         return format.format(this)
     }
-
 
     fun isOutSleeping(): Boolean {
         val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())

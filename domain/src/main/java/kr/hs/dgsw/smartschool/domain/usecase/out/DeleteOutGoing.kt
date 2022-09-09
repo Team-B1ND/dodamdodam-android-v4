@@ -13,5 +13,4 @@ class DeleteOutGoing @Inject constructor(
     override fun invoke(params: Int): Flow<Resource<String>> = execute {
         outRepository.deleteOutGoing(params)
     }
-
 }

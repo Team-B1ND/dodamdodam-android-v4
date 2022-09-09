@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.detail.state.GetOutDetailState
-import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateFormat
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 import kr.hs.dgsw.smartschool.domain.usecase.out.OutUseCases
 import javax.inject.Inject
@@ -68,5 +67,4 @@ class OutDetailViewModel @Inject constructor(
     companion object {
         const val EVENT_ON_CLICK_UPDATE = 0
     }
-
 }

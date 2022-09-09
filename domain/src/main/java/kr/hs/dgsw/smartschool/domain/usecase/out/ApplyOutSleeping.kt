@@ -21,5 +21,4 @@ class ApplyOutSleeping @Inject constructor(
         val endOutDate: String,
         val reason: String
     )
-
 }

@@ -12,7 +12,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentOutWriteBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.dateFormat
-import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getYearDate
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getYearDateDate
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getYearTimeDate
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.monthFormat
@@ -20,7 +19,8 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearFormat
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 @AndroidEntryPoint
 class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel>() {
@@ -86,7 +86,6 @@ class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel
                 val endDate = makeDateFormat(startOutGoingDate.value?.yearDateFormat(), mBinding.etEndOutGoingHour.text.toString(), mBinding.etEndOutGoingMinute.text.toString())
 
                 invalidOutGoing(startDate, endDate)
-
             } else if (isOutSleeping.value == true) {
                 if (checkEmptyOutSleepingTime().not()) return
 
@@ -99,7 +98,7 @@ class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel
     }
 
     private fun makeDateFormat(date: String?, startTime: String, endTime: String): Date {
-        return "${date}T${startTime}:${endTime}:00.000Z".getYearTimeDate()
+        return "${date}T$startTime:$endTime:00.000Z".getYearTimeDate()
     }
 
     private fun checkEmptyOutGoingTime(): Boolean {
@@ -153,7 +152,6 @@ class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel
                 mBinding.etStartOutGoingHour.setText(outItem.startTimeHour)
                 mBinding.etStartOutGoingMinute.setText(outItem.startTimeMinute)
             }
-
         }
     }
 

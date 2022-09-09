@@ -14,5 +14,4 @@ class GetAllOut @Inject constructor(
     override fun invoke(params: Unit): Flow<Resource<List<OutItem>>> = execute {
         outRepository.getAllOut()
     }
-
 }

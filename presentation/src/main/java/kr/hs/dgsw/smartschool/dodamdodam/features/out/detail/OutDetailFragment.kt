@@ -7,7 +7,6 @@ import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentOutDetailBinding
-import kr.hs.dgsw.smartschool.dodamdodam.features.profile.edit.EditProfileFragmentArgs
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 
 @AndroidEntryPoint

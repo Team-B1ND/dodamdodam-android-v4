@@ -40,5 +40,4 @@ class OutRemote @Inject constructor(
 
     suspend fun deleteOutGoing(outGoingId: Int): String =
         api.deleteOutGoing(outGoingId).message
-
 }

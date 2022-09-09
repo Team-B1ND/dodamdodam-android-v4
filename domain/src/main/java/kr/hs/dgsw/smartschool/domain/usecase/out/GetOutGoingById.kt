@@ -14,5 +14,4 @@ class GetOutGoingById @Inject constructor(
     override fun invoke(params: Int): Flow<Resource<OutItem>> = execute {
         outRepository.getOutGoingById(params)
     }
-
 }

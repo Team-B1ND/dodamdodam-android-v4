@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.util
 
 import kr.hs.dgsw.smartschool.domain.model.time.WeekType
-import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.HttpException
 import java.security.MessageDigest

@@ -13,5 +13,4 @@ class DeleteOutSleeping @Inject constructor(
     override fun invoke(params: Int): Flow<Resource<String>> = execute {
         outRepository.deleteOutSleeping(params)
     }
-
 }

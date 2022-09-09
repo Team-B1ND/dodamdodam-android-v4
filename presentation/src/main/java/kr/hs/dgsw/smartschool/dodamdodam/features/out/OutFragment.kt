@@ -6,7 +6,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentOutBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.adapter.OutListAdapter
@@ -58,7 +57,6 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>(), OutListAda
                     mBinding.tvNoData.visibility = View.GONE
                     endRefreshing()
                 }
-
             }
         }
     }
@@ -130,5 +128,4 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>(), OutListAda
     private fun endRefreshing() {
         mBinding.swipeRefreshLayout.isRefreshing = false
     }
-
 }

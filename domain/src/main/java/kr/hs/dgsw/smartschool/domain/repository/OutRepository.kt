@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.repository
 
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
-import kr.hs.dgsw.smartschool.domain.model.out.OutStatus
 import kr.hs.dgsw.smartschool.domain.request.out.ModifyOutRequest
 import kr.hs.dgsw.smartschool.domain.request.out.OutRequest
 
@@ -28,5 +27,4 @@ interface OutRepository {
     suspend fun modifyOutGoing(request: ModifyOutRequest): OutItem
 
     suspend fun deleteOutGoing(outGoingId: Int): String
-
 }

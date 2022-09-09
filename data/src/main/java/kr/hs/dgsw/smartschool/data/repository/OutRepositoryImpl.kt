@@ -60,5 +60,4 @@ class OutRepositoryImpl @Inject constructor(
     override suspend fun deleteOutGoing(outGoingId: Int): String {
         return outDataSource.deleteOutGoing(outGoingId)
     }
-
 }

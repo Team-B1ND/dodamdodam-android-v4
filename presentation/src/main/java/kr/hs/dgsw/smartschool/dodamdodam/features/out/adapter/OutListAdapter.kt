@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.out.adapter
 
 import android.view.View
-import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter

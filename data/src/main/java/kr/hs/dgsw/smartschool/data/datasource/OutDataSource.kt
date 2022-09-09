@@ -31,5 +31,4 @@ class OutDataSource @Inject constructor(
     suspend fun modifyOutGoing(request: ModifyOutRequest): OutItem = remote.modifyOutGoing(request)
 
     suspend fun deleteOutGoing(outGoingId: Int): String = remote.deleteOutGoing(outGoingId)
-
 }
