@@ -9,6 +9,8 @@ class FileUploadRemote @Inject constructor(
     override val api: FileUploadApi
 ) : BaseRemote<FileUploadApi>() {
 
-    suspend fun uploadImg(image: MultipartBody.Part, name: MultipartBody.Part): String =
-        api.uploadImg(image, name).message()
+    suspend fun uploadFile(file: MultipartBody.Part): String =
+        api.uploadFile(file).data
+
 }
+

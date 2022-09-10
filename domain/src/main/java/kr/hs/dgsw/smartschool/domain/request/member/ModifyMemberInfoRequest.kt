@@ -1,26 +1,31 @@
 package kr.hs.dgsw.smartschool.domain.request.member
 
 import com.google.gson.annotations.SerializedName
-import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
-import kr.hs.dgsw.smartschool.domain.util.Utils.encryptSHA512
-import java.security.NoSuchAlgorithmException
+import kr.hs.dgsw.smartschool.domain.util.Utils.getUrlExtension
+import kr.hs.dgsw.smartschool.domain.util.Utils.getUrlFileName
 
 data class ModifyMemberInfoRequest(
     var email: String?,
     var phone: String?,
-    @SerializedName("profileImage") var profileImage: Picture?,
+    @SerializedName("profileImage") var profileImage: ProfileImage?,
     var pw: String?
 ) {
 
-    constructor(phone: String?, email: String?, profileImage: Picture?) : this(null, email, profileImage, null) {
-        this.phone = phone
-    }
+    constructor(phone: String, email: String, url: String?) : this(
+        email,
+        phone,
+        url?.let {
+            ProfileImage(
+                type = it.getUrlExtension(),
+                //uploadName = "DODAM_FILE_${Random().nextInt(Int.MAX_VALUE)}"
+                uploadName = it.getUrlFileName()
+            )
+        },
+        null
+    )
 
-    constructor(pw: String?) : this(null, null, null, null) {
-        try {
-            this.pw = encryptSHA512(pw!!)
-        } catch (e: NoSuchAlgorithmException) {
-            e.printStackTrace()
-        }
-    }
+    data class ProfileImage(
+        val type: String,
+        val uploadName: String
+    )
 }

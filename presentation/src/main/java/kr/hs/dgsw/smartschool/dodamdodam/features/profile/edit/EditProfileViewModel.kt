@@ -7,36 +7,37 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
+import kr.hs.dgsw.smartschool.dodamdodam.features.profile.edit.state.EditProfileState
 import kr.hs.dgsw.smartschool.dodamdodam.features.upload.UploadImageState
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.isNotEmailValid
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.isNotPhoneNumberValid
 import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
 import kr.hs.dgsw.smartschool.domain.usecase.member.ChangeMemberInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.upload.UploadImgUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.upload.UploadFileUseCase
 import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
 class EditProfileViewModel @Inject constructor(
     private val memberUseCases: MemberUseCases,
-    private val uploadImgUseCase: UploadImgUseCase
+    private val uploadFileUseCase: UploadFileUseCase
 ) : BaseViewModel() {
 
-    private val _editProfileState = MutableStateFlow<EditProfileState>(EditProfileState(isLoading = false))
+    private val _editProfileState = MutableStateFlow<EditProfileState>(EditProfileState())
     val editProfileState: StateFlow<EditProfileState> = _editProfileState
 
-    private val _uploadImageState = MutableStateFlow<UploadImageState>(UploadImageState(isLoading = false))
+    private val _uploadImageState = MutableStateFlow<UploadImageState>(UploadImageState())
     val uploadImageState: StateFlow<UploadImageState> = _uploadImageState
 
     lateinit var picture: Picture
+
+    val url = MutableLiveData<String>()
 
     val email = MutableLiveData<String>()
     val phone = MutableLiveData<String>()
     var memberId: String = ""
     var type: String = ""
-
-    var file: File? = null
 
     private val isChangeMemberInfoLoading = MutableLiveData(false)
     private val isUploadImgLoading = MutableLiveData(false)
@@ -48,10 +49,9 @@ class EditProfileViewModel @Inject constructor(
     private fun saveInfo() {
         memberUseCases.changeMemberInfo(
             ChangeMemberInfo.Params(
-                memberId = memberId,
-                phone = phone.value ?: "",
-                email = email.value ?: "",
-                profileImage = picture
+                phone = phone.value ?: return,
+                email = email.value ?: return,
+                url = url.value,
             )
         ).divideResult(
             isChangeMemberInfoLoading,
@@ -60,10 +60,10 @@ class EditProfileViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
-    fun uploadImg() {
-        uploadImgUseCase(file!!).divideResult(
+    fun uploadImg(file: File) {
+        uploadFileUseCase(file).divideResult(
             isUploadImgLoading,
-            { _uploadImageState.value = UploadImageState(picture = it) },
+            { _uploadImageState.value = UploadImageState(url = it ?: "") },
             { _uploadImageState.value = UploadImageState(error = it ?: "이미지 업로드에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }

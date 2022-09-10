@@ -17,16 +17,15 @@ class ChangeMemberInfo @Inject constructor(
             ModifyMemberInfoRequest(
                 params.phone,
                 params.email,
-                params.profileImage
+                params.url
             )
         )
         "정보 변경에 성공했습니다."
     }
 
     data class Params(
-        val memberId: String,
         val phone: String,
         val email: String,
-        val profileImage: Picture
+        val url: String?
     )
 }
