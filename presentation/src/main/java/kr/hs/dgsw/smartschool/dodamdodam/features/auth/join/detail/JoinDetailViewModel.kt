@@ -1,12 +1,14 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.auth.join
+package kr.hs.dgsw.smartschool.dodamdodam.features.auth.join.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
+import kr.hs.dgsw.smartschool.dodamdodam.features.auth.join.state.JoinState
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.isNotEmailValid
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.isNotPhoneNumberValid
 import kr.hs.dgsw.smartschool.domain.usecase.auth.JoinUseCase
@@ -20,8 +22,8 @@ class JoinDetailViewModel @Inject constructor(
     var id: String = ""
     var pw: String = ""
 
-    private val _joinState = MutableStateFlow<JoinState>(JoinState(isLoading = false))
-    val joinState: StateFlow<JoinState> = _joinState
+    private val _joinState = MutableSharedFlow<JoinState>()
+    val joinState: SharedFlow<JoinState> = _joinState
 
     val email = MutableLiveData<String>()
     val phone = MutableLiveData<String>()
@@ -80,8 +82,8 @@ class JoinDetailViewModel @Inject constructor(
             )
         ).divideResult(
             isLoading,
-            { _joinState.value = JoinState(result = it ?: "") },
-            { _joinState.value = JoinState(error = it ?: "회원가입에 실패했습니다.") }
+            { viewModelScope.launch { _joinState.emit(JoinState(result = it ?: "")) } },
+            { viewModelScope.launch { _joinState.emit(JoinState(error = it ?: "회원가입에 실패했습니다.")) } }
         ).launchIn(viewModelScope)
     }
 

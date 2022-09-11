@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.auth.join
+package kr.hs.dgsw.smartschool.dodamdodam.features.auth.join.detail
 
 import android.content.Intent
 import android.graphics.Paint

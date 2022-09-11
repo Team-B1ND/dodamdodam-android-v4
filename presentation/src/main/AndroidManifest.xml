@@ -30,7 +30,7 @@
 
         </activity>
         <activity
-            android:name=".features.auth.join.JoinDetailActivity"
+            android:name=".features.auth.join.detail.JoinDetailActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
 
