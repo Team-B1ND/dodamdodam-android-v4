@@ -17,8 +17,7 @@ data class ModifyMemberInfoRequest(
         url?.let {
             ProfileImage(
                 type = it.getUrlExtension(),
-                //uploadName = "DODAM_FILE_${Random().nextInt(Int.MAX_VALUE)}"
-                uploadName = it.getUrlFileName()
+                uploadName = it
             )
         },
         null
