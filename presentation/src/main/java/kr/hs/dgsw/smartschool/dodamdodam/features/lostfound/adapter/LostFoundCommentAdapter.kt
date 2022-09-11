@@ -12,6 +12,11 @@ class LostFoundCommentAdapter(val context: Context) : BaseListAdapter<CommentInf
     R.layout.item_lost_found_comment,
     LostFoundCommentDiffUtilCallback
 ){
+    interface CommentCallBack {
+        fun addComment(comment : String, idx : Int)
+        fun deleteComment(idx:Int)
+        fun modifyComment(Comment : String, idx : Int)
+    }
     override fun action(item: CommentInfo, binding: ItemLostFoundCommentBinding) {
         binding.info = item
         Glide.with(binding.ivProfileImage)

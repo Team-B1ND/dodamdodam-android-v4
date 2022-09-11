@@ -10,9 +10,10 @@ import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundCommentBin
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.CommentInfo
+import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
 import java.time.LocalDate
 
-class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, LostFoundCommentViewModel>() {
+class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, LostFoundCommentViewModel>(),LostFoundCommentAdapter.CommentCallBack {
     override val viewModel: LostFoundCommentViewModel by viewModels()
 
     override fun observerViewModel() {
@@ -59,5 +60,18 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
         val lostFoundAdapter = LostFoundCommentAdapter(requireContext())
         mBinding.rvComment.adapter = lostFoundAdapter
         lostFoundAdapter.submitList(list)
+    }
+
+    override fun addComment(comment : String, idx : Int){
+        viewModel.addComment(comment,idx)
+    }
+    override fun deleteComment(idx : Int){
+        viewModel.deleteComment(idx)
+    }
+    override fun modifyComment(comment : String, idx : Int){
+        viewModel.modifyComment(comment,idx)
+    }
+    private fun getComment(idx : Int){
+        viewModel.getComment(idx)
     }
 }
