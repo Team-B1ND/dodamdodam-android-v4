@@ -17,7 +17,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding, SettingViewModel>()
         }
 
         mBinding.tvSignOut.setOnClickListener {
-            SharedPreferenceManager.signOut(requireContext())
+            SharedPreferenceManager.logout(requireContext())
             startActivityWithFinishAll(LoginActivity::class.java)
         }
     }

@@ -71,14 +71,14 @@ class JoinDetailViewModel @Inject constructor(
     private fun signUp() {
         joinUseCase(
             JoinUseCase.Params(
-                email = email.value ?: "",
-                grade = grade.value?.toInt() ?: 0,
+                email = email.value ?: return,
+                grade = grade.value?.toInt() ?: return,
                 id = id,
-                name = name.value ?: "",
-                number = number.value?.toInt() ?: 0,
-                phone = phone.value ?: "",
+                name = name.value ?: return,
+                number = number.value?.toInt() ?: return,
+                phone = phone.value ?: return,
                 pw = pw,
-                room = room.value?.toInt() ?: 0
+                room = room.value?.toInt() ?: return
             )
         ).divideResult(
             isLoading,

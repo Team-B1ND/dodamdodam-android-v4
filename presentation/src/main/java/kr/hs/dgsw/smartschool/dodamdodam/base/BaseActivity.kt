@@ -25,7 +25,7 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
     protected abstract fun observerViewModel()
 
     protected fun bindingViewEvent(action: (event: Any) -> Unit) {
-        viewModel.viewEvent.observe(this@BaseActivity) {
+        viewModel.viewEvent.observe(this) {
             it.getContentIfNotHandled()?.let { event ->
                 action.invoke(event)
             }
@@ -35,7 +35,7 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
     protected open fun onErrorEvent(e: Throwable) {
         shortToast(e.message)
         if (e is TokenException) {
-            SharedPreferenceManager.signOut(this)
+            SharedPreferenceManager.logout(this)
             startActivityWithFinishAll(LoginActivity::class.java)
             return
         }

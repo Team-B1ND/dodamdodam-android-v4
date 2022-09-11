@@ -40,7 +40,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
 
     protected open fun onErrorEvent(e: Throwable) {
         if (e is TokenException) {
-            SharedPreferenceManager.signOut(this.context!!.applicationContext)
+            SharedPreferenceManager.logout(this.context!!.applicationContext)
             startActivityWithFinishAll(LoginActivity::class.java)
             shortToast(e.message)
             return

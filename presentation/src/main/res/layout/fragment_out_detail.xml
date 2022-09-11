@@ -35,7 +35,7 @@
                 app:collapsedTitleTextAppearance="@style/TextAppearance.App.Title"
                 app:expandedTitleTextAppearance="@style/TextAppearance.App.Title.Expanded"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:popupTheme="@style/Theme.DodamDodam">
+                app:popupTheme="@style/Theme.AppCompat.Dodam">
 
                 <View
                     android:id="@+id/view"
@@ -48,7 +48,7 @@
                     android:layout_height="?attr/actionBarSize"
                     android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/Theme.DodamDodam" />
+                    app:popupTheme="@style/Theme.AppCompat.Dodam" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
