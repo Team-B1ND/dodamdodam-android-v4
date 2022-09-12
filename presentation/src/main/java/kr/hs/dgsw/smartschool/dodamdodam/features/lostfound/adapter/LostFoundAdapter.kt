@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.adapter
 
 import android.content.Context
+import android.util.Log
 import android.widget.PopupMenu
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
@@ -15,6 +16,10 @@ class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack) :
         fun openComment(idx: Int)
         fun modifyLostFound(idx : Int)
         fun deleteLostFound(idx:Int)
+    }
+
+    init {
+        Log.d("LostFoundAdapter","생성됨")
     }
 
     override fun action(item: LostInfo, binding: ItemLostAndFoundBinding) {

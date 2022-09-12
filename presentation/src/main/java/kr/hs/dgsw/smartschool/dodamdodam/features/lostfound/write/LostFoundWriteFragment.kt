@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.write
 
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundWriteBinding
 
@@ -8,5 +9,20 @@ class LostFoundWriteFragment : BaseFragment<FragmentLostFoundWriteBinding, LostF
     override val viewModel: LostFoundWriteViewModel by viewModels()
 
     override fun observerViewModel() {
+        mBinding.ivLostFound.setOnClickListener{
+
+        }
+        mBinding.btnBack.setOnClickListener{
+            findNavController().popBackStack()
+        }
+        mBinding.btnImageAdd.setOnClickListener {
+
+        }
+        mBinding.btnImageDelete.setOnClickListener {
+
+        }
+        with(viewModel){
+
+        }
     }
 }
