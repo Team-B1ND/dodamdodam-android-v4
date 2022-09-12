@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.data.datasource
 
+import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.database.cache.HiddenLostFoundCache
 import kr.hs.dgsw.smartschool.data.database.entity.HiddenLostFoundEntity
@@ -24,8 +25,9 @@ class LostFoundDataSource @Inject constructor(
 
     suspend fun getLostFound(page: Int, type:String): List<LostFound> {
         lostFoundList = remote.getLostFound(page,type).data
+        Log.d("LostFoundDataSource",lostFoundList.toString())
         hiddenLostFoundList = cache.getAllHiddenLostFound()
-        return getLostFoundList()
+        return lostFoundList
     }
 
     private fun getLostFoundList(): List<LostFound> {

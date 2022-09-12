@@ -23,7 +23,6 @@ class LostFoundRepositoryImpl @Inject constructor(
         lostFoundList = lostFoundDataSource.getLostFound(page, type)
         myId = tokenDataSource.getMyId()
         Log.d("LostFoundRepository", lostFoundList.toString())
-        Log.d("LostFoundRemote", "실행")
         return lostFoundList
     }
 

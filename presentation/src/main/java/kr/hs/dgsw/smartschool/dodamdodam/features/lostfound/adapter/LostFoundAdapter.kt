@@ -31,7 +31,6 @@ class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack) :
         binding.ibBtnMore.setOnClickListener{
             val pm = PopupMenu(context, binding.ibBtnMore)
             pm.inflate(R.menu.lost_found_item_menu)
-
             pm.setOnMenuItemClickListener{ data ->
                     when (data.itemId) {
                         R.id.apply_bus ->

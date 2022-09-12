@@ -59,7 +59,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     }
 
     private fun setLostInfo(lostFoundList: List<LostFound>): List<LostInfo> {
-        Log.d("LostFoundFragment",lostFoundList.toString())
+        /*Log.d("LostFoundFragment",lostFoundList.toString())
         viewModel.getLostFoundList(1,if(mBinding.lostFoundSpinner.selectedItemPosition == 0) "LOST" else "FOUND")
         val list: MutableList<LostInfo> = mutableListOf()
         // val today = LocalDate.now()
@@ -76,7 +76,14 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                 )
             )
         }
-        return list.toList()
+        Log.d("LostFoundFragment",list.toList().toString())
+        return list.toList()*/
+        val list = listOf<LostInfo>(
+            LostInfo(idx = 1, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다."),
+            LostInfo(idx = 2, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다."),
+            LostInfo(idx = 3, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다.")
+        )
+        return list
     }
     private fun setRecyclerView(list : List<LostInfo>){
         val lostFoundAdapter = LostFoundAdapter(requireContext(), this)

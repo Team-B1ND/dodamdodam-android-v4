@@ -118,9 +118,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:background="@color/color_background"
-                    android:overScrollMode="never"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_lost_and_found" />
+                    android:overScrollMode="never"/>
 
             </LinearLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
