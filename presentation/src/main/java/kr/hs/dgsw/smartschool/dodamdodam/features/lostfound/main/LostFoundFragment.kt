@@ -19,7 +19,9 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     private lateinit var lostFoundAdapter : LostFoundAdapter
     override val viewModel: LostFoundViewModel by viewModels()
     override fun observerViewModel() {
-        val list = listOf<LostInfo>(
+
+        //TODO 테스트용임 지워야함
+        val list = listOf(
             LostInfo(idx = 1, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다."),
             LostInfo(idx = 2, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다."),
             LostInfo(idx = 3, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다.")
@@ -27,6 +29,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         lostFoundAdapter = LostFoundAdapter(requireContext(), this)
         mBinding.rvLostFound.adapter = lostFoundAdapter
         lostFoundAdapter.submitList(list)
+
         mBinding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -68,6 +71,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     }
 
     private fun setLostInfo(lostFoundList: List<LostFound>): List<LostInfo> {
+        Log.d("LostFoundFragment","setRecyclerView()")
         /*Log.d("LostFoundFragment",lostFoundList.toString())
         viewModel.getLostFoundList(1,if(mBinding.lostFoundSpinner.selectedItemPosition == 0) "LOST" else "FOUND")
         val list: MutableList<LostInfo> = mutableListOf()
@@ -87,7 +91,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         }
         Log.d("LostFoundFragment",list.toList().toString())
         return list.toList()*/
-        val list = listOf<LostInfo>(
+        val list = listOf(
             LostInfo(idx = 1, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다."),
             LostInfo(idx = 2, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다."),
             LostInfo(idx = 3, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다.")
@@ -95,6 +99,9 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         return list
     }
     private fun setRecyclerView(list : List<LostInfo>){
+        Log.d("LostFoundFragment","setRecyclerView()")
+        lostFoundAdapter = LostFoundAdapter(requireContext(), this)
+        mBinding.rvLostFound.adapter = lostFoundAdapter
         lostFoundAdapter.submitList(list)
     }
 }

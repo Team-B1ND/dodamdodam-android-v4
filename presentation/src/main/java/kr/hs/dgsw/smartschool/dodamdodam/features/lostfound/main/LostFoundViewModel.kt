@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.main
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -29,6 +30,7 @@ class LostFoundViewModel @Inject constructor(
         getLostFoundList(1,"LOST")
     }
     fun getLostFoundList(page : Int, type : String){
+        Log.d("LostFoundViewModel","실행")
         useCases.getLostFound(GetLostFound.Params(page = page, type = type)).divideResult(
             isGetLostFoundLoading,
             {viewModelScope.launch { GetLostFoundState(list = it ?: emptyList()) }},
