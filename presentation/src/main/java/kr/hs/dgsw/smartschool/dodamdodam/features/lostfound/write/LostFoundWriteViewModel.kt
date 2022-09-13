@@ -18,11 +18,13 @@ class LostFoundWriteViewModel @Inject constructor(
     val title = MutableLiveData<String>()
     val place = MutableLiveData<String>()
     val content = MutableLiveData<String>()
+    val picture = MutableLiveData<String>()
 
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
+    private val isModifyLostFoundLoading = MutableLiveData<Boolean>()
 
     init{
-        combineLoadingVariable(isGetLostFoundLoading)
+        combineLoadingVariable(isGetLostFoundLoading,isModifyLostFoundLoading)
     }
     companion object{
         const val EVENT_SUCCESS = 1
@@ -42,7 +44,7 @@ class LostFoundWriteViewModel @Inject constructor(
             type = if (isLost.value == true) "LOST" else "FOUND",
             lostFoundId = null
         )).divideResult(
-            isGetLostFoundLoading,
+            isModifyLostFoundLoading,
             {viewEvent(EVENT_SUCCESS)},
             {viewEvent(EVENT_ERROR)}
         ).launchIn(viewModelScope)
@@ -60,7 +62,11 @@ class LostFoundWriteViewModel @Inject constructor(
             title = title.value ?: "",
             type = if (isLost.value == true) "LOST" else "FOUND",
             lostFoundId = null
-        ))
+        )).divideResult(
+            isModifyLostFoundLoading,
+            {viewEvent(EVENT_SUCCESS)},
+            {viewEvent(EVENT_ERROR)}
+        ).launchIn(viewModelScope)
     }
 
 }

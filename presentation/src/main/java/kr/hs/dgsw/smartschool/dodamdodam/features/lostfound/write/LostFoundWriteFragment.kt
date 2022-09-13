@@ -9,17 +9,14 @@ class LostFoundWriteFragment : BaseFragment<FragmentLostFoundWriteBinding, LostF
     override val viewModel: LostFoundWriteViewModel by viewModels()
 
     override fun observerViewModel() {
-        mBinding.ivLostFound.setOnClickListener{
-
-        }
         mBinding.btnBack.setOnClickListener{
             findNavController().popBackStack()
         }
         mBinding.btnImageAdd.setOnClickListener {
-
+            openGallary()
         }
         mBinding.btnImageDelete.setOnClickListener {
-
+            set
         }
         with(viewModel){
 
