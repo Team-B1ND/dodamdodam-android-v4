@@ -45,6 +45,7 @@ dependencies {
     implementation(AndroidX.CORE_KTX)
     implementation(AndroidX.APP_COMPAT)
     implementation(Google.MATERIAL)
+
     testImplementation(UnitTest.JUNIT)
     androidTestImplementation(AndroidTest.ANDROID_JUNIT)
     androidTestImplementation(AndroidTest.ESPRESSO_CORE)
@@ -88,15 +89,15 @@ dependencies {
     // Swipe refresh layout
     implementation(AndroidX.SWIPE_REFRESH_LAYOUT)
 
+    // jsoup
     implementation(Libraries.JSOUP)
 
+    // lottie
     implementation(Libraries.LOTTIE)
-
-    // location
-    implementation(Google.GOOGLE_LOCATION)
 
     // map
     implementation(NaverMap.NAVER_MAP)
+    implementation(Google.GOOGLE_LOCATION)
 
     implementation(project(":data"))
     implementation(project(":domain"))

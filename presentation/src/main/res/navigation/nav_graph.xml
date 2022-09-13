@@ -23,6 +23,14 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/main_home" />
+        <action
+            android:id="@+id/action_main_home_to_itMapFragment"
+            app:destination="@id/itMapFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/main_home" />
     </fragment>
     <fragment
         android:id="@+id/main_profile"
@@ -176,4 +184,8 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/outFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/itMapFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.itmap.ItMapFragment"
+        android:label="ItMapFragment" />
 </navigation>

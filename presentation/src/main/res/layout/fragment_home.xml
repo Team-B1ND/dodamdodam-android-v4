@@ -325,6 +325,7 @@
                     android:layout_marginBottom="20dp"
                     app:cardCornerRadius="@dimen/card_corner"
                     app:cardElevation="@dimen/card_elevation"
+                    android:onClick="@{() -> vm.onClickItMap()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="2.5:1"
                     app:layout_constraintEnd_toEndOf="parent"

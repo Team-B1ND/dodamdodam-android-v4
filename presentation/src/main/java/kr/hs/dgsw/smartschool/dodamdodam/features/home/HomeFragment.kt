@@ -35,15 +35,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     lateinit var mealHomeAdapter: MealHomeAdapter
 
     override fun observerViewModel() {
+        initViewEvent()
+
         viewModel.getAllowSong()
         viewModel.getMyStudyRoom()
+
         setLocationRecyclerView()
-        setUpTodaySong()
         setMealListViewPager()
+        setUpTodaySong()
+
         collectMyStudyRoom()
         collectMealState()
         collectSongList()
-        initViewEvent()
+
     }
 
     private fun initViewEvent() {
@@ -52,6 +56,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 HomeViewModel.ON_CLICK_MEAL_MORE -> (activity as? MainActivity)?.moveHomeToMeal()
                 HomeViewModel.ON_CLICK_SONG_MORE -> (activity as? MainActivity)?.moveHomeToSong()
                 HomeViewModel.ON_CLICK_OUT -> findNavController().navigate(R.id.action_main_home_to_outFragment)
+                HomeViewModel.ON_CLICK_ITMAP -> findNavController().navigate(R.id.action_main_home_to_itMapFragment)
             }
         }
     }
