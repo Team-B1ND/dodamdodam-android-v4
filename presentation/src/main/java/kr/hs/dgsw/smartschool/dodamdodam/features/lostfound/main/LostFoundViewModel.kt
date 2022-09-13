@@ -26,12 +26,12 @@ class LostFoundViewModel @Inject constructor(
 
     init {
         combineLoadingVariable(isGetLostFoundLoading)
-        getLostFoundList(4,"LOST")
+        getLostFoundList(1,"LOST")
     }
     fun getLostFoundList(page : Int, type : String){
         useCases.getLostFound(GetLostFound.Params(page = page, type = type)).divideResult(
             isGetLostFoundLoading,
-            {viewModelScope.launch {   GetLostFoundState(list = it ?: emptyList()) }},
+            {viewModelScope.launch { GetLostFoundState(list = it ?: emptyList()) }},
             {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.") }}
         ).launchIn(viewModelScope)
     }
@@ -53,7 +53,7 @@ class LostFoundViewModel @Inject constructor(
         useCases.deleteLostFound(DeleteLostFound.Params(idx = idx)).divideResult(
             isGetLostFoundLoading,
             {viewModelScope.launch { GetLostFoundState() }},
-            {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.") }}
+            {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 삭제하는 데에 실패하였습니다.") }}
         ).launchIn(viewModelScope)
     }
 }

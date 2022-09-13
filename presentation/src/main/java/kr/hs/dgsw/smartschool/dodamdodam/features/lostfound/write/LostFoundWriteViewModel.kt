@@ -25,6 +25,7 @@ class LostFoundWriteViewModel @Inject constructor(
 
     init{
         combineLoadingVariable(isGetLostFoundLoading,isModifyLostFoundLoading)
+
     }
     companion object{
         const val EVENT_SUCCESS = 1

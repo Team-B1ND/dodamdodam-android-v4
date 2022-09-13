@@ -16,8 +16,17 @@ import kr.hs.dgsw.smartschool.domain.model.lostfound.LostInfo
 
 @AndroidEntryPoint
 class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewModel>(), LostFoundAdapter.LostFoundCallBack {
+    private lateinit var lostFoundAdapter : LostFoundAdapter
     override val viewModel: LostFoundViewModel by viewModels()
     override fun observerViewModel() {
+        val list = listOf<LostInfo>(
+            LostInfo(idx = 1, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다."),
+            LostInfo(idx = 2, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다."),
+            LostInfo(idx = 3, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다.")
+        )
+        lostFoundAdapter = LostFoundAdapter(requireContext(), this)
+        mBinding.rvLostFound.adapter = lostFoundAdapter
+        lostFoundAdapter.submitList(list)
         mBinding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -86,9 +95,6 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         return list
     }
     private fun setRecyclerView(list : List<LostInfo>){
-        val lostFoundAdapter = LostFoundAdapter(requireContext(), this)
-        mBinding.rvLostAndFound.adapter = lostFoundAdapter
-        mBinding.rvLostAndFound.layoutManager = LinearLayoutManager(requireContext())
         lostFoundAdapter.submitList(list)
     }
 }

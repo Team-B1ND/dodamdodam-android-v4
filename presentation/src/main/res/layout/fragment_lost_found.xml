@@ -113,12 +113,13 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_lost_and_found"
+                    android:id="@+id/rv_lost_found"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    tools:listitem="@layout/item_lost_and_found"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:layout_weight="1"
-                    android:background="@color/color_background"
-                    android:overScrollMode="never"/>
+                    android:background="@color/color_background" />
 
             </LinearLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

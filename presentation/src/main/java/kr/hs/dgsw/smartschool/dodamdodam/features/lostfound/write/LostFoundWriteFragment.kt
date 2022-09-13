@@ -13,10 +13,8 @@ class LostFoundWriteFragment : BaseFragment<FragmentLostFoundWriteBinding, LostF
             findNavController().popBackStack()
         }
         mBinding.btnImageAdd.setOnClickListener {
-            openGallary()
         }
         mBinding.btnImageDelete.setOnClickListener {
-            set
         }
         with(viewModel){
 
