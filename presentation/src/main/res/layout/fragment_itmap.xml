@@ -9,7 +9,7 @@
             type="kr.hs.dgsw.smartschool.dodamdodam.features.itmap.ItMapViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -52,11 +52,25 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/kakao_map_view"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/top_bar_height_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_top_bar"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_company"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="90dp"
+            android:orientation="horizontal" />
+
+        <include
+            android:id="@+id/bottom_sheet"
+            layout="@layout/itmap_bottom_sheet"
+            />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
