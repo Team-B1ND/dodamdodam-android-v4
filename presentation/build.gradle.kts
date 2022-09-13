@@ -96,8 +96,7 @@ dependencies {
     implementation(Libraries.LOTTIE)
 
     // map
-    implementation(NaverMap.NAVER_MAP)
-    implementation(Google.GOOGLE_LOCATION)
+    implementation(files("libs/libDaumMapAndroid.jar"))
 
     implementation(project(":data"))
     implementation(project(":domain"))
