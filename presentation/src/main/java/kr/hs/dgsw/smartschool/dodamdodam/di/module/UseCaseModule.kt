@@ -7,6 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.domain.repository.AccountRepository
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.repository.DataSetUpRepository
+import kr.hs.dgsw.smartschool.domain.repository.ItMapRepository
 import kr.hs.dgsw.smartschool.domain.repository.MealRepository
 import kr.hs.dgsw.smartschool.domain.repository.OutRepository
 import kr.hs.dgsw.smartschool.domain.repository.SongRepository
@@ -29,6 +30,9 @@ import kr.hs.dgsw.smartschool.domain.usecase.bus.GetMyBus
 import kr.hs.dgsw.smartschool.domain.usecase.bus.GetMyBusByMonth
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusApply
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusInfo
+import kr.hs.dgsw.smartschool.domain.usecase.itmap.GetAllCompanies
+import kr.hs.dgsw.smartschool.domain.usecase.itmap.GetCompanyById
+import kr.hs.dgsw.smartschool.domain.usecase.itmap.ItMapUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetCalorieOfMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
@@ -182,4 +186,14 @@ class UseCaseModule {
             modifyOutGoing = ModifyOutGoing(outRepository),
             modifyOutSleeping = ModifyOutSleeping(outRepository)
         )
+
+    @Provides
+    @Singleton
+    fun provideItMapUseCases(itMapRepository: ItMapRepository): ItMapUseCases =
+        ItMapUseCases(
+            getAllCompanies = GetAllCompanies(itMapRepository),
+            getCompanyById = GetCompanyById(itMapRepository),
+
+        )
+
 }

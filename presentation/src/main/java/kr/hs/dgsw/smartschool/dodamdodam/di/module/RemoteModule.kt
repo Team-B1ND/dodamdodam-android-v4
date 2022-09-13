@@ -9,6 +9,7 @@ import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceMa
 import kr.hs.dgsw.smartschool.data.network.api.BusApi
 import kr.hs.dgsw.smartschool.data.network.api.ClassInfoApi
 import kr.hs.dgsw.smartschool.data.network.api.FileUploadApi
+import kr.hs.dgsw.smartschool.data.network.api.ItMapApi
 import kr.hs.dgsw.smartschool.data.network.api.MealApi
 import kr.hs.dgsw.smartschool.data.network.api.MemberApi
 import kr.hs.dgsw.smartschool.data.network.api.OutApi
@@ -22,6 +23,7 @@ import kr.hs.dgsw.smartschool.data.network.remote.AuthRemote
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.remote.ClassInfoRemote
 import kr.hs.dgsw.smartschool.data.network.remote.FileUploadRemote
+import kr.hs.dgsw.smartschool.data.network.remote.ItMapRemote
 import kr.hs.dgsw.smartschool.data.network.remote.MealRemote
 import kr.hs.dgsw.smartschool.data.network.remote.MemberRemote
 import kr.hs.dgsw.smartschool.data.network.remote.OutRemote
@@ -36,6 +38,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.di.OtherRemoteRetrofit
 import kr.hs.dgsw.smartschool.dodamdodam.di.YouTubeRemoteRetrofit
 import retrofit2.Retrofit
+import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -112,4 +115,9 @@ class RemoteModule {
     @Provides
     fun provideOutRemote(@OtherRemoteRetrofit retrofit: Retrofit): OutRemote =
         OutRemote(retrofit.create(OutApi::class.java))
+
+    @Singleton
+    @Provides
+    fun provideItMapRemote(@OtherRemoteRetrofit retrofit: Retrofit): ItMapRemote =
+        ItMapRemote(retrofit.create(ItMapApi::class.java))
 }
