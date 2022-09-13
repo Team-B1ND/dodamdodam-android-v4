@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.Gravity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraPosition
 import com.naver.maps.map.LocationTrackingMode
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
@@ -49,7 +51,12 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
 
     override fun onMapReady(map: NaverMap) {
         naverMap = map
+        naverMap.cameraPosition = CameraPosition(LatLng(35.662321,128.413837), 7.0)
+        naverMap.maxZoom = 18.0
+        naverMap.minZoom = 6.0
+
         with(naverMap.uiSettings) {
+
             isLocationButtonEnabled = false
             logoGravity = Gravity.END.or(Gravity.TOP)
             setLogoMargin(0, 150, 16, 0)
