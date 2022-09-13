@@ -4,14 +4,154 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:elevation="10dp"
+        android:fontFamily="@font/notosans_kr_medium"
+        android:includeFontPadding="false"
+        android:text="@string/text_sign_in"
+        android:textColor="@color/white"
+        android:textSize="@dimen/title4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:elevation="10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_dodamdodam"
+        app:layout_constraintBottom_toBottomOf="@id/tv_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_login"
+        app:tint="@color/white" />
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_background"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/sample"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/background_start_image_cover"
+                app:layout_constraintBottom_toBottomOf="@id/iv_background"
+                app:layout_constraintEnd_toEndOf="@id/iv_background"
+                app:layout_constraintStart_toStartOf="@id/iv_background"
+                app:layout_constraintTop_toTopOf="@id/iv_background" />
+
+            <TextView
+                android:id="@+id/tv_dodam_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/notosans_kr_medium"
+                android:includeFontPadding="false"
+                android:text="@string/text_dodam_desc"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title3"
+                app:layout_constraintBottom_toBottomOf="@id/iv_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_dodam_main_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/notosans_kr_bold"
+                android:includeFontPadding="false"
+                android:text="@string/text_dodam_main_desc"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_dodam_desc" />
+
+            <androidx.constraintlayout.motion.widget.MotionLayout
+                android:id="@+id/motion_layout_gather_platform"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:layoutDescription="@xml/gather_platform_scene"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_dodam_main_desc">
+
+                <ImageView
+                    android:id="@+id/iv_laptop"
+                    android:layout_width="200dp"
+                    android:layout_height="170dp"
+                    android:src="@drawable/ic_laptop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_mobile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_mobile_phone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.motion.widget.MotionLayout>
+
+
+            <TextView
+                android:id="@+id/tv_dodam_platform_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/notosans_kr_bold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="Web, Android, iOS\n모두 지원!"
+                android:textColor="@color/white"
+                android:textSize="@dimen/title1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/motion_layout_gather_platform" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
     <Button
         android:id="@+id/btn_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="시작하기"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/main"
         android:layout_margin="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:backgroundTint="@color/white"
+        android:text="시작하기"
+        android:textColor="@color/main"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.start
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceManager
 import kr.hs.dgsw.smartschool.dodamdodam.R
@@ -16,11 +17,17 @@ class StartActivity: AppCompatActivity() {
         findViewById(R.id.btn_start)
     }
 
+    val motionLayoutGatherPlatform: MotionLayout by lazy {
+        findViewById(R.id.motion_layout_gather_platform)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
 
         setContentView(R.layout.activity_start)
+        motionLayoutGatherPlatform.transitionToStart()
+        motionLayoutGatherPlatform.transitionToEnd()
 
         btnStart.setOnClickListener {
             startActivityWithFinishAll(

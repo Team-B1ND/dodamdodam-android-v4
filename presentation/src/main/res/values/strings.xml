@@ -152,5 +152,7 @@
     <string name="text_out_sleeping_date_end">복귀 날짜</string>
     <string name="text_reason">사유</string>
     <string name="text_out_going_time">외출 시간</string>
+    <string name="text_dodam_desc">더 나은 학교를 만들기 위해 함께하는</string>
+    <string name="text_dodam_main_desc">B1ND 스마트 스쿨</string>
 
 </resources>

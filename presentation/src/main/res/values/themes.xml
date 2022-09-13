@@ -11,6 +11,11 @@
         <item name="android:statusBarColor">@color/main</item>
     </style>
 
+    <style name="Theme.AppCompat.StartScreen" parent="Theme.AppCompat.Dodam">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="android:textSize">@dimen/title5</item>
     </style>
