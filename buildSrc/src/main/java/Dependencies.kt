@@ -26,6 +26,8 @@ object Google {
     const val HILT_ANDROID_PLUGIN = "com.google.dagger:hilt-android-gradle-plugin:${Versions.HILT}"
     const val MATERIAL = "com.google.android.material:material:${Versions.MATERIAL}"
 
+    const val GOOGLE_LOCATION = "com.google.android.gms:play-services-location:${Versions.GOOGLE_LOCATION}"
+
 }
 
 object Libraries {
@@ -57,5 +59,9 @@ object AndroidTest {
 
 object Android {
     const val ANDROID_BUILD_TOOL = "com.android.tools.build:gradle:${Versions.ANDROID_BUILD_TOOL}"
+}
+
+object NaverMap {
+    const val NAVER_MAP = "com.naver.maps:map-sdk:${Versions.NAVER_MAP}"
 }
 

@@ -92,6 +92,12 @@ dependencies {
 
     implementation(Libraries.LOTTIE)
 
+    // location
+    implementation(Google.GOOGLE_LOCATION)
+
+    // map
+    implementation(NaverMap.NAVER_MAP)
+
     implementation(project(":data"))
     implementation(project(":domain"))
 }

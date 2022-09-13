@@ -42,4 +42,7 @@ object Versions {
     const val JSOUP = "1.15.2"
 
     const val LOTTIE = "5.2.0"
+
+    const val NAVER_MAP = "3.15.0"
+    const val GOOGLE_LOCATION = "20.0.0"
 }

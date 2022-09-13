@@ -19,6 +19,7 @@ allprojects {
         google()
         mavenCentral()
         maven("https://jitpack.io")
+        maven( "https://naver.jfrog.io/artifactory/maven/")
     }
 }
 
