@@ -12,7 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp">
 
         <ImageView
             android:id="@+id/thumbnailImageView"
@@ -25,32 +26,35 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/titleTextView"
+            android:id="@+id/tv_company_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="12dp"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textColor="@color/color_black"
+            android:fontFamily="@font/notosans_kr_medium"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/title3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/thumbnailImageView"
-            tools:text="강남역 최저가!!!!!!!1" />
+            tools:text="우아한 형제들" />
 
         <TextView
-            android:id="@+id/priceTextView"
+            android:id="@+id/tv_company_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="7dp"
             android:layout_marginBottom="24dp"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:textColor="@color/gray700"
+            android:textSize="@dimen/title4"
+            android:fontFamily="@font/notosans_kr_regular"
+            android:includeFontPadding="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/titleTextView"
-            tools:text="24,999원" />
+            app:layout_constraintTop_toBottomOf="@id/tv_company_name"
+            tools:text="서울 송파구 위례성대로 2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

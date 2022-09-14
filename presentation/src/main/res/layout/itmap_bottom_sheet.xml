@@ -15,7 +15,7 @@
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <TextView
-            android:id="@+id/bottomSheetTitleTextView"
+            android:id="@+id/tv_bottom_sheet_title"
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:paddingTop="10dp"
@@ -33,7 +33,7 @@
             android:layout_width="30dp"
             android:layout_height="3dp"
             android:layout_marginTop="12dp"
-            android:background="@color/gray200"
+            android:background="@drawable/background_bottom_sheet_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -45,7 +45,7 @@
             android:background="@color/gray200"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bottomSheetTitleTextView" />
+            app:layout_constraintTop_toBottomOf="@id/tv_bottom_sheet_title" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_company"
