@@ -152,5 +152,6 @@
     <string name="text_out_sleeping_date_end">복귀 날짜</string>
     <string name="text_reason">사유</string>
     <string name="text_out_going_time">외출 시간</string>
+    <string name="title_company_detail">회사 상세 보기</string>
 
 </resources>

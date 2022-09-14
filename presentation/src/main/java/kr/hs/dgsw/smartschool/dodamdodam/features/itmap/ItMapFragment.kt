@@ -6,12 +6,19 @@ import android.view.Gravity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.CameraAnimation
+import com.naver.maps.map.CameraUpdate
 import dagger.hilt.android.AndroidEntryPoint
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentItmapBinding
@@ -19,6 +26,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.itmap.adapter.CompanyAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.features.itmap.adapter.CompanyViewPagerAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.itmap.Company
+import kotlin.coroutines.coroutineContext
 
 
 @AndroidEntryPoint
@@ -82,13 +90,14 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
         }
     }
 
+
     private fun setMarker(company: Company) {
         val marker = Marker()
 
-        marker.position = Geocoder(requireContext()).getFromLocationName(company.address, 1).let {
-            if(it.isEmpty())
-                return
-            LatLng(it[0].latitude, it[0].longitude)
+        try {
+            marker.position = addressToGps(company.address)
+        } catch (e: Exception) {
+            return
         }
 
         marker.map = naverMap
@@ -96,19 +105,48 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
         marker.icon = OverlayImage.fromResource(R.drawable.marker_office_building)
 
         marker.setOnClickListener {
-            shortToast(it.tag.toString())
+            navigateToDetail(it.tag as Int)
             true
         }
+    }
+
+    private fun navigateToDetail(id: Int) {
+        val action = ItMapFragmentDirections.actionItMapFragmentToItMapDetailFragment(id)
+        findNavController().navigate(action)
     }
 
     private fun setCompanyAdapter() {
         companyAdapter = CompanyAdapter()
         mBinding.bottomSheet.rvCompany.adapter = companyAdapter
     }
-
     private fun setCompanyViewPagerAdapter() {
-        companyViewPagerAdapter = CompanyViewPagerAdapter()
+        companyViewPagerAdapter = CompanyViewPagerAdapter {
+            navigateToDetail(it)
+        }
         mBinding.vpCompany.adapter = companyViewPagerAdapter
+
+        mBinding.vpCompany.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+
+                CoroutineScope(Dispatchers.Default).launch {
+                    val selectedCompanyModel = companyViewPagerAdapter.currentList[position]
+                    val cameraUpdate = CameraUpdate
+                        .scrollAndZoomTo(addressToGps(selectedCompanyModel.address), 15.0)
+                        .animate(CameraAnimation.Easing)
+                    naverMap.moveCamera(cameraUpdate)
+                }
+
+            }
+        })
+    }
+
+    private fun addressToGps(address: String): LatLng {
+        Geocoder(requireContext()).getFromLocationName(address, 1).let {
+            if(it.isEmpty())
+                throw Exception("NoAddress")
+            return LatLng(it[0].latitude, it[0].longitude)
+        }
     }
 
     // 아래 수명주기 연결

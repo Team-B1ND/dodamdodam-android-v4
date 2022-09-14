@@ -1,14 +1,15 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.itmap.adapter.callback
+package kr.hs.dgsw.smartschool.dodamdodam.features.itmap.detail.adapter.callback
 
 import androidx.recyclerview.widget.DiffUtil
 import kr.hs.dgsw.smartschool.domain.model.itmap.Company
+import kr.hs.dgsw.smartschool.domain.model.itmap.ItMapUser
 
-object CompanyDiffUtilCallback : DiffUtil.ItemCallback<Company>() {
-    override fun areItemsTheSame(oldItem: Company, newItem: Company): Boolean {
+object ItMapUserDiffUtilCallback : DiffUtil.ItemCallback<ItMapUser>() {
+    override fun areItemsTheSame(oldItem: ItMapUser, newItem: ItMapUser): Boolean {
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: Company, newItem: Company): Boolean {
+    override fun areContentsTheSame(oldItem: ItMapUser, newItem: ItMapUser): Boolean {
         return oldItem.id == newItem.id
     }
 

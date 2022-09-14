@@ -7,6 +7,7 @@
     <dimen name="card_small_elevation">2dp</dimen>
     <dimen name="sign_horizontal_margin">30dp</dimen>
     <dimen name="default_margin">20dp</dimen>
+
     <dimen name="title1">25sp</dimen>
     <dimen name="title2">20sp</dimen>
     <dimen name="title3">18sp</dimen>
@@ -14,6 +15,8 @@
     <dimen name="title5">14sp</dimen>
     <dimen name="title6">12sp</dimen>
     <dimen name="title7">10sp</dimen>
+    <dimen name="title8">8sp</dimen>
+
 
     <dimen name="top_bar_height_size">40dp</dimen>
 </resources>
