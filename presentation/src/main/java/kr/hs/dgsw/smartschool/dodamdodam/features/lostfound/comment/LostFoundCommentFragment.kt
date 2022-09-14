@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.adapter.LostFoundCommentAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundCommentBinding
@@ -13,6 +14,7 @@ import kr.hs.dgsw.smartschool.domain.model.lostfound.CommentInfo
 import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
 import java.time.LocalDate
 
+@AndroidEntryPoint
 class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, LostFoundCommentViewModel>(),LostFoundCommentAdapter.CommentCallBack {
 
     override val viewModel: LostFoundCommentViewModel by viewModels()
