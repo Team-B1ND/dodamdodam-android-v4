@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.comment
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,8 +22,12 @@ class LostFoundCommentViewModel @Inject constructor(
 ) : BaseViewModel(){
     private val _getCommentState = MutableSharedFlow<GetCommentState>()
     private val isGetCommentLoading = MutableLiveData<Boolean>()
-
     val getCommentState = _getCommentState
+
+    init {
+        Log.d("LostFoundCommentViewModel","생성")
+    }
+
     fun getComment(idx : Int){
         useCases.getLostFoundComment(GetLostFoundComment.Params(lostFoundIdx = idx)).divideResult(
             isGetCommentLoading,

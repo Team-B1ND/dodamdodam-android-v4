@@ -14,6 +14,7 @@ import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
 import java.time.LocalDate
 
 class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, LostFoundCommentViewModel>(),LostFoundCommentAdapter.CommentCallBack {
+
     override val viewModel: LostFoundCommentViewModel by viewModels()
 
     override fun observerViewModel() {

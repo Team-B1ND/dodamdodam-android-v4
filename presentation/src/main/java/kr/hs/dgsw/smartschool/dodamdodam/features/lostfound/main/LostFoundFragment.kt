@@ -10,6 +10,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.adapter.LostFoundAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.comment.LostFoundCommentViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostInfo
@@ -31,10 +32,10 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         lostFoundAdapter.submitList(list)
 
         mBinding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
+            this.findNavController().popBackStack()
         }
         mBinding.fbAddLostAndFound.setOnClickListener{
-            findNavController().navigate(R.id.action_lostFoundFragment_to_lostFoundWriteFragment)
+            this.findNavController().navigate(R.id.action_lostFoundFragment_to_lostFoundWriteFragment)
         }
         mBinding.btnSearch.setOnClickListener{
             viewModel.searchLostFound()

@@ -30,7 +30,7 @@ class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack) :
             .error(R.drawable.default_user)
             .into(binding.ivProfileImage)
 
-        binding.tvComment.setOnClickListener{
+        binding.btnComment.setOnClickListener{
             listener.openComment(item.idx)
         }
         binding.ibBtnMore.setOnClickListener{

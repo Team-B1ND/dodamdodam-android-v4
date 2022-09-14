@@ -14,17 +14,16 @@
         android:id="@+id/lost_found_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="0dp">
+        android:layout_margin="8dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/lost_found_item_root"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/member_info_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -37,13 +36,19 @@
                     android:id="@+id/iv_profile_image"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
                     android:gravity="center_vertical"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toEndOf="@id/iv_profile_image"
+                    app:layout_constraintTop_toTopOf="@id/iv_profile_image">
 
                     <TextView
                         android:id="@+id/tv_name"
@@ -67,20 +72,17 @@
                         tools:text="@{lostInfo.uploadTime}" />
                 </LinearLayout>
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
                 <ImageButton
                     android:id="@+id/ib_btn_more"
                     android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_height="30dp"
                     android:layout_margin="8dp"
                     android:backgroundTint="@android:color/transparent"
                     android:src="@drawable/ic_btn_more_vert"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription" />
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:id="@+id/content_layout"
@@ -110,94 +112,85 @@
                     tools:text="@{lostInfo.content}" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/iv_lost_and_found_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/content_layout"
-                tools:ignore="ContentDescription"
-                tools:visibility="gone" />
 
-            <ImageView
-                android:id="@+id/iv_location"
-                android:layout_width="17dp"
-                android:layout_height="17dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_location"
-                app:layout_constraintBottom_toBottomOf="@id/tv_place"
-                app:layout_constraintEnd_toStartOf="@id/tv_place"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_place"
-                app:tint="@color/main"
-                tools:ignore="ContentDescription" />
-
-            <TextView
-                android:id="@+id/tv_place"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/place_layout"
+                android:layout_width="200dp"
                 android:layout_height="50dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/nanum_square_regular"
-                android:gravity="center_vertical"
-                android:includeFontPadding="false"
-                android:textColor="@color/gray700"
-                android:textSize="@dimen/title6"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/center_line"
-                app:layout_constraintStart_toEndOf="@id/iv_location"
-                app:layout_constraintTop_toBottomOf="@+id/iv_lost_and_found_content"
-                tools:text="@{lostInfo.place}" />
-
-            <View
-                android:id="@+id/top_line"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/gray200"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_lost_and_found_content" />
+                app:layout_constraintTop_toBottomOf="@id/content_layout"
+                android:elevation="10dp"
+                android:layout_margin="3dp">
 
-            <View
-                android:id="@+id/center_line"
-                android:layout_width="1dp"
-                android:layout_height="0dp"
-                android:background="@color/gray200"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                 >
+                    <ImageView
+                        android:id="@+id/iv_location"
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_location"
+                        app:tint="@color/main"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/tv_place"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/gray700"
+                        android:textSize="@dimen/title6"
+                        tools:text="@{lostInfo.place}" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/btn_comment"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_lost_and_found_content" />
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/place_layout"
+                app:layout_constraintTop_toBottomOf="@id/content_layout">
 
-            <ImageView
-                android:id="@+id/iv_comment"
-                android:layout_width="17dp"
-                android:layout_height="17dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_comment"
-                app:layout_constraintBottom_toBottomOf="@id/tv_comment"
-                app:layout_constraintEnd_toStartOf="@id/tv_comment"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toEndOf="@id/center_line"
-                app:layout_constraintTop_toTopOf="@id/tv_comment"
-                tools:ignore="ContentDescription" />
+                <ImageView
+                    android:id="@+id/iv_comment"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    app:layout_constraintHorizontal_bias="0.35"
+                    android:src="@drawable/ic_comment"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="ContentDescription" />
 
-            <TextView
-                android:id="@+id/tv_comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/nanum_square_regular"
-                android:includeFontPadding="false"
-                android:text="@string/text_write_comment"
-                android:textColor="@color/gray700"
-                android:textSize="@dimen/title6"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/iv_comment"
-                app:layout_constraintTop_toBottomOf="@+id/iv_lost_and_found_content" />
+                <TextView
+                    android:id="@+id/tv_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:text="@string/text_write_comment"
+                    android:textColor="@color/gray700"
+                    android:textSize="@dimen/title6"
+                    app:layout_constraintTop_toTopOf="@id/iv_comment"
+                    app:layout_constraintStart_toEndOf="@id/iv_comment"
+                    app:layout_constraintBottom_toBottomOf="@id/iv_comment"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

@@ -10,7 +10,7 @@ class LostFoundWriteFragment : BaseFragment<FragmentLostFoundWriteBinding, LostF
 
     override fun observerViewModel() {
         mBinding.btnBack.setOnClickListener{
-            findNavController().popBackStack()
+            this.findNavController().popBackStack()
         }
         mBinding.btnImageAdd.setOnClickListener {
         }
