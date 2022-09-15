@@ -28,14 +28,18 @@ class LostFoundViewModel @Inject constructor(
     init {
         combineLoadingVariable(isGetLostFoundLoading)
         getLostFoundList(1,"LOST")
+        Log.e("LostFoundViewModel","생성")
     }
-    fun getLostFoundList(page : Int, type : String){
+    private fun getLostFoundList(page : Int, type : String){
         Log.d("LostFoundViewModel","실행")
         useCases.getLostFound(GetLostFound.Params(page = page, type = type)).divideResult(
             isGetLostFoundLoading,
             {viewModelScope.launch { GetLostFoundState(list = it ?: emptyList()) }},
             {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.") }}
         ).launchIn(viewModelScope)
+    }
+    fun getLostFound(page: Int, type:String){
+        getLostFoundList(page,type)
     }
     fun searchLostFound(){
         useCases.searchLostFound(SearchLostFound.Params(search = title.value ?: "")).divideResult(
