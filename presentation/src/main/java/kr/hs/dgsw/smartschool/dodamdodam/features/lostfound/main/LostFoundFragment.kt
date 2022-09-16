@@ -40,9 +40,6 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         mBinding.btnSearch.setOnClickListener{
             viewModel.searchLostFound()
         }
-        mBinding.checkMy.setOnCheckedChangeListener{buttonView, isChecked ->
-            if(isChecked) viewModel.myLostFound()
-        }
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getLostFoundState.collect { state ->

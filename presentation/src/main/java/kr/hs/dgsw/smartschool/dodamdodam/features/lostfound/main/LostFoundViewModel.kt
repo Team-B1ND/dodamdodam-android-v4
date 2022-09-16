@@ -23,7 +23,7 @@ class LostFoundViewModel @Inject constructor(
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
 
     val title = MutableLiveData<String>()
-    val isMyChecked = MutableLiveData<Boolean>()
+    val isChecked = MutableLiveData<Boolean>()
 
     init {
         combineLoadingVariable(isGetLostFoundLoading)
@@ -32,11 +32,15 @@ class LostFoundViewModel @Inject constructor(
     }
     private fun getLostFoundList(page : Int, type : String){
         Log.d("LostFoundViewModel","실행")
-        useCases.getLostFound(GetLostFound.Params(page = page, type = type)).divideResult(
-            isGetLostFoundLoading,
-            {viewModelScope.launch { GetLostFoundState(list = it ?: emptyList()) }},
-            {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.") }}
-        ).launchIn(viewModelScope)
+        if(isChecked.value == true){
+            myLostFound()
+        } else{
+            useCases.getLostFound(GetLostFound.Params(page = page, type = type)).divideResult(
+                isGetLostFoundLoading,
+                {viewModelScope.launch { GetLostFoundState(list = it ?: emptyList()) }},
+                {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.") }}
+            ).launchIn(viewModelScope)
+        }
     }
     fun getLostFound(page: Int, type:String){
         getLostFoundList(page,type)
@@ -48,7 +52,7 @@ class LostFoundViewModel @Inject constructor(
             {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.") }}
         ).launchIn(viewModelScope)
     }
-    fun myLostFound(){
+    private fun myLostFound(){
         useCases.getMyLostFound(Unit).divideResult(
             isGetLostFoundLoading,
             {viewModelScope.launch { GetLostFoundState(list = it ?: emptyList()) }},

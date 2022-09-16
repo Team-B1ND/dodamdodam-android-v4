@@ -64,7 +64,19 @@
                         android:textColor="?android:textColorPrimary"
                         tools:text="전체 글"/>-->
 
-
+                    <ToggleButton
+                        android:layout_width="78dp"
+                        android:layout_height="26dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginStart="15dp"
+                        android:background="@drawable/background_song_toggle"
+                        android:checked="@{vm.isChecked()}"
+                        android:textOff=""
+                        android:textOn=""
+                        android:id="@+id/tb_check"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
                     <Spinner
                         android:id="@+id/lost_found_spinner"
                         android:layout_width="0dp"
@@ -72,17 +84,6 @@
                         android:layout_weight="0.9"
                         android:background="@drawable/drawble_spinner"
                         android:entries="@array/lost_found_type" />
-                    <ToggleButton
-                        android:layout_width="78dp"
-                        android:layout_height="26dp"
-                        android:layout_marginEnd="15dp"
-                        android:background="@drawable/background_song_toggle"
-                        android:checked="@{vm.isMyChecked()}"
-                        android:textOff=""
-                        android:textOn=""
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
                     <EditText
                         android:id="@+id/et_search"
                         android:layout_width="0dp"

@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.write
 
+import android.content.Intent
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,11 +16,22 @@ class LostFoundWriteFragment : BaseFragment<FragmentLostFoundWriteBinding, LostF
             this.findNavController().popBackStack()
         }
         mBinding.btnImageAdd.setOnClickListener {
+            startDefaultGalleryApp()
         }
         mBinding.btnImageDelete.setOnClickListener {
         }
         with(viewModel){
 
         }
+    }
+    private fun startDefaultGalleryApp() {
+        val intent = Intent()
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, 2000)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }
