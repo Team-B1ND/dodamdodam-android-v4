@@ -10,6 +10,7 @@ data class LostFound(
     val member : Member,
     val place: String,
     val title : String,
-    val type : String
+    val type : String,
+    val image : String
 
 )

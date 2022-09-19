@@ -4,8 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
+import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetLostFoundState
 import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
+import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFoundData
 import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
 import java.io.File
@@ -37,7 +40,16 @@ class LostFoundUpdateViewModel @Inject constructor(
         const val EVENT_ERROR = 4
     }
     fun getLostFound(id:Int){
-        useCases.
+        useCases.getLostFoundById(id).divideResult(
+            isModifyLostFoundLoading,
+            {viewModelScope.launch { LostFoundData(
+                content = it!!.content,
+                picture = it.image,
+                place = it.place,
+                title = it.title,
+                type = it.type) }},
+            {viewModelScope.launch { LostFoundData()}}
+        ).launchIn(viewModelScope)
     }
     fun modifyLostFound(){
         if(title.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_TITLE)

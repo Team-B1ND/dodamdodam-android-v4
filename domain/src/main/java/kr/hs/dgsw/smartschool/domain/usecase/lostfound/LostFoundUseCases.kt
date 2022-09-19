@@ -11,5 +11,6 @@ data class LostFoundUseCases(
     val addLostFound: AddLostFound,
     val modifyLostFoundComment : ModifyLostFoundComment,
     val modifyLostFound: ModifyLostFound,
-    val searchLostFound: SearchLostFound
+    val searchLostFound: SearchLostFound,
+    val getLostFoundById: GetLostFoundById
 )

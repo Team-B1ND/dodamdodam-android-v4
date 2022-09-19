@@ -3,7 +3,11 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.update
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.provider.MediaStore
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -18,6 +22,17 @@ import java.io.File
 @AndroidEntryPoint
 class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundModifyBinding, LostFoundUpdateViewModel>() {
     override val viewModel: LostFoundUpdateViewModel by viewModels()
+
+    private val lostFoundId
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        viewModel.getLostFound()
+        return mBinding.root
+    }
 
     override fun observerViewModel() {
         mBinding.btnBack.setOnClickListener{
