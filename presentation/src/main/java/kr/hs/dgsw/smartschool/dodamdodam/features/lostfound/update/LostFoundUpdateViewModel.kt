@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.write
+package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.update
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -12,7 +12,7 @@ import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
-class LostFoundWriteViewModel @Inject constructor(
+class LostFoundUpdateViewModel @Inject constructor(
     private val useCases : LostFoundUseCases
 ) : BaseViewModel(){
     val isLost = MutableLiveData<Boolean>(true)
@@ -36,24 +36,8 @@ class LostFoundWriteViewModel @Inject constructor(
         const val EVENT_EMPTY_CONTENT = 3
         const val EVENT_ERROR = 4
     }
-
-    fun addLostFound(){
-        if(title.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_TITLE)
-        if(content.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_CONTENT)
-        useCases.addLostFound(LostFoundDataRequest(
-            content = content.value ?: "",
-            picture = file!!.path,
-            place = place.value ?: "",
-            title = title.value ?: "",
-            type = if (isLost.value == true) "LOST" else "FOUND",
-            lostFoundId = null
-        )).divideResult(
-            isModifyLostFoundLoading,
-            {viewEvent(EVENT_SUCCESS)},
-            {viewEvent(EVENT_ERROR)}
-        ).launchIn(viewModelScope)
-    }
-    fun getLostFound(){
+    fun getLostFound(id:Int){
+        
     }
     fun modifyLostFound(){
         if(title.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_TITLE)

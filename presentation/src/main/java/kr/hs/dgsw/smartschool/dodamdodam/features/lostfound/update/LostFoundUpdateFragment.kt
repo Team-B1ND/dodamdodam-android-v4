@@ -1,31 +1,23 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.write
+package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.update
 
 import android.app.Activity
-import android.content.ContentResolver
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.MediaStore
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
-import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundWriteBinding
-import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
+import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundModifyBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getRealPathFromURI
 import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.OutputStream
 
 @AndroidEntryPoint
-class LostFoundWriteFragment : BaseFragment<FragmentLostFoundWriteBinding, LostFoundWriteViewModel>() {
-    override val viewModel: LostFoundWriteViewModel by viewModels()
+class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundModifyBinding, LostFoundUpdateViewModel>() {
+    override val viewModel: LostFoundUpdateViewModel by viewModels()
 
     override fun observerViewModel() {
         mBinding.btnBack.setOnClickListener{
@@ -38,7 +30,7 @@ class LostFoundWriteFragment : BaseFragment<FragmentLostFoundWriteBinding, LostF
 
         }
         mBinding.fbAddLostAndFound.setOnClickListener{
-            viewModel.addLostFound()
+            viewModel.modifyLostFound()
         }
 
         with(viewModel){

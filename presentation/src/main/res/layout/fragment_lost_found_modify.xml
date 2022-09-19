@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.write.LostFoundWriteViewModel" />
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.update.LostFoundUpdateViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

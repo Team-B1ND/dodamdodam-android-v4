@@ -42,9 +42,6 @@ class LostFoundViewModel @Inject constructor(
             ).launchIn(viewModelScope)
         }
     }
-    fun getLostFound(page: Int, type:String){
-        getLostFoundList(page,type)
-    }
     fun searchLostFound(){
         useCases.searchLostFound(SearchLostFound.Params(search = title.value ?: "")).divideResult(
             isGetLostFoundLoading,
