@@ -26,6 +26,10 @@ class LostFoundRepositoryImpl @Inject constructor(
         return lostFoundList
     }
 
+    override suspend fun getLostFound(id: Int): LostFound {
+        return lostFoundDataSource.getLostFoundById(id)
+    }
+
     override suspend fun getLostFoundSearch(search: String): List<LostFound> {
         lostFoundList = lostFoundDataSource.getLostFoundSearch(search)
         myId = tokenDataSource.getMyId()
@@ -56,11 +60,6 @@ class LostFoundRepositoryImpl @Inject constructor(
 
     override suspend fun modifyComment(request: ModifyCommentRequest): String {
         return lostFoundDataSource.modifyComment(request)
-    }
-
-    override suspend fun hideLostFound(lostFound: LostFound): String {
-        lostFoundDataSource.hideLostFound(lostFound)
-        return "분실물 숨김."
     }
 
     override suspend fun deleteLostFound(idx: Int): String {

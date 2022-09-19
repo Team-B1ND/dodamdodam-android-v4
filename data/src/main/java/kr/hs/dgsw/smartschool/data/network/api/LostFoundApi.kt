@@ -66,4 +66,9 @@ interface LostFoundApi {
    suspend fun deleteComment(
         @Path("id") id : Int
     ): Response<Any>
+
+   @GET("lostfound/")
+   suspend fun getLostFoundById(
+       @Path("id") id : Int
+   ): Response<LostFound>
 }

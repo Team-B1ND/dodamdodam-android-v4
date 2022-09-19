@@ -18,6 +18,10 @@ class LostFoundRemote @Inject constructor(
     /*suspend fun getLostFound(page: Int, type: String): Response<List<LostFound>> {
         return api.getLostFound(Constants.INFINITE_SCROLL_LIMIT, page, type)
     }*/
+
+    suspend fun getLostFoundById(id:Int):Response<LostFound>{
+        return api.getLostFoundById(id)
+    }
     suspend fun getLostFound(page : Int, type : String): Response<List<LostFound>>
     = api.getLostFound(Constants.INFINITE_SCROLL_LIMIT,page,type)
 

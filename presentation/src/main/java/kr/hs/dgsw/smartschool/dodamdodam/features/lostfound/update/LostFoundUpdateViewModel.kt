@@ -37,7 +37,7 @@ class LostFoundUpdateViewModel @Inject constructor(
         const val EVENT_ERROR = 4
     }
     fun getLostFound(id:Int){
-        
+        useCases.
     }
     fun modifyLostFound(){
         if(title.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_TITLE)

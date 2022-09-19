@@ -27,7 +27,6 @@ class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundModifyBinding, Los
             startGallery()
         }
         mBinding.btnImageDelete.setOnClickListener {
-
         }
         mBinding.fbAddLostAndFound.setOnClickListener{
             viewModel.modifyLostFound()

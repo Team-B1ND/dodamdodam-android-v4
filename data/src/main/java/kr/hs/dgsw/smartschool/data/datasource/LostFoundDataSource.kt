@@ -30,22 +30,8 @@ class LostFoundDataSource @Inject constructor(
         return lostFoundList
     }
 
-    private fun getLostFoundList(): List<LostFound> {
-        val list = ArrayList<LostFound>()
-
-        lostFoundList.forEach { lostFound ->
-            var isHidden = false
-
-            hiddenLostFoundList.forEach { hiddenLostFound ->
-                if (hiddenLostFound.idx == lostFound.idx)
-                    isHidden = true
-            }
-
-            if (!isHidden)
-                list.add(lostFound)
-        }
-
-        return list
+    suspend fun getLostFoundById(id:Int):LostFound{
+        return remote.getLostFoundById(id).data
     }
 
     suspend fun getMyLostFound() : List<LostFound> = remote.getMyLostFound().data

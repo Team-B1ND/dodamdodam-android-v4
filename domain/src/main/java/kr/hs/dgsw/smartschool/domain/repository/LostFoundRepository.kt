@@ -22,9 +22,9 @@ interface LostFoundRepository {
 
     suspend fun modifyComment(request:ModifyCommentRequest): String
 
-    suspend fun hideLostFound(lostFound: LostFound): String
-
     suspend fun deleteLostFound(idx: Int): String
 
     suspend fun deleteComment(commentIdx: Int): String
+
+    suspend fun getLostFound(id:Int):LostFound
 }
