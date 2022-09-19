@@ -1,6 +1,14 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.main
 
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.provider.MediaStore
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.net.toFile
 import androidx.core.view.isInvisible
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -8,11 +16,16 @@ import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivityMainBinding
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
+
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override val viewModel: MainViewModel by viewModels()
-
+    private val tempFileList: MutableList<String> = ArrayList()
     override fun observerViewModel() {
         connectNavigation()
     }
@@ -36,4 +49,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     fun moveHomeToMeal() {
         mBinding.mainBottomNav.selectedItemId = R.id.main_meal
     }
+
+
 }

@@ -5,8 +5,10 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
+import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
 import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
+import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,7 +20,8 @@ class LostFoundWriteViewModel @Inject constructor(
     val title = MutableLiveData<String>()
     val place = MutableLiveData<String>()
     val content = MutableLiveData<String>()
-    val picture = MutableLiveData<String>()
+    var file : File? = null
+    val picture : Picture? = null
 
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
     private val isModifyLostFoundLoading = MutableLiveData<Boolean>()
