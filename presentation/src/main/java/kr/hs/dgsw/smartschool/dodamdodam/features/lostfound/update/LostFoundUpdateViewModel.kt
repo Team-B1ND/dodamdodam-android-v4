@@ -19,15 +19,19 @@ class LostFoundUpdateViewModel @Inject constructor(
     private val useCases : LostFoundUseCases
 ) : BaseViewModel(){
     val isLost = MutableLiveData<Boolean>(true)
-    val isFound = MutableLiveData<Boolean>()
+    val isFound = MutableLiveData<Boolean>(false)
     val title = MutableLiveData<String>()
     val place = MutableLiveData<String>()
     val content = MutableLiveData<String>()
     var file : File? = null
-    var picture : Picture? = null
+    val callBack = LostFoundUpdateFragment()
 
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
     private val isModifyLostFoundLoading = MutableLiveData<Boolean>()
+
+    interface ImageCallBack{
+        fun updateImage(image : String)
+    }
 
     init{
         combineLoadingVariable(isGetLostFoundLoading,isModifyLostFoundLoading)
@@ -42,13 +46,19 @@ class LostFoundUpdateViewModel @Inject constructor(
     fun getLostFound(id:Int){
         useCases.getLostFoundById(id).divideResult(
             isModifyLostFoundLoading,
-            {viewModelScope.launch { LostFoundData(
-                content = it!!.content,
-                picture = it.image,
-                place = it.place,
-                title = it.title,
-                type = it.type) }},
-            {viewModelScope.launch { LostFoundData()}}
+            {   callBack.updateImage(it?.image ?: "")
+                title.value = it?.title
+                if (it?.type!!.equals("FOUND")) {
+                    isFound.value = true
+                    isLost.value = false
+                } else {
+                    isLost.value = true
+                    isFound.value = false
+                }
+                place.value = it.place
+                content.value = it.content
+            },
+            {viewModelScope.launch { it}}
         ).launchIn(viewModelScope)
     }
     fun modifyLostFound(){

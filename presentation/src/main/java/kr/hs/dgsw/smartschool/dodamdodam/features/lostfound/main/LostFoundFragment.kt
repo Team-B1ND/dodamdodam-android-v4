@@ -61,8 +61,11 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     }
 
     override fun modifyLostFound(idx: Int) {
-        findNavController().navigate(R.id.action_lostFoundFragment_to_lostFoundWriteFragment)
+        val action = LostFoundFragmentDirections.actionLostFoundFragmentToLostFoundUpdateFragment(idx)
+        findNavController().navigate(action)
     }
+
+
 
     override fun deleteLostFound(idx: Int) {
         viewModel.deleteLostFound(idx)

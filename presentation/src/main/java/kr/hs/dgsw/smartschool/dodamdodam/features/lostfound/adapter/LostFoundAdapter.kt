@@ -14,7 +14,7 @@ class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack) :
 
     interface LostFoundCallBack {
         fun openComment(idx: Int)
-        fun modifyLostFound(idx : Int)
+        fun modifyLostFound(idx:Int)
         fun deleteLostFound(idx:Int)
     }
 
@@ -38,12 +38,12 @@ class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack) :
             pm.inflate(R.menu.lost_found_item_menu)
             pm.setOnMenuItemClickListener{ data ->
                     when (data.itemId) {
-                        R.id.apply_bus ->
+                        R.id.modify ->
                         {
                             listener.modifyLostFound(item.idx)
                             true
                         }
-                        R.id.cancel_bus ->
+                        R.id.delete ->
                         {
                             listener.deleteLostFound(item.idx)
                             true
