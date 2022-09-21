@@ -34,6 +34,9 @@ class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack) :
             listener.openComment(item.idx)
         }
         binding.ibBtnMore.setOnClickListener{
+
+            //TODO 자신의 게시물이 아니면 수정 삭제 못하도록 고치기
+            if(item.)
             val pm = PopupMenu(context, binding.ibBtnMore)
             pm.inflate(R.menu.lost_found_item_menu)
             pm.setOnMenuItemClickListener{ data ->

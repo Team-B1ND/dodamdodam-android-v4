@@ -1,6 +1,10 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.main
 
+import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -14,22 +18,24 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.comment.LostFoundCom
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostInfo
+import kr.hs.dgsw.smartschool.domain.model.member.Member
 
 @AndroidEntryPoint
 class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewModel>(), LostFoundAdapter.LostFoundCallBack {
     private lateinit var lostFoundAdapter : LostFoundAdapter
     override val viewModel: LostFoundViewModel by viewModels()
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        viewModel.getLostFoundList(1,"LOST")
+        return mBinding.root
+    }
+
     override fun observerViewModel() {
-        //TODO 테스트용임 지워야함
-        val list = listOf(
-            LostInfo(idx = 1, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다."),
-            LostInfo(idx = 2, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다."),
-            LostInfo(idx = 3, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다.")
-        )
         lostFoundAdapter = LostFoundAdapter(requireContext(), this)
-        mBinding.rvLostFound.adapter = lostFoundAdapter
-        lostFoundAdapter.submitList(list)
 
         mBinding.btnBack.setOnClickListener {
             this.findNavController().popBackStack()
@@ -73,8 +79,8 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
 
     private fun setLostInfo(lostFoundList: List<LostFound>): List<LostInfo> {
         Log.d("LostFoundFragment","setRecyclerView()")
-        /*Log.d("LostFoundFragment",lostFoundList.toString())
-        viewModel.getLostFound(1,if(mBinding.lostFoundSpinner.selectedItemPosition == 0) "LOST" else "FOUND")
+        Log.d("LostFoundFragment",lostFoundList.toString())
+        viewModel.getLostFoundList(1,if(mBinding.lostFoundSpinner.selectedItemPosition == 0) "LOST" else "FOUND")
         val list: MutableList<LostInfo> = mutableListOf()
         // val today = LocalDate.now()
         lostFoundList.forEach {
@@ -86,22 +92,16 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                     uploadTime = it.createAt,
                     title = it.title,
                     content = it.content,
-                    place = it.place
+                    place = it.place,
+                    member = it.member
                 )
             )
         }
         Log.d("LostFoundFragment",list.toList().toString())
-        return list.toList()*/
-        val list = listOf(
-            LostInfo(idx = 1, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다."),
-            LostInfo(idx = 2, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다."),
-            LostInfo(idx = 3, title = "경태를 잃어버렸습니다", content = "특이사항은 탈모입니다.")
-        )
-        return list
+        return list.toList()
     }
     private fun setRecyclerView(list : List<LostInfo>){
         Log.d("LostFoundFragment","setRecyclerView()")
-        lostFoundAdapter = LostFoundAdapter(requireContext(), this)
         mBinding.rvLostFound.adapter = lostFoundAdapter
         lostFoundAdapter.submitList(list)
     }

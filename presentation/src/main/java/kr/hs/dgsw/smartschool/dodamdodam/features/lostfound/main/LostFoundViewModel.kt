@@ -27,10 +27,9 @@ class LostFoundViewModel @Inject constructor(
 
     init {
         combineLoadingVariable(isGetLostFoundLoading)
-        getLostFoundList(1,"LOST")
         Log.e("LostFoundViewModel","생성")
     }
-    private fun getLostFoundList(page : Int, type : String){
+    fun getLostFoundList(page : Int, type : String){
         Log.d("LostFoundViewModel","실행")
         if(isChecked.value == true){
             myLostFound()

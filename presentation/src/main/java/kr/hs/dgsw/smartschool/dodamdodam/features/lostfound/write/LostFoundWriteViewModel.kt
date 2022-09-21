@@ -8,12 +8,14 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
 import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.upload.UploadImgUseCase
 import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
 class LostFoundWriteViewModel @Inject constructor(
-    private val useCases : LostFoundUseCases
+    private val useCases : LostFoundUseCases,
+    private val imageUseCase : UploadImgUseCase
 ) : BaseViewModel(){
     val isLost = MutableLiveData<Boolean>(true)
     val isFound = MutableLiveData<Boolean>()
@@ -21,7 +23,7 @@ class LostFoundWriteViewModel @Inject constructor(
     val place = MutableLiveData<String>()
     val content = MutableLiveData<String>()
     var file : File? = null
-    var picture : Picture? = null
+    var url : String? = null
 
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
     private val isModifyLostFoundLoading = MutableLiveData<Boolean>()
@@ -53,14 +55,20 @@ class LostFoundWriteViewModel @Inject constructor(
             {viewEvent(EVENT_ERROR)}
         ).launchIn(viewModelScope)
     }
-    fun getLostFound(){
+    private fun imageUpload(file : File){
+        imageUseCase(file).divideResult(
+            isModifyLostFoundLoading,
+            { url = it?.url!!   },
+            {}
+        )
     }
     fun modifyLostFound(){
+        imageUpload(file!!)
         if(title.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_TITLE)
         if(content.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_CONTENT)
         useCases.addLostFound(LostFoundDataRequest(
             content = content.value ?: "",
-            picture = file!!.path,
+            picture = url ?: "",
             place = place.value ?: "",
             title = title.value ?: "",
             type = if (isLost.value == true) "LOST" else "FOUND",
