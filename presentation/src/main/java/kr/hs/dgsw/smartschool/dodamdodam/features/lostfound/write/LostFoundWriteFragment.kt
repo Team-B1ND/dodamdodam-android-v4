@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -38,11 +39,8 @@ class LostFoundWriteFragment : BaseFragment<FragmentLostFoundWriteBinding, LostF
 
         }
         mBinding.fbAddLostAndFound.setOnClickListener{
+            Log.d("LostFoundWriteFragment","addLostFound()")
             viewModel.addLostFound()
-        }
-
-        with(viewModel){
-
         }
     }
 

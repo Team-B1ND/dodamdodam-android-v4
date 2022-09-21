@@ -40,6 +40,7 @@ class LostFoundWriteViewModel @Inject constructor(
     }
 
     fun addLostFound(){
+        imageUpload(file!!)
         if(title.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_TITLE)
         if(content.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_CONTENT)
         useCases.addLostFound(LostFoundDataRequest(
@@ -61,23 +62,6 @@ class LostFoundWriteViewModel @Inject constructor(
             { url = it?.url!!   },
             {}
         )
-    }
-    fun modifyLostFound(){
-        imageUpload(file!!)
-        if(title.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_TITLE)
-        if(content.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_CONTENT)
-        useCases.addLostFound(LostFoundDataRequest(
-            content = content.value ?: "",
-            picture = url ?: "",
-            place = place.value ?: "",
-            title = title.value ?: "",
-            type = if (isLost.value == true) "LOST" else "FOUND",
-            lostFoundId = null
-        )).divideResult(
-            isModifyLostFoundLoading,
-            {viewEvent(EVENT_SUCCESS)},
-            {viewEvent(EVENT_ERROR)}
-        ).launchIn(viewModelScope)
     }
 
 }

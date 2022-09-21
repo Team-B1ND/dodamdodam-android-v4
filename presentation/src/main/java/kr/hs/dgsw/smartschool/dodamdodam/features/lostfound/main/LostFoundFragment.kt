@@ -25,15 +25,6 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     private lateinit var lostFoundAdapter : LostFoundAdapter
     override val viewModel: LostFoundViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        viewModel.getLostFoundList(1,"LOST")
-        return mBinding.root
-    }
-
     override fun observerViewModel() {
         lostFoundAdapter = LostFoundAdapter(requireContext(), this)
 
