@@ -83,7 +83,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.9"
                         android:background="@drawable/drawble_spinner"
-                        android:entries="@array/lost_found_type" />
+                        android:entries="@array/lost_found_type"
+                        android:selectedItemPosition="@={vm.selectedItemPosition}"/>
                     <EditText
                         android:id="@+id/et_search"
                         android:layout_width="0dp"

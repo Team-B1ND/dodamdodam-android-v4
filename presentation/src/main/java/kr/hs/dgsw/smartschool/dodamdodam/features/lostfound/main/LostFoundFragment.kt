@@ -25,8 +25,13 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     private lateinit var lostFoundAdapter : LostFoundAdapter
     override val viewModel: LostFoundViewModel by viewModels()
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.getLostFoundList(1)
+    }
     override fun observerViewModel() {
         lostFoundAdapter = LostFoundAdapter(requireContext(), this)
+        mBinding.rvLostFound.adapter = lostFoundAdapter
 
         mBinding.btnBack.setOnClickListener {
             this.findNavController().popBackStack()
@@ -71,7 +76,6 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     private fun setLostInfo(lostFoundList: List<LostFound>): List<LostInfo> {
         Log.d("LostFoundFragment","setRecyclerView()")
         Log.d("LostFoundFragment",lostFoundList.toString())
-        viewModel.getLostFoundList(1,if(mBinding.lostFoundSpinner.selectedItemPosition == 0) "LOST" else "FOUND")
         val list: MutableList<LostInfo> = mutableListOf()
         // val today = LocalDate.now()
         lostFoundList.forEach {
@@ -88,12 +92,10 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                 )
             )
         }
-        Log.d("LostFoundFragment",list.toList().toString())
         return list.toList()
     }
     private fun setRecyclerView(list : List<LostInfo>){
         Log.d("LostFoundFragment","setRecyclerView()")
-        mBinding.rvLostFound.adapter = lostFoundAdapter
         lostFoundAdapter.submitList(list)
     }
 }
