@@ -51,13 +51,23 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         mBinding.tbCheck.setOnClickListener{
             viewModel.getLostFoundList(1)
         }
+        with(viewModel){
+            isChecked.observe(viewLifecycleOwner,Observer<Boolean>{
+                Log.e("LostFoundFragment",it.toString())
+                getLostFoundList(1)
+            })
+            selectedItemPosition.value = mBinding.lostFoundSpinner.selectedItemPosition
+            selectedItemPosition.observe(viewLifecycleOwner,Observer<Int>{
+                Log.e("LostFoundFragment",it.toString())
+                getLostFoundList(1)
+            })
+        }
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getLostFoundState.collect { state ->
-                    if (state.list.isNotEmpty()) {
                         val list = setLostInfo(state.list)
+                        hasLostFound.value = list.isNotEmpty()
                         setRecyclerView(list)
-                    }
 
                     if (state.error.isNotBlank()) {
                         shortToast(state.error)
@@ -86,7 +96,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         Log.d("LostFoundFragment","setRecyclerView()")
         Log.d("LostFoundFragment",lostFoundList.toString())
         val list: MutableList<LostInfo> = mutableListOf()
-        // val today = LocalDate.now()
+        if(lostFoundList.isEmpty()) return emptyList()
         lostFoundList.forEach {
             list.add(
                 LostInfo(
