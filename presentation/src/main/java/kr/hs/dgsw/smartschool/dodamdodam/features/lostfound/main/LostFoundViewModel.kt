@@ -29,8 +29,8 @@ class LostFoundViewModel @Inject constructor(
 
     val memberInfo = MutableLiveData<String>()
     val title = MutableLiveData<String>()
-    val isChecked = MutableLiveData<Boolean>(false)
-    val selectedItemPosition = MutableLiveData<Int>()
+    val isChecked = MutableLiveData<Boolean>(true)
+    val selectedItemPosition = MutableLiveData<Int>(0)
     val hasLostFound = MutableLiveData<Boolean>(false)
 
     init {

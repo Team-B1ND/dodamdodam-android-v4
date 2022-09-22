@@ -16,9 +16,14 @@ import java.time.LocalDate
 
 @AndroidEntryPoint
 class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, LostFoundCommentViewModel>(),LostFoundCommentAdapter.CommentCallBack {
-
+    private lateinit var lostFoundAdapter : LostFoundCommentAdapter
     override val viewModel: LostFoundCommentViewModel by viewModels()
 
+    override fun onStart() {
+        super.onStart()
+        lostFoundAdapter = LostFoundCommentAdapter(requireContext())
+        mBinding.rvComment.adapter = lostFoundAdapter
+    }
     override fun observerViewModel() {
         mBinding.btnBack.setOnClickListener{
             findNavController().popBackStack()
@@ -60,8 +65,6 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
         return list.toList()
     }
     private fun setRecyclerView(list : List<CommentInfo>){
-        val lostFoundAdapter = LostFoundCommentAdapter(requireContext())
-        mBinding.rvComment.adapter = lostFoundAdapter
         lostFoundAdapter.submitList(list)
     }
 
