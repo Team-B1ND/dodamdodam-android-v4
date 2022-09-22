@@ -10,5 +10,6 @@ data class LostInfo(
     val title : String = "",
     val content : String = "",
     val place : String = "",
-    val member : Member
+    val member : Member,
+    val myId : String
 )

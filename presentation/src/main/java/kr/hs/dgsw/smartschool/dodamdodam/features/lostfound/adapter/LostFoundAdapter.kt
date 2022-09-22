@@ -14,7 +14,7 @@ import kr.hs.dgsw.smartschool.domain.model.member.Member
 import kr.hs.dgsw.smartschool.domain.usecase.member.GetMyInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 
-class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack, private val memberInfo : Member) : BaseListAdapter<LostInfo, ItemLostAndFoundBinding>(R.layout.item_lost_and_found,LostFoundDiffUtilCallback){
+class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack) : BaseListAdapter<LostInfo, ItemLostAndFoundBinding>(R.layout.item_lost_and_found,LostFoundDiffUtilCallback){
     interface LostFoundCallBack {
         fun openComment(idx: Int)
         fun modifyLostFound(idx:Int)
@@ -37,7 +37,7 @@ class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack, p
             listener.openComment(item.idx)
         }
         binding.ibBtnMore.setOnClickListener{
-            if(item.member.id == memberInfo.id){
+            if(item.member.id == item.myId){
                 val pm = PopupMenu(context, binding.ibBtnMore)
                 pm.inflate(R.menu.lost_found_item_menu)
                 pm.setOnMenuItemClickListener{ data ->

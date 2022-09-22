@@ -14,41 +14,45 @@ import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.SearchLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.member.GetMyInfo
+import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import javax.inject.Inject
 
 @HiltViewModel
 class LostFoundViewModel @Inject constructor(
     private val useCases : LostFoundUseCases,
-    private val getInfo : GetMyInfo
+    private val memberUseCases : MemberUseCases
 ) : BaseViewModel(){
     private val _getLostFoundState = MutableSharedFlow<GetLostFoundState>()
     val getLostFoundState : SharedFlow<GetLostFoundState> = _getLostFoundState
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
+    private val isGetLostProfileLoading = MutableLiveData<Boolean>()
 
-    val memberInfo = MutableLiveData<Member>()
+    val memberInfo = MutableLiveData<String>()
     val title = MutableLiveData<String>()
     val isChecked = MutableLiveData<Boolean>()
     val selectedItemPosition = MutableLiveData<Int>()
 
     init {
-        combineLoadingVariable(isGetLostFoundLoading)
+        combineLoadingVariable(isGetLostFoundLoading,isGetLostProfileLoading)
         Log.e("LostFoundViewModel","생성")
-        getMyInfo()
     }
-    private fun getMyInfo(){
-        getInfo(Unit).divideResult(
-            MutableLiveData<Boolean>(),
+    fun getMyInfo(){
+        Log.d("LostFoundViewModel","getMyInfo()")
+        memberUseCases.getMyInfo(Unit).divideResult(
+            isGetLostProfileLoading,
             {
-                memberInfo.value = it?.member
+                Log.d("LostFoundViewModel",it?.member.toString())
+                memberInfo.value = it?.member?.id
             },
-            {}
-        )
+            {Log.d("LostFoundViewModel","실패")}
+        ).launchIn(viewModelScope)
     }
     fun getLostFoundList(page : Int){
         Log.d("LostFoundViewModel","getLostFoundList()")
         if(isChecked.value == true){
             myLostFound()
         } else{
+            Log.d("LostFoundViewModel",selectedItemPosition.value.toString())
             useCases.getLostFound(GetLostFound.Params(page = page, type = if(selectedItemPosition.value == 1) "FOUND" else "LOST")).divideResult(
                 isGetLostFoundLoading,
                 {viewModelScope.launch { _getLostFoundState.emit( GetLostFoundState(list = it ?: emptyList())) }},

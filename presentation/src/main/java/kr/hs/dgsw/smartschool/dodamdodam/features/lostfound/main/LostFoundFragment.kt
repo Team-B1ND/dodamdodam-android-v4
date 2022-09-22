@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,11 +28,12 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
 
     override fun onStart() {
         super.onStart()
+        viewModel.getMyInfo()
         viewModel.getLostFoundList(1)
     }
     override fun observerViewModel() {
-        lostFoundAdapter = LostFoundAdapter(requireContext(), this, viewModel.memberInfo.value!!)
-        mBinding.rvLostFound.adapter = lostFoundAdapter
+        lostFoundAdapter = LostFoundAdapter(requireContext(),this)
+        mBinding.rvLostFound.adapter  = lostFoundAdapter
 
         mBinding.btnBack.setOnClickListener {
             this.findNavController().popBackStack()
@@ -95,7 +97,8 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                     title = it.title,
                     content = it.content,
                     place = it.place,
-                    member = it.member
+                    member = it.member,
+                    myId = viewModel.memberInfo.value!!
                 )
             )
         }
