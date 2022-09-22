@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
+import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
 import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
@@ -40,12 +41,12 @@ class LostFoundWriteViewModel @Inject constructor(
     }
 
     fun addLostFound(){
-        imageUpload(file!!)
+        imageUpload(file ?: File("res/drawable/default_img.png"))
         if(title.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_TITLE)
         if(content.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_CONTENT)
         useCases.addLostFound(LostFoundDataRequest(
             content = content.value ?: "",
-            picture = file!!.path,
+            picture = file!!.path ?: File("res/drawable/default_img.png").path,
             place = place.value ?: "",
             title = title.value ?: "",
             type = if (isLost.value == true) "LOST" else "FOUND",

@@ -30,7 +30,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         viewModel.getLostFoundList(1)
     }
     override fun observerViewModel() {
-        lostFoundAdapter = LostFoundAdapter(requireContext(), this)
+        lostFoundAdapter = LostFoundAdapter(requireContext(), this, viewModel.memberInfo.value!!)
         mBinding.rvLostFound.adapter = lostFoundAdapter
 
         mBinding.btnBack.setOnClickListener {
@@ -39,8 +39,15 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         mBinding.fbAddLostAndFound.setOnClickListener{
             this.findNavController().navigate(R.id.action_lostFoundFragment_to_lostFoundWriteFragment)
         }
+        mBinding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getLostFoundList(1)
+            mBinding.swipeRefreshLayout.isRefreshing = false
+        }
         mBinding.btnSearch.setOnClickListener{
             viewModel.searchLostFound()
+        }
+        mBinding.tbCheck.setOnClickListener{
+            viewModel.getLostFoundList(1)
         }
         with(viewModel) {
             lifecycleScope.launchWhenStarted {

@@ -25,7 +25,7 @@ import java.io.File
 @AndroidEntryPoint
 class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundModifyBinding, LostFoundUpdateViewModel>(),LostFoundUpdateViewModel.ImageCallBack {
     override val viewModel: LostFoundUpdateViewModel by viewModels()
-    private val args: LostFoundUpdateFragmentArgs by navArgs()
+    val args: LostFoundUpdateFragmentArgs by navArgs()
     private val lostFoundId : Int = args.id
 
     override fun onCreateView(

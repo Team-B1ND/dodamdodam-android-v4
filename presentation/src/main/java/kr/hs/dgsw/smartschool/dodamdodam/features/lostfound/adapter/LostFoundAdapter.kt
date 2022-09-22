@@ -3,15 +3,18 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.adapter
 import android.content.Context
 import android.util.Log
 import android.widget.PopupMenu
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.LostFoundDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemLostAndFoundBinding
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostInfo
+import kr.hs.dgsw.smartschool.domain.model.member.Member
+import kr.hs.dgsw.smartschool.domain.usecase.member.GetMyInfo
+import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 
-class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack) : BaseListAdapter<LostInfo, ItemLostAndFoundBinding>(R.layout.item_lost_and_found,LostFoundDiffUtilCallback){
-
+class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack, private val memberInfo : Member) : BaseListAdapter<LostInfo, ItemLostAndFoundBinding>(R.layout.item_lost_and_found,LostFoundDiffUtilCallback){
     interface LostFoundCallBack {
         fun openComment(idx: Int)
         fun modifyLostFound(idx:Int)
@@ -34,14 +37,10 @@ class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack) :
             listener.openComment(item.idx)
         }
         binding.ibBtnMore.setOnClickListener{
-
-            //TODO 자신의 게시물이 아니면 수정 삭제 못하도록 고치기
-            if(item.member.id == ""){
-
-            }
-            val pm = PopupMenu(context, binding.ibBtnMore)
-            pm.inflate(R.menu.lost_found_item_menu)
-            pm.setOnMenuItemClickListener{ data ->
+            if(item.member.id == memberInfo.id){
+                val pm = PopupMenu(context, binding.ibBtnMore)
+                pm.inflate(R.menu.lost_found_item_menu)
+                pm.setOnMenuItemClickListener{ data ->
                     when (data.itemId) {
                         R.id.modify ->
                         {
@@ -56,7 +55,9 @@ class LostFoundAdapter(val context: Context, val listener : LostFoundCallBack) :
                         else -> false
                     }
                 }
-            pm.show()
+                pm.show()
+            }else{
+            }
         }
     }
 }               

@@ -41,6 +41,7 @@ class LostFoundWriteFragment : BaseFragment<FragmentLostFoundWriteBinding, LostF
         mBinding.fbAddLostAndFound.setOnClickListener{
             Log.d("LostFoundWriteFragment","addLostFound()")
             viewModel.addLostFound()
+            this.findNavController().popBackStack()
         }
     }
 

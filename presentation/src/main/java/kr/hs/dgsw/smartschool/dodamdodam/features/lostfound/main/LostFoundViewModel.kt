@@ -8,20 +8,24 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetLostFoundState
+import kr.hs.dgsw.smartschool.domain.model.member.Member
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.SearchLostFound
+import kr.hs.dgsw.smartschool.domain.usecase.member.GetMyInfo
 import javax.inject.Inject
 
 @HiltViewModel
 class LostFoundViewModel @Inject constructor(
-    private val useCases : LostFoundUseCases
+    private val useCases : LostFoundUseCases,
+    private val getInfo : GetMyInfo
 ) : BaseViewModel(){
     private val _getLostFoundState = MutableSharedFlow<GetLostFoundState>()
     val getLostFoundState : SharedFlow<GetLostFoundState> = _getLostFoundState
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
 
+    val memberInfo = MutableLiveData<Member>()
     val title = MutableLiveData<String>()
     val isChecked = MutableLiveData<Boolean>()
     val selectedItemPosition = MutableLiveData<Int>()
@@ -29,6 +33,16 @@ class LostFoundViewModel @Inject constructor(
     init {
         combineLoadingVariable(isGetLostFoundLoading)
         Log.e("LostFoundViewModel","생성")
+        getMyInfo()
+    }
+    private fun getMyInfo(){
+        getInfo(Unit).divideResult(
+            MutableLiveData<Boolean>(),
+            {
+                memberInfo.value = it?.member
+            },
+            {}
+        )
     }
     fun getLostFoundList(page : Int){
         Log.d("LostFoundViewModel","getLostFoundList()")
