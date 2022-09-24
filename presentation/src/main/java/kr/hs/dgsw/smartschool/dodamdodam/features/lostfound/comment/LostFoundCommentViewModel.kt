@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.comment
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,8 +25,14 @@ class LostFoundCommentViewModel @Inject constructor(
     private val isGetCommentLoading = MutableLiveData<Boolean>()
     val getCommentState = _getCommentState
 
+    val comment = MutableLiveData<String>()
+
     init {
         Log.d("LostFoundCommentViewModel","생성")
+    }
+
+    companion object{
+        const val EVENT_EMPTY_COMMENT = 1
     }
 
     fun getComment(idx : Int){
@@ -35,12 +42,16 @@ class LostFoundCommentViewModel @Inject constructor(
             {viewModelScope.launch { GetCommentState(error = "댓글을 불러오는 데에 실패하였습니다.") }}
         ).launchIn(viewModelScope)
     }
-    fun addComment(comment : String, idx : Int){
-        useCases.addLostFoundComment(AddCommentRequest(comment = comment, lostFoundId = idx)).divideResult(
-            isGetCommentLoading,
-            {viewModelScope.launch { GetCommentState() }},
-            {viewModelScope.launch { GetCommentState(error = "댓글을 추가하는 데에 실패하였습니다.") }}
-        ).launchIn(viewModelScope)
+    fun addComment(idx : Int){
+        if(comment.value!!.isEmpty()) viewEvent(EVENT_EMPTY_COMMENT)
+        else {
+            useCases.addLostFoundComment(AddCommentRequest(comment = comment.value!!, lostFoundId = idx))
+                .divideResult(
+                    isGetCommentLoading,
+                    { viewModelScope.launch { GetCommentState() } },
+                    { viewModelScope.launch { GetCommentState(error = "댓글을 추가하는 데에 실패하였습니다.") } }
+                ).launchIn(viewModelScope)
+        }
     }
     fun modifyComment(comment : String, idx : Int){
         useCases.modifyLostFoundComment(ModifyCommentRequest(comment = comment, commentId = idx)).divideResult(

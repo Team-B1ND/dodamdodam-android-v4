@@ -78,7 +78,8 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     }
 
     override fun openComment(idx: Int) {
-        findNavController().navigate(R.id.action_lostFoundFragment_to_lostFoundCommentFragment)
+        val action = LostFoundFragmentDirections.actionLostFoundFragmentToLostFoundCommentFragment(idx)
+        findNavController().navigate(action)
     }
 
     override fun modifyLostFound(idx: Int) {

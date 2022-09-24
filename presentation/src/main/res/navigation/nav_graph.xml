@@ -149,7 +149,12 @@
     <fragment
         android:id="@+id/lostFoundCommentFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.comment.LostFoundCommentFragment"
-        android:label="LostFoundCommentFragment" />
+        android:label="LostFoundCommentFragment" >
+        <argument
+            android:name="id"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/lostFoundWriteFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.write.LostFoundWriteFragment"

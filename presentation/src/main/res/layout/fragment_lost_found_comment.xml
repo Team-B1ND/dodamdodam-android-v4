@@ -109,6 +109,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:textSize="@dimen/title5"
+                android:text="@={vm.comment}"
                 android:fontFamily="@font/nanum_square_regular"
                 android:includeFontPadding="false"
                 android:backgroundTint="@android:color/transparent"

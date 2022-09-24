@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.adapter.LostFoundCommentAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
@@ -19,6 +20,8 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
     private lateinit var lostFoundAdapter : LostFoundCommentAdapter
     override val viewModel: LostFoundCommentViewModel by viewModels()
 
+    val args : LostFoundCommentFragmentArgs by navArgs()
+
     override fun onStart() {
         super.onStart()
         lostFoundAdapter = LostFoundCommentAdapter(requireContext())
@@ -27,6 +30,10 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
     override fun observerViewModel() {
         mBinding.btnBack.setOnClickListener{
             findNavController().popBackStack()
+        }
+
+        mBinding.btnSendComment.setOnClickListener {
+            viewModel.addComment(args.id)
         }
 
 
@@ -69,7 +76,7 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
     }
 
     override fun addComment(comment : String, idx : Int){
-        viewModel.addComment(comment,idx)
+        viewModel.addComment(idx)
     }
     override fun deleteComment(idx : Int){
         viewModel.deleteComment(idx)
