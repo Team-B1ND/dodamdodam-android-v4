@@ -53,8 +53,12 @@ object Utils {
     }
 
     fun convertErrorBody(throwable: HttpException): String {
-        val errorBody = JSONObject(throwable.response()?.errorBody()!!.string())
-        return errorBody.getString("message")
+        try {
+            val errorBody = JSONObject(throwable.response()?.errorBody()!!.string())
+            return errorBody.getString("message")
+        } catch (e: Exception) {
+            return "알 수 없는 오류가 발생했습니다. 잠시만 기다려주세요."
+        }
     }
 
     const val NETWORK_ERROR_MESSAGE = "서버에 도달할 수 없습니다. 네트워크 상태를 확인해 주세요."

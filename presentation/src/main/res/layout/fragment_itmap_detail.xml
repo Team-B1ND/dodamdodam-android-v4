@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="company"
+            type="kr.hs.dgsw.smartschool.domain.model.itmap.Company" />
+
+        <variable
+            name="vm"
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.itmap.detail.ItMapDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/color_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="10dp"
+                android:onClick="@{() -> vm.onClickBack()}"
+                android:src="@drawable/ic_btn_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/color_black"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/notosans_kr_regular"
+                android:includeFontPadding="false"
+                android:text="@string/title_company_detail"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/title4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/layout_top_bar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_company_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="@dimen/default_margin"
+                android:background="@drawable/background_company_icon"
+                android:backgroundTint="@color/main"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    company_icon="@{company.name}"
+                    android:id="@+id/tv_company_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/notosans_kr_medium"
+                    android:includeFontPadding="false"
+                    android:maxLength="1"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="우" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tv_company_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/notosans_kr_medium"
+                android:includeFontPadding="false"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/title3"
+                android:text="@{company.name}"
+                app:layout_constraintTop_toTopOf="@id/layout_company_icon"
+                app:layout_constraintStart_toEndOf="@id/layout_company_icon"
+                tools:text="우아한 형제들" />
+
+            <TextView
+                android:id="@+id/tv_company_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/notosans_kr_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/gray700"
+                android:textSize="@dimen/title6"
+                android:text="@{company.address}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_company_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_company_name"
+                tools:text="서울 송파구 위례성대로2" />
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_office_worker"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:ignore="ContentDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            generation_count="@{company.users.size()}"
+            android:id="@+id/tv_user_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/notosans_kr_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/main"
+            android:textSize="@dimen/title6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_company"
+            tools:text="졸업생: 2명" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_itmap_user"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_user_count"
+            tools:listitem="@layout/item_itmap_user" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
