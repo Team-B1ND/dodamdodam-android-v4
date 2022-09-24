@@ -20,7 +20,7 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
     private lateinit var lostFoundAdapter : LostFoundCommentAdapter
     override val viewModel: LostFoundCommentViewModel by viewModels()
 
-    val args : LostFoundCommentFragmentArgs by navArgs()
+    private val args : LostFoundCommentFragmentArgs by navArgs()
 
     override fun onStart() {
         super.onStart()
@@ -28,13 +28,18 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
         mBinding.rvComment.adapter = lostFoundAdapter
     }
     override fun observerViewModel() {
-        mBinding.btnBack.setOnClickListener{
-            findNavController().popBackStack()
-        }
-
-        mBinding.btnSendComment.setOnClickListener {
-            viewModel.addComment(args.id)
-        }
+       with(mBinding){
+           btnBack.setOnClickListener{
+               findNavController().popBackStack()
+           }
+           swipeRefresh.setOnRefreshListener {
+                viewModel.getComment(args.id)
+               swipeRefresh.isRefreshing = false
+           }
+           btnSendComment.setOnClickListener {
+               viewModel.addComment(args.id)
+           }
+       }
 
 
         with(viewModel){
