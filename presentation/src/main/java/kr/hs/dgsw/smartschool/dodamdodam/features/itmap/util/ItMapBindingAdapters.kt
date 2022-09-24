@@ -29,3 +29,10 @@ fun setItMapProfile(view: ImageView, image: String?) {
         .centerCrop()
         .into(view)
 }
+
+@BindingAdapter("company_icon")
+fun setItMapCompanyIcon(view: TextView, companyName: String?) {
+    companyName?.let {
+        view.text = it[0].toString()
+    }
+}

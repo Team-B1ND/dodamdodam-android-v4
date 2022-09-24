@@ -61,19 +61,47 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/layout_top_bar">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_company_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="@dimen/default_margin"
+                android:background="@drawable/background_company_icon"
+                android:backgroundTint="@color/main"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    company_icon="@{company.name}"
+                    android:id="@+id/tv_company_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoSizeTextType="uniform"
+                    android:fontFamily="@font/notosans_kr_medium"
+                    android:includeFontPadding="false"
+                    android:maxLength="1"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="우" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <TextView
                 android:id="@+id/tv_company_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
                 android:fontFamily="@font/notosans_kr_medium"
                 android:includeFontPadding="false"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title3"
                 android:text="@{company.name}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@id/layout_company_icon"
+                app:layout_constraintStart_toEndOf="@id/layout_company_icon"
                 tools:text="우아한 형제들" />
 
             <TextView

@@ -116,7 +116,9 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
     }
 
     private fun setCompanyAdapter() {
-        companyAdapter = CompanyAdapter()
+        companyAdapter = CompanyAdapter {
+            navigateToDetail(it)
+        }
         mBinding.bottomSheet.rvCompany.adapter = companyAdapter
     }
     private fun setCompanyViewPagerAdapter() {

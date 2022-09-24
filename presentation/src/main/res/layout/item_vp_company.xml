@@ -21,8 +21,8 @@
             android:layout_height="match_parent"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:background="@color/color_white"
             android:layout_marginBottom="10dp"
+            android:background="@color/color_white"
             app:cardCornerRadius="@dimen/card_corner"
             app:cardElevation="@dimen/card_elevation"
             tools:layout_height="100dp">
@@ -31,41 +31,69 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_company_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="@dimen/default_margin"
+                    android:background="@drawable/background_company_icon"
+                    android:backgroundTint="@color/main"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        company_icon="@{company.name}"
+                        android:id="@+id/tv_company_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autoSizeTextType="uniform"
+                        android:fontFamily="@font/notosans_kr_medium"
+                        android:includeFontPadding="false"
+                        android:maxLength="1"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="우" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <TextView
                     android:id="@+id/tv_company_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="12dp"
-                    android:maxLines="1"
-                    android:text="@{company.name}"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:ellipsize="end"
                     android:fontFamily="@font/notosans_kr_medium"
                     android:includeFontPadding="false"
-                    android:ellipsize="end"
-                    android:textSize="@dimen/title4"
+                    android:maxLines="1"
+                    android:text="@{company.name}"
                     android:textColor="@color/color_black"
+                    android:textSize="@dimen/title4"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/layout_company_icon"
+                    app:layout_constraintTop_toTopOf="@id/layout_company_icon"
                     tools:text="우아한 형제들" />
 
                 <TextView
                     android:id="@+id/tv_company_address"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"
-                    android:maxLines="2"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="@dimen/default_margin"
                     android:ellipsize="end"
-                    android:text="@{company.address}"
-                    android:textSize="@dimen/title5"
-                    android:textColor="@color/gray700"
                     android:fontFamily="@font/notosans_kr_regular"
                     android:includeFontPadding="false"
-                    android:layout_marginTop="5dp"
+                    android:maxLines="2"
+                    android:text="@{company.address}"
+                    android:textColor="@color/gray700"
+                    android:textSize="@dimen/title5"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/layout_company_icon"
                     app:layout_constraintTop_toBottomOf="@id/tv_company_name"
                     tools:text="서울 송파구 위례성대로 2" />
 

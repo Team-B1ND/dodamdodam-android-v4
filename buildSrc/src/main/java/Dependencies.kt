@@ -28,6 +28,8 @@ object Google {
 
     const val GOOGLE_LOCATION = "com.google.android.gms:play-services-location:${Versions.GOOGLE_LOCATION}"
 
+    const val GOOGLE_GMS = "com.google.gms:google-services:${Versions.GOOGLE_GMS}"
+
 }
 
 object Libraries {
@@ -63,5 +65,9 @@ object Android {
 
 object NaverMap {
     const val NAVER_MAP = "com.naver.maps:map-sdk:${Versions.NAVER_MAP}"
+}
+
+object Firebase {
+    const val ANALYTICS = "com.google.firebase:firebase-analytics:${Versions.ANALYTICS}"
 }
 

@@ -6,6 +6,7 @@ plugins {
     id(Plugins.kotlinParcelize)
     id(Plugins.navigation_safe_args)
     id(Plugins.kt_lint) version Versions.KT_LINT
+    id(Plugins.googleService)
 }
 
 android {
@@ -98,6 +99,8 @@ dependencies {
     // map
     //implementation(files("libs/libDaumMapAndroid.jar"))
     implementation(NaverMap.NAVER_MAP)
+
+    implementation(Firebase.ANALYTICS)
 
     implementation(project(":data"))
     implementation(project(":domain"))

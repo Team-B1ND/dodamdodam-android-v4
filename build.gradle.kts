@@ -4,6 +4,7 @@ buildscript {
 //        classpath(Kotlin.KOTLIN_GRADLE_PLUGIN)
         classpath(Google.HILT_ANDROID_PLUGIN)
         classpath(AndroidX.NAVIGATION_SAFE_ARGS)
+        classpath(Google.GOOGLE_GMS)
     }
 }
 
