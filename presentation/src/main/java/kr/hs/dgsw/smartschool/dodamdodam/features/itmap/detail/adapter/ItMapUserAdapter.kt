@@ -2,12 +2,8 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.itmap.detail.adapter
 
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
-import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemCompanyBinding
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemItmapUserBinding
-import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemVpCompanyBinding
-import kr.hs.dgsw.smartschool.dodamdodam.features.itmap.adapter.callback.CompanyDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.features.itmap.detail.adapter.callback.ItMapUserDiffUtilCallback
-import kr.hs.dgsw.smartschool.domain.model.itmap.Company
 import kr.hs.dgsw.smartschool.domain.model.itmap.ItMapUser
 
 class ItMapUserAdapter(val action: (link: String) -> Unit) : BaseListAdapter<ItMapUser, ItemItmapUserBinding>(R.layout.item_itmap_user, ItMapUserDiffUtilCallback) {
@@ -18,5 +14,4 @@ class ItMapUserAdapter(val action: (link: String) -> Unit) : BaseListAdapter<ItM
             action.invoke("https://github.com/${item.githubId}")
         }
     }
-
 }

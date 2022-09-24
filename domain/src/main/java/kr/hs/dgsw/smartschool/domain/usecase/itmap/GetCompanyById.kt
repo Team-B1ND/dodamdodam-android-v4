@@ -14,5 +14,4 @@ class GetCompanyById @Inject constructor(
     override fun invoke(params: Int): Flow<Resource<Company>> = execute {
         itMapRepository.getCompanyById(params)
     }
-
 }

@@ -116,5 +116,4 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideItMapRepository(itMapRepositoryImpl: ItMapRepositoryImpl): ItMapRepository = itMapRepositoryImpl
-
 }

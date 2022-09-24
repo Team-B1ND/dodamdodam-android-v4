@@ -11,5 +11,4 @@ object CompanyDiffUtilCallback : DiffUtil.ItemCallback<Company>() {
     override fun areContentsTheSame(oldItem: Company, newItem: Company): Boolean {
         return oldItem.id == newItem.id
     }
-
 }

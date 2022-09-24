@@ -18,7 +18,7 @@ fun setGenerationCount(view: TextView, listSize: Int) {
 
 @BindingAdapter("githubId")
 fun setGithubId(view: TextView, githubId: String) {
-    view.text = "github.com/${githubId}"
+    view.text = "github.com/$githubId"
 }
 
 @BindingAdapter("itmap_profile")

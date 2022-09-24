@@ -47,7 +47,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         collectMyStudyRoom()
         collectMealState()
         collectSongList()
-
     }
 
     private fun initViewEvent() {

@@ -14,5 +14,4 @@ interface ItMapApi {
     suspend fun getCompanyById(
         @Path("id") id: Int
     ): Response<Company>
-
 }

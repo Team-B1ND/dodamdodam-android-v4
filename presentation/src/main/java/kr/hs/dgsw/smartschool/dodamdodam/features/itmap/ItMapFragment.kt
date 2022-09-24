@@ -10,14 +10,13 @@ import androidx.viewpager2.widget.ViewPager2
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraAnimation
 import com.naver.maps.map.CameraUpdate
-import dagger.hilt.android.AndroidEntryPoint
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
@@ -26,8 +25,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.itmap.adapter.CompanyAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.features.itmap.adapter.CompanyViewPagerAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.itmap.Company
-import kotlin.coroutines.coroutineContext
-
 
 @AndroidEntryPoint
 class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMapReadyCallback {
@@ -50,7 +47,6 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
                 ItMapViewModel.EVENT_ON_CLICK_BACK -> findNavController().popBackStack()
             }
         }
-
     }
 
     override fun onMapReady(map: NaverMap) {
@@ -89,7 +85,6 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
             }
         }
     }
-
 
     private fun setMarker(company: Company) {
         val marker = Marker()
@@ -138,14 +133,13 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
                         .animate(CameraAnimation.Easing)
                     naverMap.moveCamera(cameraUpdate)
                 }
-
             }
         })
     }
 
     private fun addressToGps(address: String): LatLng {
         Geocoder(requireContext()).getFromLocationName(address, 1).let {
-            if(it.isEmpty())
+            if (it.isEmpty())
                 throw Exception("NoAddress")
             return LatLng(it[0].latitude, it[0].longitude)
         }
@@ -186,5 +180,4 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
         super.onLowMemory()
         mBinding.mapView.onLowMemory()
     }
-
 }

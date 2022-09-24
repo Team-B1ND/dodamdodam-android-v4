@@ -16,5 +16,4 @@ class ItMapRepositoryImpl @Inject constructor(
     override suspend fun getCompanyById(id: Int): Company {
         return itMapDataSource.getCompanyById(id)
     }
-
 }

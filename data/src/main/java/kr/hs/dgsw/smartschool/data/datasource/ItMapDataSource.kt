@@ -15,5 +15,4 @@ class ItMapDataSource @Inject constructor(
 
     suspend fun getCompanyById(id: Int): Company =
         remote.getCompanyById(id)
-
 }

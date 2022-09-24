@@ -14,5 +14,4 @@ class ItMapRemote @Inject constructor(
 
     suspend fun getCompanyById(id: Int): Company =
         api.getCompanyById(id).data
-
 }

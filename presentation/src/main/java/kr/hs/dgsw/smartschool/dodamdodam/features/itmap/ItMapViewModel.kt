@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ItMapViewModel @Inject constructor(
     private val itMapUseCases: ItMapUseCases
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val isGetAllCompanyLoading = MutableLiveData(false)
 
@@ -40,5 +40,4 @@ class ItMapViewModel @Inject constructor(
     companion object {
         const val EVENT_ON_CLICK_BACK = 0
     }
-
 }

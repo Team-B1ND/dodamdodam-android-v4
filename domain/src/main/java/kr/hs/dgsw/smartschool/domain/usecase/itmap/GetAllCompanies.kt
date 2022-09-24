@@ -14,5 +14,4 @@ class GetAllCompanies @Inject constructor(
     override fun invoke(params: Unit): Flow<Resource<List<Company>>> = execute {
         itMapRepository.getAllCompanies()
     }
-
 }

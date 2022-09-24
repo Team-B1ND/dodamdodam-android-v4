@@ -52,5 +52,4 @@ class ItMapDetailFragment : BaseFragment<FragmentItmapDetailBinding, ItMapDetail
 
         mBinding.rvItmapUser.adapter = itMapUserAdapter
     }
-
 }

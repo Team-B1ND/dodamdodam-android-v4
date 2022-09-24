@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.itmap.detail
 
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -34,5 +33,4 @@ class ItMapDetailViewModel @Inject constructor(
     companion object {
         const val EVENT_ON_CLICK_BACK = 0
     }
-
 }

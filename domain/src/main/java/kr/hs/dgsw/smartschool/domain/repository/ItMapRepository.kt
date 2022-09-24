@@ -7,5 +7,4 @@ interface ItMapRepository {
     suspend fun getAllCompanies(): List<Company>
 
     suspend fun getCompanyById(id: Int): Company
-
 }

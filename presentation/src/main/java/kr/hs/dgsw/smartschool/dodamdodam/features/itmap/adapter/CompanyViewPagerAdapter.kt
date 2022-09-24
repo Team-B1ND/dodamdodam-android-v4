@@ -14,5 +14,4 @@ class CompanyViewPagerAdapter(val action: (id: Int) -> Unit) : BaseListAdapter<C
             action.invoke(item.id)
         }
     }
-
 }
