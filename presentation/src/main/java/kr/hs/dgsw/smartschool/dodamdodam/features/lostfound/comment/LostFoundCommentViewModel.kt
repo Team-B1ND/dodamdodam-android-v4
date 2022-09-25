@@ -28,6 +28,7 @@ class LostFoundCommentViewModel @Inject constructor(
     val comment = MutableLiveData<String>()
 
     init {
+        combineLoadingVariable(isGetCommentLoading)
         Log.d("LostFoundCommentViewModel","생성")
     }
 
@@ -38,8 +39,8 @@ class LostFoundCommentViewModel @Inject constructor(
     fun getComment(idx : Int){
         useCases.getLostFoundComment(GetLostFoundComment.Params(lostFoundIdx = idx)).divideResult(
             isGetCommentLoading,
-            {viewModelScope.launch { GetCommentState(list = it ?: emptyList()) }},
-            {viewModelScope.launch { GetCommentState(error = "댓글을 불러오는 데에 실패하였습니다.") }}
+            {viewModelScope.launch { _getCommentState.emit( GetCommentState(list = it ?: emptyList())) }},
+            {viewModelScope.launch{ getCommentState.emit( GetCommentState(error = "댓글을 불러오는 데에 실패하였습니다.")) }}
         ).launchIn(viewModelScope)
     }
     fun addComment(idx : Int){
@@ -48,8 +49,8 @@ class LostFoundCommentViewModel @Inject constructor(
             useCases.addLostFoundComment(AddCommentRequest(comment = comment.value!!, lostFoundId = idx))
                 .divideResult(
                     isGetCommentLoading,
-                    { viewModelScope.launch { GetCommentState() } },
-                    { viewModelScope.launch { GetCommentState(error = "댓글을 추가하는 데에 실패하였습니다.") } }
+                    { viewModelScope.launch {  } },
+                    { viewModelScope.launch { getCommentState.emit( GetCommentState(error = "댓글을 추가하는 데에 실패하였습니다.")) } }
                 ).launchIn(viewModelScope)
         }
     }

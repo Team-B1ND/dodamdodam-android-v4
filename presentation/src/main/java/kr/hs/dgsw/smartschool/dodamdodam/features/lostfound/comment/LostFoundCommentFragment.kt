@@ -26,6 +26,7 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
         super.onStart()
         lostFoundAdapter = LostFoundCommentAdapter(requireContext())
         mBinding.rvComment.adapter = lostFoundAdapter
+        getComment(args.id)
     }
     override fun observerViewModel() {
        with(mBinding){
