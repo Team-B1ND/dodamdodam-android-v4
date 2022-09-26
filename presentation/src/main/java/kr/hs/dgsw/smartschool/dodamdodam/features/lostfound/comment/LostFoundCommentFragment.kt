@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.comment
 
+import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -22,11 +23,18 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
 
     private val args : LostFoundCommentFragmentArgs by navArgs()
 
+    var myId : String = ""
+
     override fun onStart() {
         super.onStart()
+        viewModel.getMyInfo()
         lostFoundAdapter = LostFoundCommentAdapter(requireContext(),this)
         mBinding.rvComment.adapter = lostFoundAdapter
         viewModel.getComment(args.id)
+    }
+    override fun onResume() {
+        super.onResume()
+        viewModel.getMyInfo()
     }
     override fun observerViewModel() {
        with(mBinding){
@@ -56,6 +64,17 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
                     }
                 }
             }
+            lifecycleScope.launchWhenStarted {
+                getMyInfoState.collect { state ->
+                    if (state.myId.isNotEmpty()) {
+                        myId = state.myId
+                    }
+
+                    if (state.error.isNotBlank()) {
+                        shortToast(state.error)
+                    }
+                }
+            }
         }
     }
     private fun setCommentInfo(lostFoundList: List<Comment>): List<CommentInfo> {
@@ -72,7 +91,7 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
                     name = it.member.name,
                     uploadTime = date.toString(),
                     content = it.comment,
-                    isMine = (it.member.id == viewModel.myInfo.value!!)
+                    isMine = ((it.member.id == myId))
                 )
             )
         }

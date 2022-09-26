@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetCommentState
+import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetMyInfoState
 import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
 import kr.hs.dgsw.smartschool.domain.request.lostfound.ModifyCommentRequest
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFoundComment
@@ -24,17 +25,17 @@ class LostFoundCommentViewModel @Inject constructor(
     private val memberUseCases : MemberUseCases
 ) : BaseViewModel(){
     private val _getCommentState = MutableSharedFlow<GetCommentState>()
+    private val _getInfoState = MutableSharedFlow<GetMyInfoState>()
     private val isGetCommentLoading = MutableLiveData<Boolean>()
     private val isGetMyInfoLoading = MutableLiveData<Boolean>()
     val getCommentState = _getCommentState
+    val getMyInfoState = _getInfoState
 
     val comment = MutableLiveData<String>()
-    val myInfo = MutableLiveData<String>()
 
     init {
         combineLoadingVariable(isGetCommentLoading,isGetMyInfoLoading)
         Log.d("LostFoundCommentViewModel","생성")
-        getMyInfo()
     }
 
     companion object{
@@ -44,15 +45,15 @@ class LostFoundCommentViewModel @Inject constructor(
     fun getMyInfo(){
         memberUseCases.getMyInfo(Unit).divideResult(
             isGetMyInfoLoading,
-            {myInfo.value = it?.member?.id},
-            {}
+            {viewModelScope.launch { _getInfoState.emit(GetMyInfoState( myId = it?.member?.id ?: "")) }},
+            {viewModelScope.launch { _getInfoState.emit(GetMyInfoState( error = "내 정보를 불러오는 데에 실패하였습니다.")) }}
         ).launchIn(viewModelScope)
     }
 
     fun getComment(idx : Int){
         useCases.getLostFoundComment(GetLostFoundComment.Params(lostFoundIdx = idx)).divideResult(
             isGetCommentLoading,
-            {viewModelScope.launch { _getCommentState.emit( GetCommentState(list = it ?: emptyList())) }},
+            {viewModelScope.launch{ _getCommentState.emit( GetCommentState(list = it ?: emptyList())) }},
             {viewModelScope.launch{ getCommentState.emit( GetCommentState(error = "댓글을 불러오는 데에 실패하였습니다.")) }}
         ).launchIn(viewModelScope)
     }

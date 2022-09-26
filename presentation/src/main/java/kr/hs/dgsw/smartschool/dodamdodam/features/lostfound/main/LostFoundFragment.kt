@@ -26,9 +26,11 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     private lateinit var lostFoundAdapter : LostFoundAdapter
     override val viewModel: LostFoundViewModel by viewModels()
 
+    var myId : String = ""
+
     override fun onStart() {
         super.onStart()
-        viewModel.getLostFoundList(1)
+        viewModel.getMyInfo()
     }
     override fun observerViewModel() {
         lostFoundAdapter = LostFoundAdapter(requireContext(),this)
@@ -60,6 +62,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                 Log.e("LostFoundFragment",it.toString())
                 getLostFoundList(1)
             })
+            //TODO 여러번 값 불러오는 문제
         }
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
@@ -67,6 +70,17 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                         val list = setLostInfo(state.list)
                         hasLostFound.value = list.isNotEmpty()
                         setRecyclerView(list)
+
+                    if (state.error.isNotBlank()) {
+                        shortToast(state.error)
+                    }
+                }
+            }
+            lifecycleScope.launchWhenStarted {
+                getMyInfoState.collect { state ->
+                    if (state.myId.isNotEmpty()) {
+                        myId = state.myId
+                    }
 
                     if (state.error.isNotBlank()) {
                         shortToast(state.error)
@@ -108,7 +122,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                     content = it.content,
                     place = it.place,
                     member = it.member,
-                    myId = viewModel.memberInfo.value!!
+                    myId = myId //TODO 나갔다 들어오면 NPE 뜸 Comment 마찬가지
                 )
             )
         }
