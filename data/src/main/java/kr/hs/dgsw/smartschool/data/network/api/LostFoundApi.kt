@@ -25,7 +25,7 @@ interface LostFoundApi {
 
     @GET("lostfound/comment")
     suspend fun getComment(
-        @Query("lostfoundIdx") lostfoundIdx: Int
+        @Query("lostFoundId") lostFoundId: Int
     ): Response<List<Comment>>
 
     @GET("lostfound/search")
