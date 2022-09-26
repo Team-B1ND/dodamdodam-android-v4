@@ -36,6 +36,7 @@ class LostFoundViewModel @Inject constructor(
     init {
         combineLoadingVariable(isGetLostFoundLoading,isGetLostProfileLoading)
         Log.e("LostFoundViewModel","생성")
+        getMyInfo()
     }
     fun getMyInfo(){
         Log.d("LostFoundViewModel","getMyInfo()")

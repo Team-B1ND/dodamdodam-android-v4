@@ -6,4 +6,5 @@ data class CommentInfo(
     val name : String = "",
     val uploadTime : String = "",
     val content : String = "",
+    val isMine : Boolean
 )

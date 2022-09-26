@@ -24,9 +24,9 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
 
     override fun onStart() {
         super.onStart()
-        lostFoundAdapter = LostFoundCommentAdapter(requireContext())
+        lostFoundAdapter = LostFoundCommentAdapter(requireContext(),this)
         mBinding.rvComment.adapter = lostFoundAdapter
-        getComment(args.id)
+        viewModel.getComment(args.id)
     }
     override fun observerViewModel() {
        with(mBinding){
@@ -71,7 +71,8 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
                     img = it.member.profileImage ?: "",
                     name = it.member.name,
                     uploadTime = date.toString(),
-                    content = it.comment
+                    content = it.comment,
+                    isMine = (it.member.id == viewModel.myInfo.value!!)
                 )
             )
         }
@@ -80,17 +81,10 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
     private fun setRecyclerView(list : List<CommentInfo>){
         lostFoundAdapter.submitList(list)
     }
-
-    override fun addComment(comment : String, idx : Int){
-        viewModel.addComment(idx)
-    }
     override fun deleteComment(idx : Int){
         viewModel.deleteComment(idx)
     }
-    override fun modifyComment(comment : String, idx : Int){
-        viewModel.modifyComment(comment,idx)
-    }
-    private fun getComment(idx : Int){
-        viewModel.getComment(idx)
+    override fun modifyComment( idx : Int){
+        viewModel.modifyComment(idx)
     }
 }

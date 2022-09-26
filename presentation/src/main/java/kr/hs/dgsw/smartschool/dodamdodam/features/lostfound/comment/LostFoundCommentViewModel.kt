@@ -15,25 +15,38 @@ import kr.hs.dgsw.smartschool.domain.request.lostfound.ModifyCommentRequest
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFoundComment
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFoundComment
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import javax.inject.Inject
 
 @HiltViewModel
 class LostFoundCommentViewModel @Inject constructor(
-    private val useCases : LostFoundUseCases
+    private val useCases : LostFoundUseCases,
+    private val memberUseCases : MemberUseCases
 ) : BaseViewModel(){
     private val _getCommentState = MutableSharedFlow<GetCommentState>()
     private val isGetCommentLoading = MutableLiveData<Boolean>()
+    private val isGetMyInfoLoading = MutableLiveData<Boolean>()
     val getCommentState = _getCommentState
 
     val comment = MutableLiveData<String>()
+    val myInfo = MutableLiveData<String>()
 
     init {
-        combineLoadingVariable(isGetCommentLoading)
+        combineLoadingVariable(isGetCommentLoading,isGetMyInfoLoading)
         Log.d("LostFoundCommentViewModel","생성")
+        getMyInfo()
     }
 
     companion object{
         const val EVENT_EMPTY_COMMENT = 1
+    }
+
+    fun getMyInfo(){
+        memberUseCases.getMyInfo(Unit).divideResult(
+            isGetMyInfoLoading,
+            {myInfo.value = it?.member?.id},
+            {}
+        ).launchIn(viewModelScope)
     }
 
     fun getComment(idx : Int){
@@ -44,7 +57,7 @@ class LostFoundCommentViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
     fun addComment(idx : Int){
-        if(comment.value!!.isEmpty()) viewEvent(EVENT_EMPTY_COMMENT)
+        if(comment.value == null) viewEvent(EVENT_EMPTY_COMMENT)
         else {
             useCases.addLostFoundComment(AddCommentRequest(comment = comment.value!!, lostFoundId = idx))
                 .divideResult(
@@ -54,12 +67,20 @@ class LostFoundCommentViewModel @Inject constructor(
                 ).launchIn(viewModelScope)
         }
     }
-    fun modifyComment(comment : String, idx : Int){
-        useCases.modifyLostFoundComment(ModifyCommentRequest(comment = comment, commentId = idx)).divideResult(
-            isGetCommentLoading,
-            {viewModelScope.launch { GetCommentState() }},
-            {viewModelScope.launch { GetCommentState(error = "댓글을 수정하는 데에 실패하였습니다.") }}
-        ).launchIn(viewModelScope)
+    fun modifyComment(idx : Int){
+        if(comment.value == null) viewEvent(EVENT_EMPTY_COMMENT)
+        else {
+            useCases.modifyLostFoundComment(
+                ModifyCommentRequest(
+                    comment = comment.value!!,
+                    commentId = idx
+                )
+            ).divideResult(
+                isGetCommentLoading,
+                { viewModelScope.launch { GetCommentState() } },
+                { viewModelScope.launch { GetCommentState(error = "댓글을 수정하는 데에 실패하였습니다.") } }
+            ).launchIn(viewModelScope)
+        }
     }
     fun deleteComment(idx : Int){
         useCases.deleteLostFoundComment(DeleteLostFoundComment.Params(commentIdx = idx)).divideResult(

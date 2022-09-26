@@ -28,7 +28,6 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
 
     override fun onStart() {
         super.onStart()
-        viewModel.getMyInfo()
         viewModel.getLostFoundList(1)
     }
     override fun observerViewModel() {

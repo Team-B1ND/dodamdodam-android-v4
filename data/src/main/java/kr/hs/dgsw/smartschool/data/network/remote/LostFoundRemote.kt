@@ -50,5 +50,4 @@ class LostFoundRemote @Inject constructor(
 
     suspend fun deleteComment(commentIdx: Int):Response<Any> =
         api.deleteComment(commentIdx)
-
 }
