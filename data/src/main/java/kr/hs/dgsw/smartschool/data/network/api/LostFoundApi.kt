@@ -57,7 +57,7 @@ interface LostFoundApi {
         @Body request: ModifyCommentRequest
     ): Response<Any>
 
-    @DELETE("lostfound")
+    @DELETE("lostfound/{id}")
    suspend fun deleteLostFound(
         @Path("id") id : Int
     ): Response<Any>

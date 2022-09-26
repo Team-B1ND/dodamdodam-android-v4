@@ -79,7 +79,7 @@ class LostFoundViewModel @Inject constructor(
     fun deleteLostFound(idx : Int){
         useCases.deleteLostFound(DeleteLostFound.Params(idx = idx)).divideResult(
             isGetLostFoundLoading,
-            {viewModelScope.launch { GetLostFoundState() }},
+            {getLostFoundList(1)},
             {viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 삭제하는 데에 실패하였습니다.") }}
         ).launchIn(viewModelScope)
     }
