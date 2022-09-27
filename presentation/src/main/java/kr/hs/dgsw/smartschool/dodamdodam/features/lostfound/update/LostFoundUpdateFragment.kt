@@ -18,12 +18,12 @@ import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
-import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundModifyBinding
+import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundUpdateBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getRealPathFromURI
 import java.io.File
 
 @AndroidEntryPoint
-class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundModifyBinding, LostFoundUpdateViewModel>(),LostFoundUpdateViewModel.ImageCallBack {
+class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, LostFoundUpdateViewModel>(),LostFoundUpdateViewModel.ImageCallBack {
     override val viewModel: LostFoundUpdateViewModel by viewModels()
     val args: LostFoundUpdateFragmentArgs by navArgs()
     private val lostFoundId : Int = args.id
