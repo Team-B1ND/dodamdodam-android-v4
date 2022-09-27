@@ -36,26 +36,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         }
     }
 
-    /*override fun onResume() {
-        super.onResume()
-
-        val appWidgetManager: AppWidgetManager? = getSystemService(AppWidgetManager::class.java)
-        val myProvider = ComponentName(this, MealWidgetProvider::class.java)
-
-        val successCallback: PendingIntent? = if (
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-               appWidgetManager!!.isRequestPinAppWidgetSupported
-            else
-                return
-        ) {
-            Intent(this, MainActivity::class.java).let { intent ->
-                PendingIntent.getBroadcast(applicationContext, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
-            }
-        } else {
-            null
-        }
-    }*/
-
     private fun connectNavigation() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
 

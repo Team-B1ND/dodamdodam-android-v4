@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:id="@+id/layout_meal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_meal_widget"
@@ -19,9 +22,9 @@
             android:layout_marginStart="20dp"
             android:fontFamily="@font/notosans_kr_medium"
             android:includeFontPadding="false"
-            android:text="@string/app_name"
+            android:text="@string/home_meal"
             android:textColor="@color/main"
-            android:textSize="@dimen/title4" />
+            android:textSize="@dimen/title5" />
 
     </LinearLayout>
 
@@ -33,6 +36,29 @@
         android:background="@drawable/background_meal_widget"
         android:backgroundTint="@color/color_background"
         android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_breakfast"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_breakfast"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_breakfast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/notosans_kr_regular"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/title7"
+            android:maxLines="3"
+            android:textColor="@color/color_black"
+            android:layout_marginHorizontal="10dp"
+            tools:text="@string/meal_dummy" />
+
 
     </LinearLayout>
 
@@ -45,6 +71,28 @@
         android:background="@drawable/background_meal_widget"
         android:backgroundTint="@color/color_background"
         android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_lunch"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_lunch"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_lunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/notosans_kr_regular"
+            android:includeFontPadding="false"
+            android:maxLines="3"
+            android:textSize="@dimen/title7"
+            android:textColor="@color/color_black"
+            android:layout_marginHorizontal="10dp"
+            tools:text="@string/meal_dummy" />
 
     </LinearLayout>
 
@@ -58,6 +106,28 @@
         android:background="@drawable/background_meal_widget"
         android:backgroundTint="@color/color_background"
         android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_dinner"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_dinner"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_dinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/notosans_kr_regular"
+            android:includeFontPadding="false"
+            android:maxLines="3"
+            android:textSize="@dimen/title7"
+            android:textColor="@color/color_black"
+            android:layout_marginHorizontal="10dp"
+            tools:text="@string/meal_dummy" />
 
     </LinearLayout>
 
