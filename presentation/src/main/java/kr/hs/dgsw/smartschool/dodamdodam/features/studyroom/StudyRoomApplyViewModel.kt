@@ -79,7 +79,7 @@ class StudyRoomApplyViewModel @Inject constructor(
                                 StudyRoomRequest.RequestStudyRoom(
                                     placeId = place.id,
                                     timeTableId = currentTimeTable.id,
-                                )
+                                ),
                             )
                         ),
                         currentTimeTable.name
@@ -93,7 +93,7 @@ class StudyRoomApplyViewModel @Inject constructor(
                                 StudyRoomRequest.RequestStudyRoom(
                                     placeId = place.id,
                                     timeTableId = currentTimeTable.id
-                                )
+                                ),
                             )
                         ),
                         currentTimeTable.name
