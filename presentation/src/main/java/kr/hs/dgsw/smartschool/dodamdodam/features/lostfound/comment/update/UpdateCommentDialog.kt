@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.comment.update
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -28,10 +29,11 @@ import java.time.LocalDate
 
 @AndroidEntryPoint
 class UpdateCommentDialog(
+    private val comment : String,
+    private val commentId : Int
 ) : DialogFragment() {
     private lateinit var binding : DialogUpdateCommentBinding
     private val viewModel : LostFoundCommentViewModel by viewModels()
-    private val args : UpdateCommentDialogArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,11 +46,9 @@ class UpdateCommentDialog(
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding.btnCancel.setOnClickListener{
-            findNavController().popBackStack()
         }
         binding.btnUpdate.setOnClickListener {
-            viewModel.modifyComment(args.id)
-            findNavController().popBackStack()
+            viewModel.modifyComment(commentId)
         }
 
         return view

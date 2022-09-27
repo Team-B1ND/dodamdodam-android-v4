@@ -10,7 +10,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.adapter.LostFoundCommentAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundCommentBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.comment.update.UpdateCommentDialog
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.main.LostFoundFragmentDirections
+import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.CommentInfo
@@ -105,7 +107,9 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
         viewModel.deleteComment(idx)
     }
     override fun modifyComment( idx : Int){
-        val action = LostFoundCommentFragmentDirections.actionLostFoundCommentFragmentToUpdateCommentDialog(args.id)
-        findNavController().navigate(action)
+        val dialog = UpdateCommentDialog(viewModel.comment.value ?: "",args.id)
+        // 알림창이 띄워져있는 동안 배경 클릭 막기
+        dialog.isCancelable = false
+        dialog.show(childFragmentManager, "UpdateCommentDialog")
     }
 }

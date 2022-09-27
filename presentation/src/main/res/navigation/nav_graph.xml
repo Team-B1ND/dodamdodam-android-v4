@@ -154,9 +154,6 @@
             android:name="id"
             android:defaultValue="0"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_lostFoundCommentFragment_to_updateCommentDialog"
-            app:destination="@id/updateCommentDialog" />
     </fragment>
     <fragment
         android:id="@+id/lostFoundWriteFragment"
@@ -171,13 +168,4 @@
             android:defaultValue="0"
             app:argType="integer" />
     </fragment>
-    <dialog
-        android:id="@+id/updateCommentDialog"
-        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.comment.update.UpdateCommentDialog"
-        android:label="UpdateCommentDialog">
-        <argument
-            android:name="id"
-            android:defaultValue="0"
-            app:argType="integer"/>
-    </dialog>
 </navigation>
