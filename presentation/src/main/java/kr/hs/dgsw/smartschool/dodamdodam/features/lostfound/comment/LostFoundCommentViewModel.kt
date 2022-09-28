@@ -68,12 +68,12 @@ class LostFoundCommentViewModel @Inject constructor(
                 ).launchIn(viewModelScope)
         }
     }
-    fun modifyComment(idx : Int){
+    fun modifyComment(idx : Int, newComment : String){
         if(comment.value == null) viewEvent(EVENT_EMPTY_COMMENT)
         else {
             useCases.modifyLostFoundComment(
                 ModifyCommentRequest(
-                    comment = comment.value!!,
+                    comment = newComment,
                     commentId = idx
                 )
             ).divideResult(

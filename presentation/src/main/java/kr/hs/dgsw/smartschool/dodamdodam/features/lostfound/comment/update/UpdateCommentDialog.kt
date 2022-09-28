@@ -21,6 +21,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.DialogUpdateCommentBinding
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundCommentBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.comment.LostFoundCommentViewModel
+import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.CommentInfo
@@ -39,22 +40,20 @@ class UpdateCommentDialog(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.setContentView(requireActivity(), R.layout.dialog_update_comment)
-        val view = binding.root
+        binding = DataBindingUtil.setContentView(activity as MainActivity, R.layout.dialog_update_comment)
 
+        binding.etComment.setText(comment)
         // 레이아웃 배경을 투명하게 해줌, 필수 아님
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding.btnCancel.setOnClickListener{
         }
         binding.btnUpdate.setOnClickListener {
-            viewModel.modifyComment(commentId)
+            viewModel.modifyComment(commentId, binding.etComment.text.toString())
         }
 
-        return view
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-    }
+
 }
