@@ -30,9 +30,11 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
 
     override fun onStart() {
         super.onStart()
+        mBinding.rvLostFound.visibility = View.INVISIBLE
         viewModel.getMyInfo()
     }
     override fun observerViewModel() {
+        mBinding.rvLostFound.visibility = View.VISIBLE
         lostFoundAdapter = LostFoundAdapter(requireContext(),this)
         mBinding.rvLostFound.adapter  = lostFoundAdapter
 
@@ -62,7 +64,6 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                 Log.e("LostFoundFragment",it.toString())
                 getLostFoundList(1)
             })
-            //TODO 여러번 값 불러오는 문제
         }
         with(viewModel) {
             lifecycleScope.launchWhenStarted {

@@ -2,6 +2,7 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.comment
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -52,8 +53,10 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
            btnSendComment.setOnClickListener {
                viewModel.addComment(args.id)
                etComment.clearFocus()
+               etComment.setText("")
            }
        }
+
 
 
         with(viewModel){
