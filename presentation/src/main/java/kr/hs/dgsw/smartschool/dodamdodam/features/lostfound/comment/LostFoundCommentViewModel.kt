@@ -65,7 +65,7 @@ class LostFoundCommentViewModel @Inject constructor(
             useCases.addLostFoundComment(AddCommentRequest(comment = comment.value!!, lostFoundId = idx))
                 .divideResult(
                     isGetCommentLoading,
-                    { viewModelScope.launch {  } },
+                    { getComment(lostFoundId!!) },
                     { viewModelScope.launch { getCommentState.emit( GetCommentState(error = "댓글을 추가하는 데에 실패하였습니다.")) } }
                 ).launchIn(viewModelScope)
         }

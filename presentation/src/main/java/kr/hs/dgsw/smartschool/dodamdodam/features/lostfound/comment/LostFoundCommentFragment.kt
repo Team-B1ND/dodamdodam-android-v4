@@ -51,6 +51,7 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
            }
            btnSendComment.setOnClickListener {
                viewModel.addComment(args.id)
+               etComment.clearFocus()
            }
        }
 
