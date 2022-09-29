@@ -28,11 +28,12 @@ class MealWidgetProvider: AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-        Log.e("TestTest", "onUpdate: 아니 이건 아니지??")
         appWidgetIds.forEach {
+            Log.e("TestTest", "onUpdate: 아니 이건 아니지??")
             updateAppWidget(context, appWidgetManager, it)
             updateMealInfo(context, appWidgetManager, it)
         }
+        super.onUpdate(context, appWidgetManager, appWidgetIds)
     }
 
     internal fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int) {
