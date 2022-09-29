@@ -20,7 +20,7 @@ import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
 import java.time.LocalDate
 
 @AndroidEntryPoint
-class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, LostFoundCommentViewModel>(),LostFoundCommentAdapter.CommentCallBack {
+class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, LostFoundCommentViewModel>(),LostFoundCommentAdapter.CommentCallBack,UpdateCommentDialog.CommentCallBack {
     private lateinit var lostFoundAdapter : LostFoundCommentAdapter
     override val viewModel: LostFoundCommentViewModel by viewModels()
 
@@ -33,6 +33,7 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
         viewModel.getMyInfo()
         lostFoundAdapter = LostFoundCommentAdapter(requireContext(),this)
         mBinding.rvComment.adapter = lostFoundAdapter
+        viewModel.lostFoundId = args.id
         viewModel.getComment(args.id)
     }
     override fun onResume() {
@@ -106,10 +107,15 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
     override fun deleteComment(idx : Int){
         viewModel.deleteComment(idx)
     }
-    override fun modifyComment( idx : Int){
-        val dialog = UpdateCommentDialog(viewModel.comment.value ?: "",args.id)
+    override fun openDialog(idx : Int){
+        val dialog = UpdateCommentDialog(viewModel.comment.value ?: "",idx,this)
         // 알림창이 띄워져있는 동안 배경 클릭 막기
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "UpdateCommentDialog")
+    }
+
+    override fun modifyComment(idx: Int,newComment : String) {
+        Log.e("LostFoundCommentFragment", "실행$idx$newComment")
+        viewModel.modifyComment(idx, newComment)
     }
 }

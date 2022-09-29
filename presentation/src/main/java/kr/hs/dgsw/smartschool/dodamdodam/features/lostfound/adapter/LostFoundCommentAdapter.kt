@@ -15,7 +15,7 @@ class LostFoundCommentAdapter(val context: Context, val listener : CommentCallBa
 ){
     interface CommentCallBack {
         fun deleteComment(idx:Int)
-        fun modifyComment(idx : Int)
+        fun openDialog(idx : Int)
     }
     override fun action(item: CommentInfo, binding: ItemLostFoundCommentBinding) {
         binding.info = item
@@ -32,7 +32,7 @@ class LostFoundCommentAdapter(val context: Context, val listener : CommentCallBa
                     when (data.itemId) {
                         R.id.modify ->
                         {
-                            listener.modifyComment(item.idx)
+                            listener.openDialog(item.idx)
                             true
                         }
                         R.id.delete ->

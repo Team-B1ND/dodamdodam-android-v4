@@ -31,6 +31,8 @@ class LostFoundCommentViewModel @Inject constructor(
     val getCommentState = _getCommentState
     val getMyInfoState = _getInfoState
 
+    var lostFoundId : Int? = null
+
     val comment = MutableLiveData<String>()
 
     init {
@@ -69,8 +71,6 @@ class LostFoundCommentViewModel @Inject constructor(
         }
     }
     fun modifyComment(idx : Int, newComment : String){
-        if(comment.value == null) viewEvent(EVENT_EMPTY_COMMENT)
-        else {
             useCases.modifyLostFoundComment(
                 ModifyCommentRequest(
                     comment = newComment,
@@ -78,10 +78,9 @@ class LostFoundCommentViewModel @Inject constructor(
                 )
             ).divideResult(
                 isGetCommentLoading,
-                { viewModelScope.launch { GetCommentState() } },
+                { getComment(lostFoundId!! ) },
                 { viewModelScope.launch { GetCommentState(error = "댓글을 수정하는 데에 실패하였습니다.") } }
             ).launchIn(viewModelScope)
-        }
     }
     fun deleteComment(idx : Int){
         useCases.deleteLostFoundComment(DeleteLostFoundComment.Params(commentIdx = idx)).divideResult(
