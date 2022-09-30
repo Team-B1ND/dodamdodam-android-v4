@@ -14,7 +14,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="?attr/actionBarSize"
         android:background="@color/color_background">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -186,7 +185,7 @@
                             android:fontFamily="@font/noto_bold"
                             android:includeFontPadding="false"
                             android:text="@string/show_point"
-                            android:textColor="@color/black"
+                            android:textColor="@color/color_black"
                             android:textSize="@dimen/title4"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -402,7 +401,7 @@
                             android:fontFamily="@font/noto_bold"
                             android:includeFontPadding="false"
                             android:text="@string/apply"
-                            android:textColor="@color/black"
+                            android:textColor="@color/color_black"
                             android:textSize="@dimen/title4"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -547,7 +546,7 @@
                             android:fontFamily="@font/noto_bold"
                             android:includeFontPadding="false"
                             android:text="@string/text_other"
-                            android:textColor="@color/black"
+                            android:textColor="@color/color_black"
                             android:textSize="@dimen/title4"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -559,6 +558,8 @@
                         android:id="@+id/layout_other_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="?attr/actionBarSize"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/layout_other_text">

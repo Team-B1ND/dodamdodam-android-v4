@@ -50,6 +50,17 @@
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/Theme.DodamDodam" />
 
+                <ImageView
+                    android:id="@+id/btn_back"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:layout_gravity="start|top"
+                    android:src="@drawable/ic_btn_back"
+                    app:tint="@color/color_black"
+                    android:onClick="@{() -> vm.onClickBack()}"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp" />
+
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 

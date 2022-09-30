@@ -183,7 +183,7 @@
             android:layout_marginHorizontal="10dp"
             android:layout_marginBottom="10dp"
             app:cardCornerRadius="@dimen/card_small_corner"
-            app:cardElevation="@dimen/card_small_elevation"
+            app:cardElevation="@dimen/card_elevation"
             app:layout_constraintBottom_toTopOf="@id/btn_search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -198,7 +198,7 @@
                 android:importantForAutofill="no"
                 android:includeFontPadding="false"
                 android:inputType="text"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:text="@={vm.searchSongTitle}"
                 android:textColor="@color/black"
                 android:textSize="15sp" />

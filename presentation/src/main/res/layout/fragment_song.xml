@@ -15,8 +15,7 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="?attr/actionBarSize">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -155,6 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:orientation="vertical"
+                android:layout_marginBottom="?attr/actionBarSize"
                 android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -181,11 +181,12 @@
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginEnd="16dp"
                 android:backgroundTint="@color/main"
                 android:contentDescription="@string/fab_content_desc"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
+                android:layout_marginBottom="72dp"
                 android:text="@string/add_wakeup_song"
                 android:textColor="@color/white"
                 app:fabSize="auto"

@@ -14,6 +14,7 @@
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/color_background"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -628,18 +629,19 @@
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
 
-                    <androidx.appcompat.widget.AppCompatButton
+                    <Button
                         android:id="@+id/btn_add_offbase"
                         android:layout_width="100dp"
                         android:layout_height="40dp"
                         android:background="@drawable/background_checked"
-                        android:fontFamily="@font/noto_regular"
+                        android:fontFamily="@font/noto_medium"
                         android:includeFontPadding="false"
                         android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
                         android:onClick="@{() -> vm.onClickApply()}"
                         android:text="@string/text_ok"
-                        android:textColor="@color/color_white"
-                        android:textSize="16sp"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/title5"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/guideline2" />
                 </androidx.constraintlayout.widget.ConstraintLayout>

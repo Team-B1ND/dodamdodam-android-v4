@@ -116,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/color_black"
                     android:textSize="@dimen/title5"
                     android:textStyle="bold"
                     tools:text="외박 날짜" />
@@ -149,7 +149,7 @@
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
                     android:text="@string/text_out_sleeping_date_end"
-                    android:textColor="@color/black"
+                    android:textColor="@color/color_black"
                     android:textSize="@dimen/title5"
                     android:textStyle="bold" />
 
@@ -182,7 +182,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
-                    android:textColor="@color/black"
+                    android:textColor="@color/color_black"
                     android:textSize="@dimen/title5"
                     android:textStyle="bold"
                     tools:text="외박 시간" />
@@ -217,7 +217,7 @@
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
                     android:text="@string/text_out_time_end"
-                    android:textColor="@color/black"
+                    android:textColor="@color/color_black"
                     android:textSize="@dimen/title5"
                     android:textStyle="bold" />
 

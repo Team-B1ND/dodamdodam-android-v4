@@ -72,7 +72,7 @@
                     android:gravity="center_vertical"
                     android:includeFontPadding="false"
                     android:text="@string/meal_dummy"
-                    android:textColor="@color/black"
+                    android:textColor="@color/color_black"
                     android:textSize="@dimen/title6"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

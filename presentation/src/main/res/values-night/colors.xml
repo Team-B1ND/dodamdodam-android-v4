@@ -8,7 +8,9 @@
 
     <color name="gray200">#6A6A6A</color>
     <color name="gray500">#999999</color>
-    <color name="gray700">#6A6A6A</color>
+    <color name="gray700">#CACACA</color>
+
+    <color name="main">#077FE1</color>
 
     <color name="color_background_toggle">#434343</color>
 
