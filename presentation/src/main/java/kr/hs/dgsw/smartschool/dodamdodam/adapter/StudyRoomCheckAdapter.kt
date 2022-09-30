@@ -45,13 +45,13 @@ class StudyRoomCheckAdapter(val onClickStudyRoomCard: (Int) -> Unit) : BaseListA
             val index = (view.layoutParams as GridLayoutManager.LayoutParams).spanIndex
 
             if (index == 0 || index == 2) {
-                outRect.right = 10
-                outRect.top = 10
-                outRect.bottom = 10
+                outRect.right = 15
             } else {
-                outRect.left = 10
-                outRect.top = 10
-                outRect.bottom = 10
+                outRect.left = 15
+            }
+
+            if (index == 0 || index == 1) {
+                outRect.bottom = 30
             }
 
         }

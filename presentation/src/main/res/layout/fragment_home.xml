@@ -31,11 +31,11 @@
                     android:id="@+id/iv_logo_home"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin"
                     android:src="@drawable/logo_home"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="@dimen/default_margin"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -52,8 +52,8 @@
                 android:id="@+id/recycler_location_check"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/default_margin"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/default_margin"
                 android:overScrollMode="never"
                 android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -61,51 +61,13 @@
                 tools:itemCount="4"
                 tools:listitem="@layout/item_study_room_check" />
 
-
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_pager_meal_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/default_card_height_margin"
-                android:clipChildren="false"
-                android:clipToPadding="false"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tv_today_song_home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15sp"
-                    android:fontFamily="@font/noto_bold"
-                    android:includeFontPadding="false"
-                    android:text="@string/home_song"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/title4"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_song_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:fontFamily="@font/noto_regular"
-                    android:includeFontPadding="false"
-                    android:onClick="@{() -> vm.onClickSongMore()}"
-                    android:text="@string/more"
-                    android:textColor="@color/gray500"
-                    app:layout_constraintBaseline_toBaselineOf="@id/tv_today_song_home"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_pager_today_song"
@@ -123,28 +85,6 @@
                 android:visibility="gone" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tv_more_function"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/noto_bold"
-                    android:includeFontPadding="false"
-                    android:text="@string/text_more_function"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/title4"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_more_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -153,7 +93,7 @@
                     android:id="@+id/card_out"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_marginStart="@dimen/default_margin"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="10dp"
@@ -173,13 +113,13 @@
 
                         <TextView
                             android:id="@+id/tv_out"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
-                            android:fontFamily="@font/noto_regular"
+                            android:layout_margin="@dimen/default_margin"
+                            android:fontFamily="@font/noto_bold"
                             android:includeFontPadding="false"
                             android:text="@string/title_out"
-                            android:textColor="@color/main"
+                            android:textColor="@color/color_black"
                             android:textSize="@dimen/title3"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -193,10 +133,20 @@
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
                             android:text="@string/text_out_desc"
-                            android:textColor="@color/color_black"
+                            android:textColor="@color/gray700"
                             android:textSize="@dimen/title5"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_out" />
+
+                        <ImageView
+                            android:id="@+id/iv_zzz"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="@dimen/default_margin"
+                            android:src="@drawable/ic_zzz"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:ignore="ContentDescription" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -207,7 +157,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="5dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginEnd="@dimen/default_margin"
                     app:cardCornerRadius="@dimen/card_corner"
                     app:cardElevation="@dimen/card_elevation"
                     app:layout_constraintBottom_toBottomOf="@id/card_out"
@@ -222,13 +172,13 @@
 
                         <TextView
                             android:id="@+id/tv_lost_found"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
-                            android:fontFamily="@font/noto_regular"
+                            android:layout_margin="@dimen/default_margin"
+                            android:fontFamily="@font/noto_bold"
                             android:includeFontPadding="false"
                             android:text="@string/title_lost_and_found"
-                            android:textColor="@color/main"
+                            android:textColor="@color/color_black"
                             android:textSize="@dimen/title3"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -242,10 +192,20 @@
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
                             android:text="@string/text_lost_and_found"
-                            android:textColor="@color/color_black"
+                            android:textColor="@color/gray700"
                             android:textSize="@dimen/title5"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_lost_found" />
+
+                        <ImageView
+                            android:id="@+id/iv_screaming"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="@dimen/default_margin"
+                            android:src="@drawable/ic_face_screaming"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:ignore="ContentDescription" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
@@ -254,12 +214,12 @@
                     android:id="@+id/card_it_map"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginHorizontal="@dimen/default_margin"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="70dp"
+                    android:onClick="@{() -> vm.onClickItMap()}"
                     app:cardCornerRadius="@dimen/card_corner"
                     app:cardElevation="@dimen/card_elevation"
-                    android:onClick="@{() -> vm.onClickItMap()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="2.5:1"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -273,13 +233,13 @@
 
                         <TextView
                             android:id="@+id/tv_it_map"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
-                            android:fontFamily="@font/noto_regular"
+                            android:layout_margin="@dimen/default_margin"
+                            android:fontFamily="@font/noto_bold"
                             android:includeFontPadding="false"
                             android:text="@string/title_it_map"
-                            android:textColor="@color/main"
+                            android:textColor="@color/color_black"
                             android:textSize="@dimen/title3"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -293,10 +253,20 @@
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
                             android:text="@string/text_it_map_desc"
-                            android:textColor="@color/color_black"
+                            android:textColor="@color/gray700"
                             android:textSize="@dimen/title5"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tv_it_map" />
+
+                        <ImageView
+                            android:id="@+id/iv_graduation_cap"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="@dimen/default_margin"
+                            android:src="@drawable/ic_graduation_cap"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:ignore="ContentDescription" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
