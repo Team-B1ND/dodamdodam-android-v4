@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:textColor="@color/gray700"
-            android:fontFamily="@font/nanum_square_regular"
+            android:fontFamily="@font/noto_regular"
             android:includeFontPadding="false"
             android:layout_marginVertical="5dp"
             android:textSize="@dimen/title6" />

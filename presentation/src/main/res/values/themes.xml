@@ -29,11 +29,11 @@
     </style>
 
     <style name="TextAppearance.App.Title" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:fontFamily">@font/nanum_square_regular</item>
+        <item name="android:fontFamily">@font/noto_regular</item>
     </style>
 
     <style name="TextAppearance.App.Title.Expanded" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
-        <item name="android:fontFamily">@font/nanum_square_regular</item>
+        <item name="android:fontFamily">@font/noto_regular</item>
     </style>
 
 </resources>

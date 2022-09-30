@@ -84,7 +84,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:fontFamily="@font/notosans_kr_regular"
+                            android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
                             android:text="@{vm.outItem.isOutSleeping ? @string/text_out_sleeping_date : @string/text_out_going_date}"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
@@ -96,7 +96,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="16dp"
-                            android:fontFamily="@font/nanum_square_regular"
+                            android:fontFamily="@font/noto_regular"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                             android:text="@{vm.outItem.startDate}" />
                     </LinearLayout>
@@ -122,7 +122,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:fontFamily="@font/notosans_kr_regular"
+                            android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
                             android:text="@{vm.outItem.isOutSleeping ? @string/text_out_sleeping_time : @string/text_out_going_time}"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
@@ -134,7 +134,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="16dp"
-                            android:fontFamily="@font/nanum_square_regular"
+                            android:fontFamily="@font/noto_regular"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                             android:text="@{vm.outItem.startTime}" />
                     </LinearLayout>
@@ -161,7 +161,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:fontFamily="@font/notosans_kr_regular"
+                            android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
                             android:text="@string/text_out_sleeping_date_end"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
@@ -172,7 +172,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="16dp"
-                            android:fontFamily="@font/nanum_square_regular"
+                            android:fontFamily="@font/noto_regular"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                             android:text="@{vm.outItem.endDate}" />
                     </LinearLayout>
@@ -198,7 +198,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:fontFamily="@font/notosans_kr_regular"
+                            android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
                             android:text="@string/text_out_time_end"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
@@ -209,7 +209,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="16dp"
-                            android:fontFamily="@font/nanum_square_regular"
+                            android:fontFamily="@font/noto_regular"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                             android:text="@{vm.outItem.endTime}" />
                     </LinearLayout>
@@ -234,7 +234,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:fontFamily="@font/notosans_kr_regular"
+                            android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
                             android:text="@string/text_reason"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
@@ -245,7 +245,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="16dp"
-                            android:fontFamily="@font/nanum_square_regular"
+                            android:fontFamily="@font/noto_regular"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                             android:text="@{vm.outItem.reason}" />
                     </LinearLayout>

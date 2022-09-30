@@ -36,7 +36,7 @@ class DodamToolbar : Toolbar {
                 try {
                     textView?.typeface = ResourcesCompat.getFont(
                         context,
-                        R.font.nanum_square_regular
+                        R.font.noto_regular
                     )
                     textView?.setTextColor(if (context.isNight()) Color.WHITE else Color.BLACK)
                     textView?.textSize = 18f
@@ -58,7 +58,7 @@ class DodamToolbar : Toolbar {
                 val field = superClass.getDeclaredField("mSubtitleTextView")
                 field.isAccessible = true
                 val textView = field[this] as TextView?
-                val typeface = ResourcesCompat.getFont(context, R.font.nanum_square_regular)
+                val typeface = ResourcesCompat.getFont(context, R.font.noto_regular)
                 textView?.typeface = typeface
                 val layoutParams = generateDefaultLayoutParams()
                 textView?.layoutParams = layoutParams
