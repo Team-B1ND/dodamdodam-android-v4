@@ -31,6 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private var date: LocalDate = LocalDate.now()
 
     private lateinit var studyRoomCheckAdapter: StudyRoomCheckAdapter
+    private lateinit var studyRoomCheckDecoration: StudyRoomCheckAdapter.StudyRoomCheckDecoration
     private lateinit var songAdapter: SongAdapter
     lateinit var mealHomeAdapter: MealHomeAdapter
 
@@ -187,6 +188,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             val action = HomeFragmentDirections.actionMainHomeToStudyRoomApplyFragment(position)
             findNavController().navigate(action)
         }
+        studyRoomCheckDecoration = StudyRoomCheckAdapter.StudyRoomCheckDecoration()
         mBinding.recyclerLocationCheck.adapter = studyRoomCheckAdapter
+        mBinding.recyclerLocationCheck.addItemDecoration(studyRoomCheckDecoration)
+
     }
 }
