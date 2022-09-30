@@ -10,7 +10,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemStudyRoomCheckBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
-import java.util.*
+import java.util.Date
 
 class StudyRoomCheckAdapter(val onClickStudyRoomCard: (Int) -> Unit) : BaseListAdapter<StudyRoom, ItemStudyRoomCheckBinding>(
     R.layout.item_study_room_check,

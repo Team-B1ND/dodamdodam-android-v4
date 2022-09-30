@@ -61,56 +61,12 @@
                 tools:itemCount="4"
                 tools:listitem="@layout/item_study_room_check" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tv_meal_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15sp"
-                    android:fontFamily="@font/noto_bold"
-                    android:includeFontPadding="false"
-                    android:text="@string/home_meal"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/title4"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_meal_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:fontFamily="@font/noto_regular"
-                    android:includeFontPadding="false"
-                    android:textColor="@color/gray500"
-                    android:textSize="@dimen/title6"
-                    app:layout_constraintBaseline_toBaselineOf="@id/tv_meal_title"
-                    app:layout_constraintStart_toEndOf="@id/tv_meal_title"
-                    tools:text="6.10" />
-
-                <TextView
-                    android:id="@+id/tv_meal_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:fontFamily="@font/noto_regular"
-                    android:includeFontPadding="false"
-                    android:onClick="@{() -> vm.onClickMealMore()}"
-                    android:text="@string/more"
-                    android:textColor="@color/gray500"
-                    app:layout_constraintBaseline_toBaselineOf="@id/tv_meal_title"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_pager_meal_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_card_height_margin"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
