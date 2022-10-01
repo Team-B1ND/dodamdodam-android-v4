@@ -21,7 +21,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getRealPathFromURI
 import java.io.File
 
 @AndroidEntryPoint
-class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, LostFoundUpdateViewModel>(), LostFoundUpdateViewModel.ImageCallBack {
+class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, LostFoundUpdateViewModel>(){
     override val viewModel: LostFoundUpdateViewModel by viewModels()
     private val args: LostFoundUpdateFragmentArgs by navArgs()
 
@@ -57,7 +57,7 @@ class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, Los
         if (it.resultCode == Activity.RESULT_OK) {
             val uri = it.data?.data?.getRealPathFromURI(requireContext())
             viewModel.file = File(uri?.path!!)
-            setImage(url = null, uri = it.data!!.data)
+            setImage(url = viewModel.url.value, uri = it.data!!.data)
         }
     }
     private fun setImage(url: String?, uri: Uri?) {
@@ -68,11 +68,4 @@ class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, Los
             .into(mBinding.ivLostFound)
     }
 
-    override fun updateImage(image: String) {
-        Glide.with(mBinding.root)
-            .load(image)
-            .error(R.drawable.default_user)
-            .centerCrop()
-            .into(mBinding.ivLostFound)
-    }
 }
