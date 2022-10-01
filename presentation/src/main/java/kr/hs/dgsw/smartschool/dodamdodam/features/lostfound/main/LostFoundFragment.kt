@@ -24,11 +24,9 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
 
     override fun onStart() {
         super.onStart()
-        mBinding.rvLostFound.visibility = View.INVISIBLE
         viewModel.getMyInfo()
     }
     override fun observerViewModel() {
-        mBinding.rvLostFound.visibility = View.VISIBLE
         lostFoundAdapter = LostFoundAdapter(requireContext(), this)
         mBinding.rvLostFound.adapter = lostFoundAdapter
 

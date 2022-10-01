@@ -65,7 +65,7 @@ interface LostFoundApi {
         @Path("id") id: Int
     ): Response<Any>
 
-    @GET("lostfound/")
+    @GET("lostfound/{id}")
     suspend fun getLostFoundById(
         @Path("id") id: Int
     ): Response<LostFound>
