@@ -10,8 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -23,10 +21,10 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getRealPathFromURI
 import java.io.File
 
 @AndroidEntryPoint
-class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, LostFoundUpdateViewModel>(),LostFoundUpdateViewModel.ImageCallBack {
+class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, LostFoundUpdateViewModel>(), LostFoundUpdateViewModel.ImageCallBack {
     override val viewModel: LostFoundUpdateViewModel by viewModels()
     val args: LostFoundUpdateFragmentArgs by navArgs()
-    private val lostFoundId : Int = args.id
+    private val lostFoundId: Int = args.id
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +36,7 @@ class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, Los
     }
 
     override fun observerViewModel() {
-        mBinding.btnBack.setOnClickListener{
+        mBinding.btnBack.setOnClickListener {
             this.findNavController().popBackStack()
         }
         mBinding.btnImageAdd.setOnClickListener {
@@ -46,19 +44,18 @@ class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, Los
         }
         mBinding.btnImageDelete.setOnClickListener {
         }
-        mBinding.fbAddLostAndFound.setOnClickListener{
+        mBinding.fbAddLostAndFound.setOnClickListener {
             viewModel.modifyLostFound()
         }
     }
 
-    private fun startGallery(){
+    private fun startGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.setDataAndType(
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
             "image/*"
         )
         startForResult.launch(intent)
-
     }
 
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {

@@ -12,7 +12,7 @@ class DeleteLostFound @Inject constructor(
 
     data class Params(val idx: Int)
 
-    override fun invoke(params: Params): Flow<Resource<String>> = execute{
+    override fun invoke(params: Params): Flow<Resource<String>> = execute {
         lostFoundRepository.deleteLostFound(params.idx)
         "분실 게시물을 삭제하였습니다."
     }

@@ -11,7 +11,7 @@ class AddLostFoundComment @Inject constructor(
     private val lostFoundRepository: LostFoundRepository
 ) : BaseUseCase<AddCommentRequest, String>() {
 
-    override fun invoke(params: AddCommentRequest): Flow<Resource<String>> = execute{
+    override fun invoke(params: AddCommentRequest): Flow<Resource<String>> = execute {
         lostFoundRepository.addComment(
             params
         )

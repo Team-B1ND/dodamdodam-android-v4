@@ -5,8 +5,8 @@ import kr.hs.dgsw.smartschool.data.datasource.TokenDataSource
 import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
-import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.request.lostfound.ModifyCommentRequest
 import javax.inject.Inject
 
@@ -46,7 +46,7 @@ class LostFoundRepositoryImpl @Inject constructor(
         return lostFoundDataSource.getMyLostFound()
     }
 
-    override suspend fun addLostFound(request: LostFoundDataRequest):String {
+    override suspend fun addLostFound(request: LostFoundDataRequest): String {
         return lostFoundDataSource.addLostFound(request)
     }
 
@@ -54,7 +54,7 @@ class LostFoundRepositoryImpl @Inject constructor(
         return lostFoundDataSource.addComment(request)
     }
 
-    override suspend fun modifyLostFound(request: LostFoundDataRequest):String {
+    override suspend fun modifyLostFound(request: LostFoundDataRequest): String {
         return lostFoundDataSource.modifyLostFound(request)
     }
 

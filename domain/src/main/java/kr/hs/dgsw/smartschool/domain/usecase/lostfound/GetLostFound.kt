@@ -12,7 +12,6 @@ class GetLostFound @Inject constructor(
     private val lostFoundRepository: LostFoundRepository
 ) : BaseUseCase<GetLostFound.Params, List<LostFound>>() {
 
-
     data class Params(
         val page: Int,
         val type: String

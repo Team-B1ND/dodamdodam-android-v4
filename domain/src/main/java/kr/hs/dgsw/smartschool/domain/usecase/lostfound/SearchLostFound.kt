@@ -13,7 +13,7 @@ class SearchLostFound @Inject constructor(
 
     data class Params(val search: String)
 
-    override fun invoke(params: Params): Flow<Resource<List<LostFound>>> = execute{
+    override fun invoke(params: Params): Flow<Resource<List<LostFound>>> = execute {
         lostFoundRepository.getLostFoundSearch(params.search)
     }
 }

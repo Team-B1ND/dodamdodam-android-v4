@@ -1,19 +1,18 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
-import retrofit2.http.GET
-import retrofit2.http.Query
-import retrofit2.http.POST
+import kr.hs.dgsw.smartschool.data.network.response.Response
+import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
+import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
+import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
+import kr.hs.dgsw.smartschool.domain.request.lostfound.ModifyCommentRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
-import kr.hs.dgsw.smartschool.data.network.response.Response
-import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
-import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
-import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
-import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
-import kr.hs.dgsw.smartschool.domain.request.lostfound.ModifyCommentRequest
+import retrofit2.http.GET
 import retrofit2.http.PATCH
+import retrofit2.http.POST
 import retrofit2.http.Path
-
+import retrofit2.http.Query
 
 interface LostFoundApi {
     @GET("lostfound")
@@ -34,8 +33,7 @@ interface LostFoundApi {
     ): Response<List<LostFound>>
 
     @GET("lostfound/my")
-    suspend fun getMyLostFound(
-    ): Response<List<LostFound>>
+    suspend fun getMyLostFound(): Response<List<LostFound>>
 
     @POST("lostfound")
     suspend fun postLostFound(
@@ -48,7 +46,7 @@ interface LostFoundApi {
     ): Response<Any>
 
     @PATCH("lostfound")
-   suspend  fun patchLostFound(
+    suspend fun patchLostFound(
         @Body request: LostFoundDataRequest
     ): Response<Any>
 
@@ -58,17 +56,17 @@ interface LostFoundApi {
     ): Response<Any>
 
     @DELETE("lostfound/{id}")
-   suspend fun deleteLostFound(
-        @Path("id") id : Int
+    suspend fun deleteLostFound(
+        @Path("id") id: Int
     ): Response<Any>
 
     @DELETE("lostfound/comment/{id}")
-   suspend fun deleteComment(
-        @Path("id") id : Int
+    suspend fun deleteComment(
+        @Path("id") id: Int
     ): Response<Any>
 
-   @GET("lostfound/")
-   suspend fun getLostFoundById(
-       @Path("id") id : Int
-   ): Response<LostFound>
+    @GET("lostfound/")
+    suspend fun getLostFoundById(
+        @Path("id") id: Int
+    ): Response<LostFound>
 }

@@ -11,7 +11,7 @@ class AddLostFound @Inject constructor(
     private val lostFoundRepository: LostFoundRepository
 ) : BaseUseCase<LostFoundDataRequest, String>() {
 
-    override fun invoke(params: LostFoundDataRequest): Flow<Resource<String>> = execute{
+    override fun invoke(params: LostFoundDataRequest): Flow<Resource<String>> = execute {
         lostFoundRepository.addLostFound(
             LostFoundDataRequest(
                 params.content,

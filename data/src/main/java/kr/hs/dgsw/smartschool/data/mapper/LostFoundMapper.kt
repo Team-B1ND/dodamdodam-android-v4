@@ -3,7 +3,6 @@ package kr.hs.dgsw.smartschool.data.mapper
 import kr.hs.dgsw.smartschool.data.base.BaseEntityMapper
 import kr.hs.dgsw.smartschool.data.database.entity.HiddenLostFoundEntity
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
-import kr.hs.dgsw.smartschool.domain.model.lostfound.LostInfo
 
 class LostFoundMapper : BaseEntityMapper<LostFound, HiddenLostFoundEntity> {
     override fun mapToEntity(model: LostFound): HiddenLostFoundEntity {

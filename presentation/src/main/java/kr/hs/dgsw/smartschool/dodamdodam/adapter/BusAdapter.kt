@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.dodamdodam.adapter
 
 import android.content.Context
 import android.util.Log
-import android.view.View
 import android.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import kr.hs.dgsw.smartschool.dodamdodam.R
@@ -29,28 +28,28 @@ class BusAdapter(val context: Context, val listener: BusAdapter.BusApplyCallBack
         binding.bus = item
 
         binding.menu.setOnClickListener {
-                val pm: PopupMenu = PopupMenu(context, binding.menu)
-                pm.inflate(R.menu.bus_item_menu)
+            val pm: PopupMenu = PopupMenu(context, binding.menu)
+            pm.inflate(R.menu.bus_item_menu)
 
-                pm.setOnMenuItemClickListener(
-                    PopupMenu.OnMenuItemClickListener { data ->
-                        when (data.itemId) {
-                            R.id.apply_bus ->
-                                {
-                                    listener.applyBus(item.idx)
-                                    true
-                                }
-                            R.id.cancel_bus ->
-                                {
-                                    listener.cancelBus(item.idx)
-                                    true
-                                }
-                            else -> false
-                        }
+            pm.setOnMenuItemClickListener(
+                PopupMenu.OnMenuItemClickListener { data ->
+                    when (data.itemId) {
+                        R.id.apply_bus ->
+                            {
+                                listener.applyBus(item.idx)
+                                true
+                            }
+                        R.id.cancel_bus ->
+                            {
+                                listener.cancelBus(item.idx)
+                                true
+                            }
+                        else -> false
                     }
-                )
-                pm.show()
-            }
+                }
+            )
+            pm.show()
+        }
     }
 
     interface BusApplyCallBack {

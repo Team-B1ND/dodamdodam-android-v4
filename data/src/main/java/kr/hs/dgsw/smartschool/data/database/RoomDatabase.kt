@@ -41,7 +41,7 @@ abstract class RoomDatabase : androidx.room.RoomDatabase() {
     abstract fun tokenDao(): TokenDao
     abstract fun accountDao(): AccountDao
     abstract fun memberDao(): MemberDao
-    abstract fun hiddenLostFoundDao() : HiddenLostFoundDao
+    abstract fun hiddenLostFoundDao(): HiddenLostFoundDao
     abstract fun studentDao(): StudentDao
     abstract fun teacherDao(): TeacherDao
     abstract fun timeDao(): TimeDao

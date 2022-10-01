@@ -12,7 +12,6 @@ class GetMyLostFound @Inject constructor(
     private val lostFoundRepository: LostFoundRepository
 ) : BaseUseCase<Unit, List<LostFound>>() {
 
-
     override fun invoke(params: Unit): Flow<Resource<List<LostFound>>> = execute {
         Log.d("MyLostFoundUseCase", "실행")
         lostFoundRepository.getMyLostFound()

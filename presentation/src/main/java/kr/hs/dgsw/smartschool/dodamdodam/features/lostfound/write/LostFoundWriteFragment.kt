@@ -1,15 +1,11 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.write
 
 import android.app.Activity
-import android.content.ContentResolver
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -17,42 +13,36 @@ import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundWriteBinding
-import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getRealPathFromURI
 import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.io.OutputStream
 
 @AndroidEntryPoint
 class LostFoundWriteFragment : BaseFragment<FragmentLostFoundWriteBinding, LostFoundWriteViewModel>() {
     override val viewModel: LostFoundWriteViewModel by viewModels()
 
     override fun observerViewModel() {
-        mBinding.btnBack.setOnClickListener{
+        mBinding.btnBack.setOnClickListener {
             this.findNavController().popBackStack()
         }
         mBinding.btnImageAdd.setOnClickListener {
             startGallery()
         }
         mBinding.btnImageDelete.setOnClickListener {
-
         }
-        mBinding.fbAddLostAndFound.setOnClickListener{
-            Log.d("LostFoundWriteFragment","addLostFound()")
+        mBinding.fbAddLostAndFound.setOnClickListener {
+            Log.d("LostFoundWriteFragment", "addLostFound()")
             viewModel.addLostFound()
             this.findNavController().popBackStack()
         }
     }
 
-    private fun startGallery(){
+    private fun startGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.setDataAndType(
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
             "image/*"
         )
         startForResult.launch(intent)
-
     }
 
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {

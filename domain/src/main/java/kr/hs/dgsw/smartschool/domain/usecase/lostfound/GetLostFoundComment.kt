@@ -15,7 +15,7 @@ class GetLostFoundComment @Inject constructor(
         val lostFoundIdx: Int
     )
 
-    override fun invoke(params: Params): Flow<Resource<List<Comment>>> = execute{
+    override fun invoke(params: Params): Flow<Resource<List<Comment>>> = execute {
         lostFoundRepository.getComment(params.lostFoundIdx)
     }
 }

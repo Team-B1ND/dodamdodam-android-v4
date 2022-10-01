@@ -1,38 +1,33 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.comment
 
-import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
-import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.adapter.LostFoundCommentAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundCommentBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.adapter.LostFoundCommentAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.comment.update.UpdateCommentDialog
-import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.main.LostFoundFragmentDirections
-import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.CommentInfo
-import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
 import java.time.LocalDate
 
 @AndroidEntryPoint
-class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, LostFoundCommentViewModel>(),LostFoundCommentAdapter.CommentCallBack,UpdateCommentDialog.CommentCallBack {
-    private lateinit var lostFoundAdapter : LostFoundCommentAdapter
+class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, LostFoundCommentViewModel>(), LostFoundCommentAdapter.CommentCallBack, UpdateCommentDialog.CommentCallBack {
+    private lateinit var lostFoundAdapter: LostFoundCommentAdapter
     override val viewModel: LostFoundCommentViewModel by viewModels()
 
-    private val args : LostFoundCommentFragmentArgs by navArgs()
+    private val args: LostFoundCommentFragmentArgs by navArgs()
 
-    var myId : String = ""
+    var myId: String = ""
 
     override fun onStart() {
         super.onStart()
         viewModel.getMyInfo()
-        lostFoundAdapter = LostFoundCommentAdapter(requireContext(),this)
+        lostFoundAdapter = LostFoundCommentAdapter(requireContext(), this)
         mBinding.rvComment.adapter = lostFoundAdapter
         viewModel.lostFoundId = args.id
         viewModel.getComment(args.id)
@@ -42,24 +37,22 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
         viewModel.getMyInfo()
     }
     override fun observerViewModel() {
-       with(mBinding){
-           btnBack.setOnClickListener{
-               findNavController().popBackStack()
-           }
-           swipeRefresh.setOnRefreshListener {
+        with(mBinding) {
+            btnBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            swipeRefresh.setOnRefreshListener {
                 viewModel.getComment(args.id)
-               swipeRefresh.isRefreshing = false
-           }
-           btnSendComment.setOnClickListener {
-               viewModel.addComment(args.id)
-               etComment.clearFocus()
-               etComment.setText("")
-           }
-       }
+                swipeRefresh.isRefreshing = false
+            }
+            btnSendComment.setOnClickListener {
+                viewModel.addComment(args.id)
+                etComment.clearFocus()
+                etComment.setText("")
+            }
+        }
 
-
-
-        with(viewModel){
+        with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getCommentState.collect { state ->
                     if (state.list.isNotEmpty()) {
@@ -86,10 +79,10 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
         }
     }
     private fun setCommentInfo(lostFoundList: List<Comment>): List<CommentInfo> {
-        Log.d("LostFoundCommentFragment",lostFoundList.toString())
+        Log.d("LostFoundCommentFragment", lostFoundList.toString())
 
         val date = LocalDate.now()
-        //viewModel.getComment()
+        // viewModel.getComment()
         val list: MutableList<CommentInfo> = mutableListOf()
         lostFoundList.forEach {
             list.add(
@@ -105,20 +98,20 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
         }
         return list.toList()
     }
-    private fun setRecyclerView(list : List<CommentInfo>){
+    private fun setRecyclerView(list: List<CommentInfo>) {
         lostFoundAdapter.submitList(list)
     }
-    override fun deleteComment(idx : Int){
+    override fun deleteComment(idx: Int) {
         viewModel.deleteComment(idx)
     }
-    override fun openDialog(idx : Int){
-        val dialog = UpdateCommentDialog(viewModel.comment.value ?: "",idx,this)
+    override fun openDialog(idx: Int) {
+        val dialog = UpdateCommentDialog(viewModel.comment.value ?: "", idx, this)
         // 알림창이 띄워져있는 동안 배경 클릭 막기
         dialog.isCancelable = false
         dialog.show(childFragmentManager, "UpdateCommentDialog")
     }
 
-    override fun modifyComment(idx: Int,newComment : String) {
+    override fun modifyComment(idx: Int, newComment: String) {
         Log.e("LostFoundCommentFragment", "실행$idx$newComment")
         viewModel.modifyComment(idx, newComment)
     }
