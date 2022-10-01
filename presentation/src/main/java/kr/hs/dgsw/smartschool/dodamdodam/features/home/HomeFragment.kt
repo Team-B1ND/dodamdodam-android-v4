@@ -31,7 +31,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private var date: LocalDate = LocalDate.now()
 
     private lateinit var studyRoomCheckAdapter: StudyRoomCheckAdapter
-    private lateinit var studyRoomCheckDecoration: StudyRoomCheckAdapter.StudyRoomCheckDecoration
     private lateinit var songAdapter: SongAdapter
     lateinit var mealHomeAdapter: MealHomeAdapter
 
@@ -85,9 +84,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             if (LocalDateTime.now().hour >= 20) {
                 date = LocalDate.now()
                 date = date.plusDays(1)
-                // mBinding.tvMealTitle.text = "내일의 급식"
             }
-            //mBinding.tvMealDate.text = String.format("%d.%d", date.monthValue, date.dayOfMonth)
             getMeal(date)
 
             lifecycleScope.launchWhenStarted {
@@ -188,9 +185,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             val action = HomeFragmentDirections.actionMainHomeToStudyRoomApplyFragment(position)
             findNavController().navigate(action)
         }
-        studyRoomCheckDecoration = StudyRoomCheckAdapter.StudyRoomCheckDecoration()
         mBinding.recyclerLocationCheck.adapter = studyRoomCheckAdapter
-        mBinding.recyclerLocationCheck.addItemDecoration(studyRoomCheckDecoration)
-
     }
 }
