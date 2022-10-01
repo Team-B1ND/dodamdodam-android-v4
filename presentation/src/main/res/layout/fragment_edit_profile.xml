@@ -57,7 +57,7 @@
             android:id="@+id/btn_add_image"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_btn_image"
+            android:src="@drawable/ic_btn_gallery"
             app:tint="@color/color_black"
             app:layout_constraintBottom_toBottomOf="@id/iv_profile"
             app:layout_constraintEnd_toEndOf="@id/iv_profile"

@@ -27,7 +27,7 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginBottom="7dp"
-                android:src="@drawable/ic_btn_bus"
+                android:src="@drawable/ic_bus"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

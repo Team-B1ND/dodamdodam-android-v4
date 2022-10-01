@@ -97,7 +97,7 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
 
         marker.map = naverMap
         marker.tag = company.id
-        marker.icon = OverlayImage.fromResource(R.drawable.marker_office_building)
+        marker.icon = OverlayImage.fromResource(R.drawable.ic_marker_office_building)
 
         marker.setOnClickListener {
             navigateToDetail(it.tag as Int)
