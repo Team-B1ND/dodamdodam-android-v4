@@ -29,10 +29,6 @@ class LostFoundUpdateViewModel @Inject constructor(
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
     private val isModifyLostFoundLoading = MutableLiveData<Boolean>()
 
-    interface ImageCallBack {
-        fun updateImage(image: String)
-    }
-
     init {
         combineLoadingVariable(isGetLostFoundLoading, isModifyLostFoundLoading)
     }
@@ -45,8 +41,7 @@ class LostFoundUpdateViewModel @Inject constructor(
     fun getLostFound(id: Int) {
         useCases.getLostFoundById(id).divideResult(
             isModifyLostFoundLoading,
-            {
-                callBack.updateImage(it?.image ?: "")
+            {   url.value = it?.image
                 title.value = it?.title
                 if (it?.type!!.equals("FOUND")) {
                     isFound.value = true
@@ -61,6 +56,7 @@ class LostFoundUpdateViewModel @Inject constructor(
             { viewModelScope.launch { it } }
         ).launchIn(viewModelScope)
     }
+    //TODO 이미지 업로드 불러온 사진 그대로 다시 올려보내기 구현
     private fun imageUpload(file: File) {
         imageUseCase(file).divideResult(
             isModifyLostFoundLoading,
