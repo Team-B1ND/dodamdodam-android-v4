@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -11,62 +12,84 @@
             type="kr.hs.dgsw.smartschool.dodamdodam.features.profile.ProfileViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_background">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_profile"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_app_bar_height"
+            android:background="@color/color_background"
+            android:theme="@style/Widget.Material3.AppBarLayout"
+            app:liftOnScroll="false">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_background"
+                app:collapsedTitleTextAppearance="@style/CollapsedAppBar"
+                app:contentScrim="@null"
+                app:expandedTitleGravity="center_vertical"
+                app:expandedTitleMarginStart="@dimen/default_margin"
+                app:expandedTitleTextAppearance="@style/ExpandedAppBar"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:title="@string/nav_profile">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/color_background"
+                    app:layout_collapseMode="pin">
+
+                    <TextView
+                        android:id="@+id/tv_modify"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:background="@color/color_background"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:onClick="@{() -> vm.onClickEditProfile()}"
+                        android:text="@string/modify"
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/title5" />
+
+                </com.google.android.material.appbar.MaterialToolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <ScrollView
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                >
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layout_profile_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:fontFamily="@font/noto_bold"
-                            android:includeFontPadding="false"
-                            android:text="@string/nav_profile"
-                            android:textColor="@color/main"
-                            android:textSize="@dimen/title2"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
                     <androidx.cardview.widget.CardView
                         android:id="@+id/card_info_base"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginHorizontal="@dimen/default_margin"
                         app:cardCornerRadius="@dimen/card_corner"
                         app:cardElevation="@dimen/card_elevation"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/layout_profile_title">
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <include
                             android:id="@+id/progress_circular_info"
@@ -86,24 +109,11 @@
                                 android:layout_width="80dp"
                                 android:layout_height="80dp"
                                 android:layout_marginStart="30dp"
-                                android:src="@drawable/default_user"
                                 android:onClick="@{() -> vm.onClickEditProfile()}"
+                                android:src="@drawable/default_user"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
-
-                            <ImageView
-                                android:id="@+id/btn_go_info_update"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_gravity="center_horizontal"
-                                android:layout_margin="15dp"
-                                android:onClick="@{() -> vm.onClickEditProfile()}"
-                                android:contentDescription="@string/profile_modify_desc"
-                                android:src="@drawable/ic_btn_modify"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:tint="@color/color_black" />
 
                             <LinearLayout
                                 android:id="@+id/linear_info"
@@ -124,7 +134,7 @@
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/noto_regular"
                                     android:includeFontPadding="false"
-                                    android:text="@string/text_grade"
+                                    android:text="2318"
                                     android:textColor="#BFBFBF"
                                     android:textSize="@dimen/title6" />
 
@@ -197,7 +207,7 @@
                         android:id="@+id/card_point_base"
                         android:layout_width="match_parent"
                         android:layout_height="230dp"
-                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginHorizontal="@dimen/default_margin"
                         android:layout_marginBottom="20dp"
                         app:cardCornerRadius="@dimen/card_corner"
                         app:cardElevation="@dimen/card_elevation"
@@ -251,8 +261,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginEnd="5dp"
-                                    android:button="@null"
                                     android:background="@drawable/background_select_box"
+                                    android:button="@null"
                                     android:fontFamily="@font/noto_regular"
                                     android:includeFontPadding="false"
                                     android:onClick="@{() -> vm.selectDormitory()}"
@@ -267,8 +277,8 @@
                                     isSelected="@{vm.schoolSelected}"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:button="@null"
                                     android:background="@drawable/background_select_box"
+                                    android:button="@null"
                                     android:fontFamily="@font/noto_regular"
                                     android:includeFontPadding="false"
                                     android:onClick="@{() -> vm.selectSchool()}"
@@ -370,14 +380,14 @@
                                 android:id="@+id/tv_no_data"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_regular"
                                 android:text="@string/text_no_data"
                                 android:textColor="@color/color_black"
                                 android:visibility="gone"
-                                android:fontFamily="@font/noto_regular"
+                                app:layout_constraintBottom_toBottomOf="@id/chart_point"
                                 app:layout_constraintEnd_toEndOf="@id/chart_point"
                                 app:layout_constraintStart_toStartOf="@id/chart_point"
-                                app:layout_constraintTop_toTopOf="@id/chart_point"
-                                app:layout_constraintBottom_toBottomOf="@id/chart_point" />
+                                app:layout_constraintTop_toTopOf="@id/chart_point" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
@@ -421,7 +431,7 @@
                             android:id="@+id/card_offbase"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:layout_marginStart="20dp"
+                            android:layout_marginStart="@dimen/default_margin"
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="10dp"
@@ -473,10 +483,10 @@
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_marginStart="5dp"
-                            android:layout_marginEnd="20dp"
+                            android:layout_marginEnd="@dimen/default_margin"
+                            android:onClick="@{() -> vm.onClickBus()}"
                             app:cardCornerRadius="@dimen/card_corner"
                             app:cardElevation="@dimen/card_elevation"
-                            android:onClick="@{() -> vm.onClickBus()}"
                             app:layout_constraintBottom_toBottomOf="@id/card_offbase"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/card_offbase"
@@ -568,7 +578,7 @@
                             android:id="@+id/card_my_apply"
                             android:layout_width="0dp"
                             android:layout_height="0dp"
-                            android:layout_marginStart="20dp"
+                            android:layout_marginStart="@dimen/default_margin"
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="5dp"
                             android:layout_marginBottom="10dp"
@@ -621,9 +631,9 @@
                             android:layout_height="0dp"
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="20dp"
+                            android:onClick="@{() -> vm.onClickSetting()}"
                             app:cardCornerRadius="@dimen/card_corner"
                             app:cardElevation="@dimen/card_elevation"
-                            android:onClick="@{() -> vm.onClickSetting()}"
                             app:layout_constraintBottom_toBottomOf="@id/card_my_apply"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/card_my_apply"
@@ -663,7 +673,7 @@
                         </androidx.cardview.widget.CardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </ScrollView>
+            </androidx.core.widget.NestedScrollView>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
