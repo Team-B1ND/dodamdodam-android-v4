@@ -39,9 +39,9 @@
     <string name="prize_point">상점</string>
     <string name="penalty_point">벌점</string>
     <string name="title_out">외출/외박</string>
-    <string name="bus">버스 신청</string>
+    <string name="title_bus">버스 신청</string>
     <string name="text_out_desc">설마 무단 외출은 아니지?</string>
-    <string name="bus_desc">드디어 집 갈 시간!</string>
+    <string name="text_bus_desc">드디어 집 갈 시간!</string>
     <string name="apply">신청하기</string>
     <string name="text_other">기타</string>
     <string name="back_to_home_desc">back to home</string>
@@ -60,7 +60,7 @@
     <string name="more">더보기 ></string>
     <string name="text_my_apply">신청 내역 확인</string>
     <string name="text_my_apply_desc">내가 뭐 신청했더라?</string>
-    <string name="text_setting">설정</string>
+    <string name="title_setting">설정</string>
     <string name="text_setting_desc">도담을 잘 활용하는 방법</string>
     <string name="title_song_apply">기상송 신청</string>
     <string name="text_song_apply_desc">원하는 곡의 유튜브 링크를 올려주세요</string>
@@ -154,5 +154,6 @@
     <string name="text_out_going_time">외출 시간</string>
     <string name="title_company_detail">회사 상세 보기</string>
     <string name="text_study_room">자습실</string>
+    <string name="title_point">상벌점 조회</string>
 
 </resources>

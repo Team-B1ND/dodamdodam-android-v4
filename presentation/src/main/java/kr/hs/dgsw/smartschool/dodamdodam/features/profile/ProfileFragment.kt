@@ -35,8 +35,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     private var dormitoryBonusPoint: Int? = null
 
     override fun observerViewModel() {
-        mBinding.tvPointDate.text = "$date 기준"
-
         setPieChart()
         collectMyInfo()
         collectBonusPoint()

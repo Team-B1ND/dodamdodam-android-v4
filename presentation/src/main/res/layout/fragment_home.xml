@@ -88,7 +88,7 @@
                             android:includeFontPadding="false"
                             android:text="@string/title_study_room_apply"
                             android:textColor="@color/color_black"
-                            android:textSize="@dimen/title3"
+                            android:textSize="@dimen/card_title"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -142,7 +142,7 @@
                             android:includeFontPadding="false"
                             android:text="@string/home_song"
                             android:textColor="@color/color_black"
-                            android:textSize="@dimen/title3"
+                            android:textSize="@dimen/card_title"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -223,7 +223,7 @@
                                 android:includeFontPadding="false"
                                 android:text="@string/title_out"
                                 android:textColor="@color/color_black"
-                                android:textSize="@dimen/title3"
+                                android:textSize="@dimen/card_title"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -237,7 +237,7 @@
                                 android:includeFontPadding="false"
                                 android:text="@string/text_out_desc"
                                 android:textColor="@color/gray700"
-                                android:textSize="@dimen/title5"
+                                android:textSize="@dimen/card_content"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/tv_out" />
 
@@ -281,7 +281,7 @@
                                 android:includeFontPadding="false"
                                 android:text="@string/title_lost_and_found"
                                 android:textColor="@color/color_black"
-                                android:textSize="@dimen/title3"
+                                android:textSize="@dimen/card_title"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -295,7 +295,7 @@
                                 android:includeFontPadding="false"
                                 android:text="@string/text_lost_and_found"
                                 android:textColor="@color/gray700"
-                                android:textSize="@dimen/title5"
+                                android:textSize="@dimen/card_content"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/tv_lost_found" />
 
@@ -341,7 +341,7 @@
                                 android:includeFontPadding="false"
                                 android:text="@string/title_it_map"
                                 android:textColor="@color/color_black"
-                                android:textSize="@dimen/title3"
+                                android:textSize="@dimen/card_title"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -355,7 +355,7 @@
                                 android:includeFontPadding="false"
                                 android:text="@string/text_it_map_desc"
                                 android:textColor="@color/gray700"
-                                android:textSize="@dimen/title5"
+                                android:textSize="@dimen/card_content"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/tv_it_map" />
 
