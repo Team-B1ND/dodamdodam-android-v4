@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="kr.hs.dgsw.smartschool.dodamdodam.features.main.MainViewModel" />
@@ -15,11 +17,23 @@
         android:layout_height="match_parent"
         tools:context=".features.main.MainActivity">
 
+        <include
+            android:id="@+id/progress_loading"
+            layout="@layout/item_loading_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@drawable/background_bottom_nav"
+            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
             app:itemIconTint="@color/main"
             app:itemTextColor="@color/color_black"
             app:labelVisibilityMode="selected"

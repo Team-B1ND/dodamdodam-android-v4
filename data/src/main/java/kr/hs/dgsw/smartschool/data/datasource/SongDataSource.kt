@@ -13,17 +13,15 @@ class SongDataSource @Inject constructor(
     override val cache: Any
 ) : BaseDataSource<SongRemote, Any> {
 
-    suspend fun getAllowSong(year: Int, month: Int, date: Int): List<VideoYoutubeData> = remote.getAllowSong(year, month, date)
+    suspend fun applySong(request: SongRequest): String = remote.applySong(request)
 
-    suspend fun getPendingSong(): List<VideoYoutubeData> = remote.getPendingSong()
+    suspend fun deleteSong(id: String): String = remote.deleteSong(id)
 
-    suspend fun getMySong(id: String): List<VideoYoutubeData> = remote.getMySong(id)
+    suspend fun getAllowSong(year: Int, month: Int, day: Int): List<VideoSongData> = remote.getAllowSong(year, month, day)
 
-    suspend fun postSong(request: SongRequest): String = remote.postSong(request)
+    suspend fun getPendingSong(): List<VideoSongData> = remote.getPendingSong()
 
-    suspend fun postAllowSong(request: SongCheckRequest): String = remote.postAllowSong(request)
-
-    suspend fun postDenySong(request: SongCheckRequest): String = remote.postDenySong(request)
+    suspend fun getMySong(id: String): List<VideoSongData> = remote.getMySong(id)
 
     suspend fun getMelonChart(): List<MelonChart> = remote.getMelonChart()
 }

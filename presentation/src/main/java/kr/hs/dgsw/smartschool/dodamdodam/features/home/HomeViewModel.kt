@@ -11,11 +11,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.dodamdodam.features.meal.GetMealState
-import kr.hs.dgsw.smartschool.dodamdodam.features.setup.DataSetUpState
-import kr.hs.dgsw.smartschool.dodamdodam.features.song.GetAllowSongState
+import kr.hs.dgsw.smartschool.dodamdodam.features.meal.state.GetMealState
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetAllowSongState
 import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetMyStudyRoomState
-import kr.hs.dgsw.smartschool.domain.usecase.meal.GetAllMeal
+import kr.hs.dgsw.smartschool.domain.usecase.meal.GetMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetAllowSong
@@ -32,14 +31,11 @@ class HomeViewModel @Inject constructor(
     private val songUseCases: SongUseCases
 ) : BaseViewModel() {
 
-    private val _getMealState = MutableStateFlow(GetMealState(isLoading = false))
+    private val _getMealState = MutableStateFlow(GetMealState())
     val getMealState: StateFlow<GetMealState> = _getMealState
 
     private val _getMyStudyRoomState = MutableSharedFlow<GetMyStudyRoomState>()
     val getMyStudyRoomState: SharedFlow<GetMyStudyRoomState> = _getMyStudyRoomState
-
-    private val _dataSetUpState = MutableSharedFlow<DataSetUpState>()
-    val dataSetUpState: SharedFlow<DataSetUpState> = _dataSetUpState
 
     private val _getAllowSongState = MutableStateFlow<GetAllowSongState>(GetAllowSongState())
     val getAllowSongState: StateFlow<GetAllowSongState> = _getAllowSongState
@@ -51,23 +47,13 @@ class HomeViewModel @Inject constructor(
 
     init {
         combineLoadingVariable(isDataSetUpLoading, isGetMealLoading, isGetMyStudyRoomLoading, isGetAllowSongLoading)
-        dataSetUp()
-        // getAllowSong()
     }
 
-    fun getMealList(date: LocalDate) {
-        mealUseCases.getAllMeal(GetAllMeal.Params(date.year, date.monthValue)).divideResult(
+    fun getMeal(date: LocalDate) {
+        mealUseCases.getMeal(GetMeal.Params(date.year, date.monthValue, date.dayOfMonth)).divideResult(
             isGetMealLoading,
-            { _getMealState.value = GetMealState(meal = it ?: emptyList()) },
+            { _getMealState.value = GetMealState(meal = it, isUpdate = true) },
             { _getMealState.value = GetMealState(error = it ?: "급식을 받아오지 못하였습니다.") }
-        ).launchIn(viewModelScope)
-    }
-
-    private fun dataSetUp() {
-        setUpUseCases.dataSetUp(Unit).divideResult(
-            isDataSetUpLoading,
-            { viewModelScope.launch { _dataSetUpState.emit(DataSetUpState(result = it ?: "데이터 업데이트에 성공하였습니다.")) } },
-            { viewModelScope.launch { _dataSetUpState.emit(DataSetUpState(error = it ?: "데이터를 업데이트 하지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
 
@@ -89,13 +75,13 @@ class HomeViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
-    private fun getAllowSong() {
+    fun getAllowSong() {
         val today = LocalDate.now()
         songUseCases.getAllowSong(
             GetAllowSong.Params(
                 year = today.year,
                 month = today.monthValue,
-                date = today.dayOfMonth,
+                day = today.dayOfMonth,
             )
         ).divideResult(
             isGetAllowSongLoading,
@@ -119,10 +105,15 @@ class HomeViewModel @Inject constructor(
         viewEvent(ON_CLICK_LOST)
     }
 
+    fun onClickItMap() {
+        viewEvent(ON_CLICK_ITMAP)
+    }
+
     companion object {
         const val ON_CLICK_SONG_MORE = 0
         const val ON_CLICK_MEAL_MORE = 1
         const val ON_CLICK_OUT = 2
         const val ON_CLICK_LOST = 3
+        const val ON_CLICK_ITMAP = 3
     }
 }

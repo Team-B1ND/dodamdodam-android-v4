@@ -111,6 +111,56 @@
                 android:textSize="15sp"
                 app:cornerRadius="5dp" />
 
+
+            <TextView
+                android:id="@+id/tv_search_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/nanum_square_regular"
+                android:includeFontPadding="false"
+                android:text="@string/text_youtube_search_desc"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/title5" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="@dimen/card_small_corner"
+                app:cardElevation="@dimen/card_elevation">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:fontFamily="@font/nanum_square_regular"
+                    android:hint="@string/text_song_title"
+                    android:importantForAutofill="no"
+                    android:text="@={vm.searchSongTitle}"
+                    android:includeFontPadding="false"
+                    android:inputType="text"
+                    android:padding="15dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/main"
+                android:text="@string/text_do_search"
+                android:onClick="@{() -> vm.checkSearchTitle()}"
+                android:fontFamily="@font/nanum_square_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/color_white"
+                android:textSize="15sp" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_recommend"
                 android:layout_width="match_parent"

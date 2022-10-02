@@ -44,23 +44,13 @@
     <string name="bus_desc">드디어 집 갈 시간!</string>
     <string name="apply">신청하기</string>
     <string name="text_other">기타</string>
-    <string name="text_out_sleeping_date_end">복귀 날짜</string>
-    <string name="text_out_time_end">복귀 시간</string>
     <string name="back_to_home_desc">back to home</string>
     <string name="go_to_write_out_desc">go to write out</string>
     <string name="text_ok">확인</string>
-    <string name="text_out_going_date">외출 날짜</string>
-    <string name="text_out_going">외출</string>
-    <string name="text_out_sleeping">외박</string>
-    <string name="text_out">외출/외박</string>
-    <string name="text_reason">사유</string>
-    <string name="text_out_going_time">외출 시간</string>
     <string name="text_range_hour">0~23</string>
     <string name="text_range_minutes">0~59</string>
     <string name="colon">:</string>
     <string name="text_wave">~</string>
-    <string name="text_out_sleeping_date">외박 날짜</string>
-    <string name="text_out_sleeping_time">외박 시간</string>
     <string name="title_bus_apply">귀가 버스 신청</string>
     <string name="text_bus_start_time">출발시간</string>
     <string name="title_important_news">중요한 뉴스</string>
@@ -114,7 +104,7 @@
     <string name="text_class">반</string>
     <string name="text_number">번</string>
     <string name="text_phone">전화번호 ( - 제외)</string>
-    <string name="text_detail_info">상세정보</string>
+    <string name="text_detail_info">상세 정보</string>
     <string name="text_next">다음으로</string>
     <string name="text_use_agree">필수 이용약관 동의</string>
     <string name="text_personal_info"><![CDATA[> 개인정보 취급방침]]></string>
@@ -142,5 +132,29 @@
     <string name="text_please_apply_song">기상송을 신청해주세요!</string>
     <string name="title_out_write">외출/외박 신청</string>
     <string name="text_no_out">신청된 외출/외박이 없어요</string>
+    <string name="text_today_meal_calorie">오늘의 급식 칼로리는?</string>
+    <string name="text_is_right">위의 영상이 맞나요?</string>
+    <string name="text_no">아니요</string>
+    <string name="text_youtube_search_desc">원하는 곡 제목을 입력하여 검색해주세요!</string>
+    <string name="text_do_search">검색하기</string>
+    <string name="text_song_title">곡 제목</string>
+    <string name="title_search_song">기상송 검색</string>
+    <string name="text_youtube_confirm_desc">영상을 꼼꼼히 확인해주세요!</string>
+    <string name="text_re_search_desc">혹시 원하는 영상이 아니라면 다시 검색해주세요</string>
+
+
+    <string name="text_out_sleeping_date">외박 날짜</string>
+    <string name="text_out_sleeping_time">외박 시간</string>
+    <string name="text_out_time_end">복귀 시간</string>
+
+    <string name="text_out_going_date">외출 날짜</string>
+    <string name="text_out_going">외출</string>
+    <string name="text_out_sleeping">외박</string>
+    <string name="text_out">외출/외박</string>
+    <string name="text_out_sleeping_date_end">복귀 날짜</string>
+    <string name="text_reason">사유</string>
+    <string name="text_out_going_time">외출 시간</string>
+    <string name="title_company_detail">회사 상세 보기</string>
+
     <string name="lost_found_not">게시물이 없습니다</string>
 </resources>

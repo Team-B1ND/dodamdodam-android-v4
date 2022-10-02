@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.util
 
 import kr.hs.dgsw.smartschool.domain.model.time.WeekType
-import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.HttpException
 import java.security.MessageDigest
@@ -54,11 +53,11 @@ object Utils {
     }
 
     fun convertErrorBody(throwable: HttpException): String {
-        val errorBody = JSONObject(throwable.response()?.errorBody()!!.string())
-        return try {
-            errorBody.getString("message")
-        } catch (e: JSONException) {
-            errorBody.getString("error")
+        try {
+            val errorBody = JSONObject(throwable.response()?.errorBody()!!.string())
+            return errorBody.getString("message")
+        } catch (e: Exception) {
+            return "알 수 없는 오류가 발생했습니다. 잠시만 기다려주세요."
         }
     }
 
