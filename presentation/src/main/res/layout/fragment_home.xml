@@ -131,38 +131,58 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/default_card_content_margin">
 
-                        <TextView
-                            android:id="@+id/tv_song_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/default_card_content_margin"
-                            android:fontFamily="@font/noto_bold"
-                            android:includeFontPadding="false"
-                            android:text="@string/home_song"
-                            android:textColor="@color/color_black"
-                            android:textSize="@dimen/card_title"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.viewpager2.widget.ViewPager2
-                            android:id="@+id/view_pager_today_song"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/layout_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:clipChildren="false"
-                            android:clipToPadding="false"
-                            android:orientation="horizontal"
-                            app:layout_constraintEnd_toEndOf="parent"
+                            android:onClick="@{() -> vm.onClickSongMore()}"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_song_title" />
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tv_song_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_bold"
+                                android:includeFontPadding="false"
+                                android:text="@string/home_song"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/card_title" />
+
+                            <ImageView
+                                android:layout_width="@dimen/default_more_arrow_icon"
+                                android:layout_height="@dimen/default_more_arrow_icon"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:src="@drawable/ic_btn_arrow"
+                                android:rotation="270"
+                                app:tint="@color/gray500"
+                                tools:ignore="ContentDescription" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_today_song"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            tools:listitem="@layout/item_song"
+                            android:layout_marginTop="@dimen/default_card_content_margin"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintTop_toBottomOf="@id/layout_title"
+                            app:layout_constraintBottom_toBottomOf="parent" />
 
                         <TextView
                             android:id="@+id/tv_empty_song"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="@dimen/default_card_content_margin"
-                            android:layout_marginVertical="@dimen/default_card_content_margin"
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
                             android:text="@string/text_now_selected_song_empty"
@@ -172,14 +192,13 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_song_title"
+                            app:layout_constraintTop_toBottomOf="@id/layout_title"
                             tools:visibility="visible" />
 
                         <ImageView
                             android:id="@+id/iv_musical_note"
                             android:layout_width="@dimen/default_card_icon_size"
                             android:layout_height="@dimen/default_card_icon_size"
-                            android:layout_margin="@dimen/default_card_content_margin"
                             android:src="@drawable/ic_musical_note"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"

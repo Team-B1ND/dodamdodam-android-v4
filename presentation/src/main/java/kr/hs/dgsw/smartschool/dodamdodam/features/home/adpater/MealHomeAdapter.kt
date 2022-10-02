@@ -34,7 +34,7 @@ class MealHomeAdapter(val onClickCard: () -> Unit) : BaseListAdapter<MealInfo, I
 
         binding.tvMeal.text = item.content
 
-        binding.cardMeal.setOnClickListener {
+        binding.cardThumbnail.setOnClickListener {
             onClickCard.invoke()
         }
     }

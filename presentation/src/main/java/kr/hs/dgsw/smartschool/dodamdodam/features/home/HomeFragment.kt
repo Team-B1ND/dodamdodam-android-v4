@@ -132,10 +132,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private fun setEmptySongView(isEmptySongList: Boolean) {
         if (isEmptySongList) {
             mBinding.tvEmptySong.visibility = View.VISIBLE
-            mBinding.viewPagerTodaySong.visibility = View.GONE
+            mBinding.ivMusicalNote.visibility = View.VISIBLE
+            mBinding.rvTodaySong.visibility = View.GONE
         } else {
             mBinding.tvEmptySong.visibility = View.GONE
-            mBinding.viewPagerTodaySong.visibility = View.VISIBLE
+            mBinding.ivMusicalNote.visibility = View.GONE
+            mBinding.rvTodaySong.visibility = View.VISIBLE
         }
     }
 
@@ -174,10 +176,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         songAdapter = SongAdapter { url ->
             this@HomeFragment.openVideoFromUrl(url)
         }
-        mBinding.viewPagerTodaySong.adapter = songAdapter
-        mBinding.viewPagerTodaySong.offscreenPageLimit = 3
-        mBinding.viewPagerTodaySong.setPadding(90, 0, 90, 0)
-        mBinding.viewPagerTodaySong.setPageTransformer(getTransform())
+        mBinding.rvTodaySong.adapter = songAdapter
     }
 
     private fun setLocationRecyclerView() {
