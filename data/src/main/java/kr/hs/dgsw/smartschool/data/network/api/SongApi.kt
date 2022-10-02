@@ -2,8 +2,8 @@ package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.data.SongData
-import kr.hs.dgsw.smartschool.domain.request.SongCheckRequest
-import kr.hs.dgsw.smartschool.domain.request.SongRequest
+import kr.hs.dgsw.smartschool.domain.request.song.SongCheckRequest
+import kr.hs.dgsw.smartschool.domain.request.song.SongRequest
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

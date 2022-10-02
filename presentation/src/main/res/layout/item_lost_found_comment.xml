@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-
+        <variable
+            name="info"
+            type="kr.hs.dgsw.smartschool.domain.model.lostfound.CommentInfo" />
     </data>
 
     <LinearLayout
@@ -16,8 +18,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginHorizontal="15dp"
-            android:layout_gravity="center_vertical"
-            tools:src="@drawable/default_user" />
+            android:layout_gravity="center_vertical"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,7 +38,7 @@
                     android:includeFontPadding="false"
                     android:textColor="@color/color_black"
                     android:layout_gravity="bottom"
-                    tools:text="최민재" />
+                    android:text="@{info.name}" />
 
                 <TextView
                     android:id="@+id/tv_write_time"
@@ -49,7 +50,7 @@
                     android:includeFontPadding="false"
                     android:textColor="@color/gray500"
                     android:layout_gravity="bottom"
-                    tools:text="2020.02.21 11:58" />
+                    android:text="@{info.uploadTime}" />
 
                 <View
                     android:layout_width="0dp"
@@ -75,7 +76,7 @@
                 android:maxLines="6"
                 android:ellipsize="end"
                 android:textColor="@color/color_black"
-                tools:text="그거 없는거 같던데요 ㅋ \n제가 봤을때 절대 못찾을듯요 ㅋ" />
+                android:text="@{info.content}" />
         </LinearLayout>
     </LinearLayout>
 </layout>

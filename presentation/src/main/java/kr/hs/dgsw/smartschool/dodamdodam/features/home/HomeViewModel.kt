@@ -115,10 +115,14 @@ class HomeViewModel @Inject constructor(
     fun onClickOut() {
         viewEvent(ON_CLICK_OUT)
     }
+    fun onClickLost() {
+        viewEvent(ON_CLICK_LOST)
+    }
 
     companion object {
         const val ON_CLICK_SONG_MORE = 0
         const val ON_CLICK_MEAL_MORE = 1
         const val ON_CLICK_OUT = 2
+        const val ON_CLICK_LOST = 3
     }
 }

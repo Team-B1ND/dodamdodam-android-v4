@@ -8,7 +8,7 @@
         
         <variable
             name="vm"
-            type="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.LostFoundCommentViewModel" />
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.comment.LostFoundCommentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,6 +54,7 @@
 
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/layout_write_comment"
@@ -101,7 +102,7 @@
                 tools:src="@drawable/default_user" />
 
             <EditText
-                android:id="@+id/input_comment"
+                android:id="@+id/et_comment"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -109,6 +110,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:textSize="@dimen/title5"
+                android:text="@={vm.comment}"
                 android:fontFamily="@font/nanum_square_regular"
                 android:includeFontPadding="false"
                 android:backgroundTint="@android:color/transparent"

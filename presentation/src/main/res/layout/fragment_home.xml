@@ -274,6 +274,7 @@
                     android:layout_height="0dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="20dp"
+                    android:onClick="@{()-> vm.onClickLost()}"
                     app:cardCornerRadius="@dimen/card_corner"
                     app:cardElevation="@dimen/card_elevation"
                     app:layout_constraintBottom_toBottomOf="@id/card_out"
