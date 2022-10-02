@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.main
 
 import android.util.Log
-import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope

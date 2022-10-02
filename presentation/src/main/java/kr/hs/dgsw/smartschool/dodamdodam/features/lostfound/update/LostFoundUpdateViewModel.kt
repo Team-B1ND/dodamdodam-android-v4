@@ -41,7 +41,8 @@ class LostFoundUpdateViewModel @Inject constructor(
     fun getLostFound(id: Int) {
         useCases.getLostFoundById(id).divideResult(
             isModifyLostFoundLoading,
-            {   url.value = it?.image
+            {
+                url.value = it?.image
                 title.value = it?.title
                 if (it?.type!!.equals("FOUND")) {
                     isFound.value = true
@@ -59,12 +60,14 @@ class LostFoundUpdateViewModel @Inject constructor(
     private fun imageUpload(file: File) {
         imageUseCase(file).divideResult(
             isModifyLostFoundLoading,
-            { url.value = it?.url!!},
+            {
+                url.value = it?.url!!
+            },
             {}
         )
     }
-    fun modifyLostFound(id : Int) {
-        if(file != null) imageUpload(file!!)
+    fun modifyLostFound(id: Int) {
+        if (file != null) imageUpload(file!!)
         if (title.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_TITLE)
         if (content.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_CONTENT)
         useCases.modifyLostFound(
