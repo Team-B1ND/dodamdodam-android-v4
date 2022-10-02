@@ -56,26 +56,25 @@ class LostFoundUpdateViewModel @Inject constructor(
             { viewModelScope.launch { it } }
         ).launchIn(viewModelScope)
     }
-    //TODO 이미지 업로드 불러온 사진 그대로 다시 올려보내기 구현
     private fun imageUpload(file: File) {
         imageUseCase(file).divideResult(
             isModifyLostFoundLoading,
-            { url.value = it?.url!! },
+            { url.value = it?.url!!},
             {}
         )
     }
-    fun modifyLostFound() {
-        imageUpload(file!!)
+    fun modifyLostFound(id : Int) {
+        if(file != null) imageUpload(file!!)
         if (title.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_TITLE)
         if (content.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_CONTENT)
-        useCases.addLostFound(
+        useCases.modifyLostFound(
             LostFoundDataRequest(
                 content = content.value ?: "",
                 picture = url.value ?: "",
                 place = place.value ?: "",
                 title = title.value ?: "",
                 type = if (isLost.value == true) "LOST" else "FOUND",
-                lostFoundId = null
+                lostFoundId = id
             )
         ).divideResult(
             isModifyLostFoundLoading,

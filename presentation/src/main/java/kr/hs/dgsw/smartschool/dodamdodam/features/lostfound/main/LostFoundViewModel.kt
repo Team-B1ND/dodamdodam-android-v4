@@ -62,22 +62,22 @@ class LostFoundViewModel @Inject constructor(
     fun searchLostFound() {
         useCases.searchLostFound(SearchLostFound.Params(search = title.value ?: "")).divideResult(
             isGetLostFoundLoading,
-            { viewModelScope.launch { GetLostFoundState(list = it ?: emptyList()) } },
-            { viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.") } }
+            { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(list = it ?: emptyList())) } },
+            { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
     private fun myLostFound() {
         useCases.getMyLostFound(Unit).divideResult(
             isGetLostFoundLoading,
-            { viewModelScope.launch { GetLostFoundState(list = it ?: emptyList()) } },
-            { viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.") } }
+            { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(list = it ?: emptyList())) } },
+            { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
     fun deleteLostFound(idx: Int) {
         useCases.deleteLostFound(DeleteLostFound.Params(idx = idx)).divideResult(
             isGetLostFoundLoading,
             { getLostFoundList(1) },
-            { viewModelScope.launch { GetLostFoundState(error = "분실 게시물을 삭제하는 데에 실패하였습니다.") } }
+            { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(error = "분실 게시물을 삭제하는 데에 실패하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
 }

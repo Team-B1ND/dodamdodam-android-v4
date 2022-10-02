@@ -135,7 +135,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:buttonTint="@color/main"
-                                android:checked="@{vm.isLost}"
+                                android:checked="@={vm.isLost}"
                                 android:textColor="@color/color_black"
                                 android:fontFamily="@font/nanum_square_regular"
                                 android:includeFontPadding="false"
@@ -143,7 +143,7 @@
 
                             <RadioButton
                                 android:id="@+id/rg_btn_found"
-                                android:checked="@{vm.isFound}"
+                                android:checked="@={vm.isFound}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
@@ -165,7 +165,7 @@
                             android:fontFamily="@font/nanum_square_regular"
                             android:includeFontPadding="false"
                             android:importantForAutofill="no"
-                            android:text="@{vm.title}"
+                            android:text="@={vm.title}"
                             android:inputType="text"
                             android:maxLines="1"
                             android:paddingStart="5dp"
@@ -183,7 +183,7 @@
                             android:includeFontPadding="false"
                             android:importantForAutofill="no"
                             android:inputType="text"
-                            android:text="@{vm.place}"
+                            android:text="@={vm.place}"
                             android:paddingStart="5dp"
                             android:textSize="@dimen/title4"
                             tools:ignore="RtlSymmetry" />
@@ -213,7 +213,7 @@
                         android:includeFontPadding="false"
                         android:importantForAutofill="no"
                         android:inputType="text"
-                        android:text="@{vm.content}"
+                        android:text="@={vm.content}"
                         android:textSize="@dimen/title4" />
 
                 </androidx.cardview.widget.CardView>
