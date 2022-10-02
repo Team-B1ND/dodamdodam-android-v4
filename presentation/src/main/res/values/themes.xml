@@ -39,14 +39,14 @@
 
     <style name="ExpandedAppBar" parent="@android:style/TextAppearance.Medium">
         <item name="android:textStyle">normal</item>
-        <item name="android:textSize">@dimen/title2</item>
+        <item name="android:textSize">@dimen/page_extended_title_text</item>
         <item name="android:textColor">@color/color_black</item>
         <item name="android:fontFamily">@font/noto_bold</item>
     </style>
 
     <style name="CollapsedAppBar" parent="@android:style/TextAppearance.Medium">
-        <item name="android:fontFamily">@font/noto_regular</item>
-        <item name="android:textSize">@dimen/title4</item>
+        <item name="android:fontFamily">@font/noto_medium</item>
+        <item name="android:textSize">@dimen/page_title_text</item>
         <item name="android:textColor">@color/color_black</item>
         <item name="android:textStyle">normal</item>
     </style>
