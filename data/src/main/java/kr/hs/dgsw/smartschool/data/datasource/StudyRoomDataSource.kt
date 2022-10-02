@@ -5,9 +5,9 @@ import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.StudyRoomRemote
 import kr.hs.dgsw.smartschool.domain.model.studyroom.DefaultStudyRoom
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
-import kr.hs.dgsw.smartschool.domain.request.studyroom.DefaultStudyRoomByTypeRequest
-import kr.hs.dgsw.smartschool.domain.request.studyroom.DefaultStudyRoomRequest
-import kr.hs.dgsw.smartschool.domain.request.studyroom.StudyRoomRequest
+import kr.hs.dgsw.smartschool.domain.request.DefaultStudyRoomByTypeRequest
+import kr.hs.dgsw.smartschool.domain.request.DefaultStudyRoomRequest
+import kr.hs.dgsw.smartschool.domain.request.StudyRoomRequest
 import javax.inject.Inject
 
 class StudyRoomDataSource @Inject constructor(

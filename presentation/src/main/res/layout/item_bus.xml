@@ -143,8 +143,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="@id/layout_bus_info"
                android:padding="5dp"
-                android:paddingEnd="15dp"
-                tools:ignore="RtlSymmetry" />
+                android:paddingEnd="15dp"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

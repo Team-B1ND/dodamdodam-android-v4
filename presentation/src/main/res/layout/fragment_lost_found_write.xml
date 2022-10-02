@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.write.LostFoundWriteViewModel" />
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.LostFoundWriteViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -67,7 +67,7 @@
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         android:scaleType="centerCrop"
-                        android:background="@color/gray200"
+                        android:src="@drawable/default_img"
                         tools:ignore="ContentDescription" />
 
                 </androidx.cardview.widget.CardView>
@@ -135,7 +135,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:buttonTint="@color/main"
-                                android:checked="@{vm.isLost}"
+                                android:checked="true"
                                 android:textColor="@color/color_black"
                                 android:fontFamily="@font/nanum_square_regular"
                                 android:includeFontPadding="false"
@@ -143,7 +143,6 @@
 
                             <RadioButton
                                 android:id="@+id/rg_btn_found"
-                                android:checked="@={vm.isFound}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
@@ -165,7 +164,6 @@
                             android:fontFamily="@font/nanum_square_regular"
                             android:includeFontPadding="false"
                             android:importantForAutofill="no"
-                            android:text="@={vm.title}"
                             android:inputType="text"
                             android:maxLines="1"
                             android:paddingStart="5dp"
@@ -183,7 +181,6 @@
                             android:includeFontPadding="false"
                             android:importantForAutofill="no"
                             android:inputType="text"
-                            android:text="@={vm.place}"
                             android:paddingStart="5dp"
                             android:textSize="@dimen/title4"
                             tools:ignore="RtlSymmetry" />
@@ -213,7 +210,6 @@
                         android:includeFontPadding="false"
                         android:importantForAutofill="no"
                         android:inputType="text"
-                        android:text="@={vm.content}"
                         android:textSize="@dimen/title4" />
 
                 </androidx.cardview.widget.CardView>
@@ -221,7 +217,6 @@
         </ScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fb_add_lost_and_found"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"

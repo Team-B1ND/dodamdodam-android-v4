@@ -2,8 +2,8 @@ package kr.hs.dgsw.smartschool.domain.repository
 
 import kr.hs.dgsw.smartschool.domain.model.song.MelonChart
 import kr.hs.dgsw.smartschool.domain.model.song.VideoYoutubeData
-import kr.hs.dgsw.smartschool.domain.request.song.SongCheckRequest
-import kr.hs.dgsw.smartschool.domain.request.song.SongRequest
+import kr.hs.dgsw.smartschool.domain.request.SongCheckRequest
+import kr.hs.dgsw.smartschool.domain.request.SongRequest
 
 interface SongRepository {
 
