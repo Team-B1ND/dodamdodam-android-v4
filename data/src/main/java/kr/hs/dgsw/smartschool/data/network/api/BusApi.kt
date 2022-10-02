@@ -4,8 +4,8 @@ import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.request.bus.AddBusApplyRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusApplyRequest
+import kr.hs.dgsw.smartschool.domain.request.AddBusApplyRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET

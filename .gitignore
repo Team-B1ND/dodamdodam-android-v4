@@ -145,5 +145,3 @@ fabric.properties
 # End of https://www.toptal.com/developers/gitignore/api/androidstudio
 
 gradle.properties
-
-data/src/main/java/kr/hs/dgsw/smartschool/data/util/Constants.kt

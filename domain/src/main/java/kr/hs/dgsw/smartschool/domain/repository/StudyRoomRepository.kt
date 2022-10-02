@@ -2,9 +2,9 @@ package kr.hs.dgsw.smartschool.domain.repository
 
 import kr.hs.dgsw.smartschool.domain.model.studyroom.DefaultStudyRoom
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
-import kr.hs.dgsw.smartschool.domain.request.studyroom.DefaultStudyRoomByTypeRequest
-import kr.hs.dgsw.smartschool.domain.request.studyroom.DefaultStudyRoomRequest
-import kr.hs.dgsw.smartschool.domain.request.studyroom.StudyRoomRequest
+import kr.hs.dgsw.smartschool.domain.request.DefaultStudyRoomByTypeRequest
+import kr.hs.dgsw.smartschool.domain.request.DefaultStudyRoomRequest
+import kr.hs.dgsw.smartschool.domain.request.StudyRoomRequest
 
 interface StudyRoomRepository {
 
