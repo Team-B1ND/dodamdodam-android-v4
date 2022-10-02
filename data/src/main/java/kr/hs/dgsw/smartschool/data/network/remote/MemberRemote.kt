@@ -7,8 +7,8 @@ import kr.hs.dgsw.smartschool.domain.model.member.Member
 import kr.hs.dgsw.smartschool.domain.model.member.Parent
 import kr.hs.dgsw.smartschool.domain.model.member.Student
 import kr.hs.dgsw.smartschool.domain.model.member.Teacher
-import kr.hs.dgsw.smartschool.domain.request.auth.ModifyPwRequest
-import kr.hs.dgsw.smartschool.domain.request.member.ModifyMemberInfoRequest
+import kr.hs.dgsw.smartschool.domain.request.ModifyMemberInfoRequest
+import kr.hs.dgsw.smartschool.domain.request.ModifyPwRequest
 import javax.inject.Inject
 
 class MemberRemote @Inject constructor(

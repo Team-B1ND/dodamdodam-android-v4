@@ -2,9 +2,10 @@ package kr.hs.dgsw.smartschool.data.datasource
 
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.OutRemote
+import kr.hs.dgsw.smartschool.domain.model.out.OutGoing
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
-import kr.hs.dgsw.smartschool.domain.request.out.ModifyOutRequest
-import kr.hs.dgsw.smartschool.domain.request.out.OutRequest
+import kr.hs.dgsw.smartschool.domain.model.out.OutSleeping
+import kr.hs.dgsw.smartschool.domain.request.OutRequest
 import javax.inject.Inject
 
 class OutDataSource @Inject constructor(
@@ -12,23 +13,23 @@ class OutDataSource @Inject constructor(
     override val cache: Any
 ) : BaseDataSource<OutRemote, Any> {
 
-    suspend fun getOutSleepingById(outSleepingId: Int): OutItem = remote.getOutSleepingById(outSleepingId)
+    suspend fun getOut(date: String): List<OutItem> = remote.getOut(date)
 
-    suspend fun getMyOutSleeping(): List<OutItem> = remote.getMyOutSleeping()
+    suspend fun getOutAllows(date: String): List<OutItem> = remote.getOutAllows(date)
 
-    suspend fun applyOutSleeping(request: OutRequest): OutItem = remote.applyOutSleeping(request)
+    suspend fun getOutSleepingById(outSleepingIdx: Int): OutSleeping = remote.getOutSleepingById(outSleepingIdx)
 
-    suspend fun modifyOutSleeping(request: ModifyOutRequest): OutItem = remote.modifyOutSleeping(request)
+    suspend fun getOutGoingById(outGoingIdx: Int): OutGoing = remote.getOutGoingById(outGoingIdx)
 
-    suspend fun deleteOutSleeping(outSleepingId: Int): String = remote.deleteOutSleeping(outSleepingId)
+    suspend fun postOutSleeping(request: OutRequest): String = remote.postOutSleeping(request)
 
-    suspend fun getOutGoingById(outGoingId: Int): OutItem = remote.getOutGoingById(outGoingId)
+    suspend fun putOutSleeping(request: OutRequest): String = remote.putOutSleeping(request)
 
-    suspend fun getMyOutGoing(): List<OutItem> = remote.getMyOutGoing()
+    suspend fun deleteOutSleeping(outSleepingOutIdx: Int): String = remote.deleteOutSleeping(outSleepingOutIdx)
 
-    suspend fun applyOutGoing(request: OutRequest): OutItem = remote.applyOutGoing(request)
+    suspend fun postOutGoing(request: OutRequest): String = remote.postOutGoing(request)
 
-    suspend fun modifyOutGoing(request: ModifyOutRequest): OutItem = remote.modifyOutGoing(request)
+    suspend fun putOutGoing(request: OutRequest): String = remote.putOutGoing(request)
 
-    suspend fun deleteOutGoing(outGoingId: Int): String = remote.deleteOutGoing(outGoingId)
+    suspend fun deleteOutGoing(outGoingIdx: Int): String = remote.deleteOutGoing(outGoingIdx)
 }

@@ -6,7 +6,6 @@ plugins {
     id(Plugins.kotlinParcelize)
     id(Plugins.navigation_safe_args)
     id(Plugins.kt_lint) version Versions.KT_LINT
-    id(Plugins.googleService)
 }
 
 android {
@@ -46,7 +45,6 @@ dependencies {
     implementation(AndroidX.CORE_KTX)
     implementation(AndroidX.APP_COMPAT)
     implementation(Google.MATERIAL)
-
     testImplementation(UnitTest.JUNIT)
     androidTestImplementation(AndroidTest.ANDROID_JUNIT)
     androidTestImplementation(AndroidTest.ESPRESSO_CORE)
@@ -90,17 +88,7 @@ dependencies {
     // Swipe refresh layout
     implementation(AndroidX.SWIPE_REFRESH_LAYOUT)
 
-    // jsoup
     implementation(Libraries.JSOUP)
-
-    // lottie
-    implementation(Libraries.LOTTIE)
-
-    // map
-    // implementation(files("libs/libDaumMapAndroid.jar"))
-    implementation(NaverMap.NAVER_MAP)
-
-    implementation(Firebase.ANALYTICS)
 
     implementation(project(":data"))
     implementation(project(":domain"))

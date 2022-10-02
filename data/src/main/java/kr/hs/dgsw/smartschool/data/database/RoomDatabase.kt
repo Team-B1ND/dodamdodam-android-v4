@@ -37,6 +37,7 @@ import java.util.concurrent.Executors
 )
 abstract class RoomDatabase : androidx.room.RoomDatabase() {
 
+    abstract fun mealDao(): MealDao
     abstract fun tokenDao(): TokenDao
     abstract fun accountDao(): AccountDao
     abstract fun memberDao(): MemberDao

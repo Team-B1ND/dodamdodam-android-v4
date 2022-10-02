@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetMelonChartState
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
 import javax.inject.Inject
 
@@ -22,18 +21,14 @@ class SongApplyViewModel @Inject constructor(
     val applyUrl = MutableLiveData<String>()
     var errorMessage = ""
 
-    val searchSongTitle = MutableLiveData<String>()
-
     private val _getMelonChartState = MutableStateFlow<GetMelonChartState>(GetMelonChartState())
     val getMelonChartState: StateFlow<GetMelonChartState> = _getMelonChartState
 
     private val isApplySongLoading = MutableLiveData(false)
     private val isMelonChartLoading = MutableLiveData(false)
-    private val isGetYoutubeVideo = MutableLiveData(false)
 
     init {
-        combineLoadingVariable(isApplySongLoading, isMelonChartLoading, isGetYoutubeVideo)
-
+        combineLoadingVariable(isApplySongLoading, isMelonChartLoading)
         CoroutineScope(Dispatchers.Main).launch {
             getMelonChart()
         }
@@ -59,7 +54,7 @@ class SongApplyViewModel @Inject constructor(
                 applyWakeUpSong(applyUrl.value ?: "")
             }
             applyUrl.value?.startsWith(mYoutube) == true -> {
-                val youtubeUrl = youtube + applyUrl.value?.replace(mYoutube, "")
+                val youtubeUrl = "https://www.youtube.com/watch?v=" + applyUrl.value?.replace(mYoutube, "")
                 applyWakeUpSong(youtubeUrl)
             }
             else -> {
@@ -67,16 +62,6 @@ class SongApplyViewModel @Inject constructor(
                 viewEvent(EVENT_ON_URL_ERROR)
             }
         }
-    }
-
-    fun checkSearchTitle() {
-        if (searchSongTitle.value.isNullOrBlank()) {
-            errorMessage = "검색어를 입력해주세요!"
-            viewEvent(EVENT_ON_SEARCH_TITLE_ERROR)
-            return
-        }
-
-        viewEvent(EVENT_ON_CLICK_SEARCH)
     }
 
     private fun getMelonChart() {
@@ -88,7 +73,7 @@ class SongApplyViewModel @Inject constructor(
     }
 
     private fun applyWakeUpSong(url: String) {
-        songUseCases.applySong(url).divideResult(
+        songUseCases.postSong(url).divideResult(
             isApplySongLoading,
             { viewEvent(EVENT_ON_SUCCESS_APPLY) },
             {
@@ -102,7 +87,5 @@ class SongApplyViewModel @Inject constructor(
         const val EVENT_ON_CLICK_BACK = 0
         const val EVENT_ON_URL_ERROR = 1
         const val EVENT_ON_SUCCESS_APPLY = 2
-        const val EVENT_ON_CLICK_SEARCH = 3
-        const val EVENT_ON_SEARCH_TITLE_ERROR = 4
     }
 }

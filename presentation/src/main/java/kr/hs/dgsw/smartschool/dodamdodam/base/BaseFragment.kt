@@ -26,8 +26,6 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     private lateinit var mViewModel: VM
     protected abstract val viewModel: VM
 
-    protected var savedInstanceState: Bundle? = null
-
     protected abstract fun observerViewModel()
 
     protected fun bindingViewEvent(action: (event: Any) -> Unit) {
@@ -64,7 +62,6 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        this.savedInstanceState = savedInstanceState
         setUp()
         observerViewModel()
         (activity as? MainActivity)?.setNavVisible(!hasBottomNav)

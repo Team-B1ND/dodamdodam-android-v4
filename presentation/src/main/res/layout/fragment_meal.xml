@@ -152,65 +152,46 @@
                 tools:itemCount="3"
                 tools:listitem="@layout/item_meal" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_meal_people"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="170dp"
+                android:layout_margin="@dimen/default_margin"
+                app:cardCornerRadius="@dimen/card_corner"
+                app:cardElevation="@dimen/card_elevation">
 
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/running_lizard"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:lottie_rawRes="@raw/running_lizard"
-                    app:lottie_autoPlay="true"
-                    app:lottie_loop="true" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/tv_calorie_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="2022-01-12"
-                    android:textColor="@color/gray500"
-                    app:layout_constraintVertical_chainStyle="packed"
-                    android:fontFamily="@font/notosans_kr_regular"
-                    android:textSize="@dimen/title5"
-                    app:layout_constraintBottom_toTopOf="@id/tv_calorie"
-                    android:includeFontPadding="false"
-                    app:layout_constraintStart_toEndOf="@id/running_lizard"
-                    app:layout_constraintTop_toTopOf="@id/running_lizard" />
+                    <TextView
+                        android:id="@+id/tv_meal_people"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:text="@string/text_meal_people"
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/title3"
+                        android:fontFamily="@font/gotham_bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/tv_desc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_today_meal_calorie"
-                    android:textColor="@color/black"
-                    app:layout_constraintVertical_chainStyle="packed"
-                    android:fontFamily="@font/notosans_kr_regular"
-                    android:textSize="@dimen/title3"
-                    app:layout_constraintBottom_toTopOf="@id/tv_calorie"
-                    android:includeFontPadding="false"
-                    app:layout_constraintStart_toEndOf="@id/running_lizard"
-                    app:layout_constraintTop_toTopOf="@id/running_lizard" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:text="@string/text_meal_people_desc"
+                        android:textColor="@color/gray700"
+                        android:textSize="@dimen/title4"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:includeFontPadding="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_meal_people"
+                        app:layout_constraintTop_toBottomOf="@id/tv_meal_people" />
 
-                <TextView
-                    android:id="@+id/tv_calorie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/notosans_kr_medium"
-                    android:textSize="@dimen/title4"
-                    tools:text="763 kcal"
-                    app:layout_constraintBottom_toBottomOf="@id/running_lizard"
-                    app:layout_constraintStart_toEndOf="@id/running_lizard"
-                    app:layout_constraintTop_toBottomOf="@id/tv_desc" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

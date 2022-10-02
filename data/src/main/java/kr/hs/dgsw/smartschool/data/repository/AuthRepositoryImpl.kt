@@ -6,8 +6,8 @@ import kr.hs.dgsw.smartschool.data.datasource.AuthDataSource
 import kr.hs.dgsw.smartschool.data.datasource.TokenDataSource
 import kr.hs.dgsw.smartschool.domain.model.token.Token
 import kr.hs.dgsw.smartschool.domain.repository.AuthRepository
-import kr.hs.dgsw.smartschool.domain.request.auth.JoinRequest
-import kr.hs.dgsw.smartschool.domain.request.auth.LoginRequest
+import kr.hs.dgsw.smartschool.domain.request.JoinRequest
+import kr.hs.dgsw.smartschool.domain.request.LoginRequest
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(

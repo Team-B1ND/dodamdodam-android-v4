@@ -8,23 +8,28 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.dodamdodam.features.profile.point.GetMyYearPointsState
+import kr.hs.dgsw.smartschool.dodamdodam.features.profile.point.MyBonusPointState
+import kr.hs.dgsw.smartschool.dodamdodam.features.profile.point.MyMinusPointState
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.point.GetMyYearPointsUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.point.GetMyPoint
+import kr.hs.dgsw.smartschool.domain.usecase.point.PointUseCases
 import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val memberUseCases: MemberUseCases,
-    private val getMyYearPointsUseCase: GetMyYearPointsUseCase
+    private val pointUseCases: PointUseCases
 ) : BaseViewModel() {
 
     private val _myInfoState = MutableStateFlow(MyInfoState(isLoading = false))
     val myInfoState: StateFlow<MyInfoState> = _myInfoState
 
-    private val _getMyYearPointState = MutableStateFlow(GetMyYearPointsState())
-    val getMyYearPointsState: StateFlow<GetMyYearPointsState> = _getMyYearPointState
+    private val _myBonusPointState = MutableStateFlow(MyBonusPointState(isLoading = false))
+    val myBonusPointState: StateFlow<MyBonusPointState> = _myBonusPointState
+
+    private val _myMinusPointState = MutableStateFlow(MyMinusPointState(isLoading = false))
+    val myMinusPointState: StateFlow<MyMinusPointState> = _myMinusPointState
 
     private val _dormitorySelected = MutableLiveData<Boolean>(true)
     val dormitorySelected: LiveData<Boolean> get() = _dormitorySelected
@@ -39,7 +44,8 @@ class ProfileViewModel @Inject constructor(
     init {
         combineLoadingVariable(isGetMyBonusLoading, isGetMyMinusLoading, isGetMyInfoLoading)
         getMyInfo()
-        getMyYearPoint()
+        getMyBonusPoint()
+        getMyMinusPoint()
     }
 
     fun getMyInfo() {
@@ -50,11 +56,26 @@ class ProfileViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
-    private fun getMyYearPoint() {
-        getMyYearPointsUseCase(LocalDate.now().year).divideResult(
+    private fun getMyBonusPoint() {
+        pointUseCases.getMyPoint(
+            GetMyPoint.Params(
+                LocalDate.now().year.toString(),
+                1
+            )
+        ).divideResult(
             isGetMyBonusLoading,
-            { _getMyYearPointState.value = GetMyYearPointsState(isReach = true, yearPointList = it ?: emptyList()) },
-            { _getMyYearPointState.value = GetMyYearPointsState(error = it ?: "상벌점 조회를 실패했습니다.") }
+            { _myBonusPointState.value = MyBonusPointState(bonusPoint = it) },
+            { _myBonusPointState.value = MyBonusPointState(error = it ?: "상벌점 조회를 실패했습니다.") }
+        ).launchIn(viewModelScope)
+    }
+
+    private fun getMyMinusPoint() {
+        pointUseCases.getMyPoint(
+            GetMyPoint.Params(LocalDate.now().year.toString(), 2)
+        ).divideResult(
+            isGetMyMinusLoading,
+            { _myMinusPointState.value = MyMinusPointState(minusPoint = it) },
+            { _myMinusPointState.value = MyMinusPointState(error = it ?: "상벌점 조회를 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 

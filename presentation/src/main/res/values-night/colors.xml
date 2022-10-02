@@ -6,10 +6,6 @@
     <color name="color_card_background">#202020</color>
     <color name="color_background">#171717</color>
 
-    <color name="gray200">#6A6A6A</color>
-    <color name="gray500">#999999</color>
-    <color name="gray700">#6A6A6A</color>
-
     <color name="color_background_toggle">#434343</color>
 
 </resources>

@@ -4,11 +4,6 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-fun Date.dateTimeFormat(): String {
-    val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
-    return format.format(this)
-}
-
 fun Date.monthDateTimeWeekFormat(): String {
     val format = SimpleDateFormat("MM-dd HH:mm (E)", Locale.getDefault())
     return format.format(this)
@@ -32,12 +27,6 @@ fun Date.yearDateWeekFormat(): String {
 fun Date.yearDateFormat(): String {
     val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     return format.format(this)
-}
-
-fun String.yearDateFormat(): String {
-    val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-    val date = format.parse(this)
-    return format.format(date!!)
 }
 
 fun Date.monthDateFormatToKR(): String {
