@@ -166,7 +166,7 @@
                     android:layout_height="150dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:lottie_rawRes="@raw/running_lizard"
+                    app:lottie_rawRes="@raw/runner"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true" />
 

@@ -57,7 +57,7 @@
                 android:includeFontPadding="false"
                 android:maxLines="2"
                 android:maxWidth="80dp"
-                android:textColor="@color/color_black"
+                android:textColor="@color/main"
                 android:textSize="@dimen/title6"
                 android:layout_marginEnd="@dimen/default_margin"
                 app:layout_constraintEnd_toEndOf="parent"

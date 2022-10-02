@@ -12,191 +12,212 @@
             type="kr.hs.dgsw.smartschool.dodamdodam.features.song.SongViewModel" />
     </data>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh_layout"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_white">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_song"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/color_background">
+            android:layout_height="wrap_content"
+            android:background="@color/color_white"
+            android:theme="@style/Widget.Material3.AppBarLayout"
+            app:liftOnScroll="false">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint_main_text_container"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent"
+                android:background="@color/color_white"
+                app:collapsedTitleTextAppearance="@style/CollapsedAppBar"
+                app:contentScrim="@null"
+                app:expandedTitleGravity="top"
+                app:expandedTitleMarginStart="@dimen/default_margin"
+                app:expandedTitleTextAppearance="@style/ExpandedAppBar"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:title="@string/title_song">
 
-                <TextView
-                    android:id="@+id/tv_today_song"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:fontFamily="@font/noto_bold"
-                    android:text="@string/tomorrow_song"
-                    android:textColor="@color/main"
-                    android:textSize="@dimen/title2"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/color_white"
+                    app:layout_collapseMode="pin">
 
-                <TextView
-                    android:id="@+id/tv_song_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/noto_regular"
-                    android:includeFontPadding="false"
-                    android:textColor="@color/gray500"
-                    android:textSize="@dimen/title5"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:text="2022-05-25" />
+                    <TextView
+                        android:id="@+id/tv_song_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:background="@color/color_white"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:textColor="@color/gray500"
+                        android:textSize="@dimen/title5"
+                        tools:text="2022-05-25" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.appbar.MaterialToolbar>
 
-            <include
-                android:id="@+id/progress_circular"
-                layout="@layout/item_loading_progressbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
-                app:layout_constraintBottom_toBottomOf="@+id/layout_tomorrow_song_container"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraint_main_text_container" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_tomorrow_song_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraint_main_text_container">
-
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/view_pager_tomorrow_song"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_tomorrow_song_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clipChildren="false"
-                    android:clipToPadding="false"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_gravity="bottom"
+                    android:layout_marginTop="85dp"
+                    app:layout_collapseMode="parallax">
 
-                <include
-                    android:id="@+id/tv_empty_song"
-                    layout="@layout/item_empty_song"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/view_pager_tomorrow_song"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/default_margin"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/tv_empty_song"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/default_margin"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:text="@string/text_now_selected_song_empty"
+                        android:textColor="@color/gray700"
+                        android:textSize="@dimen/title6"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:visibility="visible" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraint_body_text_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/layout_tomorrow_song_container">
+                android:layout_height="match_parent"
+                android:background="@color/color_white">
 
-                <TextView
-                    android:id="@+id/tv_application"
+                <include
+                    android:id="@+id/progress_circular"
+                    layout="@layout/item_loading_progressbar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:fontFamily="@font/noto_bold"
-                    android:includeFontPadding="false"
-                    android:text="@string/now_song_application"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/title4"
+                    android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ToggleButton
-                    android:layout_width="78dp"
-                    android:layout_height="26dp"
-                    android:layout_marginEnd="15dp"
-                    android:background="@drawable/background_song_toggle"
-                    android:checked="@{vm.songType}"
-                    android:onClick="@{() -> vm.onClickToggle()}"
-                    android:textOff=""
-                    android:textOn=""
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraint_body_text_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_application"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/default_margin"
+                        android:fontFamily="@font/noto_bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/now_song_application"
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/title4"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ToggleButton
+                        android:layout_width="78dp"
+                        android:layout_height="26dp"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:background="@drawable/background_song_toggle"
+                        android:checked="@{vm.songType}"
+                        android:onClick="@{() -> vm.onClickToggle()}"
+                        android:textOff=""
+                        android:textOn=""
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/gray200"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/constraint_body_text_container" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_apply_song"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="?attr/actionBarSize"
+                    android:orientation="vertical"
+                    android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/constraint_body_text_container"
+                    tools:listitem="@layout/item_apply_song" />
+
+                <TextView
+                    android:id="@+id/tv_please_apply_song"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_bold"
+                    android:text="@string/text_please_apply_song"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/title3"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/constraint_body_text_container" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="72dp"
+            android:backgroundTint="@color/main"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> vm.onClickApplySong()}"
+            android:text="@string/apply_wakeup_song"
+            android:textColor="@color/white"
+            app:fabSize="auto"
+            android:layout_gravity="bottom|end"
+            app:icon="@drawable/ic_btn_add"
+            app:iconTint="@color/white" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/gray200"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraint_body_text_container" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_apply_song"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:orientation="vertical"
-                android:layout_marginBottom="?attr/actionBarSize"
-                android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraint_body_text_container"
-                tools:listitem="@layout/item_apply_song" />
-
-            <TextView
-                android:id="@+id/tv_please_apply_song"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/text_please_apply_song"
-                android:textColor="@color/color_black"
-                android:textSize="@dimen/title3"
-                android:fontFamily="@font/noto_bold"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/constraint_body_text_container" />
-
-
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:backgroundTint="@color/main"
-                android:contentDescription="@string/fab_content_desc"
-                android:fontFamily="@font/noto_regular"
-                android:includeFontPadding="false"
-                android:layout_marginBottom="72dp"
-                android:text="@string/add_wakeup_song"
-                android:textColor="@color/white"
-                app:fabSize="auto"
-                android:onClick="@{() -> vm.onClickApplySong()}"
-                app:icon="@drawable/ic_btn_add"
-                app:iconTint="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

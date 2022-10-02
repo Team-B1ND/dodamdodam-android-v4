@@ -22,7 +22,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -36,10 +36,10 @@
                 android:id="@+id/tv_study_room_apply_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:text="@string/title_study_room_apply"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title3"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/btn_back"/>
 
@@ -50,8 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabGravity="fill"
+            app:tabRippleColor="@null"
             android:backgroundTint="@color/color_background"
-            android:layout_marginTop="10dp"
             android:textSize="@dimen/title6"
             android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
             android:layout_marginBottom="5dp"

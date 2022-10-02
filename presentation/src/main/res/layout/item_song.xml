@@ -20,7 +20,7 @@
             android:id="@+id/card_thumbnail"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            app:cardCornerRadius="@dimen/card_corner"
+            app:cardCornerRadius="@dimen/card_middle_corner"
             app:cardElevation="@dimen/card_elevation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

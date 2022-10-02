@@ -30,9 +30,17 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>(), ApplySo
 
     override fun observerViewModel() {
         mBinding.tvSongDate.text = LocalDate.now().plusDays(1).toString()
+
+        mBinding.appBarSong.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
+            mBinding.layoutTomorrowSongContainer.alpha = ((100 - (-verticalOffset / 5.45)) / 100).toFloat()
+            Log.d("OffsetTest",  "${((100 - (-verticalOffset / 5.45)) / 100).toFloat()}")
+        }
+
         setUpTomorrowSong()
         setSwipeRefresh()
+
         viewModel.getApplySong()
+
         collectMyAccount()
         collectTomorrowSong()
         collectMySongList()
@@ -165,9 +173,6 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>(), ApplySo
             this.openVideoFromUrl(url)
         }
         mBinding.viewPagerTomorrowSong.adapter = songAdapter
-        mBinding.viewPagerTomorrowSong.offscreenPageLimit = 3
-        mBinding.viewPagerTomorrowSong.setPadding(90, 0, 90, 0)
-        mBinding.viewPagerTomorrowSong.setPageTransformer(getTransform())
     }
 
     private fun setUpPendingSong(id: String) {
