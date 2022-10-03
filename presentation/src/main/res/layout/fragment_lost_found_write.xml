@@ -31,12 +31,12 @@
                 android:id="@+id/tv_lost_found_write_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:text="@string/title_write_lost_found"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:textColor="@color/color_black"
-                android:textSize="@dimen/title3"
+                android:textSize="@dimen/app_bar_title_text"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/btn_back" />
 

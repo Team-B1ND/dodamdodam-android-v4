@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -27,21 +28,21 @@
 
             <include
                 android:id="@+id/btn_back"
-                android:onClick="@{() -> vm.onClickBack()}"
-                layout="@layout/item_back_button" />
+                layout="@layout/item_back_button"
+                android:onClick="@{() -> vm.onClickBack()}" />
 
             <TextView
                 android:id="@+id/tv_lost_found_write_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="@string/title_out"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
+                android:text="@string/title_out"
                 android:textColor="@color/color_black"
-                android:textSize="@dimen/title3"
+                android:textSize="@dimen/app_bar_title_text"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btn_back" />
+                app:layout_constraintStart_toEndOf="@id/btn_back"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -51,8 +52,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -60,15 +61,15 @@
             android:id="@+id/tv_no_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
             android:text="@string/text_no_out"
             android:textColor="@color/color_black"
             android:textSize="@dimen/title4"
-            android:fontFamily="@font/noto_regular"
-            android:includeFontPadding="false"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -108,9 +109,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:backgroundTint="@color/main"
+            android:onClick="@{() -> vm.onClickOutWrite()}"
             android:src="@drawable/ic_btn_add"
             app:elevation="0dp"
-            android:onClick="@{() -> vm.onClickOutWrite()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:tint="@color/white"

@@ -24,15 +24,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" >
 
-            <ImageView
+            <include
                 android:id="@+id/btn_back"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_margin="10dp"
+                layout="@layout/item_back_button"
                 android:src="@drawable/ic_btn_back"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/color_black"
                 tools:ignore="ContentDescription" />
 
@@ -40,12 +35,11 @@
                 android:id="@+id/tv_lost_found_comment_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:text="@string/title_comment"
                 android:textColor="@color/color_black"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
-                android:textSize="@dimen/title3"
+                android:textSize="@dimen/app_bar_title_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/btn_back"
                 app:layout_constraintTop_toTopOf="parent" />

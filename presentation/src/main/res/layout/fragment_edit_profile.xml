@@ -35,11 +35,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginBottom="1dp"
             android:text="@string/text_edit_profile"
             android:textColor="@color/color_black"
-            android:textSize="@dimen/title4"
+            android:textSize="@dimen/app_bar_title_text"
+            app:layout_constraintTop_toTopOf="@id/btn_back"
             app:layout_constraintBottom_toBottomOf="@id/btn_back"
             app:layout_constraintStart_toEndOf="@id/btn_back" />
 

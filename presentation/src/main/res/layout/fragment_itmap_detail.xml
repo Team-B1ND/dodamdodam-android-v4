@@ -21,21 +21,18 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_top_bar"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/color_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <include
                 android:id="@+id/btn_back"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_marginStart="10dp"
+                layout="@layout/item_back_button"
                 android:onClick="@{() -> vm.onClickBack()}"
                 android:src="@drawable/ic_btn_back"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/color_black"
                 tools:ignore="ContentDescription" />
@@ -47,10 +44,9 @@
                 android:includeFontPadding="false"
                 android:text="@string/title_company_detail"
                 android:textColor="@color/color_black"
-                android:textSize="@dimen/title4"
+                android:textSize="@dimen/app_bar_title_text"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_back"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,6 +24,8 @@
     <dimen name="page_title_text">16sp</dimen>
     <dimen name="page_extended_title_text">20sp</dimen>
 
+    <dimen name="app_bar_title_text">18sp</dimen>
+
 
 
     <dimen name="title1">25sp</dimen>
