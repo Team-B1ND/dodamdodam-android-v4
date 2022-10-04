@@ -14,7 +14,7 @@ import retrofit2.http.PUT
 import retrofit2.http.Query
 
 interface BusApi {
-    @GET("bus")
+    @GET("bus/")
     suspend fun getBusList(): Response<BusData<BusByDate>>
 
     @GET("bus/self")
