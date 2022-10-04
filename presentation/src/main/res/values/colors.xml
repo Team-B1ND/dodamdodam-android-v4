@@ -52,4 +52,6 @@
     <color name="color_out_refuse">#E57373</color>
     <color name="color_nav_unselected">#B0B9C2</color>
 
+    <color name="color_transparent">#00FFFFFF</color>
+
 </resources>

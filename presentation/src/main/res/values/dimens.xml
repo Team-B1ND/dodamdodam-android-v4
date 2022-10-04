@@ -19,14 +19,13 @@
     <dimen name="default_card_content_margin">21dp</dimen>
     <dimen name="default_card_height_margin">10dp</dimen>
     <dimen name="default_app_bar_height">130dp</dimen>
-
+    <dimen name="default_button_text">16sp</dimen>
+    <dimen name="default_edittext_text">14sp</dimen>
 
     <dimen name="page_title_text">16sp</dimen>
     <dimen name="page_extended_title_text">20sp</dimen>
 
     <dimen name="app_bar_title_text">18sp</dimen>
-
-
 
     <dimen name="title1">25sp</dimen>
     <dimen name="title2">20sp</dimen>

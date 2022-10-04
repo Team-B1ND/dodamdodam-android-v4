@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -43,102 +44,97 @@
                     android:id="@+id/text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="70dp"
+                    android:fontFamily="@font/noto_bold"
                     android:text="@string/text_sign_in"
+                    app:layout_constraintBottom_toTopOf="@id/layout_id"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/title2"
-                    android:fontFamily="@font/noto_bold"
+                    android:layout_marginVertical="30dp"
                     app:layout_constraintStart_toStartOf="@id/layout_id"
                     app:layout_constraintTop_toBottomOf="@id/image_sign_in" />
 
-                <com.google.android.material.textfield.TextInputLayout
+                <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamTextInputLayout
                     android:id="@+id/layout_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/sign_horizontal_margin"
+                    android:layout_marginHorizontal="@dimen/default_margin"
                     android:layout_marginTop="50dp"
-                    android:hint="@string/text_id"
-                    app:boxStrokeErrorColor="@android:color/holo_red_light"
                     app:counterEnabled="true"
                     app:counterMaxLength="15"
                     app:endIconMode="clear_text"
-                    app:errorEnabled="true"
+                    app:layout_constraintVertical_chainStyle="packed"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/text_view">
+                    app:layout_constraintTop_toBottomOf="@id/image_sign_in"
+                    app:layout_constraintBottom_toTopOf="@id/layout_password">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamTextInputEditText
                         android:id="@+id/edit_id"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:backgroundTint="@android:color/transparent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/text_id"
                         android:inputType="text"
                         android:maxLength="15"
                         android:text="@={vm.id}" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+                </kr.hs.dgsw.smartschool.dodamdodam.widget.DodamTextInputLayout>
+
+                <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamTextInputLayout
                     android:id="@+id/layout_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/sign_horizontal_margin"
+                    android:layout_marginHorizontal="@dimen/default_margin"
                     android:layout_marginTop="30dp"
-                    android:drawablePadding="10dp"
-                    android:hint="@string/text_password"
-                    app:boxStrokeErrorColor="@android:color/holo_red_light"
                     app:counterEnabled="true"
                     app:counterMaxLength="15"
+                    app:layout_constraintBottom_toTopOf="@id/check_auto_sign_in"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layout_id"
                     app:passwordToggleEnabled="true">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamTextInputEditText
                         android:id="@+id/edit_password"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:backgroundTint="@android:color/transparent"
                         android:inputType="textPassword"
+                        android:hint="@string/text_password"
                         android:maxLength="15"
                         android:text="@={vm.pw}" />
-                </com.google.android.material.textfield.TextInputLayout>
+
+                </kr.hs.dgsw.smartschool.dodamdodam.widget.DodamTextInputLayout>
 
                 <CheckBox
                     android:id="@+id/check_auto_sign_in"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/sign_horizontal_margin"
+                    android:layout_marginHorizontal="@dimen/default_margin"
                     android:layout_marginTop="20dp"
                     android:buttonTint="@color/main"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
                     android:text="@string/text_auto_login"
+                    app:layout_constraintTop_toBottomOf="@id/layout_password"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_password" />
+                    app:layout_constraintBottom_toTopOf="@id/btn_sign_in" />
 
                 <FrameLayout
                     android:id="@+id/btn_sign_in"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginHorizontal="@dimen/sign_horizontal_margin"
+                    android:layout_height="61dp"
+                    android:layout_marginHorizontal="@dimen/default_margin"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/check_auto_sign_in">
+                    app:layout_constraintBottom_toTopOf="@id/layout_sign_up">
 
-                    <com.google.android.material.button.MaterialButton
+                    <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
                         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:backgroundTint="@color/main"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
                         android:onClick="@{() -> vm.onClickSignIn()}"
-                        android:text="@string/text_sign_in"
-                        android:fontFamily="@font/noto_regular"
-                        android:includeFontPadding="false"
-                        android:textColor="@android:color/white"
-                        android:textSize="18sp" />
+                        android:text="@string/text_sign_in" />
 
                     <ProgressBar
                         style="?android:progressBarStyleHorizontal"
@@ -149,16 +145,16 @@
                         android:indeterminateTint="@android:color/white"
                         android:visibility="@{vm.isLoading ? View.VISIBLE : View.INVISIBLE}"
                         tools:visibility="visible" />
+
                 </FrameLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_sign_up"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
                     android:gravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_sign_in">
+                    app:layout_constraintBottom_toBottomOf="parent">
 
                     <TextView
                         android:id="@+id/tv_sign_up_desc"
@@ -166,9 +162,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
                         android:layout_marginEnd="5dp"
-                        android:text="@string/text_sign_up_desc"
-                        android:includeFontPadding="false"
                         android:fontFamily="@font/noto_light"
+                        android:includeFontPadding="false"
+                        android:text="@string/text_sign_up_desc"
                         app:layout_constraintEnd_toStartOf="@id/tv_sign_up"
                         app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintStart_toStartOf="parent"
@@ -180,9 +176,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="30dp"
                         android:clickable="true"
-                        android:text="@string/text_sign_up"
                         android:fontFamily="@font/noto_regular"
                         android:includeFontPadding="false"
+                        android:text="@string/text_sign_up"
                         android:textColor="@color/main"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/tv_sign_up_desc"
