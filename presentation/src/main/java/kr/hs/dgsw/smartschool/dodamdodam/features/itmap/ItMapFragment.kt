@@ -50,21 +50,23 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
     }
 
     override fun onMapReady(map: NaverMap) {
-        naverMap = map
-        naverMap.maxZoom = 20.0
-        naverMap.minZoom = 5.0
+        lifecycleScope.launchWhenStarted {
+            naverMap = map
+            naverMap.maxZoom = 20.0
+            naverMap.minZoom = 5.0
 
-        with(naverMap.uiSettings) {
-            isLocationButtonEnabled = false
-            logoGravity = Gravity.END.or(Gravity.TOP)
-            setLogoMargin(0, 0, 16, 0)
-            isCompassEnabled = false
-            isZoomControlEnabled = false
+            with(naverMap.uiSettings) {
+                isLocationButtonEnabled = false
+                logoGravity = Gravity.END.or(Gravity.TOP)
+                setLogoMargin(0, 0, 16, 0)
+                isCompassEnabled = false
+                isZoomControlEnabled = false
+            }
+
+            viewModel.getAllCompanies()
+            viewModel.getAllCompanies()
+            collectGetAllCompaniesState()
         }
-
-        viewModel.getAllCompanies()
-        viewModel.getAllCompanies()
-        collectGetAllCompaniesState()
     }
 
     private fun collectGetAllCompaniesState() = lifecycleScope.launchWhenStarted {
