@@ -12,7 +12,7 @@ class SongAdapter(private val action: (url: String) -> Unit) : BaseListAdapter<V
 ) {
     override fun action(item: VideoSongData, binding: ItemSongBinding) {
         binding.song = item
-        binding.root.setOnClickListener {
+        binding.ivTodaySong.setOnClickListener {
             action.invoke(item.videoUrl)
         }
     }
