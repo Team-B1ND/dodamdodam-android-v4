@@ -190,6 +190,7 @@
                             android:textSize="@dimen/title6"
                             android:visibility="gone"
                             android:layout_marginTop="@dimen/default_card_content_margin"
+                            android:layout_marginBottom="10dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"

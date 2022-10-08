@@ -96,7 +96,7 @@
     <string name="team_name">B1ND</string>
     <string name="text_id">아이디 (5~20)</string>
     <string name="text_auto_login">자동 로그인</string>
-    <string name="text_sign_up">회원가입</string>
+    <string name="text_join">회원가입</string>
     <string name="text_password">비밀번호 (7~20)</string>
     <string name="text_sign_up_desc">계정이 없다면?</string>
     <string name="text_password_right">비밀번호 확인</string>
@@ -154,5 +154,6 @@
     <string name="title_company_detail">회사 상세 보기</string>
     <string name="text_study_room">자습실</string>
     <string name="title_point">상벌점 조회</string>
+    <string name="text_navigate_sign_up">도담도담 계정이 없어요</string>
 
 </resources>
