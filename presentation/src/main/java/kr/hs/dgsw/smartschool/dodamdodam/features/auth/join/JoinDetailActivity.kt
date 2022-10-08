@@ -75,9 +75,8 @@ class JoinDetailActivity : BaseActivity<ActivityJoinDetailBinding, JoinDetailVie
     }
 
     private fun isStateLoading(state: Boolean) {
-        mBinding.scrollView.isVisible = !state
         mBinding.btnBack.isEnabled = !state
-        mBinding.btnSignUp.isEnabled = !state
+        mBinding.btnJoin.isEnabled = !state
     }
 
     private fun initViewEvent() {
