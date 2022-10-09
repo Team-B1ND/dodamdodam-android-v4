@@ -75,9 +75,9 @@
                     android:id="@+id/card_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="@dimen/card_elevation"
+                    app:cardCornerRadius="@dimen/card_corner"
                     app:cardElevation="@dimen/card_small_elevation"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginHorizontal="@dimen/default_margin"
                     android:layout_marginVertical="8dp">
 
                     <LinearLayout
@@ -89,22 +89,25 @@
                             android:id="@+id/text_label_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:fontFamily="@font/noto_regular"
+                            android:layout_marginStart="@dimen/default_card_content_margin"
+                            android:layout_marginTop="@dimen/default_card_content_margin"
+                            android:fontFamily="@font/noto_medium"
                             android:includeFontPadding="false"
+                            android:textSize="@dimen/title2"
                             android:text="@{vm.outItem.isOutSleeping ? @string/text_out_sleeping_date : @string/text_out_going_date}"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-                            android:textColor="?colorControlNormal"
+                            android:textColor="@color/color_black"
                             tools:text="@string/text_out_sleeping_date" />
 
                         <TextView
                             android:id="@+id/text_date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
+                            android:layout_margin="@dimen/default_card_content_margin"
                             android:fontFamily="@font/noto_regular"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                            android:textSize="@dimen/title4"
+                            android:includeFontPadding="false"
+                            android:textColor="@color/color_black"
                             android:text="@{vm.outItem.startDate}" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -113,10 +116,10 @@
                     android:id="@+id/card_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="@dimen/card_elevation"
+                    app:cardCornerRadius="@dimen/card_corner"
                     app:cardElevation="@dimen/card_small_elevation"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginVertical="8dp">
+                    android:layout_marginHorizontal="@dimen/default_margin"
+                    android:layout_marginVertical="@dimen/default_card_height_margin">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -127,22 +130,25 @@
                             android:id="@+id/text_label_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:fontFamily="@font/noto_regular"
+                            android:layout_marginStart="@dimen/default_card_content_margin"
+                            android:layout_marginTop="@dimen/default_card_content_margin"
+                            android:fontFamily="@font/noto_medium"
                             android:includeFontPadding="false"
+                            android:textSize="@dimen/title2"
                             android:text="@{vm.outItem.isOutSleeping ? @string/text_out_sleeping_time : @string/text_out_going_time}"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-                            android:textColor="?colorControlNormal"
+                            android:textColor="@color/color_black"
                             tools:text="@string/text_out_sleeping_time" />
 
                         <TextView
                             android:id="@+id/text_time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
+                            android:layout_margin="@dimen/default_card_content_margin"
                             android:fontFamily="@font/noto_regular"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                            android:textSize="@dimen/title4"
+                            android:includeFontPadding="false"
+                            android:textColor="@color/color_black"
                             android:text="@{vm.outItem.startTime}" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -151,10 +157,10 @@
                     android:id="@+id/card_date_end"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    app:cardCornerRadius="@dimen/card_elevation"
+                    android:layout_marginHorizontal="@dimen/default_margin"
+                    app:cardCornerRadius="@dimen/card_corner"
                     app:cardElevation="@dimen/card_small_elevation"
-                    android:layout_marginVertical="8dp"
+                    android:layout_marginVertical="@dimen/default_card_height_margin"
                     android:visibility="@{vm.outItem.isOutSleeping ? View.VISIBLE : View.GONE}">
 
                     <LinearLayout
@@ -166,21 +172,24 @@
                             android:id="@+id/text_label_date_end"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:fontFamily="@font/noto_regular"
+                            android:layout_marginStart="@dimen/default_card_content_margin"
+                            android:layout_marginTop="@dimen/default_card_content_margin"
+                            android:fontFamily="@font/noto_medium"
                             android:includeFontPadding="false"
                             android:text="@string/text_out_sleeping_date_end"
+                            android:textSize="@dimen/title2"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-                            android:textColor="?colorControlNormal" />
+                            android:textColor="@color/color_black" />
 
                         <TextView
                             android:id="@+id/text_date_end"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
+                            android:layout_margin="@dimen/default_card_content_margin"
                             android:fontFamily="@font/noto_regular"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                            android:textSize="@dimen/title4"
+                            android:includeFontPadding="false"
+                            android:textColor="@color/color_black"
                             android:text="@{vm.outItem.endDate}" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -189,10 +198,10 @@
                     android:id="@+id/card_time_end"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="@dimen/card_elevation"
+                    app:cardCornerRadius="@dimen/card_corner"
                     app:cardElevation="@dimen/card_small_elevation"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginVertical="8dp">
+                    android:layout_marginHorizontal="@dimen/default_margin"
+                    android:layout_marginVertical="@dimen/default_card_height_margin">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -203,21 +212,24 @@
                             android:id="@+id/text_label_time_end"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:fontFamily="@font/noto_regular"
+                            android:layout_marginStart="@dimen/default_card_content_margin"
+                            android:layout_marginTop="@dimen/default_card_content_margin"
+                            android:fontFamily="@font/noto_medium"
                             android:includeFontPadding="false"
                             android:text="@string/text_out_time_end"
+                            android:textSize="@dimen/title2"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-                            android:textColor="?colorControlNormal" />
+                            android:textColor="@color/color_black" />
 
                         <TextView
                             android:id="@+id/text_time_end"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
+                            android:layout_margin="@dimen/default_card_content_margin"
                             android:fontFamily="@font/noto_regular"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                            android:textSize="@dimen/title4"
+                            android:includeFontPadding="false"
+                            android:textColor="@color/color_black"
                             android:text="@{vm.outItem.endTime}" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -226,10 +238,10 @@
                     android:id="@+id/card_reason"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="@dimen/card_elevation"
+                    app:cardCornerRadius="@dimen/card_corner"
                     app:cardElevation="@dimen/card_small_elevation"
-                    android:layout_marginHorizontal="20dp"
-                    android:layout_marginVertical="8dp">
+                    android:layout_marginHorizontal="@dimen/default_margin"
+                    android:layout_marginVertical="@dimen/default_card_height_margin">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -239,21 +251,23 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:fontFamily="@font/noto_regular"
+                            android:layout_marginStart="@dimen/default_card_content_margin"
+                            android:layout_marginTop="@dimen/default_card_content_margin"
+                            android:fontFamily="@font/noto_medium"
                             android:includeFontPadding="false"
                             android:text="@string/text_reason"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-                            android:textColor="?colorControlNormal" />
+                            android:textSize="@dimen/title2"
+                            android:textColor="@color/color_black" />
 
                         <TextView
                             android:id="@+id/text_reason"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
+                            android:layout_margin="@dimen/default_card_content_margin"
                             android:fontFamily="@font/noto_regular"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                            android:textSize="@dimen/title4"
+                            android:includeFontPadding="false"
+                            android:textColor="@color/color_black"
                             android:text="@{vm.outItem.reason}" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
