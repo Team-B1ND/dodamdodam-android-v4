@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">도담도담Test</string>
     <string-array name="generation_array">
         <item>1기</item>

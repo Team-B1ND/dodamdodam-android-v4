@@ -39,4 +39,5 @@
 
     <dimen name="top_bar_height_size">40dp</dimen>
     <dimen name="default_more_arrow_icon">15dp</dimen>
+    <dimen name="default_item_radius">15dp</dimen>
 </resources>
