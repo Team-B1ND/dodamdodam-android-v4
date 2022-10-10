@@ -27,7 +27,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val mealUseCases: MealUseCases,
     private val studyRoomUseCases: StudyRoomUseCases,
-    private val setUpUseCases: SetUpUseCases,
     private val songUseCases: SongUseCases
 ) : BaseViewModel() {
 
@@ -92,10 +91,6 @@ class HomeViewModel @Inject constructor(
 
     fun onClickSongMore() {
         viewEvent(ON_CLICK_SONG_MORE)
-    }
-
-    fun onClickMealMore() {
-        viewEvent(ON_CLICK_MEAL_MORE)
     }
 
     fun onClickOut() {

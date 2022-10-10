@@ -227,7 +227,7 @@
                                     android:paddingHorizontal="15dp"
                                     android:paddingVertical="2dp"
                                     android:text="@string/text_dormitory"
-                                    android:textColor="@{vm.dormitorySelected ? @color/color_un_selected : @color/color_selected}"
+                                    android:textColor="@{vm.dormitorySelected ? @color/color_un_selected : @color/color_profile}"
                                     android:textSize="@dimen/title6" />
 
                                 <TextView
@@ -243,7 +243,7 @@
                                     android:paddingHorizontal="20dp"
                                     android:paddingVertical="2dp"
                                     android:text="@string/school"
-                                    android:textColor="@{vm.schoolSelected ? @color/color_un_selected : @color/color_selected}"
+                                    android:textColor="@{vm.schoolSelected ? @color/color_un_selected : @color/color_profile}"
                                     android:textSize="@dimen/title6" />
 
 

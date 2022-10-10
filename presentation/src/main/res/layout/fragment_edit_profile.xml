@@ -21,11 +21,11 @@
             android:id="@+id/btn_back"
             layout="@layout/item_back_button" />
 
-        <include
+        <ProgressBar
             android:id="@+id/progress_circular_info"
-            layout="@layout/item_loading_progressbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:indeterminateTint="@color/color_profile"
             android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +70,7 @@
             android:fontFamily="@font/noto_regular"
             android:includeFontPadding="false"
             android:text="@string/text_change_desc"
-            android:textColor="@color/main"
+            android:textColor="@color/color_profile"
             android:textSize="@dimen/title4"
             app:layout_constraintEnd_toEndOf="@id/iv_profile"
             app:layout_constraintStart_toStartOf="@id/iv_profile"
@@ -153,6 +153,7 @@
             android:onClick="@{() -> vm.checkForm()}"
             android:text="@string/text_save"
             android:textSize="@dimen/title4"
+            app:backgroundTint="@color/color_profile"
             android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
