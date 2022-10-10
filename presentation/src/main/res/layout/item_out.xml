@@ -11,77 +11,69 @@
         android:id="@+id/card_base"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/default_card_height_margin"
         app:cardCornerRadius="@dimen/card_corner"
         app:cardElevation="@dimen/card_elevation">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="@dimen/default_card_content_margin">
 
             <TextView
-                android:id="@+id/tv_offbase_type"
+                android:id="@+id/tv_out_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/noto_medium"
                 android:includeFontPadding="false"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:textColor="@color/main"
+                android:textSize="@dimen/title3"
                 app:layout_constraintBottom_toTopOf="@+id/divider"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="외박" />
 
             <TextView
-                android:id="@+id/tv_offbase_reason"
+                android:id="@+id/tv_out_reason"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:textColor="@color/gray700"
+                android:textColor="@color/gray500"
                 android:textSize="@dimen/title6"
-                android:textStyle="bold"
-                app:layout_constraintBaseline_toBaselineOf="@id/tv_offbase_type"
-                app:layout_constraintEnd_toStartOf="@+id/tv_offbase_status"
-                app:layout_constraintStart_toEndOf="@id/tv_offbase_type"
+                app:layout_constraintTop_toTopOf="@id/tv_out_type"
+                app:layout_constraintBottom_toBottomOf="@id/tv_out_type"
+                app:layout_constraintEnd_toStartOf="@+id/tv_out_status"
+                app:layout_constraintStart_toEndOf="@id/tv_out_type"
                 tools:text="저녁식사" />
 
             <TextView
-                android:id="@+id/tv_offbase_status"
+                android:id="@+id/tv_out_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="3dp"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
-                android:textColor="@color/gray700"
-                android:textSize="@dimen/title6"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_offbase_status"
-                app:layout_constraintEnd_toStartOf="@+id/iv_offbase_status"
-                app:layout_constraintTop_toTopOf="@+id/iv_offbase_status"
+                android:textColor="@color/gray500"
+                android:textSize="@dimen/title7"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_out_status"
+                app:layout_constraintEnd_toStartOf="@+id/iv_out_status"
+                app:layout_constraintTop_toTopOf="@+id/iv_out_status"
                 tools:text="대기중" />
 
             <ImageView
-                android:id="@+id/iv_offbase_status"
+                android:id="@+id/iv_out_status"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="18dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/divider"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/gray700"
+                app:layout_constraintTop_toTopOf="@id/tv_out_type"
+                app:layout_constraintBottom_toBottomOf="@id/tv_out_type"
                 tools:ignore="ContentDescription"
                 tools:srcCompat="@drawable/ic_btn_unknown" />
 
@@ -89,21 +81,17 @@
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:background="?android:attr/listDivider"
+                android:layout_marginTop="3dp"
+                android:background="@color/gray200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_offbase_type" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_out_type" />
 
             <LinearLayout
                 android:id="@+id/layout_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/layout_time"
@@ -114,11 +102,10 @@
                     android:id="@+id/tv_label_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_regular"
+                    android:fontFamily="@font/noto_medium"
                     android:includeFontPadding="false"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/title5"
-                    android:textStyle="bold"
                     tools:text="외박 날짜" />
 
                 <TextView
@@ -128,7 +115,7 @@
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
-                    android:textColor="@color/gray700"
+                    android:textColor="@color/gray500"
                     android:textSize="@dimen/title6"
                     tools:text="2019-03-13" />
             </LinearLayout>
@@ -146,12 +133,11 @@
                     android:id="@+id/tv_label_date_end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_regular"
+                    android:fontFamily="@font/noto_medium"
                     android:includeFontPadding="false"
                     android:text="@string/text_out_sleeping_date_end"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/title5"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/title5" />
 
                 <TextView
                     android:id="@+id/tv_date_end"
@@ -160,7 +146,7 @@
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
-                    android:textColor="@color/gray700"
+                    android:textColor="@color/gray500"
                     android:textSize="@dimen/title6"
                     tools:text="2019-03-15" />
             </LinearLayout>
@@ -169,8 +155,8 @@
                 android:id="@+id/layout_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:gravity="center"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/btn_delete"
                 app:layout_constraintStart_toStartOf="@+id/layout_date"
@@ -180,11 +166,10 @@
                     android:id="@+id/tv_label_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_regular"
+                    android:fontFamily="@font/noto_medium"
                     android:includeFontPadding="false"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/title5"
-                    android:textStyle="bold"
                     tools:text="외박 시간" />
 
                 <TextView
@@ -194,7 +179,7 @@
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
-                    android:textColor="@color/gray700"
+                    android:textColor="@color/gray500"
                     android:textSize="@dimen/title6"
                     tools:text="16:30 - 19:10" />
             </LinearLayout>
@@ -206,7 +191,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/btn_delete"
+                app:layout_constraintBottom_toBottomOf="@id/layout_time"
                 app:layout_constraintEnd_toEndOf="@id/divider"
                 app:layout_constraintStart_toEndOf="@id/layout_time">
 
@@ -214,12 +199,11 @@
                     android:id="@+id/tv_label_time_end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/noto_regular"
+                    android:fontFamily="@font/noto_medium"
                     android:includeFontPadding="false"
                     android:text="@string/text_out_time_end"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/title5"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/title5" />
 
                 <TextView
                     android:id="@+id/tv_time_end"
@@ -228,23 +212,21 @@
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
-                    android:textColor="@color/gray700"
+                    android:textColor="@color/gray500"
                     android:textSize="@dimen/title6"
                     tools:text="19:10" />
             </LinearLayout>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/btn_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="?actionBarItemBackground"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_btn_delete"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/layout_time"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:tint="@color/gray700"
+                app:tint="@color/gray500"
                 tools:ignore="ContentDescription" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

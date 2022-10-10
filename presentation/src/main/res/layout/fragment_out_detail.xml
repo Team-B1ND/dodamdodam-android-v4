@@ -30,8 +30,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
-                app:collapsedTitleGravity="center"
+                app:collapsedTitleGravity="start"
                 app:title="@string/text_detail_info"
+                app:expandedTitleMarginStart="@dimen/default_margin"
                 app:collapsedTitleTextAppearance="@style/TextAppearance.App.Title"
                 app:expandedTitleTextAppearance="@style/TextAppearance.App.Title.Expanded"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
@@ -93,7 +94,7 @@
                             android:layout_marginTop="@dimen/default_card_content_margin"
                             android:fontFamily="@font/noto_medium"
                             android:includeFontPadding="false"
-                            android:textSize="@dimen/title2"
+                            android:textSize="@dimen/card_title"
                             android:text="@{vm.outItem.isOutSleeping ? @string/text_out_sleeping_date : @string/text_out_going_date}"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                             android:textColor="@color/color_black"
@@ -105,7 +106,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/default_card_content_margin"
                             android:fontFamily="@font/noto_regular"
-                            android:textSize="@dimen/title4"
+                            android:textSize="@dimen/card_content"
                             android:includeFontPadding="false"
                             android:textColor="@color/color_black"
                             android:text="@{vm.outItem.startDate}" />
@@ -134,7 +135,7 @@
                             android:layout_marginTop="@dimen/default_card_content_margin"
                             android:fontFamily="@font/noto_medium"
                             android:includeFontPadding="false"
-                            android:textSize="@dimen/title2"
+                            android:textSize="@dimen/card_title"
                             android:text="@{vm.outItem.isOutSleeping ? @string/text_out_sleeping_time : @string/text_out_going_time}"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                             android:textColor="@color/color_black"
@@ -146,7 +147,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/default_card_content_margin"
                             android:fontFamily="@font/noto_regular"
-                            android:textSize="@dimen/title4"
+                            android:textSize="@dimen/card_content"
                             android:includeFontPadding="false"
                             android:textColor="@color/color_black"
                             android:text="@{vm.outItem.startTime}" />
@@ -177,7 +178,7 @@
                             android:fontFamily="@font/noto_medium"
                             android:includeFontPadding="false"
                             android:text="@string/text_out_sleeping_date_end"
-                            android:textSize="@dimen/title2"
+                            android:textSize="@dimen/card_title"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                             android:textColor="@color/color_black" />
 
@@ -187,7 +188,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/default_card_content_margin"
                             android:fontFamily="@font/noto_regular"
-                            android:textSize="@dimen/title4"
+                            android:textSize="@dimen/card_content"
                             android:includeFontPadding="false"
                             android:textColor="@color/color_black"
                             android:text="@{vm.outItem.endDate}" />
@@ -217,7 +218,7 @@
                             android:fontFamily="@font/noto_medium"
                             android:includeFontPadding="false"
                             android:text="@string/text_out_time_end"
-                            android:textSize="@dimen/title2"
+                            android:textSize="@dimen/card_title"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                             android:textColor="@color/color_black" />
 
@@ -227,7 +228,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/default_card_content_margin"
                             android:fontFamily="@font/noto_regular"
-                            android:textSize="@dimen/title4"
+                            android:textSize="@dimen/card_content"
                             android:includeFontPadding="false"
                             android:textColor="@color/color_black"
                             android:text="@{vm.outItem.endTime}" />
@@ -256,7 +257,7 @@
                             android:fontFamily="@font/noto_medium"
                             android:includeFontPadding="false"
                             android:text="@string/text_reason"
-                            android:textSize="@dimen/title2"
+                            android:textSize="@dimen/card_title"
                             android:textColor="@color/color_black" />
 
                         <TextView
@@ -265,7 +266,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/default_card_content_margin"
                             android:fontFamily="@font/noto_regular"
-                            android:textSize="@dimen/title4"
+                            android:textSize="@dimen/card_content"
                             android:includeFontPadding="false"
                             android:textColor="@color/color_black"
                             android:text="@{vm.outItem.reason}" />
