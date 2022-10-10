@@ -5,9 +5,9 @@
 
     <corners android:radius="20dp"/>
 
-    <solid android:color="?android:colorBackgroundFloating" />
+    <solid android:color="@color/white" />
 
     <stroke
         android:width="2dp"
-        android:color="@color/color_selected"/>
+        android:color="@color/color_profile"/>
 </shape>

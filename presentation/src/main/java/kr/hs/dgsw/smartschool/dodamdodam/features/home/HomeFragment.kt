@@ -13,7 +13,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.adapter.StudyRoomCheckAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentHomeBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
-import kr.hs.dgsw.smartschool.dodamdodam.util.ViewPagerUtils.getTransform
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.SongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.openVideoFromUrl
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
@@ -97,10 +97,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             if (LocalDateTime.now().hour >= 20) {
                 date = LocalDate.now()
                 date = date.plusDays(1)
-                mBinding.tvMealTitle.text = "내일의 급식"
             }
-            mBinding.tvMealDate.text = String.format("%d.%d", date.monthValue, date.dayOfMonth)
-            // getMealList(date)
+            getMeal(date)
 
             lifecycleScope.launchWhenStarted {
                 getMealState.collect { state ->
@@ -146,10 +144,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private fun setEmptySongView(isEmptySongList: Boolean) {
         if (isEmptySongList) {
             mBinding.tvEmptySong.visibility = View.VISIBLE
-            mBinding.viewPagerTodaySong.visibility = View.GONE
+            mBinding.ivMusicalNote.visibility = View.VISIBLE
+            mBinding.rvTodaySong.visibility = View.GONE
         } else {
             mBinding.tvEmptySong.visibility = View.GONE
-            mBinding.viewPagerTodaySong.visibility = View.VISIBLE
+            mBinding.ivMusicalNote.visibility = View.GONE
+            mBinding.rvTodaySong.visibility = View.VISIBLE
         }
     }
 
@@ -163,11 +163,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun setMealListViewPager() {
-        mealHomeAdapter = MealHomeAdapter()
+        mealHomeAdapter = MealHomeAdapter {
+            (activity as? MainActivity)?.moveHomeToMeal()
+        }
         mBinding.viewPagerMealList.adapter = mealHomeAdapter
         mBinding.viewPagerMealList.offscreenPageLimit = 3
-        mBinding.viewPagerMealList.setPadding(90, 0, 90, 0)
-        mBinding.viewPagerMealList.setPageTransformer(getTransform())
     }
 
     private fun setMealList(meal: Meal) {
@@ -197,10 +197,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         songAdapter = SongAdapter { url ->
             this@HomeFragment.openVideoFromUrl(url)
         }
-        mBinding.viewPagerTodaySong.adapter = songAdapter
-        mBinding.viewPagerTodaySong.offscreenPageLimit = 3
-        mBinding.viewPagerTodaySong.setPadding(90, 0, 90, 0)
-        mBinding.viewPagerTodaySong.setPageTransformer(getTransform())
+        mBinding.rvTodaySong.adapter = songAdapter
     }
 
     private fun setLocationRecyclerView() {

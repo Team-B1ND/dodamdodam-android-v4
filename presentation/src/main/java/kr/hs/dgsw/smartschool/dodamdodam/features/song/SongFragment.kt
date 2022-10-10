@@ -11,7 +11,8 @@ import kr.hs.dgsw.smartschool.dodamdodam.adapter.ApplySongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.SongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentSongBinding
-import kr.hs.dgsw.smartschool.dodamdodam.util.ViewPagerUtils.getTransform
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.ApplySongAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.SongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.openVideoFromUrl
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.song.Video
@@ -31,9 +32,19 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
 
     override fun observerViewModel() {
         mBinding.tvSongDate.text = LocalDate.now().plusDays(1).toString()
+
+        mBinding.appBarSong.addOnOffsetChangedListener { _, verticalOffset ->
+            mBinding.layoutTomorrowSongContainer.alpha = ((100 - (-verticalOffset / 5.45)) / 100).toFloat()
+            Log.d("OffsetTest", "${((100 - (-verticalOffset / 5.45)) / 100).toFloat()}")
+        }
+
         setUpTomorrowSong()
         setUpPendingSong()
         setSwipeRefresh()
+
+        viewModel.getApplySong()
+
+        collectMyAccount()
         collectTomorrowSong()
         collectMySongList()
         collectPendingSongList()
@@ -135,9 +146,6 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>() {
             this.openVideoFromUrl(url)
         }
         mBinding.viewPagerTomorrowSong.adapter = songAdapter
-        mBinding.viewPagerTomorrowSong.offscreenPageLimit = 3
-        mBinding.viewPagerTomorrowSong.setPadding(90, 0, 90, 0)
-        mBinding.viewPagerTomorrowSong.setPageTransformer(getTransform())
     }
 
     private fun setUpPendingSong() {

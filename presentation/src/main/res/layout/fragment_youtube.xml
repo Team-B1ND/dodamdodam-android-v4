@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.song.youtube.YouTubeViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_song">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/btn_back"
+                layout="@layout/item_back_button_white"
+                android:onClick="@{() -> vm.onClickBack()}"
+                android:src="@drawable/ic_btn_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/title_search_song"
+                android:textColor="@color/white"
+                android:textSize="@dimen/app_bar_title_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_back"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="@dimen/card_corner"
+            app:cardElevation="1dp"
+            android:onClick="@{() -> vm.onClickThumbnail()}"
+            app:layout_constraintDimensionRatio="1:0.55"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_top_bar">
+
+            <ImageView
+                android:id="@+id/iv_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/background_youtube_card"
+            android:backgroundTint="@color/color_background"
+            app:cardElevation="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/card_thumbnail" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="20dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_regular"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/title3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_thumbnail"
+            tools:text="NewJeans (뉴진스) &#39;Attention&#39; Official MV" />
+
+        <TextView
+            android:id="@+id/tv_link"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_regular"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textColor="@color/gray500"
+            android:textSize="@dimen/title4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:text="https://www.youtube.com/watch?v=QIlzgNozXKw" />
+
+        <ProgressBar
+            android:id="@+id/progress_loading"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:indeterminateTint="@color/color_song"
+            android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/tv_confirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_link" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/music_visualizer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
+            app:layout_constraintTop_toBottomOf="@id/tv_link"
+            app:layout_constraintBottom_toTopOf="@id/tv_confirm"
+            app:lottie_rawRes="@raw/music_visualizer"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true" />
+
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:elevation="10dp"
+            android:fontFamily="@font/noto_medium"
+            android:includeFontPadding="false"
+            android:text="@string/text_is_right"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/title3"
+            app:layout_constraintBottom_toTopOf="@id/tv_search_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_search_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/text_re_search_desc"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/title5"
+            app:layout_constraintBottom_toTopOf="@id/card_et_song_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_et_song_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="@dimen/default_item_radius"
+            app:cardElevation="@dimen/card_elevation"
+            app:layout_constraintBottom_toTopOf="@id/btn_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:fontFamily="@font/noto_regular"
+                android:gravity="center"
+                android:hint="@string/text_song_title"
+                android:importantForAutofill="no"
+                android:includeFontPadding="false"
+                android:inputType="text"
+                android:padding="10dp"
+                android:text="@={vm.searchSongTitle}"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
+            android:id="@+id/btn_search"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginBottom="10dp"
+            android:enabled="@{vm.isLoading ? false : true}"
+            android:onClick="@{() -> vm.checkSearchTitle()}"
+            android:text="@string/text_do_search"
+            app:backgroundTint="@color/color_song"
+            app:layout_constraintBottom_toTopOf="@id/btn_apply"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
+            android:id="@+id/btn_apply"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginBottom="20dp"
+            android:enabled="@{vm.isLoading ? false : true}"
+            android:onClick="@{() -> vm.onClickApply()}"
+            android:text="@string/apply"
+            app:backgroundTint="@color/color_song"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

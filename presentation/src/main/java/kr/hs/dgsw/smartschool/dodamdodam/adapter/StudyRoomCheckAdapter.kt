@@ -12,6 +12,7 @@ class StudyRoomCheckAdapter(val onClickStudyRoomCard: (Int) -> Unit) : BaseListA
     R.layout.item_study_room_check,
     StudyRoomDiffUtilCallback
 ) {
+
     override fun action(item: StudyRoom, binding: ItemStudyRoomCheckBinding) {
         val start = item.timeTable?.startTime?.dropLast(3)
         val currentTime = Date().timeFormat()

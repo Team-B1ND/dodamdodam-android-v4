@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">도담도담Test</string>
     <string-array name="generation_array">
         <item>1기</item>
@@ -12,17 +12,16 @@
     <string name="nav_home">홈</string>
     <string name="nav_news">소식</string>
     <string name="nav_song">기상송</string>
-    <string name="nav_profile">프로필</string>
+    <string name="nav_profile">내 정보</string>
     <string name="home_meal">오늘의 급식</string>
     <string name="project_name">도담도담</string>
     <string name="meal_dummy">*기장밥 , 김치어묵국 , *명태껍질볶음 , 새송이돈육마늘구이 , *짜먹는요거트 , *꽃상추쌈/쌈장</string>
     <string name="meal_name_dummy">조식</string>
     <string name="today_song">오늘의 기상송</string>
-    <string name="tomorrow_song">내일의 기상송</string>
+    <string name="title_song">내일의 기상송</string>
     <string name="now_song_application">신청현황</string>
     <string name="my">My</string>
-    <string name="fab_content_desc">add wake up song</string>
-    <string name="add_wakeup_song">기상송 추가</string>
+    <string name="apply_wakeup_song">기상송 신청</string>
     <string name="sit_application">자습실 신청</string>
     <string name="modify">수정</string>
     <string name="study_room_apply">자습실 신청</string>
@@ -39,9 +38,9 @@
     <string name="prize_point">상점</string>
     <string name="penalty_point">벌점</string>
     <string name="title_out">외출/외박</string>
-    <string name="bus">버스 신청</string>
+    <string name="title_bus">버스 신청</string>
     <string name="text_out_desc">설마 무단 외출은 아니지?</string>
-    <string name="bus_desc">드디어 집 갈 시간!</string>
+    <string name="text_bus_desc">드디어 집 갈 시간!</string>
     <string name="apply">신청하기</string>
     <string name="text_other">기타</string>
     <string name="text_out_sleeping_date_end">복귀 날짜</string>
@@ -70,7 +69,7 @@
     <string name="more">더보기 ></string>
     <string name="text_my_apply">신청 내역 확인</string>
     <string name="text_my_apply_desc">내가 뭐 신청했더라?</string>
-    <string name="text_setting">설정</string>
+    <string name="title_setting">설정</string>
     <string name="text_setting_desc">도담을 잘 활용하는 방법</string>
     <string name="title_song_apply">기상송 신청</string>
     <string name="text_song_apply_desc">원하는 곡의 유튜브 링크를 올려주세요</string>
@@ -107,7 +106,7 @@
     <string name="team_name">B1ND</string>
     <string name="text_id">아이디 (5~20)</string>
     <string name="text_auto_login">자동 로그인</string>
-    <string name="text_sign_up">회원가입</string>
+    <string name="text_join">회원가입</string>
     <string name="text_password">비밀번호 (7~20)</string>
     <string name="text_sign_up_desc">계정이 없다면?</string>
     <string name="text_password_right">비밀번호 확인</string>
@@ -140,4 +139,31 @@
     <string name="text_please_apply_song">기상송을 신청해주세요!</string>
     <string name="title_out_write">외출/외박 신청</string>
     <string name="text_no_out">신청된 외출/외박이 없어요</string>
+    <string name="text_today_meal_calorie">오늘의 급식 칼로리는?</string>
+    <string name="text_is_right">위의 영상이 맞나요?</string>
+    <string name="text_no">아니요</string>
+    <string name="text_youtube_search_desc">원하는 곡 제목을 입력하여 검색해주세요!</string>
+    <string name="text_do_search">검색하기</string>
+    <string name="text_song_title">곡 제목</string>
+    <string name="title_search_song">기상송 검색</string>
+    <string name="text_youtube_confirm_desc">영상을 꼼꼼히 확인해주세요!</string>
+    <string name="text_re_search_desc">혹시 원하는 영상이 아니라면 다시 검색해주세요</string>
+
+
+    <string name="text_out_sleeping_date">외박 날짜</string>
+    <string name="text_out_sleeping_time">외박 시간</string>
+    <string name="text_out_time_end">복귀 시간</string>
+
+    <string name="text_out_going_date">외출 날짜</string>
+    <string name="text_out_going">외출</string>
+    <string name="text_out_sleeping">외박</string>
+    <string name="text_out">외출/외박</string>
+    <string name="text_out_sleeping_date_end">복귀 날짜</string>
+    <string name="text_reason">사유</string>
+    <string name="text_out_going_time">외출 시간</string>
+    <string name="title_company_detail">회사 상세 보기</string>
+    <string name="text_study_room">자습실</string>
+    <string name="title_point">상벌점 조회</string>
+    <string name="text_navigate_sign_up">도담도담 계정이 없어요</string>
+
 </resources>

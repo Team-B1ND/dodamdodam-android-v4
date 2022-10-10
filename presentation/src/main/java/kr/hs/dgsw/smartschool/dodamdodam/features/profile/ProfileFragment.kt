@@ -32,8 +32,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     private var dormitoryBonusPoint: Int? = null
 
     override fun observerViewModel() {
-        mBinding.tvPointDate.text = "$date 기준"
-
         setPieChart()
         collectMyInfo()
         collectBonusPoint()
@@ -84,12 +82,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                             endRefreshing()
                         }
 
-                        mBinding.btnGoInfoUpdate.visibility = View.VISIBLE
+                        mBinding.tvModify.visibility = View.VISIBLE
                     }
 
                     if (state.error.isNotBlank()) {
                         setProfileInfo("", "값을 받아올 수 없습니다.", "", "")
-                        mBinding.btnGoInfoUpdate.visibility = View.GONE
+                        mBinding.tvModify.visibility = View.GONE
                         endRefreshing()
                     }
                 }

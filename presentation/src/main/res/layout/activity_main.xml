@@ -31,10 +31,11 @@
             android:id="@+id/main_bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            app:itemIconTint="@drawable/selector_nav_color"
             android:background="@drawable/background_bottom_nav"
-            app:itemIconTint="@color/main"
+            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
             app:itemTextColor="@color/color_black"
-            app:labelVisibilityMode="selected"
+            app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/nav_bottom_menu" />
 

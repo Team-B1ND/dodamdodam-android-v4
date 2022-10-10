@@ -17,30 +17,29 @@ class OutListAdapter(
 ) : BaseListAdapter<OutItem, ItemOutBinding>(R.layout.item_out, OutItemDiffUtil) {
 
     override fun action(item: OutItem, binding: ItemOutBinding) {
-        val theme = binding.root.context.theme
         val resources = binding.root.resources
-        val icon = when (item.isAllow) {
-            -1 -> {
-                binding.tvOffbaseStatus.text = "거절됨"
-                ResourcesCompat.getDrawable(resources, R.drawable.ic_out_refuse, theme)
+        val icon = when (item.status) {
+            OutStatus.DENIED -> {
+                binding.tvOutStatus.text = "거절됨"
+                resources.getDrawable(R.drawable.ic_out_refuse, null)
             }
-            0 -> {
-                binding.tvOffbaseStatus.text = "대기중"
-                ResourcesCompat.getDrawable(resources, R.drawable.ic_out_unknown, theme)
+            OutStatus.PENDING -> {
+                binding.tvOutStatus.text = "대기중"
+                resources.getDrawable(R.drawable.ic_out_unknown, null)
             }
-            1 -> {
-                binding.tvOffbaseStatus.text = "수락됨"
-                ResourcesCompat.getDrawable(resources, R.drawable.ic_out_ok, theme)
+            OutStatus.ALLOWED -> {
+                binding.tvOutStatus.text = "수락됨"
+                resources.getDrawable(R.drawable.ic_out_ok, null)
             }
             else -> return
         }
 
         Glide.with(binding.root)
             .load(icon)
-            .into(binding.ivOffbaseStatus)
+            .into(binding.ivOutStatus)
 
-        binding.tvOffbaseType.text = if (item is OutGoing) "외출" else "외박"
-        binding.tvOffbaseReason.text = item.reason
+        binding.tvOutType.text = if (item.isOutSleeping()) "외박" else "외출"
+        binding.tvOutReason.text = item.reason
 
         if (item is OutGoing) {
             binding.tvLabelDate.text = "외출 날짜"

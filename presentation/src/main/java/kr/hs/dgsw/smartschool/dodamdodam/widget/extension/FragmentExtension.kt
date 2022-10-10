@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 fun Fragment.shortToast(message: String?) {
-    Toast.makeText(requireContext().applicationContext, message, Toast.LENGTH_SHORT).show()
+    Toast.makeText(requireContext().applicationContext, message.toString(), Toast.LENGTH_SHORT).show()
 }
 
 fun Fragment.shortToast(message: Int) {

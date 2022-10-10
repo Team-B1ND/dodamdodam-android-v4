@@ -19,7 +19,7 @@ class SongAdapter(private val action: (url: String) -> Unit) : BaseListAdapter<V
             .into(binding.ivTodaySong)
 
         binding.song = item
-        binding.root.setOnClickListener {
+        binding.ivTodaySong.setOnClickListener {
             action.invoke(item.videoUrl)
         }
     }
