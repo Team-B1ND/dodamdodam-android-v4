@@ -13,6 +13,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentYoutubeBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.openVideoFromUrl
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.song.youtube.YoutubeVideo
+import java.lang.IndexOutOfBoundsException
 
 @AndroidEntryPoint
 class YouTubeFragment : BaseFragment<FragmentYoutubeBinding, YouTubeViewModel>() {
@@ -65,16 +66,21 @@ class YouTubeFragment : BaseFragment<FragmentYoutubeBinding, YouTubeViewModel>()
     }
 
     private fun setVideoView(youtubeVideo: YoutubeVideo) {
-        val item = youtubeVideo.items[0]
-        viewModel.url.value = "https://www.youtube.com/watch?v=${item.id.videoId}"
+        try {
+            val item = youtubeVideo.items[0]
+            viewModel.url.value = "https://www.youtube.com/watch?v=${item.id.videoId}"
 
-        Glide.with(mBinding.ivThumbnail.context)
-            .load(item.snippet.thumbnails.high.url)
-            .error(R.drawable.default_img)
-            .centerCrop()
-            .into(mBinding.ivThumbnail)
+            Glide.with(mBinding.ivThumbnail.context)
+                .load(item.snippet.thumbnails.high.url)
+                .error(R.drawable.default_img)
+                .centerCrop()
+                .into(mBinding.ivThumbnail)
 
-        mBinding.tvTitle.text = HtmlCompat.fromHtml(item.snippet.title, HtmlCompat.FROM_HTML_MODE_LEGACY)
-        mBinding.tvLink.text = viewModel.url.value
+            mBinding.tvTitle.text =
+                HtmlCompat.fromHtml(item.snippet.title, HtmlCompat.FROM_HTML_MODE_LEGACY)
+            mBinding.tvLink.text = viewModel.url.value
+        } catch (e: IndexOutOfBoundsException) {
+            shortToast("검색 결과가 없습니다.")
+        }
     }
 }

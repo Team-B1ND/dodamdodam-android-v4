@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             tools:text="1위"
             android:text="@{song.showingRank}"
-            android:textColor="@color/main"
+            android:textColor="@color/color_song"
             android:textSize="@dimen/title4"
             app:layout_constraintTop_toTopOf="@id/card_image_container"
             app:layout_constraintBottom_toBottomOf="@id/card_image_container"
