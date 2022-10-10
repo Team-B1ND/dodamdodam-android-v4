@@ -86,6 +86,7 @@
                         android:layout_marginHorizontal="@dimen/default_margin"
                         android:fontFamily="@font/noto_regular"
                         android:includeFontPadding="false"
+                        android:backgroundTint="@color/color_white"
                         android:text="@string/text_now_selected_song_empty"
                         android:textColor="@color/gray700"
                         android:textSize="@dimen/title6"

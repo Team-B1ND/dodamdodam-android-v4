@@ -41,7 +41,7 @@
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:text="@string/title_search_song"
-                android:textColor="@color/color_white"
+                android:textColor="@color/white"
                 android:textSize="@dimen/app_bar_title_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/btn_back"

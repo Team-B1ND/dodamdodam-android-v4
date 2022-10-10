@@ -182,7 +182,7 @@
                         android:fontFamily="@font/noto_medium"
                         android:includeFontPadding="false"
                         android:text="@string/title_recommend_music"
-                        android:textColor="@color/black"
+                        android:textColor="@color/color_black"
                         android:textSize="@dimen/title4"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
