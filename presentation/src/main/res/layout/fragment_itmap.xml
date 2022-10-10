@@ -14,9 +14,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include
+            android:id="@+id/progress_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            layout="@layout/item_loading_progressbar" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_base"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:visibility="gone">
+
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_top_bar"
@@ -66,6 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_gravity="bottom"
+            tools:visibility="gone"
             android:layout_marginBottom="80dp"
             android:orientation="horizontal" />
 
