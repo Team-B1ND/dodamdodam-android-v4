@@ -6,7 +6,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemMealHomeBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.meal.adapter.callback.MealDiffUtilCallback
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 class MealHomeAdapter(val onClickCard: () -> Unit) : BaseListAdapter<MealInfo, ItemMealHomeBinding>(
@@ -30,7 +29,6 @@ class MealHomeAdapter(val onClickCard: () -> Unit) : BaseListAdapter<MealInfo, I
         } else {
             setMealType(binding, item.type, "오늘의")
         }
-
 
         binding.tvMeal.text = item.content
 

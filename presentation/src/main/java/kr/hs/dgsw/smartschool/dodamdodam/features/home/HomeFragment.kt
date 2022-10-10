@@ -13,7 +13,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentHomeBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.home.adpater.MealHomeAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.SongAdapter
-import kr.hs.dgsw.smartschool.dodamdodam.util.ViewPagerUtils.getTransform
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.openVideoFromUrl
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat

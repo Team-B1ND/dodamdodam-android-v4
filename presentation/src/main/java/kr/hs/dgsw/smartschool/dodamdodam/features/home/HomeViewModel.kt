@@ -16,7 +16,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetAllowSongState
 import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetMyStudyRoomState
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetAllowSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.studyroom.StudyRoomUseCases

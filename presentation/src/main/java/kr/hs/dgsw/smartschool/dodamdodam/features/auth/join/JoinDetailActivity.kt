@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Paint
 import android.net.Uri
 import androidx.activity.viewModels
-import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R

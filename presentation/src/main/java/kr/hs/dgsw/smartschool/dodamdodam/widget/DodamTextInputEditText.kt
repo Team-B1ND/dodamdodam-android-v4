@@ -17,11 +17,11 @@ class DodamTextInputEditText : TextInputEditText {
         init(context, null, null)
     }
 
-    constructor(context: Context, attrs: AttributeSet?): super(context, attrs) {
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         init(context, attrs, null)
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int): super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         init(context, attrs, defStyleAttr)
     }
 
@@ -33,5 +33,4 @@ class DodamTextInputEditText : TextInputEditText {
         this.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.default_edittext_text))
         this.backgroundTintList = ContextCompat.getColorStateList(context, R.color.color_transparent)
     }
-
 }

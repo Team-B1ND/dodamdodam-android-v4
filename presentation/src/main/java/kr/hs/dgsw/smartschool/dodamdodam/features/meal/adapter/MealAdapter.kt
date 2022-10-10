@@ -14,8 +14,8 @@ class MealAdapter : BaseListAdapter<MealInfo, ItemMealBinding>(
     MealDiffUtilCallback
 ) {
 
-    override fun action(data: MealInfo, binding: ItemMealBinding) {
-        val image = when (data.type) {
+    override fun action(item: MealInfo, binding: ItemMealBinding) {
+        val image = when (item.type) {
             1 -> R.drawable.ic_breakfast
             2 -> R.drawable.ic_lunch
             3 -> R.drawable.ic_dinner
@@ -28,7 +28,7 @@ class MealAdapter : BaseListAdapter<MealInfo, ItemMealBinding>(
 
         val context = binding.root.context
 
-        when (data.type) {
+        when (item.type) {
             1 -> {
                 binding.tvMealName.text = "조식"
                 binding.tvMealName.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.color_breakfast))
@@ -43,6 +43,6 @@ class MealAdapter : BaseListAdapter<MealInfo, ItemMealBinding>(
             }
         }
 
-        binding.tvMeal.text = data.content
+        binding.tvMeal.text = item.content
     }
 }

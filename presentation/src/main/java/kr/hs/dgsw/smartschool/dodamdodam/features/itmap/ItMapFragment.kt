@@ -4,7 +4,6 @@ import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
-import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -41,7 +40,6 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
     override fun observerViewModel() {
         mBinding.mapView.onCreate(savedInstanceState)
         mBinding.mapView.getMapAsync(this)
-
 
         setCompanyAdapter()
         setCompanyViewPagerAdapter()
