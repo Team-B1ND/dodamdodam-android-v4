@@ -56,7 +56,7 @@ class BusViewModel @Inject constructor(
                 _getMyBusState.value = GetMyBusState(busList = it ?: emptyList<Bus>())
                 _busApplyState.value = BusApplyState(
                     busId =
-                    if (_getMyBusState.value.busList.isNotEmpty()) _getMyBusState.value.busList[0].idx
+                    if (_getMyBusState.value.busList.isNotEmpty()) _getMyBusState.value.busList[0].id
                     else 0
                 )
             },

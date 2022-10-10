@@ -57,18 +57,18 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
         var rideAble = ""
         var isSelected: Boolean = false
         todayBus.bustList.forEach {
-            if (it.busMemberlength < (it.peopleLimit)) {
+            if (it.busMemberLength < (it.peopleLimit)) {
                 rideAble = "탑승가능"
-            } else if (it.busMemberlength >= it.peopleLimit) {
+            } else if (it.busMemberLength >= it.peopleLimit) {
                 rideAble = "탑승불가"
             }
-            isSelected = it.idx == busId
+            isSelected = it.id == busId
             list.add(
                 BusInfo(
-                    it.idx,
+                    it.id,
                     it.busName,
                     rideAble,
-                    it.busMemberlength.toString() + " / " + it.peopleLimit.toString(),
+                    it.busMemberLength.toString() + " / " + it.peopleLimit.toString(),
                     it.leaveTime,
                     isSelected
                 )
