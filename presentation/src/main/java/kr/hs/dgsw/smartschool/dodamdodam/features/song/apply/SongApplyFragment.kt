@@ -4,11 +4,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kr.hs.dgsw.smartschool.dodamdodam.adapter.RecommendSongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentSongApplyBinding
-import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.RecommendSongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
-import kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart
+import kr.hs.dgsw.smartschool.domain.model.song.MelonChart
 
 @AndroidEntryPoint
 class SongApplyFragment : BaseFragment<FragmentSongApplyBinding, SongApplyViewModel>() {
@@ -21,8 +21,6 @@ class SongApplyFragment : BaseFragment<FragmentSongApplyBinding, SongApplyViewMo
             when (event) {
                 SongApplyViewModel.EVENT_ON_CLICK_BACK -> popBackStack()
                 SongApplyViewModel.EVENT_ON_URL_ERROR -> shortToast(viewModel.errorMessage)
-                SongApplyViewModel.EVENT_ON_CLICK_SEARCH -> searchYouTubeVideo(viewModel.searchSongTitle.value ?: "아이와 나의 바다")
-                SongApplyViewModel.EVENT_ON_SEARCH_TITLE_ERROR -> shortToast(viewModel.errorMessage)
                 SongApplyViewModel.EVENT_ON_SUCCESS_APPLY -> successApplySong()
             }
         }
@@ -43,15 +41,8 @@ class SongApplyFragment : BaseFragment<FragmentSongApplyBinding, SongApplyViewMo
         }
     }
 
-    private fun searchYouTubeVideo(title: String) {
-        val action = SongApplyFragmentDirections.actionSongApplyFragmentToYouTubeFragment(title)
-        findNavController().navigate(action)
-    }
-
     private fun setRecommendSongAdapter() {
-        recommendSongAdapter = RecommendSongAdapter { title ->
-            searchYouTubeVideo(title)
-        }
+        recommendSongAdapter = RecommendSongAdapter()
         mBinding.recyclerRecommendSong.adapter = recommendSongAdapter
     }
 

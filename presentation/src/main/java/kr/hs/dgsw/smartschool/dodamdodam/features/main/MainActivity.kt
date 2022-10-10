@@ -2,38 +2,19 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.main
 
 import androidx.activity.viewModels
 import androidx.core.view.isInvisible
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivityMainBinding
-import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override val viewModel: MainViewModel by viewModels()
 
     override fun observerViewModel() {
-        viewModel.dataSetUp()
-        collectDataSetUpDate()
-    }
-
-    private fun collectDataSetUpDate() {
-        with(viewModel) {
-            lifecycleScope.launchWhenStarted {
-                dataSetUpState.collect { state ->
-                    if (state.result != null) {
-                        connectNavigation()
-                    }
-
-                    if (state.error.isNotBlank()) {
-                        shortToast(state.error)
-                    }
-                }
-            }
-        }
+        connectNavigation()
     }
 
     private fun connectNavigation() {

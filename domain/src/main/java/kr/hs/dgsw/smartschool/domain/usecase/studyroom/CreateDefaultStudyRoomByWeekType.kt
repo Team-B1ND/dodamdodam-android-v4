@@ -3,7 +3,7 @@ package kr.hs.dgsw.smartschool.domain.usecase.studyroom
 import kotlinx.coroutines.flow.Flow
 import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
 import kr.hs.dgsw.smartschool.domain.repository.StudyRoomRepository
-import kr.hs.dgsw.smartschool.domain.request.studyroom.DefaultStudyRoomByTypeRequest
+import kr.hs.dgsw.smartschool.domain.request.DefaultStudyRoomByTypeRequest
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 

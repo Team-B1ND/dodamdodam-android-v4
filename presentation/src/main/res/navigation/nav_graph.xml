@@ -23,14 +23,6 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/main_home" />
-        <action
-            android:id="@+id/action_main_home_to_itMapFragment"
-            app:destination="@id/itMapFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/main_home" />
     </fragment>
     <fragment
         android:id="@+id/main_profile"
@@ -113,17 +105,7 @@
     <fragment
         android:id="@+id/songApplyFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.apply.SongApplyFragment"
-        android:label="SongApplyFragment" >
-        <action
-            android:id="@+id/action_songApplyFragment_to_youTubeFragment"
-            app:destination="@id/youTubeFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/main_song"
-            app:popUpToInclusive="false" />
-    </fragment>
+        android:label="SongApplyFragment" />
     <fragment
         android:id="@+id/outFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.out.OutFragment"
@@ -136,73 +118,9 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/outFragment" />
-        <action
-            android:id="@+id/action_outFragment_to_outDetailFragment"
-            app:destination="@id/outDetailFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/outFragment" />
     </fragment>
     <fragment
         android:id="@+id/outWriteFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.out.write.OutWriteFragment"
-        android:label="OutWriteFragment" >
-        <argument
-            android:name="outItem"
-            app:argType="kr.hs.dgsw.smartschool.domain.model.out.OutItem"
-            app:nullable="true"
-            android:defaultValue="@null" />
-    </fragment>
-    <fragment
-        android:id="@+id/youTubeFragment"
-        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.youtube.YouTubeFragment"
-        android:label="YouTubeFragment" >
-        <argument
-            android:name="title"
-            app:argType="string"
-            android:defaultValue="아이와 나의 바다" />
-    </fragment>
-    <fragment
-        android:id="@+id/outDetailFragment"
-        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.out.detail.OutDetailFragment"
-        android:label="OutDetailFragment" >
-        <argument
-            android:name="isOutSleeping"
-            app:argType="boolean"
-            android:defaultValue="true" />
-        <argument
-            android:name="id"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_outDetailFragment_to_outWriteFragment"
-            app:destination="@id/outWriteFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/outFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/itMapFragment"
-        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.itmap.ItMapFragment"
-        android:label="ItMapFragment" >
-        <action
-            android:id="@+id/action_itMapFragment_to_itMapDetailFragment"
-            app:destination="@id/itMapDetailFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/itMapFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/itMapDetailFragment"
-        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.itmap.detail.ItMapDetailFragment"
-        android:label="ItMapDetailFragment" >
-        <argument
-            android:name="id"
-            app:argType="integer" />
-    </fragment>
+        android:label="OutWriteFragment" />
 </navigation>

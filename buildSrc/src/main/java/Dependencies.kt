@@ -26,10 +26,6 @@ object Google {
     const val HILT_ANDROID_PLUGIN = "com.google.dagger:hilt-android-gradle-plugin:${Versions.HILT}"
     const val MATERIAL = "com.google.android.material:material:${Versions.MATERIAL}"
 
-    const val GOOGLE_LOCATION = "com.google.android.gms:play-services-location:${Versions.GOOGLE_LOCATION}"
-
-    const val GOOGLE_GMS = "com.google.gms:google-services:${Versions.GOOGLE_GMS}"
-
 }
 
 object Libraries {
@@ -46,8 +42,6 @@ object Libraries {
     const val VIEW_PAGER = "androidx.viewpager2:viewpager2:${Versions.VIEW_PAGER}"
     const val MP_ANDROID_CHART = "com.github.PhilJay:MPAndroidChart:${Versions.MP_ANDROID_CHART}"
     const val JSOUP = "org.jsoup:jsoup:${Versions.JSOUP}"
-
-    const val LOTTIE = "com.airbnb.android:lottie:${Versions.LOTTIE}"
 }
 
 object UnitTest {
@@ -61,13 +55,5 @@ object AndroidTest {
 
 object Android {
     const val ANDROID_BUILD_TOOL = "com.android.tools.build:gradle:${Versions.ANDROID_BUILD_TOOL}"
-}
-
-object NaverMap {
-    const val NAVER_MAP = "com.naver.maps:map-sdk:${Versions.NAVER_MAP}"
-}
-
-object Firebase {
-    const val ANALYTICS = "com.google.firebase:firebase-analytics:${Versions.ANALYTICS}"
 }
 

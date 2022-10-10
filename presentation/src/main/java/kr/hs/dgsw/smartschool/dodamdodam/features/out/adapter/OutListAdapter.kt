@@ -1,19 +1,19 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.out.adapter
 
 import android.view.View
+import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemOutBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.out.adapter.callback.OutItemDiffUtil
-import kr.hs.dgsw.smartschool.dodamdodam.features.out.etc.OutState
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.yearDateFormat
+import kr.hs.dgsw.smartschool.domain.model.out.OutGoing
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
-import kr.hs.dgsw.smartschool.domain.model.out.OutStatus
 
 class OutListAdapter(
-    private val action: OutAction
+    private val onClickDelete: (state: Int, idx: Int) -> Unit
 ) : BaseListAdapter<OutItem, ItemOutBinding>(R.layout.item_out, OutItemDiffUtil) {
 
     override fun action(item: OutItem, binding: ItemOutBinding) {
@@ -41,36 +41,27 @@ class OutListAdapter(
         binding.tvOutType.text = if (item.isOutSleeping()) "외박" else "외출"
         binding.tvOutReason.text = item.reason
 
-        if (!item.isOutSleeping()) {
+        if (item is OutGoing) {
             binding.tvLabelDate.text = "외출 날짜"
             binding.tvLabelTime.text = "외출 시간"
             binding.layoutDateEnd.visibility = View.INVISIBLE
 
-            binding.tvDate.text = item.startOutDate.yearDateFormat()
-            binding.tvTime.text = item.startOutDate.timeFormat()
-            binding.tvTimeEnd.text = item.endOutDate.timeFormat()
+            binding.tvDate.text = item.startTime.yearDateFormat()
+            binding.tvTime.text = item.startTime.timeFormat()
+            binding.tvTimeEnd.text = item.endTime.timeFormat()
         } else {
             binding.tvLabelDate.text = "외박 날짜"
             binding.tvLabelTime.text = "외박 시간"
             binding.layoutDateEnd.visibility = View.VISIBLE
 
-            binding.tvDate.text = item.startOutDate.yearDateFormat()
-            binding.tvDateEnd.text = item.endOutDate.yearDateFormat()
-            binding.tvTime.text = item.startOutDate.timeFormat()
-            binding.tvTimeEnd.text = item.endOutDate.timeFormat()
+            binding.tvDate.text = item.startTime.yearDateFormat()
+            binding.tvDateEnd.text = item.endTime.yearDateFormat()
+            binding.tvTime.text = item.startTime.timeFormat()
+            binding.tvTimeEnd.text = item.endTime.timeFormat()
         }
 
         binding.btnDelete.setOnClickListener {
-            action.onClickDelete(if (!item.isOutSleeping()) OutState.OutGoing else OutState.OutSleeping, item.id)
+            onClickDelete.invoke(if (item is OutGoing) 0 else 1, item.idx)
         }
-
-        binding.cardBase.setOnClickListener {
-            action.onClickItem(if (!item.isOutSleeping()) OutState.OutGoing else OutState.OutSleeping, item.id)
-        }
-    }
-
-    interface OutAction {
-        fun onClickDelete(state: OutState, id: Int)
-        fun onClickItem(state: OutState, id: Int)
     }
 }

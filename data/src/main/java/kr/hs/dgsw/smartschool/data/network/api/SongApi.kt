@@ -1,38 +1,43 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
-import kr.hs.dgsw.smartschool.domain.model.song.Song
-import kr.hs.dgsw.smartschool.domain.request.song.SongRequest
+import kr.hs.dgsw.smartschool.data.network.response.data.SongData
+import kr.hs.dgsw.smartschool.domain.request.SongCheckRequest
+import kr.hs.dgsw.smartschool.domain.request.SongRequest
 import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.HTTP
 import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface SongApi {
 
-    @POST("wakeup-song")
-    suspend fun applySong(
-        @Body request: SongRequest
-    ): Response<Any>
-
-    @HTTP(method = "DELETE", path = "/wakeup-song", hasBody = true)
-    suspend fun deleteSong(
-        @Body id: String
-    ): Response<Any>
-
-    @GET("wakeup-song/allowed")
+    @GET("wakeup-song")
     suspend fun getAllowSong(
         @Query("year") year: Int,
         @Query("month") month: Int,
-        @Query("day") day: Int
-    ): Response<List<Song>>
-
-    @GET("wakeup-song/my")
-    suspend fun getMySong(
-        @Query("id") id: String
-    ): Response<List<Song>>
+        @Query("date") date: Int
+    ): Response<SongData>
 
     @GET("wakeup-song/pending")
-    suspend fun getPendingSong(): Response<List<Song>>
+    suspend fun getPendingSong(): Response<SongData>
+
+    @GET("wakeup-song/user")
+    suspend fun getMySong(
+        @Query("id") id: String
+    ): Response<SongData>
+
+    @POST("wakeup-song")
+    suspend fun postSong(
+        @Body request: SongRequest
+    ): Response<Any>
+
+    @POST("wakeup-song/allow")
+    suspend fun postAllowSong(
+        @Body request: SongCheckRequest
+    ): Response<Any>
+
+    @POST("wakeup-song/cancel")
+    suspend fun postDenySong(
+        @Body request: SongCheckRequest
+    ): Response<Any>
 }

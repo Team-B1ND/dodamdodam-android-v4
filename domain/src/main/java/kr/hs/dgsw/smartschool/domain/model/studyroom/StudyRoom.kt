@@ -1,8 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.model.studyroom
 
 import com.google.gson.annotations.SerializedName
-import kr.hs.dgsw.smartschool.domain.model.member.StudentId
-import kr.hs.dgsw.smartschool.domain.model.member.TeacherId
 import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
 
@@ -15,6 +13,14 @@ data class StudyRoom(
     @SerializedName("teacher") val teacher: TeacherId?,
     @SerializedName("timeTable") val timeTable: TimeTable?
 ) : Cloneable {
+
+    data class StudentId(
+        val id: Int
+    )
+
+    data class TeacherId(
+        val id: Int
+    )
 
     constructor(timetable: TimeTable, place: Place) : this(
         null,

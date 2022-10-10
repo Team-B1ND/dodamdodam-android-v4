@@ -6,10 +6,10 @@ import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.MyBusByMonthRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusApplyRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
+import kr.hs.dgsw.smartschool.domain.request.AddBusRequest
+import kr.hs.dgsw.smartschool.domain.request.MyBusByMonthRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusRequest
 import javax.inject.Inject
 
 class BusDataSource @Inject constructor(
@@ -33,36 +33,36 @@ class BusDataSource @Inject constructor(
     suspend fun updateBus(
         request: UpdateBusRequest
     ): String {
-        return remote.updateBus(request).message
+        Log.e("BusDataSource", return remote.updateBus(request).message)
     }
 
     suspend fun updateBusApply(
         request: UpdateBusApplyRequest
     ): String {
-        return remote.updateBusApply(request).message
+        Log.e("BusDataSource", return remote.updateBusApply(request).message)
     }
 
     suspend fun addBus(
         request: AddBusRequest
     ): String {
-        return remote.addBus(request).message
+        Log.e("BusDataSource", return remote.addBus(request).message)
     }
 
     suspend fun addBusApply(
         idx: Int
     ): String {
-        return remote.addBusApply(idx).message
+        Log.e("BusDataSource", return remote.addBusApply(idx).message)
     }
 
     suspend fun deleteBus(
         idx: Int
     ): String {
-        return remote.deleteBus(idx).message
+        Log.e("BusDataSource", return remote.deleteBus(idx).message)
     }
 
     suspend fun deleteBusApply(
         idx: Int
     ): String {
-        return remote.deleteBusApply(idx).message
+        Log.e("BusDataSource", return remote.deleteBusApply(idx).message)
     }
 }

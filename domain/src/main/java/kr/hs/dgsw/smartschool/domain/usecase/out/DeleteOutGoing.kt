@@ -9,7 +9,6 @@ import javax.inject.Inject
 class DeleteOutGoing @Inject constructor(
     private val outRepository: OutRepository
 ) : BaseUseCase<Int, String>() {
-
     override fun invoke(params: Int): Flow<Resource<String>> = execute {
         outRepository.deleteOutGoing(params)
     }

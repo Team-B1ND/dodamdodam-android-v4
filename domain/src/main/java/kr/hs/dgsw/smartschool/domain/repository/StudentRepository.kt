@@ -1,7 +1,7 @@
 package kr.hs.dgsw.smartschool.domain.repository
 
 import kr.hs.dgsw.smartschool.domain.model.member.Student
-import kr.hs.dgsw.smartschool.domain.request.member.ModifyMemberInfoRequest
+import kr.hs.dgsw.smartschool.domain.request.ModifyMemberInfoRequest
 
 interface StudentRepository {
     suspend fun getMyInfo(): Student
