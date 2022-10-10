@@ -42,6 +42,11 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
         setCompanyAdapter()
         setCompanyViewPagerAdapter()
 
+        viewModel.getAllCompanies()
+        viewModel.getAllCompanies()
+
+        collectGetAllCompaniesState()
+
         bindingViewEvent { event ->
             when (event) {
                 ItMapViewModel.EVENT_ON_CLICK_BACK -> findNavController().popBackStack()
@@ -50,22 +55,16 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
     }
 
     override fun onMapReady(map: NaverMap) {
-        lifecycleScope.launchWhenStarted {
-            naverMap = map
-            naverMap.maxZoom = 20.0
-            naverMap.minZoom = 5.0
+        naverMap = map
+        naverMap.maxZoom = 20.0
+        naverMap.minZoom = 5.0
 
-            with(naverMap.uiSettings) {
-                isLocationButtonEnabled = false
-                logoGravity = Gravity.END.or(Gravity.TOP)
-                setLogoMargin(0, 0, 16, 0)
-                isCompassEnabled = false
-                isZoomControlEnabled = false
-            }
-
-            viewModel.getAllCompanies()
-            viewModel.getAllCompanies()
-            collectGetAllCompaniesState()
+        with(naverMap.uiSettings) {
+            isLocationButtonEnabled = false
+            logoGravity = Gravity.END.or(Gravity.TOP)
+            setLogoMargin(0, 0, 16, 0)
+            isCompassEnabled = false
+            isZoomControlEnabled = false
         }
     }
 
@@ -118,6 +117,7 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
         }
         mBinding.bottomSheet.rvCompany.adapter = companyAdapter
     }
+
     private fun setCompanyViewPagerAdapter() {
         companyViewPagerAdapter = CompanyViewPagerAdapter {
             navigateToDetail(it)

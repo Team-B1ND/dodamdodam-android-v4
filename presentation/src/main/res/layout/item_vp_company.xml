@@ -18,32 +18,30 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
             android:layout_marginBottom="10dp"
             android:background="@color/color_white"
             app:cardCornerRadius="@dimen/card_corner"
-            app:cardElevation="@dimen/card_elevation"
-            tools:layout_height="100dp">
+            app:cardElevation="@dimen/card_elevation">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="@dimen/default_card_content_margin">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_company_icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_margin="@dimen/default_margin"
                     android:background="@drawable/background_company_icon"
-                    android:backgroundTint="@color/main"
+                    android:backgroundTint="@color/color_itmap"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        company_icon="@{company.name}"
                         android:id="@+id/tv_company_icon"
+                        company_icon="@{company.name}"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:autoSizeTextType="uniform"
@@ -88,7 +86,8 @@
                     android:ellipsize="end"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
-                    android:maxLines="2"
+                    android:maxLines="1"
+
                     android:text="@{company.address}"
                     android:textColor="@color/gray700"
                     android:textSize="@dimen/title5"
