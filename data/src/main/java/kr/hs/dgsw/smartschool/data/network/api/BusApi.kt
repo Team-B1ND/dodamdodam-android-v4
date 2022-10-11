@@ -6,6 +6,7 @@ import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.request.AddBusRequest
 import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
+import kr.hs.dgsw.smartschool.domain.request.UpdateBusRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -37,28 +38,24 @@ interface BusApi {
         @Path("busId") busId : Int
     ): Response<Any>
 
-    @PATCH("bus")
+    @PATCH("api/bus/{id}")
     suspend fun updateBus(
-        @Body busIdx: Int,
-        @Body busName: String,
-        @Body description: String,
-        @Body leaveTime: String,
-        @Body timeRequired: String,
-        @Body peopleLimit: Int
+        @Query("id") busId: Int,
+        @Body request: UpdateBusRequest
     ): Response<Any>
 
-    @PATCH("bus/self")
+    @PATCH("api/bus/apply/{busId}")
     suspend fun updateBusApply(
-        @Body request: UpdateBusApplyRequest
+        @Path("busId") busId:Int
     ): Response<Any>
 
-    @DELETE("bus")
+    @DELETE("api/bus/{id}")
     suspend fun deleteBus(
-        @Body idx: Int
+        @Path("id") idx: Int
     ): Response<Any>
 
-    @DELETE("bus/self")
+    @DELETE("api/bus/apply/{busId}")
     suspend fun deleteBusApply(
-        @Query("idx") busIdx: Int
+        @Path("busId") busId: Int
     ): Response<Any>
 }
