@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.bus
 
+import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +12,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
-import kr.hs.dgsw.smartschool.domain.request.UpdateBusApplyRequest
 import kr.hs.dgsw.smartschool.domain.usecase.bus.BusUseCases
 import javax.inject.Inject
 
