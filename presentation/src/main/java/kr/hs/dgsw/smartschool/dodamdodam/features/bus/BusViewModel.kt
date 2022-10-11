@@ -84,7 +84,7 @@ class BusViewModel @Inject constructor(
                 ).launchIn(viewModelScope)
             }
             else -> {
-                busUseCases.updateBusApply(UpdateBusApplyRequest(busIdx = idx.toString(), originBusIdx = _busApplyState.value.busId.toString())).divideResult(
+                busUseCases.updateBusApply(idx).divideResult(
                     isUpdateBusApplyLoading,
                     {
                         _updateBusApplyState.value = UpdateBusApplyState(success = "버스 신청에 성공했습니다.")

@@ -26,11 +26,12 @@ interface BusRepository {
     ): String
 
     // PUT
-    suspend fun updateBusInfo(
+    suspend fun updateBus(
+        id :Int,
         request: UpdateBusRequest
     ): String
     suspend fun updateBusApply(
-        request: UpdateBusApplyRequest
+        id : Int
     ): String
 
     // DELETE

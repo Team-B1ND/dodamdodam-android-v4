@@ -40,15 +40,16 @@ class BusRepositoryImpl @Inject constructor(
     ): String =
         dataSource.addBusApply(idx)
 
-    override suspend fun updateBusInfo(
+    override suspend fun updateBus(
+        id: Int,
         request: UpdateBusRequest
     ): String =
-        dataSource.updateBus(request)
+        dataSource.updateBus(id,request)
 
     override suspend fun updateBusApply(
-        request: UpdateBusApplyRequest
+        id: Int
     ): String =
-        dataSource.updateBusApply(request)
+        dataSource.updateBusApply(id)
 
     override suspend fun deleteBus(
         idx: Int

@@ -31,15 +31,16 @@ class BusDataSource @Inject constructor(
     }
 
     suspend fun updateBus(
+        id : Int,
         request: UpdateBusRequest
     ): String {
-        Log.e("BusDataSource", return remote.updateBus(request).message)
+        Log.e("BusDataSource", return remote.updateBus(id,request).message)
     }
 
     suspend fun updateBusApply(
-        request: UpdateBusApplyRequest
+        id : Int
     ): String {
-        Log.e("BusDataSource", return remote.updateBusApply(request).message)
+        Log.e("BusDataSource", return remote.updateBusApply(id).message)
     }
 
     suspend fun addBus(
