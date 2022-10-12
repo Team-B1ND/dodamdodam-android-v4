@@ -11,5 +11,4 @@ interface PointApi {
     suspend fun getMyYearPoints(
         @Query("year") year: Int
     ): Response<List<MyYearPoint>>
-
 }

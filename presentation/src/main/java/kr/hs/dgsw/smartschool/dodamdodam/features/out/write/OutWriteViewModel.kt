@@ -58,9 +58,9 @@ class OutWriteViewModel @Inject constructor(
                 return
             }
             startDate.hourFormat().toInt() >= 24 ||
-                    startDate.minuteFormat().toInt() >= 60 ||
-                    endDate.hourFormat().toInt() >= 24 ||
-                    endDate.minuteFormat().toInt() >= 60
+                startDate.minuteFormat().toInt() >= 60 ||
+                endDate.hourFormat().toInt() >= 24 ||
+                endDate.minuteFormat().toInt() >= 60
             -> {
                 applyError("시간을 확인해주세요")
                 return
@@ -85,9 +85,9 @@ class OutWriteViewModel @Inject constructor(
                 return
             }
             startDate.hourFormat().toInt() >= 24 ||
-                    startDate.minuteFormat().toInt() >= 60 ||
-                    endDate.hourFormat().toInt() >= 24 ||
-                    endDate.minuteFormat().toInt() >= 60
+                startDate.minuteFormat().toInt() >= 60 ||
+                endDate.hourFormat().toInt() >= 24 ||
+                endDate.minuteFormat().toInt() >= 60
             -> {
                 applyError("시간을 확인해주세요")
                 return

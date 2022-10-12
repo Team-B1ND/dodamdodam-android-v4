@@ -193,5 +193,5 @@ class UseCaseModule {
             getAllCompanies = GetAllCompanies(itMapRepository),
             getCompanyById = GetCompanyById(itMapRepository),
 
-            )
+        )
 }
