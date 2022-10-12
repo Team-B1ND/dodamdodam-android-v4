@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="melon"
+            type="kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,6 +28,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                songThumbnail="@{melon.thumbnail}"
                 android:id="@+id/iv_recommend_song"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -43,6 +48,7 @@
             android:includeFontPadding="false"
             android:textColor="@color/color_black"
             android:textSize="@dimen/title5"
+            android:text="@{melon.title}"
             app:layout_constraintEnd_toStartOf="@id/tv_rank"
             app:layout_constraintBottom_toTopOf="@id/tv_recommend_song_artist"
             app:layout_constraintStart_toEndOf="@id/card_image_container"
@@ -60,6 +66,7 @@
             android:includeFontPadding="false"
             android:textColor="@color/gray500"
             android:textSize="@dimen/title6"
+            android:text="@{melon.artist}"
             app:layout_constraintEnd_toEndOf="@id/tv_recommend_song_title"
             app:layout_constraintStart_toStartOf="@id/tv_recommend_song_title"
             app:layout_constraintTop_toBottomOf="@id/tv_recommend_song_title"
@@ -72,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="1위"
-            android:text="@{song.showingRank}"
+            android:text="@{melon.showingRank}"
             android:textColor="@color/color_song"
             android:textSize="@dimen/title4"
             app:layout_constraintTop_toTopOf="@id/card_image_container"

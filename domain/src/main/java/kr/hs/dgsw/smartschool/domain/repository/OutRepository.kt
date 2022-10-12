@@ -1,29 +1,30 @@
 package kr.hs.dgsw.smartschool.domain.repository
 
-import kr.hs.dgsw.smartschool.domain.model.out.OutGoing
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
-import kr.hs.dgsw.smartschool.domain.model.out.OutSleeping
-import kr.hs.dgsw.smartschool.domain.request.OutRequest
+import kr.hs.dgsw.smartschool.domain.request.out.ModifyOutRequest
+import kr.hs.dgsw.smartschool.domain.request.out.OutRequest
 
 interface OutRepository {
 
-    suspend fun getOut(date: String): List<OutItem>
+    suspend fun getAllOut(): List<OutItem>
 
-    suspend fun getOutAllows(date: String): List<OutItem>
+    suspend fun getOutSleepingById(outSleepingId: Int): OutItem
 
-    suspend fun getOutSleepingById(outSleepingIdx: Int): OutSleeping
+    suspend fun getMyOutSleeping(): List<OutItem>
 
-    suspend fun getOutGoingById(outGoingIdx: Int): OutGoing
+    suspend fun applyOutSleeping(request: OutRequest): OutItem
 
-    suspend fun postOutSleeping(request: OutRequest): String
+    suspend fun modifyOutSleeping(request: ModifyOutRequest): OutItem
 
-    suspend fun putOutSleeping(request: OutRequest): String
+    suspend fun deleteOutSleeping(outSleepingId: Int): String
 
-    suspend fun deleteOutSleeping(outSleepingIdx: Int): String
+    suspend fun getOutGoingById(outGoingId: Int): OutItem
 
-    suspend fun postOutGoing(request: OutRequest): String
+    suspend fun getMyOutGoing(): List<OutItem>
 
-    suspend fun putOutGoing(request: OutRequest): String
+    suspend fun applyOutGoing(request: OutRequest): OutItem
 
-    suspend fun deleteOutGoing(outGoingIdx: Int): String
+    suspend fun modifyOutGoing(request: ModifyOutRequest): OutItem
+
+    suspend fun deleteOutGoing(outGoingId: Int): String
 }

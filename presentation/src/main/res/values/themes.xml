@@ -1,5 +1,4 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Theme.DodamDodam" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/main</item>
         <item name="colorPrimaryVariant">@color/main_700</item>
@@ -15,20 +14,20 @@
         <item name="android:textSize">@dimen/title5</item>
     </style>
 
-
     <style name="Theme.App.Starting" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowSplashScreenBackground" tools:targetApi="s">@color/color_white</item>
         <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="s">@mipmap/ic_launcher</item>
         <item name="android:windowSplashScreenAnimationDuration" tools:targetApi="s">1000</item>
         <item name="postSplashScreenTheme">@style/Theme.DodamDodam</item>
 
-        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
         <item name="android:navigationBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="MyDatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
         <item name="android:colorAccent">@color/main</item>
+    </style>
 
     <style name="TextAppearance.App.Title" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:fontFamily">@font/noto_regular</item>

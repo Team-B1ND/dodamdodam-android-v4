@@ -97,8 +97,6 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
                 return@forEach
             }
 
-            marker.position = LatLng(36.1232131, 37.1243124)
-
             marker.map = naverMap
             marker.tag = company.id
             marker.icon = OverlayImage.fromResource(R.drawable.ic_marker_office_building)
