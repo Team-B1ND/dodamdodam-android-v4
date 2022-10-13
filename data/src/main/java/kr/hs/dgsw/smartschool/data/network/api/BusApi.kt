@@ -15,45 +15,45 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface BusApi {
-    @GET("api/bus")
+    @GET("bus")
     suspend fun getBusList(): Response<BusData<BusByDate>>
 
-    @GET("api/bus/apply")
+    @GET("bus/apply")
     suspend fun getMyBus(): Response<BusData<Bus>>
 
-    @GET("api/bus/apply/month")
+    @GET("bus/apply/month")
     suspend fun getMyBusByMonth(
         @Body month: Int,
         @Body year: Int
     ): Response<BusData<Bus>>
 
-    @POST("api/bus")
+    @POST("bus")
     suspend fun addBus(
         @Body createBusDto : AddBusRequest
     ): Response<Any>
 
-    @POST("api/bus/apply/{busId}")
+    @POST("bus/apply/{busId}")
     suspend fun addBusApply(
         @Path("busId") busId : Int
     ): Response<Any>
 
-    @PATCH("api/bus/{id}")
+    @PATCH("bus/{id}")
     suspend fun updateBus(
         @Query("id") busId: Int,
         @Body request: UpdateBusRequest
     ): Response<Any>
 
-    @PATCH("api/bus/apply/{busId}")
+    @PATCH("bus/apply/{busId}")
     suspend fun updateBusApply(
         @Path("busId") busId:Int
     ): Response<Any>
 
-    @DELETE("api/bus/{id}")
+    @DELETE("bus/{id}")
     suspend fun deleteBus(
         @Path("id") idx: Int
     ): Response<Any>
 
-    @DELETE("api/bus/apply/{busId}")
+    @DELETE("bus/apply/{busId}")
     suspend fun deleteBusApply(
         @Path("busId") busId: Int
     ): Response<Any>

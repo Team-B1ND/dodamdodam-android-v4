@@ -56,7 +56,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
 
         var rideAble = ""
         var isSelected: Boolean
-        todayBus.bustList.forEach {
+        todayBus.busList.forEach {
             if (it.busMemberLength < (it.peopleLimit)) {
                 rideAble = "탑승가능"
             } else if (it.busMemberLength >= it.peopleLimit) {
