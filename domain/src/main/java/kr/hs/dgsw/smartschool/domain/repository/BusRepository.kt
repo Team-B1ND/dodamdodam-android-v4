@@ -2,9 +2,9 @@ package kr.hs.dgsw.smartschool.domain.repository
 
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.request.AddBusRequest
-import kr.hs.dgsw.smartschool.domain.request.MyBusByMonthRequest
-import kr.hs.dgsw.smartschool.domain.request.UpdateBusRequest
+import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
+import kr.hs.dgsw.smartschool.domain.request.bus.MyBusByMonthRequest
+import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
 
 interface BusRepository {
 

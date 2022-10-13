@@ -8,8 +8,9 @@ import java.security.NoSuchAlgorithmException
 data class ModifyMemberInfoRequest(
     var email: String?,
     var phone: String?,
-    @SerializedName("profileImage") var profileImage: Picture?,
-    var pw: String?
+    @SerializedName("imageUrl") var profileImage: Picture?,
+    //TODO 비밀번호는 따로 APi 있음 수정 바람.
+    var pw : String?
 ) {
 
     constructor(phone: String?, email: String?, profileImage: Picture?) : this(null, email, profileImage, null) {

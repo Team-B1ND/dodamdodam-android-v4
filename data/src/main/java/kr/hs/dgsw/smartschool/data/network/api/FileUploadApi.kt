@@ -8,7 +8,7 @@ import retrofit2.http.Part
 
 interface FileUploadApi {
     @Multipart
-    @POST("upload/image")
+    @POST("upload")
     suspend fun uploadImg(
         @Part image: MultipartBody.Part,
         @Part name: MultipartBody.Part
