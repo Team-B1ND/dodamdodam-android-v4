@@ -11,58 +11,51 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="@dimen/default_card_content_margin"
+        tools:ignore="RtlSymmetry">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card_meal"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="15dp"
-            app:cardCornerRadius="@dimen/card_corner"
+            android:id="@+id/card_thumbnail"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:cardCornerRadius="@dimen/card_middle_corner"
             app:cardElevation="@dimen/card_elevation"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio=""
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/iv_today_song"
+                songThumbnail="@{song.higherThumbnailUrl}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_weight="3"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_img"
+                tools:ignore="ContentDescription" />
 
-                <ImageView
-                    android:id="@+id/iv_today_song"
-                    songThumbnail="@{song.higherThumbnailUrl}"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/default_img" />
-
-                <TextView
-                    android:id="@+id/tv_today_song"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/nanum_square_regular"
-                    android:gravity="center_vertical"
-                    android:includeFontPadding="false"
-                    android:maxLines="2"
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="5dp"
-                    android:src="@drawable/default_img"
-                    android:text="@{song.videoTitle}"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/title6"
-                    tools:text="오늘의 노래 히히" />
-
-            </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_today_song"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:maxLines="3"
+            android:layout_marginTop="5dp"
+            android:text="@{song.videoTitle}"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/title6"
+            android:gravity="start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_thumbnail"
+            tools:text="세상 까리한 도입부 : JoinK - Guitars and Durgs [가사/해석/변역/lyrics]" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

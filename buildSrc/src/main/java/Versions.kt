@@ -11,9 +11,11 @@ object Versions {
     const val KT_LINT = "10.2.0"
     const val KT_DETE = "1.21.0"
 
-    const val CORE_KTX = "1.7.0"
-    const val APP_COMPAT = "1.4.1"
-    const val ROOM = "2.4.2"
+    const val GOOGLE_GMS = "4.3.14"
+
+    const val CORE_KTX = "1.8.0"
+    const val APP_COMPAT = "1.4.2"
+    const val ROOM = "2.4.3"
 
     const val HILT = "2.38.1"
     const val MATERIAL = "1.5.0"
@@ -42,4 +44,9 @@ object Versions {
     const val JSOUP = "1.15.2"
 
     const val LOTTIE = "5.2.0"
+
+    const val ANALYTICS = "21.1.1"
+
+    const val NAVER_MAP = "3.16.0"
+    const val GOOGLE_LOCATION = "20.0.0"
 }

@@ -26,6 +26,10 @@ class OutDetailFragment : BaseFragment<FragmentOutDetailBinding, OutDetailViewMo
                     val action = OutDetailFragmentDirections.actionOutDetailFragmentToOutWriteFragment(viewModel.outItem.value ?: return@bindingViewEvent)
                     findNavController().navigate(action)
                 }
+
+                OutDetailViewModel.EVENT_ON_CLICK_BACK -> {
+                    findNavController().popBackStack()
+                }
             }
         }
     }

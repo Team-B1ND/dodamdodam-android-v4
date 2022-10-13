@@ -23,7 +23,7 @@ class DodamImageViewLayout : FrameLayout {
     private val dodamImageView2 = view.findViewById<ImageView>(R.id.dodamImageView2)
     private val dodamImageView3 = view.findViewById<ImageView>(R.id.dodamImageView3)
     private val textView = view.findViewById<TextView>(R.id.textView)
-    private val linearLayout1 = view.findViewById<LinearLayout>(R.id.linearLayout)
+    private val linearLayout1 = view.findViewById<LinearLayout>(R.id.layout_type)
     private val frameLayout1 = view.findViewById<FrameLayout>(R.id.frameLayout1)
 
     constructor(context: Context) : super(context) {

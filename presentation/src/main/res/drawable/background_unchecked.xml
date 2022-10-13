@@ -13,7 +13,4 @@
         android:right="10dp"
         android:top="10dp" />
 
-    <stroke
-        android:width="2dp"
-        android:color="@color/main"/>
 </shape>

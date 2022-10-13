@@ -12,7 +12,7 @@ class RecommendSongAdapter(val action: (title: String) -> Unit) : BaseListAdapte
 ) {
     override fun action(item: MelonChart, binding: ItemRecommendSongBinding) {
 
-        binding.song = item
+        binding.melon = item
 
         binding.root.setOnClickListener {
             action.invoke(item.title)

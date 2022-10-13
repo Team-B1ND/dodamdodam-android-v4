@@ -4,18 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="?attr/actionBarSize">
 
     <ImageView
         android:id="@+id/btn_back"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
         android:src="@drawable/ic_btn_back"
         app:tint="@color/color_black"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,RtlSymmetry" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

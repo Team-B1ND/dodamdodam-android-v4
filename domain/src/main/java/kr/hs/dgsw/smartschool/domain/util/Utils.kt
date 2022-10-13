@@ -57,7 +57,7 @@ object Utils {
             val errorBody = JSONObject(throwable.response()?.errorBody()!!.string())
             errorBody.getString("message")
         } catch (e: Exception) {
-            throwable.message()
+            "알 수 없는 오류가 발생했습니다. 잠시만 기다려주세요."
         }
     }
 

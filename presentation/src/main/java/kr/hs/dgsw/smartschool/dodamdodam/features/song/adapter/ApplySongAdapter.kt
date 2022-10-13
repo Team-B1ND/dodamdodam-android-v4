@@ -19,7 +19,7 @@ class ApplySongAdapter(private val id: String, val action: Action) : BaseListAda
 
         binding.song = item
 
-        binding.layoutItem.setOnClickListener {
+        binding.ivSong.setOnClickListener {
             action.onClickItem(item.videoUrl)
         }
 

@@ -40,9 +40,8 @@ class SongRemote @Inject constructor(
         val doc: Document = jsoup.get()
 
         // 크롤링 하고자 하는 엘리먼트들을 저장
-        val titleElements: Elements = doc
-            .select(SongUtils.SONG_TITLE_CSS_QUERY)
-        val artistElements: Elements = doc.select(SongUtils.SONG_ARTIST_CSS_QUERY)
+        val wrapElements: Elements = doc.select(SongUtils.SONG_WRAP_INFO)
+
         val thumbnailElements: Elements = doc.select(SongUtils.SONG_THUMBNAIL_CSS_QUERY)
 
         val melonChartList = mutableListOf<MelonChart>()
@@ -50,8 +49,8 @@ class SongRemote @Inject constructor(
         for (i in SongUtils.CHART_RANGE) {
             melonChartList.add(
                 MelonChart(
-                    title = titleElements[i].text(),
-                    artist = artistElements[i].text(),
+                    title = wrapElements[i].select(" > div.ellipsis.rank01 > span > a").text(),
+                    artist = wrapElements[i].select(" > div.ellipsis.rank02 > a").text(),
                     thumbnail = thumbnailElements[i].attr(SongUtils.SONG_THUMBNAIL_ATTR_KEY),
                     rank = (i + 1).toString()
                 )

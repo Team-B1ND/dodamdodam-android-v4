@@ -7,67 +7,66 @@
 
     </data>
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_study_room"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
-        app:cardCornerRadius="@dimen/card_corner"
-        app:cardElevation="5dp">
+        android:elevation="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/tv_time_table"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/title4"
-                android:fontFamily="@font/nanum_square_regular"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:textColor="@color/color_black"
-                app:layout_constraintBottom_toTopOf="@id/tv_location"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="@dimen/title5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="spread"
                 tools:text="8교시" />
-
-            <TextView
-                android:id="@+id/tv_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="5dp"
-                android:gravity="center"
-                android:fontFamily="@font/nanum_square_regular"
-                android:includeFontPadding="false"
-                android:maxLines="2"
-                android:textColor="@color/main"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toTopOf="@id/tv_time"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_time_table"
-                tools:text="아직 신청하지 않았어요" />
 
             <TextView
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:textSize="@dimen/title5"
-                android:fontFamily="@font/nanum_square_regular"
+                android:layout_marginEnd="@dimen/default_card_content_margin"
+                android:fontFamily="@font/noto_light"
                 android:includeFontPadding="false"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:maxLines="1"
+                android:textSize="@dimen/title7"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_location"
+                app:layout_constraintStart_toStartOf="@id/tv_time_table"
+                app:layout_constraintTop_toBottomOf="@id/tv_time_table"
                 tools:text="@string/period_eight_time" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:fontFamily="@font/noto_regular"
+                android:gravity="start"
+                android:includeFontPadding="false"
+                android:maxWidth="80dp"
+                android:maxLines="2"
+                android:textColor="@color/main"
+                android:textSize="@dimen/title6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_time"
+                tools:text="프로그래밍 1실" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
