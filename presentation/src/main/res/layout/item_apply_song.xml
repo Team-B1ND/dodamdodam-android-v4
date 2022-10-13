@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="song"
-            type="kr.hs.dgsw.smartschool.domain.model.song.Video" />
+            type="kr.hs.dgsw.smartschool.domain.model.song.VideoSongData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,16 +19,17 @@
             android:id="@+id/card_image_container"
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:layout_marginVertical="15dp"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
             app:cardCornerRadius="@dimen/card_small_corner"
-            app:cardElevation="5dp"
+            app:cardElevation="@dimen/card_elevation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/iv_song"
+                songThumbnail="@{song.thumbnailUrl}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -39,36 +42,47 @@
             android:id="@+id/tv_apply_song_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginHorizontal="@dimen/default_margin"
             android:ellipsize="end"
-            android:maxLines="2"
-            android:fontFamily="@font/nanum_square_regular"
+            android:fontFamily="@font/noto_regular"
             android:includeFontPadding="false"
+            android:maxLines="2"
             android:text="@{song.videoTitle}"
-            android:textColor="@color/black"
+            android:textColor="@color/color_black"
             android:textSize="@dimen/title5"
-            app:layout_constraintBottom_toTopOf="@id/tv_apply_song_date"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_delete"
             app:layout_constraintStart_toEndOf="@id/card_image_container"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/card_image_container"
             app:layout_constraintVertical_chainStyle="packed"
             tools:text="(G)I-DLE 'TOMBOY' Lyrics ((여자)아이들 TOMBOY 가사) (Color Coded Lyrics)asfdsadfasdfas" />
 
         <TextView
             android:id="@+id/tv_apply_song_date"
+            songApplyDate="@{song.createdDate}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
             android:maxLines="2"
             android:textColor="@color/gray500"
             android:textSize="@dimen/title6"
-            android:fontFamily="@font/nanum_square_regular"
-            android:includeFontPadding="false"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/card_image_container"
             app:layout_constraintStart_toStartOf="@id/tv_apply_song_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_apply_song_title"
             tools:text="신청일 : 2022-05-25" />
+
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_btn_delete"
+            android:visibility="gone"
+            app:tint="@color/gray500"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,15 +8,24 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="colorPrimary">#3096F8</color>
+    <color name="colorPrimaryDark">#254de3</color>
+    <color name="colorSecondary">#6400e0</color>
+    <color name="colorControlNormal">#076FE4</color>
+
+    <color name="color_itmap">#25316D</color>
+    <color name="color_profile">#5AC467</color>
+    <color name="color_song">#F09771</color>
+
     <color name="main">#0067BC</color>
-    <color name="main_200">#300067BC</color>
-    <color name="main_500">#500067BC</color>
-    <color name="main_700">#700067BC</color>
+    <color name="main_200">#077FE1</color>
+    <color name="main_500">#0E5B9A</color>
+    <color name="main_700">#003A6A</color>
 
     <color name="color_shadow">#66000000</color>
 
     <color name="color_white">#FFFFFF</color>
-    <color name="color_black">#000000</color>
+    <color name="color_black">#101012</color>
 
     <color name="gray200">#CACACA</color>
     <color name="gray500">#999999</color>
@@ -32,8 +41,8 @@
     <color name="color_un_selected">#FFFFFF</color>
 
     <color name="color_card_background">@color/white</color>
-    <color name="color_background">#F9F9F9</color>
-    
+    <color name="color_background">#F3F4F6</color>
+
     <color name="color_blue_light">#5555FF</color>
     <color name="color_red_light">#FF5555</color>
     <color name="color_yellow_light">#FFDD55</color>
@@ -45,5 +54,8 @@
 
     <color name="color_out_ok">#81C784</color>
     <color name="color_out_refuse">#E57373</color>
+    <color name="color_nav_unselected">#B0B9C2</color>
+
+    <color name="color_transparent">#00FFFFFF</color>
 
 </resources>

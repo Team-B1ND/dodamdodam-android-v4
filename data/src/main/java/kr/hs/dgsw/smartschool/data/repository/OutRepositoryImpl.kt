@@ -1,54 +1,63 @@
 package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.OutDataSource
-import kr.hs.dgsw.smartschool.domain.model.out.OutGoing
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
-import kr.hs.dgsw.smartschool.domain.model.out.OutSleeping
 import kr.hs.dgsw.smartschool.domain.repository.OutRepository
-import kr.hs.dgsw.smartschool.domain.request.OutRequest
+import kr.hs.dgsw.smartschool.domain.request.out.ModifyOutRequest
+import kr.hs.dgsw.smartschool.domain.request.out.OutRequest
 import javax.inject.Inject
 
 class OutRepositoryImpl @Inject constructor(
     private val outDataSource: OutDataSource
 ) : OutRepository {
 
-    override suspend fun getOut(date: String): List<OutItem> {
-        return outDataSource.getOut(date)
+    override suspend fun getAllOut(): List<OutItem> {
+        val myOutSleeping = outDataSource.getMyOutSleeping()
+        val myOutGoing = outDataSource.getMyOutGoing()
+
+        val list = ArrayList<OutItem>()
+        list.addAll(myOutSleeping)
+        list.addAll(myOutGoing)
+        return list.sortedBy { it.startOutDate }.filter { !it.isPassTime() }
     }
 
-    override suspend fun getOutAllows(date: String): List<OutItem> {
-        return outDataSource.getOutAllows(date)
+    override suspend fun getOutSleepingById(outSleepingId: Int): OutItem {
+        return outDataSource.getOutSleepingById(outSleepingId)
     }
 
-    override suspend fun getOutSleepingById(outSleepingIdx: Int): OutSleeping {
-        return outDataSource.getOutSleepingById(outSleepingIdx)
+    override suspend fun getMyOutSleeping(): List<OutItem> {
+        return outDataSource.getMyOutSleeping()
     }
 
-    override suspend fun getOutGoingById(outGoingIdx: Int): OutGoing {
-        return outDataSource.getOutGoingById(outGoingIdx)
+    override suspend fun applyOutSleeping(request: OutRequest): OutItem {
+        return outDataSource.applyOutSleeping(request)
     }
 
-    override suspend fun postOutSleeping(request: OutRequest): String {
-        return outDataSource.postOutSleeping(request)
+    override suspend fun modifyOutSleeping(request: ModifyOutRequest): OutItem {
+        return outDataSource.modifyOutSleeping(request)
     }
 
-    override suspend fun putOutSleeping(request: OutRequest): String {
-        return outDataSource.putOutSleeping(request)
+    override suspend fun deleteOutSleeping(outSleepingId: Int): String {
+        return outDataSource.deleteOutSleeping(outSleepingId)
     }
 
-    override suspend fun deleteOutSleeping(outSleepingIdx: Int): String {
-        return outDataSource.deleteOutSleeping(outSleepingIdx)
+    override suspend fun getOutGoingById(outGoingId: Int): OutItem {
+        return outDataSource.getOutGoingById(outGoingId)
     }
 
-    override suspend fun postOutGoing(request: OutRequest): String {
-        return outDataSource.postOutGoing(request)
+    override suspend fun getMyOutGoing(): List<OutItem> {
+        return outDataSource.getMyOutGoing()
     }
 
-    override suspend fun putOutGoing(request: OutRequest): String {
-        return outDataSource.putOutGoing(request)
+    override suspend fun applyOutGoing(request: OutRequest): OutItem {
+        return outDataSource.applyOutGoing(request)
     }
 
-    override suspend fun deleteOutGoing(outGoingIdx: Int): String {
-        return outDataSource.deleteOutGoing(outGoingIdx)
+    override suspend fun modifyOutGoing(request: ModifyOutRequest): OutItem {
+        return outDataSource.modifyOutGoing(request)
+    }
+
+    override suspend fun deleteOutGoing(outGoingId: Int): String {
+        return outDataSource.deleteOutGoing(outGoingId)
     }
 }

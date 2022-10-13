@@ -33,36 +33,38 @@ class BusDataSource @Inject constructor(
         id : Int,
         request: UpdateBusRequest
     ): String {
+        return remote.updateBus(request).message
         Log.e("BusDataSource", return remote.updateBus(id,request).message)
     }
 
     suspend fun updateBusApply(
         id : Int
     ): String {
+        return remote.updateBusApply(request).message
         Log.e("BusDataSource", return remote.updateBusApply(id).message)
     }
 
     suspend fun addBus(
         request: AddBusRequest
     ): String {
-        Log.e("BusDataSource", return remote.addBus(request).message)
+        return remote.addBus(request).message
     }
 
     suspend fun addBusApply(
         idx: Int
     ): String {
-        Log.e("BusDataSource", return remote.addBusApply(idx).message)
+        return remote.addBusApply(idx).message
     }
 
     suspend fun deleteBus(
         idx: Int
     ): String {
-        Log.e("BusDataSource", return remote.deleteBus(idx).message)
+        return remote.deleteBus(idx).message
     }
 
     suspend fun deleteBusApply(
         idx: Int
     ): String {
-        Log.e("BusDataSource", return remote.deleteBusApply(idx).message)
+        return remote.deleteBusApply(idx).message
     }
 }

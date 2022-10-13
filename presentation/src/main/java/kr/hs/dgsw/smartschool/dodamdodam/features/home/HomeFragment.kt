@@ -7,19 +7,17 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.MealHomeAdapter
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.SongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.StudyRoomCheckAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentHomeBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.home.adapter.MealHomeAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
-import kr.hs.dgsw.smartschool.dodamdodam.util.ViewPagerUtils.getTransform
+import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.SongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.openVideoFromUrl
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
-import kr.hs.dgsw.smartschool.domain.model.song.VideoYoutubeData
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.Date
@@ -29,7 +27,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override val viewModel: HomeViewModel by viewModels()
     override val hasBottomNav: Boolean = true
 
-    private var mealList = listOf<Meal>()
     private var date: LocalDate = LocalDate.now()
 
     private lateinit var studyRoomCheckAdapter: StudyRoomCheckAdapter
@@ -37,13 +34,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     lateinit var mealHomeAdapter: MealHomeAdapter
 
     override fun observerViewModel() {
-        setLocationRecyclerView()
-        setUpTodaySong()
-        setMealListViewPager()
-        collectMealState()
-        collectDataSetUpDate()
-        collectSongList()
         initViewEvent()
+
+        viewModel.getAllowSong()
+        viewModel.getMyStudyRoom()
+
+        setLocationRecyclerView()
+        setMealListViewPager()
+        setUpTodaySong()
+
+        collectMyStudyRoom()
+        collectMealState()
+        collectSongList()
     }
 
     private fun initViewEvent() {
@@ -52,23 +54,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 HomeViewModel.ON_CLICK_MEAL_MORE -> (activity as? MainActivity)?.moveHomeToMeal()
                 HomeViewModel.ON_CLICK_SONG_MORE -> (activity as? MainActivity)?.moveHomeToSong()
                 HomeViewModel.ON_CLICK_OUT -> findNavController().navigate(R.id.action_main_home_to_outFragment)
-            }
-        }
-    }
-
-    private fun collectDataSetUpDate() {
-        with(viewModel) {
-            lifecycleScope.launchWhenStarted {
-                dataSetUpState.collect { state ->
-                    if (state.result != null) {
-                        getMyStudyRoom()
-                        collectMyStudyRoom()
-                    }
-
-                    if (state.error.isNotBlank()) {
-                        shortToast(state.error)
-                    }
-                }
+                HomeViewModel.ON_CLICK_ITMAP -> findNavController().navigate(R.id.action_main_home_to_itMapFragment)
             }
         }
     }
@@ -97,16 +83,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             if (LocalDateTime.now().hour >= 20) {
                 date = LocalDate.now()
                 date = date.plusDays(1)
-                mBinding.tvMealTitle.text = "내일의 급식"
             }
-            mBinding.tvMealDate.text = String.format("%d.%d", date.monthValue, date.dayOfMonth)
-            // getMealList(date)
+            getMeal(date)
 
             lifecycleScope.launchWhenStarted {
                 getMealState.collect { state ->
-                    if (state.meal.isNotEmpty()) {
-                        mealList = getMealState.value.meal
-                        getMeal(mealList, date)
+                    if (state.isUpdate) {
+                        state.meal?.let {
+                            setMealList(it)
+                        }
                     }
                     if (state.error.isNotBlank()) {
                         setMealList(
@@ -129,7 +114,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         lifecycleScope.launchWhenStarted {
             viewModel.getAllowSongState.collect { state ->
                 if (state.songList.isNotEmpty()) {
-                    songAdapter.submitList(state.songList.mapNotNull(VideoYoutubeData::source))
+                    songAdapter.submitList(state.songList)
                     setEmptySongView(false)
                 } else {
                     setEmptySongView(true)
@@ -146,28 +131,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private fun setEmptySongView(isEmptySongList: Boolean) {
         if (isEmptySongList) {
             mBinding.tvEmptySong.visibility = View.VISIBLE
-            mBinding.viewPagerTodaySong.visibility = View.GONE
+            mBinding.ivMusicalNote.visibility = View.VISIBLE
+            mBinding.rvTodaySong.visibility = View.GONE
         } else {
             mBinding.tvEmptySong.visibility = View.GONE
-            mBinding.viewPagerTodaySong.visibility = View.VISIBLE
-        }
-    }
-
-    private fun getMeal(mealList: List<Meal>, date: LocalDate) {
-        val meal = mealList.find { meal ->
-            meal.date == date.toString()
-        }
-        meal?.let {
-            setMealList(it)
+            mBinding.ivMusicalNote.visibility = View.GONE
+            mBinding.rvTodaySong.visibility = View.VISIBLE
         }
     }
 
     private fun setMealListViewPager() {
-        mealHomeAdapter = MealHomeAdapter()
+        mealHomeAdapter = MealHomeAdapter {
+            (activity as? MainActivity)?.moveHomeToMeal()
+        }
         mBinding.viewPagerMealList.adapter = mealHomeAdapter
         mBinding.viewPagerMealList.offscreenPageLimit = 3
-        mBinding.viewPagerMealList.setPadding(90, 0, 90, 0)
-        mBinding.viewPagerMealList.setPageTransformer(getTransform())
     }
 
     private fun setMealList(meal: Meal) {
@@ -185,10 +163,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         val currentTime = Date().timeFormat()
         mBinding.viewPagerMealList.post {
             mBinding.viewPagerMealList.currentItem = when {
-                currentTime < "09:00" -> minOf(0, mealList.size - 1)
-                currentTime < "13:20" -> minOf(1, mealList.size - 1)
-                currentTime < "20:00" -> minOf(2, mealList.size - 1)
-                else -> minOf(0, mealList.size - 1)
+                currentTime < "09:00" -> minOf(0)
+                currentTime < "13:20" -> minOf(1)
+                currentTime < "20:00" -> minOf(2)
+                else -> minOf(0)
             }
         }
     }
@@ -197,10 +175,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         songAdapter = SongAdapter { url ->
             this@HomeFragment.openVideoFromUrl(url)
         }
-        mBinding.viewPagerTodaySong.adapter = songAdapter
-        mBinding.viewPagerTodaySong.offscreenPageLimit = 3
-        mBinding.viewPagerTodaySong.setPadding(90, 0, 90, 0)
-        mBinding.viewPagerTodaySong.setPageTransformer(getTransform())
+        mBinding.rvTodaySong.adapter = songAdapter
     }
 
     private fun setLocationRecyclerView() {

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="company"
+            type="kr.hs.dgsw.smartschool.domain.model.itmap.Company" />
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_card_height_margin"
+            android:background="@color/color_white"
+            app:cardCornerRadius="@dimen/card_corner"
+            app:cardElevation="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/default_card_content_margin">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_company_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/background_company_icon"
+                    android:backgroundTint="@color/color_itmap"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        company_icon="@{company.name}"
+                        android:id="@+id/tv_company_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autoSizeTextType="uniform"
+                        android:fontFamily="@font/noto_medium"
+                        android:includeFontPadding="false"
+                        android:maxLength="1"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="우" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tv_company_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/noto_medium"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="@{company.name}"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/title5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/layout_company_icon"
+                    app:layout_constraintTop_toTopOf="@id/layout_company_icon"
+                    tools:text="우아한 형제들" />
+
+                <TextView
+                    android:id="@+id/tv_company_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="@dimen/default_margin"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:maxLines="2"
+                    android:text="@{company.address}"
+                    android:textColor="@color/gray700"
+                    android:textSize="@dimen/title6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/layout_company_icon"
+                    app:layout_constraintTop_toBottomOf="@id/tv_company_name"
+                    tools:text="서울 송파구 위례성대로 2" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
+</layout>

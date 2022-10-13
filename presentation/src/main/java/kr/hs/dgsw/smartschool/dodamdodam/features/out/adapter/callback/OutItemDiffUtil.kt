@@ -5,11 +5,11 @@ import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 
 object OutItemDiffUtil : DiffUtil.ItemCallback<OutItem>() {
 
-    override fun areItemsTheSame(oldItem: OutItem, newItem: OutItem): Boolean {
-        return oldItem.idx == newItem.idx
+    override fun areContentsTheSame(oldItem: OutItem, newItem: OutItem): Boolean {
+        return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: OutItem, newItem: OutItem): Boolean {
+    override fun areItemsTheSame(oldItem: OutItem, newItem: OutItem): Boolean {
         return oldItem == newItem
     }
 }

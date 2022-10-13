@@ -32,12 +32,12 @@
                 android:id="@+id/tv_bus_apply_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:text="@string/title_bus_apply"
                 android:textColor="@color/color_black"
-                android:textSize="@dimen/title3"
-                android:fontFamily="@font/nanum_square_regular"
+                android:textSize="@dimen/app_bar_title_text"
+                android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/btn_back" />
 
@@ -47,7 +47,7 @@
             android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nanum_square_regular"
+            android:fontFamily="@font/noto_regular"
             tools:text="2022-07-24"
             android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +70,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/notosans_kr_bold"
+            android:fontFamily="@font/noto_regular"
             android:text="@string/text_bus_not"
             android:textColor="@color/color_black"
             android:textSize="@dimen/title4"

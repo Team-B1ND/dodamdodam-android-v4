@@ -22,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+
             tools:context=".view.fragment.MealFragment">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,12 +36,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
+                    android:layout_marginStart="@dimen/default_margin"
                     android:text="@string/title_meal"
-                    android:fontFamily="@font/gotham_bold"
-                    android:textColor="@color/main"
-                    android:textSize="@dimen/title2"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/noto_medium"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/page_title_text"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -51,7 +52,7 @@
                 android:id="@+id/cv_date"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:layout_marginHorizontal="20dp"
+                android:layout_marginHorizontal="@dimen/default_margin"
                 android:layout_marginBottom="20dp"
                 app:cardCornerRadius="@dimen/card_corner"
                 app:cardElevation="@dimen/card_elevation">
@@ -67,6 +68,7 @@
                         android:layout_marginStart="15dp"
                         android:onClick="@{() -> vm.onClickMinusDate()}"
                         android:padding="10dp"
+                        app:tint="@color/color_black"
                         android:src="@drawable/ic_btn_back"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/layout_date"
@@ -91,7 +93,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/nanum_square_regular"
+                            android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
                             android:onClick="@{() -> vm.onClickDate()}"
                             android:textColor="@color/color_black"
@@ -100,13 +102,13 @@
 
                         <ImageView
                             android:id="@+id/btn_calendar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="5dp"
                             android:onClick="@{() -> vm.onClickDate()}"
                             android:padding="5dp"
-                            android:src="@drawable/ic_btn_calendar"
+                            android:src="@drawable/ic_calendar_3d"
                             tools:ignore="ContentDescription" />
 
                     </LinearLayout>
@@ -119,6 +121,7 @@
                         android:onClick="@{() -> vm.onClickPlusDate()}"
                         android:padding="10dp"
                         android:rotation="180"
+                        app:tint="@color/color_black"
                         android:src="@drawable/ic_btn_back"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -152,46 +155,63 @@
                 tools:itemCount="3"
                 tools:listitem="@layout/item_meal" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_meal_people"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
-                android:layout_margin="@dimen/default_margin"
-                app:cardCornerRadius="@dimen/card_corner"
-                app:cardElevation="@dimen/card_elevation">
+                android:layout_height="180dp"
+                android:layout_marginBottom="?attr/actionBarSize">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/running_lizard"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:lottie_rawRes="@raw/runner"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true" />
 
-                    <TextView
-                        android:id="@+id/tv_meal_people"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:text="@string/text_meal_people"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/title3"
-                        android:fontFamily="@font/gotham_bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/tv_calorie_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="2022-01-12"
+                    android:textColor="@color/gray500"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    android:fontFamily="@font/noto_regular"
+                    android:textSize="@dimen/title5"
+                    app:layout_constraintBottom_toTopOf="@id/tv_calorie"
+                    android:includeFontPadding="false"
+                    app:layout_constraintStart_toEndOf="@id/running_lizard"
+                    app:layout_constraintTop_toTopOf="@id/running_lizard" />
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="7dp"
-                        android:text="@string/text_meal_people_desc"
-                        android:textColor="@color/gray700"
-                        android:textSize="@dimen/title4"
-                        android:fontFamily="@font/nanum_square_regular"
-                        android:includeFontPadding="false"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/tv_meal_people"
-                        app:layout_constraintTop_toBottomOf="@id/tv_meal_people" />
+                <TextView
+                    android:id="@+id/tv_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_today_meal_calorie"
+                    android:textColor="@color/color_black"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    android:fontFamily="@font/noto_regular"
+                    android:textSize="@dimen/title3"
+                    app:layout_constraintBottom_toTopOf="@id/tv_calorie"
+                    android:includeFontPadding="false"
+                    app:layout_constraintStart_toEndOf="@id/running_lizard"
+                    app:layout_constraintTop_toTopOf="@id/running_lizard" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/tv_calorie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_black"
+                    android:fontFamily="@font/noto_medium"
+                    android:textSize="@dimen/title4"
+                    tools:text="763 kcal"
+                    app:layout_constraintBottom_toBottomOf="@id/running_lizard"
+                    app:layout_constraintStart_toEndOf="@id/running_lizard"
+                    app:layout_constraintTop_toBottomOf="@id/tv_desc" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

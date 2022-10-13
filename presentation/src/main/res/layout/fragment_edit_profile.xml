@@ -21,11 +21,11 @@
             android:id="@+id/btn_back"
             layout="@layout/item_back_button" />
 
-        <include
+        <ProgressBar
             android:id="@+id/progress_circular_info"
-            layout="@layout/item_loading_progressbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:indeterminateTint="@color/color_profile"
             android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,11 +35,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="3dp"
-            android:layout_marginBottom="1dp"
             android:text="@string/text_edit_profile"
             android:textColor="@color/color_black"
-            android:textSize="@dimen/title4"
+            android:textSize="@dimen/app_bar_title_text"
+            app:layout_constraintTop_toTopOf="@id/btn_back"
             app:layout_constraintBottom_toBottomOf="@id/btn_back"
             app:layout_constraintStart_toEndOf="@id/btn_back" />
 
@@ -55,9 +54,10 @@
 
         <ImageView
             android:id="@+id/btn_add_image"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_btn_image"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_btn_gallery"
+            app:tint="@color/color_black"
             app:layout_constraintBottom_toBottomOf="@id/iv_profile"
             app:layout_constraintEnd_toEndOf="@id/iv_profile"
             tools:ignore="ContentDescription" />
@@ -67,10 +67,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:fontFamily="@font/nanum_square_regular"
+            android:fontFamily="@font/noto_regular"
             android:includeFontPadding="false"
             android:text="@string/text_change_desc"
-            android:textColor="@color/main"
+            android:textColor="@color/color_profile"
             android:textSize="@dimen/title4"
             app:layout_constraintEnd_toEndOf="@id/iv_profile"
             app:layout_constraintStart_toStartOf="@id/iv_profile"
@@ -80,36 +80,33 @@
             android:id="@+id/line"
             android:layout_width="0dp"
             android:layout_height="0.5dp"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
-            android:background="@color/gray700"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:background="@color/gray500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_change_to_default_image" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_email"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="20dp"
             android:hint="@string/text_email"
-            app:boxStrokeErrorColor="@android:color/holo_red_light"
             app:counterEnabled="true"
             app:counterMaxLength="30"
             app:endIconMode="clear_text"
-            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/line">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamTextInputEditText
                 android:id="@+id/edit_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_square_regular"
+                android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:inputType="textEmailAddress"
                 android:maxLength="30"
@@ -119,44 +116,44 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_phone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="@dimen/default_margin"
             android:layout_marginTop="20dp"
             android:hint="@string/text_phone"
-            app:boxStrokeErrorColor="@android:color/holo_red_light"
             app:counterEnabled="true"
             app:counterMaxLength="11"
             app:endIconMode="clear_text"
-            app:errorEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_email">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamTextInputEditText
                 android:id="@+id/edit_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_square_regular"
+                android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:inputType="phone"
                 android:maxLength="11"
                 android:text="@={vm.phone}" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
             android:id="@+id/btn_save"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginHorizontal="@dimen/default_margin"
             android:backgroundTint="@color/main"
-            android:fontFamily="@font/nanum_square_regular"
+            android:fontFamily="@font/noto_regular"
+            android:textColor="@color/white"
             android:includeFontPadding="false"
             android:onClick="@{() -> vm.checkForm()}"
             android:text="@string/text_save"
             android:textSize="@dimen/title4"
+            app:backgroundTint="@color/color_profile"
             android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
