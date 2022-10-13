@@ -97,6 +97,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding, EditProfile
             email.value = args.email
             phone.value = args.phone
             memberId = args.memberId
+            url.value = args.profileImage
             viewModel.picture = Picture(args.profileImage, args.profileImage, args.profileImage.getExtension())
         }
 

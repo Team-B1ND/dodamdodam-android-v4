@@ -12,7 +12,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.upload.UploadImageState
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.isNotEmailValid
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.isNotPhoneNumberValid
 import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
-import kr.hs.dgsw.smartschool.domain.usecase.member.ChangeMemberInfo
+import kr.hs.dgsw.smartschool.domain.usecase.member.ModifyMemberInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.upload.UploadFileUseCase
 import java.io.File
@@ -47,11 +47,11 @@ class EditProfileViewModel @Inject constructor(
     }
 
     private fun saveInfo() {
-        memberUseCases.changeMemberInfo(
-            ChangeMemberInfo.Params(
+        memberUseCases.modifyMemberInfo(
+            ModifyMemberInfo.Params(
                 phone = phone.value ?: return,
                 email = email.value ?: return,
-                url = url.value,
+                url = url.value ?: return,
             )
         ).divideResult(
             isChangeMemberInfoLoading,

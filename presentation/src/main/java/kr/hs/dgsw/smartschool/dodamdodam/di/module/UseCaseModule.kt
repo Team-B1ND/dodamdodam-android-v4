@@ -35,7 +35,7 @@ import kr.hs.dgsw.smartschool.domain.usecase.itmap.ItMapUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetCalorieOfMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.member.ChangeMemberInfo
+import kr.hs.dgsw.smartschool.domain.usecase.member.ModifyMemberInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.GetMyInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutGoing
@@ -117,7 +117,7 @@ class UseCaseModule {
     fun provideMemberUseCases(studentRepository: StudentRepository): MemberUseCases =
         MemberUseCases(
             getMyInfo = GetMyInfo(studentRepository),
-            changeMemberInfo = ChangeMemberInfo(studentRepository)
+            modifyMemberInfo = ModifyMemberInfo(studentRepository)
         )
 
     @Provides
