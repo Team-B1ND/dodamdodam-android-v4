@@ -47,7 +47,7 @@
                     android:gravity="center"
                     android:textColor="@color/color_white"
                     android:textSize="17sp"
-                    android:fontFamily="@font/nanum_square_round"
+                    android:fontFamily="@font/noto_regular"
                     android:visibility="gone" />
 
                 <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamImageView

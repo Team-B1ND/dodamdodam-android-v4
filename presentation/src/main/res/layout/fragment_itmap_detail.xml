@@ -21,21 +21,18 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_top_bar"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/color_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
+            <include
                 android:id="@+id/btn_back"
-                android:layout_width="23dp"
-                android:layout_height="23dp"
-                android:layout_marginStart="10dp"
+                layout="@layout/item_back_button"
                 android:onClick="@{() -> vm.onClickBack()}"
                 android:src="@drawable/ic_btn_back"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/color_black"
                 tools:ignore="ContentDescription" />
@@ -43,14 +40,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/notosans_kr_regular"
+                android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:text="@string/title_company_detail"
                 android:textColor="@color/color_black"
-                android:textSize="@dimen/title4"
+                android:textSize="@dimen/app_bar_title_text"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_back"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -67,7 +63,7 @@
                 android:layout_height="40dp"
                 android:layout_margin="@dimen/default_margin"
                 android:background="@drawable/background_company_icon"
-                android:backgroundTint="@color/main"
+                android:backgroundTint="@color/color_itmap"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -77,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:autoSizeTextType="uniform"
-                    android:fontFamily="@font/notosans_kr_medium"
+                    android:fontFamily="@font/noto_medium"
                     android:includeFontPadding="false"
                     android:maxLength="1"
                     android:textColor="@color/white"
@@ -95,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:fontFamily="@font/notosans_kr_medium"
+                android:fontFamily="@font/noto_medium"
                 android:includeFontPadding="false"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title3"
@@ -110,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="20dp"
-                android:fontFamily="@font/notosans_kr_regular"
+                android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:textColor="@color/gray700"
                 android:textSize="@dimen/title6"
@@ -123,7 +119,7 @@
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="16dp"
                 android:src="@drawable/ic_office_worker"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -136,10 +132,10 @@
             android:id="@+id/tv_user_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/notosans_kr_regular"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/noto_regular"
             android:includeFontPadding="false"
-            android:textColor="@color/main"
+            android:textColor="@color/color_itmap"
             android:textSize="@dimen/title6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_company"

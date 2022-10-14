@@ -2,6 +2,7 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.itmap
 
 import android.location.Geocoder
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -17,6 +18,7 @@ import com.naver.maps.map.overlay.OverlayImage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
@@ -42,6 +44,8 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
         setCompanyAdapter()
         setCompanyViewPagerAdapter()
 
+        collectGetAllCompaniesState()
+
         bindingViewEvent { event ->
             when (event) {
                 ItMapViewModel.EVENT_ON_CLICK_BACK -> findNavController().popBackStack()
@@ -63,19 +67,16 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
         }
 
         viewModel.getAllCompanies()
-        viewModel.getAllCompanies()
-        collectGetAllCompaniesState()
     }
 
     private fun collectGetAllCompaniesState() = lifecycleScope.launchWhenStarted {
-        viewModel.getAllCompaniesState.collect { state ->
+        viewModel.getAllCompaniesState.collectLatest { state ->
             if (state.isUpdate) {
+                if (state.companies.isNotEmpty()) {
+                    setMarker(state.companies)
+                }
                 companyAdapter.submitList(state.companies)
                 companyViewPagerAdapter.submitList(state.companies)
-
-                state.companies.forEach { company ->
-                    setMarker(company)
-                }
 
                 mBinding.bottomSheet.tvBottomSheetTitle.text = "${state.companies.size}개의 회사"
             }
@@ -86,22 +87,24 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
         }
     }
 
-    private fun setMarker(company: Company) {
-        val marker = Marker()
+    private fun setMarker(companies: List<Company>) {
+        companies.forEach { company ->
+            val marker = Marker()
 
-        try {
-            marker.position = addressToGps(company.address)
-        } catch (e: Exception) {
-            return
-        }
+            try {
+                marker.position = addressToGps(company.address)
+            } catch (e: Exception) {
+                return@forEach
+            }
 
-        marker.map = naverMap
-        marker.tag = company.id
-        marker.icon = OverlayImage.fromResource(R.drawable.marker_office_building)
+            marker.map = naverMap
+            marker.tag = company.id
+            marker.icon = OverlayImage.fromResource(R.drawable.ic_marker_office_building)
 
-        marker.setOnClickListener {
-            navigateToDetail(it.tag as Int)
-            true
+            marker.setOnClickListener {
+                navigateToDetail(it.tag as Int)
+                true
+            }
         }
     }
 
@@ -116,6 +119,7 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
         }
         mBinding.bottomSheet.rvCompany.adapter = companyAdapter
     }
+
     private fun setCompanyViewPagerAdapter() {
         companyViewPagerAdapter = CompanyViewPagerAdapter {
             navigateToDetail(it)
@@ -149,35 +153,42 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
     override fun onStart() {
         super.onStart()
         mBinding.mapView.onStart()
+        Log.d("MapTest", "START")
     }
 
     override fun onResume() {
         super.onResume()
         mBinding.mapView.onResume()
+        Log.d("MapTest", "RESUME")
     }
 
     override fun onPause() {
         super.onPause()
         mBinding.mapView.onPause()
+        Log.d("MapTest", "PAUSE")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         mBinding.mapView.onSaveInstanceState(outState)
+        Log.d("MapTest", "ON save...")
     }
 
     override fun onStop() {
         super.onStop()
         mBinding.mapView.onStop()
+        Log.d("MapTest", "STOP")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         mBinding.mapView.onDestroy()
+        Log.d("MapTest", "DESTROY")
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
         mBinding.mapView.onLowMemory()
+        Log.d("MapTest", "LOW MEMORY")
     }
 }

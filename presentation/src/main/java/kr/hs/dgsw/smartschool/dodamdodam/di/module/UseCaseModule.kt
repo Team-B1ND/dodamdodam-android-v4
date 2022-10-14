@@ -13,7 +13,6 @@ import kr.hs.dgsw.smartschool.domain.repository.OutRepository
 import kr.hs.dgsw.smartschool.domain.repository.SongRepository
 import kr.hs.dgsw.smartschool.domain.repository.StudentRepository
 import kr.hs.dgsw.smartschool.domain.repository.StudyRoomRepository
-import kr.hs.dgsw.smartschool.domain.repository.TeacherRepository
 import kr.hs.dgsw.smartschool.domain.repository.TimeRepository
 import kr.hs.dgsw.smartschool.domain.repository.TokenRepository
 import kr.hs.dgsw.smartschool.domain.repository.YouTubeRepository
@@ -115,7 +114,7 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideMemberUseCases(studentRepository: StudentRepository, teacherRepository: TeacherRepository): MemberUseCases =
+    fun provideMemberUseCases(studentRepository: StudentRepository): MemberUseCases =
         MemberUseCases(
             getMyInfo = GetMyInfo(studentRepository),
             changeMemberInfo = ChangeMemberInfo(studentRepository)

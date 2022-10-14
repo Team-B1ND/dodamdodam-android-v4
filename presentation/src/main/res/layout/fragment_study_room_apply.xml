@@ -16,13 +16,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/color_white"
+        android:background="@color/color_background"
         tools:context=".view.fragment.LocationApplyFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -36,10 +36,10 @@
                 android:id="@+id/tv_study_room_apply_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:text="@string/title_study_room_apply"
                 android:textColor="@color/color_black"
-                android:textSize="@dimen/title3"
+                android:textSize="@dimen/app_bar_title_text"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/btn_back"/>
 
@@ -50,7 +50,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabGravity="fill"
-            android:layout_marginTop="10dp"
+            app:tabRippleColor="@null"
+            android:backgroundTint="@color/color_background"
             android:textSize="@dimen/title6"
             android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
             android:layout_marginBottom="5dp"
@@ -64,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:textColor="@color/gray700"
-            android:fontFamily="@font/nanum_square_regular"
+            android:fontFamily="@font/noto_regular"
             android:includeFontPadding="false"
             android:layout_marginVertical="5dp"
             android:textSize="@dimen/title6" />

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.Paint
 import android.net.Uri
 import androidx.activity.viewModels
-import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
@@ -75,9 +74,8 @@ class JoinDetailActivity : BaseActivity<ActivityJoinDetailBinding, JoinDetailVie
     }
 
     private fun isStateLoading(state: Boolean) {
-        mBinding.scrollView.isVisible = !state
         mBinding.btnBack.isEnabled = !state
-        mBinding.btnSignUp.isEnabled = !state
+        mBinding.btnJoin.isEnabled = !state
     }
 
     private fun initViewEvent() {

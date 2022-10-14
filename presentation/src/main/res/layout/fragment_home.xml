@@ -13,359 +13,389 @@
             type="kr.hs.dgsw.smartschool.dodamdodam.features.home.HomeViewModel" />
     </data>
 
-    <ScrollView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/layout_coordinator"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/layout_app_bar"
+            android:theme="@style/Widget.Material3.AppBarLayout"
+            app:liftOnScroll="false"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/action_bar"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_home"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize">
+                android:background="@color/color_background"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_scrollFlags="scroll">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/iv_logo_home"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_square_regular"
-                    android:includeFontPadding="false"
-                    android:text="@string/project_name"
-                    android:textColor="@color/main"
-                    android:textSize="@dimen/title2"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:background="@color/color_background"
+                    android:src="@drawable/logo_home"
+                    tools:ignore="ContentDescription" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
 
-            <include
-                android:id="@+id/progress_loading_location"
-                layout="@layout/item_loading_progressbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}" />
+        </com.google.android.material.appbar.AppBarLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:scrollbars="none">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15sp"
-                    android:fontFamily="@font/notosans_kr_bold"
-                    android:includeFontPadding="false"
-                    android:text="@string/study_room_apply"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/title4"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_location_check"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:overScrollMode="never"
-                android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:itemCount="4"
-                tools:listitem="@layout/item_study_room_check" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tv_meal_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15sp"
-                    android:fontFamily="@font/notosans_kr_bold"
-                    android:includeFontPadding="false"
-                    android:text="@string/home_meal"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/title4"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tv_meal_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:fontFamily="@font/nanum_square_regular"
-                    android:includeFontPadding="false"
-                    android:textColor="@color/gray500"
-                    android:textSize="@dimen/title6"
-                    app:layout_constraintBaseline_toBaselineOf="@id/tv_meal_title"
-                    app:layout_constraintStart_toEndOf="@id/tv_meal_title"
-                    tools:text="6.10" />
-
-                <TextView
-                    android:id="@+id/tv_meal_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:fontFamily="@font/nanum_square_regular"
-                    android:includeFontPadding="false"
-                    android:onClick="@{() -> vm.onClickMealMore()}"
-                    android:text="@string/more"
-                    android:textColor="@color/gray500"
-                    app:layout_constraintBaseline_toBaselineOf="@id/tv_meal_title"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/view_pager_meal_list"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tv_today_song_home"
+                <include
+                    android:id="@+id/progress_loading_location"
+                    layout="@layout/item_loading_progressbar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15sp"
-                    android:fontFamily="@font/notosans_kr_bold"
-                    android:includeFontPadding="false"
-                    android:text="@string/home_song"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/title4"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_gravity="center"
+                    android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}" />
 
-                <TextView
-                    android:id="@+id/tv_song_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="15dp"
-                    android:fontFamily="@font/nanum_square_regular"
-                    android:includeFontPadding="false"
-                    android:onClick="@{() -> vm.onClickSongMore()}"
-                    android:text="@string/more"
-                    android:textColor="@color/gray500"
-                    app:layout_constraintBaseline_toBaselineOf="@id/tv_today_song_home"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/view_pager_today_song"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <include
-                android:id="@+id/tv_empty_song"
-                layout="@layout/item_empty_song"
-                android:visibility="gone" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tv_more_function"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/notosans_kr_bold"
-                    android:includeFontPadding="false"
-                    android:text="@string/text_more_function"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/title4"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_more_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/card_out"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="10dp"
-                    android:onClick="@{() -> vm.onClickOut()}"
-                    app:cardCornerRadius="@dimen/card_corner"
-                    app:cardElevation="@dimen/card_elevation"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1:0.8"
-                    app:layout_constraintEnd_toStartOf="@id/card_lost_found"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp">
-
-                        <TextView
-                            android:id="@+id/tv_out"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
-                            android:fontFamily="@font/nanum_square_regular"
-                            android:includeFontPadding="false"
-                            android:text="@string/title_out"
-                            android:textColor="@color/main"
-                            android:textSize="@dimen/title3"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tv_out_desc"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_marginTop="7dp"
-                            android:fontFamily="@font/nanum_square_regular"
-                            android:includeFontPadding="false"
-                            android:text="@string/text_out_desc"
-                            android:textColor="@color/color_black"
-                            android:textSize="@dimen/title5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_out" />
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_lost_found"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="20dp"
-                    app:cardCornerRadius="@dimen/card_corner"
-                    app:cardElevation="@dimen/card_elevation"
-                    app:layout_constraintBottom_toBottomOf="@id/card_out"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/card_out"
-                    app:layout_constraintTop_toTopOf="@id/card_out">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="5dp">
-
-                        <TextView
-                            android:id="@+id/tv_lost_found"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
-                            android:fontFamily="@font/nanum_square_regular"
-                            android:includeFontPadding="false"
-                            android:text="@string/title_lost_and_found"
-                            android:textColor="@color/main"
-                            android:textSize="@dimen/title3"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tv_lost_found_desc"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_marginTop="7dp"
-                            android:fontFamily="@font/nanum_square_regular"
-                            android:includeFontPadding="false"
-                            android:text="@string/text_lost_and_found"
-                            android:textColor="@color/color_black"
-                            android:textSize="@dimen/title5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_lost_found" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_it_map"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginHorizontal="20dp"
+                    android:id="@+id/card_study_room"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/default_margin"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="70dp"
                     app:cardCornerRadius="@dimen/card_corner"
-                    app:cardElevation="@dimen/card_elevation"
-                    android:onClick="@{() -> vm.onClickItMap()}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="2.5:1"
+                    app:cardElevation="@dimen/card_elevation">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tv_study_room_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/default_card_content_margin"
+                            android:fontFamily="@font/noto_bold"
+                            android:includeFontPadding="false"
+                            android:text="@string/title_study_room_apply"
+                            android:textColor="@color/color_black"
+                            android:textSize="@dimen/card_title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycler_location_check"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/default_card_content_margin"
+                            android:layout_marginBottom="@dimen/default_card_content_margin"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tv_study_room_title"
+                            tools:itemCount="4"
+                            tools:listitem="@layout/item_study_room_check" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/view_pager_meal_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_card_height_margin"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/card_lost_found">
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_song"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/default_margin"
+                    android:layout_marginTop="10dp"
+                    app:cardCornerRadius="@dimen/card_corner"
+                    app:cardElevation="@dimen/card_elevation">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_margin="5dp">
+                        android:padding="@dimen/default_card_content_margin">
 
-                        <TextView
-                            android:id="@+id/tv_it_map"
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/layout_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
-                            android:fontFamily="@font/nanum_square_regular"
-                            android:includeFontPadding="false"
-                            android:text="@string/title_it_map"
-                            android:textColor="@color/main"
-                            android:textSize="@dimen/title3"
+                            android:onClick="@{() -> vm.onClickSongMore()}"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent">
 
-                        <TextView
-                            android:id="@+id/tv_it_map_desc"
+                            <TextView
+                                android:id="@+id/tv_song_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_bold"
+                                android:includeFontPadding="false"
+                                android:text="@string/home_song"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/card_title" />
+
+                            <ImageView
+                                android:layout_width="@dimen/default_more_arrow_icon"
+                                android:layout_height="@dimen/default_more_arrow_icon"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:src="@drawable/ic_btn_arrow"
+                                android:rotation="270"
+                                app:tint="@color/gray500"
+                                tools:ignore="ContentDescription" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_today_song"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="16dp"
-                            android:layout_marginTop="7dp"
-                            android:fontFamily="@font/nanum_square_regular"
+                            android:orientation="horizontal"
+                            tools:listitem="@layout/item_song"
+                            android:layout_marginTop="@dimen/default_card_content_margin"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintTop_toBottomOf="@id/layout_title"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_empty_song"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
-                            android:text="@string/text_it_map_desc"
-                            android:textColor="@color/color_black"
-                            android:textSize="@dimen/title5"
+                            android:text="@string/text_now_selected_song_empty"
+                            android:textColor="@color/gray700"
+                            android:textSize="@dimen/title6"
+                            android:visibility="gone"
+                            android:layout_marginTop="@dimen/default_card_content_margin"
+                            android:layout_marginBottom="10dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tv_it_map" />
+                            app:layout_constraintTop_toBottomOf="@id/layout_title"
+                            tools:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/iv_musical_note"
+                            android:layout_width="@dimen/default_card_icon_size"
+                            android:layout_height="@dimen/default_card_icon_size"
+                            android:src="@drawable/ic_musical_note"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            tools:ignore="ContentDescription" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </ScrollView>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_more_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_card_height_margin">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_out"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:onClick="@{() -> vm.onClickOut()}"
+                        app:cardCornerRadius="@dimen/card_corner"
+                        app:cardElevation="@dimen/card_elevation"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:0.8"
+                        app:layout_constraintEnd_toStartOf="@id/card_lost_found"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_out"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/default_card_content_margin"
+                                android:fontFamily="@font/noto_bold"
+                                android:includeFontPadding="false"
+                                android:text="@string/title_out"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/card_title"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_out_desc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/default_card_content_margin"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/text_out_desc"
+                                android:textColor="@color/gray700"
+                                android:textSize="@dimen/card_content"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_out" />
+
+                            <ImageView
+                                android:id="@+id/iv_zzz"
+                                android:layout_width="@dimen/default_card_icon_size"
+                                android:layout_height="@dimen/default_card_icon_size"
+                                android:layout_margin="@dimen/default_card_content_margin"
+                                android:src="@drawable/ic_zzz"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                tools:ignore="ContentDescription" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_lost_found"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        app:cardCornerRadius="@dimen/card_corner"
+                        app:cardElevation="@dimen/card_elevation"
+                        app:layout_constraintBottom_toBottomOf="@id/card_out"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/card_out"
+                        app:layout_constraintTop_toTopOf="@id/card_out">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_lost_found"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/default_card_content_margin"
+                                android:fontFamily="@font/noto_bold"
+                                android:includeFontPadding="false"
+                                android:text="@string/title_lost_and_found"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/card_title"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_lost_found_desc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/default_card_content_margin"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/text_lost_and_found"
+                                android:textColor="@color/gray700"
+                                android:textSize="@dimen/card_content"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_lost_found" />
+
+                            <ImageView
+                                android:id="@+id/iv_screaming"
+                                android:layout_width="@dimen/default_card_icon_size"
+                                android:layout_height="@dimen/default_card_icon_size"
+                                android:layout_margin="@dimen/default_card_content_margin"
+                                android:src="@drawable/ic_face_screaming"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                tools:ignore="ContentDescription" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_it_map"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginHorizontal="@dimen/default_margin"
+                        android:layout_marginTop="@dimen/default_card_height_margin"
+                        android:layout_marginBottom="70dp"
+                        android:onClick="@{() -> vm.onClickItMap()}"
+                        app:cardCornerRadius="@dimen/card_corner"
+                        app:cardElevation="@dimen/card_elevation"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="2.5:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/card_lost_found">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_it_map"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/default_card_content_margin"
+                                android:fontFamily="@font/noto_bold"
+                                android:includeFontPadding="false"
+                                android:text="@string/title_it_map"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/card_title"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_it_map_desc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/default_card_content_margin"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/text_it_map_desc"
+                                android:textColor="@color/gray700"
+                                android:textSize="@dimen/card_content"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_it_map" />
+
+                            <ImageView
+                                android:id="@+id/iv_graduation_cap"
+                                android:layout_width="@dimen/default_card_icon_size"
+                                android:layout_height="@dimen/default_card_icon_size"
+                                android:layout_margin="@dimen/default_card_content_margin"
+                                android:src="@drawable/ic_graduation_cap"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                tools:ignore="ContentDescription" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </layout>
