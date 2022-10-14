@@ -19,8 +19,8 @@ class StudentDataSource @Inject constructor(
     suspend fun getMyInfo(): Student =
         remote.getMyInfo()
 
-    suspend fun changeMemberInfo(request: ModifyMemberInfoRequest): String =
-        remote.changeMemberInfo(request)
+    suspend fun modifyMemberInfo(request: ModifyMemberInfoRequest): String =
+        remote.modifyMemberInfo(request)
 
     suspend fun getStudent(id: String): StudentEntity = cache.getStudent(id)
 

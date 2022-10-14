@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.data.repository
 
 import android.webkit.MimeTypeMap
 import kr.hs.dgsw.smartschool.data.datasource.FileUploadDataSource
-import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
 import kr.hs.dgsw.smartschool.domain.repository.FileUploadRepository
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -16,27 +15,21 @@ class FileUploadRepositoryImpl @Inject constructor(
     private val fileUploadDataSource: FileUploadDataSource
 ) : FileUploadRepository {
 
-    private lateinit var imagePart: MultipartBody.Part
-    private lateinit var namePart: MultipartBody.Part
-    private lateinit var picture: Picture
+    private lateinit var filePart: MultipartBody.Part
 
-    override suspend fun uploadImg(file: File): Picture {
+    override suspend fun uploadImg(file: File): String {
         setImageMultipartBodyList(file)
-        fileUploadDataSource.uploadImg(imagePart, namePart)
-        return picture
+        return fileUploadDataSource.uploadFile(filePart)
     }
 
     private fun setImageMultipartBodyList(file: File) {
-        val originalName = file.name.split(".")[0]
-        val uploadName = "DA_IMG_${Random().nextInt(Int.MAX_VALUE)}"
+        val uploadName = "DODAM_FILE_${Random().nextInt(Int.MAX_VALUE)}"
 
         val extension = getExtension(file)
         val mediaType = getMediaType(extension)
-        val imageBody: RequestBody = file.asRequestBody(mediaType.toMediaTypeOrNull())
+        val requestBody: RequestBody = file.asRequestBody(mediaType.toMediaTypeOrNull())
 
-        imagePart = MultipartBody.Part.createFormData("image", "$uploadName.$extension", imageBody)
-        namePart = MultipartBody.Part.createFormData("name", uploadName)
-        picture = Picture(originalName, uploadName, extension)
+        filePart = MultipartBody.Part.createFormData("file", "$uploadName.$extension", requestBody)
     }
 
     private fun getMediaType(extension: String): String {
