@@ -11,6 +11,4 @@ class FileUploadRemote @Inject constructor(
 
     suspend fun uploadFile(file: MultipartBody.Part): String =
         api.uploadFile(file).data
-
 }
-

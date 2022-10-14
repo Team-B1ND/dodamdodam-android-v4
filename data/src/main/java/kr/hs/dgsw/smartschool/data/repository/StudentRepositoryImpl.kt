@@ -24,5 +24,4 @@ class StudentRepositoryImpl @Inject constructor(
 
     override suspend fun getStudent(id: String): Student =
         studentMapper.mapToModel(studentDataSource.getStudent(id))
-
 }

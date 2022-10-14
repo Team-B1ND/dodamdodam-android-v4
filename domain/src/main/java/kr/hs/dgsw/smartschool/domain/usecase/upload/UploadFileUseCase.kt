@@ -14,5 +14,4 @@ class UploadFileUseCase @Inject constructor(
     override operator fun invoke(params: File): Flow<Resource<String>> = execute {
         repository.uploadImg(params)
     }
-
 }

@@ -12,8 +12,8 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.upload.UploadImageState
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.isNotEmailValid
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.isNotPhoneNumberValid
 import kr.hs.dgsw.smartschool.domain.model.fileupload.Picture
-import kr.hs.dgsw.smartschool.domain.usecase.member.ModifyMemberInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.member.ModifyMemberInfo
 import kr.hs.dgsw.smartschool.domain.usecase.upload.UploadFileUseCase
 import java.io.File
 import javax.inject.Inject

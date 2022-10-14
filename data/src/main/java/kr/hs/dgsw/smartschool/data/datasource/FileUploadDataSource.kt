@@ -11,5 +11,4 @@ class FileUploadDataSource @Inject constructor(
 ) : BaseDataSource<FileUploadRemote, Any> {
 
     suspend fun uploadFile(file: MultipartBody.Part): String = remote.uploadFile(file)
-
 }
