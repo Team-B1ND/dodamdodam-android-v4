@@ -11,7 +11,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
         android:elevation="10dp"
-        android:fontFamily="@font/notosans_kr_medium"
+        android:fontFamily="@font/noto_medium"
         android:includeFontPadding="false"
         android:text="@string/text_sign_in"
         android:textColor="@color/white"
@@ -35,7 +35,7 @@
         android:id="@+id/scroll_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/main"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,12 +69,12 @@
                 android:id="@+id/tv_dodam_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/notosans_kr_medium"
+                android:fontFamily="@font/noto_medium"
                 android:includeFontPadding="false"
                 android:text="@string/text_dodam_desc"
-                android:textColor="@color/white"
+                android:textColor="@color/main"
                 android:textSize="@dimen/title3"
-                app:layout_constraintBottom_toBottomOf="@id/iv_background"
+                app:layout_constraintTop_toBottomOf="@id/iv_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -82,10 +82,10 @@
                 android:id="@+id/tv_dodam_main_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/notosans_kr_bold"
+                android:fontFamily="@font/noto_bold"
                 android:includeFontPadding="false"
                 android:text="@string/text_dodam_main_desc"
-                android:textColor="@color/white"
+                android:textColor="@color/main"
                 android:textSize="@dimen/title1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -129,11 +129,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/notosans_kr_bold"
+                android:fontFamily="@font/noto_bold"
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:text="Web, Android, iOS\n모두 지원!"
-                android:textColor="@color/white"
+                android:textColor="@color/main"
                 android:textSize="@dimen/title1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -144,14 +144,14 @@
 
     </ScrollView>
 
-    <Button
+    <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
         android:id="@+id/btn_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:backgroundTint="@color/white"
         android:text="시작하기"
-        android:textColor="@color/main"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
