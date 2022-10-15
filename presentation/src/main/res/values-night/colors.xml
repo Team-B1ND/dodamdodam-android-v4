@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_white">#000000</color>
+    <color name="color_white">#101012</color>
     <color name="color_black">#FFFFFF</color>
 
     <color name="color_card_background">#202020</color>
     <color name="color_background">#171717</color>
+
+    <color name="gray200">#6A6A6A</color>
+    <color name="gray500">#999999</color>
+    <color name="gray700">#CACACA</color>
+
+    <color name="main">#077FE1</color>
 
     <color name="color_background_toggle">#434343</color>
 

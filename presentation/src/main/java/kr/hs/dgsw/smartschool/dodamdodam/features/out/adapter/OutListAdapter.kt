@@ -17,19 +17,18 @@ class OutListAdapter(
 ) : BaseListAdapter<OutItem, ItemOutBinding>(R.layout.item_out, OutItemDiffUtil) {
 
     override fun action(item: OutItem, binding: ItemOutBinding) {
-        val theme = binding.root.context.theme
         val resources = binding.root.resources
         val icon = when (item.status) {
             OutStatus.DENIED -> {
-                binding.tvOffbaseStatus.text = "거절됨"
+                binding.tvOutStatus.text = "거절됨"
                 resources.getDrawable(R.drawable.ic_out_refuse, null)
             }
             OutStatus.PENDING -> {
-                binding.tvOffbaseStatus.text = "대기중"
+                binding.tvOutStatus.text = "대기중"
                 resources.getDrawable(R.drawable.ic_out_unknown, null)
             }
             OutStatus.ALLOWED -> {
-                binding.tvOffbaseStatus.text = "수락됨"
+                binding.tvOutStatus.text = "수락됨"
                 resources.getDrawable(R.drawable.ic_out_ok, null)
             }
             else -> return
@@ -37,10 +36,10 @@ class OutListAdapter(
 
         Glide.with(binding.root)
             .load(icon)
-            .into(binding.ivOffbaseStatus)
+            .into(binding.ivOutStatus)
 
-        binding.tvOffbaseType.text = if (item.isOutSleeping()) "외박" else "외출"
-        binding.tvOffbaseReason.text = item.reason
+        binding.tvOutType.text = if (item.isOutSleeping()) "외박" else "외출"
+        binding.tvOutReason.text = item.reason
 
         if (!item.isOutSleeping()) {
             binding.tvLabelDate.text = "외출 날짜"

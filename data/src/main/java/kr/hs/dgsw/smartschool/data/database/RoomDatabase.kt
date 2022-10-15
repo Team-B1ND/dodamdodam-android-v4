@@ -23,11 +23,12 @@ import java.util.concurrent.Executors
 
 @Database(
     entities = [
-        TokenEntity::class, AccountEntity::class, MemberEntity::class,
-        StudentEntity::class, TeacherEntity::class, TimeEntity::class,
-        PlaceEntity::class, ClassroomEntity::class
+        TokenEntity::class, AccountEntity::class,
+        MemberEntity::class, StudentEntity::class, TeacherEntity::class,
+        TimeEntity::class, PlaceEntity::class,
+        ClassroomEntity::class
     ],
-    version = 9,
+    version = 8,
     exportSchema = false
 )
 abstract class RoomDatabase : androidx.room.RoomDatabase() {

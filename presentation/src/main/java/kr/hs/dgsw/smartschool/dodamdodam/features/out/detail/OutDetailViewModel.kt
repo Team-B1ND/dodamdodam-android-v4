@@ -64,7 +64,12 @@ class OutDetailViewModel @Inject constructor(
         viewEvent(EVENT_ON_CLICK_UPDATE)
     }
 
+    fun onClickBack() {
+        viewEvent(EVENT_ON_CLICK_BACK)
+    }
+
     companion object {
         const val EVENT_ON_CLICK_UPDATE = 0
+        const val EVENT_ON_CLICK_BACK = 1
     }
 }

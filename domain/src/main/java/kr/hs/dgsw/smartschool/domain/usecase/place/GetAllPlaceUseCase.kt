@@ -10,7 +10,6 @@ import javax.inject.Inject
 class GetAllPlaceUseCase @Inject constructor(
     val repository: PlaceRepository
 ) : BaseUseCase<Unit, List<Place>>() {
-
     override fun invoke(params: Unit): Flow<Resource<List<Place>>> = execute {
         repository.getAllPlace()
     }

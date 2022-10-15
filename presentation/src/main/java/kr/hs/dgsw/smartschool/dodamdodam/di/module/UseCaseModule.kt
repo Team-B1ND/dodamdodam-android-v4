@@ -7,12 +7,12 @@ import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.domain.repository.AccountRepository
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.repository.DataSetUpRepository
+import kr.hs.dgsw.smartschool.domain.repository.ItMapRepository
 import kr.hs.dgsw.smartschool.domain.repository.MealRepository
 import kr.hs.dgsw.smartschool.domain.repository.OutRepository
 import kr.hs.dgsw.smartschool.domain.repository.SongRepository
 import kr.hs.dgsw.smartschool.domain.repository.StudentRepository
 import kr.hs.dgsw.smartschool.domain.repository.StudyRoomRepository
-import kr.hs.dgsw.smartschool.domain.repository.TeacherRepository
 import kr.hs.dgsw.smartschool.domain.repository.TimeRepository
 import kr.hs.dgsw.smartschool.domain.repository.TokenRepository
 import kr.hs.dgsw.smartschool.domain.repository.YouTubeRepository
@@ -29,12 +29,15 @@ import kr.hs.dgsw.smartschool.domain.usecase.bus.GetMyBus
 import kr.hs.dgsw.smartschool.domain.usecase.bus.GetMyBusByMonth
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusApply
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusInfo
+import kr.hs.dgsw.smartschool.domain.usecase.itmap.GetAllCompanies
+import kr.hs.dgsw.smartschool.domain.usecase.itmap.GetCompanyById
+import kr.hs.dgsw.smartschool.domain.usecase.itmap.ItMapUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetCalorieOfMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.member.ChangeMemberInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.GetMyInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.member.ModifyMemberInfo
 import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutGoing
 import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutSleeping
 import kr.hs.dgsw.smartschool.domain.usecase.out.DeleteOutGoing
@@ -111,10 +114,10 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideMemberUseCases(studentRepository: StudentRepository, teacherRepository: TeacherRepository): MemberUseCases =
+    fun provideMemberUseCases(studentRepository: StudentRepository): MemberUseCases =
         MemberUseCases(
             getMyInfo = GetMyInfo(studentRepository),
-            changeMemberInfo = ChangeMemberInfo(studentRepository)
+            modifyMemberInfo = ModifyMemberInfo(studentRepository)
         )
 
     @Provides
@@ -181,5 +184,14 @@ class UseCaseModule {
             deleteOutSleeping = DeleteOutSleeping(outRepository),
             modifyOutGoing = ModifyOutGoing(outRepository),
             modifyOutSleeping = ModifyOutSleeping(outRepository)
+        )
+
+    @Provides
+    @Singleton
+    fun provideItMapUseCases(itMapRepository: ItMapRepository): ItMapUseCases =
+        ItMapUseCases(
+            getAllCompanies = GetAllCompanies(itMapRepository),
+            getCompanyById = GetCompanyById(itMapRepository),
+
         )
 }

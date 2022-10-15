@@ -16,7 +16,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetAllowSongState
 import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetMyStudyRoomState
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.setup.SetUpUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetAllowSong
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.studyroom.StudyRoomUseCases
@@ -27,7 +26,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val mealUseCases: MealUseCases,
     private val studyRoomUseCases: StudyRoomUseCases,
-    private val setUpUseCases: SetUpUseCases,
     private val songUseCases: SongUseCases
 ) : BaseViewModel() {
 
@@ -94,17 +92,18 @@ class HomeViewModel @Inject constructor(
         viewEvent(ON_CLICK_SONG_MORE)
     }
 
-    fun onClickMealMore() {
-        viewEvent(ON_CLICK_MEAL_MORE)
-    }
-
     fun onClickOut() {
         viewEvent(ON_CLICK_OUT)
+    }
+
+    fun onClickItMap() {
+        viewEvent(ON_CLICK_ITMAP)
     }
 
     companion object {
         const val ON_CLICK_SONG_MORE = 0
         const val ON_CLICK_MEAL_MORE = 1
         const val ON_CLICK_OUT = 2
+        const val ON_CLICK_ITMAP = 3
     }
 }

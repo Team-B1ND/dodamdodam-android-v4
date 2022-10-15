@@ -2,15 +2,15 @@
     <!-- Base application theme. -->
     <style name="Theme.AppCompat.Dodam.Night" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/main_200</item>
+        <item name="colorPrimaryVariant">@color/main_700</item>
+        <item name="colorOnPrimary">@color/main</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">@color/color_soft_gray</item>
+        <item name="colorSecondaryVariant">@color/color_light_gray</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/main</item>
+        <item name="android:statusBarColor">@color/color_background</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

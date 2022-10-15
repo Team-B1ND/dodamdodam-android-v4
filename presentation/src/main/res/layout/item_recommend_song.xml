@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="song"
+            name="melon"
             type="kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart" />
 
     </data>
@@ -20,7 +20,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginVertical="10dp"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="@dimen/default_margin"
             app:cardCornerRadius="@dimen/card_small_corner"
             app:cardElevation="@dimen/card_elevation"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                songThumbnail="@{song.thumbnail}"
+                songThumbnail="@{melon.thumbnail}"
                 android:id="@+id/iv_recommend_song"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -44,11 +44,11 @@
             android:layout_marginHorizontal="15dp"
             android:ellipsize="end"
             android:maxLines="3"
-            android:fontFamily="@font/nanum_square_regular"
+            android:fontFamily="@font/noto_regular"
             android:includeFontPadding="false"
             android:textColor="@color/color_black"
             android:textSize="@dimen/title5"
-            android:text="@{song.title}"
+            android:text="@{melon.title}"
             app:layout_constraintEnd_toStartOf="@id/tv_rank"
             app:layout_constraintBottom_toTopOf="@id/tv_recommend_song_artist"
             app:layout_constraintStart_toEndOf="@id/card_image_container"
@@ -62,11 +62,11 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="3"
-            android:fontFamily="@font/nanum_square_regular"
+            android:fontFamily="@font/noto_regular"
             android:includeFontPadding="false"
             android:textColor="@color/gray500"
             android:textSize="@dimen/title6"
-            android:text="@{song.artist}"
+            android:text="@{melon.artist}"
             app:layout_constraintEnd_toEndOf="@id/tv_recommend_song_title"
             app:layout_constraintStart_toStartOf="@id/tv_recommend_song_title"
             app:layout_constraintTop_toBottomOf="@id/tv_recommend_song_title"
@@ -79,13 +79,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="1위"
-            android:text="@{song.showingRank}"
-            android:textColor="@color/main"
+            android:text="@{melon.showingRank}"
+            android:textColor="@color/color_song"
             android:textSize="@dimen/title4"
             app:layout_constraintTop_toTopOf="@id/card_image_container"
             app:layout_constraintBottom_toBottomOf="@id/card_image_container"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="20dp" />
+            android:layout_marginEnd="@dimen/default_margin" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -12,6 +12,7 @@ import kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart
 
 @AndroidEntryPoint
 class SongApplyFragment : BaseFragment<FragmentSongApplyBinding, SongApplyViewModel>() {
+
     override val viewModel: SongApplyViewModel by viewModels()
 
     lateinit var recommendSongAdapter: RecommendSongAdapter

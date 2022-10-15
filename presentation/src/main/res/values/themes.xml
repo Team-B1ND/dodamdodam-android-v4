@@ -1,14 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.AppCompat.Dodam" parent="Theme.MaterialComponents.Light.NoActionBar">
-
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+    <style name="Theme.DodamDodam" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/main</item>
+        <item name="colorPrimaryVariant">@color/main_700</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="colorSecondaryVariant">@color/colorControlNormal</item>
+        <item name="colorSecondary">@color/main_500</item>
+        <item name="colorSecondaryVariant">@color/main_200</item>
         <item name="colorOnSecondary">@color/black</item>
-
-        <item name="android:statusBarColor">@color/main</item>
+        <item name="android:statusBarColor">@color/color_background</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.AppCompat.StartScreen" parent="Theme.AppCompat.Dodam">
@@ -25,11 +24,29 @@
     </style>
 
     <style name="TextAppearance.App.Title" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:fontFamily">@font/nanum_square_regular</item>
+        <item name="android:fontFamily">@font/noto_regular</item>
+        <item name="android:textColor">@color/color_black</item>
+        <item name="android:textSize">@dimen/app_bar_title_text</item>
     </style>
 
     <style name="TextAppearance.App.Title.Expanded" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
-        <item name="android:fontFamily">@font/nanum_square_regular</item>
+        <item name="android:fontFamily">@font/noto_bold</item>
+        <item name="android:textColor">@color/color_black</item>
+        <item name="android:textSize">@dimen/title1</item>
+    </style>
+
+    <style name="ExpandedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/page_extended_title_text</item>
+        <item name="android:textColor">@color/color_black</item>
+        <item name="android:fontFamily">@font/noto_bold</item>
+    </style>
+
+    <style name="CollapsedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:fontFamily">@font/noto_medium</item>
+        <item name="android:textSize">@dimen/page_title_text</item>
+        <item name="android:textColor">@color/color_black</item>
+        <item name="android:textStyle">normal</item>
     </style>
 
 </resources>
