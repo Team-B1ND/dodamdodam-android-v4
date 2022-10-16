@@ -10,6 +10,7 @@ import kr.hs.dgsw.smartschool.data.network.api.BusApi
 import kr.hs.dgsw.smartschool.data.network.api.ClassInfoApi
 import kr.hs.dgsw.smartschool.data.network.api.FileUploadApi
 import kr.hs.dgsw.smartschool.data.network.api.ItMapApi
+import kr.hs.dgsw.smartschool.data.network.api.LostFoundApi
 import kr.hs.dgsw.smartschool.data.network.api.MealApi
 import kr.hs.dgsw.smartschool.data.network.api.MemberApi
 import kr.hs.dgsw.smartschool.data.network.api.OutApi
@@ -24,6 +25,7 @@ import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.remote.ClassInfoRemote
 import kr.hs.dgsw.smartschool.data.network.remote.FileUploadRemote
 import kr.hs.dgsw.smartschool.data.network.remote.ItMapRemote
+import kr.hs.dgsw.smartschool.data.network.remote.LostFoundRemote
 import kr.hs.dgsw.smartschool.data.network.remote.MealRemote
 import kr.hs.dgsw.smartschool.data.network.remote.MemberRemote
 import kr.hs.dgsw.smartschool.data.network.remote.OutRemote
@@ -53,6 +55,11 @@ class RemoteModule {
     @Provides
     fun provideBusRemote(@OtherRemoteRetrofit retrofit: Retrofit): BusRemote =
         BusRemote(retrofit.create(BusApi::class.java))
+
+    @Singleton
+    @Provides
+    fun provideLostFoundRemote(@OtherRemoteRetrofit retrofit: Retrofit): LostFoundRemote =
+        LostFoundRemote(retrofit.create(LostFoundApi::class.java))
 
     @Singleton
     @Provides

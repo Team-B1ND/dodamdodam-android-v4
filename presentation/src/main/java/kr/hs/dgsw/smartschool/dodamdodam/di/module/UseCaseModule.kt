@@ -8,6 +8,7 @@ import kr.hs.dgsw.smartschool.domain.repository.AccountRepository
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.repository.DataSetUpRepository
 import kr.hs.dgsw.smartschool.domain.repository.ItMapRepository
+import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
 import kr.hs.dgsw.smartschool.domain.repository.MealRepository
 import kr.hs.dgsw.smartschool.domain.repository.OutRepository
 import kr.hs.dgsw.smartschool.domain.repository.SongRepository
@@ -32,6 +33,18 @@ import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusInfo
 import kr.hs.dgsw.smartschool.domain.usecase.itmap.GetAllCompanies
 import kr.hs.dgsw.smartschool.domain.usecase.itmap.GetCompanyById
 import kr.hs.dgsw.smartschool.domain.usecase.itmap.ItMapUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.AddLostFound
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.AddLostFoundComment
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFound
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFoundComment
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFound
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFoundById
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFoundComment
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetMyLostFound
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.ModifyLostFound
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.ModifyLostFoundComment
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.SearchLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetCalorieOfMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
@@ -87,6 +100,24 @@ class UseCaseModule {
             getMeal = GetMeal(repository),
             getCalorieOfMeal = GetCalorieOfMeal(repository)
         )
+
+    @Provides
+    @Singleton
+    fun provideLostFoundUseCases(repository: LostFoundRepository): LostFoundUseCases =
+        LostFoundUseCases(
+            getLostFoundById = GetLostFoundById(repository),
+            getLostFoundComment = GetLostFoundComment(repository),
+            getLostFound = GetLostFound(repository),
+            getMyLostFound = GetMyLostFound(repository),
+            modifyLostFound = ModifyLostFound(repository),
+            modifyLostFoundComment = ModifyLostFoundComment(repository),
+            addLostFound = AddLostFound(repository),
+            addLostFoundComment = AddLostFoundComment(repository),
+            deleteLostFoundComment = DeleteLostFoundComment(repository),
+            deleteLostFound = DeleteLostFound(repository),
+            searchLostFound = SearchLostFound(repository)
+        )
+
 
     @Provides
     @Singleton

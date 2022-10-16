@@ -6,7 +6,7 @@
     <data>
         <variable
             name="vm"
-            type="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.LostFoundViewModel" />
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.main.LostFoundViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
