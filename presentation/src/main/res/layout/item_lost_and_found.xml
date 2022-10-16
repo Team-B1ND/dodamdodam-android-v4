@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="lostInfo"
+            type="kr.hs.dgsw.smartschool.domain.model.lostfound.LostInfo" />
     </data>
 
 
@@ -81,6 +83,7 @@
 
             </LinearLayout>
             <ImageButton
+                android:id="@+id/ib_btn_more"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity=""
