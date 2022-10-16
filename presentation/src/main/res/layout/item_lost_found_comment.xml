@@ -2,7 +2,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-
+        <variable
+            name="info"
+            type="kr.hs.dgsw.smartschool.domain.model.lostfound.CommentInfo" />
     </data>
 
     <LinearLayout
