@@ -5,9 +5,9 @@ import android.util.Log
 import android.widget.PopupMenu
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.LostFoundDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemLostAndFoundBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.adapter.callback.LostFoundDiffUtilCallback
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostInfo
 
 class LostFoundAdapter(val context: Context, val listener: LostFoundCallBack) : BaseListAdapter<LostInfo, ItemLostAndFoundBinding>(R.layout.item_lost_and_found, LostFoundDiffUtilCallback) {
