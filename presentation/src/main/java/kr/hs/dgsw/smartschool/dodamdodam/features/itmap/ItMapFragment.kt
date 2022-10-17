@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.itmap
 
-import android.location.Geocoder
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -89,13 +88,10 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
 
     private fun setMarker(companies: List<Company>) {
         companies.forEach { company ->
+
             val marker = Marker()
 
-            try {
-                marker.position = addressToGps(company.address)
-            } catch (e: Exception) {
-                return@forEach
-            }
+            marker.position = LatLng(company.latitude, company.longitude)
 
             marker.map = naverMap
             marker.tag = company.id
@@ -105,6 +101,7 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
                 navigateToDetail(it.tag as Int)
                 true
             }
+
         }
     }
 
@@ -133,7 +130,7 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
                 CoroutineScope(Dispatchers.Default).launch {
                     val selectedCompanyModel = companyViewPagerAdapter.currentList[position]
                     val cameraUpdate = CameraUpdate
-                        .scrollAndZoomTo(addressToGps(selectedCompanyModel.address), 15.0)
+                        .scrollAndZoomTo(LatLng(selectedCompanyModel.latitude, selectedCompanyModel.longitude), 15.0)
                         .animate(CameraAnimation.Easing)
                     naverMap.moveCamera(cameraUpdate)
                 }
@@ -141,13 +138,13 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
         })
     }
 
-    private fun addressToGps(address: String): LatLng {
+/*    private fun addressToGps(address: String): LatLng {
         Geocoder(requireContext()).getFromLocationName(address, 1).let {
             if (it.isEmpty())
                 throw Exception("NoAddress")
             return LatLng(it[0].latitude, it[0].longitude)
         }
-    }
+    }*/
 
     // 아래 수명주기 연결
     override fun onStart() {
