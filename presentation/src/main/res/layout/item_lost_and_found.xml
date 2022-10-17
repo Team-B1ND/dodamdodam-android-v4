@@ -39,7 +39,8 @@
                     android:id="@+id/iv_profile_image"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:src="@drawable/default_user" />
+                    android:src="@drawable/default_img"
+                    android:scaleType="centerCrop" />
 
                 <LinearLayout
                     android:layout_marginStart="20dp"

@@ -75,7 +75,7 @@
                 <Button
                     android:id="@+id/btn_image_add"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="115dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_btn_add"
                     android:drawableTint="@color/main"
@@ -91,7 +91,7 @@
                 <Button
                     android:id="@+id/btn_image_delete"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="115dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:drawableLeft="@drawable/ic_btn_delete"

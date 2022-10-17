@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
-                android:textSize="@dimen/title5"
+                android:textSize="@dimen/title6"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
                 android:maxLines="6"
