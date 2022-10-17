@@ -30,9 +30,9 @@ class LostFoundViewModel @Inject constructor(
     private val _getInfoState = MutableSharedFlow<GetMyInfoState>()
     val getMyInfoState = _getInfoState
 
-    val title = MutableLiveData<String>()
-    val isChecked = MutableLiveData<Boolean>(true)
-    val selectedItemPosition = MutableLiveData<Int>(0)
+    val searchKeyword = MutableLiveData<String>()
+    val mineChecked = MutableLiveData<Boolean>(false)
+    val foundChecked = MutableLiveData<Boolean>(false)
     val hasLostFound = MutableLiveData<Boolean>(false)
 
     init {
@@ -47,12 +47,12 @@ class LostFoundViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
     fun getLostFoundList(page: Int) {
-        if (isChecked.value == false) {
+        if (mineChecked.value == false) {
             Log.d("LostFoundViewModel", "myLostFound()")
             myLostFound()
         } else {
             Log.d("LostFoundViewModel", "getLostFoundList()")
-            useCases.getLostFound(GetLostFound.Params(page = page, type = if (selectedItemPosition.value == 1) "FOUND" else "LOST")).divideResult(
+            useCases.getLostFound(GetLostFound.Params(page = page, type = if (foundChecked.value!!) "FOUND" else "LOST")).divideResult(
                 isGetLostFoundLoading,
                 { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(list = it ?: emptyList())) } },
                 { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.")) } }
@@ -60,13 +60,14 @@ class LostFoundViewModel @Inject constructor(
         }
     }
     fun searchLostFound() {
-        useCases.searchLostFound(SearchLostFound.Params(search = title.value ?: "")).divideResult(
+        useCases.searchLostFound(SearchLostFound.Params(search = searchKeyword.value ?: "")).divideResult(
             isGetLostFoundLoading,
             { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(list = it ?: emptyList())) } },
             { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
     private fun myLostFound() {
+        //TODO 내 분실물/습득물 구분 안됨
         useCases.getMyLostFound(Unit).divideResult(
             isGetLostFoundLoading,
             { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(list = it ?: emptyList())) } },

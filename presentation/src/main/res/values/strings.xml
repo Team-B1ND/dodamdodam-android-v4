@@ -155,5 +155,6 @@
     <string name="text_study_room">자습실</string>
     <string name="title_point">상벌점 조회</string>
     <string name="text_navigate_sign_up">도담도담 계정이 없어요</string>
+    <string name="text_my_lostfound">내 게시물</string>
 
 </resources>

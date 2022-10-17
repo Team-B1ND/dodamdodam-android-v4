@@ -42,21 +42,23 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         mBinding.btnSearch.setOnClickListener {
             viewModel.searchLostFound()
         }
-        mBinding.tbCheck.setOnClickListener {
+        mBinding.tbMine.setOnClickListener {
+            viewModel.getLostFoundList(1)
+        }
+        mBinding.tbLostAndFound.setOnClickListener {
             viewModel.getLostFoundList(1)
         }
         with(viewModel) {
-            isChecked.observe(
+            mineChecked.observe(
                 viewLifecycleOwner,
                 Observer<Boolean> {
                     Log.e("LostFoundFragment", it.toString())
                     getLostFoundList(1)
                 }
             )
-            selectedItemPosition.value = mBinding.lostFoundSpinner.selectedItemPosition
-            selectedItemPosition.observe(
+            mineChecked.observe(
                 viewLifecycleOwner,
-                Observer<Int> {
+                Observer<Boolean> {
                     Log.e("LostFoundFragment", it.toString())
                     getLostFoundList(1)
                 }
