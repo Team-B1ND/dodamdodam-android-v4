@@ -36,12 +36,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override fun observerViewModel() {
         initViewEvent()
 
-        viewModel.getAllowSong()
-        viewModel.getMyStudyRoom()
-
         setLocationRecyclerView()
         setMealListViewPager()
         setUpTodaySong()
+
+        viewModel.getAllowSong()
+        viewModel.getMyStudyRoom()
 
         collectMyStudyRoom()
         collectMealState()

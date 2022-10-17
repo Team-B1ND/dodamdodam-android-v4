@@ -18,10 +18,6 @@ class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase
 ) : BaseViewModel() {
 
-    companion object {
-        const val EVENT_SUCCESS_SIGN_IN = 1234
-    }
-
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
 
@@ -32,10 +28,10 @@ class LoginViewModel @Inject constructor(
         if (id.value.isNullOrBlank() || pw.value.isNullOrBlank()) {
             return
         }
-        signIn()
+        login()
     }
 
-    private fun signIn() {
+    private fun login() {
         loginUseCase(
             LoginUseCase.Params(
                 id = id.value?.removeBlankInString() ?: "",

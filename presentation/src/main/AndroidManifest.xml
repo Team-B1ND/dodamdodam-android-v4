@@ -25,7 +25,12 @@
         <activity
             android:name=".features.main.MainActivity"
             android:screenOrientation="portrait"
-            android:exported="false">
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -36,20 +41,13 @@
 
         <activity
             android:name=".features.auth.login.LoginActivity"
-            android:exported="true">
-
+            android:exported="false">
         </activity>
 
         <activity
             android:name=".features.start.StartActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.App.Starting">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:screenOrientation="portrait">
         </activity>
 
     </application>

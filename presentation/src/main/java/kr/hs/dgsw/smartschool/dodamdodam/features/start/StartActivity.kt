@@ -23,19 +23,14 @@ class StartActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
-
         setContentView(R.layout.activity_start)
         motionLayoutGatherPlatform.transitionToStart()
         motionLayoutGatherPlatform.transitionToEnd()
 
         btnStart.setOnClickListener {
-            startActivityWithFinishAll(
-                if (SharedPreferenceManager.getIsLogin(this))
-                    MainActivity::class.java
-                else
-                    LoginActivity::class.java
-            )
+
+           startActivityWithFinishAll(LoginActivity::class.java)
+
         }
     }
 }

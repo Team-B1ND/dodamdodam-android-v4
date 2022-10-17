@@ -39,8 +39,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
     }
 
     private fun startMainActivity() {
-        if (mBinding.checkAutoSignIn.isChecked)
-            SharedPreferenceManager.login(this@LoginActivity)
+        SharedPreferenceManager.login(this@LoginActivity)
         startActivityWithFinishAll(MainActivity::class.java)
     }
 }
