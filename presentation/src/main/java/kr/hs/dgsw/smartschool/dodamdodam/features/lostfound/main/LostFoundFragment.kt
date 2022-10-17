@@ -27,7 +27,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     }
     override fun observerViewModel() {
         lostFoundAdapter = LostFoundAdapter(requireContext(), this)
-        mBinding.rvLostFound.adapter = lostFoundAdapter
+        mBinding.rvLostAndFound.adapter = lostFoundAdapter
 
         mBinding.btnBack.setOnClickListener {
             this.findNavController().popBackStack()
