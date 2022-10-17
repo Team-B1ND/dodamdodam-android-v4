@@ -12,7 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.fragment.LostFoundFragment">
+        tools:context=".view.fragment.LostFoundFragment"
+        android:background="@color/color_background">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh_layout"
@@ -32,10 +33,11 @@
                 <LinearLayout
                     android:id="@+id/search_view"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="60dp"
+                    android:padding="10dp"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -53,34 +55,24 @@
 
                     <CheckBox
                         android:id="@+id/tb_check"
-                        android:layout_width="0dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_width="80dp"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
                         android:background="@drawable/background_circle_line"
                         android:button="@null"
-                        android:fontFamily="@font/noto_regular"
+                        android:textSize="@dimen/title5"
+                        android:fontFamily="@font/notosans_kr_bold"
                         android:includeFontPadding="false"
                         android:textAlignment="center"
                         android:textColor="?android:textColorPrimary"
                         tools:text="전체 글" />
 
-                    <Spinner
-                        android:id="@+id/lost_found_spinner"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="@color/color_black"
-                        android:entries="@array/lost_found_type" />
-
                     <EditText
                         android:id="@+id/et_search"
-                        android:layout_width="0dp"
+                        android:layout_width="150dp"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="60dp"
                         android:layout_marginEnd="10dp"
-                        android:layout_weight="1"
                         android:background="@drawable/background_round_line"
                         android:hint="@string/text_search"
                         android:fontFamily="@font/noto_regular"
@@ -93,13 +85,17 @@
                         android:textColor="@color/color_black"
                         android:textSize="6pt"
                         tools:ignore="Autofill" />
-
+                    <ImageButton
+                        android:id="@+id/btn_search"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        />
                 </LinearLayout>
-                <Button
-                    android:id="@+id/btn_search"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/white">
+                </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_lost_and_found"
