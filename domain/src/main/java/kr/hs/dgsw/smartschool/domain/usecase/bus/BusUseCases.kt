@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.domain.usecase.bus
 
 data class BusUseCases(
     val getBus: GetBusList,
-    val getMyBus: GetMyBus,
     val getMyBusMonth: GetMyBusByMonth,
     val addBusApply: AddBusApply,
     val updateBusApply: UpdateBusApply,

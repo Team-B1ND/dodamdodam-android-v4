@@ -42,20 +42,6 @@
                 app:layout_constraintStart_toEndOf="@id/btn_back" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_regular"
-            tools:text="2022-07-24"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_title"
-            android:textColor="@color/color_black"
-            android:textSize="@dimen/title3" />
-
         <include
             android:id="@+id/progress_circular_info"
             layout="@layout/item_loading_progressbar"
@@ -87,7 +73,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_date"
+                app:layout_constraintTop_toBottomOf="@id/layout_title"
                 android:orientation="vertical"
                 android:id="@+id/recycler_bus"
                 android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"

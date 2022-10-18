@@ -26,7 +26,7 @@ import kr.hs.dgsw.smartschool.domain.usecase.bus.BusUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.bus.DeleteBus
 import kr.hs.dgsw.smartschool.domain.usecase.bus.DeleteBusApply
 import kr.hs.dgsw.smartschool.domain.usecase.bus.GetBusList
-import kr.hs.dgsw.smartschool.domain.usecase.bus.GetMyBus
+import kr.hs.dgsw.smartschool.domain.usecase.bus.GetApplyBus
 import kr.hs.dgsw.smartschool.domain.usecase.bus.GetMyBusByMonth
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusApply
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusInfo
@@ -124,7 +124,7 @@ class UseCaseModule {
     fun provideBusUseCases(repository: BusRepository): BusUseCases =
         BusUseCases(
             getBus = GetBusList(repository),
-            getMyBus = GetMyBus(repository),
+            getMyBus = GetApplyBus(repository),
             getMyBusMonth = GetMyBusByMonth(repository),
             addBus = AddBus(repository),
             addBusApply = AddBusApply(repository),

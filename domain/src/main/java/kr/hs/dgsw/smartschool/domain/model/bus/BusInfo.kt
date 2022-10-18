@@ -6,5 +6,5 @@ data class BusInfo(
     val rideable: String,
     val peopleCount: String,
     val leaveTime: String,
-    val isSelected: Boolean
+    val isSelected: Boolean = false
 )

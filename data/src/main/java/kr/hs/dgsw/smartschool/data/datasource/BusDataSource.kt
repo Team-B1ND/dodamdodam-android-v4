@@ -3,9 +3,7 @@ package kr.hs.dgsw.smartschool.data.datasource
 import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
-import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
-import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.MyBusByMonthRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
@@ -25,7 +23,7 @@ class BusDataSource @Inject constructor(
         return remote.getMyBusList().data
     }
 
-    suspend fun getBusList(): BusData<BusByDate> {
+    suspend fun getBusList(): BusData<Bus> {
         return remote.getBusList().data
     }
 
