@@ -19,40 +19,40 @@ class BusAdapter(val context: Context, val listener: BusApplyCallBack) : BaseLis
             Log.e("background", item.isSelected.toString())
         }
 
-        with(binding.tvBusRidePossible) {
-            background = if (item.rideable == "탑승가능")
+        with(binding) {
+            tvBusRidePossible.background = if (item.rideable == "탑승가능")
                 ContextCompat.getDrawable(context, R.drawable.background_bus_ride_possible)
             else
                 ContextCompat.getDrawable(context, R.drawable.background_bus_ride_impossible)
-        }
 
-        binding.bus = item
+            bus = item
 
-        binding.menu.setOnClickListener(
-            View.OnClickListener {
-                val pm: PopupMenu = PopupMenu(context, binding.menu)
-                pm.inflate(R.menu.bus_item_menu)
+            menu.setOnClickListener(
+                View.OnClickListener {
+                    val pm: PopupMenu = PopupMenu(context, binding.menu)
+                    pm.inflate(R.menu.bus_item_menu)
 
-                pm.setOnMenuItemClickListener(
-                    PopupMenu.OnMenuItemClickListener { data ->
-                        when (data.itemId) {
-                            R.id.apply_bus ->
+                    pm.setOnMenuItemClickListener(
+                        PopupMenu.OnMenuItemClickListener { data ->
+                            when (data.itemId) {
+                                R.id.apply_bus ->
                                 {
                                     listener.applyBus(item.idx)
                                     true
                                 }
-                            R.id.cancel_bus ->
+                                R.id.cancel_bus ->
                                 {
                                     listener.cancelBus(item.idx)
                                     true
                                 }
-                            else -> false
+                                else -> false
+                            }
                         }
-                    }
-                )
-                pm.show()
-            }
-        )
+                    )
+                    pm.show()
+                }
+            )
+        }
     }
 
     interface BusApplyCallBack {

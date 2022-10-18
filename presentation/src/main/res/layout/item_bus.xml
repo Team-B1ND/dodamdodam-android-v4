@@ -21,7 +21,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:id="@+id/background_layout">
 
             <ImageView
                 android:id="@+id/iv_bus"
@@ -145,7 +146,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="@id/layout_bus_info"
                android:padding="5dp"
-                android:paddingEnd="15dp"/>
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
