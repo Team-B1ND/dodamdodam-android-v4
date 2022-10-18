@@ -32,12 +32,12 @@ class TokenDataSource @Inject constructor(
 
     suspend fun deleteToken() = cache.deleteToken()
 
-    suspend fun getMyId(): String = getId(tokenMapper.mapToModel(getToken()))
-
     private suspend fun insertNewToken(token: Token): TokenEntity =
         remote.getNewToken(TokenRequest(token.refreshToken)).data
             .let { newToken -> TokenEntity(newToken, token.refreshToken) }
             .also { cache.insertToken(it) }
+
+    suspend fun getMyId(): String = getId(tokenMapper.mapToModel(getToken()))
 
     private fun getId(token: Token): String {
         return try {
