@@ -20,7 +20,7 @@ interface StudyRoomApi {
         @Body request: StudyRoomRequest
     ): Response<Any>
 
-    @PATCH("study-room")
+    @POST("study-room")
     suspend fun modifyAppliedStudyRoom(
         @Body request: StudyRoomRequest
     ): Response<Any>
