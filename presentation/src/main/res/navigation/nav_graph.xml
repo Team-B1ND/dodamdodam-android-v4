@@ -78,7 +78,7 @@
         android:label="MealFragment" />
     <fragment
         android:id="@+id/busFragment"
-        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.bus.BusFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.bus.main.BusFragment"
         android:label="BusFragment" />
     <fragment
         android:id="@+id/settingFragment"

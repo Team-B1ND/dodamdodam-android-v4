@@ -1,11 +1,11 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.bus
+package kr.hs.dgsw.smartschool.dodamdodam.features.bus.main
 
 import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.BusAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.features.bus.adapter.BusAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentBusBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast

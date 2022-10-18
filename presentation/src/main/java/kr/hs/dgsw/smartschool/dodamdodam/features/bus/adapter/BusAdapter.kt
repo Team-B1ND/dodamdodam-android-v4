@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.adapter
+package kr.hs.dgsw.smartschool.dodamdodam.features.bus.adapter
 
 import android.content.Context
 import android.util.Log
@@ -6,12 +6,12 @@ import android.view.View
 import android.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.BusDiffUtilCallback
+import kr.hs.dgsw.smartschool.dodamdodam.features.bus.adapter.callback.BusDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemBusBinding
 import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
 
-class BusAdapter(val context: Context, val listener: BusAdapter.BusApplyCallBack) : BaseListAdapter<BusInfo, ItemBusBinding>(R.layout.item_bus, BusDiffUtilCallback) {
+class BusAdapter(val context: Context, val listener: BusApplyCallBack) : BaseListAdapter<BusInfo, ItemBusBinding>(R.layout.item_bus, BusDiffUtilCallback) {
 
     override fun action(item: BusInfo, binding: ItemBusBinding) {
         if (item.isSelected) {

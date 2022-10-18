@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.adapter.callback
+package kr.hs.dgsw.smartschool.dodamdodam.features.bus.adapter.callback
 
 import androidx.recyclerview.widget.DiffUtil
 import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo

@@ -1,6 +1,5 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.bus
+package kr.hs.dgsw.smartschool.dodamdodam.features.bus.main
 
-import android.content.Intent
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel

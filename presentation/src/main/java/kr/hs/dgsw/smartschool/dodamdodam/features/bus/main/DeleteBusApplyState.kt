@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.bus
+package kr.hs.dgsw.smartschool.dodamdodam.features.bus.main
 
 data class DeleteBusApplyState(
     val isLoading: Boolean = false,

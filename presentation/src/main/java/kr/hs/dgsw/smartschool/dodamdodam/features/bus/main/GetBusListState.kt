@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.bus
+package kr.hs.dgsw.smartschool.dodamdodam.features.bus.main
 
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 
