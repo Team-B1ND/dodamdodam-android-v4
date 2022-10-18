@@ -10,9 +10,10 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="Theme.AppCompat.StartScreen" parent="Theme.DodamDodam">
+    <style name="Theme.DodamDodam.StartScreen" parent="Theme.DodamDodam">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">

@@ -32,7 +32,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun observerViewModel() {
         installSplashScreen()
-        Log.d("TestTest", "observerViewModel: start")
         viewModel.dataSetUp()
         collectDataSetUpDate()
     }
