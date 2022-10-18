@@ -156,5 +156,6 @@
     <string name="title_point">상벌점 조회</string>
     <string name="text_navigate_sign_up">도담도담 계정이 없어요</string>
     <string name="text_my_lostfound">내 게시물</string>
+    <string name="text_edit_comment">댓글을 수정하시겠습니까?</string>
 
 </resources>
