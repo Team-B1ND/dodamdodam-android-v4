@@ -15,18 +15,18 @@ class BusRepositoryImpl @Inject constructor(
 ) : BusRepository {
 
     override suspend fun getBusList(): List<Bus> {
-        return dataSource.getBusList().busList
+        return dataSource.getBusList()
     }
 
     override suspend fun getMyBus(): List<Bus> {
         Log.e("BusRepository", "getMyBus")
-        return dataSource.getMyBusList().busList
+        return dataSource.getMyBusList()
     }
 
     override suspend fun getMyBusByMonth(
         request: MyBusByMonthRequest
     ): List<Bus> {
-        return dataSource.getMyBusByMonth(request).busList
+        return dataSource.getMyBusByMonth(request)
     }
 
     override suspend fun addBus(

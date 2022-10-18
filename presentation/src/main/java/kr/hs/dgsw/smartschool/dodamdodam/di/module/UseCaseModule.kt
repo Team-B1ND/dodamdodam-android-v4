@@ -124,7 +124,6 @@ class UseCaseModule {
     fun provideBusUseCases(repository: BusRepository): BusUseCases =
         BusUseCases(
             getBus = GetBusList(repository),
-            getMyBus = GetApplyBus(repository),
             getMyBusMonth = GetMyBusByMonth(repository),
             addBus = AddBus(repository),
             addBusApply = AddBusApply(repository),
