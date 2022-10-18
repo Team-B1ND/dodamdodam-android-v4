@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetLostFoundState
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetMyInfoState
+import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
@@ -54,31 +55,46 @@ class LostFoundViewModel @Inject constructor(
             Log.d("LostFoundViewModel", "getLostFoundList()")
             useCases.getLostFound(GetLostFound.Params(page = page, type = if (foundChecked.value!!) "FOUND" else "LOST")).divideResult(
                 isGetLostFoundLoading,
-                { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(list = it ?: emptyList())) } },
-                { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.")) } }
+                { launchLostFound(it!!) },
+                { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.")}
             ).launchIn(viewModelScope)
         }
     }
     fun searchLostFound() {
         useCases.searchLostFound(SearchLostFound.Params(search = searchKeyword.value ?: "")).divideResult(
             isGetLostFoundLoading,
-            { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(list = it ?: emptyList())) } },
-            { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.")) } }
+            { launchLostFound(it!!) },
+            { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.")}
         ).launchIn(viewModelScope)
     }
     private fun myLostFound() {
-        //TODO 내 분실물/습득물 구분 안됨
         useCases.getMyLostFound(Unit).divideResult(
             isGetLostFoundLoading,
-            { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(list = it ?: emptyList())) } },
-            { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(error = "분실 게시물을 불러오는 데에 실패하였습니다.")) } }
+            { launchLostFound(it!!) },
+            { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.")}
         ).launchIn(viewModelScope)
     }
     fun deleteLostFound(idx: Int) {
         useCases.deleteLostFound(DeleteLostFound.Params(idx = idx)).divideResult(
             isGetLostFoundLoading,
             { getLostFoundList(1) },
-            { viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(error = "분실 게시물을 삭제하는 데에 실패하였습니다.")) } }
+            { launchLostFound("분실 게시물을 삭제하는 데에 실패하였습니다.")}
         ).launchIn(viewModelScope)
+    }
+
+    private fun launchLostFound(list : List<LostFound>){
+        val newList : MutableList<LostFound> = null!!
+        list.forEach {
+            if(foundChecked.value!! && it.type == "FOUND") newList.add(it)
+            else if(!foundChecked.value!! && it.type == "LOST") newList.add(it)
+        }
+        viewModelScope.launch {
+            _getLostFoundState.emit(GetLostFoundState(list = newList ?: emptyList()))
+        }
+    }
+    private fun launchLostFound(error : String){
+        viewModelScope.launch {
+            _getLostFoundState.emit(GetLostFoundState(error = error))
+        }
     }
 }

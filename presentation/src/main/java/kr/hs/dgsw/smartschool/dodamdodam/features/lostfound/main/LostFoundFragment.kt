@@ -29,24 +29,26 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         lostFoundAdapter = LostFoundAdapter(requireContext(), this)
         mBinding.rvLostAndFound.adapter = lostFoundAdapter
 
-        mBinding.btnBack.setOnClickListener {
-            this.findNavController().popBackStack()
-        }
-        mBinding.fbAddLostAndFound.setOnClickListener {
-            this.findNavController().navigate(R.id.action_lostFoundFragment_to_lostFoundWriteFragment)
-        }
-        mBinding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.getLostFoundList(1)
-            mBinding.swipeRefreshLayout.isRefreshing = false
-        }
-        mBinding.btnSearch.setOnClickListener {
-            viewModel.searchLostFound()
-        }
-        mBinding.tbMine.setOnClickListener {
-            viewModel.getLostFoundList(1)
-        }
-        mBinding.tbLostAndFound.setOnClickListener {
-            viewModel.getLostFoundList(1)
+        with(mBinding){
+            btnBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            fbAddLostAndFound.setOnClickListener {
+                findNavController().navigate(R.id.action_lostFoundFragment_to_lostFoundWriteFragment)
+            }
+            swipeRefreshLayout.setOnRefreshListener {
+                viewModel.getLostFoundList(1)
+                mBinding.swipeRefreshLayout.isRefreshing = false
+            }
+            btnSearch.setOnClickListener {
+                viewModel.searchLostFound()
+            }
+            tbMine.setOnClickListener {
+                viewModel.getLostFoundList(1)
+            }
+            tbLostAndFound.setOnClickListener {
+                viewModel.getLostFoundList(1)
+            }
         }
         with(viewModel) {
             mineChecked.observe(
