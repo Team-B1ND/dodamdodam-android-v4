@@ -33,7 +33,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
             btnBack.setOnClickListener {
                 findNavController().popBackStack()
             }
-            fbAddLostAndFound.setOnClickListener {
+            fbAddLostfound.setOnClickListener {
                 findNavController().navigate(R.id.action_lostFoundFragment_to_lostFoundWriteFragment)
             }
             swipeRefreshLayout.setOnRefreshListener {

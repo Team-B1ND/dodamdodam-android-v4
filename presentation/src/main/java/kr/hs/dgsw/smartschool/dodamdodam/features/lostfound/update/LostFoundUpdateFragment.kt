@@ -36,7 +36,7 @@ class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, Los
         }
         mBinding.btnImageDelete.setOnClickListener {
         }
-        mBinding.fbAddLostAndFound.setOnClickListener {
+        mBinding.fbAddLostfound.setOnClickListener {
             viewModel.modifyLostFound(args.id)
             findNavController().popBackStack()
         }
