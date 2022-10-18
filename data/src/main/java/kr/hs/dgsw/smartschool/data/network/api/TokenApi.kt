@@ -8,6 +8,6 @@ import retrofit2.http.POST
 interface TokenApi {
     @POST("token")
     suspend fun getNewToken(
-        @Body tokenRequest: TokenRequest
+        @Body token: String
     ): Response<String>
 }

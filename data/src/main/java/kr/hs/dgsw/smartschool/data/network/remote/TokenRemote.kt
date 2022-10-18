@@ -9,6 +9,6 @@ class TokenRemote : RetrofitRemote<TokenApi>() {
     override val api: TokenApi
         get() = createApi(TokenApi::class.java)
 
-    suspend fun getNewToken(tokenRequest: TokenRequest): Response<String> =
-        api.getNewToken(tokenRequest)
+    suspend fun getNewToken(token: String): Response<String> =
+        api.getNewToken(token)
 }
