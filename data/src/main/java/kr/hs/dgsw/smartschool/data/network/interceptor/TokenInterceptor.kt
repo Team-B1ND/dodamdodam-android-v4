@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.data.network.interceptor
 
+import android.util.Log
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
 import kr.hs.dgsw.smartschool.data.datasource.AccountDataSource
@@ -26,6 +27,7 @@ class TokenInterceptor @Inject constructor(
     private val TOKEN_HEADER = "Authorization"
 
     private lateinit var token: Token
+    private lateinit var response: Response
 
     override fun intercept(chain: Interceptor.Chain): Response {
         // 로컬 디비에서 토큰 가져와 저장.
@@ -38,28 +40,21 @@ class TokenInterceptor @Inject constructor(
             else chain.request()
 
         // request 전송
-        val response = chain.proceed(request)
+        response = chain.proceed(request)
 
-        if (response.code == 200) {
-            // 성공할 경우 response 반환
-            return response
-        } else if (response.code == TOKEN_ERROR) {
+        if (response.code == TOKEN_ERROR) {
             // 토큰 에러 발생 시
-
-            lateinit var r: Response
-
             try {
-                r = makeTokenRefreshCall(request, chain)
+                makeTokenRefreshCall(request, chain)
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
-            return r
         }
-
         return response
     }
 
-    private fun makeTokenRefreshCall(request: Request, chain: Interceptor.Chain): Response {
+    private fun makeTokenRefreshCall(request: Request, chain: Interceptor.Chain) {
+        Log.d("TokenTest", "makeTokenRefreshCall")
         try {
             // Refresh Token으로 새로운 AccessToken 적립
             fetchToken()
@@ -68,20 +63,19 @@ class TokenInterceptor @Inject constructor(
             getTokenToLogin()
         }
 
+        response.close()
         // request에 토큰을 붙여서 새로운 request 생성 -> 진행
         val newRequest = request.newBuilder().header(TOKEN_HEADER, "Bearer ${token.token}").build()
-        val anotherResponse = chain.proceed(newRequest)
+        response = chain.proceed(newRequest)
 
-        return if (anotherResponse.code == TOKEN_ERROR) {
+        if (response.code == TOKEN_ERROR) {
             // 만약 토큰 오류 발생 시 로그인
-            lateinit var r: Response
             try {
-                r = login(request, chain)
+                response = login(request, chain)
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
-            r
-        } else anotherResponse
+        }
     }
 
     private fun login(request: Request, chain: Interceptor.Chain): Response {

@@ -6,7 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface TokenApi {
-    @POST("token")
+    @POST("token/refresh")
     suspend fun getNewToken(
         @Body token: String
     ): Response<String>
