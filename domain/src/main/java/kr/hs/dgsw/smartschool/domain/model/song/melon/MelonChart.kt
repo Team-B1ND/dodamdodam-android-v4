@@ -6,5 +6,5 @@ data class MelonChart(
     val thumbnail: String,
     val rank: String
 ) {
-    val showingRank = rank + "위"
+    val showingRank = "#" + rank + "위"
 }

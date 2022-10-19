@@ -10,7 +10,7 @@ class ItMapUserAdapter(val action: (link: String) -> Unit) : BaseListAdapter<ItM
 
     override fun action(item: ItMapUser, binding: ItemItmapUserBinding) {
         binding.user = item
-        binding.tvLink.setOnClickListener {
+        binding.tvGitLink.setOnClickListener {
             action.invoke("https://github.com/${item.githubId}")
         }
     }

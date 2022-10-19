@@ -12,7 +12,7 @@ object Constants {
     const val mode = "TEST"
     const val DEFAULT_HOST = "http://dodam.b1nd.com:80/api/v2/"
     const val SOCKET_HOST = "http://dodam.b1nd.com/"
-    //const val TEST_HOST = "http://10.80.162.253:8080/"
+    //const val TEST_HOST = "http://10.80.161.168:8080/"
     const val TEST_HOST = "http://v6.dodam.b1nd.com/api/"
     const val AUTH_HOST = "http://auth.dodam.b1nd.com/"
     const val AUTH_TEST_HOST = "http://10.80.162.15:8080/"
