@@ -29,6 +29,8 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         lostFoundAdapter = LostFoundAdapter(requireContext(), this)
         mBinding.rvLostAndFound.adapter = lostFoundAdapter
 
+
+
         with(mBinding){
             btnBack.setOnClickListener {
                 findNavController().popBackStack()
@@ -46,6 +48,13 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
             tbMine.setOnClickListener {
                 viewModel.getLostFoundList(1)
             }
+
+            if(viewModel.mineChecked.value!!) tbMine.setTextColor(R.color.color_selected)
+            else tbMine.setTextColor(R.color.black)
+
+            if(viewModel.foundChecked.value!!) tbLostAndFound.setTextColor(R.color.color_selected)
+            else tbLostAndFound.setTextColor(R.color.black)
+
             tbLostAndFound.setOnClickListener {
                 viewModel.getLostFoundList(1)
             }

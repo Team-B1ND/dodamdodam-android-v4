@@ -59,6 +59,7 @@
                         android:textColor="@color/color_black"
                         android:textSize="@dimen/title4"
                         tools:text="게시물 제목"
+                        android:text="@{lostInfo.title}"
                         android:layout_gravity="top"/>
                     <TextView
                         android:id="@+id/tv_name"
@@ -69,7 +70,8 @@
                         android:fontFamily="@font/noto_regular"
                         android:includeFontPadding="false"
                         android:textColor="@color/color_black"
-                        tools:text="김도현" />
+                        tools:text="김도현"
+                        android:text="@{lostInfo.name}"/>
 
                     <TextView
                         android:id="@+id/tv_upload_time"
@@ -79,7 +81,8 @@
                         android:includeFontPadding="false"
                         android:textColor="@color/gray500"
                         android:textSize="@dimen/title6"
-                        tools:text="2021-08-12 17:30" />
+                        tools:text="2021-08-12 17:30"
+                        android:text="@{lostInfo.uploadTime}"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -103,6 +106,7 @@
                 android:includeFontPadding="false"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title6"
+                android:text="@{lostInfo.content}"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +116,6 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/color_background"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
@@ -127,6 +130,7 @@
                     app:layout_constraintEnd_toStartOf="@id/tv_place"
                     app:layout_constraintHorizontal_chainStyle="packed"
                     app:tint="@color/main"
+                    android:background="@color/white"
                     tools:ignore="ContentDescription" />
                 <TextView
                     android:id="@+id/tv_place"
@@ -139,6 +143,7 @@
                     android:textColor="@color/gray700"
                     android:layout_margin="3dp"
                     android:textSize="@dimen/title6"
+                    android:text="@{lostInfo.place}"
                     app:layout_constraintBottom_toBottomOf="@id/iv_location"
                     app:layout_constraintStart_toEndOf="@id/iv_location"
                     app:layout_constraintTop_toTopOf="@+id/iv_location"

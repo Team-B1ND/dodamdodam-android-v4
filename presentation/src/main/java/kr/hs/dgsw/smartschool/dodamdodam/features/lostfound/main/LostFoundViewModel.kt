@@ -83,15 +83,16 @@ class LostFoundViewModel @Inject constructor(
     }
 
     private fun launchLostFound(list : List<LostFound>){
-        val newList : MutableList<LostFound> = null!!
+        var newList = mutableListOf<LostFound>()
         list.forEach {
-            if(foundChecked.value!! && it.type == "FOUND") newList.add(it)
+            if(foundChecked.value!! && it.type == "FOUND")  newList.add(it)
             else if(!foundChecked.value!! && it.type == "LOST") newList.add(it)
         }
         viewModelScope.launch {
             _getLostFoundState.emit(GetLostFoundState(list = newList ?: emptyList()))
         }
     }
+
     private fun launchLostFound(error : String){
         viewModelScope.launch {
             _getLostFoundState.emit(GetLostFoundState(error = error))
