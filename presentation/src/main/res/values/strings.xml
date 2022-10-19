@@ -157,5 +157,6 @@
     <string name="text_navigate_sign_up">도담도담 계정이 없어요</string>
     <string name="text_my_lostfound">내 게시물</string>
     <string name="text_edit_comment">댓글을 수정하시겠습니까?</string>
+    <string name="delete">삭제</string>
 
 </resources>

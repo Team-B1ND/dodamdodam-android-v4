@@ -46,15 +46,9 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
             btnSearch.setOnClickListener {
                 viewModel.searchLostFound()
             }
-            tbMine.setOnClickListener {
-                viewModel.getLostFoundList(1)
-            }
-            tbLostAndFound.setOnClickListener {
-                viewModel.getLostFoundList(1)
-            }
         }
         with(viewModel) {
-            mineChecked.observe(
+            foundChecked.observe(
                 viewLifecycleOwner,
                 Observer<Boolean> {
                     Log.e("LostFoundFragment", it.toString())

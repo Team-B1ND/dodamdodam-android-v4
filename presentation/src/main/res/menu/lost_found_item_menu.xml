@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/modify"
-        android:title="@string/apply"
+        android:title="@string/modify"
         app:showAsAction="collapseActionView"/>
     <item
-        android:title="@string/cancel"
+        android:title="@string/delete"
         android:id="@+id/delete"
         />
 </menu>
