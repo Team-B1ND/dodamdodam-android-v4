@@ -36,7 +36,7 @@ class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, Los
         }
         mBinding.btnImageDelete.setOnClickListener {
         }
-        mBinding.fbAddLostfound.setOnClickListener {
+        mBinding.btnAdd.setOnClickListener {
             viewModel.modifyLostFound(args.id)
             findNavController().popBackStack()
         }
@@ -61,14 +61,14 @@ class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, Los
     private fun setImage(url: String?, uri: Uri?) {
         Glide.with(mBinding.root)
             .load(url ?: uri)
-            .error(R.drawable.default_user)
+            .error(R.drawable.default_img)
             .centerCrop()
             .into(mBinding.ivLostFound)
     }
     private fun setImage(url: String?) {
         Glide.with(mBinding.root)
             .load(url)
-            .error(R.drawable.default_user)
+            .error(R.drawable.default_img)
             .centerCrop()
             .into(mBinding.ivLostFound)
     }

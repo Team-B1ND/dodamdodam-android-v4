@@ -42,6 +42,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                 viewModel.getLostFoundList(1)
                 mBinding.swipeRefreshLayout.isRefreshing = false
             }
+            //TODO checkBox 체크
             btnSearch.setOnClickListener {
                 viewModel.searchLostFound()
             }

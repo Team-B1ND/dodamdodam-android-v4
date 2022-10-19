@@ -29,7 +29,7 @@ class LostFoundWriteFragment : BaseFragment<FragmentLostFoundWriteBinding, LostF
         }
         mBinding.btnImageDelete.setOnClickListener {
         }
-        mBinding.fbAddLostfound.setOnClickListener {
+        mBinding.btnAdd.setOnClickListener {
             Log.d("LostFoundWriteFragment", "addLostFound()")
             viewModel.addLostFound()
             this.findNavController().popBackStack()

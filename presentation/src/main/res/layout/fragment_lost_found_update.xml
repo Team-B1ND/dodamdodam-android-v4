@@ -75,7 +75,7 @@
                 <Button
                     android:id="@+id/btn_image_add"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="115dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_btn_add"
                     android:drawableTint="@color/main"
@@ -91,7 +91,7 @@
                 <Button
                     android:id="@+id/btn_image_delete"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="115dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:drawableLeft="@drawable/ic_btn_delete"
@@ -217,20 +217,18 @@
                         android:textSize="@dimen/title4" />
 
                 </androidx.cardview.widget.CardView>
+                <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
+                    android:id="@+id/btn_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="@dimen/default_margin"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/text_ok"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_content" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fb_add_lostfound"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:backgroundTint="@color/main"
-            android:src="@drawable/ic_btn_add"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/white"
-            tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

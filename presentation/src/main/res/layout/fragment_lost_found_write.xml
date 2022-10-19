@@ -21,7 +21,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/white">
 
             <include
                 android:id="@+id/btn_back"
@@ -135,7 +136,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:buttonTint="@color/main"
-                                android:checked="true"
+                                android:checked="@={vm.isLost}"
                                 android:textColor="@color/color_black"
                                 android:fontFamily="@font/noto_regular"
                                 android:includeFontPadding="false"
@@ -146,6 +147,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
+                                android:checked="@={vm.isFound}"
                                 android:textColor="@color/color_black"
                                 android:buttonTint="@color/main"
                                 android:fontFamily="@font/noto_regular"
@@ -161,6 +163,7 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:hint="@string/text_title"
+                            android:text="@={vm.title}"
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
                             android:importantForAutofill="no"
@@ -177,6 +180,7 @@
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
                             android:hint="@string/text_location"
+                            android:text="@={vm.place}"
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
                             android:importantForAutofill="no"
@@ -195,7 +199,7 @@
                     android:layout_margin="20dp"
                     app:cardCornerRadius="@dimen/card_corner"
                     app:cardElevation="@dimen/card_elevation"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/btn_add"
                     app:layout_constraintTop_toBottomOf="@id/card_main_content">
 
                     <EditText
@@ -206,6 +210,7 @@
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="top"
                         android:hint="@string/text_content"
+                        android:text="@={vm.content}"
                         android:fontFamily="@font/noto_regular"
                         android:includeFontPadding="false"
                         android:importantForAutofill="no"
@@ -213,20 +218,18 @@
                         android:textSize="@dimen/title4" />
 
                 </androidx.cardview.widget.CardView>
+                <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
+                    android:id="@+id/btn_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="@dimen/default_margin"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/text_ok"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_content" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            android:backgroundTint="@color/main"
-            android:src="@drawable/ic_btn_add"
-            android:id="@+id/fb_add_lostfound"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/white"
-            tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

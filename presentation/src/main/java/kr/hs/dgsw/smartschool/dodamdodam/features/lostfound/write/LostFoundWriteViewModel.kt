@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.write
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +18,7 @@ class LostFoundWriteViewModel @Inject constructor(
     private val imageUseCase: UploadImgUseCase
 ) : BaseViewModel() {
     val isLost = MutableLiveData<Boolean>(true)
-    val isFound = MutableLiveData<Boolean>()
+    val isFound = MutableLiveData<Boolean>(false)
     val title = MutableLiveData<String>()
     val place = MutableLiveData<String>()
     val content = MutableLiveData<String>()
@@ -44,15 +45,15 @@ class LostFoundWriteViewModel @Inject constructor(
         useCases.addLostFound(
             LostFoundDataRequest(
                 content = content.value ?: "",
-                picture = file!!.path ?: File("res/drawable/default_img.png").path,
-                place = place.value ?: "",
+                picture = url ?: "",
+                place = place.value ?: "위치 정보 없음",
                 title = title.value ?: "",
                 type = if (isLost.value == true) "LOST" else "FOUND",
                 lostFoundId = null
             )
         ).divideResult(
             isModifyLostFoundLoading,
-            { viewEvent(EVENT_SUCCESS) },
+            { viewEvent(EVENT_SUCCESS)},
             { viewEvent(EVENT_ERROR) }
         ).launchIn(viewModelScope)
     }
