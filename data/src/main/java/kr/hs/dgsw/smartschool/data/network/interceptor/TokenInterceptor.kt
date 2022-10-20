@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.data.network.interceptor
 
-import android.util.Log
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
@@ -37,6 +36,7 @@ class TokenInterceptor @Inject constructor(
         response = chain.proceedWithToken(chain.request())
 
         if (response.code == TOKEN_ERROR) {
+            response.close()
             chain.makeTokenRefreshCall()
         }
 
@@ -51,12 +51,12 @@ class TokenInterceptor @Inject constructor(
             // 어떤 이유로 오류 발생 시
             getTokenToLogin()
         }
-        response.close()
         response = this.proceedWithToken(this.request())
 
         if (response.code == TOKEN_ERROR) {
             // 만약 토큰 오류 발생 시 로그인
             try {
+                response.close()
                 response = login()
             } catch (e: JSONException) {
                 e.printStackTrace()
@@ -69,7 +69,6 @@ class TokenInterceptor @Inject constructor(
         getTokenToLogin()
 
         // request에 토큰을 붙여서 새로운 request 생성 -> 진행
-        response.close()
         response = this.proceedWithToken(this.request())
 
         if (response.code == TOKEN_ERROR) {
