@@ -4,7 +4,9 @@ import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.BusApi
 import kr.hs.dgsw.smartschool.data.network.response.Response
+import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
+import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.MyBusByMonthRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
@@ -14,16 +16,16 @@ class BusRemote @Inject constructor(
     override val api: BusApi
 ) : BaseRemote<BusApi>() {
 
-    suspend fun getBusList(): Response<List<Bus>> = api.getBusList()
+    suspend fun getBusList(): Response<BusData<BusByDate>> = api.getBusList()
 
-    suspend fun getMyBusList(): Response<List<Bus>> {
+    suspend fun getMyBusList(): Response<BusData<Bus>> {
         Log.e("getMyBus", "실행")
         return api.getMyBus()
     }
 
     suspend fun getMyBusByMonth(
         request: MyBusByMonthRequest
-    ): Response<List<Bus>> = api.getMyBusByMonth(
+    ): Response<BusData<Bus>> = api.getMyBusByMonth(
         request.month,
         request.year
     )

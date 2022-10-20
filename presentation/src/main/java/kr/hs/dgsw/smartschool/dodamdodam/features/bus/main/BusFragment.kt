@@ -46,11 +46,20 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
         }
     }
 
-    private fun setBusInfo(busList: List<Bus>): List<BusInfo> {
+    private fun setBusInfo(busList: List<BusByDate>): List<BusInfo> {
         val list: MutableList<BusInfo> = mutableListOf()
+        // val today = LocalDate.now()
+        val today = LocalDate.of(2022, 9, 2)
+        val todayBus = busList.find {
+            val busDateString = it.date.split("-")
+            val busDate = LocalDate.of(busDateString[0].toInt(), busDateString[1].toInt(), busDateString[2].toInt())
+            today.isAfter(busDate.minusDays(6)) && today.isBefore(busDate.plusDays(1))
+        } ?: return emptyList()
+        mBinding.tvDate.text = todayBus.date
+
         var rideAble = ""
         var isSelected: Boolean
-        busList.forEach {
+        todayBus.busList.forEach {
             if (it.peopleCount < (it.peopleLimit)) {
                 rideAble = "탑승가능"
             } else if (it.peopleCount >= it.peopleLimit) {

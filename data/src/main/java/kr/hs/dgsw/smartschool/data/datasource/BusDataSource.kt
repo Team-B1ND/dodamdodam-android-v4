@@ -4,6 +4,7 @@ import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
+import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.MyBusByMonthRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
@@ -16,15 +17,15 @@ class BusDataSource @Inject constructor(
 
     suspend fun getMyBusByMonth(
         request: MyBusByMonthRequest
-    ): List<Bus> = remote.getMyBusByMonth(request).data
+    ): List<Bus> = remote.getMyBusByMonth(request).data.busList
 
     suspend fun getMyBusList(): List<Bus> {
         Log.e("BusDataSource", "getMyBus")
-        return remote.getMyBusList().data
+        return remote.getMyBusList().data.busList
     }
 
-    suspend fun getBusList(): List<Bus> {
-        return remote.getBusList().data
+    suspend fun getBusList(): List<BusByDate> {
+        return remote.getBusList().data.busList
     }
 
     suspend fun updateBus(

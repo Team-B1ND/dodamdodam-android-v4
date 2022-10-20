@@ -14,7 +14,7 @@ class BusRepositoryImpl @Inject constructor(
     val dataSource: BusDataSource
 ) : BusRepository {
 
-    override suspend fun getBusList(): List<Bus> {
+    override suspend fun getBusList(): List<BusByDate> {
         return dataSource.getBusList()
     }
 

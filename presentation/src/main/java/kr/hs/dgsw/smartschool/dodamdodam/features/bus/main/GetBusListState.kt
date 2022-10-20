@@ -6,7 +6,7 @@ import kr.hs.dgsw.smartschool.domain.util.Resource
 
 data class GetBusListState(
     val isLoading: Boolean = false,
-    val busList: List<Bus> = emptyList(),
-    val success: String = "",
+    val busList: List<BusByDate> = emptyList(),
+    val  success : String  = "",
     val error: String = ""
 )
