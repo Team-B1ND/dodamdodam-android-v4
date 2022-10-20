@@ -3,6 +3,7 @@ package kr.hs.dgsw.smartschool.data.network.interceptor
 import android.util.Log
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.sync.Mutex
 import kr.hs.dgsw.smartschool.data.datasource.AccountDataSource
 import kr.hs.dgsw.smartschool.data.exception.TokenException
 import kr.hs.dgsw.smartschool.data.util.AppDispatchers
@@ -23,6 +24,8 @@ class TokenInterceptor @Inject constructor(
     private val accountDataSource: AccountDataSource,
     private val appDispatcher: AppDispatchers
 ) : Interceptor {
+    private val mutex = Mutex()
+
     private val TOKEN_ERROR = 401
     private val TOKEN_HEADER = "Authorization"
 
@@ -30,31 +33,17 @@ class TokenInterceptor @Inject constructor(
     private lateinit var response: Response
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        // 로컬 디비에서 토큰 가져와 저장.
         setToken()
-
-        // 리퀘스트 생성 - 해터에 토큰 저장
-        val request =
-            if (::token.isInitialized) chain.request().newBuilder()
-                .header("Authorization", "Bearer ${token.token}").build()
-            else chain.request()
-
-        // request 전송
-        response = chain.proceed(request)
+        response = chain.proceedWithToken(chain.request())
 
         if (response.code == TOKEN_ERROR) {
-            // 토큰 에러 발생 시
-            try {
-                makeTokenRefreshCall(request, chain)
-            } catch (e: JSONException) {
-                e.printStackTrace()
-            }
+            chain.makeTokenRefreshCall()
         }
+
         return response
     }
 
-    private fun makeTokenRefreshCall(request: Request, chain: Interceptor.Chain) {
-        Log.d("TokenTest", "makeTokenRefreshCall")
+    private fun Interceptor.Chain.makeTokenRefreshCall() {
         try {
             // Refresh Token으로 새로운 AccessToken 적립
             fetchToken()
@@ -62,33 +51,30 @@ class TokenInterceptor @Inject constructor(
             // 어떤 이유로 오류 발생 시
             getTokenToLogin()
         }
-
         response.close()
-        // request에 토큰을 붙여서 새로운 request 생성 -> 진행
-        val newRequest = request.newBuilder().header(TOKEN_HEADER, "Bearer ${token.token}").build()
-        response = chain.proceed(newRequest)
+        response = this.proceedWithToken(this.request())
 
         if (response.code == TOKEN_ERROR) {
             // 만약 토큰 오류 발생 시 로그인
             try {
-                response = login(request, chain)
+                response = login()
             } catch (e: JSONException) {
                 e.printStackTrace()
             }
         }
     }
 
-    private fun login(request: Request, chain: Interceptor.Chain): Response {
+    private fun Interceptor.Chain.login(): Response {
         // 로그인으로 토큰 교체
         getTokenToLogin()
 
         // request에 토큰을 붙여서 새로운 request 생성 -> 진행
-        val newRequest = request.newBuilder().header(TOKEN_HEADER, "Bearer ${token.token}").build()
-        val another = chain.proceed(newRequest)
+        response.close()
+        response = this.proceedWithToken(this.request())
 
-        if (another.code == TOKEN_ERROR) {
+        if (response.code == TOKEN_ERROR) {
             throw TokenException("세션이 만료되었습니다.")
-        } else return another
+        } else return response
     }
 
     private fun setToken() = runBlocking(appDispatcher.io) {
@@ -115,4 +101,13 @@ class TokenInterceptor @Inject constructor(
             }
         }
     }
+
+
+    // ---------------------------------------------------------------------------------
+    private fun Interceptor.Chain.proceedWithToken(req: Request): Response =
+        req.newBuilder()
+            .addHeader(TOKEN_HEADER, "Bearer ${token.token}")
+            .build()
+            .let(::proceed)
+
 }
