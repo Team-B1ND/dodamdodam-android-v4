@@ -72,7 +72,6 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
                 )
             )
         }
-        Log.e("LostFoundFragment", list.toString())
         return list
     }
 

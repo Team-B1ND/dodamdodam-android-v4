@@ -39,16 +39,20 @@ class BusViewModel @Inject constructor(
             0 -> {
                 busUseCases.addBusApply(idx).divideResult(
                     isGetBusLoading,
-                    { viewModelScope.launch { _getBusListState.emit(GetBusListState(success = it ?: ""))
-                    busId = idx} },
+                    {
+                        busId = idx
+                        getBusList()
+                    },
                     { viewModelScope.launch { _getBusListState.emit(GetBusListState(error = it ?: "버스를 받아오지 못하였습니다.")) } }
                 ).launchIn(viewModelScope)
             }
             else -> {
                 busUseCases.updateBusApply(idx).divideResult(
                     isGetBusLoading,
-                    { viewModelScope.launch { _getBusListState.emit(GetBusListState(success = it ?: ""))
-                    busId = idx} },
+                    {
+                        busId = idx
+                        getBusList()
+                    },
                     { viewModelScope.launch { _getBusListState.emit(GetBusListState(error = it ?: "버스를 받아오지 못하였습니다.")) } }
                 ).launchIn(viewModelScope)
             }
@@ -57,8 +61,8 @@ class BusViewModel @Inject constructor(
     fun cancelBus(idx: Int) {
         busUseCases.deleteBusApply(idx).divideResult(
             isGetBusLoading,
-            { viewModelScope.launch { _getBusListState.emit(GetBusListState(success = it ?: "")) }
-            if(busId == idx) busId = 0},
+            { getBusList()
+                busId = 0},
             { viewModelScope.launch { _getBusListState.emit(GetBusListState(error = it ?: "버스를 받아오지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
