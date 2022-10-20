@@ -16,16 +16,16 @@ import retrofit2.http.Query
 
 interface BusApi {
     @GET("bus")
-    suspend fun getBusList(): Response<BusData<BusByDate>>
+    suspend fun getBusList(): Response<BusByDate>
 
     @GET("bus/apply")
-    suspend fun getMyBus(): Response<BusData<Bus>>
+    suspend fun getMyBus(): Response<List<Bus>>
 
     @GET("bus/apply/month")
     suspend fun getMyBusByMonth(
         @Body month: Int,
         @Body year: Int
-    ): Response<BusData<Bus>>
+    ): Response<List<Bus>>
 
     @POST("bus")
     suspend fun addBus(

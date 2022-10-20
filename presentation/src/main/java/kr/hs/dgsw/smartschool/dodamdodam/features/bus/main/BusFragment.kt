@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.bus.main
 
-import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -18,20 +17,23 @@ import java.time.LocalDate
 @AndroidEntryPoint
 class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter.BusApplyCallBack {
     override val viewModel: BusViewModel by viewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private lateinit var busAdapter : BusAdapter
+    override fun onStart() {
+        super.onStart()
         viewModel.getBusList()
+        busAdapter = BusAdapter(requireContext(), this)
+        mBinding.recyclerBus.adapter = busAdapter
     }
     override fun observerViewModel() {
         mBinding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
-
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getBusListState.collect { state ->
-                    if (state.busList.isNotEmpty()) {
-                        val busList = setBusInfo(state.busList)
+                    Log.e("LostFoundFragment", "state")
+                    if (state.bus!!.busList.isNotEmpty()) {
+                        val busList = setBusInfo(state.bus)
                         if (busList.isNotEmpty()) {
                             hasBus.value = true
                         }
@@ -46,20 +48,13 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
         }
     }
 
-    private fun setBusInfo(busList: List<BusByDate>): List<BusInfo> {
+    private fun setBusInfo(bus: BusByDate): List<BusInfo> {
         val list: MutableList<BusInfo> = mutableListOf()
-        // val today = LocalDate.now()
-        val today = LocalDate.of(2022, 9, 2)
-        val todayBus = busList.find {
-            val busDateString = it.date.split("-")
-            val busDate = LocalDate.of(busDateString[0].toInt(), busDateString[1].toInt(), busDateString[2].toInt())
-            today.isAfter(busDate.minusDays(6)) && today.isBefore(busDate.plusDays(1))
-        } ?: return emptyList()
-        mBinding.tvDate.text = todayBus.date
+        mBinding.tvDate.text = bus.date
 
         var rideAble = ""
         var isSelected: Boolean
-        todayBus.busList.forEach {
+        bus.busList.forEach {
             if (it.peopleCount < (it.peopleLimit)) {
                 rideAble = "탑승가능"
             } else if (it.peopleCount >= it.peopleLimit) {
@@ -77,12 +72,11 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
                 )
             )
         }
+        Log.e("LostFoundFragment", list.toString())
         return list
     }
 
     private fun setBusRecyclerView(list: List<BusInfo>) {
-        val busAdapter = BusAdapter(requireContext(), this)
-        mBinding.recyclerBus.adapter = busAdapter
         busAdapter.submitList(list)
     }
 

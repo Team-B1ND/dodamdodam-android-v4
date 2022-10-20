@@ -4,13 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.usecase.bus.BusUseCases
 import javax.inject.Inject
 
@@ -33,7 +30,7 @@ class BusViewModel @Inject constructor(
     fun getBusList() {
         busUseCases.getBus(Unit).divideResult(
             isGetBusLoading,
-            { viewModelScope.launch { _getBusListState.emit(GetBusListState(busList = it ?: emptyList(), success = "버스를 성공적으로 불러왔습니다.")) } },
+            { viewModelScope.launch { _getBusListState.emit(GetBusListState(bus = it, success = "버스를 성공적으로 불러왔습니다.")) } },
             { viewModelScope.launch { _getBusListState.emit(GetBusListState(error = it ?: "버스를 받아오지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
