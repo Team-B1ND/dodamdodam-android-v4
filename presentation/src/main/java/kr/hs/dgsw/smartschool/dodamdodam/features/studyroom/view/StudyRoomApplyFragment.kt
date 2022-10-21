@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.studyroom
+package kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.view
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -8,6 +8,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.PlaceAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentStudyRoomApplyBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.viewmodel.StudyRoomApplyViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortSnack
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom

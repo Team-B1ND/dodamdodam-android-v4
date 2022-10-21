@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.dodamdodam.features.studyroom
+package kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

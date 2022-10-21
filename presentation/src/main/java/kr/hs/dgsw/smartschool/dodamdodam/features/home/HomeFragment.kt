@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.StudyRoomCheckAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.adapter.StudyRoomCheckAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentHomeBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.home.adapter.MealHomeAdapter

@@ -1,7 +1,7 @@
-package kr.hs.dgsw.smartschool.dodamdodam.adapter
+package kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.adapter
 
 import kr.hs.dgsw.smartschool.dodamdodam.R
-import kr.hs.dgsw.smartschool.dodamdodam.adapter.callback.StudyRoomDiffUtilCallback
+import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.adapter.callback.StudyRoomDiffUtilCallback
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ItemStudyRoomCheckBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
@@ -17,7 +17,7 @@ class StudyRoomCheckAdapter(val onClickStudyRoomCard: (Int) -> Unit) : BaseListA
         val start = item.timeTable?.startTime?.dropLast(3)
         val currentTime = Date().timeFormat()
 
-        binding.tvLocation.text = item.place?.name ?: if (start!! >= currentTime) "미신청" else "시간대가 지났습니다"
+        binding.tvLocation.text = item.place?.name ?: if (start!! >= currentTime) "미신청" else "만료"
         binding.tvTime.text = "${item.timeTable?.startTime} ~ ${item.timeTable?.endTime}"
 
         binding.tvTimeTable.text = item.timeTable!!.name
