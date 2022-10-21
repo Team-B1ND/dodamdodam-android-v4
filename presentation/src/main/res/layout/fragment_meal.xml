@@ -209,7 +209,21 @@
                     app:layout_constraintBottom_toBottomOf="@id/running_lizard"
                     app:layout_constraintStart_toEndOf="@id/running_lizard"
                     app:layout_constraintTop_toBottomOf="@id/tv_desc"
-                    tools:text="763 Kcal" />
+                    tools:text="763" />
+
+                <TextView
+                    android:id="@+id/tv_calorie_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/title2"
+                    android:layout_marginStart="5dp"
+                    android:visibility="gone"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tv_calorie"
+                    app:layout_constraintStart_toEndOf="@id/tv_calorie"
+                    android:text="@string/text_calorie_unit" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
