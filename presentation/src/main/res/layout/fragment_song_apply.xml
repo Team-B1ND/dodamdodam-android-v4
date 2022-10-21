@@ -84,6 +84,7 @@
                     android:textSize="@dimen/title5" />
 
                 <EditText
+                    android:id="@+id/et_link"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="@dimen/default_margin"
@@ -124,6 +125,7 @@
                     android:textSize="@dimen/title5" />
 
                 <EditText
+                    android:id="@+id/et_title"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/noto_regular"
@@ -138,7 +140,7 @@
                     android:text="@={vm.searchSongTitle}"
                     android:textColor="@color/color_black"
                     android:textSize="15sp" />
-                
+
                 <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
                     android:layout_width="match_parent"
                     android:layout_height="50dp"

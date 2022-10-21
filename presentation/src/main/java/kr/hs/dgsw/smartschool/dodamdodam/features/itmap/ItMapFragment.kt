@@ -101,7 +101,6 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
                 navigateToDetail(it.tag as Int)
                 true
             }
-
         }
     }
 
@@ -137,14 +136,6 @@ class ItMapFragment : BaseFragment<FragmentItmapBinding, ItMapViewModel>(), OnMa
             }
         })
     }
-
-/*    private fun addressToGps(address: String): LatLng {
-        Geocoder(requireContext()).getFromLocationName(address, 1).let {
-            if (it.isEmpty())
-                throw Exception("NoAddress")
-            return LatLng(it[0].latitude, it[0].longitude)
-        }
-    }*/
 
     // 아래 수명주기 연결
     override fun onStart() {

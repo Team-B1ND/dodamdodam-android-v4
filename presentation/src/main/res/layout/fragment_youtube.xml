@@ -54,9 +54,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/default_margin"
                 android:backgroundTint="@color/color_song"
+                android:onClick="@{() -> vm.onClickCopy()}"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp"
-                android:onClick="@{() -> vm.onClickCopy()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -184,38 +184,29 @@
             android:text="@string/text_re_search_desc"
             android:textColor="@color/color_black"
             android:textSize="@dimen/title5"
-            app:layout_constraintBottom_toTopOf="@id/card_et_song_title"
+            app:layout_constraintBottom_toTopOf="@id/et_song_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_et_song_title"
+
+        <EditText
+            android:id="@+id/et_song_title"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/default_margin"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="@dimen/default_item_radius"
-            app:cardElevation="@dimen/card_elevation"
-            app:layout_constraintBottom_toTopOf="@id/btn_search"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:fontFamily="@font/noto_regular"
-                android:gravity="center"
-                android:hint="@string/text_song_title"
-                android:importantForAutofill="no"
-                android:includeFontPadding="false"
-                android:inputType="text"
-                android:padding="10dp"
-                android:text="@={vm.searchSongTitle}"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-        </androidx.cardview.widget.CardView>
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/background_song_edittext"
+            android:fontFamily="@font/noto_regular"
+            android:gravity="center"
+            android:hint="@string/text_song_title"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="text"
+            android:padding="15dp"
+            android:text="@={vm.searchSongTitle}"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@id/btn_search" />
 
         <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
             android:id="@+id/btn_search"
