@@ -4,7 +4,7 @@
 
     <solid android:color="@color/color_background"/>
     <stroke android:width="2dp"
-        android:color="@color/main" />
+        android:color="@color/color_song" />
 
     <corners android:radius="100dp" />
 

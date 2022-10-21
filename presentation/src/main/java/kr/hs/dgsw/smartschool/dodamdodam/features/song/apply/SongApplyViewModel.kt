@@ -82,7 +82,7 @@ class SongApplyViewModel @Inject constructor(
     private fun getMelonChart() {
         songUseCases.getMelonChart(Unit).divideResult(
             isMelonChartLoading,
-            { _getMelonChartState.value = GetMelonChartState(melonChartList = it ?: emptyList()) },
+            { _getMelonChartState.value = GetMelonChartState(songChartList = it ?: emptyList()) },
             { _getMelonChartState.value = GetMelonChartState(error = it ?: "음원 차트를 받아올 수 없습니다.") }
         ).launchIn(viewModelScope)
     }

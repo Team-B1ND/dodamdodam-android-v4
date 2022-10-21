@@ -7,7 +7,7 @@
 
         <variable
             name="melon"
-            type="kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart" />
+            type="kr.hs.dgsw.smartschool.domain.model.song.melon.SongChart" />
 
     </data>
 
@@ -61,7 +61,7 @@
             android:fontFamily="@font/noto_medium"
             android:includeFontPadding="false"
             android:maxLines="3"
-            android:text="@{melon.title}"
+            android:text="@{melon.name}"
             android:textColor="@color/color_black"
             android:textSize="@dimen/title4"
             app:layout_constraintBottom_toTopOf="@id/tv_recommend_song_artist"

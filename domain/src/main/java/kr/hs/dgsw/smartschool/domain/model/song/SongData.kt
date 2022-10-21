@@ -6,7 +6,7 @@ import java.util.Locale
 open class SongData(
     val videoId: String?,
     val thumbnailUrl: String,
-    val videoTitle: String,
+    val videoTitle: String?,
     val channelTitle: String,
     val id: Int,
     val createdDate: String,

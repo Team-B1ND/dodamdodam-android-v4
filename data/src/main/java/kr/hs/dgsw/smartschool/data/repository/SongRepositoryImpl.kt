@@ -2,7 +2,7 @@ package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.SongDataSource
 import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
-import kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart
+import kr.hs.dgsw.smartschool.domain.model.song.melon.SongChart
 import kr.hs.dgsw.smartschool.domain.repository.SongRepository
 import kr.hs.dgsw.smartschool.domain.request.song.SongRequest
 import javax.inject.Inject
@@ -15,7 +15,7 @@ class SongRepositoryImpl @Inject constructor(
         return songDataSource.applySong(request)
     }
 
-    override suspend fun deleteSong(id: String): String {
+    override suspend fun deleteSong(id: Int): String {
         return songDataSource.deleteSong(id)
     }
 
@@ -27,11 +27,11 @@ class SongRepositoryImpl @Inject constructor(
         return songDataSource.getPendingSong()
     }
 
-    override suspend fun getMySong(id: String): List<VideoSongData> {
-        return songDataSource.getMySong(id)
+    override suspend fun getMySong(): List<VideoSongData> {
+        return songDataSource.getMySong()
     }
 
-    override suspend fun getMelonChart(): List<MelonChart> {
+    override suspend fun getMelonChart(): List<SongChart> {
         return songDataSource.getMelonChart()
     }
 }

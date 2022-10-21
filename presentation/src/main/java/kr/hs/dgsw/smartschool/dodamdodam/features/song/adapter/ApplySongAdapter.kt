@@ -24,7 +24,7 @@ class ApplySongAdapter(private val id: String, val action: Action) : BaseListAda
         }
 
         binding.ivDelete.setOnClickListener {
-            action.onClickDelete(item.id.toString())
+            action.onClickDelete(item.id)
         }
     }
 
@@ -32,6 +32,6 @@ class ApplySongAdapter(private val id: String, val action: Action) : BaseListAda
 
         fun onClickItem(url: String)
 
-        fun onClickDelete(itemId: String)
+        fun onClickDelete(itemId: Int)
     }
 }
