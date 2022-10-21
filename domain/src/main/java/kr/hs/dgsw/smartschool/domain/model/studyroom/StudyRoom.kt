@@ -4,7 +4,8 @@ import com.google.gson.annotations.SerializedName
 import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 data class StudyRoom(
     @SerializedName("date") val date: String?,

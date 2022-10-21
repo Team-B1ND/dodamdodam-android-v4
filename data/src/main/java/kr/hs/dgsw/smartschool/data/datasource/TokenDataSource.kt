@@ -15,7 +15,7 @@ class TokenDataSource @Inject constructor(
 
     private val tokenMapper = TokenMapper()
 
-    //private val PAYLOAD_MEMBER_ID = "memberId"
+    // private val PAYLOAD_MEMBER_ID = "memberId"
 
     suspend fun insertToken(token: Token) = cache.insertToken(tokenMapper.mapToEntity(token))
 

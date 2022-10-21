@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.home
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel

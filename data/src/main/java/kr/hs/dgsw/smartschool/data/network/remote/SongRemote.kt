@@ -29,5 +29,4 @@ class SongRemote @Inject constructor(
 
     suspend fun getSongChart(): List<SongChart> =
         api.getSongChart().data
-
 }

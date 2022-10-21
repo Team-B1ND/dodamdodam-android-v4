@@ -38,5 +38,4 @@ interface SongApi {
 
     @GET("wakeup-song/chart")
     suspend fun getSongChart(): Response<List<SongChart>>
-
 }

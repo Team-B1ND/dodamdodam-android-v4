@@ -101,12 +101,10 @@ class TokenInterceptor @Inject constructor(
         }
     }
 
-
     // ---------------------------------------------------------------------------------
     private fun Interceptor.Chain.proceedWithToken(req: Request): Response =
         req.newBuilder()
             .addHeader(TOKEN_HEADER, "Bearer ${token.token}")
             .build()
             .let(::proceed)
-
 }

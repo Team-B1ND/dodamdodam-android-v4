@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.auth.login
 
 import androidx.activity.viewModels
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceManager

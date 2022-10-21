@@ -4,14 +4,11 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceManager
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.features.auth.login.LoginActivity
-import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
 
-class StartActivity: AppCompatActivity() {
+class StartActivity : AppCompatActivity() {
 
     val btnStart: Button by lazy {
         findViewById(R.id.btn_start)
@@ -29,8 +26,7 @@ class StartActivity: AppCompatActivity() {
 
         btnStart.setOnClickListener {
 
-           startActivityWithFinishAll(LoginActivity::class.java)
-
+            startActivityWithFinishAll(LoginActivity::class.java)
         }
     }
 }
