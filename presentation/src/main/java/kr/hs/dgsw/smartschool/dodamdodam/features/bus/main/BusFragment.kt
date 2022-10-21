@@ -28,11 +28,15 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
         mBinding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
+        mBinding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getBusList()
+            mBinding.swipeRefreshLayout.isRefreshing = false
+        }
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getBusListState.collect { state ->
                     Log.e("LostFoundFragment", "state")
-                    if (state.bus!!.busList.isNotEmpty()) {
+                    if (state.bus != null) {
                         val busList = setBusInfo(state.bus)
                         if (busList.isNotEmpty()) {
                             hasBus.value = true

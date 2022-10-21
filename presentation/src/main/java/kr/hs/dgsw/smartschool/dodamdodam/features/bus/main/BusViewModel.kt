@@ -61,8 +61,9 @@ class BusViewModel @Inject constructor(
     fun cancelBus(idx: Int) {
         busUseCases.deleteBusApply(idx).divideResult(
             isGetBusLoading,
-            { getBusList()
-                busId = 0},
+            {
+                busId = 0
+                getBusList() },
             { viewModelScope.launch { _getBusListState.emit(GetBusListState(error = it ?: "버스를 받아오지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
