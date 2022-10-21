@@ -17,17 +17,26 @@ class BusAdapter(val context: Context, val listener: BusApplyCallBack) : BaseLis
         if (item.isSelected) {
             binding.busCard.background = ContextCompat.getDrawable(context, R.drawable.background_bus_card_selected)
             Log.e("background", item.isSelected.toString())
+            binding.tvBusRidePossible.visibility = View.INVISIBLE
+            binding.menu.visibility = View.VISIBLE
         }
 
         with(binding) {
-            tvBusRidePossible.background = if (item.rideable == "탑승가능")
-                ContextCompat.getDrawable(context, R.drawable.background_bus_ride_possible)
-            else
-                ContextCompat.getDrawable(context, R.drawable.background_bus_ride_impossible)
-
+            tvBusRidePossible.setImageResource(
+                if(item.rideable) R.drawable.ic_circle_blue_light
+                else R.drawable.ic_circle_yellow_light
+            )
             bus = item
 
-            menu.setOnClickListener(
+            root.setOnClickListener{
+                listener.applyBus(item.idx)
+            }
+
+            menu.setOnClickListener{
+                listener.cancelBus(item.idx)
+            }
+
+            /*menu.setOnClickListener(
                 View.OnClickListener {
                     val pm: PopupMenu = PopupMenu(context, binding.menu)
                     pm.inflate(R.menu.bus_item_menu)
@@ -51,7 +60,7 @@ class BusAdapter(val context: Context, val listener: BusApplyCallBack) : BaseLis
                     )
                     pm.show()
                 }
-            )
+            )*/
         }
     }
 

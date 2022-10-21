@@ -56,13 +56,11 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
         val list: MutableList<BusInfo> = mutableListOf()
         mBinding.tvDate.text = bus.date
 
-        var rideAble = ""
+        var rideAble = true
         var isSelected: Boolean
         bus.busList.forEach {
-            if (it.peopleCount < (it.peopleLimit)) {
-                rideAble = "탑승가능"
-            } else if (it.peopleCount >= it.peopleLimit) {
-                rideAble = "탑승불가"
+            if (it.peopleCount >= it.peopleLimit) {
+                rideAble = false
             }
             isSelected = it.id == viewModel.busId
             list.add(

@@ -79,27 +79,21 @@
                     app:layout_constraintTop_toTopOf="@id/iv_bus"
                     tools:text="버스 이름" />
 
-                <TextView
-                    android:id="@+id/tv_bus_ride_possible"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@drawable/background_bus_ride_possible"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="@{bus.rideable}"
-                    android:textColor="@color/color_white"
-                    android:textSize="@dimen/title7"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_bus_title"
-                    app:layout_constraintStart_toEndOf="@id/tv_bus_title"
-                    app:layout_constraintTop_toTopOf="@id/tv_bus_title"
-                    tools:text="탑승가능" />
-
             </LinearLayout>
 
+            <ImageView
+                android:id="@+id/tv_bus_ride_possible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_circle_blue_light"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/title7"
+                app:layout_constraintStart_toStartOf="@id/menu"
+                app:layout_constraintEnd_toEndOf="@id/menu"
+                app:layout_constraintTop_toTopOf="@id/menu"
+                tools:text="탑승가능" />
 
             <LinearLayout
                 android:id="@+id/layout_time"
@@ -137,17 +131,14 @@
                     tools:text="9월 6일 12시 30분" />
 
             </LinearLayout>
-            <TextView
+            <ImageView
                 android:id="@+id/menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/_kebab"
-                android:textAppearance="?android:textAppearanceLarge"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/layout_bus_info"
-               android:padding="5dp"
-                android:paddingEnd="10dp"
-                android:paddingStart="10dp"
+                app:layout_constraintTop_toTopOf="@id/iv_bus"
+                app:layout_constraintEnd_toEndOf="@id/layout_bus_info"
+                android:src="@drawable/ic_cancel"
+                android:visibility="invisible"
                 />
 
 
