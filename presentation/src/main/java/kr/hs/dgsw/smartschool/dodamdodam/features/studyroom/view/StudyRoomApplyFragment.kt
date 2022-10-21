@@ -1,23 +1,38 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.view
 
+import android.util.Log
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.core.view.get
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.PlaceAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentStudyRoomApplyBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.view.StudyRoomApplyFragment.Companion.ENABLE
 import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.viewmodel.StudyRoomApplyViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortSnack
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
+import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
-class StudyRoomApplyFragment : BaseFragment<FragmentStudyRoomApplyBinding, StudyRoomApplyViewModel>() {
+class StudyRoomApplyFragment :
+    BaseFragment<FragmentStudyRoomApplyBinding, StudyRoomApplyViewModel>() {
 
     override val viewModel: StudyRoomApplyViewModel by viewModels()
     private lateinit var placeAdapter: PlaceAdapter
+
+    companion object {
+        private const val ENABLE: Boolean = true
+        private const val UNABLE: Boolean = false
+    }
 
     override fun observerViewModel() {
         initTimeTab()
@@ -34,12 +49,21 @@ class StudyRoomApplyFragment : BaseFragment<FragmentStudyRoomApplyBinding, Study
     }
 
     private fun initTimeTab() {
+        // 1 2 3 4 5 6 7 8 의 타임테이블에서 1을 빼고 4를 나눠서 0 1 2 3 의 배열을 만족시키는 코드!
         viewModel.setCurrentTime(arguments?.getInt("timeTable")?.minus(1)?.rem(4) ?: 0)
+
+
         mBinding.layoutTimeTable.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                viewModel.setCurrentTime(tab?.position ?: 0)
-                PlaceAdapter.currentPlace.value = viewModel.currentCheckPlaces.value?.get(viewModel.currentTime.value ?: 0)
-                tab?.select()
+                if(tab?.tag == ENABLE) {
+                    viewModel.setCurrentTime(tab.position)
+                    PlaceAdapter.currentPlace.value =
+                        viewModel.currentCheckPlaces.value?.get(viewModel.currentTime.value ?: 0)
+                    tab.select()
+                } else {
+                    tab?.removeBadge()
+                }
+
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {}
@@ -59,12 +83,37 @@ class StudyRoomApplyFragment : BaseFragment<FragmentStudyRoomApplyBinding, Study
         lifecycleScope.launchWhenStarted {
             viewModel.getAllTimeState.collect { state ->
                 if (state.timeTable.isNotEmpty()) {
+
+                    val currentTime = Date().timeFormat()
                     viewModel.setTimeTable(state.timeTable)
+                    var expiredIdx: Int = 0
+
                     state.timeTable.forEach { time ->
-                        mBinding.layoutTimeTable.addTab(
-                            mBinding.layoutTimeTable.newTab().setText(time.name), false
-                        )
+                        if (time.startTime >= currentTime) {
+                            mBinding.layoutTimeTable.addTab(
+                                mBinding.layoutTimeTable.newTab()
+                                    .setText(time.name)
+                                    .setTag(ENABLE)
+                                , false
+                            )
+                        } else {
+                            mBinding.layoutTimeTable.addTab(
+                                mBinding.layoutTimeTable.newTab()
+                                    .setText("만료")
+                                    .setTag(UNABLE)
+                                , false
+                            )
+                            expiredIdx += 1
+                        }
+
                     }
+                    val tabScript = mBinding.layoutTimeTable.getChildAt(0) as LinearLayout
+                    for (i in 0 until expiredIdx) {
+                        tabScript.getChildAt(i).setOnTouchListener { _, _ ->
+                            true
+                        }
+                    }
+
                     mBinding.layoutTimeTable.getTabAt(viewModel.currentTime.value ?: 0)?.select()
                 }
 

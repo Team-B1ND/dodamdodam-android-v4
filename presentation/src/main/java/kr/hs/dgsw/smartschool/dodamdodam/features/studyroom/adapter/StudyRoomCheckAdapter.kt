@@ -14,17 +14,17 @@ class StudyRoomCheckAdapter(val onClickStudyRoomCard: (Int) -> Unit) : BaseListA
 ) {
 
     override fun action(item: StudyRoom, binding: ItemStudyRoomCheckBinding) {
-        val start = item.timeTable?.startTime?.dropLast(3)
-        val currentTime = Date().timeFormat()
 
-        binding.tvLocation.text = item.place?.name ?: if (start!! >= currentTime) "미신청" else "만료"
+        binding.tvLocation.text = item.place?.name ?: if (item.isExpire()) "만료" else "미신청"
         binding.tvTime.text = "${item.timeTable?.startTime} ~ ${item.timeTable?.endTime}"
 
         binding.tvTimeTable.text = item.timeTable!!.name
 
         binding.root.setOnClickListener {
-            // onOpenLocationApply.value = item.timeTableIdx ?: 0
-            onClickStudyRoomCard(item.timeTable!!.id)
+            if (item.isExpire().not()){
+                onClickStudyRoomCard(item.timeTable!!.id)
+            }
         }
+
     }
 }

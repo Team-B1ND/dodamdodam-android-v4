@@ -67,7 +67,6 @@ class HomeViewModel @Inject constructor(
                         )
                     )
                 }
-                it?.forEach { placeList -> Log.d("TestTest", "getMyLocation: ${placeList.place?.name}") }
             },
             { viewModelScope.launch { _getMyStudyRoomState.emit(GetMyStudyRoomState(error = it ?: "위치를 받아오지 못하였습니다.")) } }
         ).launchIn(viewModelScope)

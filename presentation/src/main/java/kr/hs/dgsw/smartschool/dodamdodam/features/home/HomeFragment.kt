@@ -64,9 +64,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             lifecycleScope.launchWhenStarted {
                 getMyStudyRoomState.collect { state ->
                     if (state.isUpdate) {
-                        state.myStudyRooms.forEach {
-                            Log.d("TestTest", "collectMyLocation: ${it.place?.name}")
-                        }
                         studyRoomCheckAdapter.submitList(state.myStudyRooms)
                     }
 
