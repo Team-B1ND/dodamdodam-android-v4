@@ -15,8 +15,6 @@ class BusAdapter(val context: Context, val listener: BusApplyCallBack) : BaseLis
 
     override fun action(item: BusInfo, binding: ItemBusBinding) {
         if (item.isSelected) {
-            binding.busCard.background = ContextCompat.getDrawable(context, R.drawable.background_bus_card_selected)
-            Log.e("background", item.isSelected.toString())
             binding.tvBusRidePossible.visibility = View.INVISIBLE
             binding.menu.visibility = View.VISIBLE
         }
