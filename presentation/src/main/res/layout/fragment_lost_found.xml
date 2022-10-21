@@ -100,11 +100,8 @@
                     <CheckBox
                         android:id="@+id/tb_mine"
                         android:layout_marginStart="15dp"
-                        android:paddingHorizontal="18dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@drawable/background_circle_line"
-                        android:button="@null"
                         android:textSize="@dimen/title5"
                         android:fontFamily="@font/notosans_kr_bold"
                         android:includeFontPadding="false"
@@ -116,11 +113,8 @@
                     <CheckBox
                         android:id="@+id/tb_lost_and_found"
                         android:layout_marginStart="15dp"
-                        android:paddingHorizontal="18dp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:background="@drawable/background_circle_line"
-                        android:button="@null"
                         android:textSize="@dimen/title5"
                         android:fontFamily="@font/notosans_kr_bold"
                         android:includeFontPadding="false"

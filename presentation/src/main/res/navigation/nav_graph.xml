@@ -33,7 +33,7 @@
             app:popUpTo="@id/main_home" />
         <action
             android:id="@+id/action_main_home_to_lostFoundFragment"
-            app:destination="@id/busFragment" />
+            app:destination="@id/lostFoundFragment" />
     </fragment>
     <fragment
         android:id="@+id/main_profile"
