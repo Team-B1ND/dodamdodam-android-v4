@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.write
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -53,7 +52,7 @@ class LostFoundWriteViewModel @Inject constructor(
             )
         ).divideResult(
             isModifyLostFoundLoading,
-            { viewEvent(EVENT_SUCCESS)},
+            { viewEvent(EVENT_SUCCESS) },
             { viewEvent(EVENT_ERROR) }
         ).launchIn(viewModelScope)
     }

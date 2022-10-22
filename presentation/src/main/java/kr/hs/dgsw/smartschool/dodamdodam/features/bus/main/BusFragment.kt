@@ -5,19 +5,17 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kr.hs.dgsw.smartschool.dodamdodam.features.bus.adapter.BusAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentBusBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.bus.adapter.BusAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
-import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
-import java.time.LocalDate
 
 @AndroidEntryPoint
 class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter.BusApplyCallBack {
     override val viewModel: BusViewModel by viewModels()
-    private lateinit var busAdapter : BusAdapter
+    private lateinit var busAdapter: BusAdapter
     override fun onStart() {
         super.onStart()
         viewModel.getBusList()

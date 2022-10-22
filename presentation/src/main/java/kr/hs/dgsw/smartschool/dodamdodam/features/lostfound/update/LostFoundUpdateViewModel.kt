@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
@@ -54,7 +53,7 @@ class LostFoundUpdateViewModel @Inject constructor(
                 place.value = it.place
                 content.value = it.content
             },
-            { viewModelScope.launch { it } }
+            { }
         ).launchIn(viewModelScope)
     }
     private fun imageUpload(file: File) {

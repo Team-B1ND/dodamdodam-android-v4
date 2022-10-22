@@ -53,7 +53,7 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideLostFoundRepository(lostFoundRepositoryImpl: LostFoundRepositoryImpl) : LostFoundRepository = lostFoundRepositoryImpl
+    fun provideLostFoundRepository(lostFoundRepositoryImpl: LostFoundRepositoryImpl): LostFoundRepository = lostFoundRepositoryImpl
 
     @Singleton
     @Provides

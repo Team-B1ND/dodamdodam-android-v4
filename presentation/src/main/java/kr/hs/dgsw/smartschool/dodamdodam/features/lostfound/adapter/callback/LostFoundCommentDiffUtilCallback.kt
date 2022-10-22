@@ -1,9 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.adapter.callback
 
 import androidx.recyclerview.widget.DiffUtil
-import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
 import kr.hs.dgsw.smartschool.domain.model.lostfound.CommentInfo
-import kr.hs.dgsw.smartschool.domain.model.lostfound.LostInfo
 
 object LostFoundCommentDiffUtilCallback : DiffUtil.ItemCallback<CommentInfo>() {
     override fun areItemsTheSame(oldItem: CommentInfo, newItem: CommentInfo): Boolean = oldItem == newItem

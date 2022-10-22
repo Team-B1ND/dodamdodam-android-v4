@@ -23,7 +23,7 @@ class LostFoundAdapter(val context: Context, val listener: LostFoundCallBack) : 
 
     override fun action(item: LostInfo, binding: ItemLostAndFoundBinding) {
         binding.lostInfo = item
-        Log.e("LostFoundAdapter",item.toString())
+        Log.e("LostFoundAdapter", item.toString())
         Glide.with(binding.ivProfileImage)
             .load(item.img)
             .centerCrop()

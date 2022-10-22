@@ -56,7 +56,7 @@ class LostFoundViewModel @Inject constructor(
             useCases.getLostFound(GetLostFound.Params(page = page, type = if (foundChecked.value!!) "FOUND" else "LOST")).divideResult(
                 isGetLostFoundLoading,
                 { launchLostFound(it!!) },
-                { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.")}
+                { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.") }
             ).launchIn(viewModelScope)
         }
     }
@@ -64,36 +64,36 @@ class LostFoundViewModel @Inject constructor(
         useCases.searchLostFound(SearchLostFound.Params(search = searchKeyword.value ?: "")).divideResult(
             isGetLostFoundLoading,
             { launchLostFound(it!!) },
-            { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.")}
+            { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.") }
         ).launchIn(viewModelScope)
     }
     private fun myLostFound() {
         useCases.getMyLostFound(Unit).divideResult(
             isGetLostFoundLoading,
             { launchLostFound(it!!) },
-            { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.")}
+            { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.") }
         ).launchIn(viewModelScope)
     }
     fun deleteLostFound(idx: Int) {
         useCases.deleteLostFound(DeleteLostFound.Params(idx = idx)).divideResult(
             isGetLostFoundLoading,
             { getLostFoundList(1) },
-            { launchLostFound("분실 게시물을 삭제하는 데에 실패하였습니다.")}
+            { launchLostFound("분실 게시물을 삭제하는 데에 실패하였습니다.") }
         ).launchIn(viewModelScope)
     }
 
-    private fun launchLostFound(list : List<LostFound>){
+    private fun launchLostFound(list: List<LostFound>) {
         var newList = mutableListOf<LostFound>()
         list.forEach {
-            if(foundChecked.value!! && it.type == "FOUND")  newList.add(it)
-            else if(!foundChecked.value!! && it.type == "LOST") newList.add(it)
+            if (foundChecked.value!! && it.type == "FOUND") newList.add(it)
+            else if (!foundChecked.value!! && it.type == "LOST") newList.add(it)
         }
         viewModelScope.launch {
-            _getLostFoundState.emit(GetLostFoundState(list = newList ?: emptyList()))
+            _getLostFoundState.emit(GetLostFoundState(list = newList))
         }
     }
 
-    private fun launchLostFound(error : String){
+    private fun launchLostFound(error: String) {
         viewModelScope.launch {
             _getLostFoundState.emit(GetLostFoundState(error = error))
         }

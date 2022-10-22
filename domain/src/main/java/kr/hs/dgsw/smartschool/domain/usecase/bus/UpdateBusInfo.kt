@@ -12,11 +12,11 @@ class UpdateBusInfo @Inject constructor(
 
 ) : BaseUseCase<UpdateBusInfo.Params, String>() {
     data class Params(
-        val id : Int,
+        val id: Int,
         val request: UpdateBusRequest
-            )
+    )
     override fun invoke(params: Params): Flow<Resource<String>> = execute {
-        busRepository.updateBus(params.id,params.request)
+        busRepository.updateBus(params.id, params.request)
         "버스 정보를 수정하였습니다."
     }
 }

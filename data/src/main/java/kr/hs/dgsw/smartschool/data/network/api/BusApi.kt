@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
-import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
@@ -29,12 +28,12 @@ interface BusApi {
 
     @POST("bus")
     suspend fun addBus(
-        @Body createBusDto : AddBusRequest
+        @Body createBusDto: AddBusRequest
     ): Response<Any>
 
     @POST("bus/apply/{busId}")
     suspend fun addBusApply(
-        @Path("busId") busId : Int
+        @Path("busId") busId: Int
     ): Response<Any>
 
     @PATCH("bus/{id}")
@@ -45,7 +44,7 @@ interface BusApi {
 
     @PATCH("bus/apply/{busId}")
     suspend fun updateBusApply(
-        @Path("busId") busId:Int
+        @Path("busId") busId: Int
     ): Response<Any>
 
     @DELETE("bus/{id}")

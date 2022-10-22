@@ -29,9 +29,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         lostFoundAdapter = LostFoundAdapter(requireContext(), this)
         mBinding.rvLostAndFound.adapter = lostFoundAdapter
 
-
-
-        with(mBinding){
+        with(mBinding) {
             btnBack.setOnClickListener {
                 findNavController().popBackStack()
             }
@@ -42,7 +40,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                 viewModel.getLostFoundList(1)
                 mBinding.swipeRefreshLayout.isRefreshing = false
             }
-            //TODO checkBox 체크
+            // TODO checkBox 체크
             btnSearch.setOnClickListener {
                 viewModel.searchLostFound()
             }

@@ -26,7 +26,6 @@ import kr.hs.dgsw.smartschool.domain.usecase.bus.BusUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.bus.DeleteBus
 import kr.hs.dgsw.smartschool.domain.usecase.bus.DeleteBusApply
 import kr.hs.dgsw.smartschool.domain.usecase.bus.GetBusList
-import kr.hs.dgsw.smartschool.domain.usecase.bus.GetApplyBus
 import kr.hs.dgsw.smartschool.domain.usecase.bus.GetMyBusByMonth
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusApply
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusInfo
@@ -117,7 +116,6 @@ class UseCaseModule {
             deleteLostFound = DeleteLostFound(repository),
             searchLostFound = SearchLostFound(repository)
         )
-
 
     @Provides
     @Singleton

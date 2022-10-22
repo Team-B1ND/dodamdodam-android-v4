@@ -4,7 +4,6 @@ import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.BusApi
 import kr.hs.dgsw.smartschool.data.network.response.Response
-import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
@@ -31,7 +30,7 @@ class BusRemote @Inject constructor(
     )
 
     suspend fun updateBus(
-        busId : Int,
+        busId: Int,
         request: UpdateBusRequest
     ): Response<Any> = api.updateBus(
         busId,
@@ -39,7 +38,7 @@ class BusRemote @Inject constructor(
     )
 
     suspend fun updateBusApply(
-        id:Int
+        id: Int
     ): Response<Any> = api.updateBusApply(
         id
     )
@@ -47,7 +46,7 @@ class BusRemote @Inject constructor(
     suspend fun addBus(
         request: AddBusRequest
     ): Response<Any> = api.addBus(
-       request
+        request
     )
 
     suspend fun addBusApply(

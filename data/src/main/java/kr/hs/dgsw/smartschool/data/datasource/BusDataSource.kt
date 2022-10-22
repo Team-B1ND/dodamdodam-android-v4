@@ -29,14 +29,14 @@ class BusDataSource @Inject constructor(
     }
 
     suspend fun updateBus(
-        id : Int,
+        id: Int,
         request: UpdateBusRequest
     ): String {
-        return remote.updateBus(id,request).message
+        return remote.updateBus(id, request).message
     }
 
     suspend fun updateBusApply(
-        id : Int
+        id: Int
     ): String {
         return remote.updateBusApply(id).message
     }
