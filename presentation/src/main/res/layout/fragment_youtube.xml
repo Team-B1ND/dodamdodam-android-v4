@@ -16,12 +16,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_song">
+        android:background="@color/color_background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_top_bar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:elevation="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -47,40 +48,56 @@
                 app:layout_constraintStart_toEndOf="@id/btn_back"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:backgroundTint="@color/color_song"
+                android:onClick="@{() -> vm.onClickCopy()}"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_copy"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="5dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/text_copy_link"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/title6" />
+
+            </androidx.cardview.widget.CardView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_thumbnail"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginTop="20dp"
-            app:cardCornerRadius="@dimen/card_corner"
-            app:cardElevation="1dp"
             android:onClick="@{() -> vm.onClickThumbnail()}"
-            app:layout_constraintDimensionRatio="1:0.55"
+            app:cardElevation="1dp"
+            app:layout_constraintDimensionRatio="1280:720"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_top_bar">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/iv_thumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/default_img" />
+
 
         </androidx.cardview.widget.CardView>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="80dp"
-            android:background="@drawable/background_youtube_card"
-            android:backgroundTint="@color/color_background"
-            app:cardElevation="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@id/card_thumbnail" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -89,19 +106,19 @@
             android:layout_marginHorizontal="@dimen/default_margin"
             android:layout_marginTop="20dp"
             android:ellipsize="end"
-            android:fontFamily="@font/noto_regular"
+            android:fontFamily="@font/noto_bold"
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
             android:maxLines="2"
             android:textColor="@color/color_black"
-            android:textSize="@dimen/title3"
+            android:textSize="@dimen/title2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card_thumbnail"
-            tools:text="NewJeans (뉴진스) &#39;Attention&#39; Official MV" />
+            tools:text="NewJeans (뉴진스)" />
 
         <TextView
-            android:id="@+id/tv_link"
+            android:id="@+id/tv_sub_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/default_margin"
@@ -112,11 +129,11 @@
             android:includeFontPadding="false"
             android:maxLines="2"
             android:textColor="@color/gray500"
-            android:textSize="@dimen/title4"
+            android:textSize="@dimen/title5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title"
-            tools:text="https://www.youtube.com/watch?v=QIlzgNozXKw" />
+            tools:text="NewJeans (뉴진스) &#39;Attention&#39; Official MV" />
 
         <ProgressBar
             android:id="@+id/progress_loading"
@@ -127,18 +144,18 @@
             app:layout_constraintBottom_toTopOf="@id/tv_confirm"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_link" />
+            app:layout_constraintTop_toBottomOf="@id/tv_sub_title" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/music_visualizer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
-            app:layout_constraintTop_toBottomOf="@id/tv_link"
             app:layout_constraintBottom_toTopOf="@id/tv_confirm"
-            app:lottie_rawRes="@raw/music_visualizer"
+            app:layout_constraintTop_toBottomOf="@id/tv_sub_title"
             app:lottie_autoPlay="true"
-            app:lottie_loop="true" />
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/music_visualizer" />
 
 
         <TextView
@@ -167,38 +184,29 @@
             android:text="@string/text_re_search_desc"
             android:textColor="@color/color_black"
             android:textSize="@dimen/title5"
-            app:layout_constraintBottom_toTopOf="@id/card_et_song_title"
+            app:layout_constraintBottom_toTopOf="@id/et_song_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_et_song_title"
+
+        <EditText
+            android:id="@+id/et_song_title"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/default_margin"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="@dimen/default_item_radius"
-            app:cardElevation="@dimen/card_elevation"
-            app:layout_constraintBottom_toTopOf="@id/btn_search"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:fontFamily="@font/noto_regular"
-                android:gravity="center"
-                android:hint="@string/text_song_title"
-                android:importantForAutofill="no"
-                android:includeFontPadding="false"
-                android:inputType="text"
-                android:padding="10dp"
-                android:text="@={vm.searchSongTitle}"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-        </androidx.cardview.widget.CardView>
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/background_song_edittext"
+            android:fontFamily="@font/noto_regular"
+            android:gravity="center"
+            android:hint="@string/text_song_title"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="text"
+            android:padding="15dp"
+            android:text="@={vm.searchSongTitle}"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@id/btn_search" />
 
         <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
             android:id="@+id/btn_search"

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.activity.viewModels
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivityJoinBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.auth.join.detail.JoinDetailActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.removeBlankInString
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 

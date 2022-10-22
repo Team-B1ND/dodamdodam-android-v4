@@ -13,14 +13,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingEnd="@dimen/default_card_content_margin"
+        android:paddingEnd="10dp"
         tools:ignore="RtlSymmetry">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_thumbnail"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            app:cardCornerRadius="@dimen/card_middle_corner"
+            app:cardCornerRadius="3dp"
             app:cardElevation="@dimen/card_elevation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

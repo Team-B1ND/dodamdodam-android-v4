@@ -8,7 +8,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentSongApplyBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.RecommendSongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
-import kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart
+import kr.hs.dgsw.smartschool.domain.model.song.melon.SongChart
 
 @AndroidEntryPoint
 class SongApplyFragment : BaseFragment<FragmentSongApplyBinding, SongApplyViewModel>() {
@@ -34,8 +34,8 @@ class SongApplyFragment : BaseFragment<FragmentSongApplyBinding, SongApplyViewMo
     private fun collectMelonChart() {
         lifecycleScope.launchWhenStarted {
             viewModel.getMelonChartState.collect { state ->
-                if (state.melonChartList.isNotEmpty()) {
-                    updateRecommendSongRecyclerView(state.melonChartList)
+                if (state.songChartList.isNotEmpty()) {
+                    updateRecommendSongRecyclerView(state.songChartList)
                 }
 
                 if (state.error.isNotBlank())
@@ -56,7 +56,7 @@ class SongApplyFragment : BaseFragment<FragmentSongApplyBinding, SongApplyViewMo
         mBinding.recyclerRecommendSong.adapter = recommendSongAdapter
     }
 
-    private fun updateRecommendSongRecyclerView(list: List<MelonChart>) {
+    private fun updateRecommendSongRecyclerView(list: List<SongChart>) {
         recommendSongAdapter.submitList(list)
     }
 

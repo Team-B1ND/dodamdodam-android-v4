@@ -3,6 +3,9 @@ package kr.hs.dgsw.smartschool.domain.model.studyroom
 import com.google.gson.annotations.SerializedName
 import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 data class StudyRoom(
     @SerializedName("date") val date: String?,
@@ -54,5 +57,12 @@ data class StudyRoom(
 
     public override fun clone(): StudyRoom {
         return super.clone() as StudyRoom
+    }
+
+    fun isExpire(): Boolean {
+        val start = timeTable?.startTime?.dropLast(3)
+        val format = SimpleDateFormat("HH:mm", Locale.getDefault())
+        val currentTime = format.format(Date())
+        return start!! < currentTime
     }
 }

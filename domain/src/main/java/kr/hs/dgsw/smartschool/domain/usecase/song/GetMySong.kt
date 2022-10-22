@@ -9,9 +9,9 @@ import javax.inject.Inject
 
 class GetMySong @Inject constructor(
     private val songRepository: SongRepository
-) : BaseUseCase<String, List<VideoSongData>>() {
+) : BaseUseCase<Unit, List<VideoSongData>>() {
 
-    override fun invoke(params: String): Flow<Resource<List<VideoSongData>>> = execute {
-        songRepository.getMySong(params)
+    override fun invoke(params: Unit): Flow<Resource<List<VideoSongData>>> = execute {
+        songRepository.getMySong()
     }
 }

@@ -37,9 +37,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/default_margin"
-                    android:text="@string/title_meal"
                     android:fontFamily="@font/noto_medium"
                     android:includeFontPadding="false"
+                    android:text="@string/title_meal"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/page_title_text"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -68,13 +68,13 @@
                         android:layout_marginStart="15dp"
                         android:onClick="@{() -> vm.onClickMinusDate()}"
                         android:padding="10dp"
-                        app:tint="@color/color_black"
                         android:src="@drawable/ic_btn_back"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/layout_date"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/color_black"
                         tools:ignore="ContentDescription" />
 
                     <LinearLayout
@@ -121,13 +121,13 @@
                         android:onClick="@{() -> vm.onClickPlusDate()}"
                         android:padding="10dp"
                         android:rotation="180"
-                        app:tint="@color/color_black"
                         android:src="@drawable/ic_btn_back"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
                         app:layout_constraintStart_toEndOf="@id/layout_date"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/color_black"
                         tools:ignore="ContentDescription" />
 
 
@@ -166,49 +166,64 @@
                     android:layout_height="150dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:lottie_rawRes="@raw/runner"
                     app:lottie_autoPlay="true"
-                    app:lottie_loop="true" />
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/runner" />
 
                 <TextView
                     android:id="@+id/tv_calorie_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="2022-01-12"
-                    android:textColor="@color/gray500"
-                    app:layout_constraintVertical_chainStyle="packed"
                     android:fontFamily="@font/noto_regular"
-                    android:textSize="@dimen/title5"
-                    app:layout_constraintBottom_toTopOf="@id/tv_calorie"
                     android:includeFontPadding="false"
+                    android:textColor="@color/gray500"
+                    android:textSize="@dimen/title5"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintBottom_toTopOf="@id/tv_desc"
                     app:layout_constraintStart_toEndOf="@id/running_lizard"
-                    app:layout_constraintTop_toTopOf="@id/running_lizard" />
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="2022-01-12" />
 
                 <TextView
                     android:id="@+id/tv_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
                     android:text="@string/text_today_meal_calorie"
                     android:textColor="@color/color_black"
-                    app:layout_constraintVertical_chainStyle="packed"
-                    android:fontFamily="@font/noto_regular"
                     android:textSize="@dimen/title3"
                     app:layout_constraintBottom_toTopOf="@id/tv_calorie"
-                    android:includeFontPadding="false"
                     app:layout_constraintStart_toEndOf="@id/running_lizard"
-                    app:layout_constraintTop_toTopOf="@id/running_lizard" />
+                    app:layout_constraintTop_toTopOf="@id/running_lizard"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
                 <TextView
                     android:id="@+id/tv_calorie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/color_black"
                     android:fontFamily="@font/noto_medium"
-                    android:textSize="@dimen/title4"
-                    tools:text="763 kcal"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/color_black"
+                    android:textSize="30sp"
                     app:layout_constraintBottom_toBottomOf="@id/running_lizard"
                     app:layout_constraintStart_toEndOf="@id/running_lizard"
-                    app:layout_constraintTop_toBottomOf="@id/tv_desc" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_desc"
+                    tools:text="763" />
+
+                <TextView
+                    android:id="@+id/tv_calorie_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/title2"
+                    android:layout_marginStart="5dp"
+                    android:visibility="gone"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tv_calorie"
+                    app:layout_constraintStart_toEndOf="@id/tv_calorie"
+                    android:text="@string/text_calorie_unit" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

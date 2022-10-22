@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.auth.login
 
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,16 +20,15 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 loginState.collect { state ->
+
+                    if (state.isSuccess) {
+                        startMainActivity()
+                    }
+
                     if (state.error.isNotBlank()) {
-                        Log.e("LoginError", state.error)
                         shortToast(state.error)
                     }
                 }
-            }
-        }
-        bindingViewEvent { event ->
-            when (event) {
-                LoginViewModel.EVENT_SUCCESS_SIGN_IN -> startMainActivity()
             }
         }
 
@@ -40,8 +38,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
     }
 
     private fun startMainActivity() {
-        if (mBinding.checkAutoSignIn.isChecked)
-            SharedPreferenceManager.signIn(this@LoginActivity)
+        SharedPreferenceManager.login(this@LoginActivity)
         startActivityWithFinishAll(MainActivity::class.java)
     }
 }

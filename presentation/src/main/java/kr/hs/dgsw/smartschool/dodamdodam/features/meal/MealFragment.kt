@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.meal
 
 import android.app.DatePickerDialog
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -97,7 +98,12 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
             lifecycleScope.launchWhenStarted {
                 getMealCalorieState.collect { state ->
                     if (state.isUpdate) {
-                        mBinding.tvCalorie.text = state.calorie
+                        mBinding.tvCalorie.text = state.calorie?.let {
+                            mBinding.tvCalorieUnit.visibility = View.VISIBLE
+                            it.replace("Kcal", "")
+                        } ?: "급식이 없어요..".apply {
+                            mBinding.tvCalorieUnit.visibility = View.GONE
+                        }
                     }
 
                     if (state.error.isNotBlank()) {
