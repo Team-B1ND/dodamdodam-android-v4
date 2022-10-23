@@ -8,7 +8,7 @@
         
         <variable
             name="vm"
-            type="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.LostFoundCommentViewModel" />
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.comment.LostFoundCommentViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,6 +48,7 @@
 
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/layout_write_comment"

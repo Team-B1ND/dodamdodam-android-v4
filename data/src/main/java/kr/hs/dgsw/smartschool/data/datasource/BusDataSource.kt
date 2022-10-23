@@ -3,12 +3,10 @@ package kr.hs.dgsw.smartschool.data.datasource
 import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
-import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.MyBusByMonthRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusApplyRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
 import javax.inject.Inject
 
@@ -19,27 +17,28 @@ class BusDataSource @Inject constructor(
 
     suspend fun getMyBusByMonth(
         request: MyBusByMonthRequest
-    ): BusData<Bus> = remote.getMyBusByMonth(request).data
+    ): List<Bus> = remote.getMyBusByMonth(request).data
 
-    suspend fun getMyBusList(): BusData<Bus> {
+    suspend fun getMyBusList(): List<Bus> {
         Log.e("BusDataSource", "getMyBus")
         return remote.getMyBusList().data
     }
 
-    suspend fun getBusList(): BusData<BusByDate> {
+    suspend fun getBusList(): BusByDate {
         return remote.getBusList().data
     }
 
     suspend fun updateBus(
+        id: Int,
         request: UpdateBusRequest
     ): String {
-        return remote.updateBus(request).message
+        return remote.updateBus(id, request).message
     }
 
     suspend fun updateBusApply(
-        request: UpdateBusApplyRequest
+        id: Int
     ): String {
-        return remote.updateBusApply(request).message
+        return remote.updateBusApply(id).message
     }
 
     suspend fun addBus(

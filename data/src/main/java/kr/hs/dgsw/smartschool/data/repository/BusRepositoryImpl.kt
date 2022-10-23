@@ -7,7 +7,6 @@ import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.MyBusByMonthRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusApplyRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
 import javax.inject.Inject
 
@@ -15,19 +14,19 @@ class BusRepositoryImpl @Inject constructor(
     val dataSource: BusDataSource
 ) : BusRepository {
 
-    override suspend fun getBusList(): List<BusByDate> {
-        return dataSource.getBusList().busList
+    override suspend fun getBusList(): BusByDate {
+        return dataSource.getBusList()
     }
 
     override suspend fun getMyBus(): List<Bus> {
         Log.e("BusRepository", "getMyBus")
-        return dataSource.getMyBusList().busList
+        return dataSource.getMyBusList()
     }
 
     override suspend fun getMyBusByMonth(
         request: MyBusByMonthRequest
     ): List<Bus> {
-        return dataSource.getMyBusByMonth(request).busList
+        return dataSource.getMyBusByMonth(request)
     }
 
     override suspend fun addBus(
@@ -40,15 +39,16 @@ class BusRepositoryImpl @Inject constructor(
     ): String =
         dataSource.addBusApply(idx)
 
-    override suspend fun updateBusInfo(
+    override suspend fun updateBus(
+        id: Int,
         request: UpdateBusRequest
     ): String =
-        dataSource.updateBus(request)
+        dataSource.updateBus(id, request)
 
     override suspend fun updateBusApply(
-        request: UpdateBusApplyRequest
+        id: Int
     ): String =
-        dataSource.updateBusApply(request)
+        dataSource.updateBusApply(id)
 
     override suspend fun deleteBus(
         idx: Int

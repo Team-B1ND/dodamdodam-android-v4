@@ -1,67 +1,59 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
-import kr.hs.dgsw.smartschool.data.network.response.data.BusData
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.request.bus.AddBusApplyRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusApplyRequest
+import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
+import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
-import retrofit2.http.PUT
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface BusApi {
     @GET("bus")
-    suspend fun getBusList(): Response<BusData<BusByDate>>
+    suspend fun getBusList(): Response<BusByDate>
 
-    @GET("bus/self")
-    suspend fun getMyBus(): Response<BusData<Bus>>
+    @GET("bus/apply")
+    suspend fun getMyBus(): Response<List<Bus>>
 
-    @GET("bus/self/apply")
+    @GET("bus/apply/month")
     suspend fun getMyBusByMonth(
         @Body month: Int,
         @Body year: Int
-    ): Response<BusData<Bus>>
+    ): Response<List<Bus>>
 
     @POST("bus")
     suspend fun addBus(
-        @Body busName: String,
-        @Body description: String,
-        @Body leaveTime: String,
-        @Body timeRequired: String,
-        @Body peopleLimit: Int
+        @Body createBusDto: AddBusRequest
     ): Response<Any>
 
-    @POST("bus/self")
+    @POST("bus/apply/{busId}")
     suspend fun addBusApply(
-        @Body addBusApplyRequest: AddBusApplyRequest
+        @Path("busId") busId: Int
     ): Response<Any>
 
-    @PUT("bus")
+    @PATCH("bus/{id}")
     suspend fun updateBus(
-        @Body busIdx: Int,
-        @Body busName: String,
-        @Body description: String,
-        @Body leaveTime: String,
-        @Body timeRequired: String,
-        @Body peopleLimit: Int
+        @Query("id") busId: Int,
+        @Body request: UpdateBusRequest
     ): Response<Any>
 
-    @PUT("bus/self")
+    @PATCH("bus/apply/{busId}")
     suspend fun updateBusApply(
-        @Body request: UpdateBusApplyRequest
+        @Path("busId") busId: Int
     ): Response<Any>
 
-    @DELETE("bus")
+    @DELETE("bus/{id}")
     suspend fun deleteBus(
-        @Body idx: Int
+        @Path("id") idx: Int
     ): Response<Any>
 
-    @DELETE("bus/self")
+    @DELETE("bus/apply/{busId}")
     suspend fun deleteBusApply(
-        @Query("idx") busIdx: Int
+        @Path("busId") busId: Int
     ): Response<Any>
 }

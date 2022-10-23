@@ -12,21 +12,24 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_margin="20dp"
+        android:layout_marginStart="@dimen/default_card_content_margin"
+        android:layout_marginEnd="@dimen/default_card_content_margin"
+        android:layout_marginBottom="@dimen/default_card_height_margin"
         app:cardCornerRadius="@dimen/card_corner"
         app:cardElevation="@dimen/card_elevation"
         android:id="@+id/bus_card">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:id="@+id/background_layout">
 
             <ImageView
                 android:id="@+id/iv_bus"
                 android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="30dp"
-                android:layout_marginBottom="7dp"
+                android:layout_marginBottom="20dp"
                 android:src="@drawable/ic_bus"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +43,6 @@
                 android:layout_gravity="end|center_vertical"
                 android:layout_marginHorizontal="5dp"
                 android:text="@{bus.peopleCount}"
-                app:layout_constraintBottom_toBottomOf="@id/iv_bus"
                 app:layout_constraintEnd_toEndOf="@id/iv_bus"
                 app:layout_constraintStart_toStartOf="@id/iv_bus"
                 app:layout_constraintTop_toBottomOf="@id/iv_bus"
@@ -77,34 +79,28 @@
                     app:layout_constraintTop_toTopOf="@id/iv_bus"
                     tools:text="버스 이름" />
 
-                <TextView
-                    android:id="@+id/tv_bus_ride_possible"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:background="@drawable/background_bus_ride_possible"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="@{bus.rideable}"
-                    android:textColor="@color/color_white"
-                    android:textSize="@dimen/title7"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_bus_title"
-                    app:layout_constraintStart_toEndOf="@id/tv_bus_title"
-                    app:layout_constraintTop_toTopOf="@id/tv_bus_title"
-                    tools:text="탑승가능" />
-
             </LinearLayout>
 
+            <ImageView
+                android:id="@+id/tv_bus_ride_possible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_circle_blue_light"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/title7"
+                app:layout_constraintStart_toStartOf="@id/menu"
+                app:layout_constraintEnd_toEndOf="@id/menu"
+                app:layout_constraintTop_toTopOf="@id/menu"
+                tools:text="탑승가능" />
 
             <LinearLayout
                 android:id="@+id/layout_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:orientation="horizontal"
+                android:layout_marginTop="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/layout_bus_info"
@@ -120,7 +116,7 @@
                     android:includeFontPadding="false"
                     android:text="@string/text_bus_start_time"
                     android:textColor="@color/color_black"
-                    android:textSize="@dimen/title6" />
+                    android:textSize="@dimen/title5" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -129,21 +125,21 @@
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
                     android:text="@{bus.leaveTime}"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/title5"
+                    android:textColor="@color/gray700"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/title6"
                     tools:text="9월 6일 12시 30분" />
 
             </LinearLayout>
-            <TextView
+            <ImageView
                 android:id="@+id/menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/_kebab"
-                android:textAppearance="?android:textAppearanceLarge"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@id/layout_bus_info"
-               android:padding="5dp"
-                android:paddingEnd="15dp"/>
+                app:layout_constraintTop_toTopOf="@id/iv_bus"
+                app:layout_constraintEnd_toEndOf="@id/layout_bus_info"
+                android:src="@drawable/ic_cancel"
+                android:visibility="invisible"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

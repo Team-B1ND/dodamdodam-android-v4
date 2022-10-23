@@ -5,5 +5,5 @@ data class AddBusRequest(
     val description: String,
     val leaveTime: String,
     val timeRequired: String,
-    val peopleLimit: Int
+    val peopleLimit: Int = 0
 )

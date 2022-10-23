@@ -76,13 +76,13 @@
     <string name="title_it_map">여기 선배 it을 지도?</string>
     <string name="text_it_map_desc">졸업한 선배의 회사를 알고싶다면</string>
     <string name="text_search">검색</string>
-    <string name="text_write_comment">댓들 달기</string>
-    <string name="text_input_comment">댓글 입력...</string>
+    <string name="text_write_comment">댓글 달기</string>
+    <string name="text_input_comment">댓글 입력…</string>
     <string name="title_comment">댓글</string>
     <string name="title_write_lost_found">분실물 작성</string>
     <string name="text_lost">분실물</string>
     <string name="text_found">습득물</string>
-    <string name="text_location">장소 (빈칸 허용)</string>
+    <string name="text_location">장소 (필수 X)</string>
     <string name="text_title">제목</string>
     <string name="text_content">내용</string>
     <string name="text_image_delete">사진 삭제</string>
@@ -155,6 +155,9 @@
     <string name="text_study_room">자습실</string>
     <string name="title_point">상벌점 조회</string>
     <string name="text_navigate_sign_up">도담도담 계정이 없어요</string>
+    <string name="text_my_lostfound">내 게시물</string>
+    <string name="text_edit_comment">댓글을 수정하시겠습니까?</string>
+    <string name="delete">삭제</string>
     <string name="text_dodam_desc">더 나은 학교를 만들기 위해 함께하는</string>
     <string name="text_dodam_main_desc">B1ND 스마트 스쿨</string>
     <string name="text_copy_link">링크 복사</string>

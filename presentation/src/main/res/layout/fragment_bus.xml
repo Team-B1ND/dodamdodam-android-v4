@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="kr.hs.dgsw.smartschool.dodamdodam.features.bus.BusViewModel" />
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.bus.main.BusViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,20 +42,6 @@
                 app:layout_constraintStart_toEndOf="@id/btn_back" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_regular"
-            tools:text="2022-07-24"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_title"
-            android:textColor="@color/color_black"
-            android:textSize="@dimen/title3" />
-
         <include
             android:id="@+id/progress_circular_info"
             layout="@layout/item_loading_progressbar"
@@ -79,21 +65,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_regular"
+            tools:text="2022-07-24"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_title"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/title3" />
 
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_date"
-                android:orientation="vertical"
-                android:id="@+id/recycler_bus"
-                android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_bus"
-                tools:itemCount="4" />
+           <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+               android:layout_width="match_parent"
+               android:layout_height="0dp"
+               android:id="@+id/swipe_refresh_layout"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintTop_toBottomOf="@id/tv_date">
+               <androidx.recyclerview.widget.RecyclerView
+                   android:layout_width="0dp"
+                   android:layout_height="0dp"
+                   android:orientation="vertical"
+                   android:id="@+id/recycler_bus"
+                   android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
+                   app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                   tools:listitem="@layout/item_bus"
+                   tools:itemCount="4" />
+           </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
