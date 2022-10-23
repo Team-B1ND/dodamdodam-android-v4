@@ -7,14 +7,14 @@ import kotlinx.coroutines.flow.launchIn
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.upload.UploadImgUseCase
+import kr.hs.dgsw.smartschool.domain.usecase.upload.UploadFileUseCase
 import java.io.File
 import javax.inject.Inject
 
 @HiltViewModel
 class LostFoundWriteViewModel @Inject constructor(
     private val useCases: LostFoundUseCases,
-    private val imageUseCase: UploadImgUseCase
+    private val uploadFileUseCase: UploadFileUseCase
 ) : BaseViewModel() {
     val isLost = MutableLiveData<Boolean>(true)
     val isFound = MutableLiveData<Boolean>(false)
@@ -57,9 +57,9 @@ class LostFoundWriteViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
     private fun imageUpload(file: File) {
-        imageUseCase(file).divideResult(
+        uploadFileUseCase(file).divideResult(
             isModifyLostFoundLoading,
-            { url = it?.url!! },
+            { url = it },
             {}
         )
     }

@@ -1,11 +1,14 @@
 package kr.hs.dgsw.smartschool.data.datasource
 
+import android.util.Base64
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.database.cache.TokenCache
 import kr.hs.dgsw.smartschool.data.database.entity.TokenEntity
 import kr.hs.dgsw.smartschool.data.mapper.TokenMapper
 import kr.hs.dgsw.smartschool.data.network.remote.TokenRemote
 import kr.hs.dgsw.smartschool.domain.model.token.Token
+import org.json.JSONException
+import org.json.JSONObject
 import javax.inject.Inject
 
 class TokenDataSource @Inject constructor(
@@ -15,7 +18,7 @@ class TokenDataSource @Inject constructor(
 
     private val tokenMapper = TokenMapper()
 
-    // private val PAYLOAD_MEMBER_ID = "memberId"
+    private val PAYLOAD_MEMBER_ID = "memberId"
 
     suspend fun insertToken(token: Token) = cache.insertToken(tokenMapper.mapToEntity(token))
 
@@ -33,7 +36,7 @@ class TokenDataSource @Inject constructor(
             .let { newToken -> TokenEntity(newToken, token.refreshToken) }
             .also { cache.insertToken(it) }
 
-/*    suspend fun getMyId(): String = getId(tokenMapper.mapToModel(getToken()))
+    suspend fun getMyId(): String = getId(tokenMapper.mapToModel(getToken()))
 
     private fun getId(token: Token): String {
         return try {
@@ -51,5 +54,5 @@ class TokenDataSource @Inject constructor(
         } catch (ignore: JSONException) {
             null
         }
-    }*/
+    }
 }

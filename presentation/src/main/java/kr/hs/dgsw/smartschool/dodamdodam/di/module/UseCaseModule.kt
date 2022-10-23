@@ -7,6 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.domain.repository.AccountRepository
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.repository.DataSetUpRepository
+import kr.hs.dgsw.smartschool.domain.repository.FileUploadRepository
 import kr.hs.dgsw.smartschool.domain.repository.ItMapRepository
 import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
 import kr.hs.dgsw.smartschool.domain.repository.MealRepository
@@ -87,6 +88,7 @@ import kr.hs.dgsw.smartschool.domain.usecase.token.DeleteToken
 import kr.hs.dgsw.smartschool.domain.usecase.token.GetToken
 import kr.hs.dgsw.smartschool.domain.usecase.token.TokenUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.token.UpdateNewToken
+import kr.hs.dgsw.smartschool.domain.usecase.upload.UploadFileUseCase
 import javax.inject.Singleton
 
 @Module
@@ -219,7 +221,11 @@ class UseCaseModule {
     fun provideItMapUseCases(itMapRepository: ItMapRepository): ItMapUseCases =
         ItMapUseCases(
             getAllCompanies = GetAllCompanies(itMapRepository),
-            getCompanyById = GetCompanyById(itMapRepository),
-
+            getCompanyById = GetCompanyById(itMapRepository)
         )
+
+    @Provides
+    @Singleton
+    fun provideUploadFileUseCase(fileUploadRepository: FileUploadRepository): UploadFileUseCase =
+        UploadFileUseCase(fileUploadRepository)
 }
