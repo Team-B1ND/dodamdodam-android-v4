@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@+id/start"
+        app:duration="500">
+
+        <KeyFrameSet>
+            <KeyAttribute
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                motion:framePosition="0"
+                motion:motionTarget="@id/iv_laptop"
+                motion:transitionEasing="decelerate"
+                android:alpha="0"/>
+
+            <KeyAttribute
+                android:scaleX="1"
+                android:scaleY="1"
+                motion:framePosition="100"
+                motion:motionTarget="@id/iv_laptop"
+                motion:transitionEasing="decelerate"
+                android:alpha="1"/>
+        </KeyFrameSet>
+
+        <KeyFrameSet>
+            <KeyAttribute
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                motion:framePosition="0"
+                motion:motionTarget="@id/iv_mobile"
+                motion:transitionEasing="decelerate"
+                android:alpha="0"/>
+
+            <KeyAttribute
+                android:scaleX="1"
+                android:scaleY="1"
+                motion:framePosition="100"
+                motion:motionTarget="@id/iv_mobile"
+                motion:transitionEasing="decelerate"
+                android:alpha="1"/>
+        </KeyFrameSet>
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/iv_laptop"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintVertical_bias="0.8"/>
+
+        <Constraint
+            android:id="@+id/iv_mobile"
+            android:layout_width="100dp"
+            android:layout_height="130dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintVertical_bias="0.8"/>
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+
+        <Constraint
+            android:id="@+id/iv_laptop"
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintVertical_bias="0.75"/>
+
+        <Constraint
+            android:id="@+id/iv_mobile"
+            android:layout_width="100dp"
+            android:layout_height="130dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintVertical_bias="0.7"/>
+
+    </ConstraintSet>
+
+</MotionScene>

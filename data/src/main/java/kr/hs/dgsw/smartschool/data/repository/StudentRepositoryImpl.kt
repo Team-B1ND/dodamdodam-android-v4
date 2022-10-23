@@ -16,8 +16,8 @@ class StudentRepositoryImpl @Inject constructor(
     override suspend fun getMyInfo(): Student =
         studentDataSource.getMyInfo()
 
-    override suspend fun changeMemberInfo(request: ModifyMemberInfoRequest): String =
-        studentDataSource.changeMemberInfo(request)
+    override suspend fun modifyMemberInfo(request: ModifyMemberInfoRequest): String =
+        studentDataSource.modifyMemberInfo(request)
 
     override suspend fun getAllStudent(): List<Student> =
         studentDataSource.getAllStudent().map { studentEntity -> studentMapper.mapToModel(studentEntity) }

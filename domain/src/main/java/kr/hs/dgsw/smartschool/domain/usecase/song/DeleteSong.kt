@@ -8,9 +8,9 @@ import javax.inject.Inject
 
 class DeleteSong @Inject constructor(
     private val songRepository: SongRepository
-) : BaseUseCase<String, String>() {
+) : BaseUseCase<Int, String>() {
 
-    override fun invoke(params: String): Flow<Resource<String>> = execute {
+    override fun invoke(params: Int): Flow<Resource<String>> = execute {
         songRepository.deleteSong(params)
     }
 }

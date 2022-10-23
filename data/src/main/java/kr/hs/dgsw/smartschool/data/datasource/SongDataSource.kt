@@ -3,7 +3,7 @@ package kr.hs.dgsw.smartschool.data.datasource
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.SongRemote
 import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
-import kr.hs.dgsw.smartschool.domain.model.song.melon.MelonChart
+import kr.hs.dgsw.smartschool.domain.model.song.melon.SongChart
 import kr.hs.dgsw.smartschool.domain.request.song.SongRequest
 import javax.inject.Inject
 
@@ -14,13 +14,13 @@ class SongDataSource @Inject constructor(
 
     suspend fun applySong(request: SongRequest): String = remote.applySong(request)
 
-    suspend fun deleteSong(id: String): String = remote.deleteSong(id)
+    suspend fun deleteSong(id: Int): String = remote.deleteSong(id)
 
     suspend fun getAllowSong(year: Int, month: Int, day: Int): List<VideoSongData> = remote.getAllowSong(year, month, day)
 
     suspend fun getPendingSong(): List<VideoSongData> = remote.getPendingSong()
 
-    suspend fun getMySong(id: String): List<VideoSongData> = remote.getMySong(id)
+    suspend fun getMySong(): List<VideoSongData> = remote.getMySong()
 
-    suspend fun getMelonChart(): List<MelonChart> = remote.getMelonChart()
+    suspend fun getMelonChart(): List<SongChart> = remote.getSongChart()
 }

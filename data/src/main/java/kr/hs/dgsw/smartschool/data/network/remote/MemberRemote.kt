@@ -18,7 +18,7 @@ class MemberRemote @Inject constructor(
     suspend fun getMembers(): MemberData =
         api.getMembers().data
 
-    suspend fun changeMemberInfo(request: ModifyMemberInfoRequest): String =
+    suspend fun modifyMemberInfo(request: ModifyMemberInfoRequest): String =
         api.modifyMemberInfo(request).message
 
     suspend fun deleteMember(memberId: String): String =

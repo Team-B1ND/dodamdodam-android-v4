@@ -9,7 +9,6 @@ import kr.hs.dgsw.smartschool.domain.request.studyroom.StudyRoomRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
-import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -20,7 +19,7 @@ interface StudyRoomApi {
         @Body request: StudyRoomRequest
     ): Response<Any>
 
-    @PATCH("study-room")
+    @POST("study-room")
     suspend fun modifyAppliedStudyRoom(
         @Body request: StudyRoomRequest
     ): Response<Any>

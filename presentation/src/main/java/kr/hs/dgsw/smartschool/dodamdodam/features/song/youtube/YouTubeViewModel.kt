@@ -43,7 +43,7 @@ class YouTubeViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
-    fun applyWakeUpSong(url: String) {
+    private fun applyWakeUpSong(url: String) {
         songUseCases.applySong(url).divideResult(
             isApplySongLoading,
             { viewModelScope.launch { _applySongState.emit(ApplySongState(it ?: "기상송 신청에 성공했습니다.")) } },
@@ -73,9 +73,14 @@ class YouTubeViewModel @Inject constructor(
         viewEvent(EVENT_ON_CLICK_THUMBNAIL)
     }
 
+    fun onClickCopy() {
+        viewEvent(EVENT_ON_CLICK_COPY)
+    }
+
     companion object {
         const val EVENT_ON_SEARCH_TITLE_ERROR = 1
         const val EVENT_ON_CLICK_BACK = 2
         const val EVENT_ON_CLICK_THUMBNAIL = 3
+        const val EVENT_ON_CLICK_COPY = 4
     }
 }

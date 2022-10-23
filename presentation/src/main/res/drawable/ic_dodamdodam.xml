@@ -1,0 +1,29 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <group
+        android:pivotX="25"
+        android:pivotY="50"
+        android:scaleX="0.15"
+        android:scaleY="0.15">
+        <path
+            android:name="first_do"
+            android:fillColor="#0067BC"
+            android:pathData="@string/path_dodam_first_do" />
+        <path
+            android:name="first_dam"
+            android:fillColor="#0067BC"
+            android:pathData="@string/path_dodam_first_dam" />
+        <path
+            android:name="second_do"
+            android:fillColor="#0067BC"
+            android:pathData="@string/path_dodam_second_do" />
+        <path
+            android:name="second_dam"
+            android:fillColor="#0067BC"
+            android:pathData="@string/path_dodam_second_dam" />
+    </group>
+</vector>

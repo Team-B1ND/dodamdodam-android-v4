@@ -5,7 +5,7 @@ import kr.hs.dgsw.smartschool.domain.request.member.ModifyMemberInfoRequest
 
 interface StudentRepository {
     suspend fun getMyInfo(): Student
-    suspend fun changeMemberInfo(request: ModifyMemberInfoRequest): String
+    suspend fun modifyMemberInfo(request: ModifyMemberInfoRequest): String
     suspend fun getAllStudent(): List<Student>
     suspend fun getStudent(id: String): Student
 }

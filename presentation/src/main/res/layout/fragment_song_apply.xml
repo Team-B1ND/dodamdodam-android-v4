@@ -83,40 +83,33 @@
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/title5" />
 
-                <androidx.cardview.widget.CardView
+                <EditText
+                    android:id="@+id/et_link"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="match_parent"
                     android:layout_marginHorizontal="@dimen/default_margin"
                     android:layout_marginTop="10dp"
-                    android:backgroundTint="@color/color_white"
-                    app:cardCornerRadius="15dp"
-                    app:cardElevation="@dimen/card_elevation">
+                    android:background="@drawable/background_song_edittext"
+                    android:fontFamily="@font/noto_regular"
+                    android:hint="@string/text_youtube_link_hint"
+                    android:importantForAutofill="no"
+                    android:includeFontPadding="false"
+                    android:inputType="textUri"
+                    android:padding="@dimen/default_item_radius"
+                    android:text="@={vm.applyUrl}"
+                    android:textColor="@color/color_black"
+                    android:textSize="15sp" />
 
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:fontFamily="@font/noto_regular"
-                        android:hint="@string/text_youtube_link_hint"
-                        android:importantForAutofill="no"
-                        android:includeFontPadding="false"
-                        android:inputType="textUri"
-                        android:padding="@dimen/default_item_radius"
-                        android:text="@={vm.applyUrl}"
-                        android:textColor="@color/color_black"
-                        android:textSize="15sp" />
-
-                </androidx.cardview.widget.CardView>
 
                 <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="@dimen/default_margin"
                     android:layout_marginTop="10dp"
-                    app:backgroundTint="@color/color_song"
                     android:onClick="@{() -> vm.checkUrl()}"
                     android:text="@string/text_apply"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/color_song" />
 
 
                 <TextView
@@ -131,39 +124,31 @@
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/title5" />
 
-                <androidx.cardview.widget.CardView
+                <EditText
+                    android:id="@+id/et_title"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/noto_regular"
+                    android:hint="@string/text_song_title"
+                    android:importantForAutofill="no"
+                    android:includeFontPadding="false"
+                    android:background="@drawable/background_song_edittext"
+                    android:inputType="text"
                     android:layout_marginHorizontal="@dimen/default_margin"
                     android:layout_marginTop="10dp"
-                    android:backgroundTint="@color/color_white"
-                    app:cardCornerRadius="@dimen/default_item_radius"
-                    app:cardElevation="@dimen/card_elevation">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:fontFamily="@font/noto_regular"
-                        android:hint="@string/text_song_title"
-                        android:importantForAutofill="no"
-                        android:includeFontPadding="false"
-                        android:inputType="text"
-                        android:padding="15dp"
-                        android:text="@={vm.searchSongTitle}"
-                        android:textColor="@color/color_black"
-                        android:textSize="15sp" />
-
-                </androidx.cardview.widget.CardView>
+                    android:padding="15dp"
+                    android:text="@={vm.searchSongTitle}"
+                    android:textColor="@color/color_black"
+                    android:textSize="15sp" />
 
                 <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="@dimen/default_margin"
                     android:layout_marginTop="10dp"
-                    app:backgroundTint="@color/color_song"
                     android:onClick="@{() -> vm.checkSearchTitle()}"
-                    android:text="@string/text_do_search" />
+                    android:text="@string/text_do_search"
+                    app:backgroundTint="@color/color_song" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_recommend"

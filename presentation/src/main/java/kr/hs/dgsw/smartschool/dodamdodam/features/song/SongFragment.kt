@@ -130,6 +130,7 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>(), ApplySo
                 if (state.message != null) {
                     viewModel.getMySong()
                     viewModel.getApplySong()
+                    shortToast("기상송을 삭제했습니다")
                 }
 
                 if (state.error.isNotBlank()) {
@@ -148,7 +149,7 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>(), ApplySo
             applySongAdapter.submitList(pendingSongList)
         } else {
             mySongList.forEach { mySong ->
-                Log.d("CRS", mySong.videoTitle)
+                Log.d("CRS", mySong.videoTitle ?: "")
             }
             if (mySongList.isEmpty()) {
                 viewModel.getMySong()
@@ -183,7 +184,7 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>(), ApplySo
         this@SongFragment.openVideoFromUrl(url)
     }
 
-    override fun onClickDelete(itemId: String) {
+    override fun onClickDelete(itemId: Int) {
         viewModel.deleteSong(itemId)
     }
 

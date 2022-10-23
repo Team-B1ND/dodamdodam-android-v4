@@ -1,5 +1,8 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.song.youtube
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -31,6 +34,12 @@ class YouTubeFragment : BaseFragment<FragmentYoutubeBinding, YouTubeViewModel>()
                 YouTubeViewModel.EVENT_ON_SEARCH_TITLE_ERROR -> shortToast(viewModel.errorMessage)
                 YouTubeViewModel.EVENT_ON_CLICK_BACK -> findNavController().popBackStack()
                 YouTubeViewModel.EVENT_ON_CLICK_THUMBNAIL -> this.openVideoFromUrl(viewModel.url.value ?: "https://www.youtube.com/watch?v=TqIAndOnd74")
+                YouTubeViewModel.EVENT_ON_CLICK_COPY -> {
+                    val clipboard: ClipboardManager = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                    val clip: ClipData = ClipData.newPlainText("youtubeUrl", viewModel.url.value)
+                    clipboard.setPrimaryClip(clip)
+                    shortToast("클립보드에 복사되었습니다.")
+                }
             }
         }
     }
@@ -76,9 +85,8 @@ class YouTubeFragment : BaseFragment<FragmentYoutubeBinding, YouTubeViewModel>()
                 .centerCrop()
                 .into(mBinding.ivThumbnail)
 
-            mBinding.tvTitle.text =
-                HtmlCompat.fromHtml(item.snippet.title, HtmlCompat.FROM_HTML_MODE_LEGACY)
-            mBinding.tvLink.text = viewModel.url.value
+            mBinding.tvTitle.text = args.title
+            mBinding.tvSubTitle.text = HtmlCompat.fromHtml(item.snippet.title, HtmlCompat.FROM_HTML_MODE_LEGACY)
         } catch (e: IndexOutOfBoundsException) {
             shortToast("검색 결과가 없습니다.")
         }

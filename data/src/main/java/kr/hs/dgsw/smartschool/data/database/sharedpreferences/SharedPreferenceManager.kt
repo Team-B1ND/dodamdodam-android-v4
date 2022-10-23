@@ -9,15 +9,15 @@ object SharedPreferenceManager {
     private const val PREF_DARK_MODE = "pref_daylight"
     private const val PREF_IS_LOGIN = "is_login"
 
-    fun getIsSignIn(context: Context): Boolean {
+    fun getIsLogin(context: Context): Boolean {
         return getDefaultSharedPreferences(context).getBoolean(PREF_IS_LOGIN, false)
     }
 
-    fun signIn(context: Context) {
+    fun login(context: Context) {
         getDefaultSharedPreferences(context).edit().putBoolean(PREF_IS_LOGIN, true).apply()
     }
 
-    fun signOut(context: Context) {
+    fun logout(context: Context) {
         getDefaultSharedPreferences(context).edit().putBoolean(PREF_IS_LOGIN, false).apply()
     }
 

@@ -40,8 +40,8 @@ class SongViewModel @Inject constructor(
     private val _getMyAccountState = MutableStateFlow<GetMyAccountState>(GetMyAccountState())
     val getMyAccountState: StateFlow<GetMyAccountState> = _getMyAccountState
 
-    private val _deleteSongState = MutableStateFlow<DeleteSongState>(DeleteSongState())
-    val deleteSongState: StateFlow<DeleteSongState> = _deleteSongState
+    private val _deleteSongState = MutableSharedFlow<DeleteSongState>()
+    val deleteSongState: SharedFlow<DeleteSongState> = _deleteSongState
 
     val myId = MutableLiveData<String>()
     val songType = MutableLiveData(true)
@@ -96,18 +96,18 @@ class SongViewModel @Inject constructor(
     }
 
     fun getMySong() {
-        songUseCases.getMySong(myId.value ?: "").divideResult(
+        songUseCases.getMySong(Unit).divideResult(
             isGetMySongLoading,
             { songList -> _getMySongState.value = GetMySongState(songList = songList ?: emptyList()) },
             { error -> _getMySongState.value = GetMySongState(error = error ?: "기상송을 받아오지 못했습니다.") }
         ).launchIn(viewModelScope)
     }
 
-    fun deleteSong(id: String) {
+    fun deleteSong(id: Int) {
         songUseCases.deleteSong(id).divideResult(
             isDeleteSongLoading,
-            { _deleteSongState.value = DeleteSongState(message = it) },
-            { _deleteSongState.value = DeleteSongState(error = it ?: "기상송 삭제에 실패했습니다.") }
+            { viewModelScope.launch { _deleteSongState.emit(DeleteSongState(message = it)) } },
+            { viewModelScope.launch { _deleteSongState.emit(DeleteSongState(error = it ?: "기상송 삭제에 실패했습니다.")) } }
         ).launchIn(viewModelScope)
     }
 
