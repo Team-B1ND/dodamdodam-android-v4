@@ -1,8 +1,14 @@
 package kr.hs.dgsw.smartschool.data.network.interceptor
 
+import android.util.Log
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.sync.Mutex
+import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
 import kr.hs.dgsw.smartschool.data.datasource.AccountDataSource
 import kr.hs.dgsw.smartschool.data.exception.TokenException
 import kr.hs.dgsw.smartschool.data.util.AppDispatchers
@@ -23,13 +29,17 @@ class TokenInterceptor @Inject constructor(
     private val accountDataSource: AccountDataSource,
     private val appDispatcher: AppDispatchers
 ) : Interceptor {
-    private val mutex = Mutex()
 
     private val TOKEN_ERROR = 401
     private val TOKEN_HEADER = "Authorization"
 
     private lateinit var token: Token
     private lateinit var response: Response
+    private lateinit var account: AccountEntity
+
+    private val getAccountJob = CoroutineScope(appDispatcher.io).launch {
+        account = accountDataSource.getAccount()
+    }
 
     override fun intercept(chain: Interceptor.Chain): Response {
         setToken()
@@ -87,9 +97,12 @@ class TokenInterceptor @Inject constructor(
     }
 
     private fun getTokenToLogin() {
+        Log.d("TokenTest", "getTokenToLogin: GetTokenLogin")
         runBlocking(appDispatcher.io) {
             // 계정을 DB에서 받아옴
-            val account = accountDataSource.getAccount()
+            getAccountJob.join()
+
+            // 문제의 지점...
             loginUseCase(LoginUseCase.Params(account.id, account.pw, false)).onEach {
                 if (it is Resource.Success) {
                     // 성공 시 로그인 딴에서 DB에 token 값을 저장하므로 DB에서 token을 가져오는 작업 수행
@@ -97,7 +110,7 @@ class TokenInterceptor @Inject constructor(
                 } else if (it is Resource.Error) {
                     throw TokenException("세션이 만료되었습니다.")
                 }
-            }
+            }.launchIn(CoroutineScope(appDispatcher.io))
         }
     }
 
