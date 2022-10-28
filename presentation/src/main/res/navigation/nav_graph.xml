@@ -126,6 +126,14 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/main_song"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_songApplyFragment_to_songSearchFragment"
+            app:destination="@id/songSearchFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/songApplyFragment" />
     </fragment>
     <fragment
         android:id="@+id/outFragment"
@@ -250,4 +258,8 @@
             android:defaultValue="0"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/songSearchFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.search.SongSearchFragment"
+        android:label="SongSearchFragment" />
 </navigation>

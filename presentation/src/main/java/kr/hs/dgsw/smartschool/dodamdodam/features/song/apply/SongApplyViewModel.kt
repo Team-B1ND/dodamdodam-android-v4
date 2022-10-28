@@ -69,16 +69,6 @@ class SongApplyViewModel @Inject constructor(
         }
     }
 
-    fun checkSearchTitle() {
-        if (searchSongTitle.value.isNullOrBlank()) {
-            errorMessage = "검색어를 입력해주세요!"
-            viewEvent(EVENT_ON_SEARCH_TITLE_ERROR)
-            return
-        }
-
-        viewEvent(EVENT_ON_CLICK_SEARCH)
-    }
-
     private fun getMelonChart() {
         songUseCases.getMelonChart(Unit).divideResult(
             isMelonChartLoading,
@@ -98,11 +88,14 @@ class SongApplyViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
+    fun onClickSearch() {
+        viewEvent(EVENT_ON_CLICK_SEARCH)
+    }
+
     companion object {
         const val EVENT_ON_CLICK_BACK = 0
         const val EVENT_ON_URL_ERROR = 1
         const val EVENT_ON_SUCCESS_APPLY = 2
         const val EVENT_ON_CLICK_SEARCH = 3
-        const val EVENT_ON_SEARCH_TITLE_ERROR = 4
     }
 }

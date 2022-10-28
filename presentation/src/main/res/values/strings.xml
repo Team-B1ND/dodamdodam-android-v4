@@ -162,5 +162,7 @@
     <string name="text_dodam_main_desc">B1ND 스마트 스쿨</string>
     <string name="text_copy_link">링크 복사</string>
     <string name="text_calorie_unit">Kcal</string>
+    <string name="text_song_search_hint">노래, 앨범, 아티스트 검색</string>
+    <string name="text_apply_short">신청</string>
 
 </resources>

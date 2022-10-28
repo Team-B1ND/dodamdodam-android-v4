@@ -4,6 +4,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentSongApplyBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.RecommendSongAdapter
@@ -22,8 +23,7 @@ class SongApplyFragment : BaseFragment<FragmentSongApplyBinding, SongApplyViewMo
             when (event) {
                 SongApplyViewModel.EVENT_ON_CLICK_BACK -> popBackStack()
                 SongApplyViewModel.EVENT_ON_URL_ERROR -> shortToast(viewModel.errorMessage)
-                SongApplyViewModel.EVENT_ON_CLICK_SEARCH -> searchYouTubeVideo(viewModel.searchSongTitle.value ?: "아이와 나의 바다")
-                SongApplyViewModel.EVENT_ON_SEARCH_TITLE_ERROR -> shortToast(viewModel.errorMessage)
+                SongApplyViewModel.EVENT_ON_CLICK_SEARCH -> findNavController().navigate(R.id.action_songApplyFragment_to_songSearchFragment)
                 SongApplyViewModel.EVENT_ON_SUCCESS_APPLY -> successApplySong()
             }
         }
