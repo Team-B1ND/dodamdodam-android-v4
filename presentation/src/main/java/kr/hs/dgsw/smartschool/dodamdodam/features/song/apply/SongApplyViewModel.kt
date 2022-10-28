@@ -22,8 +22,6 @@ class SongApplyViewModel @Inject constructor(
     val applyUrl = MutableLiveData<String>()
     var errorMessage = ""
 
-    val searchSongTitle = MutableLiveData<String>()
-
     private val _getMelonChartState = MutableStateFlow<GetMelonChartState>(GetMelonChartState())
     val getMelonChartState: StateFlow<GetMelonChartState> = _getMelonChartState
 

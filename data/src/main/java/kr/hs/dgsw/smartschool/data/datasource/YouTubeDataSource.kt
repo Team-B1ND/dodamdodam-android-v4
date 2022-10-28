@@ -10,5 +10,5 @@ class YouTubeDataSource @Inject constructor(
     override val cache: Any
 ) : BaseDataSource<YouTubeRemote, Any> {
 
-    suspend fun getYouTubeVideo(content: String): YoutubeVideo = remote.getYouTubeVideo(content)
+    suspend fun getYouTubeVideo(content: String, maxResults: Int): YoutubeVideo = remote.getYouTubeVideo(content, maxResults)
 }

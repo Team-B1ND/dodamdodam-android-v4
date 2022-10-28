@@ -9,7 +9,7 @@ class YouTubeRepositoryImpl @Inject constructor(
     private val youTubeDataSource: YouTubeDataSource
 ) : YouTubeRepository {
 
-    override suspend fun getYoutubeVideo(content: String): YoutubeVideo {
-        return youTubeDataSource.getYouTubeVideo(content)
+    override suspend fun getYoutubeVideo(content: String, maxResults: Int): YoutubeVideo {
+        return youTubeDataSource.getYouTubeVideo(content, maxResults)
     }
 }

@@ -31,7 +31,6 @@ class YouTubeFragment : BaseFragment<FragmentYoutubeBinding, YouTubeViewModel>()
 
         bindingViewEvent { event ->
             when (event) {
-                YouTubeViewModel.EVENT_ON_SEARCH_TITLE_ERROR -> shortToast(viewModel.errorMessage)
                 YouTubeViewModel.EVENT_ON_CLICK_BACK -> findNavController().popBackStack()
                 YouTubeViewModel.EVENT_ON_CLICK_THUMBNAIL -> this.openVideoFromUrl(viewModel.url.value ?: "https://www.youtube.com/watch?v=TqIAndOnd74")
                 YouTubeViewModel.EVENT_ON_CLICK_COPY -> {

@@ -9,6 +9,6 @@ class YouTubeRemote @Inject constructor(
     override val api: YouTubeApi
 ) : BaseRemote<YouTubeApi>() {
 
-    suspend fun getYouTubeVideo(content: String): YoutubeVideo =
-        api.getYouTubeVideo(content = content)
+    suspend fun getYouTubeVideo(content: String, maxResults: Int): YoutubeVideo =
+        api.getYouTubeVideo(content = content, maxResults = maxResults)
 }

@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="song"
-            type="kr.hs.dgsw.smartschool.domain.model.song.VideoSongData" />
+            name="item"
+            type="kr.hs.dgsw.smartschool.domain.model.song.youtube.Item" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +29,7 @@
 
             <ImageView
                 android:id="@+id/iv_song"
-                songThumbnail="@{song.thumbnailUrl}"
+                songThumbnail="@{item.snippet.thumbnails.medium.url}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -47,7 +47,7 @@
             android:fontFamily="@font/noto_medium"
             android:includeFontPadding="false"
             android:maxLines="3"
-            android:text="@{song.videoTitle}"
+            android:text="@{item.snippet.title}"
             android:textColor="@color/color_black"
             android:textSize="@dimen/title5"
             app:layout_constraintBottom_toBottomOf="@id/card_image_container"

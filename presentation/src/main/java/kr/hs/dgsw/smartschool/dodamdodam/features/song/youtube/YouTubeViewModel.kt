@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.ApplySongState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetYoutubeVideoState
+import kr.hs.dgsw.smartschool.domain.usecase.song.GetYouTubeVideo
 import kr.hs.dgsw.smartschool.domain.usecase.song.SongUseCases
 import javax.inject.Inject
 
@@ -26,7 +27,6 @@ class YouTubeViewModel @Inject constructor(
 
     val url = MutableLiveData<String>()
     var errorMessage = ""
-    val searchSongTitle = MutableLiveData<String>()
 
     private val isApplySongLoading = MutableLiveData(false)
     private val isGetYouTubeVideoLoading = MutableLiveData(false)
@@ -36,7 +36,7 @@ class YouTubeViewModel @Inject constructor(
     }
 
     fun getYouTubeVideo(title: String) {
-        songUseCases.getYouTubeVideo(title).divideResult(
+        songUseCases.getYouTubeVideo(GetYouTubeVideo.Params(title, 1)).divideResult(
             isGetYouTubeVideoLoading,
             { viewModelScope.launch { _getYouTubeVideoState.emit(GetYoutubeVideoState(youtubeVideo = it)) } },
             { viewModelScope.launch { _getYouTubeVideoState.emit(GetYoutubeVideoState(error = it ?: "영상을 받을 수 없습니다.")) } }
@@ -49,16 +49,6 @@ class YouTubeViewModel @Inject constructor(
             { viewModelScope.launch { _applySongState.emit(ApplySongState(it ?: "기상송 신청에 성공했습니다.")) } },
             { viewModelScope.launch { _applySongState.emit(ApplySongState(it ?: "기상송 신청에 실패했습니다.")) } }
         ).launchIn(viewModelScope)
-    }
-
-    fun checkSearchTitle() {
-        if (searchSongTitle.value.isNullOrBlank()) {
-            errorMessage = "검색어를 입력해주세요!"
-            viewEvent(EVENT_ON_SEARCH_TITLE_ERROR)
-            return
-        }
-
-        getYouTubeVideo(searchSongTitle.value ?: "아이와 나의 바다")
     }
 
     fun onClickApply() {
@@ -78,7 +68,6 @@ class YouTubeViewModel @Inject constructor(
     }
 
     companion object {
-        const val EVENT_ON_SEARCH_TITLE_ERROR = 1
         const val EVENT_ON_CLICK_BACK = 2
         const val EVENT_ON_CLICK_THUMBNAIL = 3
         const val EVENT_ON_CLICK_COPY = 4
