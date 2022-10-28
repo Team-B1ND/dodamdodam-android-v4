@@ -157,6 +157,32 @@
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/music_visualizer" />
 
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:onClick="@{() -> vm.onClickSearch()}"
+            app:layout_constraintStart_toStartOf="@id/btn_apply"
+            app:layout_constraintBottom_toTopOf="@id/btn_apply"
+            android:src="@drawable/ic_search"
+            android:layout_marginBottom="@dimen/default_margin"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_search_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_search_desc"
+            app:layout_constraintTop_toTopOf="@id/iv_search"
+            app:layout_constraintBottom_toBottomOf="@id/iv_search"
+            app:layout_constraintStart_toEndOf="@id/iv_search"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> vm.onClickSearch()}"
+            android:textColor="@color/color_black"
+            android:layout_marginStart="8dp"
+            android:textSize="@dimen/title5" />
+
         <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
             android:id="@+id/btn_apply"
             android:layout_width="match_parent"

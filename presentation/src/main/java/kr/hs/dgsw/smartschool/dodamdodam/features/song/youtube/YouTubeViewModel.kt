@@ -26,7 +26,6 @@ class YouTubeViewModel @Inject constructor(
     val applySongState: SharedFlow<ApplySongState> = _applySongState
 
     val url = MutableLiveData<String>()
-    var errorMessage = ""
 
     private val isApplySongLoading = MutableLiveData(false)
     private val isGetYouTubeVideoLoading = MutableLiveData(false)
@@ -67,9 +66,14 @@ class YouTubeViewModel @Inject constructor(
         viewEvent(EVENT_ON_CLICK_COPY)
     }
 
+    fun onClickSearch() {
+        viewEvent(EVENT_ON_CLICK_SEARCH)
+    }
+
     companion object {
         const val EVENT_ON_CLICK_BACK = 2
         const val EVENT_ON_CLICK_THUMBNAIL = 3
         const val EVENT_ON_CLICK_COPY = 4
+        const val EVENT_ON_CLICK_SEARCH = 5
     }
 }

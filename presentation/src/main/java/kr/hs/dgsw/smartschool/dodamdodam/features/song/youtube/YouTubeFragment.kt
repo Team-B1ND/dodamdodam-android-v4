@@ -39,6 +39,7 @@ class YouTubeFragment : BaseFragment<FragmentYoutubeBinding, YouTubeViewModel>()
                     clipboard.setPrimaryClip(clip)
                     shortToast("클립보드에 복사되었습니다.")
                 }
+                YouTubeViewModel.EVENT_ON_CLICK_SEARCH -> findNavController().navigate(R.id.action_youTubeFragment_to_songSearchFragment)
             }
         }
     }
