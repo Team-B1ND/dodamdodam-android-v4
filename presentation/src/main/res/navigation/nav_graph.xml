@@ -124,8 +124,7 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popUpTo="@id/main_song"
-            app:popUpToInclusive="false" />
+            app:popUpTo="@id/songApplyFragment" />
         <action
             android:id="@+id/action_songApplyFragment_to_songSearchFragment"
             app:destination="@id/songSearchFragment"

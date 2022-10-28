@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="kr.hs.dgsw.smartschool.dodamdodam.features.song.search.SongSearchViewModel" />
@@ -25,6 +27,7 @@
             <include
                 android:id="@+id/btn_back"
                 layout="@layout/item_back_button"
+                android:clickable="@{vm.isLoading ? false : true}"
                 android:onClick="@{() -> vm.onClickBack()}" />
 
             <EditText
@@ -56,6 +59,7 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:src="@drawable/ic_search"
+                android:clickable="@{vm.isLoading ? false : true}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -63,6 +67,18 @@
                 tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_loading"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:indeterminateTint="@color/color_song"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_song_search"
