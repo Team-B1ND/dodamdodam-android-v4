@@ -13,7 +13,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentProfileBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
-import kr.hs.dgsw.smartschool.domain.model.point.MyYearPoint
+import kr.hs.dgsw.smartschool.domain.model.point.Point
 import kr.hs.dgsw.smartschool.domain.model.point.PointPlace
 import kr.hs.dgsw.smartschool.domain.model.point.PointType
 import java.time.LocalDate
@@ -114,7 +114,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         }
     }
 
-    private fun dividePoint(yearPointList: List<MyYearPoint>) {
+    private fun dividePoint(yearPointList: List<Point>) {
         yearPointList.map { myYearPoint ->
             if (myYearPoint.pointReason.type == PointType.BONUS) {
 
