@@ -116,18 +116,19 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
 
     private fun dividePoint(yearPointList: List<Point>) {
         yearPointList.map { myYearPoint ->
-            if (myYearPoint.pointReason.type == PointType.BONUS) {
+            myYearPoint.log.map { pointLog ->
+                if (pointLog.type == PointType.BONUS) {
+                    if (pointLog.target == PointPlace.DORMITORY)
+                        dormitoryBonusPoint = pointLog.score
+                    else
+                        schoolBonusPoint = pointLog.score
+                } else if (pointLog.type == PointType.MINUS) {
 
-                if (myYearPoint.pointReason.place == PointPlace.DORMITORY)
-                    dormitoryBonusPoint = myYearPoint.pointReason.score
-                else
-                    schoolBonusPoint = myYearPoint.pointReason.score
-            } else if (myYearPoint.pointReason.type == PointType.MINUS) {
-
-                if (myYearPoint.pointReason.place == PointPlace.DORMITORY)
-                    dormitoryMinusPoint = myYearPoint.pointReason.score
-                else
-                    schoolMinusPoint = myYearPoint.pointReason.score
+                    if (pointLog.target == PointPlace.DORMITORY)
+                        dormitoryMinusPoint = pointLog.score
+                    else
+                        schoolMinusPoint = pointLog.score
+                }
             }
         }
     }

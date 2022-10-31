@@ -8,5 +8,6 @@ data class PointLog(
     val score: Int,
     val studentIdx: Int,
     val teacherIdx: Int,
-    val type : Int
+    val type : PointType,
+    val target : PointPlace
 )
