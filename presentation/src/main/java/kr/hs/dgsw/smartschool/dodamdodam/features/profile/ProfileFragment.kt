@@ -102,8 +102,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
             lifecycleScope.launchWhenStarted {
                 getMyYearPointsState.collect { state ->
                     if (state.isReach) {
-                        dividePoint(yearPointList = state.yearPointList)
-                        setPointCard(0)
+                        state.yearPointList.map {
+                            dividePoint(yearPointList = state.yearPointList)
+                            setPointCard(0)
+                        }
                     }
 
                     if (state.error.isNotBlank()) {
@@ -115,8 +117,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     }
 
     private fun dividePoint(yearPointList: List<Point>) {
-        yearPointList.map { myYearPoint ->
-            myYearPoint.log.map { pointLog ->
+            yearPointList.map { pointLog ->
                 if (pointLog.type == PointType.BONUS) {
                     if (pointLog.target == PointPlace.DORMITORY)
                         dormitoryBonusPoint = pointLog.score
@@ -130,11 +131,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                         schoolMinusPoint = pointLog.score
                 }
             }
-        }
     }
 
     private fun setPointCard(target: Int) {
         if (target == 0) {
+
+
             mBinding.tvBonusPoint.text = (dormitoryBonusPoint ?: 0).toString() + "점"
             mBinding.tvMinusPoint.text = (dormitoryMinusPoint ?: 0).toString() + "점"
             updatePieChart(dormitoryBonusPoint ?: 0, dormitoryMinusPoint ?: 0)

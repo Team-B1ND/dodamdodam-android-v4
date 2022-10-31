@@ -5,5 +5,11 @@ import kr.hs.dgsw.smartschool.domain.model.member.StudentId
 import kr.hs.dgsw.smartschool.domain.model.member.TeacherId
 
 data class Point(
-    val log : List<PointLog>
+    val reason: String,
+    val idx: Int,
+    val score: Int,
+    val studentIdx: Int,
+    val teacherIdx: Int,
+    val type : PointType,
+    val target : PointPlace
 )
