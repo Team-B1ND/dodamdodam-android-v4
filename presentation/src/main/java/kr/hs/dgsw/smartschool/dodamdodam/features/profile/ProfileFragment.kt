@@ -13,7 +13,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentProfileBinding
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
-import kr.hs.dgsw.smartschool.domain.model.point.MyYearPoint
+import kr.hs.dgsw.smartschool.domain.model.point.Point
 import kr.hs.dgsw.smartschool.domain.model.point.PointPlace
 import kr.hs.dgsw.smartschool.domain.model.point.PointType
 import java.time.LocalDate
@@ -114,26 +114,26 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         }
     }
 
-    private fun dividePoint(yearPointList: List<MyYearPoint>) {
-        yearPointList.map { myYearPoint ->
-            if (myYearPoint.pointReason.type == PointType.BONUS) {
-
-                if (myYearPoint.pointReason.place == PointPlace.DORMITORY)
-                    dormitoryBonusPoint = myYearPoint.pointReason.score
+    private fun dividePoint(yearPointList: List<Point>) {
+        yearPointList.map { pointLog ->
+            if (pointLog.type == PointType.BONUS) {
+                if (pointLog.target == PointPlace.DORMITORY)
+                    dormitoryBonusPoint = pointLog.score
                 else
-                    schoolBonusPoint = myYearPoint.pointReason.score
-            } else if (myYearPoint.pointReason.type == PointType.MINUS) {
+                    schoolBonusPoint = pointLog.score
+            } else if (pointLog.type == PointType.MINUS) {
 
-                if (myYearPoint.pointReason.place == PointPlace.DORMITORY)
-                    dormitoryMinusPoint = myYearPoint.pointReason.score
+                if (pointLog.target == PointPlace.DORMITORY)
+                    dormitoryMinusPoint = pointLog.score
                 else
-                    schoolMinusPoint = myYearPoint.pointReason.score
+                    schoolMinusPoint = pointLog.score
             }
         }
     }
 
     private fun setPointCard(target: Int) {
         if (target == 0) {
+
             mBinding.tvBonusPoint.text = (dormitoryBonusPoint ?: 0).toString() + "점"
             mBinding.tvMinusPoint.text = (dormitoryMinusPoint ?: 0).toString() + "점"
             updatePieChart(dormitoryBonusPoint ?: 0, dormitoryMinusPoint ?: 0)
