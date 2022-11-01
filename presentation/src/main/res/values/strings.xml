@@ -163,5 +163,13 @@
     <string name="text_dodam_main_desc">B1ND 스마트 스쿨</string>
     <string name="text_copy_link">링크 복사</string>
     <string name="text_calorie_unit">Kcal</string>
+    <string name="view">화면</string>
+    <string name="dark_mode">다크 모드</string>
+    <string name="info">정보</string>
+    <string name="account">계정</string>
+    <string name="version">버전 정보</string>
+    <string name="license">오픈소스 라이선스</string>
+    <string name="service">서비스 운영정책</string>
+    <string name="personal">개인정보 취급방침</string>
 
 </resources>
