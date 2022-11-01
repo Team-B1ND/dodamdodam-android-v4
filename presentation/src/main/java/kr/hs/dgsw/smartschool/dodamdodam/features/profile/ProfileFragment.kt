@@ -102,10 +102,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
             lifecycleScope.launchWhenStarted {
                 getMyYearPointsState.collect { state ->
                     if (state.isReach) {
-                        state.yearPointList.map {
                             dividePoint(yearPointList = state.yearPointList)
                             setPointCard(0)
-                        }
                     }
 
                     if (state.error.isNotBlank()) {
