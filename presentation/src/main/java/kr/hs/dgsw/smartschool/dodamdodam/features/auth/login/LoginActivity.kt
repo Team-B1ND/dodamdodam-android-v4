@@ -32,8 +32,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
             }
         }
 
-        mBinding.tvSignUp.setOnClickListener {
-            startActivity(JoinActivity::class.java)
+        bindingViewEvent { event ->
+            when(event) {
+                LoginViewModel.EVENT_ON_CLICK_JOIN -> startActivity(JoinActivity::class.java)
+                LoginViewModel.EVENT_ON_CLICK_BACK -> finish()
+            }
         }
     }
 
