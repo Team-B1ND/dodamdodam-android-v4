@@ -43,4 +43,17 @@ class LoginViewModel @Inject constructor(
             { viewModelScope.launch { _loginState.emit(LoginState(error = it ?: "로그인에 실패하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
+
+    fun onClickJoin() {
+        viewEvent(EVENT_ON_CLICK_JOIN)
+    }
+
+    fun onClickBack() {
+        viewEvent(EVENT_ON_CLICK_BACK)
+    }
+
+    companion object {
+        const val EVENT_ON_CLICK_JOIN = 0
+        const val EVENT_ON_CLICK_BACK = 1
+    }
 }

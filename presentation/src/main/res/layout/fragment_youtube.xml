@@ -141,7 +141,7 @@
             android:layout_height="50dp"
             android:indeterminateTint="@color/color_song"
             android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toTopOf="@id/tv_confirm"
+            app:layout_constraintBottom_toTopOf="@id/btn_apply"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_sub_title" />
@@ -151,76 +151,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toTopOf="@id/tv_confirm"
+            app:layout_constraintBottom_toTopOf="@id/btn_apply"
             app:layout_constraintTop_toBottomOf="@id/tv_sub_title"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/music_visualizer" />
 
-
-        <TextView
-            android:id="@+id/tv_confirm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:elevation="10dp"
-            android:fontFamily="@font/noto_medium"
-            android:includeFontPadding="false"
-            android:text="@string/text_is_right"
-            android:textColor="@color/color_black"
-            android:textSize="@dimen/title3"
-            app:layout_constraintBottom_toTopOf="@id/tv_search_desc"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:onClick="@{() -> vm.onClickSearch()}"
+            app:layout_constraintStart_toStartOf="@id/btn_apply"
+            app:layout_constraintBottom_toTopOf="@id/btn_apply"
+            android:src="@drawable/ic_search"
+            android:layout_marginBottom="@dimen/default_margin"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tv_search_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:text="@string/text_search_desc"
+            app:layout_constraintTop_toTopOf="@id/iv_search"
+            app:layout_constraintBottom_toBottomOf="@id/iv_search"
+            app:layout_constraintStart_toEndOf="@id/iv_search"
             android:fontFamily="@font/noto_regular"
             android:includeFontPadding="false"
-            android:text="@string/text_re_search_desc"
+            android:onClick="@{() -> vm.onClickSearch()}"
             android:textColor="@color/color_black"
-            android:textSize="@dimen/title5"
-            app:layout_constraintBottom_toTopOf="@id/et_song_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
-        <EditText
-            android:id="@+id/et_song_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/default_margin"
-            android:layout_marginBottom="12dp"
-            android:background="@drawable/background_song_edittext"
-            android:fontFamily="@font/noto_regular"
-            android:gravity="center"
-            android:hint="@string/text_song_title"
-            android:importantForAutofill="no"
-            android:includeFontPadding="false"
-            android:inputType="text"
-            android:padding="15dp"
-            android:text="@={vm.searchSongTitle}"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toTopOf="@id/btn_search" />
-
-        <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
-            android:id="@+id/btn_search"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="@dimen/default_margin"
-            android:layout_marginBottom="10dp"
-            android:enabled="@{vm.isLoading ? false : true}"
-            android:onClick="@{() -> vm.checkSearchTitle()}"
-            android:text="@string/text_do_search"
-            app:backgroundTint="@color/color_song"
-            app:layout_constraintBottom_toTopOf="@id/btn_apply"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_marginStart="8dp"
+            android:textSize="@dimen/title5" />
 
         <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
             android:id="@+id/btn_apply"

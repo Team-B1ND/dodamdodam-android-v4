@@ -30,6 +30,9 @@ object Google {
 
     const val GOOGLE_GMS = "com.google.gms:google-services:${Versions.GOOGLE_GMS}"
 
+    const val EXO_PLAYER_CORE = "com.google.android.exoplayer:exoplayer-core:${Versions.EXO_PLAYER}"
+    const val EXO_PLAYER_UI = "com.google.android.exoplayer:exoplayer-ui:${Versions.EXO_PLAYER}"
+    const val EXO_PLAYER_DASH = "com.google.android.exoplayer:exoplayer-dash:${Versions.EXO_PLAYER}"
 }
 
 object Libraries {

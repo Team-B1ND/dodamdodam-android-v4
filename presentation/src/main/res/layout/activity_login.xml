@@ -17,18 +17,25 @@
         android:layout_height="match_parent"
         tools:context=".ui.features.sign.signin.SignInActivity">
 
+        <include
+            android:id="@+id/btn_back"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:onClick="@{() -> vm.onClickBack()}"
+            layout="@layout/item_back_button" />
+
         <TextView
             android:id="@+id/tv_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/noto_bold"
             android:text="@string/text_sign_in"
+            app:layout_constraintTop_toBottomOf="@id/btn_back"
             android:textColor="@color/color_black"
             android:textSize="@dimen/title2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout_id"
@@ -135,6 +142,7 @@
             android:textColor="@color/gray700"
             android:gravity="center"
             android:paddingBottom="5dp"
+            android:onClick="@{() -> vm.onClickJoin()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/iv_navigate_sign_up"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -148,6 +156,7 @@
             android:rotation="270"
             android:src="@drawable/ic_btn_arrow"
             android:layout_marginBottom="4dp"
+            android:onClick="@{() -> vm.onClickJoin()}"
             app:layout_constraintBottom_toBottomOf="@id/tv_sign_up"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_sign_up"
