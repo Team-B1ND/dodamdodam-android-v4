@@ -42,6 +42,7 @@
 
     <color name="color_card_background">@color/white</color>
     <color name="color_background">#F3F4F6</color>
+    <color name="color_background_gradient_start">#B3B4B6</color>
 
     <color name="color_blue_light">#5555FF</color>
     <color name="color_red_light">#FF5555</color>

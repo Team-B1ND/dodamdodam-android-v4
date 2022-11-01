@@ -38,6 +38,7 @@
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title3"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@id/btn_back" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
