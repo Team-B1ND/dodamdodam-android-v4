@@ -25,8 +25,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         if (!SharedPreferenceManager.getIsLogin(this)) {
             startActivityWithFinishAll(StartActivity::class.java)
             super.onCreate(savedInstanceState)
-        }
-        else {
+        } else {
             super.onCreate(savedInstanceState)
             startForMainActivity()
         }

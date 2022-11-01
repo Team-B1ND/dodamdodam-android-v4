@@ -107,7 +107,6 @@ dependencies {
     implementation(Google.EXO_PLAYER_UI)
     implementation(Google.EXO_PLAYER_DASH)
 
-
     implementation(project(":data"))
     implementation(project(":domain"))
 }

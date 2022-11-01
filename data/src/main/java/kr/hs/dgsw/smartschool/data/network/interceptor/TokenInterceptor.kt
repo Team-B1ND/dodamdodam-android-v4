@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.data.network.interceptor
 
-import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -18,12 +17,9 @@ import okhttp3.Interceptor
 import okhttp3.Protocol
 import okhttp3.Request
 import okhttp3.Response
-import okhttp3.ResponseBody
-import okhttp3.ResponseBody.Companion.toResponseBody
 import org.json.JSONException
 import retrofit2.HttpException
 import javax.inject.Inject
-import kotlin.Throws
 
 class TokenInterceptor @Inject constructor(
     private val loginUseCase: LoginUseCase,

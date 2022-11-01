@@ -21,7 +21,7 @@ abstract class BaseUseCase<PR, R> {
             else emit(Resource.Error<R>(Utils.convertErrorBody(e)))
         } catch (e: IOException) {
             emit(Resource.Error<R>(Utils.NETWORK_ERROR_MESSAGE))
-        }  catch (e: Exception) {
+        } catch (e: Exception) {
             emit(Resource.Error<R>(Utils.TOKEN_EXCEPTION))
         }
     }

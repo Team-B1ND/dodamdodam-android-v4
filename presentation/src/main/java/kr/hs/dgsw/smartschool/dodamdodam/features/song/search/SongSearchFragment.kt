@@ -22,7 +22,7 @@ class SongSearchFragment : BaseFragment<FragmentSongSearchBinding, SongSearchVie
         collectApplySong()
 
         bindingViewEvent { event ->
-            when(event) {
+            when (event) {
                 SongSearchViewModel.EVENT_ON_CLICK_BACK -> findNavController().popBackStack()
             }
         }
@@ -65,5 +65,4 @@ class SongSearchFragment : BaseFragment<FragmentSongSearchBinding, SongSearchVie
     override fun onClickThumbnail(url: String) {
         this.openVideoFromUrl(url)
     }
-
 }

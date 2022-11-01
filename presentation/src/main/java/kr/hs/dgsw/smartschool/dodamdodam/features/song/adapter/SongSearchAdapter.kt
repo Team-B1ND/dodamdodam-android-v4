@@ -26,5 +26,4 @@ class SongSearchAdapter(val action: Action) : BaseListAdapter<Item, ItemSongSear
         fun onClickApply(url: String)
         fun onClickThumbnail(url: String)
     }
-
 }

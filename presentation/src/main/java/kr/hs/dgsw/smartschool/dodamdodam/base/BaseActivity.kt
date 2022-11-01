@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.base
 
 import android.os.Bundle
-import android.util.Log
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -12,7 +11,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.features.start.StartActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
-import kr.hs.dgsw.smartschool.domain.exception.TokenException
 import kr.hs.dgsw.smartschool.domain.util.Utils
 import java.lang.reflect.ParameterizedType
 import java.util.Locale
@@ -47,8 +45,6 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
 
         performDataBinding()
         observerViewModel()
-
-
     }
 
     private fun performDataBinding() {

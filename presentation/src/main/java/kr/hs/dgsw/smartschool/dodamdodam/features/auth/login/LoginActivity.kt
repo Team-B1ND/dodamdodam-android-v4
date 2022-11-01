@@ -33,7 +33,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
         }
 
         bindingViewEvent { event ->
-            when(event) {
+            when (event) {
                 LoginViewModel.EVENT_ON_CLICK_JOIN -> startActivity(JoinActivity::class.java)
                 LoginViewModel.EVENT_ON_CLICK_BACK -> finish()
             }

@@ -56,5 +56,4 @@ class LoginViewModel @Inject constructor(
         const val EVENT_ON_CLICK_JOIN = 0
         const val EVENT_ON_CLICK_BACK = 1
     }
-
 }

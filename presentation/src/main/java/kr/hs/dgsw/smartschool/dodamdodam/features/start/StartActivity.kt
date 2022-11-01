@@ -8,11 +8,9 @@ import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.upstream.RawResourceDataSource
-import com.google.android.exoplayer2.util.RepeatModeUtil
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.features.auth.login.LoginActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivity
-import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
 
 class StartActivity : AppCompatActivity() {
 
@@ -64,5 +62,4 @@ class StartActivity : AppCompatActivity() {
         exoPlayer.release()
         super.onDestroy()
     }
-
 }
