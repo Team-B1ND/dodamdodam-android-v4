@@ -1,17 +1,19 @@
 package kr.hs.dgsw.smartschool.dodamdodam.base
 
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceManager
-import kr.hs.dgsw.smartschool.data.exception.TokenException
 import kr.hs.dgsw.smartschool.dodamdodam.BR
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.features.start.StartActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
+import kr.hs.dgsw.smartschool.domain.exception.TokenException
+import kr.hs.dgsw.smartschool.domain.util.Utils
 import java.lang.reflect.ParameterizedType
 import java.util.Locale
 import java.util.Objects
@@ -30,14 +32,13 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
                 action.invoke(event)
             }
         }
-    }
 
-    protected open fun onErrorEvent(e: Throwable) {
-        shortToast(e.message)
-        if (e is TokenException) {
-            SharedPreferenceManager.logout(this)
-            startActivityWithFinishAll(StartActivity::class.java)
-            return
+        viewModel.tokenErrorEvent.observe(this) {
+            if (it == Utils.TOKEN_EXCEPTION) {
+                shortToast("세션이 만료되었습니다.")
+                SharedPreferenceManager.logout(this)
+                startActivityWithFinishAll(StartActivity::class.java)
+            }
         }
     }
 
@@ -46,6 +47,8 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
 
         performDataBinding()
         observerViewModel()
+
+
     }
 
     private fun performDataBinding() {

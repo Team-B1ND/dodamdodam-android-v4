@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.data.exception
+package kr.hs.dgsw.smartschool.domain.exception
 
 import java.lang.Exception
 

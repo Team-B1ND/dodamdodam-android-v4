@@ -11,6 +11,8 @@ import java.util.GregorianCalendar
 
 object Utils {
 
+    const val TOKEN_EXCEPTION = "token_exception"
+
     fun getWeekType(): WeekType {
         if (isWeekend()) {
             return WeekType.WEEKEND

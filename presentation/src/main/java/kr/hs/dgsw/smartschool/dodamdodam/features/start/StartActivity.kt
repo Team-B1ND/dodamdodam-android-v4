@@ -46,6 +46,7 @@ class StartActivity : AppCompatActivity() {
 
         exoPlayer.setMediaItem(mediaItem)
         exoPlayer.repeatMode = Player.REPEAT_MODE_ALL
+        exoPlayer.prepare()
     }
 
     // Set Lifecycle!

@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.base
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,13 +10,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceManager
-import kr.hs.dgsw.smartschool.data.exception.TokenException
 import kr.hs.dgsw.smartschool.dodamdodam.BR
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.features.auth.login.LoginActivity
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
+import kr.hs.dgsw.smartschool.dodamdodam.features.start.StartActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
+import kr.hs.dgsw.smartschool.domain.exception.TokenException
+import kr.hs.dgsw.smartschool.domain.util.Utils
 import java.lang.reflect.ParameterizedType
 import java.util.Locale
 import java.util.Objects
@@ -34,6 +37,14 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
         viewModel.viewEvent.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { event ->
                 action.invoke(event)
+            }
+        }
+
+        viewModel.tokenErrorEvent.observe(viewLifecycleOwner) {
+            if (it == Utils.TOKEN_EXCEPTION) {
+                shortToast("세션이 만료되었습니다.")
+                SharedPreferenceManager.logout(requireContext())
+                startActivityWithFinishAll(StartActivity::class.java)
             }
         }
     }

@@ -2,26 +2,28 @@ package kr.hs.dgsw.smartschool.data.network.interceptor
 
 import android.util.Log
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
 import kr.hs.dgsw.smartschool.data.datasource.AccountDataSource
-import kr.hs.dgsw.smartschool.data.exception.TokenException
 import kr.hs.dgsw.smartschool.data.util.AppDispatchers
+import kr.hs.dgsw.smartschool.domain.exception.TokenException
 import kr.hs.dgsw.smartschool.domain.model.token.Token
 import kr.hs.dgsw.smartschool.domain.usecase.auth.LoginUseCase
 import kr.hs.dgsw.smartschool.domain.usecase.token.TokenUseCases
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import okhttp3.Interceptor
+import okhttp3.Protocol
 import okhttp3.Request
 import okhttp3.Response
+import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.json.JSONException
 import retrofit2.HttpException
 import javax.inject.Inject
+import kotlin.Throws
 
 class TokenInterceptor @Inject constructor(
     private val loginUseCase: LoginUseCase,
@@ -42,6 +44,16 @@ class TokenInterceptor @Inject constructor(
     }
 
     override fun intercept(chain: Interceptor.Chain): Response {
+        /*
+        Token Error Test
+        return Response.Builder()
+            .request(chain.request())
+            .protocol(Protocol.HTTP_1_1)
+            .code(TOKEN_ERROR)
+            .message("세션이 만료되었습니다.")
+            .body("세션이 만료되었습니다.".toResponseBody(null))
+            .build()*/
+
         setToken()
         response = chain.proceedWithToken(chain.request())
 
@@ -81,9 +93,14 @@ class TokenInterceptor @Inject constructor(
         // request에 토큰을 붙여서 새로운 request 생성 -> 진행
         response = this.proceedWithToken(this.request())
 
-        if (response.code == TOKEN_ERROR) {
-            throw TokenException("세션이 만료되었습니다.")
-        } else return response
+        return if (response.code == TOKEN_ERROR) {
+            Response.Builder()
+                .request(this.request())
+                .protocol(Protocol.HTTP_1_1)
+                .code(TOKEN_ERROR)
+                .message("세션이 만료되었습니다.")
+                .build()
+        } else response
     }
 
     private fun setToken() = runBlocking(appDispatcher.io) {
@@ -97,12 +114,10 @@ class TokenInterceptor @Inject constructor(
     }
 
     private fun getTokenToLogin() {
-        Log.d("TokenTest", "getTokenToLogin: GetTokenLogin")
         runBlocking(appDispatcher.io) {
             // 계정을 DB에서 받아옴
             getAccountJob.join()
 
-            // 문제의 지점...
             loginUseCase(LoginUseCase.Params(account.id, account.pw, false)).onEach {
                 if (it is Resource.Success) {
                     // 성공 시 로그인 딴에서 DB에 token 값을 저장하므로 DB에서 token을 가져오는 작업 수행
