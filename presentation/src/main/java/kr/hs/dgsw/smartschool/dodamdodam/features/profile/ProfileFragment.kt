@@ -102,8 +102,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
             lifecycleScope.launchWhenStarted {
                 getMyYearPointsState.collect { state ->
                     if (state.isReach) {
-                            dividePoint(yearPointList = state.yearPointList)
-                            setPointCard(0)
+                        dividePoint(yearPointList = state.yearPointList)
+                        setPointCard(0)
                     }
 
                     if (state.error.isNotBlank()) {
@@ -115,25 +115,24 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     }
 
     private fun dividePoint(yearPointList: List<Point>) {
-            yearPointList.map { pointLog ->
-                if (pointLog.type == PointType.BONUS) {
-                    if (pointLog.target == PointPlace.DORMITORY)
-                        dormitoryBonusPoint = pointLog.score
-                    else
-                        schoolBonusPoint = pointLog.score
-                } else if (pointLog.type == PointType.MINUS) {
+        yearPointList.map { pointLog ->
+            if (pointLog.type == PointType.BONUS) {
+                if (pointLog.target == PointPlace.DORMITORY)
+                    dormitoryBonusPoint = pointLog.score
+                else
+                    schoolBonusPoint = pointLog.score
+            } else if (pointLog.type == PointType.MINUS) {
 
-                    if (pointLog.target == PointPlace.DORMITORY)
-                        dormitoryMinusPoint = pointLog.score
-                    else
-                        schoolMinusPoint = pointLog.score
-                }
+                if (pointLog.target == PointPlace.DORMITORY)
+                    dormitoryMinusPoint = pointLog.score
+                else
+                    schoolMinusPoint = pointLog.score
             }
+        }
     }
 
     private fun setPointCard(target: Int) {
         if (target == 0) {
-
 
             mBinding.tvBonusPoint.text = (dormitoryBonusPoint ?: 0).toString() + "점"
             mBinding.tvMinusPoint.text = (dormitoryMinusPoint ?: 0).toString() + "점"
