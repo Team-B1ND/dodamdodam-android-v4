@@ -3,6 +3,7 @@ package kr.hs.dgsw.smartschool.dodamdodam.widget.extension
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.telephony.TelephonyManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -69,6 +70,12 @@ fun Context.getPhoneNumber(): String {
     }
 
     return phoneNumber
+}
+
+fun AppCompatActivity.openUrlWithBrowser(url: String) {
+    val intent = Intent(Intent.ACTION_VIEW)
+    intent.data = Uri.parse(url)
+    startActivity(intent)
 }
 
 inline fun <reified T : ViewModel> AppCompatActivity.getViewModel(factory: ViewModelProvider.Factory): T =
