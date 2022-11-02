@@ -17,7 +17,7 @@ class BusRemote @Inject constructor(
 
     suspend fun getBusList(): Response<BusByDate> = api.getBusList()
 
-    suspend fun getMyBusList(): Response<List<Bus>> {
+    suspend fun getMyBus(): Response<Bus> {
         Log.e("getMyBus", "실행")
         return api.getMyBus()
     }

@@ -19,9 +19,9 @@ class BusDataSource @Inject constructor(
         request: MyBusByMonthRequest
     ): List<Bus> = remote.getMyBusByMonth(request).data
 
-    suspend fun getMyBusList(): List<Bus> {
+    suspend fun getMyBus(): Bus {
         Log.e("BusDataSource", "getMyBus")
-        return remote.getMyBusList().data
+        return remote.getMyBus().data
     }
 
     suspend fun getBusList(): BusByDate {
