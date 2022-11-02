@@ -18,7 +18,7 @@ interface BusApi {
     suspend fun getBusList(): Response<BusByDate>
 
     @GET("bus/apply")
-    suspend fun getMyBus(): Response<List<Bus>>
+    suspend fun getMyBus(): Response<Bus>
 
     @GET("bus/apply/month")
     suspend fun getMyBusByMonth(
