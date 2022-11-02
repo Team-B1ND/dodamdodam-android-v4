@@ -45,7 +45,7 @@ interface BusApi {
     @PATCH("bus/apply")
     suspend fun updateBusApply(
         @Query("busId") busId: Int,
-        @Query("originalBusId") originBusId : Int
+        @Query("originalBusId") originBusId: Int
     ): Response<Any>
 
     @DELETE("bus/{id}")
