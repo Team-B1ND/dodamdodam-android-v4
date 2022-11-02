@@ -11,11 +11,11 @@
     </data>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_background">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/background_gradient">
+        android:layout_height="wrap_content">
 
             <!-- back button container -->
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,14 +38,14 @@
                 android:text="@string/view"
                 android:fontFamily="@font/noto_medium"
                 android:textSize="@dimen/title4"
-                android:textColor="@color/black"/>
+                android:textColor="@color/color_black"/>
 
             <!-- view container -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/color_card_background"
             android:padding="5dp"
             app:layout_constraintTop_toBottomOf="@id/tv_view">
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -97,13 +97,13 @@
             android:text="@string/info"
             android:fontFamily="@font/noto_medium"
             android:textSize="@dimen/title4"
-            android:textColor="@color/black"/>
+            android:textColor="@color/color_black"/>
         <!-- info container -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/color_card_background"
             android:padding="5dp"
             app:layout_constraintTop_toBottomOf="@id/tv_info">
 
@@ -278,94 +278,102 @@
             android:text="@string/account"
             android:fontFamily="@font/noto_medium"
             android:textSize="@dimen/title4"
-            android:textColor="@color/black"/>
+            android:textColor="@color/color_black"/>
         <!-- account container -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/color_card_background"
             android:padding="5dp"
-            app:layout_constraintTop_toBottomOf="@id/tv_account">
+            app:layout_constraintTop_toBottomOf="@id/tv_account"
+            tools:layout_editor_absoluteX="-16dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_log_out"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent">
+
                 <ImageView
                     android:id="@+id/icon_log_out"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
                     android:src="@drawable/default_user"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="@string/text_sign_out"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
+                    android:text="@string/text_sign_out"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/title4"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/icon_log_out"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_btn_arrow"
-                    android:rotation="270"
-                    app:tint="@color/color_black"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
+                    android:rotation="270"
+                    android:src="@drawable/ic_btn_arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/color_black" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_quit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/btn_log_out"
-                app:layout_constraintBottom_toBottomOf="parent"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_log_out">
+
                 <ImageView
                     android:id="@+id/icon_quit"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
                     android:src="@drawable/default_user"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:text="@string/text_quit"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
+                    android:text="@string/text_quit"
                     android:textColor="@color/color_red_light"
                     android:textSize="@dimen/title4"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/icon_quit"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <ImageView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_btn_arrow"
-                    android:rotation="270"
-                    app:tint="@color/color_black"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
+                    android:rotation="270"
+                    android:src="@drawable/ic_btn_arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/color_black" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

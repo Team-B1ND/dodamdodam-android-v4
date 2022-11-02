@@ -14,4 +14,52 @@
 
     <color name="color_background_toggle">#434343</color>
 
+
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#3096F8</color>
+    <color name="colorPrimaryDark">#254de3</color>
+    <color name="colorSecondary">#6400e0</color>
+    <color name="colorControlNormal">#076FE4</color>
+
+    <color name="color_itmap">#25316D</color>
+    <color name="color_profile">#5AC467</color>
+    <color name="color_song">#F09771</color>
+
+    <color name="main_200">#077FE1</color>
+    <color name="main_500">#0E5B9A</color>
+    <color name="main_700">#003A6A</color>
+
+    <color name="color_shadow">#66000000</color>
+
+    <color name="color_soft_gray">#EEEEEE</color>
+    <color name="color_light_gray">#FAFAFA</color>
+
+    <color name="color_breakfast">#FCA800</color>
+    <color name="color_lunch">#3DBDE5</color>
+    <color name="color_dinner">#A252E1</color>
+
+    <color name="color_selected">#0067BC</color>
+    <color name="color_un_selected">#FFFFFF</color>
+
+    <color name="color_background_gradient_start">#E3E4E6</color>
+
+    <color name="color_blue_light">#5555FF</color>
+    <color name="color_red_light">#FF5555</color>
+    <color name="color_yellow_light">#FFDD55</color>
+
+    <color name="color_bonus">#0067BC</color>
+    <color name="color_minus">#F97E6D</color>
+
+    <color name="color_ok">#81C784</color>
+    <color name="color_refuse">#E57373</color>
+    <color name="color_nav_unselected">#B0B9C2</color>
+
 </resources>
