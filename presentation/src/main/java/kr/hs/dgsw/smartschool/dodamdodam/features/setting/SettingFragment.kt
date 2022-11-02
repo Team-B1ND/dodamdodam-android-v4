@@ -1,5 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.setting
 
+import android.widget.CompoundButton
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceManager
@@ -16,7 +18,18 @@ class SettingFragment : BaseFragment<FragmentSettingBinding, SettingViewModel>()
             findNavController().popBackStack()
         }
 
-        mBinding.tvSignOut.setOnClickListener {
+        mBinding.switchDarkMode.setOnCheckedChangeListener{ _, isChecked ->
+            when(isChecked){
+                true ->{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
+                false ->{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+            }
+        }
+
+        mBinding.btnLogOut.setOnClickListener {
             SharedPreferenceManager.logout(requireContext())
             startActivityWithFinishAll(LoginActivity::class.java)
         }
