@@ -7,6 +7,7 @@ import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.MyBusByMonthRequest
+import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusApplyRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
 import javax.inject.Inject
 
@@ -36,9 +37,9 @@ class BusDataSource @Inject constructor(
     }
 
     suspend fun updateBusApply(
-        id: Int
+        request : UpdateBusApplyRequest
     ): String {
-        return remote.updateBusApply(id).message
+        return remote.updateBusApply(request).message
     }
 
     suspend fun addBus(

@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
+import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusApplyRequest
 import kr.hs.dgsw.smartschool.domain.usecase.bus.BusUseCases
 import javax.inject.Inject
 
@@ -47,7 +48,7 @@ class BusViewModel @Inject constructor(
                 ).launchIn(viewModelScope)
             }
             else -> {
-                busUseCases.updateBusApply(idx).divideResult(
+                busUseCases.updateBusApply(UpdateBusApplyRequest(busId = idx, originBusId = busId)).divideResult(
                     isGetBusLoading,
                     {
                         busId = idx

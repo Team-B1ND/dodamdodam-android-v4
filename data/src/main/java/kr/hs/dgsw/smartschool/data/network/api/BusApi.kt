@@ -18,7 +18,7 @@ interface BusApi {
     suspend fun getBusList(): Response<BusByDate>
 
     @GET("bus/apply")
-    suspend fun getMyBus(): Response<List<Bus>>
+    suspend fun getMyBus(): Response<Bus>
 
     @GET("bus/apply/month")
     suspend fun getMyBusByMonth(
@@ -31,9 +31,9 @@ interface BusApi {
         @Body createBusDto: AddBusRequest
     ): Response<Any>
 
-    @POST("bus/apply/{busId}")
+    @POST("bus/apply")
     suspend fun addBusApply(
-        @Path("busId") busId: Int
+        @Query("busId") busId: Int
     ): Response<Any>
 
     @PATCH("bus/{id}")
@@ -42,9 +42,10 @@ interface BusApi {
         @Body request: UpdateBusRequest
     ): Response<Any>
 
-    @PATCH("bus/apply/{busId}")
+    @PATCH("bus/apply")
     suspend fun updateBusApply(
-        @Path("busId") busId: Int
+        @Query("busId") busId: Int,
+        @Query("originalBusId") originBusId : Int
     ): Response<Any>
 
     @DELETE("bus/{id}")
