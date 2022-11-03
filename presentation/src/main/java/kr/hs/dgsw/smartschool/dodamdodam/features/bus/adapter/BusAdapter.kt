@@ -14,8 +14,7 @@ class BusAdapter(val context: Context, val listener: BusApplyCallBack) : BaseLis
         if (item.isSelected) {
             binding.tvBusRidePossible.visibility = View.INVISIBLE
             binding.menu.visibility = View.VISIBLE
-        }
-        else {
+        } else {
             binding.tvBusRidePossible.visibility = View.VISIBLE
             binding.menu.visibility = View.INVISIBLE
         }

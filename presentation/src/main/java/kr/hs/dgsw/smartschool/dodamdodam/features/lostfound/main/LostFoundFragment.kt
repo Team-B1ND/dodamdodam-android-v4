@@ -27,7 +27,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     }
     override fun observerViewModel() {
 
-        //TODO 페이지 넘기는 것 구현해야함 INFINITE_LIMIT은 20임
+        // TODO 페이지 넘기는 것 구현해야함 INFINITE_LIMIT은 20임
         lostFoundAdapter = LostFoundAdapter(requireContext(), this)
         mBinding.rvLostAndFound.adapter = lostFoundAdapter
 

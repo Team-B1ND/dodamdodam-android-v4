@@ -1,18 +1,14 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.auth.join.detail
 
-import android.content.Intent
 import android.graphics.Paint
-import android.net.Uri
 import android.view.View
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseActivity
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivityJoinDetailBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.auth.login.LoginActivity
-import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.openUrlWithBrowser
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinishAll
@@ -61,7 +57,7 @@ class JoinDetailActivity : BaseActivity<ActivityJoinDetailBinding, JoinDetailVie
         }
     }
 
-    private fun setLinkedTextView(servicePolicy : View, personalInfo : View) {
+    private fun setLinkedTextView(servicePolicy: View, personalInfo: View) {
         // textView.paintFlags = Paint.UNDERLINE_TEXT_FLAG
 
         servicePolicy.setOnClickListener {

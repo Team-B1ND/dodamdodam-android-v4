@@ -37,7 +37,7 @@ class BusDataSource @Inject constructor(
     }
 
     suspend fun updateBusApply(
-        request : UpdateBusApplyRequest
+        request: UpdateBusApplyRequest
     ): String {
         return remote.updateBusApply(request).message
     }

@@ -72,4 +72,3 @@ fun Fragment.openUrlWithBrowser(url: String) {
     intent.data = Uri.parse(url)
     startActivity(intent)
 }
-

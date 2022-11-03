@@ -30,7 +30,7 @@ class BusViewModel @Inject constructor(
     private val isDoBusTaskLoading = MutableLiveData<Boolean>()
 
     init {
-        combineLoadingVariable(isDoBusTaskLoading,isGetBusLoading)
+        combineLoadingVariable(isDoBusTaskLoading, isGetBusLoading)
         getMyBus()
     }
     fun getBusList() {
@@ -40,14 +40,14 @@ class BusViewModel @Inject constructor(
             { viewModelScope.launch { _getBusListState.emit(GetBusListState(error = it ?: "버스를 받아오지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
-    fun getMyBus(){
+    fun getMyBus() {
         busUseCases.getMyBus(Unit).divideResult(
             isDoBusTaskLoading,
             {
-                if(it == null) busId = 0 else busId = it.id
+                if (it == null) busId = 0 else busId = it.id
                 getBusList()
             },
-            {viewModelScope.launch { _getBusListState.emit(GetBusListState(error = it ?: "신청한 버스를 받아오지 못하였습니다.")) }}
+            { viewModelScope.launch { _getBusListState.emit(GetBusListState(error = it ?: "신청한 버스를 받아오지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
     fun applyBus(idx: Int) {
@@ -55,7 +55,8 @@ class BusViewModel @Inject constructor(
             0 -> {
                 busUseCases.addBusApply(idx).divideResult(
                     isDoBusTaskLoading,
-                    { message -> _busTaskState.value = BusTaskState(success = message ?: "버스 신청에 성공했습니다.")
+                    { message ->
+                        _busTaskState.value = BusTaskState(success = message ?: "버스 신청에 성공했습니다.")
                         getMyBus()
                     },
                     { message -> _busTaskState.value = BusTaskState(error = message ?: "버스 신청에 실패했습니다.") }
@@ -64,7 +65,8 @@ class BusViewModel @Inject constructor(
             else -> {
                 busUseCases.updateBusApply(UpdateBusApplyRequest(busId = idx, originBusId = busId)).divideResult(
                     isDoBusTaskLoading,
-                    { message -> _busTaskState.value = BusTaskState(success = message ?: "버스 신청 수정에 성공했습니다.")
+                    { message ->
+                        _busTaskState.value = BusTaskState(success = message ?: "버스 신청 수정에 성공했습니다.")
                         getMyBus()
                     },
                     { message -> _busTaskState.value = BusTaskState(error = message ?: "버스 신청 수정에 실패했습니다.") }
@@ -75,10 +77,11 @@ class BusViewModel @Inject constructor(
     fun cancelBus(idx: Int) {
         busUseCases.deleteBusApply(idx).divideResult(
             isDoBusTaskLoading,
-            {message -> _busTaskState.value = BusTaskState(success = message ?: "버스 신청 취소에 성공했습니다.")
+            { message ->
+                _busTaskState.value = BusTaskState(success = message ?: "버스 신청 취소에 성공했습니다.")
                 getMyBus()
             },
-            { message -> _busTaskState.value = BusTaskState(error = message ?: "버스 신청 취소에 실패했습니다.")  }
+            { message -> _busTaskState.value = BusTaskState(error = message ?: "버스 신청 취소에 실패했습니다.") }
         ).launchIn(viewModelScope)
     }
 }
