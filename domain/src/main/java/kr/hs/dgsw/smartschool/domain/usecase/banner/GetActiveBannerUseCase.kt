@@ -14,5 +14,4 @@ class GetActiveBannerUseCase @Inject constructor(
     override fun invoke(params: Unit): Flow<Resource<List<Banner>>> = execute {
         bannerRepository.getActiveBanner()
     }
-
 }

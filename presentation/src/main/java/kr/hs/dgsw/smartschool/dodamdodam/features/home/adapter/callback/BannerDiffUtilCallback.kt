@@ -11,5 +11,4 @@ object BannerDiffUtilCallback : DiffUtil.ItemCallback<Banner>() {
     override fun areContentsTheSame(oldItem: Banner, newItem: Banner): Boolean {
         return oldItem.id == newItem.id
     }
-
 }

@@ -10,5 +10,4 @@ class BannerAdapter : BaseListAdapter<Banner, ItemBannerBinding>(R.layout.item_b
     override fun action(item: Banner, binding: ItemBannerBinding) {
         binding.banner = item
     }
-
 }

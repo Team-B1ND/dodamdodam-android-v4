@@ -13,14 +13,14 @@ object Constants {
     const val DEFAULT_HOST = "http://dodam.b1nd.com:80/api/v2/"
     const val SOCKET_HOST = "http://dodam.b1nd.com/"
     const val TEST_HOST = "http://101.101.209.184:8080/api/"
-    //const val TEST_HOST = "http://v6.dodam.b1nd.com/api/"
-    //const val AUTH_HOST = "http://v6.dodam.b1nd.com/api/"
-    //const val AUTH_TEST_HOST = "http://10.80.162.15:8080/"
-    //const val IMAGE_HOST = "http://dodam.b1nd.com/api/image/"
+    // const val TEST_HOST = "http://v6.dodam.b1nd.com/api/"
+    // const val AUTH_HOST = "http://v6.dodam.b1nd.com/api/"
+    // const val AUTH_TEST_HOST = "http://10.80.162.15:8080/"
+    // const val IMAGE_HOST = "http://dodam.b1nd.com/api/image/"
     const val YOUTUBE_HOST = "https://www.googleapis.com/youtube/v3/"
 
     val SERVER_HOST = if (mode == "TEST") TEST_HOST else DEFAULT_HOST
-   //val AUTH_SERVER_HOST = if (mode == "TEST") AUTH_TEST_HOST else AUTH_HOST
+    // val AUTH_SERVER_HOST = if (mode == "TEST") AUTH_TEST_HOST else AUTH_HOST
 
     const val PLAY_STORE = "https://play.google.com/store/apps/details?id=kr.hs.dgsw.smartschool.dodamdodam"
     const val INFORMATION_AGREEMENT_URL = "http://dodam.b1nd.com/detailed-information/personal-information"

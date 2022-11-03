@@ -13,5 +13,4 @@ class BannerDataSource @Inject constructor(
     suspend fun getActiveBanner(): List<Banner> {
         return remote.getActiveBanner().data
     }
-
 }

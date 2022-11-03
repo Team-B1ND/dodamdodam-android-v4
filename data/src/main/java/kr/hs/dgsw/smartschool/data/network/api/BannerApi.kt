@@ -7,5 +7,5 @@ import retrofit2.http.GET
 interface BannerApi {
 
     @GET("banner/active")
-    suspend fun getActiveBanners() : Response<List<Banner>>
+    suspend fun getActiveBanners(): Response<List<Banner>>
 }

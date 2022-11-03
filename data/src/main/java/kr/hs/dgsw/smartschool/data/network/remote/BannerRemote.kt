@@ -13,5 +13,4 @@ class BannerRemote @Inject constructor(
     suspend fun getActiveBanner(): Response<List<Banner>> {
         return api.getActiveBanners()
     }
-
 }

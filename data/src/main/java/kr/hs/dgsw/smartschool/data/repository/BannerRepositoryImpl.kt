@@ -7,10 +7,9 @@ import javax.inject.Inject
 
 class BannerRepositoryImpl @Inject constructor(
     private val bannerDataSource: BannerDataSource
-): BannerRepository {
+) : BannerRepository {
 
     override suspend fun getActiveBanner(): List<Banner> {
         return bannerDataSource.getActiveBanner()
     }
-
 }
