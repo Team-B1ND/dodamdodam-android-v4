@@ -28,8 +28,8 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>(), ApplySo
     private var mySongList: List<VideoSongData> = emptyList()
 
     override fun observerViewModel() {
-        mBinding.tvSongDate.text = LocalDate.now().plusDays(1).toString()
 
+        mBinding.collapsingToolBar.title = "내일(${LocalDate.now().plusDays(1).dayOfMonth}일)의 기상송"
         mBinding.appBarSong.addOnOffsetChangedListener { _, verticalOffset ->
             mBinding.layoutTomorrowSongContainer.alpha = ((100 - (-verticalOffset / 5.45)) / 100).toFloat()
             Log.d("OffsetTest", "${((100 - (-verticalOffset / 5.45)) / 100).toFloat()}")
