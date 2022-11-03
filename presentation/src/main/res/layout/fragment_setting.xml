@@ -58,7 +58,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="10dp"
-                    android:src="@drawable/default_user"
+                    android:src="@drawable/ic_last_quarter_moon_color"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
@@ -115,11 +115,11 @@
                 android:gravity="center"
                 android:orientation="horizontal">
                 <ImageView
-                    android:id="@+id/icon"
+                    android:id="@+id/icon_version"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
-                    android:src="@drawable/default_user"
+                    android:src="@drawable/ic_bookmark_tabs_color"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
@@ -133,7 +133,7 @@
                     android:includeFontPadding="false"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/title4"
-                    app:layout_constraintStart_toEndOf="@id/icon"
+                    app:layout_constraintStart_toEndOf="@id/icon_version"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
                 <TextView
@@ -159,7 +159,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
-                    android:src="@drawable/default_user"
+                    android:src="@drawable/ic_open_book_color"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
@@ -199,7 +199,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
-                    android:src="@drawable/default_user"
+                    android:src="@drawable/ic_information_color"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
@@ -240,7 +240,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
-                    android:src="@drawable/default_user"
+                    android:src="@drawable/ic_locked_color"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
@@ -345,7 +345,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="15dp"
-                    android:src="@drawable/default_user"
+                    android:src="@drawable/ic_no_entry_color"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
