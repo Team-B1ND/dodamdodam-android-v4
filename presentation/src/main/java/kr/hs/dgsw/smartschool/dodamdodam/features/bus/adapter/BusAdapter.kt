@@ -15,6 +15,10 @@ class BusAdapter(val context: Context, val listener: BusApplyCallBack) : BaseLis
             binding.tvBusRidePossible.visibility = View.INVISIBLE
             binding.menu.visibility = View.VISIBLE
         }
+        else {
+            binding.tvBusRidePossible.visibility = View.VISIBLE
+            binding.menu.visibility = View.INVISIBLE
+        }
 
         with(binding) {
             tvBusRidePossible.setImageResource(

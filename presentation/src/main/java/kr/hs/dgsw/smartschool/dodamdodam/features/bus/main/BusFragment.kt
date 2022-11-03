@@ -35,7 +35,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
                 getBusListState.collect { state ->
                     Log.e("LostFoundFragment", "state")
                     if (state.bus != null) {
-                        val busList = setBusInfo(state.bus)
+                        val busList = setBusInfo(state.bus,state.idApplyBus)
                         if (busList.isNotEmpty()) {
                             hasBus.value = true
                         }
@@ -50,17 +50,18 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
         }
     }
 
-    private fun setBusInfo(bus: BusByDate): List<BusInfo> {
+    private fun setBusInfo(bus: BusByDate, presentId : Int): List<BusInfo> {
         val list: MutableList<BusInfo> = mutableListOf()
         mBinding.tvDate.text = bus.date
 
         var rideAble = true
-        var isSelected: Boolean
-        bus.busList.forEach {
+        var isSelected : Boolean
+        bus.busList.map {
             if (it.peopleCount >= it.peopleLimit) {
                 rideAble = false
             }
-            isSelected = it.id == viewModel.busId
+            isSelected = it.id == presentId
+            Log.e("BusFragment","${it.id} : $isSelected at ${presentId}")
             list.add(
                 BusInfo(
                     it.id,
