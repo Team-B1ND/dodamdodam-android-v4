@@ -8,6 +8,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentHomeBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.home.adapter.BannerAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.features.home.adapter.MealHomeAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.SongAdapter
@@ -19,7 +20,7 @@ import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import kr.hs.dgsw.smartschool.domain.model.meal.MealInfo
 import java.time.LocalDate
 import java.time.LocalDateTime
-import java.util.Date
+import java.util.*
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
@@ -31,6 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private lateinit var studyRoomCheckAdapter: StudyRoomCheckAdapter
     private lateinit var songAdapter: SongAdapter
     lateinit var mealHomeAdapter: MealHomeAdapter
+    private lateinit var bannerAdapter: BannerAdapter
 
     override fun observerViewModel() {
         initViewEvent()
@@ -38,13 +40,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         setLocationRecyclerView()
         setMealListViewPager()
         setUpTodaySong()
+        setBannerViewPager()
 
         viewModel.getAllowSong()
         viewModel.getMyStudyRoom()
+        viewModel.getActiveBanner()
 
         collectMyStudyRoom()
         collectMealState()
         collectSongList()
+        collectBannerState()
     }
 
     private fun initViewEvent() {
@@ -75,33 +80,45 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         }
     }
 
-    private fun collectMealState() {
-        with(viewModel) {
-            if (LocalDateTime.now().hour >= 20) {
-                date = LocalDate.now()
-                date = date.plusDays(1)
-            }
-            getMeal(date)
+    private fun collectBannerState() = with(viewModel) {
+        lifecycleScope.launchWhenStarted {
+            getActiveBannerState.collect { state ->
+                if (state.activeBanners.isEmpty()) {
+                    bannerAdapter.submitList(state.activeBanners)
+                }
 
-            lifecycleScope.launchWhenStarted {
-                getMealState.collect { state ->
-                    if (state.isUpdate) {
-                        state.meal?.let {
-                            setMealList(it)
-                        }
+                if (state.error.isNotBlank()) {
+                    shortToast(state.error)
+                }
+            }
+        }
+    }
+
+    private fun collectMealState() = with(viewModel) {
+        if (LocalDateTime.now().hour >= 20) {
+            date = LocalDate.now()
+            date = date.plusDays(1)
+        }
+        getMeal(date)
+
+        lifecycleScope.launchWhenStarted {
+            getMealState.collect { state ->
+                if (state.isUpdate) {
+                    state.meal?.let {
+                        setMealList(it)
                     }
-                    if (state.error.isNotBlank()) {
-                        setMealList(
-                            Meal(
-                                "값을 받아올 수 없습니다.",
-                                "",
-                                "값을 받아올 수 없습니다.",
-                                false,
-                                "값을 받아올 수 없습니다."
-                            )
+                }
+                if (state.error.isNotBlank()) {
+                    setMealList(
+                        Meal(
+                            "값을 받아올 수 없습니다.",
+                            "",
+                            "값을 받아올 수 없습니다.",
+                            false,
+                            "값을 받아올 수 없습니다."
                         )
-                        shortToast(state.error)
-                    }
+                    )
+                    shortToast(state.error)
                 }
             }
         }
@@ -181,5 +198,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             findNavController().navigate(action)
         }
         mBinding.recyclerLocationCheck.adapter = studyRoomCheckAdapter
+    }
+
+    private fun setBannerViewPager() {
+        bannerAdapter = BannerAdapter()
+        mBinding.vpBanner.adapter = bannerAdapter
     }
 }
