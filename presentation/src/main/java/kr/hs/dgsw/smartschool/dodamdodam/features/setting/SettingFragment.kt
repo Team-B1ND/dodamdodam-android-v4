@@ -15,6 +15,8 @@ class SettingFragment : BaseFragment<FragmentSettingBinding, SettingViewModel>()
     override val viewModel: SettingViewModel by viewModels()
 
     override fun observerViewModel() {
+        mBinding.switchDarkMode.isChecked = !SharedPreferenceManager.getDayLight(requireContext())
+
         mBinding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -24,12 +26,16 @@ class SettingFragment : BaseFragment<FragmentSettingBinding, SettingViewModel>()
         mBinding.btnPersonal.setOnClickListener {
             this.openUrlWithBrowser(resources.getString(R.string.link_personal_info))
         }
+
+
         mBinding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
             when (isChecked) {
                 true -> {
+                    SharedPreferenceManager.setDayLight(requireContext(), false)
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 }
                 false -> {
+                    SharedPreferenceManager.setDayLight(requireContext(), true)
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 }
             }

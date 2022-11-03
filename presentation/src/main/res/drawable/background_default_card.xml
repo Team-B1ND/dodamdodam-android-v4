@@ -6,7 +6,7 @@
         android:radius="@dimen/card_corner" />
 
     <solid
-        android:color="@color/color_white" />
+        android:color="@color/color_card_background" />
 
 
 

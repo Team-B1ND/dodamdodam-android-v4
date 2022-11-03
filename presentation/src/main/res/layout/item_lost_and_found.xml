@@ -131,7 +131,6 @@
                     app:layout_constraintEnd_toStartOf="@id/tv_place"
                     app:layout_constraintHorizontal_chainStyle="packed"
                     app:tint="@color/main"
-                    android:background="@color/white"
                     tools:ignore="ContentDescription" />
                 <TextView
                     android:id="@+id/tv_place"

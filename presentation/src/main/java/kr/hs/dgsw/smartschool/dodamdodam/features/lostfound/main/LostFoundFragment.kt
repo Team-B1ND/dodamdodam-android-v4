@@ -111,7 +111,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
             list.add(
                 LostInfo(
                     idx = it.idx,
-                    img = it.image,
+                    img = it.image ?: "",
                     name = it.member.name,
                     uploadTime = it.createAt,
                     title = it.title,

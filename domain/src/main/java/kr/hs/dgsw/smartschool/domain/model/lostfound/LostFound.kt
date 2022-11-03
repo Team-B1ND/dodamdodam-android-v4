@@ -11,5 +11,5 @@ data class LostFound(
     val place: String,
     val title: String,
     val type: String,
-    val image: String
+    val image: String?
 )
