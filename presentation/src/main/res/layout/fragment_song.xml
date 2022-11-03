@@ -26,6 +26,7 @@
             app:liftOnScroll="false">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_tool_bar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/color_white"
@@ -44,20 +45,9 @@
                     android:background="@color/color_white"
                     app:layout_collapseMode="pin">
 
-                    <TextView
-                        android:id="@+id/tv_song_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end|center_vertical"
-                        android:layout_marginEnd="@dimen/default_margin"
-                        android:background="@color/color_white"
-                        android:fontFamily="@font/noto_regular"
-                        android:includeFontPadding="false"
-                        android:textColor="@color/gray500"
-                        android:textSize="@dimen/title5"
-                        tools:text="2022-05-25" />
 
                 </com.google.android.material.appbar.MaterialToolbar>
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_tomorrow_song_container"

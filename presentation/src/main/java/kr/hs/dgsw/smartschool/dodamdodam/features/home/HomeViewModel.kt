@@ -10,9 +10,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
+import kr.hs.dgsw.smartschool.dodamdodam.features.home.state.GetActiveBannerState
 import kr.hs.dgsw.smartschool.dodamdodam.features.meal.state.GetMealState
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.state.GetAllowSongState
 import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetMyStudyRoomState
+import kr.hs.dgsw.smartschool.domain.usecase.banner.GetActiveBannerUseCase
 import kr.hs.dgsw.smartschool.domain.usecase.meal.GetMeal
 import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.song.GetAllowSong
@@ -25,7 +27,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val mealUseCases: MealUseCases,
     private val studyRoomUseCases: StudyRoomUseCases,
-    private val songUseCases: SongUseCases
+    private val songUseCases: SongUseCases,
+    private val getActiveBannerUseCase: GetActiveBannerUseCase
 ) : BaseViewModel() {
 
     private val _getMealState = MutableStateFlow(GetMealState())
@@ -37,10 +40,14 @@ class HomeViewModel @Inject constructor(
     private val _getAllowSongState = MutableStateFlow<GetAllowSongState>(GetAllowSongState())
     val getAllowSongState: StateFlow<GetAllowSongState> = _getAllowSongState
 
+    private val _getActiveBannerState = MutableStateFlow<GetActiveBannerState>(GetActiveBannerState())
+    val getActiveBannerState: StateFlow<GetActiveBannerState> = _getActiveBannerState
+
     private val isDataSetUpLoading = MutableLiveData(false)
     private val isGetMealLoading = MutableLiveData(false)
     private val isGetMyStudyRoomLoading = MutableLiveData(false)
     private val isGetAllowSongLoading = MutableLiveData(false)
+    private val isGetActiveBannerLoading = MutableLiveData(false)
 
     init {
         combineLoadingVariable(isDataSetUpLoading, isGetMealLoading, isGetMyStudyRoomLoading, isGetAllowSongLoading)
@@ -51,6 +58,14 @@ class HomeViewModel @Inject constructor(
             isGetMealLoading,
             { _getMealState.value = GetMealState(meal = it, isUpdate = true) },
             { _getMealState.value = GetMealState(error = it ?: "급식을 받아오지 못하였습니다.") }
+        ).launchIn(viewModelScope)
+    }
+
+    fun getActiveBanner() {
+        getActiveBannerUseCase(Unit).divideResult(
+            isGetActiveBannerLoading,
+            { _getActiveBannerState.value = GetActiveBannerState(it ?: emptyList()) },
+            { _getActiveBannerState.value = GetActiveBannerState(error = it ?: "배너를 받아올 수 없습니다.") }
         ).launchIn(viewModelScope)
     }
 
