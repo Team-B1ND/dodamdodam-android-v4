@@ -55,9 +55,9 @@
                 app:layout_constraintTop_toTopOf="parent">
                 <ImageView
                     android:id="@+id/icon_dark"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/default_card_content_margin"
                     android:src="@drawable/ic_last_quarter_moon_color"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -116,9 +116,9 @@
                 android:orientation="horizontal">
                 <ImageView
                     android:id="@+id/icon_version"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/default_card_content_margin"
                     android:src="@drawable/ic_bookmark_tabs_color"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -156,9 +156,9 @@
                 android:orientation="horizontal">
                 <ImageView
                     android:id="@+id/icon_license"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/default_card_content_margin"
                     android:src="@drawable/ic_open_book_color"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -196,9 +196,9 @@
                 android:orientation="horizontal">
                 <ImageView
                     android:id="@+id/icon_service"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/default_card_content_margin"
                     android:src="@drawable/ic_information_color"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -237,9 +237,9 @@
                 android:orientation="horizontal">
                 <ImageView
                     android:id="@+id/icon1"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/default_card_content_margin"
                     android:src="@drawable/ic_locked_color"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -297,10 +297,10 @@
 
                 <ImageView
                     android:id="@+id/icon_log_out"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="15dp"
-                    android:src="@drawable/default_user"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/default_card_content_margin"
+                    android:src="@drawable/ic_door_color"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -342,9 +342,9 @@
 
                 <ImageView
                     android:id="@+id/icon_quit"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="15dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/default_card_content_margin"
                     android:src="@drawable/ic_no_entry_color"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
