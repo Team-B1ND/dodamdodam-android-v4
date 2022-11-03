@@ -2,9 +2,8 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.bus.main
 
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 
-data class GetBusListState(
+data class BusTaskState(
     val isLoading: Boolean = false,
-    val bus: BusByDate? = null,
-    val applyBusId: Int = 0,
-    val error: String = "",
+    val success : String = "",
+    val error: String = ""
 )
