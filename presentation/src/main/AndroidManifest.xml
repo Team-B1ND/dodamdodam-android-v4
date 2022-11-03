@@ -48,7 +48,6 @@
         <activity
             android:name=".features.start.StartActivity"
             android:exported="true"
-            android:theme="@style/Theme.DodamDodam.StartScreen"
             android:screenOrientation="portrait">
         </activity>
 

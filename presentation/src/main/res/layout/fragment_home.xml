@@ -5,7 +5,6 @@
     android:background="@color/color_background">
 
     <data>
-
         <import type="android.view.View" />
 
         <variable
@@ -208,6 +207,27 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/default_margin"
+                    android:background="@drawable/background_default_card"
+                    android:layout_marginTop="@dimen/default_card_height_margin">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/vp_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintDimensionRatio="w, 3:20"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_more_card"

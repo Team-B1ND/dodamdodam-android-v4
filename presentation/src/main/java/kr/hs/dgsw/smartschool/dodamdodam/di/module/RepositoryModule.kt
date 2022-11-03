@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.data.repository.AccountRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.AuthRepositoryImpl
+import kr.hs.dgsw.smartschool.data.repository.BannerRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.BusRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.ClassInfoRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.DataSetUpRepositoryImpl
@@ -25,6 +26,7 @@ import kr.hs.dgsw.smartschool.data.repository.TokenRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.YouTubeRepositoryImpl
 import kr.hs.dgsw.smartschool.domain.repository.AccountRepository
 import kr.hs.dgsw.smartschool.domain.repository.AuthRepository
+import kr.hs.dgsw.smartschool.domain.repository.BannerRepository
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.repository.ClassInfoRepository
 import kr.hs.dgsw.smartschool.domain.repository.DataSetUpRepository
@@ -122,4 +124,8 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideItMapRepository(itMapRepositoryImpl: ItMapRepositoryImpl): ItMapRepository = itMapRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideBannerRepository(bannerRepositoryImpl: BannerRepositoryImpl): BannerRepository = bannerRepositoryImpl
 }

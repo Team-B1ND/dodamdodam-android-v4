@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.song.search.SongSearchViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/btn_back"
+                layout="@layout/item_back_button"
+                android:clickable="@{vm.isLoading ? false : true}"
+                android:onClick="@{() -> vm.onClickBack()}" />
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginVertical="7dp"
+                android:background="@drawable/background_search_edittext"
+                android:backgroundTint="@color/color_background"
+                android:fontFamily="@font/noto_regular"
+                android:hint="@string/text_song_search_hint"
+                android:importantForAutofill="no"
+                android:includeFontPadding="false"
+                android:inputType="text"
+                android:maxLines="1"
+                android:text="@={vm.keyword}"
+                android:paddingHorizontal="16dp"
+                android:textSize="@dimen/title4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_search"
+                app:layout_constraintStart_toEndOf="@id/btn_back"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/btn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"
+                android:onClick="@{() -> vm.getYoutubeResult()}"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:src="@drawable/ic_search"
+                android:clickable="@{vm.isLoading ? false : true}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/color_black"
+                tools:ignore="ContentDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_loading"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:indeterminateTint="@color/color_song"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_song_search"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/layout_title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_song_search" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

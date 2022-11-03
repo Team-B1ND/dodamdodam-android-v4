@@ -8,12 +8,15 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
 import kr.hs.dgsw.smartschool.dodamdodam.widget.Event
 import kr.hs.dgsw.smartschool.domain.util.Resource
+import kr.hs.dgsw.smartschool.domain.util.Utils
 
 open class BaseViewModel : ViewModel() {
     protected val isLoading: MediatorLiveData<Boolean> = MediatorLiveData()
     fun getIsLoading(): LiveData<Boolean> {
         return isLoading
     }
+
+    val tokenErrorEvent = MutableLiveData<String>()
 
     private val _viewEvent = MutableLiveData<Event<Any>>()
     val viewEvent: LiveData<Event<Any>>
@@ -44,7 +47,11 @@ open class BaseViewModel : ViewModel() {
             }
             is Resource.Error -> {
                 isLoading.value = false
-                errorAction.invoke(resource.message)
+                if (resource.message == Utils.TOKEN_EXCEPTION) {
+                    tokenErrorEvent.value = resource.message
+                } else {
+                    errorAction.invoke(resource.message)
+                }
             }
         }
     }

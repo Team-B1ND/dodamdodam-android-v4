@@ -132,3 +132,12 @@ fun setSelected(view: View, isSelected: Boolean) {
 fun setMutableVisibility(view: View, visibility: Boolean) {
     view.visibility = if (visibility) View.VISIBLE else View.GONE
 }
+
+@BindingAdapter("imageUrl")
+fun setImageUrl(view: ImageView, image: String?) {
+    Glide.with(view.context)
+        .load(image ?: return)
+        .error(R.drawable.default_img)
+        .centerCrop()
+        .into(view)
+}

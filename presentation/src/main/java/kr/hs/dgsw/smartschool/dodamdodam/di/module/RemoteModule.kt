@@ -6,6 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceManager
+import kr.hs.dgsw.smartschool.data.network.api.BannerApi
 import kr.hs.dgsw.smartschool.data.network.api.BusApi
 import kr.hs.dgsw.smartschool.data.network.api.ClassInfoApi
 import kr.hs.dgsw.smartschool.data.network.api.FileUploadApi
@@ -21,6 +22,7 @@ import kr.hs.dgsw.smartschool.data.network.api.StudyRoomApi
 import kr.hs.dgsw.smartschool.data.network.api.TimeTableApi
 import kr.hs.dgsw.smartschool.data.network.api.YouTubeApi
 import kr.hs.dgsw.smartschool.data.network.remote.AuthRemote
+import kr.hs.dgsw.smartschool.data.network.remote.BannerRemote
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.remote.ClassInfoRemote
 import kr.hs.dgsw.smartschool.data.network.remote.FileUploadRemote
@@ -127,4 +129,9 @@ class RemoteModule {
     @Provides
     fun provideItMapRemote(@OtherRemoteRetrofit retrofit: Retrofit): ItMapRemote =
         ItMapRemote(retrofit.create(ItMapApi::class.java))
+
+    @Singleton
+    @Provides
+    fun provideBannerRemote(@OtherRemoteRetrofit retrofit: Retrofit): BannerRemote =
+        BannerRemote(retrofit.create(BannerApi::class.java))
 }

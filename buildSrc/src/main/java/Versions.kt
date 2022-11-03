@@ -12,6 +12,7 @@ object Versions {
     const val KT_DETE = "1.21.0"
 
     const val GOOGLE_GMS = "4.3.14"
+    const val EXO_PLAYER = "2.18.1"
 
     const val CORE_KTX = "1.8.0"
     const val APP_COMPAT = "1.4.2"

@@ -9,9 +9,14 @@ import javax.inject.Inject
 
 class GetYouTubeVideo @Inject constructor(
     private val youTubeRepository: YouTubeRepository
-) : BaseUseCase<String, YoutubeVideo>() {
+) : BaseUseCase<GetYouTubeVideo.Params, YoutubeVideo>() {
 
-    override fun invoke(params: String): Flow<Resource<YoutubeVideo>> = execute {
-        youTubeRepository.getYoutubeVideo(params)
+    override fun invoke(params: Params): Flow<Resource<YoutubeVideo>> = execute {
+        youTubeRepository.getYoutubeVideo(params.content, params.maxResults)
     }
+
+    data class Params(
+        val content: String,
+        val maxResults: Int
+    )
 }
