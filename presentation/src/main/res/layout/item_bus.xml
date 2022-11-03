@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="bus"
+            type="kr.hs.dgsw.smartschool.domain.model.bus.BusInfo" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="@dimen/default_card_content_margin"
+        android:layout_marginEnd="@dimen/default_card_content_margin"
+        android:layout_marginBottom="@dimen/default_card_height_margin"
+        app:cardCornerRadius="@dimen/card_corner"
+        app:cardElevation="@dimen/card_elevation"
+        android:id="@+id/bus_card">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/background_layout">
+
+            <ImageView
+                android:id="@+id/iv_bus"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_bus"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/count_people"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginHorizontal="5dp"
+                android:text="@{bus.peopleCount}"
+                app:layout_constraintEnd_toEndOf="@id/iv_bus"
+                app:layout_constraintStart_toStartOf="@id/iv_bus"
+                app:layout_constraintTop_toBottomOf="@id/iv_bus"
+                tools:text="0/45"
+                tools:textSize="@dimen/title5" />
+
+            <LinearLayout
+                android:id="@+id/layout_bus_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:maxHeight="30dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@id/layout_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_bus"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed">
+
+                <TextView
+                    android:id="@+id/tv_bus_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="5dp"
+                    android:fontFamily="@font/noto_medium"
+                    android:includeFontPadding="false"
+                    android:text="@{bus.busName}"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/title5"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/iv_bus"
+                    app:layout_constraintTop_toTopOf="@id/iv_bus"
+                    tools:text="버스 이름" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/tv_bus_ride_possible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_circle_blue_light"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/title7"
+                app:layout_constraintStart_toStartOf="@id/menu"
+                app:layout_constraintEnd_toEndOf="@id/menu"
+                app:layout_constraintTop_toTopOf="@id/menu"
+                tools:text="탑승가능" />
+
+            <LinearLayout
+                android:id="@+id/layout_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/layout_bus_info"
+                app:layout_constraintTop_toBottomOf="@id/layout_bus_info">
+
+                <TextView
+                    android:id="@+id/tv_bus_time_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="3dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/text_bus_start_time"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/title5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@{bus.leaveTime}"
+                    android:textColor="@color/gray700"
+                    android:layout_gravity="bottom"
+                    android:textSize="@dimen/title6"
+                    tools:text="9월 6일 12시 30분" />
+
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/iv_bus"
+                app:layout_constraintEnd_toEndOf="@id/layout_bus_info"
+                android:src="@drawable/ic_cancel"
+                android:visibility="invisible"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

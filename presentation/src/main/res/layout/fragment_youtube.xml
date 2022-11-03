@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.song.youtube.YouTubeViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_background">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="10dp"
+            android:background="@drawable/background_thumbnail_gradient"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/btn_back"
+                layout="@layout/item_back_button_white"
+                android:onClick="@{() -> vm.onClickBack()}"
+                android:src="@drawable/ic_btn_back"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/title_search_song"
+                android:textColor="@color/white"
+                android:textSize="@dimen/app_bar_title_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_back"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_copy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/default_margin"
+                android:backgroundTint="@color/color_song"
+                android:onClick="@{() -> vm.onClickCopy()}"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tv_copy"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="5dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:text="@string/text_copy_link"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/title6" />
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:onClick="@{() -> vm.onClickThumbnail()}"
+            app:cardElevation="1dp"
+            app:layout_constraintDimensionRatio="1280:720"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/default_img" />
+
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="20dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_bold"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/title2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_thumbnail"
+            tools:text="NewJeans (뉴진스)" />
+
+        <TextView
+            android:id="@+id/tv_sub_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_regular"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:maxLines="2"
+            android:textColor="@color/gray500"
+            android:textSize="@dimen/title5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:text="NewJeans (뉴진스) &#39;Attention&#39; Official MV" />
+
+        <ProgressBar
+            android:id="@+id/progress_loading"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:indeterminateTint="@color/color_song"
+            android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/btn_apply"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_sub_title" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/music_visualizer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@id/btn_apply"
+            app:layout_constraintTop_toBottomOf="@id/tv_sub_title"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/music_visualizer" />
+
+        <ImageView
+            android:id="@+id/iv_search"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:onClick="@{() -> vm.onClickSearch()}"
+            app:layout_constraintStart_toStartOf="@id/btn_apply"
+            app:layout_constraintBottom_toTopOf="@id/btn_apply"
+            android:src="@drawable/ic_search"
+            android:layout_marginBottom="@dimen/default_margin"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_search_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_search_desc"
+            app:layout_constraintTop_toTopOf="@id/iv_search"
+            app:layout_constraintBottom_toBottomOf="@id/iv_search"
+            app:layout_constraintStart_toEndOf="@id/iv_search"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:onClick="@{() -> vm.onClickSearch()}"
+            android:textColor="@color/color_black"
+            android:layout_marginStart="8dp"
+            android:textSize="@dimen/title5" />
+
+        <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
+            android:id="@+id/btn_apply"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginBottom="20dp"
+            android:enabled="@{vm.isLoading ? false : true}"
+            android:onClick="@{() -> vm.onClickApply()}"
+            android:text="@string/apply"
+            app:backgroundTint="@color/color_song"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

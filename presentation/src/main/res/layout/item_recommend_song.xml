@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="melon"
+            type="kr.hs.dgsw.smartschool.domain.model.song.melon.SongChart" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_medium"
+            android:includeFontPadding="false"
+            android:text="@{melon.showingRank}"
+            android:textColor="@color/color_song"
+            android:textSize="@dimen/title4"
+            app:layout_constraintBottom_toBottomOf="@id/card_image_container"
+            app:layout_constraintEnd_toStartOf="@id/card_image_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/card_image_container"
+            tools:text="#1위" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_image_container"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginStart="60dp"
+            app:cardCornerRadius="@dimen/card_small_corner"
+            app:cardElevation="@dimen/card_elevation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_recommend_song"
+                songThumbnail="@{melon.thumbnail}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_img" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_recommend_song_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_medium"
+            android:includeFontPadding="false"
+            android:maxLines="3"
+            android:text="@{melon.name}"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/title4"
+            app:layout_constraintBottom_toTopOf="@id/tv_recommend_song_artist"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/card_image_container"
+            app:layout_constraintTop_toTopOf="@id/card_image_container"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="My Back" />
+
+        <TextView
+            android:id="@+id/tv_recommend_song_artist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:maxLines="3"
+            android:text="@{melon.artist}"
+            android:textColor="@color/gray500"
+            android:textSize="@dimen/title6"
+            app:layout_constraintBottom_toBottomOf="@id/card_image_container"
+            app:layout_constraintEnd_toEndOf="@id/tv_recommend_song_title"
+            app:layout_constraintStart_toStartOf="@id/tv_recommend_song_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_recommend_song_title"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="여자 아이들(idle)" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

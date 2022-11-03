@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.auth.login.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.features.sign.signin.SignInActivity">
+
+        <include
+            android:id="@+id/btn_back"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:onClick="@{() -> vm.onClickBack()}"
+            layout="@layout/item_back_button" />
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/noto_bold"
+            android:text="@string/text_sign_in"
+            app:layout_constraintTop_toBottomOf="@id/btn_back"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/title2"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="46dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="15"
+            app:endIconMode="clear_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_login"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamTextInputEditText
+                android:id="@+id/edit_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/text_id"
+                android:inputType="text"
+                android:maxLength="15"
+                android:text="@={vm.id}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="20dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_id"
+            app:passwordToggleEnabled="true">
+
+            <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamTextInputEditText
+                android:id="@+id/edit_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/text_password"
+                android:inputType="textPassword"
+                android:maxLength="15"
+                android:text="@={vm.pw}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+       <!-- <CheckBox
+            android:id="@+id/check_auto_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="20dp"
+            android:buttonTint="@color/main"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/text_auto_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_password" />-->
+
+
+        <FrameLayout
+            android:id="@+id/btn_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:onClick="@{() -> vm.onClickSignIn()}"
+                android:text="@string/text_sign_in" />
+
+            <ProgressBar
+                style="?android:progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:indeterminate="true"
+                android:indeterminateTint="@android:color/white"
+                android:visibility="@{vm.isLoading ? View.VISIBLE : View.INVISIBLE}"
+                tools:visibility="visible" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:clickable="true"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/text_navigate_sign_up"
+            android:textColor="@color/gray700"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:onClick="@{() -> vm.onClickJoin()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_navigate_sign_up"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_sign_in" />
+
+        <ImageView
+            android:id="@+id/iv_navigate_sign_up"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:rotation="270"
+            android:src="@drawable/ic_btn_arrow"
+            android:layout_marginBottom="4dp"
+            android:onClick="@{() -> vm.onClickJoin()}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_sign_up"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_sign_up"
+            app:layout_constraintTop_toTopOf="@id/tv_sign_up"
+            app:tint="@color/gray700"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

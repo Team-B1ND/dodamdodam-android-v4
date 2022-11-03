@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.main.LostFoundViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.fragment.LostFoundFragment"
+        android:background="@color/color_background">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/root_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/color_background">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/search_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:padding="10dp"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="1dp"
+                    android:background="@color/color_card_background"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/btn_back"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_btn_back"
+                        app:tint="@color/color_black"
+                        tools:ignore="ContentDescription"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+                    <EditText
+                        android:id="@+id/et_search"
+                        android:layout_width="250dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/background_round_line"
+                        android:hint="@string/text_search"
+                        android:text="@={vm.searchKeyword}"
+                        android:fontFamily="@font/noto_regular"
+                        android:includeFontPadding="false"
+                        android:imeOptions="actionSearch"
+                        android:visibility="visible"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:textColor="@color/color_black"
+                        android:textSize="6pt"
+                        tools:ignore="Autofill"
+                        app:layout_constraintStart_toEndOf="@id/btn_back"/>
+                    <ImageView
+                        android:id="@+id/btn_search"
+                        android:src="@drawable/ic_search"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="20dp"
+                        app:layout_constraintStart_toEndOf="@id/et_search"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/check_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="7dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/color_card_background"
+                    app:layout_constraintTop_toBottomOf="@+id/search_view"
+                    >
+                    <CheckBox
+                        android:id="@+id/tb_mine"
+                        android:layout_marginStart="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/title5"
+                        android:fontFamily="@font/notosans_kr_bold"
+                        android:includeFontPadding="false"
+                        android:textAlignment="center"
+                        android:checked="@={vm.mineChecked}"
+                        android:textColor="?android:textColorPrimary"
+                        app:layout_constraintStart_toStartOf="parent"
+                       android:text="@string/text_my_lostfound"/>
+                    <CheckBox
+                        android:id="@+id/tb_lost_and_found"
+                        android:layout_marginStart="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/title5"
+                        android:fontFamily="@font/notosans_kr_bold"
+                        android:includeFontPadding="false"
+                        android:textAlignment="center"
+                        android:checked="@={vm.foundChecked}"
+                        android:textColor="?android:textColorPrimary"
+                        app:layout_constraintStart_toEndOf="@id/tb_mine"
+                        android:text="@string/text_found"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_lost_and_found"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@color/color_background"
+                    app:layout_constraintTop_toBottomOf="@+id/check_view"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_lost_and_found" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fb_add_lostfound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_btn_modify"
+            app:backgroundTint="@color/main"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/white"
+            tools:ignore="ContentDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
