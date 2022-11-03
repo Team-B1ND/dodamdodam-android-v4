@@ -22,14 +22,18 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
-        if (!SharedPreferenceManager.getIsLogin(this))
+        if (!SharedPreferenceManager.getIsLogin(this)) {
             startActivityWithFinishAll(StartActivity::class.java)
-        else {
             super.onCreate(savedInstanceState)
+        } else {
+            super.onCreate(savedInstanceState)
+            startForMainActivity()
         }
     }
 
-    override fun observerViewModel() {
+    override fun observerViewModel() {}
+
+    private fun startForMainActivity() {
         viewModel.dataSetUp()
         collectDataSetUpDate()
     }

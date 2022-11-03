@@ -171,5 +171,9 @@
     <string name="license">오픈소스 라이선스</string>
     <string name="service">서비스 운영정책</string>
     <string name="personal">개인정보 취급방침</string>
+    <string name="text_song_search_hint">노래, 앨범, 아티스트 검색</string>
+    <string name="text_apply_short">신청</string>
+    <string name="text_search_desc">더욱 상세한 정보를 검색해 보세요!</string>
+    <string name="text_start">시작하기</string>
 
 </resources>

@@ -31,7 +31,6 @@ class YouTubeFragment : BaseFragment<FragmentYoutubeBinding, YouTubeViewModel>()
 
         bindingViewEvent { event ->
             when (event) {
-                YouTubeViewModel.EVENT_ON_SEARCH_TITLE_ERROR -> shortToast(viewModel.errorMessage)
                 YouTubeViewModel.EVENT_ON_CLICK_BACK -> findNavController().popBackStack()
                 YouTubeViewModel.EVENT_ON_CLICK_THUMBNAIL -> this.openVideoFromUrl(viewModel.url.value ?: "https://www.youtube.com/watch?v=TqIAndOnd74")
                 YouTubeViewModel.EVENT_ON_CLICK_COPY -> {
@@ -40,6 +39,7 @@ class YouTubeFragment : BaseFragment<FragmentYoutubeBinding, YouTubeViewModel>()
                     clipboard.setPrimaryClip(clip)
                     shortToast("클립보드에 복사되었습니다.")
                 }
+                YouTubeViewModel.EVENT_ON_CLICK_SEARCH -> findNavController().navigate(R.id.action_youTubeFragment_to_songSearchFragment)
             }
         }
     }
