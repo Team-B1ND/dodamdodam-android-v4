@@ -26,6 +26,7 @@ import kr.hs.dgsw.smartschool.domain.usecase.bus.AddBusApply
 import kr.hs.dgsw.smartschool.domain.usecase.bus.BusUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.bus.DeleteBus
 import kr.hs.dgsw.smartschool.domain.usecase.bus.DeleteBusApply
+import kr.hs.dgsw.smartschool.domain.usecase.bus.GetApplyBus
 import kr.hs.dgsw.smartschool.domain.usecase.bus.GetBusList
 import kr.hs.dgsw.smartschool.domain.usecase.bus.GetMyBusByMonth
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusApply
@@ -130,7 +131,8 @@ class UseCaseModule {
             updateBusApply = UpdateBusApply(repository),
             updateBusInfo = UpdateBusInfo(repository),
             deleteBus = DeleteBus(repository),
-            deleteBusApply = DeleteBusApply(repository)
+            deleteBusApply = DeleteBusApply(repository),
+            getMyBus = GetApplyBus(repository)
         )
 
     @Provides

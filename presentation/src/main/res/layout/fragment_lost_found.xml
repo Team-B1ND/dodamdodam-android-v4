@@ -28,7 +28,8 @@
                 android:id="@+id/root_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@color/color_background">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/search_view"
@@ -37,7 +38,7 @@
                     android:padding="10dp"
                     android:orientation="horizontal"
                     android:layout_marginBottom="1dp"
-                    android:background="@color/white"
+                    android:background="@color/color_card_background"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -94,7 +95,7 @@
                     android:layout_height="50dp"
                     android:padding="7dp"
                     android:layout_marginTop="1dp"
-                    android:background="@color/white"
+                    android:background="@color/color_card_background"
                     app:layout_constraintTop_toBottomOf="@+id/search_view"
                     >
                     <CheckBox
@@ -128,10 +129,10 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_lost_and_found"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:background="@color/color_background"
                     app:layout_constraintTop_toBottomOf="@+id/check_view"
-                    android:overScrollMode="never"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_lost_and_found" />
 

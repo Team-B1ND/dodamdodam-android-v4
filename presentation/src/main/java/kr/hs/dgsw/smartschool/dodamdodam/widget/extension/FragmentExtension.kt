@@ -66,3 +66,9 @@ fun Fragment.openVideoFromUrl(url: String) {
     intent.setPackage("com.google.android.youtube")
     startActivity(intent)
 }
+
+fun Fragment.openUrlWithBrowser(url: String) {
+    val intent = Intent(Intent.ACTION_VIEW)
+    intent.data = Uri.parse(url)
+    startActivity(intent)
+}

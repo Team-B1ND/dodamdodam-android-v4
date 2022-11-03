@@ -26,6 +26,8 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         viewModel.getMyInfo()
     }
     override fun observerViewModel() {
+
+        // TODO 페이지 넘기는 것 구현해야함 INFINITE_LIMIT은 20임
         lostFoundAdapter = LostFoundAdapter(requireContext(), this)
         mBinding.rvLostAndFound.adapter = lostFoundAdapter
 
@@ -40,7 +42,6 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                 viewModel.getLostFoundList(1)
                 mBinding.swipeRefreshLayout.isRefreshing = false
             }
-            // TODO checkBox 체크
             btnSearch.setOnClickListener {
                 viewModel.searchLostFound()
             }
@@ -110,14 +111,14 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
             list.add(
                 LostInfo(
                     idx = it.idx,
-                    img = it.member.profileImage ?: "",
+                    img = it.image,
                     name = it.member.name,
                     uploadTime = it.createAt,
                     title = it.title,
                     content = it.content,
                     place = it.place,
                     member = it.member,
-                    myId = myId // TODO 나갔다 들어오면 NPE 뜸 Comment 마찬가지
+                    myId = myId
                 )
             )
         }

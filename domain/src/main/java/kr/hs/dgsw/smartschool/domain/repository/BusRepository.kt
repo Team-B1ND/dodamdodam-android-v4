@@ -4,13 +4,14 @@ import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.MyBusByMonthRequest
+import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusApplyRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
 
 interface BusRepository {
 
     // GET
     suspend fun getBusList(): BusByDate
-    suspend fun getMyBus(): List<Bus>
+    suspend fun getMyBus(): Bus
     suspend fun getMyBusByMonth(
         request: MyBusByMonthRequest
     ): List<Bus>
@@ -30,7 +31,7 @@ interface BusRepository {
         request: UpdateBusRequest
     ): String
     suspend fun updateBusApply(
-        id: Int
+        request: UpdateBusApplyRequest
     ): String
 
     // DELETE

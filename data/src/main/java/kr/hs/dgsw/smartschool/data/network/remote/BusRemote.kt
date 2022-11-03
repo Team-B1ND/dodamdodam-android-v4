@@ -8,6 +8,7 @@ import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.MyBusByMonthRequest
+import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusApplyRequest
 import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
 import javax.inject.Inject
 
@@ -17,7 +18,7 @@ class BusRemote @Inject constructor(
 
     suspend fun getBusList(): Response<BusByDate> = api.getBusList()
 
-    suspend fun getMyBusList(): Response<List<Bus>> {
+    suspend fun getMyBus(): Response<Bus> {
         Log.e("getMyBus", "실행")
         return api.getMyBus()
     }
@@ -38,9 +39,10 @@ class BusRemote @Inject constructor(
     )
 
     suspend fun updateBusApply(
-        id: Int
+        request: UpdateBusApplyRequest
     ): Response<Any> = api.updateBusApply(
-        id
+        request.busId,
+        request.originBusId
     )
 
     suspend fun addBus(

@@ -36,10 +36,13 @@ class LostFoundViewModel @Inject constructor(
     val foundChecked = MutableLiveData<Boolean>(false)
     val hasLostFound = MutableLiveData<Boolean>(false)
 
+    val getTypeLoading = MutableLiveData<Boolean>(false)
+
     init {
         combineLoadingVariable(isGetLostFoundLoading, isGetLostProfileLoading)
         Log.e("LostFoundViewModel", "생성")
     }
+
     fun getMyInfo() {
         memberUseCases.getMyInfo(Unit).divideResult(
             isGetLostProfileLoading,
@@ -48,7 +51,7 @@ class LostFoundViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
     fun getLostFoundList(page: Int) {
-        if (mineChecked.value == false) {
+        if (mineChecked.value == true) {
             Log.d("LostFoundViewModel", "myLostFound()")
             myLostFound()
         } else {

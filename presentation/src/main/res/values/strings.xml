@@ -109,6 +109,7 @@
     <string name="text_personal_info"><![CDATA[> 개인정보 취급방침]]></string>
     <string name="text_service_operation"><![CDATA[> 서비스 운영정책]]></string>
     <string name="text_sign_out">로그아웃</string>
+    <string name="text_quit">회원 탈퇴</string>
 
     <string name="link_service_policy">http://dodam.b1nd.com/detailed-information/service-policy</string>
     <string name="link_personal_info">http://dodam.b1nd.com/detailed-information/personal-information</string>
@@ -162,6 +163,14 @@
     <string name="text_dodam_main_desc">B1ND 스마트 스쿨</string>
     <string name="text_copy_link">링크 복사</string>
     <string name="text_calorie_unit">Kcal</string>
+    <string name="view">화면</string>
+    <string name="dark_mode">다크 모드</string>
+    <string name="info">정보</string>
+    <string name="account">계정</string>
+    <string name="version">버전 정보</string>
+    <string name="license">오픈소스 라이선스</string>
+    <string name="service">서비스 운영정책</string>
+    <string name="personal">개인정보 취급방침</string>
     <string name="text_song_search_hint">노래, 앨범, 아티스트 검색</string>
     <string name="text_apply_short">신청</string>
     <string name="text_search_desc">더욱 상세한 정보를 검색해 보세요!</string>

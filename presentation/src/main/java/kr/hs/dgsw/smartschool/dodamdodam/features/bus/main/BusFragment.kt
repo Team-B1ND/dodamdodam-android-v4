@@ -16,6 +16,8 @@ import kr.hs.dgsw.smartschool.domain.model.bus.BusInfo
 class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter.BusApplyCallBack {
     override val viewModel: BusViewModel by viewModels()
     private lateinit var busAdapter: BusAdapter
+
+    var tempBusId: Int = 0
     override fun onStart() {
         super.onStart()
         viewModel.getBusList()
@@ -30,12 +32,17 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
             viewModel.getBusList()
             mBinding.swipeRefreshLayout.isRefreshing = false
         }
+        collectGetBusList()
+        collectBusTask()
+    }
+    private fun collectGetBusList() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getBusListState.collect { state ->
                     Log.e("LostFoundFragment", "state")
                     if (state.bus != null) {
-                        val busList = setBusInfo(state.bus)
+                        tempBusId = state.applyBusId
+                        val busList = setBusInfo(state.bus, tempBusId)
                         if (busList.isNotEmpty()) {
                             hasBus.value = true
                         }
@@ -49,18 +56,35 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
             }
         }
     }
+    // TODO StateFlow라 그런지 Toast 메시지가 최초 한번 이외에는 뜨지 않음. 고칠 필요 있음.
+    private fun collectBusTask() {
+        with(viewModel) {
+            lifecycleScope.launchWhenStarted {
+                busTaskState.collect { state ->
+                    Log.e("LostFoundFragment", "state")
+                    if (state.error.isNotBlank()) {
+                        shortToast(state.error)
+                    }
+                    if (state.success.isNotBlank()) {
+                        shortToast(state.success)
+                    }
+                }
+            }
+        }
+    }
 
-    private fun setBusInfo(bus: BusByDate): List<BusInfo> {
+    private fun setBusInfo(bus: BusByDate, presentId: Int): List<BusInfo> {
         val list: MutableList<BusInfo> = mutableListOf()
         mBinding.tvDate.text = bus.date
 
         var rideAble = true
         var isSelected: Boolean
-        bus.busList.forEach {
+        bus.busList.map {
             if (it.peopleCount >= it.peopleLimit) {
                 rideAble = false
             }
-            isSelected = it.id == viewModel.busId
+            isSelected = it.id == presentId
+            Log.e("BusFragment", "${it.id} : $isSelected at $presentId")
             list.add(
                 BusInfo(
                     it.id,
@@ -80,10 +104,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
     }
 
     override fun applyBus(idx: Int) {
-        viewModel.applyBus(idx)
-    }
-
-    override fun cancelBus(idx: Int) {
-        viewModel.cancelBus(idx)
+        if (idx == tempBusId) viewModel.cancelBus(idx)
+        else viewModel.applyBus(idx)
     }
 }

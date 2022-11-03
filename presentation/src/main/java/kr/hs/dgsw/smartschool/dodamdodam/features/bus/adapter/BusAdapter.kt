@@ -14,6 +14,9 @@ class BusAdapter(val context: Context, val listener: BusApplyCallBack) : BaseLis
         if (item.isSelected) {
             binding.tvBusRidePossible.visibility = View.INVISIBLE
             binding.menu.visibility = View.VISIBLE
+        } else {
+            binding.tvBusRidePossible.visibility = View.VISIBLE
+            binding.menu.visibility = View.INVISIBLE
         }
 
         with(binding) {
@@ -26,41 +29,10 @@ class BusAdapter(val context: Context, val listener: BusApplyCallBack) : BaseLis
             root.setOnClickListener {
                 listener.applyBus(item.idx)
             }
-
-            menu.setOnClickListener {
-                listener.cancelBus(item.idx)
-            }
-
-            /*menu.setOnClickListener(
-                View.OnClickListener {
-                    val pm: PopupMenu = PopupMenu(context, binding.menu)
-                    pm.inflate(R.menu.bus_item_menu)
-
-                    pm.setOnMenuItemClickListener(
-                        PopupMenu.OnMenuItemClickListener { data ->
-                            when (data.itemId) {
-                                R.id.apply_bus ->
-                                {
-                                    listener.applyBus(item.idx)
-                                    true
-                                }
-                                R.id.cancel_bus ->
-                                {
-                                    listener.cancelBus(item.idx)
-                                    true
-                                }
-                                else -> false
-                            }
-                        }
-                    )
-                    pm.show()
-                }
-            )*/
         }
     }
 
     interface BusApplyCallBack {
         fun applyBus(idx: Int)
-        fun cancelBus(idx: Int)
     }
 }
