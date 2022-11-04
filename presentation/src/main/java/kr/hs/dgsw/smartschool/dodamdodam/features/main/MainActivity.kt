@@ -55,7 +55,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             .appUpdateInfo
             .addOnSuccessListener { appUpdateInfo ->
                 if (appUpdateInfo.updateAvailability()
-                    == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                    == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS
+                ) {
                     appUpdateManager.startUpdateFlowForResult(
                         appUpdateInfo,
                         IMMEDIATE,
@@ -64,7 +65,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                     )
                 }
             }
-
     }
 
     private fun collectDataSetUpDate() {
@@ -88,8 +88,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         val appUpdateInfoTask = appUpdateManager.appUpdateInfo
 
         appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
-                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE &&
+                appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
             ) {
                 appUpdateManager.startUpdateFlowForResult(
                     appUpdateInfo,

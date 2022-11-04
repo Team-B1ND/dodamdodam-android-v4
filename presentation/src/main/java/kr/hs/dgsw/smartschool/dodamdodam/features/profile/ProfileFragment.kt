@@ -123,7 +123,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                 if (pointLog.target == PointPlace.DORMITORY)
                     dormitoryBonusPoint = (dormitoryBonusPoint ?: 0) + pointLog.score
                 else
-                    schoolBonusPoint =  (schoolBonusPoint ?: 0) + pointLog.score
+                    schoolBonusPoint = (schoolBonusPoint ?: 0) + pointLog.score
             } else if (pointLog.type == PointType.MINUS) {
                 if (pointLog.target == PointPlace.DORMITORY)
                     dormitoryMinusPoint = (dormitoryMinusPoint ?: 0) + pointLog.score

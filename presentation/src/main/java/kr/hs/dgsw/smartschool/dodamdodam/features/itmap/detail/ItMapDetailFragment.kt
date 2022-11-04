@@ -38,7 +38,7 @@ class ItMapDetailFragment : BaseFragment<FragmentItmapDetailBinding, ItMapDetail
     private fun collectGetDetailCompanyState() = lifecycleScope.launchWhenStarted {
         viewModel.getCompanyByIdState.collect { state ->
             if (state.company != null) {
-                if(state.company.symbolLogo != null) {
+                if (state.company.symbolLogo != null) {
                     setLogoImage(state.company.symbolLogo!!)
                 } else if (state.company.textLogo != null) {
                     setLogoImage(state.company.textLogo!!)
