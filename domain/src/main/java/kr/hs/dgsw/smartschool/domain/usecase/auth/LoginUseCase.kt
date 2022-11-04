@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.domain.usecase.auth
 
-import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
 import kr.hs.dgsw.smartschool.domain.repository.AuthRepository
@@ -13,7 +12,6 @@ class LoginUseCase @Inject constructor(
 ) : BaseUseCase<LoginUseCase.Params, Unit>() {
 
     override fun invoke(params: Params): Flow<Resource<Unit>> = execute {
-        Log.d("TokenTest", "invoke: Login UseCase")
         repository.login(LoginRequest(params.id, params.pw, params.encryption))
     }
 
