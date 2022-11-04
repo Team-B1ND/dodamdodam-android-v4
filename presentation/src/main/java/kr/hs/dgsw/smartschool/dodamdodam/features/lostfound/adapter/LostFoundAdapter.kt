@@ -2,7 +2,9 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.adapter
 
 import android.content.Context
 import android.util.Log
+import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseListAdapter
@@ -58,4 +60,12 @@ class LostFoundAdapter(val context: Context, val listener: LostFoundCallBack) : 
             }
         }
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+        return super.onCreateViewHolder(parent, viewType)
+    }
+
+    // 아이템뷰에 프로그레스바가 들어가는 경우
+    inner class LoadingViewHolder(private val binding: ItemLostAndFoundBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }
