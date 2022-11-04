@@ -1,10 +1,13 @@
 package kr.hs.dgsw.smartschool.data.network.interceptor
 
+import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
 import kr.hs.dgsw.smartschool.data.datasource.AccountDataSource
 import kr.hs.dgsw.smartschool.data.util.AppDispatchers
@@ -35,10 +38,13 @@ class TokenInterceptor @Inject constructor(
     private lateinit var response: Response
     private lateinit var account: AccountEntity
 
+    private val mutex = Mutex()
+
     private val getAccountJob = CoroutineScope(appDispatcher.io).launch {
         account = accountDataSource.getAccount()
     }
 
+    @Synchronized
     override fun intercept(chain: Interceptor.Chain): Response {
         /*
         Token Error Test
@@ -90,6 +96,7 @@ class TokenInterceptor @Inject constructor(
         response = this.proceedWithToken(this.request())
 
         return if (response.code == TOKEN_ERROR) {
+            Log.d("TokenTest", "Here is Login")
             Response.Builder()
                 .request(this.request())
                 .protocol(Protocol.HTTP_1_1)
@@ -119,6 +126,7 @@ class TokenInterceptor @Inject constructor(
                     // 성공 시 로그인 딴에서 DB에 token 값을 저장하므로 DB에서 token을 가져오는 작업 수행
                     setToken()
                 } else if (it is Resource.Error) {
+                    Log.d("TokenTest", "Here is Get token to login")
                     throw TokenException("세션이 만료되었습니다.")
                 }
             }.launchIn(CoroutineScope(appDispatcher.io))

@@ -80,7 +80,6 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>(), OutListAda
     private fun collectDeleteOutSleeping() {
         lifecycleScope.launchWhenStarted {
             viewModel.deleteOutSleepingState.collect { state ->
-
                 if (state.message.isNotBlank()) {
                     shortToast(state.message)
                     viewModel.getOutByDate()
