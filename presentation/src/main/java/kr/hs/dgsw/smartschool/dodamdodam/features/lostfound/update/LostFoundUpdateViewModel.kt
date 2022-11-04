@@ -41,7 +41,7 @@ class LostFoundUpdateViewModel @Inject constructor(
         useCases.getLostFoundById(id).divideResult(
             isModifyLostFoundLoading,
             {
-                url.value = it?.image
+                url.value = it?.image ?: ""
                 title.value = it?.title
                 if (it?.type!!.equals("FOUND")) {
                     isFound.value = true
@@ -71,10 +71,10 @@ class LostFoundUpdateViewModel @Inject constructor(
         if (content.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_CONTENT)
         useCases.modifyLostFound(
             LostFoundDataRequest(
-                content = content.value ?: "",
+                content = content.value?: "".replace(" ",""),
                 picture = url.value ?: "",
-                place = place.value ?: "",
-                title = title.value ?: "",
+                place = place.value ?: "".replace(" ",""),
+                title = title.value ?: "".replace(" ",""),
                 type = if (isLost.value == true) "LOST" else "FOUND",
                 lostFoundId = id
             )
