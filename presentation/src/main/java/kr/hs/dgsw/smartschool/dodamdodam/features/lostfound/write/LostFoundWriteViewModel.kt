@@ -58,11 +58,13 @@ class LostFoundWriteViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
     private fun imageUpload(file: File) {
-        Log.e("LostFoundWriteViewModel","imageUpload ${file}")
+        Log.e("LostFoundWriteViewModel", "imageUpload $file")
         uploadFileUseCase(file).divideResult(
             isModifyLostFoundLoading,
-            { url = it
-                Log.e("LostFoundWriteViewModel","imageUpload ${url}")},
+            {
+                url = it
+                Log.e("LostFoundWriteViewModel", "imageUpload $url")
+            },
             {}
         ).launchIn(viewModelScope)
     }

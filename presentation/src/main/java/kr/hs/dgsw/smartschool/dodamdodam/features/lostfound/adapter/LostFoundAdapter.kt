@@ -67,7 +67,5 @@ class LostFoundAdapter(val context: Context, val listener: LostFoundCallBack) : 
 
     // 아이템뷰에 프로그레스바가 들어가는 경우
     inner class LoadingViewHolder(private val binding: ItemLostAndFoundBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-    }
+        RecyclerView.ViewHolder(binding.root)
 }

@@ -13,7 +13,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetLostFoundSt
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetMyInfoState
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFound
-import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.SearchLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
@@ -58,7 +57,7 @@ class LostFoundViewModel @Inject constructor(
             myLostFound()
         } else {
             Log.d("LostFoundViewModel", "getLostFoundList()")
-            //useCases.getLostFound(GetLostFound.Params(page = page.value ?: 0, type = if (foundChecked.value!!) "FOUND" else "LOST")).divideResult(
+            // useCases.getLostFound(GetLostFound.Params(page = page.value ?: 0, type = if (foundChecked.value!!) "FOUND" else "LOST")).divideResult(
             useCases.getLostFoundAll(Unit).divideResult(
                 isGetLostFoundLoading,
                 { launchLostFound(it!!) },

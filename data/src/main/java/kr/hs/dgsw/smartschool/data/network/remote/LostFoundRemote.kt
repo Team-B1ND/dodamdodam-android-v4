@@ -19,7 +19,7 @@ class LostFoundRemote @Inject constructor(
         return api.getLostFound(Constants.INFINITE_SCROLL_LIMIT, page, type)
     }*/
 
-    suspend fun getLostFoundAll(): Response<List<LostFound>>{
+    suspend fun getLostFoundAll(): Response<List<LostFound>> {
         return api.getLostFoundAll()
     }
 

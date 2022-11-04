@@ -5,7 +5,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
@@ -21,7 +20,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     override val viewModel: LostFoundViewModel by viewModels()
 
     var myId: String = ""
-    private var list : List<LostInfo> = emptyList()
+    private var list: List<LostInfo> = emptyList()
 
     override fun onStart() {
         super.onStart()

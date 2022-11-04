@@ -21,7 +21,7 @@ object SharedPreferenceManager {
         getDefaultSharedPreferences(context).edit().putBoolean(PREF_IS_LOGIN, false).apply()
     }
 
-    fun getDayLight(context: Context) : Boolean {
+    fun getDayLight(context: Context): Boolean {
         return getDefaultSharedPreferences(context).getBoolean(PREF_DARK_MODE, true)
     }
 

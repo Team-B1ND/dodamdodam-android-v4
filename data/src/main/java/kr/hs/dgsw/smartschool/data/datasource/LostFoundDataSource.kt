@@ -27,7 +27,7 @@ class LostFoundDataSource @Inject constructor(
         return remote.getLostFoundById(id).data
     }
 
-    suspend fun getLostFoundAll():List<LostFound>{
+    suspend fun getLostFoundAll(): List<LostFound> {
         return remote.getLostFoundAll().data
     }
 

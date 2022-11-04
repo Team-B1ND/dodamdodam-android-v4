@@ -46,7 +46,7 @@ class LostFoundCommentFragment : BaseFragment<FragmentLostFoundCommentBinding, L
                 swipeRefresh.isRefreshing = false
             }
             btnSendComment.setOnClickListener {
-                Log.e("LostFoundCommentFragment","click sentComment ${args.id}")
+                Log.e("LostFoundCommentFragment", "click sentComment ${args.id}")
                 viewModel.addComment(args.id)
                 inputComment.clearFocus()
                 inputComment.setText("")

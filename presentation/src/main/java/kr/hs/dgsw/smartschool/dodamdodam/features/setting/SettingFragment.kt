@@ -27,7 +27,6 @@ class SettingFragment : BaseFragment<FragmentSettingBinding, SettingViewModel>()
             this.openUrlWithBrowser(resources.getString(R.string.link_personal_info))
         }
 
-
         mBinding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
             when (isChecked) {
                 true -> {
