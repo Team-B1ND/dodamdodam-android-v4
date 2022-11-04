@@ -89,7 +89,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getLostFoundState.collect { state ->
-                    list = setLostInfo(state.list)
+                    val list = setLostInfo(state.list)
                     hasLostFound.value = list.isNotEmpty()
                     setRecyclerView(list)
 
