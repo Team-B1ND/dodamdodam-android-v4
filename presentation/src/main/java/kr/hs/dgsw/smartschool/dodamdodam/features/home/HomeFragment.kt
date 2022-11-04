@@ -13,6 +13,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.home.adapter.MealHomeAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.features.main.MainActivity
 import kr.hs.dgsw.smartschool.dodamdodam.features.song.adapter.SongAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.adapter.StudyRoomCheckAdapter
+import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.openUrlWithBrowser
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.openVideoFromUrl
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.timeFormat
@@ -83,7 +84,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private fun collectBannerState() = with(viewModel) {
         lifecycleScope.launchWhenStarted {
             getActiveBannerState.collect { state ->
-                if (state.activeBanners.isEmpty()) {
+                if (state.activeBanners.isNotEmpty()) {
                     bannerAdapter.submitList(state.activeBanners)
                 }
 
@@ -201,7 +202,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun setBannerViewPager() {
-        bannerAdapter = BannerAdapter()
+        bannerAdapter = BannerAdapter { url ->
+            this.openUrlWithBrowser(url)
+        }
         mBinding.vpBanner.adapter = bannerAdapter
     }
 }
