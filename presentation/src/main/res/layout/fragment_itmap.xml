@@ -27,8 +27,6 @@
             android:layout_height="match_parent"
             tools:visibility="gone">
 
-
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_top_bar"
                 android:layout_width="match_parent"

@@ -9,10 +9,11 @@
             type="kr.hs.dgsw.smartschool.domain.model.banner.Banner" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_card_background">
+        app:cardCornerRadius="@dimen/card_corner"
+        app:cardElevation="@dimen/card_elevation">
 
         <ImageView
             imageUrl="@{banner.image}"
@@ -27,5 +28,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="ContentDescription" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

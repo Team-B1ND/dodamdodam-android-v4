@@ -107,6 +107,10 @@ dependencies {
     implementation(Google.EXO_PLAYER_UI)
     implementation(Google.EXO_PLAYER_DASH)
 
+    // in app update
+    implementation(Google.APP_UPDATE)
+    implementation(Google.APP_UPDATE_KTX)
+
     implementation(project(":data"))
     implementation(project(":domain"))
 }
