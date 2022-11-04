@@ -66,7 +66,7 @@
             android:text="@string/text_no_out"
             android:textColor="@color/color_black"
             android:textSize="@dimen/title4"
-            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
