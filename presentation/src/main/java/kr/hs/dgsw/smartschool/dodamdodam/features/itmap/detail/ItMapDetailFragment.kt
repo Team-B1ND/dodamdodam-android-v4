@@ -2,11 +2,15 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.itmap.detail
 
 import android.content.Intent
 import android.net.Uri
+import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
+import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentItmapDetailBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.itmap.detail.adapter.ItMapUserAdapter
@@ -34,6 +38,13 @@ class ItMapDetailFragment : BaseFragment<FragmentItmapDetailBinding, ItMapDetail
     private fun collectGetDetailCompanyState() = lifecycleScope.launchWhenStarted {
         viewModel.getCompanyByIdState.collect { state ->
             if (state.company != null) {
+                if(state.company.symbolLogo != null) {
+                    setLogoImage(state.company.symbolLogo!!)
+                } else if (state.company.textLogo != null) {
+                    setLogoImage(state.company.textLogo!!)
+                } else {
+                    setLogoFirstWord()
+                }
                 mBinding.company = state.company
                 itMapUserAdapter.submitList(state.company.users)
             }
@@ -51,5 +62,22 @@ class ItMapDetailFragment : BaseFragment<FragmentItmapDetailBinding, ItMapDetail
         }
 
         mBinding.rvItmapUser.adapter = itMapUserAdapter
+    }
+
+    private fun setLogoImage(url: String) {
+        mBinding.layoutCompanyIcon.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.color_transparent)
+        mBinding.tvCompanyIcon.visibility = View.INVISIBLE
+        mBinding.ivCompanyLogo.visibility = View.VISIBLE
+
+        Glide.with(mBinding.ivCompanyLogo.context)
+            .load(url)
+            .error(R.drawable.default_img)
+            .into(mBinding.ivCompanyLogo)
+    }
+
+    private fun setLogoFirstWord() {
+        mBinding.layoutCompanyIcon.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.color_itmap)
+        mBinding.tvCompanyIcon.visibility = View.VISIBLE
+        mBinding.ivCompanyLogo.visibility = View.INVISIBLE
     }
 }
