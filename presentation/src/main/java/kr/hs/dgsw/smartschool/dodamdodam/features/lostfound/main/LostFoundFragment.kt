@@ -21,7 +21,6 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     override val viewModel: LostFoundViewModel by viewModels()
 
     var myId: String = ""
-    private var list : List<LostInfo> = emptyList()
 
     override fun onStart() {
         super.onStart()
@@ -46,7 +45,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
             btnSearch.setOnClickListener {
                 viewModel.searchLostFound()
             }
-            /* rvLostAndFound.addOnScrollListener((object : RecyclerView.OnScrollListener() {
+            rvLostAndFound.addOnScrollListener((object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
 
@@ -57,20 +56,13 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                     }
 
                     else if (rvLostAndFound.canScrollVertically(-1)) {
-                        viewModel.page.value = viewModel.page.value!! - 1
+                        if(!(viewModel.page.value == 1) ) viewModel.page.value = viewModel.page.value!! - 1
                         viewModel.getLostFoundList()
                     }
                 }
-            }))*/
+            }))
         }
         with(viewModel) {
-            page.observe(
-                viewLifecycleOwner,
-                Observer<Int> {
-                    Log.e("LostFoundFragment", it.toString())
-                    getLostFoundList()
-                }
-            )
             foundChecked.observe(
                 viewLifecycleOwner,
                 Observer<Boolean> {
@@ -89,7 +81,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getLostFoundState.collect { state ->
-                    list = setLostInfo(state.list)
+                    val list = setLostInfo(state.list)
                     hasLostFound.value = list.isNotEmpty()
                     setRecyclerView(list)
 

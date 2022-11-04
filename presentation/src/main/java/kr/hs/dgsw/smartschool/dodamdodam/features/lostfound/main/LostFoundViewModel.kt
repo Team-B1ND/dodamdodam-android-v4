@@ -57,14 +57,23 @@ class LostFoundViewModel @Inject constructor(
             Log.d("LostFoundViewModel", "myLostFound()")
             myLostFound()
         } else {
+            getLostFoundUsingPage()
+        }
+    }
+    private fun getLostFoundUsingPage(){
+        val newList = mutableListOf<LostFound>()
+        for(i: Int in 1..page.value!!) {
             Log.d("LostFoundViewModel", "getLostFoundList()")
-            //useCases.getLostFound(GetLostFound.Params(page = page.value ?: 0, type = if (foundChecked.value!!) "FOUND" else "LOST")).divideResult(
-            useCases.getLostFoundAll(Unit).divideResult(
+            useCases.getLostFound(GetLostFound.Params(page = i, type = if (foundChecked.value!!) "FOUND" else "LOST")).divideResult(
+            //useCases.getLostFoundAll(Unit).divideResult(
                 isGetLostFoundLoading,
-                { launchLostFound(it!!) },
-                { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.") }
+                { newList.plus(newList) },
+                {
+                    //launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.")
+                }
             ).launchIn(viewModelScope)
         }
+        launchLostFound(newList!!)
     }
     fun searchLostFound() {
         useCases.searchLostFound(SearchLostFound.Params(search = searchKeyword.value ?: "")).divideResult(
