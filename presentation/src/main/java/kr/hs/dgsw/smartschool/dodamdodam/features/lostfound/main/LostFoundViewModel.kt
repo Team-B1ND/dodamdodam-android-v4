@@ -59,7 +59,7 @@ class LostFoundViewModel @Inject constructor(
         } else {
             Log.d("LostFoundViewModel", "getLostFoundList()")
             //useCases.getLostFound(GetLostFound.Params(page = page.value ?: 0, type = if (foundChecked.value!!) "FOUND" else "LOST")).divideResult(
-            useCases.getLostFound(GetLostFound.Params(page = page.value ?: 0, type = if (foundChecked.value!!) "FOUND" else "LOST")).divideResult(
+            useCases.getLostFoundAll(Unit).divideResult(
                 isGetLostFoundLoading,
                 { launchLostFound(it!!) },
                 { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.") }
