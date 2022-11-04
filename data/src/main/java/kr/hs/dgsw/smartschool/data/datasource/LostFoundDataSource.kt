@@ -27,6 +27,10 @@ class LostFoundDataSource @Inject constructor(
         return remote.getLostFoundById(id).data
     }
 
+    suspend fun getLostFoundAll():List<LostFound>{
+        return remote.getLostFoundAll().data
+    }
+
     suspend fun getMyLostFound(): List<LostFound> = remote.getMyLostFound().data
 
     suspend fun getComment(lostFoundIdx: Int): List<Comment> = remote.getComment(lostFoundIdx).data

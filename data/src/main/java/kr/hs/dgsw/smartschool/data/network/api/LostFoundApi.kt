@@ -32,6 +32,10 @@ interface LostFoundApi {
         @Query("title") title: String
     ): Response<List<LostFound>>
 
+    @GET("lostfound/all")
+    suspend fun getLostFoundAll(
+    ): Response<List<LostFound>>
+
     @GET("lostfound/my")
     suspend fun getMyLostFound(): Response<List<LostFound>>
 
