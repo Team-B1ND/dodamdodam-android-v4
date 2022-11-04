@@ -48,14 +48,14 @@ class LostFoundWriteFragment : BaseFragment<FragmentLostFoundWriteBinding, LostF
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == Activity.RESULT_OK) {
             val uri = it.data?.data?.getRealPathFromURI(requireContext())
-            viewModel.file = File(uri?.path!!)
+            viewModel.file = File(uri.toString())
             setImage(url = null, uri = it.data!!.data)
         }
     }
     private fun setImage(url: String?, uri: Uri?) {
         Glide.with(mBinding.root)
             .load(url ?: uri)
-            .error(R.drawable.default_user)
+            .error(R.drawable.default_img)
             .centerCrop()
             .into(mBinding.ivLostFound)
     }
