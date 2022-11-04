@@ -170,6 +170,7 @@
                             android:inputType="text"
                             android:maxLines="1"
                             android:paddingStart="5dp"
+                            android:scrollHorizontally="false"
                             android:textSize="@dimen/title4"
                             tools:ignore="RtlSymmetry" />
 
@@ -199,7 +200,6 @@
                     android:layout_margin="20dp"
                     app:cardCornerRadius="@dimen/card_corner"
                     app:cardElevation="@dimen/card_elevation"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/card_main_content">
 
                     <EditText
@@ -213,7 +213,8 @@
                         android:fontFamily="@font/nanum_square_regular"
                         android:includeFontPadding="false"
                         android:importantForAutofill="no"
-                        android:inputType="text"
+                        android:inputType="textMultiLine"
+                        android:scrollHorizontally="false"
                         android:text="@={vm.content}"
                         android:textSize="@dimen/title4" />
 

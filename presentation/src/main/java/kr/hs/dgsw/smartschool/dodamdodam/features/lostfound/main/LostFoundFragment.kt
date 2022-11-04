@@ -20,6 +20,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     override val viewModel: LostFoundViewModel by viewModels()
 
     var myId: String = ""
+    private var list: List<LostInfo> = emptyList()
 
     override fun onStart() {
         super.onStart()
@@ -27,7 +28,6 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     }
     override fun observerViewModel() {
 
-        // TODO 페이지 넘기는 것 구현해야함 INFINITE_LIMIT은 20임
         lostFoundAdapter = LostFoundAdapter(requireContext(), this)
         mBinding.rvLostAndFound.adapter = lostFoundAdapter
 
@@ -39,26 +39,49 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                 findNavController().navigate(R.id.action_lostFoundFragment_to_lostFoundWriteFragment)
             }
             swipeRefreshLayout.setOnRefreshListener {
-                viewModel.getLostFoundList(1)
+                viewModel.getLostFoundList()
                 mBinding.swipeRefreshLayout.isRefreshing = false
             }
             btnSearch.setOnClickListener {
                 viewModel.searchLostFound()
             }
+            /* rvLostAndFound.addOnScrollListener((object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    // 스크롤이 끝에 도달했는지 확인
+                    if (rvLostAndFound.canScrollVertically(1)) {
+                        viewModel.page.value = viewModel.page.value!! + 1
+                        viewModel.getLostFoundList()
+                    }
+
+                    else if (rvLostAndFound.canScrollVertically(-1)) {
+                        viewModel.page.value = viewModel.page.value!! - 1
+                        viewModel.getLostFoundList()
+                    }
+                }
+            }))*/
         }
         with(viewModel) {
+            page.observe(
+                viewLifecycleOwner,
+                Observer<Int> {
+                    Log.e("LostFoundFragment", it.toString())
+                    getLostFoundList()
+                }
+            )
             foundChecked.observe(
                 viewLifecycleOwner,
                 Observer<Boolean> {
                     Log.e("LostFoundFragment", it.toString())
-                    getLostFoundList(1)
+                    getLostFoundList()
                 }
             )
             mineChecked.observe(
                 viewLifecycleOwner,
                 Observer<Boolean> {
                     Log.e("LostFoundFragment", it.toString())
-                    getLostFoundList(1)
+                    getLostFoundList()
                 }
             )
         }
