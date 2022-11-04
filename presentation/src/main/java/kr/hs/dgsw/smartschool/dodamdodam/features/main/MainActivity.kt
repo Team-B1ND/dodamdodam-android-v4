@@ -8,6 +8,11 @@ import androidx.core.view.isInvisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
+import com.google.android.play.core.install.model.UpdateAvailability
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceManager
 import kr.hs.dgsw.smartschool.dodamdodam.R
@@ -21,9 +26,11 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.startActivityWithFinis
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override val viewModel: MainViewModel by viewModels()
 
+    private lateinit var appUpdateManager: AppUpdateManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
-
+        checkUpdate()
         if (SharedPreferenceManager.getDayLight(this)) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
@@ -36,11 +43,28 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         }
     }
 
-    override fun observerViewModel() {}
-
     private fun startForMainActivity() {
         viewModel.dataSetUp()
         collectDataSetUpDate()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        appUpdateManager
+            .appUpdateInfo
+            .addOnSuccessListener { appUpdateInfo ->
+                if (appUpdateInfo.updateAvailability()
+                    == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                    appUpdateManager.startUpdateFlowForResult(
+                        appUpdateInfo,
+                        IMMEDIATE,
+                        this,
+                        APP_UPDATE_REQUEST_CODE
+                    )
+                }
+            }
+
     }
 
     private fun collectDataSetUpDate() {
@@ -55,6 +79,24 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                         shortToast(state.error)
                     }
                 }
+            }
+        }
+    }
+
+    private fun checkUpdate() {
+        appUpdateManager = AppUpdateManagerFactory.create(this)
+        val appUpdateInfoTask = appUpdateManager.appUpdateInfo
+
+        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE
+                && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)
+            ) {
+                appUpdateManager.startUpdateFlowForResult(
+                    appUpdateInfo,
+                    AppUpdateType.IMMEDIATE,
+                    this,
+                    APP_UPDATE_REQUEST_CODE
+                )
             }
         }
     }
@@ -77,5 +119,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     fun moveHomeToMeal() {
         mBinding.mainBottomNav.selectedItemId = R.id.main_meal
+    }
+
+    override fun observerViewModel() {}
+
+    companion object {
+        const val APP_UPDATE_REQUEST_CODE = 900
     }
 }
