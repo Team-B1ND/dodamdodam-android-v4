@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.write
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -43,10 +44,10 @@ class LostFoundWriteViewModel @Inject constructor(
         if (content.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_CONTENT)
         useCases.addLostFound(
             LostFoundDataRequest(
-                content = content.value ?: "",
+                content = content.value ?: "".replace(" ", ""),
                 picture = url ?: "",
-                place = place.value ?: "위치 정보 없음",
-                title = title.value ?: "",
+                place = place.value ?: "장소모름".replace(" ", ""),
+                title = title.value ?: "".replace(" ", ""),
                 type = if (isLost.value == true) "LOST" else "FOUND",
                 lostFoundId = null
             )
@@ -57,10 +58,14 @@ class LostFoundWriteViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
     private fun imageUpload(file: File) {
+        Log.e("LostFoundWriteViewModel", "imageUpload $file")
         uploadFileUseCase(file).divideResult(
             isModifyLostFoundLoading,
-            { url = it },
+            {
+                url = it
+                Log.e("LostFoundWriteViewModel", "imageUpload $url")
+            },
             {}
-        )
+        ).launchIn(viewModelScope)
     }
 }

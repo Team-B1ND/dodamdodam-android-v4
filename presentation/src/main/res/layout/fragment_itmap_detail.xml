@@ -67,6 +67,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_company_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/default_img" />
+
                 <TextView
                     company_icon="@{company.name}"
                     android:id="@+id/tv_company_icon"

@@ -24,6 +24,10 @@ class LostFoundRepositoryImpl @Inject constructor(
         return lostFoundDataSource.getLostFoundById(id)
     }
 
+    override suspend fun getLostFoundAll(): List<LostFound> {
+        return lostFoundDataSource.getLostFoundAll()
+    }
+
     override suspend fun getLostFoundSearch(search: String): List<LostFound> {
         lostFoundList = lostFoundDataSource.getLostFoundSearch(search)
         return lostFoundList

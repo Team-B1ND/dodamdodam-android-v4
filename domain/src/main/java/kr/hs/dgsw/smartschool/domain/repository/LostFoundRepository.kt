@@ -10,6 +10,8 @@ interface LostFoundRepository {
 
     suspend fun getLostFoundSearch(search: String): List<LostFound>
 
+    suspend fun getLostFoundAll(): List<LostFound>
+
     suspend fun getComment(lostFoundIdx: Int): List<Comment>
 
     suspend fun getMyLostFound(): List<LostFound>

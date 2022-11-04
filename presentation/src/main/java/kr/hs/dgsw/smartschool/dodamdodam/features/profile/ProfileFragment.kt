@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.profile
 
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -38,7 +39,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         setPieChart()
         collectMyInfo()
         collectBonusPoint()
-        setPointCard(0)
+        setPointCard(1)
         setSwipeRefresh()
         initViewEvent()
     }
@@ -55,7 +56,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     }
 
     private fun changePointCard() {
-        if (viewModel.dormitorySelected.value == true)
+        if (viewModel.dormitorySelected.value == false)
             setPointCard(0)
         else
             setPointCard(1)
@@ -102,8 +103,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
             lifecycleScope.launchWhenStarted {
                 getMyYearPointsState.collect { state ->
                     if (state.isReach) {
+                        state.yearPointList.forEach { point ->
+                            Log.d("PointTest", "${point.type.name} : ${point.score}")
+                        }
                         dividePoint(yearPointList = state.yearPointList)
-                        setPointCard(0)
                     }
 
                     if (state.error.isNotBlank()) {
@@ -118,22 +121,22 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         yearPointList.map { pointLog ->
             if (pointLog.type == PointType.BONUS) {
                 if (pointLog.target == PointPlace.DORMITORY)
-                    dormitoryBonusPoint = pointLog.score
+                    dormitoryBonusPoint = (dormitoryBonusPoint ?: 0) + pointLog.score
                 else
-                    schoolBonusPoint = pointLog.score
+                    schoolBonusPoint = (schoolBonusPoint ?: 0) + pointLog.score
             } else if (pointLog.type == PointType.MINUS) {
-
                 if (pointLog.target == PointPlace.DORMITORY)
-                    dormitoryMinusPoint = pointLog.score
+                    dormitoryMinusPoint = (dormitoryMinusPoint ?: 0) + pointLog.score
                 else
-                    schoolMinusPoint = pointLog.score
+                    schoolMinusPoint = (schoolMinusPoint ?: 0) + pointLog.score
             }
         }
+        setPointCard(1)
     }
 
     private fun setPointCard(target: Int) {
         if (target == 0) {
-
+            Log.d("PointTest", "SetPointCard :  ${dormitoryMinusPoint ?: 0}")
             mBinding.tvBonusPoint.text = (dormitoryBonusPoint ?: 0).toString() + "점"
             mBinding.tvMinusPoint.text = (dormitoryMinusPoint ?: 0).toString() + "점"
             updatePieChart(dormitoryBonusPoint ?: 0, dormitoryMinusPoint ?: 0)

@@ -33,6 +33,9 @@ object Google {
     const val EXO_PLAYER_CORE = "com.google.android.exoplayer:exoplayer-core:${Versions.EXO_PLAYER}"
     const val EXO_PLAYER_UI = "com.google.android.exoplayer:exoplayer-ui:${Versions.EXO_PLAYER}"
     const val EXO_PLAYER_DASH = "com.google.android.exoplayer:exoplayer-dash:${Versions.EXO_PLAYER}"
+
+    const val APP_UPDATE = "com.google.android.play:app-update:${Versions.APP_UPDATE}"
+    const val APP_UPDATE_KTX = "com.google.android.play:app-update-ktx:${Versions.APP_UPDATE}"
 }
 
 object Libraries {

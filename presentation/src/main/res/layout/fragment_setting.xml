@@ -139,15 +139,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="버전 설명"
+                    android:text="2.0.1"
                     app:layout_constraintStart_toEndOf="@id/tv_version_info"
                     android:layout_marginStart="10dp"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_version_info"
                     android:textSize="@dimen/title6"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_version_info"
                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <!--<androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_license"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -186,12 +186,12 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_service"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/btn_license"
+                app:layout_constraintTop_toBottomOf="@id/btn_version"
                 android:gravity="center"
                 android:orientation="horizontal">
                 <ImageView
@@ -331,50 +331,50 @@
                     app:tint="@color/color_black" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/btn_quit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_log_out">
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:id="@+id/btn_quit"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center"-->
+<!--                android:orientation="horizontal"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/btn_log_out">-->
 
-                <ImageView
-                    android:id="@+id/icon_quit"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginStart="@dimen/default_card_content_margin"
-                    android:src="@drawable/ic_no_entry_color"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+<!--                <ImageView-->
+<!--                    android:id="@+id/icon_quit"-->
+<!--                    android:layout_width="25dp"-->
+<!--                    android:layout_height="25dp"-->
+<!--                    android:layout_marginStart="@dimen/default_card_content_margin"-->
+<!--                    android:src="@drawable/ic_no_entry_color"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:fontFamily="@font/noto_regular"
-                    android:includeFontPadding="false"
-                    android:text="@string/text_quit"
-                    android:textColor="@color/color_red_light"
-                    android:textSize="@dimen/title4"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/icon_quit"
-                    app:layout_constraintTop_toTopOf="parent" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:fontFamily="@font/noto_regular"-->
+<!--                    android:includeFontPadding="false"-->
+<!--                    android:text="@string/text_quit"-->
+<!--                    android:textColor="@color/color_red_light"-->
+<!--                    android:textSize="@dimen/title4"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/icon_quit"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:rotation="270"
-                    android:src="@drawable/ic_btn_arrow"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/color_black" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                <ImageView-->
+<!--                    android:layout_width="40dp"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:paddingStart="10dp"-->
+<!--                    android:paddingEnd="10dp"-->
+<!--                    android:rotation="270"-->
+<!--                    android:src="@drawable/ic_btn_arrow"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:tint="@color/color_black" />-->
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

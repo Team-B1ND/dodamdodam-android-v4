@@ -167,6 +167,7 @@
                             android:includeFontPadding="false"
                             android:importantForAutofill="no"
                             android:inputType="text"
+                            android:scrollHorizontally="false"
                             android:maxLines="1"
                             android:paddingStart="5dp"
                             android:textSize="@dimen/title4"
@@ -213,7 +214,8 @@
                         android:fontFamily="@font/noto_regular"
                         android:includeFontPadding="false"
                         android:importantForAutofill="no"
-                        android:inputType="text"
+                        android:inputType="textMultiLine"
+                        android:scrollHorizontally="false"
                         android:textSize="@dimen/title4" />
 
                 </androidx.cardview.widget.CardView>

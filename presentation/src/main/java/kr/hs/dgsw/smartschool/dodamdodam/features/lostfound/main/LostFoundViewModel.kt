@@ -13,7 +13,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetLostFoundSt
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetMyInfoState
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFound
-import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.SearchLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
@@ -24,6 +23,7 @@ class LostFoundViewModel @Inject constructor(
     private val useCases: LostFoundUseCases,
     private val memberUseCases: MemberUseCases
 ) : BaseViewModel() {
+
     private val _getLostFoundState = MutableSharedFlow<GetLostFoundState>()
     val getLostFoundState: SharedFlow<GetLostFoundState> = _getLostFoundState
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
@@ -31,6 +31,7 @@ class LostFoundViewModel @Inject constructor(
     private val _getInfoState = MutableSharedFlow<GetMyInfoState>()
     val getMyInfoState = _getInfoState
 
+    val page = MutableLiveData<Int>(1)
     val searchKeyword = MutableLiveData<String>()
     val mineChecked = MutableLiveData<Boolean>(false)
     val foundChecked = MutableLiveData<Boolean>(false)
@@ -50,13 +51,14 @@ class LostFoundViewModel @Inject constructor(
             { viewModelScope.launch { _getInfoState.emit(GetMyInfoState(error = "내 정보를 불러오는 데에 실패하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
-    fun getLostFoundList(page: Int) {
+    fun getLostFoundList() {
         if (mineChecked.value == true) {
             Log.d("LostFoundViewModel", "myLostFound()")
             myLostFound()
         } else {
             Log.d("LostFoundViewModel", "getLostFoundList()")
-            useCases.getLostFound(GetLostFound.Params(page = page, type = if (foundChecked.value!!) "FOUND" else "LOST")).divideResult(
+            // useCases.getLostFound(GetLostFound.Params(page = page.value ?: 0, type = if (foundChecked.value!!) "FOUND" else "LOST")).divideResult(
+            useCases.getLostFoundAll(Unit).divideResult(
                 isGetLostFoundLoading,
                 { launchLostFound(it!!) },
                 { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.") }
@@ -80,7 +82,7 @@ class LostFoundViewModel @Inject constructor(
     fun deleteLostFound(idx: Int) {
         useCases.deleteLostFound(DeleteLostFound.Params(idx = idx)).divideResult(
             isGetLostFoundLoading,
-            { getLostFoundList(1) },
+            { getLostFoundList() },
             { launchLostFound("분실 게시물을 삭제하는 데에 실패하였습니다.") }
         ).launchIn(viewModelScope)
     }
