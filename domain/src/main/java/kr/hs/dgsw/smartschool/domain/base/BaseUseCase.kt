@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.domain.base
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kr.hs.dgsw.smartschool.domain.exception.TokenException
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import kr.hs.dgsw.smartschool.domain.util.Utils
 import retrofit2.HttpException

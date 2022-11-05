@@ -93,7 +93,6 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>(), ApplySo
                     pendingSongList = state.songList
                         .sortedBy { it.createdDate }
                     changeRecyclerShow()
-                    Log.d("Refreshing", "collectPendingSongList: dodo")
                     endRefreshing()
                 }
 
@@ -142,15 +141,11 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>(), ApplySo
 
     private fun changeRecyclerShow() {
         if (viewModel.songType.value == true) {
-            Log.d("CRS", "changeRecyclerShow: 진입 true")
             if (pendingSongList.isEmpty()) {
                 viewModel.getApplySong()
             }
             applySongAdapter.submitList(pendingSongList)
         } else {
-            mySongList.forEach { mySong ->
-                Log.d("CRS", mySong.videoTitle ?: "")
-            }
             if (mySongList.isEmpty()) {
                 viewModel.getMySong()
             }
@@ -197,7 +192,6 @@ class SongFragment : BaseFragment<FragmentSongBinding, SongViewModel>(), ApplySo
     }
 
     private fun endRefreshing() {
-        Log.d("Refreshing", "endRefreshing: Hello")
         mBinding.swipeRefreshLayout.isRefreshing = false
     }
 }
