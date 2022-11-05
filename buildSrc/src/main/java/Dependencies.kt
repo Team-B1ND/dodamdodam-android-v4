@@ -48,7 +48,7 @@ object Libraries {
     const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:${Versions.GLIDE}"
 
     const val CIRCULAR_IMAGE_VIEW = "de.hdodenhof:circleimageview:${Versions.CIRCULAR_IMAGE_VIEW}"
-    const val CIRCLE_INDICATOR = "me.relex:circleindicator:${Versions.CIRCLE_INDICATOR}"
+    const val INDICATOR = "com.tbuonomo:dotsindicator:${Versions.INDICATOR}"
     const val VIEW_PAGER = "androidx.viewpager2:viewpager2:${Versions.VIEW_PAGER}"
     const val MP_ANDROID_CHART = "com.github.PhilJay:MPAndroidChart:${Versions.MP_ANDROID_CHART}"
     const val JSOUP = "org.jsoup:jsoup:${Versions.JSOUP}"

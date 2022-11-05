@@ -111,6 +111,8 @@ dependencies {
     implementation(Google.APP_UPDATE)
     implementation(Google.APP_UPDATE_KTX)
 
+    implementation(Libraries.INDICATOR)
+
     implementation(project(":data"))
     implementation(project(":domain"))
 }

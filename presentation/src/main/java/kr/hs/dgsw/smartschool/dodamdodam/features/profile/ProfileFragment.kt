@@ -17,7 +17,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
 import kr.hs.dgsw.smartschool.domain.model.point.Point
 import kr.hs.dgsw.smartschool.domain.model.point.PointPlace
 import kr.hs.dgsw.smartschool.domain.model.point.PointType
-import java.time.LocalDate
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>() {
@@ -28,7 +27,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     private var phone = ""
     private var memberId: String = ""
     private var profileImage: String = ""
-    private val date: LocalDate = LocalDate.now()
 
     private var schoolMinusPoint: Int? = null
     private var dormitoryMinusPoint: Int? = null
@@ -118,6 +116,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     }
 
     private fun dividePoint(yearPointList: List<Point>) {
+
+        dormitoryMinusPoint = 0
+        schoolBonusPoint = 0
+        dormitoryMinusPoint = 0
+        schoolMinusPoint = 0
+
         yearPointList.map { pointLog ->
             if (pointLog.type == PointType.BONUS) {
                 if (pointLog.target == PointPlace.DORMITORY)
@@ -213,5 +217,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
 
     private fun endRefreshing() {
         mBinding.swipeRefreshLayout.isRefreshing = false
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("TestProfile", "onResume: asdlkfjsa;l")
     }
 }

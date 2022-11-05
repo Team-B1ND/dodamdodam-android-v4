@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.main
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isInvisible
 import androidx.lifecycle.lifecycleScope
@@ -31,8 +30,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         checkUpdate()
-        if (SharedPreferenceManager.getDayLight(this)) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
         if (!SharedPreferenceManager.getIsLogin(this)) {
             startActivityWithFinishAll(StartActivity::class.java)
