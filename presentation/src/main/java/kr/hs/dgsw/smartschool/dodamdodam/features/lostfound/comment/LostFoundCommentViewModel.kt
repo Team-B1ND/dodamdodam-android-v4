@@ -84,7 +84,7 @@ class LostFoundCommentViewModel @Inject constructor(
     fun deleteComment(idx: Int) {
         useCases.deleteLostFoundComment(DeleteLostFoundComment.Params(commentIdx = idx)).divideResult(
             isGetCommentLoading,
-            { viewModelScope.launch { GetCommentState() } },
+            { getComment(lostFoundId!!) },
             { viewModelScope.launch { GetCommentState(error = "댓글을 삭제하는 데에 실패하였습니다.") } }
         ).launchIn(viewModelScope)
     }
