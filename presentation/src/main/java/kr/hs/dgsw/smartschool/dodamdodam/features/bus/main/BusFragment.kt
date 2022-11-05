@@ -39,7 +39,6 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getBusListState.collect { state ->
-                    Log.e("LostFoundFragment", "state")
                     if (state.bus != null) {
                         tempBusId = state.applyBusId
                         val busList = setBusInfo(state.bus, tempBusId)
@@ -56,7 +55,7 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
             }
         }
     }
-    // TODO StateFlow라 그런지 Toast 메시지가 최초 한번 이외에는 뜨지 않음. 고칠 필요 있음.
+
     private fun collectBusTask() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {

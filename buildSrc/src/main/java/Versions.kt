@@ -1,12 +1,14 @@
 object Versions {
     const val KOTLINX_COROUTINES = "1.6.0"
+
     //const val BUILD_GRADLE = "4.2.1"
     const val COMPILE_SDK_VERSION = 32
+
     //const val BUILD_TOOLS_VERSION = "30.0.3"
     const val MIN_SDK_VERSION = 26
     const val TARGET_SDK_VERSION = 32
-    const val VERSION_CODE = 45
-    const val VERSION_NAME = "2.0.1"
+    const val VERSION_CODE = 47
+    const val VERSION_NAME = "2.0.3"
     const val JVM_TARGET = "1.8"
     const val KT_LINT = "10.2.0"
     const val KT_DETE = "1.21.0"

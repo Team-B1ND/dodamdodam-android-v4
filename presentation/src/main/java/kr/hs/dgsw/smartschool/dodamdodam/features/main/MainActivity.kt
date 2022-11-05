@@ -31,8 +31,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         checkUpdate()
-        if (SharedPreferenceManager.getDayLight(this)) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
         if (!SharedPreferenceManager.getIsLogin(this)) {
             startActivityWithFinishAll(StartActivity::class.java)
