@@ -2,6 +2,7 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.adapter
 
 import android.content.Context
 import android.util.Log
+import android.view.View
 import android.widget.PopupMenu
 import com.bumptech.glide.Glide
 import kr.hs.dgsw.smartschool.dodamdodam.R
@@ -20,6 +21,8 @@ class LostFoundCommentAdapter(val context: Context, val listener: CommentCallBac
     }
     override fun action(item: CommentInfo, binding: ItemLostFoundCommentBinding) {
         binding.info = item
+
+        if (!item.isMine) binding.btnMore.visibility = View.INVISIBLE
         Glide.with(binding.ivProfileImage)
             .load(item.img)
             .centerCrop()
