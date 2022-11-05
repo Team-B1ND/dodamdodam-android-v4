@@ -5,6 +5,7 @@
     android:background="@color/color_background">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -20,16 +21,16 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/layout_app_bar"
-            android:theme="@style/Widget.Material3.AppBarLayout"
-            app:liftOnScroll="false"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:theme="@style/Widget.Material3.AppBarLayout"
+            app:liftOnScroll="false">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_home"
                 android:layout_width="match_parent"
-                android:background="@color/color_background"
                 android:layout_height="?attr/actionBarSize"
+                android:background="@color/color_background"
                 app:layout_scrollFlags="scroll">
 
                 <ImageView
@@ -148,20 +149,20 @@
                                 android:fontFamily="@font/noto_bold"
                                 android:includeFontPadding="false"
                                 android:text="@string/home_song"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
                                 android:textColor="@color/color_black"
-                                android:textSize="@dimen/card_title" />
+                                android:textSize="@dimen/card_title"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
                             <ImageView
                                 android:layout_width="@dimen/default_more_arrow_icon"
                                 android:layout_height="@dimen/default_more_arrow_icon"
+                                android:rotation="270"
+                                android:src="@drawable/ic_btn_arrow"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                android:src="@drawable/ic_btn_arrow"
-                                android:rotation="270"
                                 app:tint="@color/gray500"
                                 tools:ignore="ContentDescription" />
 
@@ -171,25 +172,25 @@
                             android:id="@+id/rv_today_song"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            tools:listitem="@layout/item_song"
                             android:layout_marginTop="@dimen/default_card_content_margin"
+                            android:orientation="horizontal"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/layout_title"
-                            app:layout_constraintBottom_toBottomOf="parent" />
+                            tools:listitem="@layout/item_song" />
 
                         <TextView
                             android:id="@+id/tv_empty_song"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_card_content_margin"
+                            android:layout_marginBottom="10dp"
                             android:fontFamily="@font/noto_regular"
                             android:includeFontPadding="false"
                             android:text="@string/text_now_selected_song_empty"
                             android:textColor="@color/gray700"
                             android:textSize="@dimen/title6"
                             android:visibility="gone"
-                            android:layout_marginTop="@dimen/default_card_content_margin"
-                            android:layout_marginBottom="10dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -213,19 +214,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/default_margin"
-                    android:background="@drawable/background_default_card"
-                    android:layout_marginTop="@dimen/default_card_height_margin">
+                    android:layout_marginTop="@dimen/default_card_height_margin"
+                    android:background="@drawable/background_default_card">
+
+                    <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+                        android:id="@+id/indicator_banner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:dotsColor="@color/color_background"
+                        app:dotsCornerRadius="8dp"
+                        app:dotsSize="8dp"
+                        app:dotsSpacing="2dp"
+                        app:dotsWidthFactor="2.5"
+                        android:elevation="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:progressMode="true"
+                        app:selectedDotColor="@color/color_background" />
 
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/vp_banner"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:orientation="horizontal"
-                        app:layout_constraintDimensionRatio="w, 3:20"
-                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="w, 3:20"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -302,8 +319,8 @@
                         android:layout_height="0dp"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="@dimen/default_margin"
-                        app:cardCornerRadius="@dimen/card_corner"
                         android:onClick="@{()->vm.onClickLost()}"
+                        app:cardCornerRadius="@dimen/card_corner"
                         app:cardElevation="@dimen/card_elevation"
                         app:layout_constraintBottom_toBottomOf="@id/card_out"
                         app:layout_constraintEnd_toEndOf="parent"

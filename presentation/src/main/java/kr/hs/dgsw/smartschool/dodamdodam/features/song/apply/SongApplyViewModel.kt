@@ -61,7 +61,7 @@ class SongApplyViewModel @Inject constructor(
                 applyWakeUpSong(youtubeUrl)
             }
             else -> {
-                errorMessage = "옳바른 형식의 URL을 입력해주세요!"
+                errorMessage = "올바른 형식의 URL을 입력해 주세요!"
                 viewEvent(EVENT_ON_URL_ERROR)
             }
         }

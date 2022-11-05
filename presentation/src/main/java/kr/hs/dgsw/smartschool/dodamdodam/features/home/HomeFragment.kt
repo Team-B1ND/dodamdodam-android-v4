@@ -206,5 +206,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             this.openUrlWithBrowser(url)
         }
         mBinding.vpBanner.adapter = bannerAdapter
+        mBinding.indicatorBanner.attachTo(mBinding.vpBanner)
     }
 }

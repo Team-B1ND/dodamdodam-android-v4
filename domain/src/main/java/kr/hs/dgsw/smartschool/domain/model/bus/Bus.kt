@@ -18,6 +18,6 @@ data class Bus(
     @SerializedName("timeRequired")
     val timeRequired: String,
 
-    @SerializedName("ApplyCount")
+    @SerializedName("applyCount")
     val peopleCount: Int
 )
