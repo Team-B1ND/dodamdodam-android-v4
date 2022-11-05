@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -13,6 +14,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundUpdateBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.update.LostFoundUpdateViewModel.Companion.EVENT_ERROR
+import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.update.LostFoundUpdateViewModel.Companion.EVENT_LOAD_IMG
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getRealPathFromURI
 import java.io.File
 
@@ -24,10 +27,17 @@ class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, Los
     override fun onStart() {
         super.onStart()
         viewModel.getLostFound(args.id)
-        setImage(viewModel.url.value)
     }
 
     override fun observerViewModel() {
+        bindingViewEvent { event ->
+            when(event){
+                EVENT_LOAD_IMG -> {
+                    setImage(viewModel.url)
+                }
+            }
+        }
+
         mBinding.btnBack.setOnClickListener {
             this.findNavController().popBackStack()
         }
@@ -53,23 +63,24 @@ class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, Los
 
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == Activity.RESULT_OK) {
-            val uri = it.data?.data?.getRealPathFromURI(requireContext())
-            viewModel.file = File(uri?.path!!)
-            setImage(url = viewModel.url.value, uri = it.data!!.data)
+            val uri =  it.data?.data?.getRealPathFromURI(requireContext())
+            setImage(uri = it.data!!.data)
+            viewModel.imageUpload(File(uri?.path!!))
+            Log.e("LostFoundWriteFragment","${File(uri.path!!)}")
         }
     }
-    private fun setImage(url: String?, uri: Uri?) {
+    private fun setImage(uri: Uri?) {
         Glide.with(mBinding.root)
-            .load(url ?: uri)
+            .load(uri)
             .error(R.drawable.default_img)
             .centerCrop()
             .into(mBinding.ivLostFound)
     }
     private fun setImage(url: String?) {
-        Glide.with(mBinding.root)
+        Glide.with(mBinding.ivLostFound)
             .load(url)
-            .error(R.drawable.default_img)
             .centerCrop()
+            .error(R.drawable.default_img)
             .into(mBinding.ivLostFound)
     }
 }

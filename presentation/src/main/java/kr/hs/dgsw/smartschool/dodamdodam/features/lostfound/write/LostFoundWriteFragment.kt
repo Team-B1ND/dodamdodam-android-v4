@@ -47,9 +47,10 @@ class LostFoundWriteFragment : BaseFragment<FragmentLostFoundWriteBinding, LostF
 
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == Activity.RESULT_OK) {
-            val uri = it.data?.data?.getRealPathFromURI(requireContext())
-            viewModel.file = File(uri.toString())
+            val uri =  it.data?.data?.getRealPathFromURI(requireContext())
             setImage(url = null, uri = it.data!!.data)
+            viewModel.imageUpload(File(uri?.path!!))
+            Log.e("LostFoundWriteFragment","${File(uri.path!!)}")
         }
     }
     private fun setImage(url: String?, uri: Uri?) {
