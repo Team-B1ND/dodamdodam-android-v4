@@ -22,7 +22,7 @@ class LostFoundUpdateViewModel @Inject constructor(
     val title = MutableLiveData<String>()
     val place = MutableLiveData<String>()
     val content = MutableLiveData<String>()
-    var url : String? = null
+    var url: String? = null
     val callBack = LostFoundUpdateFragment()
 
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
@@ -54,13 +54,13 @@ class LostFoundUpdateViewModel @Inject constructor(
                 place.value = it.place
                 content.value = it.content
 
-                Log.e("LostFoundUpdateViewModel","현재 url ${url.toString()}")
+                Log.e("LostFoundUpdateViewModel", "현재 url $url")
                 viewEvent(EVENT_LOAD_IMG)
             },
             { }
         ).launchIn(viewModelScope)
     }
-    fun imageUpload(file:File) {
+    fun imageUpload(file: File) {
         Log.e("LostFoundWriteViewModel", "imageUpload()")
         uploadFileUseCase(file).divideResult(
             isModifyLostFoundLoading,

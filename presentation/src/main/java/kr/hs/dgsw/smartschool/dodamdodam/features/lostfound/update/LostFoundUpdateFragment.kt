@@ -14,7 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentLostFoundUpdateBinding
-import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.update.LostFoundUpdateViewModel.Companion.EVENT_ERROR
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.update.LostFoundUpdateViewModel.Companion.EVENT_LOAD_IMG
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.getRealPathFromURI
 import java.io.File
@@ -31,7 +30,7 @@ class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, Los
 
     override fun observerViewModel() {
         bindingViewEvent { event ->
-            when(event){
+            when (event) {
                 EVENT_LOAD_IMG -> {
                     setImage(viewModel.url)
                 }
@@ -63,10 +62,10 @@ class LostFoundUpdateFragment : BaseFragment<FragmentLostFoundUpdateBinding, Los
 
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (it.resultCode == Activity.RESULT_OK) {
-            val uri =  it.data?.data?.getRealPathFromURI(requireContext())
+            val uri = it.data?.data?.getRealPathFromURI(requireContext())
             setImage(uri = it.data!!.data)
             viewModel.imageUpload(File(uri?.path!!))
-            Log.e("LostFoundWriteFragment","${File(uri.path!!)}")
+            Log.e("LostFoundWriteFragment", "${File(uri.path!!)}")
         }
     }
     private fun setImage(uri: Uri?) {

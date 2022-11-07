@@ -1,8 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.main
 
-import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -55,7 +53,7 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                 viewModel.searchLostFound()
             }
 
-            //TODO INFINITE SCROLL 미구현, 구현해야함 ListAdapter 아이템 추가 방식
+            // TODO INFINITE SCROLL 미구현, 구현해야함 ListAdapter 아이템 추가 방식
 
             /* rvLostAndFound.addOnScrollListener((object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -74,22 +72,22 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                 }
             }))*/
         }
-            with(viewModel) {
-                foundChecked.observe(
-                    viewLifecycleOwner,
-                    Observer<Boolean> {
-                        Log.e("LostFoundFragment", it.toString())
-                        getLostFoundList()
-                    }
-                )
-                mineChecked.observe(
-                    viewLifecycleOwner,
-                    Observer<Boolean> {
-                        Log.e("LostFoundFragment", it.toString())
-                        getLostFoundList()
-                    }
-                )
-            }
+        with(viewModel) {
+            foundChecked.observe(
+                viewLifecycleOwner,
+                Observer<Boolean> {
+                    Log.e("LostFoundFragment", it.toString())
+                    getLostFoundList()
+                }
+            )
+            mineChecked.observe(
+                viewLifecycleOwner,
+                Observer<Boolean> {
+                    Log.e("LostFoundFragment", it.toString())
+                    getLostFoundList()
+                }
+            )
+        }
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getLostFoundState.collect { state ->

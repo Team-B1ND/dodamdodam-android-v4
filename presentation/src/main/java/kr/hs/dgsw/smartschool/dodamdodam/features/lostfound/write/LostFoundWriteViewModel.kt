@@ -55,16 +55,19 @@ class LostFoundWriteViewModel @Inject constructor(
             { viewEvent(EVENT_ERROR) }
         ).launchIn(viewModelScope)
 
-        Log.e("LostFoundWriteViewModel",LostFoundDataRequest(
-            content = content.value ?: "".replace(" ", ""),
-            picture = url ?: "",
-            place = place.value ?: "장소모름".replace(" ", ""),
-            title = title.value ?: "".replace(" ", ""),
-            type = if (isLost.value == true) "LOST" else "FOUND",
-            lostFoundId = null
-        ).toString())
+        Log.e(
+            "LostFoundWriteViewModel",
+            LostFoundDataRequest(
+                content = content.value ?: "".replace(" ", ""),
+                picture = url ?: "",
+                place = place.value ?: "장소모름".replace(" ", ""),
+                title = title.value ?: "".replace(" ", ""),
+                type = if (isLost.value == true) "LOST" else "FOUND",
+                lostFoundId = null
+            ).toString()
+        )
     }
-    fun imageUpload(file:File) {
+    fun imageUpload(file: File) {
         Log.e("LostFoundWriteViewModel", "imageUpload()")
         uploadFileUseCase(file).divideResult(
             isModifyLostFoundLoading,
