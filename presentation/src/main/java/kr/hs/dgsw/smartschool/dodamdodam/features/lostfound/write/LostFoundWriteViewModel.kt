@@ -22,7 +22,6 @@ class LostFoundWriteViewModel @Inject constructor(
     val title = MutableLiveData<String>()
     val place = MutableLiveData<String>()
     val content = MutableLiveData<String>()
-    var file: File? = null
     var url: String? = null
 
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
@@ -39,7 +38,6 @@ class LostFoundWriteViewModel @Inject constructor(
     }
 
     fun addLostFound() {
-        imageUpload(file ?: File("res/drawable/default_img.png"))
         if (title.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_TITLE)
         if (content.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_CONTENT)
         useCases.addLostFound(
@@ -56,9 +54,21 @@ class LostFoundWriteViewModel @Inject constructor(
             { viewEvent(EVENT_SUCCESS) },
             { viewEvent(EVENT_ERROR) }
         ).launchIn(viewModelScope)
+
+        Log.e(
+            "LostFoundWriteViewModel",
+            LostFoundDataRequest(
+                content = content.value ?: "".replace(" ", ""),
+                picture = url ?: "",
+                place = place.value ?: "장소모름".replace(" ", ""),
+                title = title.value ?: "".replace(" ", ""),
+                type = if (isLost.value == true) "LOST" else "FOUND",
+                lostFoundId = null
+            ).toString()
+        )
     }
-    private fun imageUpload(file: File) {
-        Log.e("LostFoundWriteViewModel", "imageUpload $file")
+    fun imageUpload(file: File) {
+        Log.e("LostFoundWriteViewModel", "imageUpload()")
         uploadFileUseCase(file).divideResult(
             isModifyLostFoundLoading,
             {

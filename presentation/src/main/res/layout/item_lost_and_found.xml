@@ -45,7 +45,7 @@
 
                 <LinearLayout
                     android:layout_marginStart="20dp"
-                    android:layout_width="match_parent"
+                    android:layout_width="200dp"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
@@ -59,7 +59,7 @@
                         android:ellipsize="end"
                         android:textColor="@color/color_black"
                         android:textSize="@dimen/title4"
-                        tools:text="게시물 제목"
+                        tools:text="게시물 제목dddddddddd"
                         android:text="@{lostInfo.title}"
                         android:layout_gravity="top"/>
                     <TextView
@@ -89,9 +89,10 @@
             </LinearLayout>
             <ImageButton
                 android:id="@+id/ib_btn_more"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity=""
+                android:padding="5dp"
                 android:backgroundTint="@android:color/transparent"
                 android:src="@drawable/ic_btn_more_vert"
                 app:layout_constraintEnd_toEndOf="@id/member_info_layout"
