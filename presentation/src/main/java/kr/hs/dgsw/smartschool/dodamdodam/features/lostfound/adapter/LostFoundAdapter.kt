@@ -2,6 +2,7 @@ package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.adapter
 
 import android.content.Context
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,7 @@ class LostFoundAdapter(val context: Context, val listener: LostFoundCallBack) : 
 
     override fun action(item: LostInfo, binding: ItemLostAndFoundBinding) {
         binding.lostInfo = item
+        if (item.member.id != item.myId) binding.ibBtnMore.visibility = View.INVISIBLE
         Log.e("LostFoundAdapter", item.toString())
         Glide.with(binding.ivProfileImage)
             .load(item.img)

@@ -22,9 +22,16 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     var myId: String = ""
     private var list: List<LostInfo> = emptyList()
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         viewModel.getMyInfo()
+        viewModel.hasLostFound = true
+        viewModel.getLostFoundList()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.hasLostFound = false
     }
     override fun observerViewModel() {
 
@@ -45,6 +52,9 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
             btnSearch.setOnClickListener {
                 viewModel.searchLostFound()
             }
+
+            // TODO INFINITE SCROLL 미구현, 구현해야함 ListAdapter 아이템 추가 방식
+
             /* rvLostAndFound.addOnScrollListener((object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
@@ -63,13 +73,6 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
             }))*/
         }
         with(viewModel) {
-            page.observe(
-                viewLifecycleOwner,
-                Observer<Int> {
-                    Log.e("LostFoundFragment", it.toString())
-                    getLostFoundList()
-                }
-            )
             foundChecked.observe(
                 viewLifecycleOwner,
                 Observer<Boolean> {
@@ -89,7 +92,6 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
             lifecycleScope.launchWhenStarted {
                 getLostFoundState.collect { state ->
                     val list = setLostInfo(state.list)
-                    hasLostFound.value = list.isNotEmpty()
                     setRecyclerView(list)
 
                     if (state.error.isNotBlank()) {

@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.update
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,8 +22,7 @@ class LostFoundUpdateViewModel @Inject constructor(
     val title = MutableLiveData<String>()
     val place = MutableLiveData<String>()
     val content = MutableLiveData<String>()
-    var file: File? = null
-    val url = MutableLiveData<String>()
+    var url: String? = null
     val callBack = LostFoundUpdateFragment()
 
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
@@ -36,12 +36,13 @@ class LostFoundUpdateViewModel @Inject constructor(
         const val EVENT_EMPTY_TITLE = 2
         const val EVENT_EMPTY_CONTENT = 3
         const val EVENT_ERROR = 4
+        const val EVENT_LOAD_IMG = 5
     }
     fun getLostFound(id: Int) {
         useCases.getLostFoundById(id).divideResult(
             isModifyLostFoundLoading,
             {
-                url.value = it?.image ?: ""
+                url = it?.image ?: ""
                 title.value = it?.title
                 if (it?.type!!.equals("FOUND")) {
                     isFound.value = true
@@ -52,27 +53,31 @@ class LostFoundUpdateViewModel @Inject constructor(
                 }
                 place.value = it.place
                 content.value = it.content
+
+                Log.e("LostFoundUpdateViewModel", "현재 url $url")
+                viewEvent(EVENT_LOAD_IMG)
             },
             { }
         ).launchIn(viewModelScope)
     }
-    private fun imageUpload(file: File) {
+    fun imageUpload(file: File) {
+        Log.e("LostFoundWriteViewModel", "imageUpload()")
         uploadFileUseCase(file).divideResult(
             isModifyLostFoundLoading,
             {
-                url.value = it
+                url = it
+                Log.e("LostFoundWriteViewModel", "imageUpload $url")
             },
             {}
-        )
+        ).launchIn(viewModelScope)
     }
     fun modifyLostFound(id: Int) {
-        if (file != null) imageUpload(file!!)
         if (title.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_TITLE)
         if (content.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_CONTENT)
         useCases.modifyLostFound(
             LostFoundDataRequest(
                 content = content.value ?: "".replace(" ", ""),
-                picture = url.value ?: "",
+                picture = url ?: "",
                 place = place.value ?: "".replace(" ", ""),
                 title = title.value ?: "".replace(" ", ""),
                 type = if (isLost.value == true) "LOST" else "FOUND",

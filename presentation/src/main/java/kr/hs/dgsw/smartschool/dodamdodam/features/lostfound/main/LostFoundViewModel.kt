@@ -26,18 +26,18 @@ class LostFoundViewModel @Inject constructor(
 
     private val _getLostFoundState = MutableSharedFlow<GetLostFoundState>()
     val getLostFoundState: SharedFlow<GetLostFoundState> = _getLostFoundState
+    private val _getInfoState = MutableSharedFlow<GetMyInfoState>()
+    val getMyInfoState: SharedFlow<GetMyInfoState> = _getInfoState
+
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
     private val isGetLostProfileLoading = MutableLiveData<Boolean>()
-    private val _getInfoState = MutableSharedFlow<GetMyInfoState>()
-    val getMyInfoState = _getInfoState
 
     val page = MutableLiveData<Int>(1)
     val searchKeyword = MutableLiveData<String>()
     val mineChecked = MutableLiveData<Boolean>(false)
     val foundChecked = MutableLiveData<Boolean>(false)
-    val hasLostFound = MutableLiveData<Boolean>(false)
 
-    val getTypeLoading = MutableLiveData<Boolean>(false)
+    var hasLostFound = false
 
     init {
         combineLoadingVariable(isGetLostFoundLoading, isGetLostProfileLoading)
@@ -52,17 +52,18 @@ class LostFoundViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
     fun getLostFoundList() {
-        if (mineChecked.value == true) {
-            Log.d("LostFoundViewModel", "myLostFound()")
-            myLostFound()
-        } else {
-            Log.d("LostFoundViewModel", "getLostFoundList()")
-            // useCases.getLostFound(GetLostFound.Params(page = page.value ?: 0, type = if (foundChecked.value!!) "FOUND" else "LOST")).divideResult(
-            useCases.getLostFoundAll(Unit).divideResult(
-                isGetLostFoundLoading,
-                { launchLostFound(it!!) },
-                { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.") }
-            ).launchIn(viewModelScope)
+        if (hasLostFound) {
+            if (mineChecked.value == true) {
+                Log.d("LostFoundViewModel", "myLostFound()")
+                myLostFound()
+            } else {
+                // useCases.getLostFound(GetLostFound.Params(page = page.value ?: 0, type = if (foundChecked.value!!) "FOUND" else "LOST")).divideResult(
+                useCases.getLostFoundAll(Unit).divideResult(
+                    isGetLostFoundLoading,
+                    { launchLostFound(it!!) },
+                    { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.") }
+                ).launchIn(viewModelScope)
+            }
         }
     }
     fun searchLostFound() {
@@ -90,9 +91,10 @@ class LostFoundViewModel @Inject constructor(
     private fun launchLostFound(list: List<LostFound>) {
         var newList = mutableListOf<LostFound>()
         list.forEach {
-            if (foundChecked.value!! && it.type == "FOUND") newList.add(it)
-            else if (!foundChecked.value!! && it.type == "LOST") newList.add(it)
+            if (foundChecked.value == true && it.type == "FOUND") newList.add(it)
+            else if (foundChecked.value == false && it.type == "LOST") newList.add(it)
         }
+        Log.e("LostFoundViewModel - launchLostFound()", newList.toString())
         viewModelScope.launch {
             _getLostFoundState.emit(GetLostFoundState(list = newList))
         }
