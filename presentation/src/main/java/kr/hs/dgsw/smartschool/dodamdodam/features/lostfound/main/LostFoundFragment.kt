@@ -45,6 +45,9 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
             btnSearch.setOnClickListener {
                 viewModel.searchLostFound()
             }
+
+            //TODO INFINITE SCROLL 미구현, 구현해야함 ListAdapter 아이템 추가 방식
+
             /* rvLostAndFound.addOnScrollListener((object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
@@ -63,13 +66,6 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
             }))*/
         }
         with(viewModel) {
-            page.observe(
-                viewLifecycleOwner,
-                Observer<Int> {
-                    Log.e("LostFoundFragment", it.toString())
-                    getLostFoundList()
-                }
-            )
             foundChecked.observe(
                 viewLifecycleOwner,
                 Observer<Boolean> {

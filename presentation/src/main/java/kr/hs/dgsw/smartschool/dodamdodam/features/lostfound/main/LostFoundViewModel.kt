@@ -26,23 +26,24 @@ class LostFoundViewModel @Inject constructor(
 
     private val _getLostFoundState = MutableSharedFlow<GetLostFoundState>()
     val getLostFoundState: SharedFlow<GetLostFoundState> = _getLostFoundState
+    private val _getInfoState = MutableSharedFlow<GetMyInfoState>()
+    val getMyInfoState : SharedFlow<GetMyInfoState> = _getInfoState
+
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
     private val isGetLostProfileLoading = MutableLiveData<Boolean>()
-    private val _getInfoState = MutableSharedFlow<GetMyInfoState>()
-    val getMyInfoState = _getInfoState
+
 
     val page = MutableLiveData<Int>(1)
     val searchKeyword = MutableLiveData<String>()
-    val mineChecked = MutableLiveData<Boolean>(false)
-    val foundChecked = MutableLiveData<Boolean>(false)
+    val mineChecked = MutableLiveData<Boolean>()
+    val foundChecked = MutableLiveData<Boolean>()
     val hasLostFound = MutableLiveData<Boolean>(false)
-
-    val getTypeLoading = MutableLiveData<Boolean>(false)
 
     init {
         combineLoadingVariable(isGetLostFoundLoading, isGetLostProfileLoading)
         Log.e("LostFoundViewModel", "생성")
     }
+
 
     fun getMyInfo() {
         memberUseCases.getMyInfo(Unit).divideResult(
@@ -90,8 +91,8 @@ class LostFoundViewModel @Inject constructor(
     private fun launchLostFound(list: List<LostFound>) {
         var newList = mutableListOf<LostFound>()
         list.forEach {
-            if (foundChecked.value!! && it.type == "FOUND") newList.add(it)
-            else if (!foundChecked.value!! && it.type == "LOST") newList.add(it)
+            if (foundChecked.value == true && it.type == "FOUND") newList.add(it)
+            else if (foundChecked.value == true && it.type == "LOST") newList.add(it)
         }
         viewModelScope.launch {
             _getLostFoundState.emit(GetLostFoundState(list = newList))
