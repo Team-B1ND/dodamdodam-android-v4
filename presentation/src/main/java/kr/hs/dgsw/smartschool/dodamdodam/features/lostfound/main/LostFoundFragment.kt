@@ -1,6 +1,8 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.main
 
+import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -22,9 +24,16 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
     var myId: String = ""
     private var list: List<LostInfo> = emptyList()
 
-    override fun onStart() {
-        super.onStart()
+    override fun onResume() {
+        super.onResume()
         viewModel.getMyInfo()
+        viewModel.hasLostFound = true
+        viewModel.getLostFoundList()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.hasLostFound = false
     }
     override fun observerViewModel() {
 
@@ -65,27 +74,26 @@ class LostFoundFragment : BaseFragment<FragmentLostFoundBinding, LostFoundViewMo
                 }
             }))*/
         }
-        with(viewModel) {
-            foundChecked.observe(
-                viewLifecycleOwner,
-                Observer<Boolean> {
-                    Log.e("LostFoundFragment", it.toString())
-                    getLostFoundList()
-                }
-            )
-            mineChecked.observe(
-                viewLifecycleOwner,
-                Observer<Boolean> {
-                    Log.e("LostFoundFragment", it.toString())
-                    getLostFoundList()
-                }
-            )
-        }
+            with(viewModel) {
+                foundChecked.observe(
+                    viewLifecycleOwner,
+                    Observer<Boolean> {
+                        Log.e("LostFoundFragment", it.toString())
+                        getLostFoundList()
+                    }
+                )
+                mineChecked.observe(
+                    viewLifecycleOwner,
+                    Observer<Boolean> {
+                        Log.e("LostFoundFragment", it.toString())
+                        getLostFoundList()
+                    }
+                )
+            }
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getLostFoundState.collect { state ->
                     val list = setLostInfo(state.list)
-                    hasLostFound.value = list.isNotEmpty()
                     setRecyclerView(list)
 
                     if (state.error.isNotBlank()) {
