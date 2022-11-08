@@ -28,8 +28,8 @@ class SongSearchFragment : BaseFragment<FragmentSongSearchBinding, SongSearchVie
             }
         }
 
-        mBinding.etSearch.setOnEditorActionListener {v, id, event ->
-            if(id == EditorInfo.IME_ACTION_SEARCH) {
+        mBinding.etSearch.setOnEditorActionListener { v, id, event ->
+            if (id == EditorInfo.IME_ACTION_SEARCH) {
                 // 보내기 동작
                 viewModel.getYoutubeResult()
                 mBinding.etSearch.setText("")

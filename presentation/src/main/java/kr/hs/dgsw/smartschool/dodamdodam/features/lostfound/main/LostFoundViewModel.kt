@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.main
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +13,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetMyInfoState
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
-import kr.hs.dgsw.smartschool.domain.usecase.lostfound.SearchLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import javax.inject.Inject
 
@@ -94,5 +92,4 @@ class LostFoundViewModel @Inject constructor(
     private fun launchLostFound(error: String) {
         viewModelScope.launch { _getLostFoundState.emit(GetLostFoundState(error = error)) }
     }
-
 }
