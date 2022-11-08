@@ -17,8 +17,7 @@
         android:layout_marginTop="@dimen/default_card_height_margin"
         app:cardCornerRadius="@dimen/card_corner"
         app:cardElevation="0dp"
-        android:layout_marginStart="@dimen/default_card_content_margin"
-        android:layout_marginEnd="@dimen/default_card_content_margin">
+        android:layout_marginHorizontal="@dimen/default_margin">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/lost_found_item_root"
@@ -49,6 +48,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_title"
                         android:layout_width="wrap_content"
@@ -62,6 +62,7 @@
                         tools:text="게시물 제목dddddddddd"
                         android:text="@{lostInfo.title}"
                         android:layout_gravity="top"/>
+
                     <TextView
                         android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
@@ -73,6 +74,7 @@
                         android:textColor="@color/color_black"
                         tools:text="김도현"
                         android:text="@{lostInfo.name}"/>
+
 
                     <TextView
                         android:id="@+id/tv_upload_time"
@@ -87,6 +89,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <ImageButton
                 android:id="@+id/ib_btn_more"
                 android:layout_width="wrap_content"
@@ -96,8 +99,8 @@
                 android:backgroundTint="@android:color/transparent"
                 android:src="@drawable/ic_btn_more_vert"
                 app:layout_constraintEnd_toEndOf="@id/member_info_layout"
-                app:layout_constraintTop_toTopOf="@id/member_info_layout"
-                />
+                app:layout_constraintTop_toTopOf="@id/member_info_layout" />
+
             <TextView
                 android:id="@+id/tv_content"
                 android:layout_width="0dp"

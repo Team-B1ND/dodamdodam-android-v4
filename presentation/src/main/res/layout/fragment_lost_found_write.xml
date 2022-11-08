@@ -197,6 +197,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="500dp"
                     android:layout_margin="20dp"
+                    app:layout_constraintVertical_chainStyle="packed"
                     app:cardCornerRadius="@dimen/card_corner"
                     app:cardElevation="@dimen/card_elevation"
                     app:layout_constraintBottom_toTopOf="@id/btn_add"
