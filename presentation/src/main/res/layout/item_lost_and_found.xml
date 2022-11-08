@@ -134,7 +134,7 @@
                     android:src="@drawable/ic_location"
                     app:layout_constraintEnd_toStartOf="@id/tv_place"
                     app:layout_constraintHorizontal_chainStyle="packed"
-                    app:tint="@color/main"
+                    app:tint="@color/color_lost_found"
                     tools:ignore="ContentDescription" />
                 <TextView
                     android:id="@+id/tv_place"
