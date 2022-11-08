@@ -40,10 +40,10 @@ class OutFragment : BaseFragment<FragmentOutBinding, OutViewModel>(), OutListAda
     private fun collectOutList() {
         lifecycleScope.launchWhenStarted {
             viewModel.getOutByDateState.collect { state ->
-
                 if (state.isUpdate) {
                     if (state.outList.isEmpty()) {
                         mBinding.tvNoData.visibility = View.VISIBLE
+                        outListAdapter.submitList(emptyList())
                     } else {
                         outListAdapter.submitList(state.outList)
                         mBinding.tvNoData.visibility = View.GONE
