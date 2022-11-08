@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.song.search
 
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -25,6 +26,15 @@ class SongSearchFragment : BaseFragment<FragmentSongSearchBinding, SongSearchVie
             when (event) {
                 SongSearchViewModel.EVENT_ON_CLICK_BACK -> findNavController().popBackStack()
             }
+        }
+
+        mBinding.etSearch.setOnEditorActionListener {v, id, event ->
+            if(id == EditorInfo.IME_ACTION_SEARCH) {
+                // 보내기 동작
+                viewModel.getYoutubeResult()
+                mBinding.etSearch.setText("")
+            }
+            true
         }
     }
 
