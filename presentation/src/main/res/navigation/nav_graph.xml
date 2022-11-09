@@ -34,6 +34,14 @@
         <action
             android:id="@+id/action_main_home_to_lostFoundFragment"
             app:destination="@id/lostFoundFragment" />
+        <action
+            android:id="@+id/action_main_home_to_scheduleFragment"
+            app:destination="@id/scheduleFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/main_home" />
     </fragment>
     <fragment
         android:id="@+id/main_profile"
@@ -269,4 +277,8 @@
         android:id="@+id/songSearchFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.search.SongSearchFragment"
         android:label="SongSearchFragment" />
+    <fragment
+        android:id="@+id/scheduleFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.schedule.view.ScheduleFragment"
+        android:label="ScheduleFragment" />
 </navigation>

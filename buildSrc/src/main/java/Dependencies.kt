@@ -54,6 +54,7 @@ object Libraries {
     const val JSOUP = "org.jsoup:jsoup:${Versions.JSOUP}"
 
     const val LOTTIE = "com.airbnb.android:lottie:${Versions.LOTTIE}"
+    const val CALENDAR = "com.kizitonwose.calendar:view:${Versions.CALENDAR}"
 }
 
 object UnitTest {

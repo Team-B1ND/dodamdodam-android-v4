@@ -113,7 +113,11 @@ dependencies {
     implementation(Google.APP_UPDATE)
     implementation(Google.APP_UPDATE_KTX)
 
+    // indicator
     implementation(Libraries.INDICATOR)
+
+    // calendar
+    implementation(Libraries.CALENDAR)
 
     implementation(project(":data"))
     implementation(project(":domain"))

@@ -61,6 +61,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 HomeViewModel.ON_CLICK_OUT -> findNavController().navigate(R.id.action_main_home_to_outFragment)
                 HomeViewModel.ON_CLICK_ITMAP -> findNavController().navigate(R.id.action_main_home_to_itMapFragment)
                 HomeViewModel.ON_CLICK_LOST -> findNavController().navigate(R.id.action_main_home_to_lostFoundFragment)
+                HomeViewModel.ON_CLICK_SCHEDULE -> findNavController().navigate(R.id.action_main_home_to_scheduleFragment)
             }
         }
     }
@@ -69,13 +70,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 getMyStudyRoomState.collect { state ->
-                    if (state.isUpdate) {
-                        studyRoomCheckAdapter.submitList(state.myStudyRooms)
-                    }
-
-                    if (state.error.isNotBlank()) {
-                        shortToast(state.error)
-                    }
+                    if (state.isUpdate) studyRoomCheckAdapter.submitList(state.myStudyRooms)
+                    if (state.error.isNotBlank()) shortToast(state.error)
                 }
             }
         }

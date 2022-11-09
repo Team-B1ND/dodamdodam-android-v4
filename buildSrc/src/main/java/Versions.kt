@@ -53,4 +53,6 @@ object Versions {
 
     const val NAVER_MAP = "3.16.0"
     const val GOOGLE_LOCATION = "20.0.0"
+
+    const val CALENDAR = "2.0.1"
 }
