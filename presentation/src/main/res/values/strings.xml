@@ -73,7 +73,7 @@
     <string name="title_baek_rank">백랭</string>
     <string name="title_lost_and_found">분실물 찾기</string>
     <string name="text_lost_and_found">내 물건 찾아줘..</string>
-    <string name="title_it_map">여기 선배 it을 지도?</string>
+    <string name="title_it_map">it을 지도</string>
     <string name="text_it_map_desc">졸업한 선배의 회사를 알고싶다면</string>
     <string name="text_search">검색</string>
     <string name="text_write_comment">댓글 달기</string>
@@ -176,5 +176,7 @@
     <string name="text_search_desc">더욱 상세한 정보를 검색해 보세요!</string>
     <string name="text_start">시작하기</string>
     <string name="text_pw_description">최소 하나의 문자와, 숫자, 특수문자가 포함되어야 합니다.</string>
+    <string name="title_schedule">일정</string>
+    <string name="text_schedule_desc">방학이 언제더라?</string>
 
 </resources>

@@ -5,6 +5,7 @@
     android:background="@color/color_background">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -12,37 +13,33 @@
             type="kr.hs.dgsw.smartschool.dodamdodam.features.home.HomeViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/layout_coordinator"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_constraint"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_app_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/Widget.Material3.AppBarLayout"
-            app:liftOnScroll="false">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/color_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_home"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/color_background">
+            <ImageView
+                android:id="@+id/iv_logo_home"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_margin"
+                android:background="@color/color_background"
+                android:src="@drawable/logo_home"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
 
-                <ImageView
-                    android:id="@+id/iv_logo_home"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/default_margin"
-                    android:background="@color/color_background"
-                    android:src="@drawable/logo_home"
-                    tools:ignore="ContentDescription" />
-
-            </androidx.appcompat.widget.Toolbar>
-
-        </com.google.android.material.appbar.AppBarLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -220,12 +217,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:elevation="10dp"
                         app:dotsColor="@color/color_background"
                         app:dotsCornerRadius="8dp"
                         app:dotsSize="8dp"
                         app:dotsSpacing="2dp"
                         app:dotsWidthFactor="2.5"
-                        android:elevation="10dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:progressMode="true"
@@ -373,15 +370,15 @@
                         android:id="@+id/card_it_map"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:layout_marginHorizontal="@dimen/default_margin"
+                        android:layout_marginStart="@dimen/default_margin"
                         android:layout_marginTop="@dimen/default_card_height_margin"
                         android:layout_marginBottom="70dp"
                         android:onClick="@{() -> vm.onClickItMap()}"
                         app:cardCornerRadius="@dimen/card_corner"
                         app:cardElevation="@dimen/card_elevation"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="2.5:1"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintDimensionRatio="1:0.8"
+                        app:layout_constraintEnd_toEndOf="@id/card_out"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/card_lost_found">
 
@@ -428,10 +425,68 @@
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/card_schedule"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/default_card_height_margin"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:layout_marginBottom="70dp"
+                        android:onClick="@{() -> vm.onClickItMap()}"
+                        app:cardCornerRadius="@dimen/card_corner"
+                        app:cardElevation="@dimen/card_elevation"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:0.8"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/card_lost_found"
+                        app:layout_constraintTop_toBottomOf="@id/card_lost_found">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/tv_schedule"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/default_card_content_margin"
+                                android:fontFamily="@font/noto_bold"
+                                android:includeFontPadding="false"
+                                android:text="@string/title_schedule"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/card_title"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_schedule_desc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/default_card_content_margin"
+                                android:layout_marginTop="3dp"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/text_schedule_desc"
+                                android:textColor="@color/gray700"
+                                android:textSize="@dimen/card_content"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_schedule" />
+
+                            <ImageView
+                                android:id="@+id/iv_schedule"
+                                android:layout_width="@dimen/default_card_icon_size"
+                                android:layout_height="@dimen/default_card_icon_size"
+                                android:layout_margin="@dimen/default_card_content_margin"
+                                android:src="@drawable/ic_calendar_3d"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                tools:ignore="ContentDescription" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
