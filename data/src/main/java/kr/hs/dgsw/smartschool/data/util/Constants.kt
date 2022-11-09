@@ -22,7 +22,7 @@ object Constants {
     val SERVER_HOST = if (mode == "TEST") TEST_HOST else DEFAULT_HOST
     // val AUTH_SERVER_HOST = if (mode == "TEST") AUTH_TEST_HOST else AUTH_HOST
 
-    const val PLAY_STORE = "https://play.google.com/store/apps/details?id=kr.hs.dgsw.smartschool.dodamdodam"
+    const val PAY_STORE = "https://play.google.com/store/apps/details?id=kr.hs.dgsw.smartschool.dodamdodam"
     const val INFORMATION_AGREEMENT_URL = "http://dodam.b1nd.com/detailed-information/personal-information"
     const val SERVICE_AGREEMENT_URL = "http://dodam.b1nd.com/detailed-information/service-policy"
     const val RELEASE_NOTE_URL = "https://b1nd.com/#/dodam_and_rel_s"

@@ -5,7 +5,6 @@
     android:background="@color/color_background">
 
     <data>
-
         <import type="android.view.View" />
 
         <variable
