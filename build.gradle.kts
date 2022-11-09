@@ -5,6 +5,7 @@ buildscript {
         classpath(Google.HILT_ANDROID_PLUGIN)
         classpath(AndroidX.NAVIGATION_SAFE_ARGS)
         classpath(Google.GOOGLE_GMS)
+        classpath("com.android.tools.build:gradle:7.3.0")
     }
 }
 

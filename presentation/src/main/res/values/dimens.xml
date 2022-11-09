@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="drawer_icon_size">17dp</dimen>
@@ -9,16 +9,16 @@
     <dimen name="card_elevation">0dp</dimen>
     <dimen name="card_small_elevation">0dp</dimen>
 
-    <dimen name="card_title">18dp</dimen>
-    <dimen name="card_content">14dp</dimen>
+    <dimen name="card_title">18sp</dimen>
+    <dimen name="card_content">14sp</dimen>
 
     <dimen name="sign_horizontal_margin">30dp</dimen>
 
     <dimen name="default_margin">16dp</dimen>
-    <dimen name="default_card_icon_size">35sp</dimen>
+    <dimen name="default_card_icon_size">35dp</dimen>
     <dimen name="default_card_content_margin">21dp</dimen>
     <dimen name="default_card_height_margin">10dp</dimen>
-    <dimen name="default_app_bar_height">130sp</dimen>
+    <dimen name="default_app_bar_height">130dp</dimen>
     <dimen name="default_button_text">16sp</dimen>
     <dimen name="default_edittext_text">14sp</dimen>
 
@@ -37,7 +37,7 @@
     <dimen name="title8">8sp</dimen>
 
 
-    <dimen name="top_bar_height_size">40sp</dimen>
-    <dimen name="default_more_arrow_icon">15sp</dimen>
-    <dimen name="default_item_radius">15sp</dimen>
+    <dimen name="top_bar_height_size">40dp</dimen>
+    <dimen name="default_more_arrow_icon">15dp</dimen>
+    <dimen name="default_item_radius">15dp</dimen>
 </resources>

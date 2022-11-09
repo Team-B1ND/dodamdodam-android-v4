@@ -30,8 +30,7 @@
                 android:id="@+id/toolbar_home"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/color_background"
-                app:layout_scrollFlags="scroll">
+                android:background="@color/color_background">
 
                 <ImageView
                     android:id="@+id/iv_logo_home"
