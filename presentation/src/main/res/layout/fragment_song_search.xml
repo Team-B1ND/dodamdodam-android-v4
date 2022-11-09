@@ -43,6 +43,7 @@
                 android:includeFontPadding="false"
                 android:inputType="text"
                 android:maxLines="1"
+                android:imeOptions="actionSearch"
                 android:text="@={vm.keyword}"
                 android:paddingHorizontal="16dp"
                 android:textSize="@dimen/title4"

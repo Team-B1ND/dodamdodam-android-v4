@@ -13,6 +13,7 @@ class JoinActivity : BaseActivity<ActivityJoinBinding, JoinViewModel>() {
 
     override fun observerViewModel() {
         mBinding.btnBack.setOnClickListener {
+            shortToast("승인을 기다려주세요!")
             finish()
         }
 

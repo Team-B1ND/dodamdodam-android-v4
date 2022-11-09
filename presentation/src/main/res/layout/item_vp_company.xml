@@ -89,13 +89,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="7dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="@dimen/default_margin"
                     android:ellipsize="end"
                     android:fontFamily="@font/noto_regular"
                     android:includeFontPadding="false"
                     android:maxLines="1"
-
                     android:text="@{company.address}"
                     android:textColor="@color/gray700"
                     android:textSize="@dimen/title5"

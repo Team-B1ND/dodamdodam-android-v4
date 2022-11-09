@@ -12,7 +12,7 @@ object Constants {
     const val mode = "RELEASE"
     const val DEFAULT_HOST = "http://101.101.209.184:8080/api/"
     const val SOCKET_HOST = "http://dodam.b1nd.com/"
-    const val TEST_HOST = "http://10.80.162.57:8080/"
+    const val TEST_HOST = "http://192.168.207.35:8080/"
     // const val TEST_HOST = "http://v6.dodam.b1nd.com/api/"
     const val AUTH_HOST = "http://auth.dodam.b1nd.com/"
     const val AUTH_TEST_HOST = "http://10.80.162.15:8080/"
@@ -22,7 +22,7 @@ object Constants {
     val SERVER_HOST = if (mode == "TEST") TEST_HOST else DEFAULT_HOST
     // val AUTH_SERVER_HOST = if (mode == "TEST") AUTH_TEST_HOST else AUTH_HOST
 
-    const val PLAY_STORE = "https://play.google.com/store/apps/details?id=kr.hs.dgsw.smartschool.dodamdodam"
+    const val PAY_STORE = "https://play.google.com/store/apps/details?id=kr.hs.dgsw.smartschool.dodamdodam"
     const val INFORMATION_AGREEMENT_URL = "http://dodam.b1nd.com/detailed-information/personal-information"
     const val SERVICE_AGREEMENT_URL = "http://dodam.b1nd.com/detailed-information/service-policy"
     const val RELEASE_NOTE_URL = "https://b1nd.com/#/dodam_and_rel_s"

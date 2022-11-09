@@ -41,7 +41,7 @@ class JoinDetailActivity : BaseActivity<ActivityJoinDetailBinding, JoinDetailVie
         lifecycleScope.launchWhenStarted {
             viewModel.joinState.collect { state ->
                 if (state.result.isNotEmpty()) {
-                    shortToast("회원가입에 성공하였습니다.")
+                    shortToast("승인을 기다려 주세요")
                     startActivityWithFinishAll(LoginActivity::class.java)
                 }
 

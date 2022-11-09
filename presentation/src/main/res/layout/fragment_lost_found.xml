@@ -34,8 +34,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/search_view"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:padding="10dp"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginBottom="1dp"
                     android:background="@color/color_card_background"
@@ -43,53 +42,23 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
+                    <include
                         android:id="@+id/btn_back"
-                        android:layout_width="23dp"
-                        android:layout_height="23dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_btn_back"
-                        app:tint="@color/color_black"
-                        tools:ignore="ContentDescription"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        layout="@layout/item_back_button"
+                        android:src="@drawable/ic_btn_back" />
 
-
-                    <EditText
-                        android:id="@+id/et_search"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="10dp"
-                        android:background="@drawable/background_round_line"
-                        android:hint="@string/text_search"
-                        android:layout_marginStart="@dimen/default_margin"
-                        android:text="@={vm.searchKeyword}"
+                    <TextView
+                        android:id="@+id/tv_lost_found_write_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/noto_regular"
                         android:includeFontPadding="false"
-                        android:imeOptions="actionSearch"
-                        android:visibility="visible"
-                        android:inputType="textPersonName"
-                        app:layout_constraintEnd_toStartOf="@id/btn_search"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
+                        android:text="@string/title_lost_and_found"
                         android:textColor="@color/color_black"
-                        android:textSize="6pt"
-                        tools:ignore="Autofill"
-                        app:layout_constraintStart_toEndOf="@id/btn_back"/>
-
-                    <ImageView
-                        android:id="@+id/btn_search"
-                        android:src="@drawable/ic_search"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="@dimen/default_margin"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="@dimen/app_bar_title_text"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        tools:ignore="ContentDescription" />
+                        app:layout_constraintStart_toEndOf="@id/btn_back"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -104,11 +73,11 @@
                     >
                     <CheckBox
                         android:id="@+id/tb_mine"
-                        android:layout_marginStart="15dp"
+                        android:layout_marginStart="@dimen/default_margin"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:textSize="@dimen/title5"
-                        android:fontFamily="@font/notosans_kr_bold"
+                        android:fontFamily="@font/noto_medium"
                         android:includeFontPadding="false"
                         android:textAlignment="center"
                         android:checked="@={vm.mineChecked}"
@@ -117,11 +86,11 @@
                        android:text="@string/text_my_lostfound"/>
                     <CheckBox
                         android:id="@+id/tb_lost_and_found"
-                        android:layout_marginStart="15dp"
+                        android:layout_marginStart="@dimen/default_margin"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:textSize="@dimen/title5"
-                        android:fontFamily="@font/notosans_kr_bold"
+                        android:fontFamily="@font/noto_medium"
                         android:includeFontPadding="false"
                         android:textAlignment="center"
                         android:checked="@={vm.foundChecked}"
@@ -149,7 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:src="@drawable/ic_btn_modify"
-            app:backgroundTint="@color/main"
+            app:backgroundTint="@color/color_lost_found"
             app:fabSize="normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

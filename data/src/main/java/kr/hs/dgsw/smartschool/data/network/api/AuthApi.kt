@@ -8,7 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface AuthApi {
-    @POST("auth/join")
+    @POST("auth/join-student")
     suspend fun join(
         @Body joinRequest: JoinRequest
     ): Response<Any>

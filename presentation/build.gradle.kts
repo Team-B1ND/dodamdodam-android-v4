@@ -51,6 +51,8 @@ dependencies {
     androidTestImplementation(AndroidTest.ANDROID_JUNIT)
     androidTestImplementation(AndroidTest.ESPRESSO_CORE)
 
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+
     // splash screen
     implementation(AndroidX.SPLASH_SCREEN)
 
