@@ -19,6 +19,7 @@ import okhttp3.Interceptor
 import okhttp3.Protocol
 import okhttp3.Request
 import okhttp3.Response
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.json.JSONException
 import retrofit2.HttpException
 import javax.inject.Inject
@@ -101,6 +102,7 @@ class TokenInterceptor @Inject constructor(
                 .protocol(Protocol.HTTP_1_1)
                 .code(TOKEN_ERROR)
                 .message("세션이 만료되었습니다.")
+                .body("세션이 만료되었습니다.".toResponseBody(null))
                 .build()
         } else response
     }

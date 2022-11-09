@@ -7,8 +7,8 @@ object Versions {
     //const val BUILD_TOOLS_VERSION = "30.0.3"
     const val MIN_SDK_VERSION = 26
     const val TARGET_SDK_VERSION = 32
-    const val VERSION_CODE = 49
-    const val VERSION_NAME = "2.0.5"
+    const val VERSION_CODE = 51
+    const val VERSION_NAME = "2.0.7"
     const val JVM_TARGET = "1.8"
     const val KT_LINT = "10.2.0"
     const val KT_DETE = "1.21.0"

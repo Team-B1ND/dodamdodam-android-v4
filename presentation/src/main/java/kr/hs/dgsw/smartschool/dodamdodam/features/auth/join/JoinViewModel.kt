@@ -23,11 +23,15 @@ class JoinViewModel : BaseViewModel() {
             viewEvent(EVENT_EMPTY)
             return
         }
-        val isNotMatchForm = id.value!!.length !in 5..20 || pw.value!!.length !in 7..20
+
+        val idRegex = Regex("/^[a-zA-Z0-9]{5,20}\$/")
+        val passwordRegex = Regex("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{7,20}$")
+        val isNotMatchForm = idRegex.matches(id.value ?: return).not() && passwordRegex.matches(pw.value ?: return).not()
         if (isNotMatchForm) {
             viewEvent(EVENT_NOT_MATCH_FORM)
             return
         }
+
         val isNotSamePw = pw.value!! != pwRight.value!!
         if (isNotSamePw) {
             viewEvent(EVENT_NOT_SAME_PW)

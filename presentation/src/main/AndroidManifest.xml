@@ -54,5 +54,8 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity android:name=".features.auth.join.detail.JoinDetailActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 </manifest>
