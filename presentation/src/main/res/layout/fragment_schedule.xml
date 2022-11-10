@@ -43,11 +43,10 @@
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/layout_title"
-            app:layout_constraintStart_toStartOf="parent"
+            app:cv_dayViewResource="@layout/calendar_day_layout"
             app:layout_constraintEnd_toEndOf="parent"
-            app:cv_dayViewResource="@layout/calendar_day_layout" />
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_title" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
