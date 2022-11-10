@@ -29,6 +29,8 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
+
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -52,6 +54,7 @@ dependencies {
     androidTestImplementation(AndroidTest.ESPRESSO_CORE)
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.2")
 
     // splash screen
     implementation(AndroidX.SPLASH_SCREEN)
