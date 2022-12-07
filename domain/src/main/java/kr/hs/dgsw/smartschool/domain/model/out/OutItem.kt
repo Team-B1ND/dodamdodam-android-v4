@@ -25,7 +25,7 @@ open class OutItem(
     @TypeParceler<TeacherId, TeacherIdParceler> val teacher: TeacherId
 ) : Serializable, Parcelable {
 
-    constructor() : this(Date(), Date(), Date(), 0, "", Date(), OutStatus.PENDING, StudentId(-1), TeacherId(-1))
+    constructor() : this(Date(), Date(), Date(), 0, "", Date(), OutStatus.PENDING, StudentId(-1), TeacherId(""))
 
     val startDate: String
         get() {
