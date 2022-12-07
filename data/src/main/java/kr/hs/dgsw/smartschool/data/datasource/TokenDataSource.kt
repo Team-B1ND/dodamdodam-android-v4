@@ -6,7 +6,6 @@ import kr.hs.dgsw.smartschool.data.database.cache.TokenCache
 import kr.hs.dgsw.smartschool.data.database.entity.TokenEntity
 import kr.hs.dgsw.smartschool.data.mapper.TokenMapper
 import kr.hs.dgsw.smartschool.data.network.remote.TokenRemote
-import kr.hs.dgsw.smartschool.domain.exception.TokenException
 import kr.hs.dgsw.smartschool.domain.model.token.Token
 import org.json.JSONException
 import org.json.JSONObject
