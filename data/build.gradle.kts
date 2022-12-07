@@ -13,7 +13,7 @@ android {
         minSdk = ProjectProperties.MIN_SDK_VERSION
         targetSdk = ProjectProperties.TARGET_SDK_VERSION
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = Plugins.testRunner
     }
     compileOptions {
         sourceCompatibility = ProjectProperties.JAVA_VERSION
