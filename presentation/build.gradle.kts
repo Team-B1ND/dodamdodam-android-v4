@@ -11,15 +11,15 @@ plugins {
 
 android {
 
-    compileSdk = Versions.COMPILE_SDK_VERSION
+    compileSdk = ProjectProperties.COMPILE_SDK_VERSION
     defaultConfig {
-        applicationId = "kr.hs.dgsw.smartschool.dodamdodam"
-        minSdk = Versions.MIN_SDK_VERSION
-        targetSdk = Versions.TARGET_SDK_VERSION
-        versionCode = Versions.VERSION_CODE
-        versionName = Versions.VERSION_NAME
+        applicationId = ProjectProperties.APPLICATION_ID
+        minSdk = ProjectProperties.MIN_SDK_VERSION
+        targetSdk = ProjectProperties.TARGET_SDK_VERSION
+        versionCode = ProjectProperties.VERSION_CODE
+        versionName = ProjectProperties.VERSION_NAME
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = Plugins.testRunner
     }
 
     buildTypes {
@@ -29,12 +29,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = ProjectProperties.JAVA_VERSION
+        targetCompatibility = ProjectProperties.JAVA_VERSION
     }
 
     kotlinOptions {
-        jvmTarget = Versions.JVM_TARGET
+        jvmTarget = ProjectProperties.JVM_TARGET
     }
 
     buildFeatures {
@@ -46,12 +46,11 @@ dependencies {
     implementation(AndroidX.CORE_KTX)
     implementation(AndroidX.APP_COMPAT)
     implementation(Google.MATERIAL)
+    implementation(AndroidX.VIEW_MODEL_KTX)
 
     testImplementation(UnitTest.JUNIT)
     androidTestImplementation(AndroidTest.ANDROID_JUNIT)
     androidTestImplementation(AndroidTest.ESPRESSO_CORE)
-
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
 
     // splash screen
     implementation(AndroidX.SPLASH_SCREEN)
@@ -99,7 +98,6 @@ dependencies {
     implementation(Libraries.LOTTIE)
 
     // map
-    // implementation(files("libs/libDaumMapAndroid.jar"))
     implementation(NaverMap.NAVER_MAP)
 
     implementation(Firebase.ANALYTICS)

@@ -8,20 +8,20 @@ plugins {
 }
 
 android {
-    compileSdk = Versions.COMPILE_SDK_VERSION
+    compileSdk = ProjectProperties.COMPILE_SDK_VERSION
     defaultConfig {
-        minSdk = Versions.MIN_SDK_VERSION
-        targetSdk = Versions.TARGET_SDK_VERSION
+        minSdk = ProjectProperties.MIN_SDK_VERSION
+        targetSdk = ProjectProperties.TARGET_SDK_VERSION
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = ProjectProperties.JAVA_VERSION
+        targetCompatibility = ProjectProperties.JAVA_VERSION
     }
 
     kotlinOptions {
-        jvmTarget = Versions.JVM_TARGET
+        jvmTarget = ProjectProperties.JVM_TARGET
     }
 }
 
