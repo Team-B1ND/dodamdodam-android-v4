@@ -4,12 +4,12 @@ import kr.hs.dgsw.smartschool.data.base.BaseEntityMapper
 import kr.hs.dgsw.smartschool.data.database.entity.TokenEntity
 import kr.hs.dgsw.smartschool.domain.model.token.Token
 
-class TokenMapper : BaseEntityMapper<Token, TokenEntity> {
+class TokenMapper : BaseEntityMapper<Token, TokenEntity?> {
 
-    override fun mapToModel(entity: TokenEntity): Token {
+    override fun mapToModel(entity: TokenEntity?): Token {
         return Token(
-            entity.token,
-            entity.refreshToken
+            entity?.token ?: "",
+            entity?.refreshToken ?: ""
         )
     }
 

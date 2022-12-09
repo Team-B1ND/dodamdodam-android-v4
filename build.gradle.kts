@@ -5,15 +5,14 @@ buildscript {
         classpath(Google.HILT_ANDROID_PLUGIN)
         classpath(AndroidX.NAVIGATION_SAFE_ARGS)
         classpath(Google.GOOGLE_GMS)
-        classpath("com.android.tools.build:gradle:7.3.1")
     }
 }
 
 plugins {
-    id("com.android.application").version("7.2.1").apply(false)
-    id ("com.android.library").version("7.2.1").apply(false)
-    id ("org.jetbrains.kotlin.android").version("1.7.0").apply(false)
-    id ("org.jetbrains.kotlin.jvm").version("1.7.0").apply(false)
+    id(Plugins.androidApplication).version(Versions.ANDROID).apply(false)
+    id (Plugins.androidLibrary).version(Versions.ANDROID).apply(false)
+    id (Plugins.jetbrainsAndroid).version(Versions.JETBRAINS).apply(false)
+    id (Plugins.jetbrainsJvm).version(Versions.JETBRAINS).apply(false)
 }
 
 task("clean", Delete::class) {
