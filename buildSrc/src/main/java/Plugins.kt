@@ -10,4 +10,7 @@ object Plugins {
     const val kt_lint = "org.jlleitschuh.gradle.ktlint"
     const val kt_dete = "io.gitlab.arturbosch.detekt"
     const val googleService = "com.google.gms.google-services"
+    const val testRunner = "androidx.test.runner.AndroidJUnitRunner"
+    const val jetbrainsAndroid = "org.jetbrains.kotlin.android"
+    const val jetbrainsJvm = "org.jetbrains.kotlin.jvm"
 }

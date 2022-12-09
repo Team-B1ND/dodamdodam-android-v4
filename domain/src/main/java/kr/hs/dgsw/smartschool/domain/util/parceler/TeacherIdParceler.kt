@@ -6,8 +6,8 @@ import kr.hs.dgsw.smartschool.domain.model.member.TeacherId
 
 object TeacherIdParceler : Parceler<TeacherId> {
 
-    override fun create(parcel: Parcel) = TeacherId(parcel.readInt())
+    override fun create(parcel: Parcel) = TeacherId(parcel.readString() ?: "")
 
     override fun TeacherId.write(parcel: Parcel, flags: Int) =
-        parcel.writeInt(id)
+        parcel.writeString(id)
 }
