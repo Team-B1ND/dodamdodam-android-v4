@@ -5,6 +5,7 @@
     android:background="@color/color_background">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -22,7 +23,7 @@
             android:id="@+id/layout_app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/Widget.Material3.AppBarLayout"
+            app:elevation="0dp"
             app:liftOnScroll="false">
 
             <androidx.appcompat.widget.Toolbar
@@ -220,12 +221,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:elevation="10dp"
                         app:dotsColor="@color/color_background"
                         app:dotsCornerRadius="8dp"
                         app:dotsSize="8dp"
                         app:dotsSpacing="2dp"
                         app:dotsWidthFactor="2.5"
-                        android:elevation="10dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:progressMode="true"
