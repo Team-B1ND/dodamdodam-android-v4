@@ -26,9 +26,6 @@ android {
 }
 
 dependencies {
-    implementation(AndroidX.CORE_KTX)
-    implementation(AndroidX.APP_COMPAT)
-    implementation(Google.MATERIAL)
     testImplementation(UnitTest.JUNIT)
     androidTestImplementation(AndroidTest.ANDROID_JUNIT)
     androidTestImplementation(AndroidTest.ESPRESSO_CORE)
@@ -54,5 +51,5 @@ dependencies {
 
     implementation(Libraries.JSOUP)
 
-    implementation(project(":domain"))
+    implementation(project(ProjectProperties.PATH_DOMAIN))
 }

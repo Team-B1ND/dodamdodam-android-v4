@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <style name="Theme.DodamDodam" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/main</item>
         <item name="colorPrimaryVariant">@color/main_700</item>
@@ -49,6 +49,5 @@
         <item name="android:textColor">@color/color_black</item>
         <item name="android:textStyle">normal</item>
     </style>
-
 
 </resources>

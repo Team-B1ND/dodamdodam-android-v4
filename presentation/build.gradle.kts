@@ -23,9 +23,9 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+        getByName(ProjectProperties.BUILD_TYPE_NAME) {
+            isMinifyEnabled = ProjectProperties.IS_MINIFY_ENABLED
+            proguardFiles(getDefaultProguardFile(ProjectProperties.PROGUARD_FILE_NAME), ProjectProperties.PROGUARD_FILE)
         }
     }
     compileOptions {
@@ -38,7 +38,7 @@ android {
     }
 
     buildFeatures {
-        dataBinding = true
+        dataBinding = ProjectProperties.DATA_BINDING
     }
 }
 
@@ -47,6 +47,7 @@ dependencies {
     implementation(AndroidX.APP_COMPAT)
     implementation(Google.MATERIAL)
     implementation(AndroidX.VIEW_MODEL_KTX)
+    implementation(AndroidX.FRAGMENT_KTX)
 
     testImplementation(UnitTest.JUNIT)
     androidTestImplementation(AndroidTest.ANDROID_JUNIT)
@@ -113,6 +114,6 @@ dependencies {
 
     implementation(Libraries.INDICATOR)
 
-    implementation(project(":data"))
-    implementation(project(":domain"))
+    implementation(project(ProjectProperties.PATH_DATA))
+    implementation(project(ProjectProperties.PATH_DOMAIN))
 }

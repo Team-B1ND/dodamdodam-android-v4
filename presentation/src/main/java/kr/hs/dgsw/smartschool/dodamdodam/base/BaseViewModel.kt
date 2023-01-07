@@ -48,7 +48,7 @@ open class BaseViewModel : ViewModel() {
             is Resource.Error -> {
                 isLoading.value = false
                 if (resource.message == Utils.TOKEN_EXCEPTION) {
-                    tokenErrorEvent.value = resource.message
+                    tokenErrorEvent.value = resource.message ?: "세션이 만료되었습니다."
                 } else {
                     errorAction.invoke(resource.message)
                 }

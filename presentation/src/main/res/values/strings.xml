@@ -1,5 +1,6 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">도담도담</string>
+
     <string-array name="generation_array">
         <item>1기</item>
         <item>2기</item>
@@ -9,6 +10,7 @@
         <item>6기</item>
         <item>7기</item>
     </string-array>
+
     <string name="nav_home">홈</string>
     <string name="nav_news">소식</string>
     <string name="nav_song">기상송</string>

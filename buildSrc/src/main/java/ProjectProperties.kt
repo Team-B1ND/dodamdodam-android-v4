@@ -10,4 +10,13 @@ object ProjectProperties {
     const val JVM_TARGET = "1.8"
     val JAVA_VERSION = JavaVersion.VERSION_1_8
 
+    const val BUILD_TYPE_NAME = "release"
+    const val IS_MINIFY_ENABLED = false
+    const val PROGUARD_FILE_NAME = "proguard-android.txt"
+    const val PROGUARD_FILE = "proguard-rules.pro"
+
+    const val DATA_BINDING = true
+
+    const val PATH_DATA = ":data"
+    const val PATH_DOMAIN = ":domain"
 }
