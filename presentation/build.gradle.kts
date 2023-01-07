@@ -47,6 +47,7 @@ dependencies {
     implementation(AndroidX.APP_COMPAT)
     implementation(Google.MATERIAL)
     implementation(AndroidX.VIEW_MODEL_KTX)
+    implementation(AndroidX.FRAGMENT_KTX)
 
     testImplementation(UnitTest.JUNIT)
     androidTestImplementation(AndroidTest.ANDROID_JUNIT)
