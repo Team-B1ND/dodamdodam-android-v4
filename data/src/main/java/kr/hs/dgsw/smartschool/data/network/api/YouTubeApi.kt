@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
+import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
 import kr.hs.dgsw.smartschool.data.util.Constants
 import kr.hs.dgsw.smartschool.domain.model.song.youtube.YoutubeVideo
 import retrofit2.http.GET
@@ -7,7 +8,7 @@ import retrofit2.http.Query
 
 interface YouTubeApi {
 
-    @GET("search")
+    @GET(DodamUrl.SEARCH)
     suspend fun getYouTubeVideo(
         @Query("part") part: String = "snippet",
         @Query("maxResults") maxResults: Int,
