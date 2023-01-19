@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
+import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
@@ -14,46 +15,46 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface BusApi {
-    @GET("bus")
+    @GET(DodamUrl.BUS)
     suspend fun getBusList(): Response<BusByDate>
 
-    @GET("bus/apply")
+    @GET(DodamUrl.Bus.APPLY)
     suspend fun getMyBus(): Response<Bus>
 
-    @GET("bus/apply/month")
+    @GET(DodamUrl.Bus.Apply.MONTH)
     suspend fun getMyBusByMonth(
         @Body month: Int,
         @Body year: Int
     ): Response<List<Bus>>
 
-    @POST("bus")
+    @POST(DodamUrl.BUS)
     suspend fun addBus(
         @Body createBusDto: AddBusRequest
     ): Response<Any>
 
-    @POST("bus/apply")
+    @POST(DodamUrl.Bus.APPLY)
     suspend fun addBusApply(
         @Query("busId") busId: Int
     ): Response<Any>
 
-    @PATCH("bus/{id}")
+    @PATCH(DodamUrl.Bus.ID)
     suspend fun updateBus(
         @Query("id") busId: Int,
         @Body request: UpdateBusRequest
     ): Response<Any>
 
-    @PATCH("bus/apply")
+    @PATCH(DodamUrl.Bus.APPLY)
     suspend fun updateBusApply(
         @Query("busId") busId: Int,
         @Query("originalBusId") originBusId: Int
     ): Response<Any>
 
-    @DELETE("bus/{id}")
+    @DELETE(DodamUrl.Bus.ID)
     suspend fun deleteBus(
         @Path("id") idx: Int
     ): Response<Any>
 
-    @DELETE("bus/apply/{busId}")
+    @DELETE(DodamUrl.Bus.Apply.BUS_ID)
     suspend fun deleteBusApply(
         @Path("busId") busId: Int
     ): Response<Any>
