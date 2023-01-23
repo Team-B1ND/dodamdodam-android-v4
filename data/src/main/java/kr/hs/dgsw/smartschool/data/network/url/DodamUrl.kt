@@ -127,6 +127,10 @@ object DodamUrl {
         const val TABLES = "$TIME/tables"
     }
 
+    object ClassRoom {
+        const val GET_CLASSROOM = "$CLASSROOM/"
+    }
+
     object Token {
         const val REFRESH = "$TOKEN/refresh"
     }
