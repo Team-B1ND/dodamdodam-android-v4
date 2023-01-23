@@ -153,3 +153,5 @@ gradle.properties
 data/src/main/java/kr/hs/dgsw/smartschool/data/util/Key.kt
 
 data/src/main/java/kr/hs/dgsw/smartschool/data/network/url/
+
+presentation/src/main/res/values/api_key.xml
