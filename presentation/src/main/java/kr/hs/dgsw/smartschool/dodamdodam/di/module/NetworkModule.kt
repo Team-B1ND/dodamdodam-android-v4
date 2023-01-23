@@ -8,7 +8,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.data.network.interceptor.TokenInterceptor
 import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
-import kr.hs.dgsw.smartschool.data.util.Constants
 import kr.hs.dgsw.smartschool.dodamdodam.di.OtherOkHttpClient
 import kr.hs.dgsw.smartschool.dodamdodam.di.OtherRemoteRetrofit
 import kr.hs.dgsw.smartschool.dodamdodam.di.YouTubeOkHttpClient

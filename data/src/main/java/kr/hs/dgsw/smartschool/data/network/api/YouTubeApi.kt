@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
-import kr.hs.dgsw.smartschool.data.util.Constants
 import kr.hs.dgsw.smartschool.data.util.Key
 import kr.hs.dgsw.smartschool.domain.model.song.youtube.YoutubeVideo
 import retrofit2.http.GET
