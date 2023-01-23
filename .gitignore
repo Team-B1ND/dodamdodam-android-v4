@@ -151,3 +151,5 @@ gradle.properties
 .idea/
 
 data/src/main/java/kr/hs/dgsw/smartschool/data/util/Key.kt
+
+data/src/main/java/kr/hs/dgsw/smartschool/data/network/url/
