@@ -7,7 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.data.network.interceptor.TokenInterceptor
-import kr.hs.dgsw.smartschool.data.util.Constants
+import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
 import kr.hs.dgsw.smartschool.dodamdodam.di.OtherOkHttpClient
 import kr.hs.dgsw.smartschool.dodamdodam.di.OtherRemoteRetrofit
 import kr.hs.dgsw.smartschool.dodamdodam.di.YouTubeOkHttpClient
@@ -59,7 +59,7 @@ class NetworkModule {
     fun provideRetrofit(gson: Gson, @OtherOkHttpClient okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl(Constants.SERVER_HOST)
+            .baseUrl(DodamUrl.SERVER_HOST)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .callbackExecutor(Executors.newSingleThreadExecutor())
             .build()
@@ -71,7 +71,7 @@ class NetworkModule {
     fun provideYouTubeRetrofit(gson: Gson, @YouTubeOkHttpClient okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl(Constants.YOUTUBE_HOST)
+            .baseUrl(DodamUrl.YOUTUBE_HOST)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .callbackExecutor(Executors.newSingleThreadExecutor())
             .build()

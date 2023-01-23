@@ -23,7 +23,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/default_app_bar_height"
             android:background="@color/color_background"
-            android:theme="@style/Widget.Material3.AppBarLayout"
             app:liftOnScroll="false">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout

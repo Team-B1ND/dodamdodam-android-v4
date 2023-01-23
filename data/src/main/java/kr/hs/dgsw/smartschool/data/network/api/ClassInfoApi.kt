@@ -6,6 +6,6 @@ import kr.hs.dgsw.smartschool.domain.model.classroom.Classroom
 import retrofit2.http.GET
 
 interface ClassInfoApi {
-    @GET(DodamUrl.CLASSROOM)
+    @GET(DodamUrl.ClassRoom.GET_CLASSROOM)
     suspend fun getClassRooms(): Response<List<Classroom>>
 }
