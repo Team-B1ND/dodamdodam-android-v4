@@ -149,3 +149,5 @@ gradle.properties
 .idea/codeStyles/
 
 .idea/
+
+data/src/main/java/kr/hs/dgsw/smartschool/data/util/Key.kt
