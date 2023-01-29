@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.usecase.member
 
 import kotlinx.coroutines.flow.Flow
-import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
 import kr.hs.dgsw.smartschool.domain.base.noParamBaseUseCase
 import kr.hs.dgsw.smartschool.domain.model.member.Student
 import kr.hs.dgsw.smartschool.domain.repository.StudentRepository

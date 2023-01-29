@@ -62,7 +62,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getActiveBanner() {
-        getActiveBannerUseCase(Unit).divideResult(
+        getActiveBannerUseCase().divideResult(
             isGetActiveBannerLoading,
             { _getActiveBannerState.value = GetActiveBannerState(it ?: emptyList()) },
             { _getActiveBannerState.value = GetActiveBannerState(error = it ?: "배너를 받아올 수 없습니다.") }
@@ -70,7 +70,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getMyStudyRoom() {
-        studyRoomUseCases.getMyStudyRoom(Unit).divideResult(
+        studyRoomUseCases.getMyStudyRoom().divideResult(
             isGetMyStudyRoomLoading,
             {
                 viewModelScope.launch {

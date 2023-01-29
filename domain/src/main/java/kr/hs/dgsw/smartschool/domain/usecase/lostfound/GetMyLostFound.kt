@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.domain.usecase.lostfound
 
 import android.util.Log
 import kotlinx.coroutines.flow.Flow
-import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
 import kr.hs.dgsw.smartschool.domain.base.noParamBaseUseCase
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository

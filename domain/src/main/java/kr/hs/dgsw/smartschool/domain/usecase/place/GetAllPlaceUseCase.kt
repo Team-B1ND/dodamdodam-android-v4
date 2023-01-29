@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.usecase.place
 
 import kotlinx.coroutines.flow.Flow
-import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
 import kr.hs.dgsw.smartschool.domain.base.noParamBaseUseCase
 import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.repository.PlaceRepository
