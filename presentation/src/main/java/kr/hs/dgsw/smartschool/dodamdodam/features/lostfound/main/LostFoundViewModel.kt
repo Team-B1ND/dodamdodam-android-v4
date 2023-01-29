@@ -53,7 +53,7 @@ class LostFoundViewModel @Inject constructor(
             if (mineChecked.value == true)
                 myLostFound()
             else {
-                useCases.getLostFoundAll(Unit).divideResult(
+                useCases.getLostFoundAll().divideResult(
                     isGetLostFoundLoading,
                     { launchLostFound(it!!) },
                     { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.") }
@@ -63,7 +63,7 @@ class LostFoundViewModel @Inject constructor(
     }
 
     private fun myLostFound() {
-        useCases.getMyLostFound(Unit).divideResult(
+        useCases.getMyLostFound().divideResult(
             isGetLostFoundLoading,
             { launchLostFound(it!!) },
             { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.") }

@@ -43,7 +43,7 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun getMyInfo() {
-        memberUseCases.getMyInfo(Unit).divideResult(
+        memberUseCases.getMyInfo().divideResult(
             isGetMyInfoLoading,
             { _myInfoState.value = MyInfoState(myInfo = it) },
             { _myInfoState.value = MyInfoState(error = it ?: "프로필 정보를 받아오지 못하였습니다.") },
