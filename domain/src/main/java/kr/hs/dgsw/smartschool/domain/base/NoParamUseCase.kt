@@ -8,9 +8,9 @@ import kr.hs.dgsw.smartschool.domain.util.Utils
 import retrofit2.HttpException
 import java.io.IOException
 
-abstract class BaseUseCase<PR, R> {
+abstract class NoParamUseCase<R> {
 
-    abstract operator fun invoke(params: PR): Flow<Resource<R>>
+    abstract operator fun invoke(): Flow<Resource<R>>
 
     fun execute(action: suspend () -> R): Flow<Resource<R>> = flow {
         try {

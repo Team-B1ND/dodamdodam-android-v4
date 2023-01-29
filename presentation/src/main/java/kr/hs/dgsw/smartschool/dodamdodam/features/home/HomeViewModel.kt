@@ -37,10 +37,10 @@ class HomeViewModel @Inject constructor(
     private val _getMyStudyRoomState = MutableSharedFlow<GetMyStudyRoomState>()
     val getMyStudyRoomState: SharedFlow<GetMyStudyRoomState> = _getMyStudyRoomState
 
-    private val _getAllowSongState = MutableStateFlow<GetAllowSongState>(GetAllowSongState())
+    private val _getAllowSongState = MutableStateFlow(GetAllowSongState())
     val getAllowSongState: StateFlow<GetAllowSongState> = _getAllowSongState
 
-    private val _getActiveBannerState = MutableStateFlow<GetActiveBannerState>(GetActiveBannerState())
+    private val _getActiveBannerState = MutableStateFlow(GetActiveBannerState())
     val getActiveBannerState: StateFlow<GetActiveBannerState> = _getActiveBannerState
 
     private val isDataSetUpLoading = MutableLiveData(false)
