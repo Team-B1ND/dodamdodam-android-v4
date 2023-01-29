@@ -27,7 +27,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun dataSetUp() {
-        setUpUseCases.dataSetUp(Unit).divideResult(
+        setUpUseCases.dataSetUp().divideResult(
             isDataSetUpLoading,
             { viewModelScope.launch { _dataSetUpState.emit(DataSetUpState(result = it ?: "데이터 업데이트에 성공하였습니다.")) } },
             { viewModelScope.launch { _dataSetUpState.emit(DataSetUpState(error = it ?: "데이터를 업데이트 하지 못하였습니다.")) } }

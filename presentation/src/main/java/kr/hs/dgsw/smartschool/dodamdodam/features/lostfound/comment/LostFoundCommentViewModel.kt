@@ -44,7 +44,7 @@ class LostFoundCommentViewModel @Inject constructor(
     }
 
     fun getMyInfo() {
-        memberUseCases.getMyInfo(Unit).divideResult(
+        memberUseCases.getMyInfo().divideResult(
             isGetMyInfoLoading,
             { viewModelScope.launch { _getInfoState.emit(GetMyInfoState(myId = it?.member?.id ?: "")) } },
             { viewModelScope.launch { _getInfoState.emit(GetMyInfoState(error = "내 정보를 불러오는 데에 실패하였습니다.")) } }

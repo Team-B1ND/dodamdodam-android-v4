@@ -22,7 +22,7 @@ class BusViewModel @Inject constructor(
     val getBusListState: SharedFlow<GetBusListState> = _getBusListState
     val busTaskState: SharedFlow<BusTaskState> = _busTaskState
 
-    val hasBus = MutableLiveData<Boolean>(false)
+    val hasBus = MutableLiveData(false)
     var busId: Int = 0
 
     private val isGetBusLoading = MutableLiveData<Boolean>()

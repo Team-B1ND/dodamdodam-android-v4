@@ -1,7 +1,7 @@
 package kr.hs.dgsw.smartschool.domain.usecase.auth
 
 import kotlinx.coroutines.flow.Flow
-import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
+import kr.hs.dgsw.smartschool.domain.base.UseCase
 import kr.hs.dgsw.smartschool.domain.repository.AuthRepository
 import kr.hs.dgsw.smartschool.domain.request.auth.JoinRequest
 import kr.hs.dgsw.smartschool.domain.util.Resource
@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class JoinUseCase @Inject constructor(
     private val authRepository: AuthRepository
-) : BaseUseCase<JoinUseCase.Params, String>() {
+) : UseCase<JoinUseCase.Params, String>() {
     override operator fun invoke(params: Params): Flow<Resource<String>> = execute {
         authRepository.join(
             JoinRequest(

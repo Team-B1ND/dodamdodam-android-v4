@@ -1,7 +1,7 @@
 package kr.hs.dgsw.smartschool.domain.usecase.studyroom
 
 import kotlinx.coroutines.flow.Flow
-import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
+import kr.hs.dgsw.smartschool.domain.base.UseCase
 import kr.hs.dgsw.smartschool.domain.repository.StudyRoomRepository
 import kr.hs.dgsw.smartschool.domain.request.studyroom.DefaultStudyRoomByTypeRequest
 import kr.hs.dgsw.smartschool.domain.util.Resource
@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class CreateDefaultStudyRoomByWeekType @Inject constructor(
     private val repository: StudyRoomRepository
-) : BaseUseCase<CreateDefaultStudyRoomByWeekType.Params, String>() {
+) : UseCase<CreateDefaultStudyRoomByWeekType.Params, String>() {
 
     override fun invoke(params: Params): Flow<Resource<String>> = execute {
         repository.createDefaultStudyRoomByWeekType(
