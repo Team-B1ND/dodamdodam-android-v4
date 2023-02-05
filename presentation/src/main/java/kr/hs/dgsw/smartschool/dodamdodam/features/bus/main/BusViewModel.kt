@@ -22,7 +22,7 @@ class BusViewModel @Inject constructor(
     val getBusListState: SharedFlow<GetBusListState> = _getBusListState
     val busTaskState: SharedFlow<BusTaskState> = _busTaskState
 
-    val hasBus = MutableLiveData<Boolean>(false)
+    val hasBus = MutableLiveData(false)
     var busId: Int = 0
 
     private val isGetBusLoading = MutableLiveData<Boolean>()
@@ -33,14 +33,14 @@ class BusViewModel @Inject constructor(
         getMyBus()
     }
     fun getBusList() {
-        busUseCases.getBus(Unit).divideResult(
+        busUseCases.getBus().divideResult(
             isGetBusLoading,
             { viewModelScope.launch { _getBusListState.emit(GetBusListState(bus = it, applyBusId = busId)) } },
             { viewModelScope.launch { _getBusListState.emit(GetBusListState(error = it ?: "버스를 받아오지 못하였습니다.")) } }
         ).launchIn(viewModelScope)
     }
     fun getMyBus() {
-        busUseCases.getMyBus(Unit).divideResult(
+        busUseCases.getMyBus().divideResult(
             isDoBusTaskLoading,
             {
                 if (it == null) busId = 0 else busId = it.id

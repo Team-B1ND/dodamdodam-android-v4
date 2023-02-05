@@ -27,7 +27,7 @@ class ItMapViewModel @Inject constructor(
     }
 
     fun getAllCompanies() {
-        itMapUseCases.getAllCompanies(Unit).divideResult(
+        itMapUseCases.getAllCompanies().divideResult(
             isGetAllCompanyLoading,
             { data -> viewModelScope.launch { _getAllCompaniesState.emit(GetAllCompaniesState(isUpdate = true, companies = data ?: emptyList())) } },
             { error -> viewModelScope.launch { _getAllCompaniesState.emit(GetAllCompaniesState(error = error ?: "회사 정보를 받아올 수 없습니다.")) } }

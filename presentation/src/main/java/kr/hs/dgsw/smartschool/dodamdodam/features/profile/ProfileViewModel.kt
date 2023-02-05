@@ -26,10 +26,10 @@ class ProfileViewModel @Inject constructor(
     private val _getMyYearPointState = MutableStateFlow(GetMyYearPointsState())
     val getMyYearPointsState: StateFlow<GetMyYearPointsState> = _getMyYearPointState
 
-    private val _dormitorySelected = MutableLiveData<Boolean>(true)
+    private val _dormitorySelected = MutableLiveData(true)
     val dormitorySelected: LiveData<Boolean> get() = _dormitorySelected
 
-    private val _schoolSelected = MutableLiveData<Boolean>(false)
+    private val _schoolSelected = MutableLiveData(false)
     val schoolSelected: LiveData<Boolean> get() = _schoolSelected
 
     private val isGetMyInfoLoading = MutableLiveData(false)
@@ -43,7 +43,7 @@ class ProfileViewModel @Inject constructor(
     }
 
     fun getMyInfo() {
-        memberUseCases.getMyInfo(Unit).divideResult(
+        memberUseCases.getMyInfo().divideResult(
             isGetMyInfoLoading,
             { _myInfoState.value = MyInfoState(myInfo = it) },
             { _myInfoState.value = MyInfoState(error = it ?: "프로필 정보를 받아오지 못하였습니다.") },

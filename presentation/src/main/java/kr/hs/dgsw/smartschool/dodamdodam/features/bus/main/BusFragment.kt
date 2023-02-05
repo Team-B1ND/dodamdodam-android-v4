@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.bus.main
 
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -60,7 +59,6 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
         with(viewModel) {
             lifecycleScope.launchWhenStarted {
                 busTaskState.collect { state ->
-                    Log.e("LostFoundFragment", "state")
                     if (state.error.isNotBlank()) {
                         shortToast(state.error)
                     }
@@ -83,7 +81,6 @@ class BusFragment : BaseFragment<FragmentBusBinding, BusViewModel>(), BusAdapter
                 rideAble = false
             }
             isSelected = it.id == presentId
-            Log.e("BusFragment", "${it.id} : $isSelected at $presentId")
             list.add(
                 BusInfo(
                     it.id,
