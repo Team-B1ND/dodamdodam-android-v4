@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import kr.hs.dgsw.smartschool.data.database.dao.AccountDao
 import kr.hs.dgsw.smartschool.data.database.dao.ClassroomDao
+import kr.hs.dgsw.smartschool.data.database.dao.MealDao
 import kr.hs.dgsw.smartschool.data.database.dao.MemberDao
 import kr.hs.dgsw.smartschool.data.database.dao.PlaceDao
 import kr.hs.dgsw.smartschool.data.database.dao.StudentDao
@@ -13,6 +14,7 @@ import kr.hs.dgsw.smartschool.data.database.dao.TimeDao
 import kr.hs.dgsw.smartschool.data.database.dao.TokenDao
 import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
 import kr.hs.dgsw.smartschool.data.database.entity.ClassroomEntity
+import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
 import kr.hs.dgsw.smartschool.data.database.entity.MemberEntity
 import kr.hs.dgsw.smartschool.data.database.entity.PlaceEntity
 import kr.hs.dgsw.smartschool.data.database.entity.StudentEntity
@@ -26,7 +28,7 @@ import java.util.concurrent.Executors
         TokenEntity::class, AccountEntity::class,
         MemberEntity::class, StudentEntity::class, TeacherEntity::class,
         TimeEntity::class, PlaceEntity::class,
-        ClassroomEntity::class
+        ClassroomEntity::class, MealEntity::class
     ],
     version = 8,
     exportSchema = false
@@ -41,6 +43,7 @@ abstract class RoomDatabase : androidx.room.RoomDatabase() {
     abstract fun timeDao(): TimeDao
     abstract fun placeDao(): PlaceDao
     abstract fun classInfoDao(): ClassroomDao
+    abstract fun mealDao(): MealDao
 
     companion object {
         private var instance: RoomDatabase? = null
