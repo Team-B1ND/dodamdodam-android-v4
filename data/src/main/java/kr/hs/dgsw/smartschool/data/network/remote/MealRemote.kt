@@ -16,4 +16,8 @@ class MealRemote @Inject constructor(
     suspend fun getCalorieOfMeal(): String? {
         return api.getCalorieOfMeal().data
     }
+
+    suspend fun getMealOfMonth(month: Int, year: Int): List<Meal> {
+        return api.getMealOfMonth(month, year).data
+    }
 }
