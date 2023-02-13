@@ -27,7 +27,29 @@ class MealDataSource @Inject constructor(
 
     private suspend fun getRemoteMealList(year: Int, month: Int): List<Meal> =
         remote.getMealOfMonth(month, year).also {
-            cache.insertMealList(it.map { meal -> mealMapper.mapToEntity(meal) })
+            val size = when (month) {
+                1, 3, 5, 7, 8, 10, 12 -> 31
+                4, 6, 9, 11 -> 30
+                else -> if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) 29 else 28
+            }
+            val mealMap = mutableMapOf<String, Meal>()
+            val mealList = mutableListOf<Meal>()
+
+            for (i in 1..size) {
+                val date = String.format("%d-%02d-%02d", year, month, i)
+                mealMap[date] = Meal(null, date, null, false, null)
+            }
+            it.forEach { meal ->
+                mealMap[meal.date] = meal
+            }
+            mealMap.forEach { map ->
+                mealList.add(map.value)
+            }
+            cache.insertMealList(
+                mealList.toList().map { meal ->
+                    mealMapper.mapToEntity(meal)
+                }
+            )
         }
 
     suspend fun getCalorieOfMeal(): String? =
