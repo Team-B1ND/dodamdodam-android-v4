@@ -4,6 +4,7 @@ import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.database.cache.ClassInfoCache
 import kr.hs.dgsw.smartschool.data.database.entity.ClassroomEntity
 import kr.hs.dgsw.smartschool.data.mapper.ClassInfoMapper
+import kr.hs.dgsw.smartschool.data.mapper.toEntity
 import kr.hs.dgsw.smartschool.data.network.remote.ClassInfoRemote
 import kr.hs.dgsw.smartschool.domain.model.classroom.Classroom
 import javax.inject.Inject
@@ -12,8 +13,6 @@ class ClassInfoDataSource @Inject constructor(
     override val remote: ClassInfoRemote,
     override val cache: ClassInfoCache
 ) : BaseDataSource<ClassInfoRemote, ClassInfoCache> {
-
-    private val classInfoMapper = ClassInfoMapper()
 
     suspend fun updateClassInfoList() =
         cache.deleteAll().also { insertAllClassInfoRemote() }
@@ -29,12 +28,12 @@ class ClassInfoDataSource @Inject constructor(
 
     private suspend fun getAllClassInfoRemote(): List<ClassroomEntity> =
         remote.getClassInfo()
-            .let { classInfoList -> classInfoList.map { classInfo -> classInfoMapper.mapToEntity(classInfo) } }
+            .let { classInfoList -> classInfoList.map { classInfo -> classInfo.toEntity() } }
             .also { classInfoEntityList -> cache.insertClassInfoList(classInfoEntityList) }
 
     private suspend fun getClassInfoRemote(idx: Int): ClassroomEntity =
         getAllClassInfoRemote().let { it.filter { classInfoEntity -> classInfoEntity.id == idx }[0] }
 
     private suspend fun insertClassInfoList(classroomList: List<Classroom>) =
-        cache.insertClassInfoList(classroomList.map { classInfo -> classInfoMapper.mapToEntity(classInfo) })
+        cache.insertClassInfoList(classroomList.map { classInfo -> classInfo.toEntity() })
 }
