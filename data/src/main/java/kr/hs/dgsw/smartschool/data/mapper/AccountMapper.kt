@@ -1,15 +1,14 @@
 package kr.hs.dgsw.smartschool.data.mapper
 
-import kr.hs.dgsw.smartschool.data.base.BaseEntityMapper
 import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
 import kr.hs.dgsw.smartschool.domain.model.account.Account
 
-class AccountMapper : BaseEntityMapper<Account, AccountEntity> {
-    override fun mapToModel(entity: AccountEntity): Account {
-        return Account(entity.id, entity.pw)
-    }
+fun AccountEntity.toModel(): Account = Account(
+    id = this.id,
+    pw = this.pw
+)
 
-    override fun mapToEntity(model: Account): AccountEntity {
-        return AccountEntity(model.id, model.pw)
-    }
-}
+fun Account.toEntity(): AccountEntity = AccountEntity(
+    id = this.id,
+    pw = this.pw
+)
