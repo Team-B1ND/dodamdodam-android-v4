@@ -2,7 +2,7 @@ package kr.hs.dgsw.smartschool.data.datasource
 
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.database.cache.MealCache
-import kr.hs.dgsw.smartschool.data.mapper.MealMapper
+import kr.hs.dgsw.smartschool.data.mapper.toEntity
 import kr.hs.dgsw.smartschool.data.mapper.toModel
 import kr.hs.dgsw.smartschool.data.network.remote.MealRemote
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
@@ -13,8 +13,6 @@ class MealDataSource @Inject constructor(
     override val remote: MealRemote,
     override val cache: MealCache
 ) : BaseDataSource<MealRemote, MealCache> {
-
-    private val mealMapper = MealMapper()
 
     suspend fun getMeal(date: String): Meal {
         val year = date.split('-')[0].toInt()
@@ -49,7 +47,7 @@ class MealDataSource @Inject constructor(
 
             cache.insertMealList(
                 mealList.toList().map { meal ->
-                    mealMapper.mapToEntity(meal)
+                    meal.toEntity()
                 }
             )
         }
