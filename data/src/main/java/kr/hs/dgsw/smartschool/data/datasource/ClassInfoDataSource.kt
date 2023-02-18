@@ -3,7 +3,6 @@ package kr.hs.dgsw.smartschool.data.datasource
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.database.cache.ClassInfoCache
 import kr.hs.dgsw.smartschool.data.database.entity.ClassroomEntity
-import kr.hs.dgsw.smartschool.data.mapper.ClassInfoMapper
 import kr.hs.dgsw.smartschool.data.mapper.toEntity
 import kr.hs.dgsw.smartschool.data.network.remote.ClassInfoRemote
 import kr.hs.dgsw.smartschool.domain.model.classroom.Classroom

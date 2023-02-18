@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.ClassInfoDataSource
-import kr.hs.dgsw.smartschool.data.mapper.ClassInfoMapper
 import kr.hs.dgsw.smartschool.data.mapper.toModel
 import kr.hs.dgsw.smartschool.domain.model.classroom.Classroom
 import kr.hs.dgsw.smartschool.domain.repository.ClassInfoRepository

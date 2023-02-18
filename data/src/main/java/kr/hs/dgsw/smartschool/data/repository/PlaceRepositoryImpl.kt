@@ -10,7 +10,6 @@ class PlaceRepositoryImpl @Inject constructor(
     private val placeDataSource: PlaceDataSource
 ) : PlaceRepository {
 
-
     override suspend fun getAllPlace(): List<Place> {
         return placeDataSource.getAllPlace().map { placeEntity -> placeEntity.toModel() }
     }
