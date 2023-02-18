@@ -3,7 +3,7 @@ package kr.hs.dgsw.smartschool.data.datasource
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.database.cache.TimeTableCache
 import kr.hs.dgsw.smartschool.data.database.entity.TimeEntity
-import kr.hs.dgsw.smartschool.data.mapper.TimeTableMapper
+import kr.hs.dgsw.smartschool.data.mapper.toEntity
 import kr.hs.dgsw.smartschool.data.network.remote.TimeTableRemote
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
 import kr.hs.dgsw.smartschool.domain.model.time.WeekType
@@ -14,8 +14,6 @@ class TimeTableDataSource @Inject constructor(
     override val remote: TimeTableRemote,
     override val cache: TimeTableCache
 ) : BaseDataSource<TimeTableRemote, TimeTableCache> {
-
-    private val timeTableMapper = TimeTableMapper()
 
     suspend fun updateTimeList() =
         cache.deleteAll().also { insertAllTimeInfoRemote() }
@@ -36,9 +34,9 @@ class TimeTableDataSource @Inject constructor(
         remote.getAllTime().also { insertTimeList(it) }
 
     private suspend fun getTimeRemote(): List<TimeEntity> =
-        remote.getAllTime().map { time -> timeTableMapper.mapToEntity(time) }
+        remote.getAllTime().map { time -> time.toEntity() }
             .also { timeEntityList -> cache.insertTime(timeEntityList) }
 
     private suspend fun insertTimeList(timeTableList: List<TimeTable>) =
-        cache.insertTime(timeTableList.map { time -> timeTableMapper.mapToEntity(time) })
+        cache.insertTime(timeTableList.map { time -> time.toEntity() })
 }
