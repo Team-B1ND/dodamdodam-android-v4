@@ -4,8 +4,8 @@ import android.util.Log
 import kr.hs.dgsw.smartschool.data.datasource.PlaceDataSource
 import kr.hs.dgsw.smartschool.data.datasource.StudyRoomDataSource
 import kr.hs.dgsw.smartschool.data.datasource.TimeTableDataSource
-import kr.hs.dgsw.smartschool.data.mapper.PlaceMapper
 import kr.hs.dgsw.smartschool.data.mapper.TimeTableMapper
+import kr.hs.dgsw.smartschool.data.mapper.toModel
 import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.studyroom.DefaultStudyRoom
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
@@ -23,7 +23,6 @@ class StudyRoomRepositoryImpl @Inject constructor(
 ) : StudyRoomRepository {
 
     private val timeMapper = TimeTableMapper()
-    private val placeMapper = PlaceMapper()
 
     private lateinit var studyRoomList: List<StudyRoom?>
     private lateinit var defaultStudyRoomList: List<DefaultStudyRoom>
@@ -47,7 +46,7 @@ class StudyRoomRepositoryImpl @Inject constructor(
             }
             return initStudyRoomList
         }
-        this.placeList = placeDataSource.getAllPlace().map { placeEntity -> placeMapper.mapToModel(placeEntity) }
+        this.placeList = placeDataSource.getAllPlace().map { placeEntity -> placeEntity.toModel() }
         return getStudyRoomList()
     }
 
@@ -88,7 +87,7 @@ class StudyRoomRepositoryImpl @Inject constructor(
     override suspend fun getDefaultStudyRoom(): List<DefaultStudyRoom> {
         this.defaultStudyRoomList = studyRoomDataSource.getDefaultStudyRoom()
         this.timeTableList = timeTableDataSource.getAllTime().map { timeEntity -> timeMapper.mapToModel(timeEntity) }
-        this.placeList = placeDataSource.getAllPlace().map { placeEntity -> placeMapper.mapToModel(placeEntity) }
+        this.placeList = placeDataSource.getAllPlace().map { placeEntity -> placeEntity.toModel() }
         return getDefaultStudyRoomList()
     }
 
