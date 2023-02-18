@@ -1,43 +1,35 @@
 package kr.hs.dgsw.smartschool.data.mapper
 
-import kr.hs.dgsw.smartschool.data.base.BaseEntityMapper
 import kr.hs.dgsw.smartschool.data.database.entity.TeacherEntity
 import kr.hs.dgsw.smartschool.domain.model.member.Member
 import kr.hs.dgsw.smartschool.domain.model.member.Teacher
 
-class TeacherMapper : BaseEntityMapper<Teacher, TeacherEntity> {
+fun TeacherEntity.toModel(): Teacher = Teacher(
+    id = this.teacherId,
+    member = Member(
+        this.email,
+        this.memberId,
+        this.joinDate,
+        this.name,
+        this.profileImage,
+        this.role,
+        this.status
+    ),
+    phone = this.phone,
+    position = this.position,
+    tel = this.tel
+)
 
-    override fun mapToModel(entity: TeacherEntity): Teacher {
-        return Teacher(
-            entity.teacherId,
-            Member(
-                entity.email,
-                entity.memberId,
-                entity.joinDate,
-                entity.name,
-                entity.profileImage,
-                entity.role,
-                entity.status
-            ),
-            entity.phone,
-            entity.position,
-            entity.tel
-        )
-    }
-
-    override fun mapToEntity(model: Teacher): TeacherEntity {
-        return TeacherEntity(
-            model.id,
-            model.member.email,
-            model.member.id,
-            model.member.joinDate,
-            model.member.name,
-            model.member.profileImage,
-            model.member.role,
-            model.member.status,
-            model.phone,
-            model.position,
-            model.tel
-        )
-    }
-}
+fun Teacher.toEntity(): TeacherEntity = TeacherEntity(
+    teacherId = this.id,
+    email = this.member.email,
+    memberId = this.member.id,
+    joinDate = this.member.joinDate,
+    name = this.member.name,
+    profileImage = this.member.profileImage,
+    role = this.member.role,
+    status = this.member.status,
+    phone = this.phone,
+    position = this.position,
+    tel = this.tel
+)
