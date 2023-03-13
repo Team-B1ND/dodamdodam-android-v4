@@ -1,11 +1,11 @@
 package kr.hs.dgsw.smartschool.domain.repository
 
-import kr.hs.dgsw.smartschool.domain.request.auth.JoinRequest
-import kr.hs.dgsw.smartschool.domain.request.auth.LoginRequest
+import kr.hs.dgsw.smartschool.domain.param.auth.JoinParam
+import kr.hs.dgsw.smartschool.domain.param.auth.LoginParam
 
 interface AuthRepository {
 
-    suspend fun join(joinRequest: JoinRequest): String
+    suspend fun join(joinParam: JoinParam): String
 
-    suspend fun login(loginRequest: LoginRequest)
+    suspend fun login(loginParam: LoginParam)
 }

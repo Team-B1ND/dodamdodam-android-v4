@@ -2,9 +2,9 @@ package kr.hs.dgsw.smartschool.data.datasource
 
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.AuthRemote
+import kr.hs.dgsw.smartschool.data.network.request.auth.JoinRequest
+import kr.hs.dgsw.smartschool.data.network.request.auth.LoginRequest
 import kr.hs.dgsw.smartschool.data.network.response.data.LoginData
-import kr.hs.dgsw.smartschool.domain.request.auth.JoinRequest
-import kr.hs.dgsw.smartschool.domain.request.auth.LoginRequest
 import javax.inject.Inject
 
 class AuthDataSource @Inject constructor(

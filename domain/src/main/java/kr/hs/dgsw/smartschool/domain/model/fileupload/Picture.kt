@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Picture(
-    @SerializedName("originalName") val originalName: String?,
-    @SerializedName("uploadName") var uploadName: String,
+    val originalName: String?,
+    var uploadName: String,
     val type: String,
     val url: String?
 ) : Serializable {

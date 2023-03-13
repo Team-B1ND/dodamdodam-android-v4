@@ -3,12 +3,13 @@ package kr.hs.dgsw.smartschool.data.datasource
 import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
-import kr.hs.dgsw.smartschool.domain.model.bus.Bus
+import kr.hs.dgsw.smartschool.data.network.response.bus.BusByDateResponse
+import kr.hs.dgsw.smartschool.data.network.response.bus.BusResponse
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.MyBusByMonthRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusApplyRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
+import kr.hs.dgsw.smartschool.domain.param.bus.AddBusRequest
+import kr.hs.dgsw.smartschool.domain.param.bus.MyBusByMonthRequest
+import kr.hs.dgsw.smartschool.domain.param.bus.UpdateBusApplyRequest
+import kr.hs.dgsw.smartschool.domain.param.bus.UpdateBusRequest
 import javax.inject.Inject
 
 class BusDataSource @Inject constructor(
@@ -18,14 +19,14 @@ class BusDataSource @Inject constructor(
 
     suspend fun getMyBusByMonth(
         request: MyBusByMonthRequest
-    ): List<Bus> = remote.getMyBusByMonth(request).data
+    ): List<BusResponse> = remote.getMyBusByMonth(request).data
 
-    suspend fun getMyBus(): Bus {
+    suspend fun getMyBus(): BusResponse {
         Log.e("BusDataSource", "getMyBus")
         return remote.getMyBus().data
     }
 
-    suspend fun getBusList(): BusByDate {
+    suspend fun getBusList(): BusByDateResponse {
         return remote.getBusList().data
     }
 

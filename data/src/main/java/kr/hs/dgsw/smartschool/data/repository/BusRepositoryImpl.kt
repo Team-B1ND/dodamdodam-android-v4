@@ -2,13 +2,14 @@ package kr.hs.dgsw.smartschool.data.repository
 
 import android.util.Log
 import kr.hs.dgsw.smartschool.data.datasource.BusDataSource
+import kr.hs.dgsw.smartschool.data.mapper.toModel
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
-import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.MyBusByMonthRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusApplyRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
+import kr.hs.dgsw.smartschool.domain.param.bus.AddBusRequest
+import kr.hs.dgsw.smartschool.domain.param.bus.MyBusByMonthRequest
+import kr.hs.dgsw.smartschool.domain.param.bus.UpdateBusApplyRequest
+import kr.hs.dgsw.smartschool.domain.param.bus.UpdateBusRequest
 import javax.inject.Inject
 
 class BusRepositoryImpl @Inject constructor(
@@ -16,18 +17,18 @@ class BusRepositoryImpl @Inject constructor(
 ) : BusRepository {
 
     override suspend fun getBusList(): BusByDate {
-        return dataSource.getBusList()
+        return dataSource.getBusList().toModel()
     }
 
     override suspend fun getMyBus(): Bus {
         Log.e("BusRepository", "getMyBus")
-        return dataSource.getMyBus()
+        return dataSource.getMyBus().toModel()
     }
 
     override suspend fun getMyBusByMonth(
         request: MyBusByMonthRequest
     ): List<Bus> {
-        return dataSource.getMyBusByMonth(request)
+        return dataSource.getMyBusByMonth(request).map { it.toModel() }
     }
 
     override suspend fun addBus(

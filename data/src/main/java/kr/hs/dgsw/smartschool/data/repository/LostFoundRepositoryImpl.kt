@@ -1,11 +1,12 @@
 package kr.hs.dgsw.smartschool.data.repository
 import kr.hs.dgsw.smartschool.data.datasource.LostFoundDataSource
+import kr.hs.dgsw.smartschool.data.mapper.toModel
 import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
-import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
-import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
-import kr.hs.dgsw.smartschool.domain.request.lostfound.ModifyCommentRequest
+import kr.hs.dgsw.smartschool.domain.param.lostfound.AddCommentRequest
+import kr.hs.dgsw.smartschool.domain.param.lostfound.LostFoundDataRequest
+import kr.hs.dgsw.smartschool.domain.param.lostfound.ModifyCommentRequest
 import javax.inject.Inject
 
 class LostFoundRepositoryImpl @Inject constructor(
@@ -16,30 +17,30 @@ class LostFoundRepositoryImpl @Inject constructor(
     private lateinit var lostFoundCommentList: List<Comment>
 
     override suspend fun getLostFound(page: Int, type: String): List<LostFound> {
-        lostFoundList = lostFoundDataSource.getLostFound(page, type)
+        lostFoundList = lostFoundDataSource.getLostFound(page, type).map { lostFoundResponse -> lostFoundResponse.toModel() }
         return lostFoundList
     }
 
     override suspend fun getLostFound(id: Int): LostFound {
-        return lostFoundDataSource.getLostFoundById(id)
+        return lostFoundDataSource.getLostFoundById(id).toModel()
     }
 
     override suspend fun getLostFoundAll(): List<LostFound> {
-        return lostFoundDataSource.getLostFoundAll()
+        return lostFoundDataSource.getLostFoundAll().map { lostFoundResponse -> lostFoundResponse.toModel() }
     }
 
     override suspend fun getLostFoundSearch(search: String): List<LostFound> {
-        lostFoundList = lostFoundDataSource.getLostFoundSearch(search)
+        lostFoundList = lostFoundDataSource.getLostFoundSearch(search).map { lostFoundResponse -> lostFoundResponse.toModel() }
         return lostFoundList
     }
 
     override suspend fun getComment(lostFoundIdx: Int): List<Comment> {
-        lostFoundCommentList = lostFoundDataSource.getComment(lostFoundIdx)
+        lostFoundCommentList = lostFoundDataSource.getComment(lostFoundIdx).map {commentResponse -> commentResponse.toModel() }
         return lostFoundCommentList
     }
 
     override suspend fun getMyLostFound(): List<LostFound> {
-        return lostFoundDataSource.getMyLostFound()
+        return lostFoundDataSource.getMyLostFound().map { lostFoundResponse -> lostFoundResponse.toModel() }
     }
 
     override suspend fun addLostFound(request: LostFoundDataRequest): String {

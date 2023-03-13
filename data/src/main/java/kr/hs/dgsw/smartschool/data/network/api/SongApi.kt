@@ -4,7 +4,7 @@ import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
 import kr.hs.dgsw.smartschool.domain.model.song.Song
 import kr.hs.dgsw.smartschool.domain.model.song.melon.SongChart
-import kr.hs.dgsw.smartschool.domain.request.song.SongRequest
+import kr.hs.dgsw.smartschool.domain.param.song.SongRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET

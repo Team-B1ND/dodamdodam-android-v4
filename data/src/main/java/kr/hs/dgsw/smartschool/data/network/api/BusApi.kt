@@ -1,11 +1,11 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
+import kr.hs.dgsw.smartschool.data.network.response.bus.BusByDateResponse
+import kr.hs.dgsw.smartschool.data.network.response.bus.BusResponse
 import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
-import kr.hs.dgsw.smartschool.domain.model.bus.Bus
-import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
+import kr.hs.dgsw.smartschool.domain.param.bus.AddBusRequest
+import kr.hs.dgsw.smartschool.domain.param.bus.UpdateBusRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -16,16 +16,16 @@ import retrofit2.http.Query
 
 interface BusApi {
     @GET(DodamUrl.BUS)
-    suspend fun getBusList(): Response<BusByDate>
+    suspend fun getBusList(): Response<BusByDateResponse>
 
     @GET(DodamUrl.Bus.APPLY)
-    suspend fun getMyBus(): Response<Bus>
+    suspend fun getMyBus(): Response<BusResponse>
 
     @GET(DodamUrl.Bus.Apply.MONTH)
     suspend fun getMyBusByMonth(
         @Body month: Int,
         @Body year: Int
-    ): Response<List<Bus>>
+    ): Response<List<BusResponse>>
 
     @POST(DodamUrl.BUS)
     suspend fun addBus(

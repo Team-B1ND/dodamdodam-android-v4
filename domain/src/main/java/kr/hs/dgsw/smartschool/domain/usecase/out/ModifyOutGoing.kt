@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.Flow
 import kr.hs.dgsw.smartschool.domain.base.UseCase
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 import kr.hs.dgsw.smartschool.domain.repository.OutRepository
-import kr.hs.dgsw.smartschool.domain.request.out.ModifyOutRequest
+import kr.hs.dgsw.smartschool.domain.param.out.ModifyOutRequest
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
 

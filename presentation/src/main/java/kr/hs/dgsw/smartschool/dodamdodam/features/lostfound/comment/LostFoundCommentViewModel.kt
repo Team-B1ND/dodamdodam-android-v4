@@ -10,8 +10,8 @@ import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetCommentState
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetMyInfoState
-import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
-import kr.hs.dgsw.smartschool.domain.request.lostfound.ModifyCommentRequest
+import kr.hs.dgsw.smartschool.domain.param.lostfound.AddCommentRequest
+import kr.hs.dgsw.smartschool.domain.param.lostfound.ModifyCommentRequest
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFoundComment
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFoundComment
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases

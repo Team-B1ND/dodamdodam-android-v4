@@ -4,7 +4,7 @@ import kr.hs.dgsw.smartschool.data.datasource.SongDataSource
 import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
 import kr.hs.dgsw.smartschool.domain.model.song.melon.SongChart
 import kr.hs.dgsw.smartschool.domain.repository.SongRepository
-import kr.hs.dgsw.smartschool.domain.request.song.SongRequest
+import kr.hs.dgsw.smartschool.domain.param.song.SongRequest
 import javax.inject.Inject
 
 class SongRepositoryImpl @Inject constructor(

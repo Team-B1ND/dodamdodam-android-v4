@@ -4,7 +4,7 @@ import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.SongRemote
 import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
 import kr.hs.dgsw.smartschool.domain.model.song.melon.SongChart
-import kr.hs.dgsw.smartschool.domain.request.song.SongRequest
+import kr.hs.dgsw.smartschool.domain.param.song.SongRequest
 import javax.inject.Inject
 
 class SongDataSource @Inject constructor(

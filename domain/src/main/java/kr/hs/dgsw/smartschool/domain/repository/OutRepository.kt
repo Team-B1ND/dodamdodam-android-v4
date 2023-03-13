@@ -1,8 +1,8 @@
 package kr.hs.dgsw.smartschool.domain.repository
 
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
-import kr.hs.dgsw.smartschool.domain.request.out.ModifyOutRequest
-import kr.hs.dgsw.smartschool.domain.request.out.OutRequest
+import kr.hs.dgsw.smartschool.domain.param.out.ModifyOutRequest
+import kr.hs.dgsw.smartschool.domain.param.out.OutRequest
 
 interface OutRepository {
 

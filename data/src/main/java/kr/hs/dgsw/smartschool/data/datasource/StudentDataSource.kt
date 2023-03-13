@@ -5,8 +5,8 @@ import kr.hs.dgsw.smartschool.data.database.cache.MemberCache
 import kr.hs.dgsw.smartschool.data.database.entity.StudentEntity
 import kr.hs.dgsw.smartschool.data.mapper.toEntity
 import kr.hs.dgsw.smartschool.data.network.remote.MemberRemote
-import kr.hs.dgsw.smartschool.domain.model.member.Student
-import kr.hs.dgsw.smartschool.domain.request.member.ModifyMemberInfoRequest
+import kr.hs.dgsw.smartschool.data.network.response.member.StudentResponse
+import kr.hs.dgsw.smartschool.domain.param.member.ModifyMemberInfoRequest
 import javax.inject.Inject
 
 class StudentDataSource @Inject constructor(
@@ -14,7 +14,7 @@ class StudentDataSource @Inject constructor(
     override val cache: MemberCache
 ) : BaseDataSource<MemberRemote, MemberCache> {
 
-    suspend fun getMyInfo(): Student =
+    suspend fun getMyInfo(): StudentResponse =
         remote.getMyInfo()
 
     suspend fun modifyMemberInfo(request: ModifyMemberInfoRequest): String =
@@ -27,7 +27,7 @@ class StudentDataSource @Inject constructor(
 
     suspend fun getAllStudentRemote(): List<StudentEntity> =
         remote.getStudents()
-            .map { student -> student.toEntity() }
+            .map { studentResponse -> studentResponse.toEntity() }
             .also { studentEntities -> cache.insertStudents(studentEntities) }
 
     suspend fun updateAllStudent() = cache.deleteAllStudent().also { insertAllStudentRemote() }
@@ -35,6 +35,6 @@ class StudentDataSource @Inject constructor(
     suspend fun insertAllStudentRemote() =
         insertAllStudent(remote.getStudents())
 
-    suspend fun insertAllStudent(studentList: List<Student>) =
-        cache.insertStudents(studentList.map { student -> student.toEntity() })
+    suspend fun insertAllStudent(studentList: List<StudentResponse>) =
+        cache.insertStudents(studentList.map { studentResponse -> studentResponse.toEntity() })
 }
