@@ -2,6 +2,7 @@ package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
+import kr.hs.dgsw.smartschool.domain.model.meal.Calorie
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -16,7 +17,7 @@ interface MealApi {
     ): Response<Meal>
 
     @GET(DodamUrl.Meal.CALORIE)
-    suspend fun getCalorieOfMeal(): Response<String?>
+    suspend fun getCalorieOfMeal(): Response<Calorie>
 
     @GET(DodamUrl.Meal.MONTH)
     suspend fun getMealOfMonth(

@@ -5,6 +5,7 @@ import kr.hs.dgsw.smartschool.data.database.cache.MealCache
 import kr.hs.dgsw.smartschool.data.mapper.toEntity
 import kr.hs.dgsw.smartschool.data.mapper.toModel
 import kr.hs.dgsw.smartschool.data.network.remote.MealRemote
+import kr.hs.dgsw.smartschool.domain.model.meal.Calorie
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import java.time.LocalDate
 import javax.inject.Inject
@@ -52,6 +53,6 @@ class MealDataSource @Inject constructor(
             )
         }
 
-    suspend fun getCalorieOfMeal(): String? =
+    suspend fun getCalorieOfMeal(): Calorie =
         remote.getCalorieOfMeal()
 }
