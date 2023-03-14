@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
+import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
 import kr.hs.dgsw.smartschool.domain.model.song.Song
 import kr.hs.dgsw.smartschool.domain.model.song.melon.SongChart
 import kr.hs.dgsw.smartschool.domain.request.song.SongRequest
@@ -13,29 +14,29 @@ import retrofit2.http.Query
 
 interface SongApi {
 
-    @POST("wakeup-song")
+    @POST(DodamUrl.WAKE_UP_SONG)
     suspend fun applySong(
         @Body request: SongRequest
     ): Response<Any>
 
-    @DELETE("wakeup-song/my/{id}")
+    @DELETE(DodamUrl.WakeUpSong.My.ID)
     suspend fun deleteSong(
         @Path("id") id: Int
     ): Response<Any>
 
-    @GET("wakeup-song/allowed")
+    @GET(DodamUrl.WakeUpSong.ALLOWED)
     suspend fun getAllowSong(
         @Query("year") year: Int,
         @Query("month") month: Int,
         @Query("day") day: Int
     ): Response<List<Song>>
 
-    @GET("wakeup-song/my")
+    @GET(DodamUrl.WakeUpSong.MY)
     suspend fun getMySong(): Response<List<Song>>
 
-    @GET("wakeup-song/pending")
+    @GET(DodamUrl.WakeUpSong.PENDING)
     suspend fun getPendingSong(): Response<List<Song>>
 
-    @GET("wakeup-song/chart")
+    @GET(DodamUrl.WakeUpSong.CHART)
     suspend fun getSongChart(): Response<List<SongChart>>
 }

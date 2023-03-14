@@ -14,8 +14,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".features.main.MainActivity">
+        android:layout_height="match_parent">
 
         <include
             android:id="@+id/progress_loading"
@@ -30,24 +29,21 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
             android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/nav_graph" />
+            app:navGraph="@navigation/nav_graph"
+            tools:layout="@layout/fragment_meal" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/main_bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:itemIconTint="@drawable/selector_nav_color"
             android:background="@drawable/background_bottom_nav"
             android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
+            app:itemIconTint="@drawable/selector_nav_color"
             app:itemTextColor="@color/color_black"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"

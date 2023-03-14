@@ -30,9 +30,8 @@ class LostFoundViewModel @Inject constructor(
     private val isGetLostFoundLoading = MutableLiveData<Boolean>()
     private val isGetLostProfileLoading = MutableLiveData<Boolean>()
 
-    private val searchKeyword = MutableLiveData<String>()
-    val mineChecked = MutableLiveData<Boolean>(false)
-    val foundChecked = MutableLiveData<Boolean>(false)
+    val mineChecked = MutableLiveData(false)
+    val foundChecked = MutableLiveData(false)
 
     var hasLostFound = false
 
@@ -41,7 +40,7 @@ class LostFoundViewModel @Inject constructor(
     }
 
     fun getMyInfo() {
-        memberUseCases.getMyInfo(Unit).divideResult(
+        memberUseCases.getMyInfo().divideResult(
             isGetLostProfileLoading,
             { viewModelScope.launch { _getInfoState.emit(GetMyInfoState(myId = it?.member?.id ?: "")) } },
             { viewModelScope.launch { _getInfoState.emit(GetMyInfoState(error = "내 정보를 불러오는 데에 실패하였습니다.")) } }
@@ -53,7 +52,7 @@ class LostFoundViewModel @Inject constructor(
             if (mineChecked.value == true)
                 myLostFound()
             else {
-                useCases.getLostFoundAll(Unit).divideResult(
+                useCases.getLostFoundAll().divideResult(
                     isGetLostFoundLoading,
                     { launchLostFound(it!!) },
                     { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.") }
@@ -63,7 +62,7 @@ class LostFoundViewModel @Inject constructor(
     }
 
     private fun myLostFound() {
-        useCases.getMyLostFound(Unit).divideResult(
+        useCases.getMyLostFound().divideResult(
             isGetLostFoundLoading,
             { launchLostFound(it!!) },
             { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.") }

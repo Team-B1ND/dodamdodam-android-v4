@@ -1,7 +1,7 @@
 package kr.hs.dgsw.smartschool.data.base.remote
 
 import com.google.gson.GsonBuilder
-import kr.hs.dgsw.smartschool.data.util.Constants
+import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,7 +15,7 @@ abstract class RetrofitRemote<SV> : BaseRemote<SV>() {
 
     private val RETROFIT: Retrofit = Retrofit.Builder()
         .client(client)
-        .baseUrl(Constants.SERVER_HOST)
+        .baseUrl(DodamUrl.SERVER_HOST)
         .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create()))
         .callbackExecutor(Executors.newSingleThreadExecutor())
         .build()

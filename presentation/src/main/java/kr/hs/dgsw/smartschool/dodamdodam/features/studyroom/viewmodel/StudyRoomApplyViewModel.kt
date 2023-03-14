@@ -132,7 +132,7 @@ class StudyRoomApplyViewModel @Inject constructor(
     }
 
     private fun getPlace() {
-        getAllPlaceUseCase(Unit).divideResult(
+        getAllPlaceUseCase().divideResult(
             isGetMyStudyRoomLoading,
             { _getPlaceState.value = GetPlaceState(place = it ?: emptyList()) },
             { _getPlaceState.value = GetPlaceState(error = it ?: "장소를 받아오지 못하였습니다.") }
@@ -140,7 +140,7 @@ class StudyRoomApplyViewModel @Inject constructor(
     }
 
     private fun getTimeTable() {
-        timeUseCases.getAllTime(Unit).divideResult(
+        timeUseCases.getAllTime().divideResult(
             isTimeTableLoading,
             { _getAllTimeState.value = GetAllTimeState(timeTable = it ?: emptyList()) },
             { _getAllTimeState.value = GetAllTimeState(error = it ?: "시간을 받아오지 못하였습니다.") }
@@ -148,7 +148,7 @@ class StudyRoomApplyViewModel @Inject constructor(
     }
 
     fun getMyStudyRoom() {
-        studyRoomUseCases.getMyStudyRoom(Unit).divideResult(
+        studyRoomUseCases.getMyStudyRoom().divideResult(
             isGetMyStudyRoomLoading,
             { _getMyStudyRoomState.value = GetMyStudyRoomState(myStudyRooms = it ?: emptyList()) },
             { _getMyStudyRoomState.value = GetMyStudyRoomState(error = it ?: "자신의 위치를 받아오지 못하였습니다.") }

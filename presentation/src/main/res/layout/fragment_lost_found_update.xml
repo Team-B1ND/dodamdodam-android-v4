@@ -32,14 +32,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="@string/title_write_lost_found"
-                android:fontFamily="@font/nanum_square_regular"
+                android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
+                android:text="@string/title_write_lost_found"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/title3"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btn_back" />
+                app:layout_constraintStart_toEndOf="@id/btn_back"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -80,10 +80,10 @@
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_btn_add"
                     android:drawableTint="@color/main"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
                     android:padding="15dp"
                     android:text="@string/text_image_add"
-                    android:fontFamily="@font/nanum_square_regular"
-                    android:includeFontPadding="false"
                     android:textColor="@color/color_black"
                     app:layout_constraintBottom_toTopOf="@id/btn_image_delete"
                     app:layout_constraintStart_toStartOf="@id/btn_image_delete"
@@ -97,10 +97,10 @@
                     android:layout_marginStart="20dp"
                     android:drawableLeft="@drawable/ic_btn_delete"
                     android:drawableTint="@color/main"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
                     android:padding="15dp"
                     android:text="@string/text_image_delete"
-                    android:fontFamily="@font/nanum_square_regular"
-                    android:includeFontPadding="false"
                     android:textColor="@color/color_black"
                     app:layout_constraintBottom_toBottomOf="@id/card_image"
                     app:layout_constraintStart_toEndOf="@id/card_image"
@@ -137,22 +137,22 @@
                                 android:layout_height="wrap_content"
                                 android:buttonTint="@color/main"
                                 android:checked="@={vm.isLost}"
-                                android:textColor="@color/color_black"
-                                android:fontFamily="@font/nanum_square_regular"
+                                android:fontFamily="@font/noto_regular"
                                 android:includeFontPadding="false"
-                                android:text="@string/text_lost" />
+                                android:text="@string/text_lost"
+                                android:textColor="@color/color_black" />
 
                             <RadioButton
                                 android:id="@+id/rg_btn_found"
-                                android:checked="@={vm.isFound}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:textColor="@color/color_black"
                                 android:buttonTint="@color/main"
-                                android:fontFamily="@font/nanum_square_regular"
+                                android:checked="@={vm.isFound}"
+                                android:fontFamily="@font/noto_regular"
                                 android:includeFontPadding="false"
-                                android:text="@string/text_found" />
+                                android:text="@string/text_found"
+                                android:textColor="@color/color_black" />
 
                         </RadioGroup>
 
@@ -162,15 +162,15 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
+                            android:fontFamily="@font/noto_regular"
                             android:hint="@string/text_title"
-                            android:fontFamily="@font/nanum_square_regular"
-                            android:includeFontPadding="false"
                             android:importantForAutofill="no"
-                            android:text="@={vm.title}"
+                            android:includeFontPadding="false"
                             android:inputType="text"
                             android:maxLines="1"
                             android:paddingStart="5dp"
                             android:scrollHorizontally="false"
+                            android:text="@={vm.title}"
                             android:textSize="@dimen/title4"
                             tools:ignore="RtlSymmetry" />
 
@@ -180,13 +180,13 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:background="@android:color/transparent"
+                            android:fontFamily="@font/noto_regular"
                             android:hint="@string/text_location"
-                            android:fontFamily="@font/nanum_square_regular"
-                            android:includeFontPadding="false"
                             android:importantForAutofill="no"
+                            android:includeFontPadding="false"
                             android:inputType="text"
-                            android:text="@={vm.place}"
                             android:paddingStart="5dp"
+                            android:text="@={vm.place}"
                             android:textSize="@dimen/title4"
                             tools:ignore="RtlSymmetry" />
 
@@ -208,27 +208,29 @@
                         android:layout_height="match_parent"
                         android:layout_margin="15dp"
                         android:backgroundTint="@android:color/transparent"
+                        android:fontFamily="@font/noto_regular"
                         android:gravity="top"
                         android:hint="@string/text_content"
-                        android:fontFamily="@font/nanum_square_regular"
-                        android:includeFontPadding="false"
                         android:importantForAutofill="no"
+                        android:includeFontPadding="false"
                         android:inputType="textMultiLine"
                         android:scrollHorizontally="false"
                         android:text="@={vm.content}"
                         android:textSize="@dimen/title4" />
 
                 </androidx.cardview.widget.CardView>
+
                 <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
                     android:id="@+id/btn_add"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginHorizontal="@dimen/default_margin"
                     android:layout_marginBottom="20dp"
-                    android:text="@string/text_ok"
                     android:gravity="center"
+                    android:text="@string/text_ok"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/card_content" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 

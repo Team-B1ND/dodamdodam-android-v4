@@ -74,7 +74,7 @@ class SongViewModel @Inject constructor(
     }
 
     fun getApplySong() {
-        songUseCases.getPendingSong(Unit).divideResult(
+        songUseCases.getPendingSong().divideResult(
             isGetPendingSongLoading,
             { songList ->
                 Log.d("Refreshing", "getApplySong: viewmodel")
@@ -85,7 +85,7 @@ class SongViewModel @Inject constructor(
     }
 
     private fun getMyAccount() {
-        accountUseCases.getAccount(Unit).divideResult(
+        accountUseCases.getAccount().divideResult(
             isGetAccountLoading,
             { account ->
                 myId.value = account?.id
@@ -96,7 +96,7 @@ class SongViewModel @Inject constructor(
     }
 
     fun getMySong() {
-        songUseCases.getMySong(Unit).divideResult(
+        songUseCases.getMySong().divideResult(
             isGetMySongLoading,
             { songList -> _getMySongState.value = GetMySongState(songList = songList ?: emptyList()) },
             { error -> _getMySongState.value = GetMySongState(error = error ?: "기상송을 받아오지 못했습니다.") }

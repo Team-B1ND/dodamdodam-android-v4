@@ -1,5 +1,6 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">도담도담</string>
+
     <string-array name="generation_array">
         <item>1기</item>
         <item>2기</item>
@@ -9,14 +10,16 @@
         <item>6기</item>
         <item>7기</item>
     </string-array>
+
+    <string name="meal_dummy">*기장밥 , 김치어묵국 , *명태껍질볶음 , 새송이돈육마늘구이 , *짜먹는요거트 , *꽃상추쌈/쌈장</string>
+    <string name="meal_name_dummy">조식</string>
+
     <string name="nav_home">홈</string>
     <string name="nav_news">소식</string>
     <string name="nav_song">기상송</string>
     <string name="nav_profile">내 정보</string>
     <string name="home_meal">오늘의 급식</string>
     <string name="project_name">도담도담</string>
-    <string name="meal_dummy">*기장밥 , 김치어묵국 , *명태껍질볶음 , 새송이돈육마늘구이 , *짜먹는요거트 , *꽃상추쌈/쌈장</string>
-    <string name="meal_name_dummy">조식</string>
     <string name="today_song">오늘의 기상송</string>
     <string name="title_song">내일의 기상송</string>
     <string name="now_song_application">신청현황</string>
@@ -119,26 +122,26 @@
     <string name="text_edit_profile">프로필 수정</string>
     <string name="text_change_desc">기본 이미지로 변경</string>
     <string name="text_save">저장</string>
-    <string name="text_bus_not">버스가 없어요ㅠㅠ</string>
-    <string name="text_no_data">값이 없습니다.</string>
+    <string name="text_bus_not">버스가 없어요</string>
+    <string name="text_no_data">값이 없어요</string>
     <string name="cancel">취소하기</string>
     <string name="_kebab">⋮</string>
 
     <string name="pref_key_thumbnail" translatable="false">pref_thumbnail</string>
-    <string name="text_now_selected_song_empty">아직 기상송이 선정되지 않았어요!</string>
-    <string name="text_wait">조금만 기다려주시기 바랍니다.</string>
-    <string name="text_please_apply_song">기상송을 신청해주세요!</string>
+    <string name="text_now_selected_song_empty">아직 기상송이 선정되지 않았어요</string>
+    <string name="text_wait">조금만 기다려주시기 바랍니다</string>
+    <string name="text_please_apply_song">기상송을 신청해주세요</string>
     <string name="title_out_write">외출/외박 신청</string>
     <string name="text_no_out">신청된 외출/외박이 없어요</string>
     <string name="text_today_meal_calorie">오늘 삼시세끼 칼로리는?</string>
     <string name="text_is_right">위의 영상이 맞나요?</string>
     <string name="text_no">아니요</string>
-    <string name="text_youtube_search_desc">원하는 곡 제목을 입력하여 검색해주세요!</string>
+    <string name="text_youtube_search_desc">원하는 곡 제목을 입력하여 검색해 주세요</string>
     <string name="text_do_search">검색하기</string>
-    <string name="text_song_title">곡 제목을 입력해주세요.</string>
+    <string name="text_song_title">곡 제목을 입력해 주세요</string>
     <string name="title_search_song">기상송 검색</string>
-    <string name="text_youtube_confirm_desc">영상을 꼼꼼히 확인해주세요!</string>
-    <string name="text_re_search_desc">혹시 원하는 영상이 아니라면 다시 검색해주세요</string>
+    <string name="text_youtube_confirm_desc">영상을 꼼꼼히 확인해 주세요</string>
+    <string name="text_re_search_desc">혹시 원하는 영상이 아니라면 다시 검색해 주세요</string>
 
 
     <string name="text_out_sleeping_date">외박 날짜</string>

@@ -2,7 +2,7 @@ package kr.hs.dgsw.smartschool.domain.usecase.lostfound
 
 import android.util.Log
 import kotlinx.coroutines.flow.Flow
-import kr.hs.dgsw.smartschool.domain.base.BaseUseCase
+import kr.hs.dgsw.smartschool.domain.base.UseCase
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
 import kr.hs.dgsw.smartschool.domain.util.Resource
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class GetLostFound @Inject constructor(
     private val lostFoundRepository: LostFoundRepository
-) : BaseUseCase<GetLostFound.Params, List<LostFound>>() {
+) : UseCase<GetLostFound.Params, List<LostFound>>() {
 
     data class Params(
         val page: Int,

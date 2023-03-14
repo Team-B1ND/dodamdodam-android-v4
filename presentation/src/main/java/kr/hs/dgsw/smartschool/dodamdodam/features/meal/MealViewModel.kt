@@ -62,7 +62,7 @@ class MealViewModel @Inject constructor(
     }
 
     private fun getMealCalorie() {
-        mealUseCases.getCalorieOfMeal(Unit).divideResult(
+        mealUseCases.getCalorieOfMeal().divideResult(
             isLoading,
             { _getMealCalorieState.value = GetMealCalorieState(isUpdate = true, calorie = it) },
             { _getMealCalorieState.value = GetMealCalorieState(error = it ?: "칼로리를 받아오지 못했습니다.") }

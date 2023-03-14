@@ -2,6 +2,7 @@ package kr.hs.dgsw.smartschool.data.network.remote
 
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.MealApi
+import kr.hs.dgsw.smartschool.domain.model.meal.Calorie
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import javax.inject.Inject
 
@@ -13,7 +14,11 @@ class MealRemote @Inject constructor(
         return api.getMeal(year, month, day).data
     }
 
-    suspend fun getCalorieOfMeal(): String? {
+    suspend fun getCalorieOfMeal(): Calorie {
         return api.getCalorieOfMeal().data
+    }
+
+    suspend fun getMealOfMonth(month: Int, year: Int): List<Meal> {
+        return api.getMealOfMonth(month, year).data
     }
 }
