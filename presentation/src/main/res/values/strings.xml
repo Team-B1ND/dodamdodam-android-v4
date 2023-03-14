@@ -178,6 +178,7 @@
     <string name="text_apply_short">신청</string>
     <string name="text_search_desc">더욱 상세한 정보를 검색해 보세요!</string>
     <string name="text_start">시작하기</string>
-    <string name="text_pw_description">최소 하나의 문자와, 숫자, 특수문자가 포함되어야 해요</string>
+    <string name="text_pw_description">최소 하나의 문자와, 숫자, 특수문자가 포함되어야 합니다.</string>
+    <string name="text_test">test</string>
 
 </resources>
