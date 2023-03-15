@@ -180,5 +180,7 @@
     <string name="text_start">시작하기</string>
     <string name="text_pw_description">최소 하나의 문자와, 숫자, 특수문자가 포함되어야 합니다.</string>
     <string name="text_test">test</string>
+    <string name="dodam_login">도담도담 로그인</string>
+    <string name="dodam">도담도담 </string>
 
 </resources>
