@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.data.network.remote
 
-import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.MealApi
 import kr.hs.dgsw.smartschool.domain.model.meal.Calorie
