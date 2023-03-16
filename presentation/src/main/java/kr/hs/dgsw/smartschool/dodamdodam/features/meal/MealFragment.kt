@@ -30,6 +30,7 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
         mBinding.tvCalorieDate.text = LocalDate.now().toString()
         viewModel.targetDate.observe(this@MealFragment) {
             mBinding.tvDate.text = it.toString()
+            mBinding.tvCalorieDate.text = it.toString()
         }
 
         collectMealState()
@@ -52,6 +53,7 @@ class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
                             cal.set(y, m + 1, d)
                             setTargetDate(LocalDate.of(y, m + 1, d))
                             getMeal()
+                            getMealCalorie()
                         },
                         year,
                         month - 1,
