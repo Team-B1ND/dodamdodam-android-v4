@@ -1,10 +1,12 @@
 package kr.hs.dgsw.smartschool.data.datasource
 
+import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.database.cache.MealCache
 import kr.hs.dgsw.smartschool.data.mapper.toEntity
 import kr.hs.dgsw.smartschool.data.mapper.toModel
 import kr.hs.dgsw.smartschool.data.network.remote.MealRemote
+import kr.hs.dgsw.smartschool.domain.model.meal.Calorie
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 import java.time.LocalDate
 import javax.inject.Inject
@@ -24,8 +26,7 @@ class MealDataSource @Inject constructor(
     private suspend fun getRemoteMealList(year: Int, month: Int): List<Meal> =
         remote.getMealOfMonth(month, year).also {
 
-            val localDate = LocalDate.of(year, month, 1)
-            val size = localDate.lengthOfMonth()
+            val size = LocalDate.of(year, month, 1).lengthOfMonth()
 
             val mealMap = mutableMapOf<String, Meal>()
             val mealList = mutableListOf<Meal>()
@@ -49,11 +50,43 @@ class MealDataSource @Inject constructor(
             )
         }
 
-    suspend fun getCalorieOfMeal(year: Int, month: Int, day: Int): String {
-        val calorie = remote.getCalorieOfMeal(year, month, day)
-        val breakfast = calorie.breakfast?.split(' ')?.first()?.toDouble() ?: 0.0
-        val lunch = calorie.lunch?.split(' ')?.first()?.toDouble() ?: 0.0
-        val dinner = calorie.dinner?.split(' ')?.first()?.toDouble() ?: 0.0
-        return "${breakfast + lunch + dinner} Kcal"
+    suspend fun getCalorieOfMeal(year: Int, month: Int, day: Int): Calorie {
+//        val calorie = remote.getCalorieOfMeal(year, month, day)
+//        val breakfast = calorie.breakfast?.split(' ')?.first()?.toDouble() ?: 0.0
+//        val lunch = calorie.lunch?.split(' ')?.first()?.toDouble() ?: 0.0
+//        val dinner = calorie.dinner?.split(' ')?.first()?.toDouble() ?: 0.0
+//        return "${breakfast + lunch + dinner} Kcal"
+
+        return cache.getCalorie(year, month, day)?.toModel()
+            ?: getCalorieOfMonth(year, month).find { it.date == "$year-$month-$day" }
+            ?: Calorie(null, "$year-$month-$day", null, false, null)
     }
+
+    private suspend fun getCalorieOfMonth(year: Int, month: Int): List<Calorie> =
+        remote.getCalorieOfMonth(year, month).also {
+            val calorieMap = mutableMapOf<String, Calorie>()
+            val calorieList = mutableListOf<Calorie>()
+
+            val size = LocalDate.of(year, month, 1).lengthOfMonth()
+
+            for (i in 1..size) {
+                val date = String.format("%d-%02d-%02d", year, month, i)
+                calorieMap[date] = Calorie(null, date, null, false, null)
+            }
+
+            it.forEach { calorie ->
+                calorieMap[calorie.date] = calorie
+            }
+
+            calorieMap.forEach { map ->
+                calorieList.add(map.value)
+            }
+
+            cache.insertCalorieList(
+                calorieList.toList().map { calorie ->
+                    calorie.toEntity()
+                }
+            )
+        }
+
 }

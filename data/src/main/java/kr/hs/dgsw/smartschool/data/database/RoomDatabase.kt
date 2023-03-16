@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import kr.hs.dgsw.smartschool.data.database.dao.AccountDao
+import kr.hs.dgsw.smartschool.data.database.dao.CalorieDao
 import kr.hs.dgsw.smartschool.data.database.dao.ClassroomDao
 import kr.hs.dgsw.smartschool.data.database.dao.MealDao
 import kr.hs.dgsw.smartschool.data.database.dao.MemberDao
@@ -13,6 +14,7 @@ import kr.hs.dgsw.smartschool.data.database.dao.TeacherDao
 import kr.hs.dgsw.smartschool.data.database.dao.TimeDao
 import kr.hs.dgsw.smartschool.data.database.dao.TokenDao
 import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
+import kr.hs.dgsw.smartschool.data.database.entity.CalorieEntity
 import kr.hs.dgsw.smartschool.data.database.entity.ClassroomEntity
 import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
 import kr.hs.dgsw.smartschool.data.database.entity.MemberEntity
@@ -28,7 +30,7 @@ import java.util.concurrent.Executors
         TokenEntity::class, AccountEntity::class,
         MemberEntity::class, StudentEntity::class, TeacherEntity::class,
         TimeEntity::class, PlaceEntity::class,
-        ClassroomEntity::class, MealEntity::class
+        ClassroomEntity::class, MealEntity::class, CalorieEntity::class
     ],
     version = 9,
     exportSchema = false
@@ -44,6 +46,7 @@ abstract class RoomDatabase : androidx.room.RoomDatabase() {
     abstract fun placeDao(): PlaceDao
     abstract fun classInfoDao(): ClassroomDao
     abstract fun mealDao(): MealDao
+    abstract fun calorieDao(): CalorieDao
 
     companion object {
         private var instance: RoomDatabase? = null
