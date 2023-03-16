@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.meal
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -62,7 +63,7 @@ class MealViewModel @Inject constructor(
         ).launchIn(viewModelScope)
     }
 
-    private fun getMealCalorie() {
+    fun getMealCalorie() {
         mealUseCases.getCalorieOfMeal(
             GetCalorieOfMeal.Params(
                 _targetDate.value?.year ?: todayDate.year,
@@ -86,6 +87,7 @@ class MealViewModel @Inject constructor(
         _targetDate.value?.let {
             _targetDate.value = it.plusDays(1)
             getMeal()
+            getMealCalorie()
             viewEvent(EVENT_UPDATE_DATE)
         }
     }
@@ -93,6 +95,7 @@ class MealViewModel @Inject constructor(
         _targetDate.value?.let {
             _targetDate.value = it.minusDays(1)
             getMeal()
+            getMealCalorie()
             viewEvent(EVENT_UPDATE_DATE)
         }
     }
