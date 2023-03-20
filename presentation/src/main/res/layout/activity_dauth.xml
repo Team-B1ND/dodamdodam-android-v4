@@ -15,14 +15,42 @@
         tools:context=".features.dauth.DAuthActivity">
 
         <ImageView
-            android:id="@+id/iv_dodam"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/logo_main"
+            android:id="@+id/iv_b1nd"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_b1nd"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_medium"
+            android:text="Sign in"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:layout_marginTop="30dp"
+            android:includeFontPadding="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_b1nd" />
+
+        <TextView
+            android:id="@+id/tv_explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dauth 사용을 위해 Dauth 로그인을 해주세요"
+            android:textSize="14sp"
+            android:textColor="@color/gray700"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_login" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -30,13 +58,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/default_margin"
-            android:layout_marginTop="46dp"
             app:counterEnabled="true"
             app:counterMaxLength="15"
             app:endIconMode="clear_text"
+            android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_dodam"
+            app:layout_constraintTop_toBottomOf="@+id/tv_explain"
             app:layout_constraintVertical_chainStyle="packed">
 
             <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamTextInputEditText
@@ -83,7 +111,8 @@
             android:layout_marginHorizontal="@dimen/default_margin"
             android:layout_marginBottom="60dp"
             android:onClick="@{() -> vm.onClickSignIn()}"
-            android:text="@string/dodam_login"
+            android:text="@string/dauth_login"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

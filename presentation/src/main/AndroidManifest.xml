@@ -58,8 +58,16 @@
             android:screenOrientation="portrait" />
 
         <activity android:name=".features.dauth.DAuthActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+        </activity>
 
     </application>
 </manifest>
