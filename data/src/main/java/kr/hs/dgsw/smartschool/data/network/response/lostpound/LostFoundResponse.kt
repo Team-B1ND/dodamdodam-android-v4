@@ -6,7 +6,7 @@ import kr.hs.dgsw.smartschool.data.network.response.member.MemberResponse
 data class LostFoundResponse(
     val comment: List<Unit> = emptyList(),
     val content: String,
-    @SerializedName("createDate")val createAt: String,
+    @SerializedName("createAt")val createAt: String,
     @SerializedName("id") val idx: Int,
     val member: MemberResponse,
     val place: String,

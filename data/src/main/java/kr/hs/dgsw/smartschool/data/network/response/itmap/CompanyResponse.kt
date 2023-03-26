@@ -11,5 +11,5 @@ data class CompanyResponse(
     val name: String,
     val symbolLogo: String?,
     val textLogo: String?,
-    val users: List<ItMapUser>
+    val users: List<ItMapUser>?
 )

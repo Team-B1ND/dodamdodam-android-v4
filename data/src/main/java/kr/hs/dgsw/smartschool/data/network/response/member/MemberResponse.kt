@@ -7,6 +7,5 @@ data class MemberResponse(
     val name: String,
     val profileImage: String?,
     val role: String,
-    val status: String,
-    val student: StudentResponse
+    val status: String
 )
