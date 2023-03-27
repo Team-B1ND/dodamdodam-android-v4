@@ -14,6 +14,7 @@ class DAuthViewModel : BaseViewModel() {
         if (id.value.isNullOrBlank() || pw.value.isNullOrBlank()) {
             return
         }
+        viewEvent(EVENT_ON_CLICK_LOGIN)
     }
 
     fun onClickJoin() {
@@ -22,6 +23,7 @@ class DAuthViewModel : BaseViewModel() {
 
     companion object {
         const val EVENT_ON_CLICK_JOIN = 0
+        const val EVENT_ON_CLICK_LOGIN = 1
     }
 
 }
