@@ -17,7 +17,7 @@ class LostFoundDataSource @Inject constructor(
 
     private lateinit var lostFoundList: List<LostFound>
 
-    suspend fun getLostFound(page: Int, type: String): List<LostFound> {
+    suspend fun getLostFound(page: String, type: String): List<LostFound> {
         lostFoundList = remote.getLostFound(page, type).data
         Log.d("LostFoundDataSource", lostFoundList.toString())
         return lostFoundList

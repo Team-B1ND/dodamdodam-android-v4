@@ -15,7 +15,7 @@ class LostFoundRepositoryImpl @Inject constructor(
     private lateinit var lostFoundList: List<LostFound>
     private lateinit var lostFoundCommentList: List<Comment>
 
-    override suspend fun getLostFound(page: Int, type: String): List<LostFound> {
+    override suspend fun getLostFound(page: String, type: String): List<LostFound> {
         lostFoundList = lostFoundDataSource.getLostFound(page, type)
         return lostFoundList
     }

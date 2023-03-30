@@ -12,6 +12,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetLostFoundSt
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetMyInfoState
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFound
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import javax.inject.Inject
@@ -52,7 +53,10 @@ class LostFoundViewModel @Inject constructor(
             if (mineChecked.value == true)
                 myLostFound()
             else {
-                useCases.getLostFoundAll().divideResult(
+                useCases.getLostFound(GetLostFound.Params(
+                    page = "1",
+                    type = if (foundChecked.value == true) "FOUND" else "LOST"
+                )).divideResult(
                     isGetLostFoundLoading,
                     { launchLostFound(it!!) },
                     { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.") }

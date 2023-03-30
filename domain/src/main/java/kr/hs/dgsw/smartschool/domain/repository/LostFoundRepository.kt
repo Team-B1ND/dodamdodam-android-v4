@@ -6,7 +6,7 @@ import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.request.lostfound.ModifyCommentRequest
 
 interface LostFoundRepository {
-    suspend fun getLostFound(page: Int, type: String): List<LostFound>
+    suspend fun getLostFound(page: String, type: String): List<LostFound>
 
     suspend fun getLostFoundSearch(search: String): List<LostFound>
 

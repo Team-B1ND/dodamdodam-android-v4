@@ -18,8 +18,8 @@ import retrofit2.http.Query
 interface LostFoundApi {
     @GET(DodamUrl.LOST_FOUND)
     suspend fun getLostFound(
-        @Query("limit") limit: Int,
-        @Query("page") page: Int,
+        @Query("limit") limit: String,
+        @Query("page") page: String,
         @Query("type") type: String
     ): Response<List<LostFound>>
 
