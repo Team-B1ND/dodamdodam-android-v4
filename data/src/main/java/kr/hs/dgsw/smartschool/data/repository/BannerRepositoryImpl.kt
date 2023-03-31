@@ -11,6 +11,6 @@ class BannerRepositoryImpl @Inject constructor(
 ) : BannerRepository {
 
     override suspend fun getActiveBanner(): List<Banner> {
-        return bannerDataSource.getActiveBanner().map { bannerResponse -> bannerResponse.toModel()}
+        return bannerDataSource.getActiveBanner().map { bannerResponse -> bannerResponse.toModel() }
     }
 }

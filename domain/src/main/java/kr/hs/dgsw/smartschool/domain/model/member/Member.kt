@@ -1,7 +1,5 @@
 package kr.hs.dgsw.smartschool.domain.model.member
 
-
-
 data class Member(
     val email: String,
     val id: String,

@@ -1,11 +1,10 @@
 package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.StudentDataSource
-import kr.hs.dgsw.smartschool.data.mapper.toEntity
 import kr.hs.dgsw.smartschool.data.mapper.toModel
 import kr.hs.dgsw.smartschool.domain.model.member.Student
-import kr.hs.dgsw.smartschool.domain.repository.StudentRepository
 import kr.hs.dgsw.smartschool.domain.param.member.ModifyMemberInfoRequest
+import kr.hs.dgsw.smartschool.domain.repository.StudentRepository
 import javax.inject.Inject
 
 class StudentRepositoryImpl @Inject constructor(

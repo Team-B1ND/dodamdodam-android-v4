@@ -3,10 +3,10 @@ import kr.hs.dgsw.smartschool.data.datasource.LostFoundDataSource
 import kr.hs.dgsw.smartschool.data.mapper.toModel
 import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
-import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
 import kr.hs.dgsw.smartschool.domain.param.lostfound.AddCommentRequest
 import kr.hs.dgsw.smartschool.domain.param.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.param.lostfound.ModifyCommentRequest
+import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
 import javax.inject.Inject
 
 class LostFoundRepositoryImpl @Inject constructor(
@@ -35,7 +35,7 @@ class LostFoundRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getComment(lostFoundIdx: Int): List<Comment> {
-        lostFoundCommentList = lostFoundDataSource.getComment(lostFoundIdx).map {commentResponse -> commentResponse.toModel() }
+        lostFoundCommentList = lostFoundDataSource.getComment(lostFoundIdx).map { commentResponse -> commentResponse.toModel() }
         return lostFoundCommentList
     }
 

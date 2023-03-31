@@ -6,7 +6,6 @@ import kr.hs.dgsw.smartschool.data.network.api.BusApi
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.bus.BusByDateResponse
 import kr.hs.dgsw.smartschool.data.network.response.bus.BusResponse
-import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
 import kr.hs.dgsw.smartschool.domain.param.bus.AddBusRequest
 import kr.hs.dgsw.smartschool.domain.param.bus.MyBusByMonthRequest
 import kr.hs.dgsw.smartschool.domain.param.bus.UpdateBusApplyRequest

@@ -2,7 +2,7 @@ package kr.hs.dgsw.smartschool.data.network.response.banner
 
 import com.google.gson.annotations.SerializedName
 
-data class BannerResponse (
+data class BannerResponse(
     @field:SerializedName("bannerOrder")
     val bannerOrder: Int,
     @field:SerializedName("createdDate")

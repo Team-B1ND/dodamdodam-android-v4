@@ -6,7 +6,6 @@ import kr.hs.dgsw.smartschool.data.network.request.auth.JoinRequest
 import kr.hs.dgsw.smartschool.data.network.request.auth.LoginRequest
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.data.LoginData
-import kr.hs.dgsw.smartschool.domain.param.auth.LoginParam
 
 class AuthRemote : RetrofitRemote<AuthApi>() {
     override val api: AuthApi

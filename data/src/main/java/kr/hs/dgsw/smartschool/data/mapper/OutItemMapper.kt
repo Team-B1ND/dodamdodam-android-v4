@@ -8,7 +8,6 @@ import kr.hs.dgsw.smartschool.domain.model.member.StudentId
 import kr.hs.dgsw.smartschool.domain.model.member.TeacherId
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 import kr.hs.dgsw.smartschool.domain.model.out.OutStatus
-import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 
 fun OutItemResponse.toModel(): OutItem = OutItem(
     arrivedDate = this.arrivedDate,
@@ -22,7 +21,7 @@ fun OutItemResponse.toModel(): OutItem = OutItem(
     teacher = this.teacher.toModel()
 )
 
-fun OutStatusResponse.toModel(): OutStatus = when(this.name) {
+fun OutStatusResponse.toModel(): OutStatus = when (this.name) {
     OutStatus.ALLOWED.name -> OutStatus.ALLOWED
     OutStatus.DENIED.name -> OutStatus.DENIED
     else -> OutStatus.PENDING

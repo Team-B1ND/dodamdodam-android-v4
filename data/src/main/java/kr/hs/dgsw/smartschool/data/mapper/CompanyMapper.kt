@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.data.mapper
 
-
 import kr.hs.dgsw.smartschool.data.network.response.itmap.CompanyResponse
 import kr.hs.dgsw.smartschool.domain.model.itmap.Company
 

@@ -57,7 +57,7 @@ fun StudentResponse.toEntity(): StudentEntity = StudentEntity(
 fun StudentResponse.toModel(): Student = Student(
     classroom = this.classroom,
     studentId = this.studentId,
-    member = this.member .toModel(),
+    member = this.member.toModel(),
     number = this.number,
     phone = this.phone,
 )

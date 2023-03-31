@@ -9,10 +9,10 @@ import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.studyroom.DefaultStudyRoom
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
-import kr.hs.dgsw.smartschool.domain.repository.StudyRoomRepository
 import kr.hs.dgsw.smartschool.domain.param.studyroom.DefaultStudyRoomByTypeRequest
 import kr.hs.dgsw.smartschool.domain.param.studyroom.DefaultStudyRoomRequest
 import kr.hs.dgsw.smartschool.domain.param.studyroom.StudyRoomRequest
+import kr.hs.dgsw.smartschool.domain.repository.StudyRoomRepository
 import javax.inject.Inject
 
 class StudyRoomRepositoryImpl @Inject constructor(

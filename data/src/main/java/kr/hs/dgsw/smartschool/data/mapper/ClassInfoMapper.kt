@@ -32,13 +32,13 @@ fun ClassroomResponse.toEntity(): ClassroomEntity = ClassroomEntity(
     typeName = this.place.type.name
 )
 
-fun ClassroomPlaceResponse.toModel():ClassroomPlace= ClassroomPlace(
+fun ClassroomPlaceResponse.toModel(): ClassroomPlace = ClassroomPlace(
     id = this.id,
     name = this.name,
     type = this.type.toModel()
 )
 
-fun ClassroomTypeResponse.toModel():ClassroomType= ClassroomType(
+fun ClassroomTypeResponse.toModel(): ClassroomType = ClassroomType(
     id = this.id,
     name = this.name
 )

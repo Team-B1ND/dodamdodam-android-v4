@@ -9,7 +9,8 @@ import kr.hs.dgsw.smartschool.data.util.parceler.StudentIdParceler
 import kr.hs.dgsw.smartschool.data.util.parceler.TeacherIdParceler
 import java.io.Serializable
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 @Parcelize
 open class OutItemResponse(
@@ -23,8 +24,6 @@ open class OutItemResponse(
     @TypeParceler<StudentIdResponse, StudentIdParceler> val student: StudentIdResponse,
     @TypeParceler<TeacherIdResponse, TeacherIdParceler> val teacher: TeacherIdResponse
 ) : Serializable, Parcelable {
-
-    constructor() : this(Date(), Date(), Date(), 0, "", Date(), OutStatusResponse.PENDING, StudentIdResponse(-1), TeacherIdResponse(""))
 
     val startDate: String
         get() {

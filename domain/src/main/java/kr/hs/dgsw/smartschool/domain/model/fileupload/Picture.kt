@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.domain.model.fileupload
 
-import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Picture(

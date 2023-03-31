@@ -1,9 +1,9 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
 import kr.hs.dgsw.smartschool.data.network.response.Response
+import kr.hs.dgsw.smartschool.data.network.response.song.SongResponse
+import kr.hs.dgsw.smartschool.data.network.response.song.melon.SongChartResponse
 import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
-import kr.hs.dgsw.smartschool.domain.model.song.Song
-import kr.hs.dgsw.smartschool.domain.model.song.melon.SongChart
 import kr.hs.dgsw.smartschool.domain.param.song.SongRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -29,14 +29,14 @@ interface SongApi {
         @Query("year") year: Int,
         @Query("month") month: Int,
         @Query("day") day: Int
-    ): Response<List<Song>>
+    ): Response<List<SongResponse>>
 
     @GET(DodamUrl.WakeUpSong.MY)
-    suspend fun getMySong(): Response<List<Song>>
+    suspend fun getMySong(): Response<List<SongResponse>>
 
     @GET(DodamUrl.WakeUpSong.PENDING)
-    suspend fun getPendingSong(): Response<List<Song>>
+    suspend fun getPendingSong(): Response<List<SongResponse>>
 
     @GET(DodamUrl.WakeUpSong.CHART)
-    suspend fun getSongChart(): Response<List<SongChart>>
+    suspend fun getSongChart(): Response<List<SongChartResponse>>
 }

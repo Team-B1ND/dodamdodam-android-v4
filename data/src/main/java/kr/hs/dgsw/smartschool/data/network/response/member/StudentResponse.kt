@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.data.network.response.member
 
 import com.google.gson.annotations.SerializedName
 import kr.hs.dgsw.smartschool.domain.model.classroom.Classroom
-import kr.hs.dgsw.smartschool.domain.model.member.Member
 
 data class StudentResponse(
     @field:SerializedName("classroom") val classroom: Classroom,
