@@ -13,7 +13,7 @@ class GetLostFound @Inject constructor(
 ) : UseCase<GetLostFound.Params, List<LostFound>>() {
 
     data class Params(
-        val page: Int,
+        val page: String,
         val type: String
     )
 
