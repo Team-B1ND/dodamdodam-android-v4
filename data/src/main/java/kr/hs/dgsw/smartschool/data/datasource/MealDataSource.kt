@@ -5,7 +5,7 @@ import kr.hs.dgsw.smartschool.data.database.cache.MealCache
 import kr.hs.dgsw.smartschool.data.mapper.toEntity
 import kr.hs.dgsw.smartschool.data.mapper.toModel
 import kr.hs.dgsw.smartschool.data.network.remote.MealRemote
-import kr.hs.dgsw.smartschool.data.network.response.Meal.MealResponse
+import kr.hs.dgsw.smartschool.data.network.response.meal.MealResponse
 import java.time.LocalDate
 import javax.inject.Inject
 

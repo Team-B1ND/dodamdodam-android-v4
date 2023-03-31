@@ -2,7 +2,7 @@ package kr.hs.dgsw.smartschool.data.network.remote
 
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.MealApi
-import kr.hs.dgsw.smartschool.data.network.response.Meal.MealResponse
+import kr.hs.dgsw.smartschool.data.network.response.meal.MealResponse
 import javax.inject.Inject
 
 class MealRemote @Inject constructor(

@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.data.network.response.Point
+package kr.hs.dgsw.smartschool.data.network.response.point
 
 enum class PointTypeResponse {
     BONUS,

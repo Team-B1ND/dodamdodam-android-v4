@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.data.network.response.Meal
+package kr.hs.dgsw.smartschool.data.network.response.meal
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
