@@ -4,8 +4,9 @@ import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.database.cache.TimeTableCache
 import kr.hs.dgsw.smartschool.data.database.entity.TimeEntity
 import kr.hs.dgsw.smartschool.data.mapper.toEntity
+import kr.hs.dgsw.smartschool.data.mapper.toModel
 import kr.hs.dgsw.smartschool.data.network.remote.TimeTableRemote
-import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
+import kr.hs.dgsw.smartschool.data.network.response.time.TimeTableResponse
 import kr.hs.dgsw.smartschool.domain.model.time.WeekType
 import kr.hs.dgsw.smartschool.domain.util.Utils
 import javax.inject.Inject
@@ -34,9 +35,9 @@ class TimeTableDataSource @Inject constructor(
         remote.getAllTime().also { insertTimeList(it) }
 
     private suspend fun getTimeRemote(): List<TimeEntity> =
-        remote.getAllTime().map { time -> time.toEntity() }
+        remote.getAllTime().map { time -> time.toModel().toEntity() }
             .also { timeEntityList -> cache.insertTime(timeEntityList) }
 
-    private suspend fun insertTimeList(timeTableList: List<TimeTable>) =
-        cache.insertTime(timeTableList.map { time -> time.toEntity() })
+    private suspend fun insertTimeList(timeTableList: List<TimeTableResponse>) =
+        cache.insertTime(timeTableList.map { time -> time.toModel().toEntity() })
 }

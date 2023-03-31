@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.model.time
 
 import android.annotation.SuppressLint
-import com.google.gson.annotations.SerializedName
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -9,8 +8,8 @@ data class TimeTable(
     val id: Int,
     val name: String,
     val type: WeekType,
-    @field:SerializedName("startTime") val startTime: String,
-    @field:SerializedName("endTime") val endTime: String
+    val startTime: String,
+    val endTime: String
 ) {
     constructor() : this(0, "", WeekType.WEEKDAY, "", "")
 

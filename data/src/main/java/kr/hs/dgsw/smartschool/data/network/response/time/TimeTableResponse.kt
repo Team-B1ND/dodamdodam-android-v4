@@ -2,18 +2,17 @@ package kr.hs.dgsw.smartschool.data.network.response.time
 
 import android.annotation.SuppressLint
 import com.google.gson.annotations.SerializedName
-import kr.hs.dgsw.smartschool.domain.model.time.WeekType
 import java.text.SimpleDateFormat
 import java.util.Date
 
 data class TimeTableResponse(
     val id: Int,
     val name: String,
-    val type: WeekType,
+    val type: WeekTypeResponse,
     @field:SerializedName("startTime") val startTime: String,
     @field:SerializedName("endTime") val endTime: String
 ) {
-    constructor() : this(0, "", WeekType.WEEKDAY, "", "")
+    constructor() : this(0, "", WeekTypeResponse.WEEKEND, "", "")
 
     @SuppressLint("SimpleDateFormat")
     private val format = SimpleDateFormat("HH:mm")
