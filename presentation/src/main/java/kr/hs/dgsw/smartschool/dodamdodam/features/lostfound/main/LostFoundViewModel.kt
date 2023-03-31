@@ -53,10 +53,12 @@ class LostFoundViewModel @Inject constructor(
             if (mineChecked.value == true)
                 myLostFound()
             else {
-                useCases.getLostFound(GetLostFound.Params(
-                    page = "1",
-                    type = if (foundChecked.value == true) "FOUND" else "LOST"
-                )).divideResult(
+                useCases.getLostFound(
+                    GetLostFound.Params(
+                        page = "1",
+                        type = if (foundChecked.value == true) "FOUND" else "LOST"
+                    )
+                ).divideResult(
                     isGetLostFoundLoading,
                     { launchLostFound(it!!) },
                     { launchLostFound("분실 게시물을 불러오는 데에 실패하였습니다.") }
