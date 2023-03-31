@@ -3,8 +3,8 @@ package kr.hs.dgsw.smartschool.data.network.remote
 import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.StudyRoomApi
+import kr.hs.dgsw.smartschool.data.network.response.studyroom.StudyRoomResponse
 import kr.hs.dgsw.smartschool.domain.model.studyroom.DefaultStudyRoom
-import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 import kr.hs.dgsw.smartschool.domain.param.studyroom.DefaultStudyRoomByTypeRequest
 import kr.hs.dgsw.smartschool.domain.param.studyroom.DefaultStudyRoomRequest
 import kr.hs.dgsw.smartschool.domain.param.studyroom.StudyRoomRequest
@@ -17,7 +17,7 @@ class StudyRoomRemote(override val api: StudyRoomApi) : BaseRemote<StudyRoomApi>
     suspend fun modifyAppliedStudyRoom(request: StudyRoomRequest): String =
         api.modifyAppliedStudyRoom(request).message
 
-    suspend fun getStudyRoomById(id: Int): StudyRoom =
+    suspend fun getStudyRoomById(id: Int): StudyRoomResponse =
         api.getStudyRoomById(id).data
 
     suspend fun cancelStudyRoom(id: Int): String =
@@ -32,7 +32,7 @@ class StudyRoomRemote(override val api: StudyRoomApi) : BaseRemote<StudyRoomApi>
     suspend fun createDefaultStudyRoomByWeekType(request: DefaultStudyRoomByTypeRequest): String =
         api.createDefaultStudyRoomByWeekType(request).message
 
-    suspend fun getMyStudyRoom(): List<StudyRoom?> {
+    suspend fun getMyStudyRoom(): List<StudyRoomResponse?> {
         Log.d("TestTest", "getMyStudyRoom: InRemote")
         return api.getMyStudyRoom().data
     }

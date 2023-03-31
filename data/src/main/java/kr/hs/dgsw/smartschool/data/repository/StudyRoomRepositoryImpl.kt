@@ -5,6 +5,7 @@ import kr.hs.dgsw.smartschool.data.datasource.PlaceDataSource
 import kr.hs.dgsw.smartschool.data.datasource.StudyRoomDataSource
 import kr.hs.dgsw.smartschool.data.datasource.TimeTableDataSource
 import kr.hs.dgsw.smartschool.data.mapper.toModel
+import kr.hs.dgsw.smartschool.data.network.response.studyroom.StudyRoomResponse
 import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.studyroom.DefaultStudyRoom
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
@@ -31,7 +32,9 @@ class StudyRoomRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMyStudyRoom(): List<StudyRoom> {
-        this.studyRoomList = studyRoomDataSource.getMyStudyRoom()
+        this.studyRoomList = studyRoomDataSource.getMyStudyRoom().map { studyRoomResponse ->
+            studyRoomResponse!!.toModel()
+        }
         this.timeTableList = timeTableDataSource.getAllTime().map { timeEntity ->
             Log.d("TestTest", "getMyStudyRoom: $timeEntity")
             timeEntity.toModel()
@@ -39,7 +42,7 @@ class StudyRoomRepositoryImpl @Inject constructor(
         if (studyRoomList.isEmpty()) {
             val initStudyRoomList = mutableListOf<StudyRoom>()
             this.timeTableList.forEach {
-                initStudyRoomList.add(StudyRoom(it))
+                initStudyRoomList.add(StudyRoomResponse(it.toModel()).toModel())
             }
             return initStudyRoomList
         }
@@ -58,7 +61,7 @@ class StudyRoomRepositoryImpl @Inject constructor(
         }
 
         timeTableList.forEachIndexed { index, timeTable ->
-            result.add(StudyRoom(timeTable))
+            result.add(StudyRoomResponse(timeTable.toModel()).toModel())
 
             studyRoomList.forEach { studyRoom ->
                 if (studyRoom?.timeTable?.id == timeTable.id) {
@@ -74,7 +77,7 @@ class StudyRoomRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getStudyRoomById(id: Int): StudyRoom {
-        return studyRoomDataSource.getStudyRoomById(id)
+        return studyRoomDataSource.getStudyRoomById(id).toModel()
     }
 
     override suspend fun cancelStudyRoom(id: Int): String {

@@ -1,6 +1,7 @@
 package kr.hs.dgsw.smartschool.data.mapper
 
 import kr.hs.dgsw.smartschool.data.database.entity.TimeEntity
+import kr.hs.dgsw.smartschool.data.network.response.time.TimeTableResponse
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
 import kr.hs.dgsw.smartschool.domain.model.time.WeekType
 
@@ -18,4 +19,17 @@ fun TimeTable.toEntity(): TimeEntity = TimeEntity(
     type = this.type.name,
     startTime = this.startTime,
     endTime = this.endTime
+)
+
+fun TimeTable.toModel(): TimeTableResponse = TimeTableResponse(
+    id = this.id,
+    name = this.name,
+    type = this.type,
+    startTime = this.startTime,
+    endTime = this.endTime
+)
+
+fun TimeTableResponse.toModel(): TimeTable = TimeTable(
+    id = this.id,
+    name, type, startTime, endTime
 )

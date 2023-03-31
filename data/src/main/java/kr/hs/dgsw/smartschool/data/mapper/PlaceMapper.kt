@@ -20,3 +20,12 @@ fun PlaceResponse.toEntity(): PlaceEntity = PlaceEntity(
     typeId = this.type.id,
     typeName = this.type.name
 )
+
+fun PlaceResponse.toModel(): Place = Place(
+    id = this.id,
+    name = this.name,
+    type = PlaceType(
+        this.type.id,
+        this.type.name
+    )
+)

@@ -22,7 +22,6 @@ fun SongChartResponse.toModel(): SongChart {
 fun SongStatusResponse.toModel(): SongStatus = when (this.name) {
     SongStatus.ALLOWED.name -> SongStatus.ALLOWED
     SongStatus.DENIED.name -> SongStatus.DENIED
-    SongStatus.PENDING.name -> SongStatus.PENDING
     else -> SongStatus.PENDING
 }
 

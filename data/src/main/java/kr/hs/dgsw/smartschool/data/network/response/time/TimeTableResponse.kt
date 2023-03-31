@@ -1,11 +1,12 @@
-package kr.hs.dgsw.smartschool.domain.model.time
+package kr.hs.dgsw.smartschool.data.network.response.time
 
 import android.annotation.SuppressLint
 import com.google.gson.annotations.SerializedName
+import kr.hs.dgsw.smartschool.domain.model.time.WeekType
 import java.text.SimpleDateFormat
 import java.util.Date
 
-data class TimeTable(
+data class TimeTableResponse(
     val id: Int,
     val name: String,
     val type: WeekType,

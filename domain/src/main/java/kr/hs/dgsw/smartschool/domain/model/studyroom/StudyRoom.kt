@@ -35,16 +35,6 @@ data class StudyRoom(
         timetable
     )
 
-    constructor(timeTable: TimeTable) : this(
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        timeTable
-    )
-
     constructor(timeTable: TimeTable, studyRoom: StudyRoom) : this(
         studyRoom.date,
         studyRoom.id,
