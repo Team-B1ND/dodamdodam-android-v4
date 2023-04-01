@@ -15,7 +15,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetPlaceState
 import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
-import kr.hs.dgsw.smartschool.domain.param.studyroom.StudyRoomRequest
+import kr.hs.dgsw.smartschool.domain.param.studyroom.StudyRoomParam
 import kr.hs.dgsw.smartschool.domain.usecase.place.GetAllPlaceUseCase
 import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ApplyStudyRoom
 import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ModifyAppliedStudyRoom
@@ -76,7 +76,7 @@ class StudyRoomApplyViewModel @Inject constructor(
                     applyLocationRemote(
                         params = ApplyStudyRoom.Params(
                             studyRoomList = listOf(
-                                StudyRoomRequest.RequestStudyRoom(
+                                StudyRoomParam.RequestStudyRoom(
                                     placeId = place.id,
                                     timeTableId = currentTimeTable.id,
                                 )
@@ -90,7 +90,7 @@ class StudyRoomApplyViewModel @Inject constructor(
                     modifyLocationRemote(
                         params = ModifyAppliedStudyRoom.Params(
                             studyRoomList = listOf(
-                                StudyRoomRequest.RequestStudyRoom(
+                                StudyRoomParam.RequestStudyRoom(
                                     placeId = place.id,
                                     timeTableId = currentTimeTable.id
                                 )

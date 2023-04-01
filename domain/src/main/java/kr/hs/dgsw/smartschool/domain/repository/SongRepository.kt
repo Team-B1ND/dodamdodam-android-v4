@@ -2,11 +2,11 @@ package kr.hs.dgsw.smartschool.domain.repository
 
 import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
 import kr.hs.dgsw.smartschool.domain.model.song.melon.SongChart
-import kr.hs.dgsw.smartschool.domain.param.song.SongRequest
+import kr.hs.dgsw.smartschool.domain.param.song.SongParam
 
 interface SongRepository {
 
-    suspend fun applySong(request: SongRequest): String
+    suspend fun applySong(request: SongParam): String
 
     suspend fun deleteSong(id: Int): String
 

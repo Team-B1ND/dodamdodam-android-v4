@@ -1,10 +1,10 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
+import kr.hs.dgsw.smartschool.data.network.request.out.ModifyOutRequest
+import kr.hs.dgsw.smartschool.data.network.request.out.OutRequest
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.out.OutItemResponse
 import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
-import kr.hs.dgsw.smartschool.domain.param.out.ModifyOutRequest
-import kr.hs.dgsw.smartschool.domain.param.out.OutRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET

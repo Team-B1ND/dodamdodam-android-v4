@@ -2,7 +2,7 @@ package kr.hs.dgsw.smartschool.domain.usecase.studyroom
 
 import kotlinx.coroutines.flow.Flow
 import kr.hs.dgsw.smartschool.domain.base.UseCase
-import kr.hs.dgsw.smartschool.domain.param.studyroom.DefaultStudyRoomByTypeRequest
+import kr.hs.dgsw.smartschool.domain.param.studyroom.DefaultStudyRoomByTypeParam
 import kr.hs.dgsw.smartschool.domain.repository.StudyRoomRepository
 import kr.hs.dgsw.smartschool.domain.util.Resource
 import javax.inject.Inject
@@ -13,7 +13,7 @@ class CreateDefaultStudyRoomByWeekType @Inject constructor(
 
     override fun invoke(params: Params): Flow<Resource<String>> = execute {
         repository.createDefaultStudyRoomByWeekType(
-            DefaultStudyRoomByTypeRequest(
+            DefaultStudyRoomByTypeParam(
                 placeId = params.placeId,
                 timeTableId = params.timeTableId,
                 type = params.type

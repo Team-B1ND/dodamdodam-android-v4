@@ -1,5 +1,6 @@
 package kr.hs.dgsw.smartschool.data.mapper
 
+import kr.hs.dgsw.smartschool.data.network.request.song.SongRequest
 import kr.hs.dgsw.smartschool.data.network.response.song.SongResponse
 import kr.hs.dgsw.smartschool.data.network.response.song.SongStatusResponse
 import kr.hs.dgsw.smartschool.data.network.response.song.VideoSongDataResponse
@@ -8,6 +9,7 @@ import kr.hs.dgsw.smartschool.domain.model.song.Song
 import kr.hs.dgsw.smartschool.domain.model.song.SongStatus
 import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
 import kr.hs.dgsw.smartschool.domain.model.song.melon.SongChart
+import kr.hs.dgsw.smartschool.domain.param.song.SongParam
 
 fun SongChartResponse.toModel(): SongChart {
     return SongChart(
@@ -48,3 +50,7 @@ fun VideoSongDataResponse.toModel(): VideoSongData {
         quality = quality
     )
 }
+
+fun SongParam.toRequest(): SongRequest = SongRequest(
+    videoUrl = videoUrl
+)

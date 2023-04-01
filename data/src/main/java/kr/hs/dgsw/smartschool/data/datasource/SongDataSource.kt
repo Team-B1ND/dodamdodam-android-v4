@@ -2,9 +2,9 @@ package kr.hs.dgsw.smartschool.data.datasource
 
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.SongRemote
+import kr.hs.dgsw.smartschool.data.network.request.song.SongRequest
 import kr.hs.dgsw.smartschool.data.network.response.song.VideoSongDataResponse
 import kr.hs.dgsw.smartschool.data.network.response.song.melon.SongChartResponse
-import kr.hs.dgsw.smartschool.domain.param.song.SongRequest
 import javax.inject.Inject
 
 class SongDataSource @Inject constructor(

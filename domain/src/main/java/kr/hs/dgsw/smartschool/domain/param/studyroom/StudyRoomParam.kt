@@ -1,6 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.param.studyroom
 
-data class StudyRoomRequest(
+data class StudyRoomParam(
     val studyRoomList: List<RequestStudyRoom>
 ) {
     data class RequestStudyRoom(

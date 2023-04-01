@@ -3,11 +3,11 @@ package kr.hs.dgsw.smartschool.data.network.remote
 import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.StudyRoomApi
+import kr.hs.dgsw.smartschool.data.network.request.studyroom.DefaultStudyRoomByTypeRequest
+import kr.hs.dgsw.smartschool.data.network.request.studyroom.DefaultStudyRoomRequest
+import kr.hs.dgsw.smartschool.data.network.request.studyroom.StudyRoomRequest
 import kr.hs.dgsw.smartschool.data.network.response.studyroom.StudyRoomResponse
 import kr.hs.dgsw.smartschool.domain.model.studyroom.DefaultStudyRoom
-import kr.hs.dgsw.smartschool.domain.param.studyroom.DefaultStudyRoomByTypeRequest
-import kr.hs.dgsw.smartschool.domain.param.studyroom.DefaultStudyRoomRequest
-import kr.hs.dgsw.smartschool.domain.param.studyroom.StudyRoomRequest
 
 class StudyRoomRemote(override val api: StudyRoomApi) : BaseRemote<StudyRoomApi>() {
 
