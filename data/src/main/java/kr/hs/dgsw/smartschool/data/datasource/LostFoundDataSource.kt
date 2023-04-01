@@ -3,11 +3,11 @@ package kr.hs.dgsw.smartschool.data.datasource
 import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.LostFoundRemote
+import kr.hs.dgsw.smartschool.data.network.request.lostfound.AddCommentRequest
+import kr.hs.dgsw.smartschool.data.network.request.lostfound.LostFoundDataRequest
+import kr.hs.dgsw.smartschool.data.network.request.lostfound.ModifyCommentRequest
 import kr.hs.dgsw.smartschool.data.network.response.lostpound.CommentResponse
 import kr.hs.dgsw.smartschool.data.network.response.lostpound.LostFoundResponse
-import kr.hs.dgsw.smartschool.domain.param.lostfound.AddCommentRequest
-import kr.hs.dgsw.smartschool.domain.param.lostfound.LostFoundDataRequest
-import kr.hs.dgsw.smartschool.domain.param.lostfound.ModifyCommentRequest
 import javax.inject.Inject
 
 class LostFoundDataSource @Inject constructor(

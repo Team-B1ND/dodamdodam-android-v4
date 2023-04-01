@@ -1,6 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.param.lostfound
 
-data class AddCommentRequest(
+data class ModifyCommentParam(
     val comment: String,
-    val lostFoundId: Int
+    val commentId: Int
 )

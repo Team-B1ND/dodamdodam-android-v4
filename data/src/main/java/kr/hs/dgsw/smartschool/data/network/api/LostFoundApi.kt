@@ -1,12 +1,12 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
+import kr.hs.dgsw.smartschool.data.network.request.lostfound.AddCommentRequest
+import kr.hs.dgsw.smartschool.data.network.request.lostfound.LostFoundDataRequest
+import kr.hs.dgsw.smartschool.data.network.request.lostfound.ModifyCommentRequest
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.lostpound.CommentResponse
 import kr.hs.dgsw.smartschool.data.network.response.lostpound.LostFoundResponse
 import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
-import kr.hs.dgsw.smartschool.domain.param.lostfound.AddCommentRequest
-import kr.hs.dgsw.smartschool.domain.param.lostfound.LostFoundDataRequest
-import kr.hs.dgsw.smartschool.domain.param.lostfound.ModifyCommentRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET

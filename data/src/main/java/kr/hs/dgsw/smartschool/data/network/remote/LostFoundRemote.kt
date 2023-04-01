@@ -2,13 +2,13 @@ package kr.hs.dgsw.smartschool.data.network.remote
 
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.LostFoundApi
+import kr.hs.dgsw.smartschool.data.network.request.lostfound.AddCommentRequest
+import kr.hs.dgsw.smartschool.data.network.request.lostfound.LostFoundDataRequest
+import kr.hs.dgsw.smartschool.data.network.request.lostfound.ModifyCommentRequest
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.lostpound.CommentResponse
 import kr.hs.dgsw.smartschool.data.network.response.lostpound.LostFoundResponse
 import kr.hs.dgsw.smartschool.data.util.Constants
-import kr.hs.dgsw.smartschool.domain.param.lostfound.AddCommentRequest
-import kr.hs.dgsw.smartschool.domain.param.lostfound.LostFoundDataRequest
-import kr.hs.dgsw.smartschool.domain.param.lostfound.ModifyCommentRequest
 import javax.inject.Inject
 
 class LostFoundRemote @Inject constructor(

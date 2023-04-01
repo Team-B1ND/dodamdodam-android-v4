@@ -10,8 +10,8 @@ import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetCommentState
 import kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.state.GetMyInfoState
-import kr.hs.dgsw.smartschool.domain.param.lostfound.AddCommentRequest
-import kr.hs.dgsw.smartschool.domain.param.lostfound.ModifyCommentRequest
+import kr.hs.dgsw.smartschool.domain.param.lostfound.AddCommentParam
+import kr.hs.dgsw.smartschool.domain.param.lostfound.ModifyCommentParam
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.DeleteLostFoundComment
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.GetLostFoundComment
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
@@ -61,7 +61,7 @@ class LostFoundCommentViewModel @Inject constructor(
     fun addComment(idx: Int) {
         if (comment.value == null) viewEvent(EVENT_EMPTY_COMMENT)
         else {
-            useCases.addLostFoundComment(AddCommentRequest(comment = comment.value!!, lostFoundId = idx))
+            useCases.addLostFoundComment(AddCommentParam(comment = comment.value!!, lostFoundId = idx))
                 .divideResult(
                     isGetCommentLoading,
                     { getComment(lostFoundId!!) },
@@ -71,7 +71,7 @@ class LostFoundCommentViewModel @Inject constructor(
     }
     fun modifyComment(idx: Int, newComment: String) {
         useCases.modifyLostFoundComment(
-            ModifyCommentRequest(
+            ModifyCommentParam(
                 comment = newComment,
                 commentId = idx
             )

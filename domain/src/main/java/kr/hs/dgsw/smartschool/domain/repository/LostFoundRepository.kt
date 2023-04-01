@@ -1,9 +1,9 @@
 package kr.hs.dgsw.smartschool.domain.repository
 import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
-import kr.hs.dgsw.smartschool.domain.param.lostfound.AddCommentRequest
-import kr.hs.dgsw.smartschool.domain.param.lostfound.LostFoundDataRequest
-import kr.hs.dgsw.smartschool.domain.param.lostfound.ModifyCommentRequest
+import kr.hs.dgsw.smartschool.domain.param.lostfound.AddCommentParam
+import kr.hs.dgsw.smartschool.domain.param.lostfound.LostFoundDataParam
+import kr.hs.dgsw.smartschool.domain.param.lostfound.ModifyCommentParam
 
 interface LostFoundRepository {
     suspend fun getLostFound(page: Int, type: String): List<LostFound>
@@ -16,13 +16,13 @@ interface LostFoundRepository {
 
     suspend fun getMyLostFound(): List<LostFound>
 
-    suspend fun addLostFound(request: LostFoundDataRequest): String
+    suspend fun addLostFound(request: LostFoundDataParam): String
 
-    suspend fun addComment(request: AddCommentRequest): String
+    suspend fun addComment(request: AddCommentParam): String
 
-    suspend fun modifyLostFound(request: LostFoundDataRequest): String
+    suspend fun modifyLostFound(request: LostFoundDataParam): String
 
-    suspend fun modifyComment(request: ModifyCommentRequest): String
+    suspend fun modifyComment(request: ModifyCommentParam): String
 
     suspend fun deleteLostFound(idx: Int): String
 

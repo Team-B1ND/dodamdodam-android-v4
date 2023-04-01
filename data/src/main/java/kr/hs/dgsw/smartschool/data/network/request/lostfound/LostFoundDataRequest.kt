@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.domain.param.lostfound
+package kr.hs.dgsw.smartschool.data.network.request.lostfound
 
 import com.google.gson.annotations.SerializedName
 

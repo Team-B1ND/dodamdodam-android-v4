@@ -1,11 +1,12 @@
 package kr.hs.dgsw.smartschool.data.repository
 import kr.hs.dgsw.smartschool.data.datasource.LostFoundDataSource
 import kr.hs.dgsw.smartschool.data.mapper.toModel
+import kr.hs.dgsw.smartschool.data.mapper.toRequest
 import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
-import kr.hs.dgsw.smartschool.domain.param.lostfound.AddCommentRequest
-import kr.hs.dgsw.smartschool.domain.param.lostfound.LostFoundDataRequest
-import kr.hs.dgsw.smartschool.domain.param.lostfound.ModifyCommentRequest
+import kr.hs.dgsw.smartschool.domain.param.lostfound.AddCommentParam
+import kr.hs.dgsw.smartschool.domain.param.lostfound.LostFoundDataParam
+import kr.hs.dgsw.smartschool.domain.param.lostfound.ModifyCommentParam
 import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
 import javax.inject.Inject
 
@@ -43,20 +44,20 @@ class LostFoundRepositoryImpl @Inject constructor(
         return lostFoundDataSource.getMyLostFound().map { lostFoundResponse -> lostFoundResponse.toModel() }
     }
 
-    override suspend fun addLostFound(request: LostFoundDataRequest): String {
-        return lostFoundDataSource.addLostFound(request)
+    override suspend fun addLostFound(request: LostFoundDataParam): String {
+        return lostFoundDataSource.addLostFound(request.toRequest())
     }
 
-    override suspend fun addComment(request: AddCommentRequest): String {
-        return lostFoundDataSource.addComment(request)
+    override suspend fun addComment(request: AddCommentParam): String {
+        return lostFoundDataSource.addComment(request.toRequest())
     }
 
-    override suspend fun modifyLostFound(request: LostFoundDataRequest): String {
-        return lostFoundDataSource.modifyLostFound(request)
+    override suspend fun modifyLostFound(request: LostFoundDataParam): String {
+        return lostFoundDataSource.modifyLostFound(request.toRequest())
     }
 
-    override suspend fun modifyComment(request: ModifyCommentRequest): String {
-        return lostFoundDataSource.modifyComment(request)
+    override suspend fun modifyComment(request: ModifyCommentParam): String {
+        return lostFoundDataSource.modifyComment(request.toRequest())
     }
 
     override suspend fun deleteLostFound(idx: Int): String {
