@@ -3,7 +3,7 @@ package kr.hs.dgsw.smartschool.domain.param.auth
 import kr.hs.dgsw.smartschool.domain.util.Utils
 import java.security.NoSuchAlgorithmException
 
-class ModifyPwRequest(
+class ModifyPwParam(
     newPw: String,
     pw: String,
     encryption: Boolean = true

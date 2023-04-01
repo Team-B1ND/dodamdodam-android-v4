@@ -1,11 +1,11 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
+import kr.hs.dgsw.smartschool.data.network.request.bus.AddBusRequest
+import kr.hs.dgsw.smartschool.data.network.request.bus.UpdateBusRequest
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.bus.BusByDateResponse
 import kr.hs.dgsw.smartschool.data.network.response.bus.BusResponse
 import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
-import kr.hs.dgsw.smartschool.domain.param.bus.AddBusRequest
-import kr.hs.dgsw.smartschool.domain.param.bus.UpdateBusRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET

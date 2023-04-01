@@ -1,9 +1,9 @@
-package kr.hs.dgsw.smartschool.domain.param.bus
+package kr.hs.dgsw.smartschool.data.network.request.bus
 
-data class AddBusRequest(
+data class UpdateBusRequest(
     val busName: String,
     val description: String,
     val leaveTime: String,
     val timeRequired: String,
-    val peopleLimit: Int = 0
+    val peopleLimit: Int
 )

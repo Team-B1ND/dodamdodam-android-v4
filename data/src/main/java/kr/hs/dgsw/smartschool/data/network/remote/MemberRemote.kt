@@ -2,13 +2,13 @@ package kr.hs.dgsw.smartschool.data.network.remote
 
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.MemberApi
+import kr.hs.dgsw.smartschool.data.network.request.auth.ModifyPwRequest
+import kr.hs.dgsw.smartschool.data.network.request.member.ModifyMemberInfoRequest
 import kr.hs.dgsw.smartschool.data.network.response.data.MemberData
 import kr.hs.dgsw.smartschool.data.network.response.member.MemberResponse
 import kr.hs.dgsw.smartschool.data.network.response.member.ParentResponse
 import kr.hs.dgsw.smartschool.data.network.response.member.StudentResponse
 import kr.hs.dgsw.smartschool.data.network.response.member.TeacherResponse
-import kr.hs.dgsw.smartschool.domain.param.auth.ModifyPwRequest
-import kr.hs.dgsw.smartschool.domain.param.member.ModifyMemberInfoRequest
 import javax.inject.Inject
 
 class MemberRemote @Inject constructor(

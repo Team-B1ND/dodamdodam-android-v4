@@ -1,5 +1,7 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
+import kr.hs.dgsw.smartschool.data.network.request.auth.ModifyPwRequest
+import kr.hs.dgsw.smartschool.data.network.request.member.ModifyMemberInfoRequest
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.data.MemberData
 import kr.hs.dgsw.smartschool.data.network.response.member.MemberResponse
@@ -7,8 +9,6 @@ import kr.hs.dgsw.smartschool.data.network.response.member.ParentResponse
 import kr.hs.dgsw.smartschool.data.network.response.member.StudentResponse
 import kr.hs.dgsw.smartschool.data.network.response.member.TeacherResponse
 import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
-import kr.hs.dgsw.smartschool.domain.param.auth.ModifyPwRequest
-import kr.hs.dgsw.smartschool.domain.param.member.ModifyMemberInfoRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET

@@ -5,8 +5,8 @@ import kr.hs.dgsw.smartschool.data.database.cache.MemberCache
 import kr.hs.dgsw.smartschool.data.database.entity.StudentEntity
 import kr.hs.dgsw.smartschool.data.mapper.toEntity
 import kr.hs.dgsw.smartschool.data.network.remote.MemberRemote
+import kr.hs.dgsw.smartschool.data.network.request.member.ModifyMemberInfoRequest
 import kr.hs.dgsw.smartschool.data.network.response.member.StudentResponse
-import kr.hs.dgsw.smartschool.domain.param.member.ModifyMemberInfoRequest
 import javax.inject.Inject
 
 class StudentDataSource @Inject constructor(

@@ -3,12 +3,13 @@ package kr.hs.dgsw.smartschool.data.repository
 import android.util.Log
 import kr.hs.dgsw.smartschool.data.datasource.BusDataSource
 import kr.hs.dgsw.smartschool.data.mapper.toModel
+import kr.hs.dgsw.smartschool.data.mapper.toRequest
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.param.bus.AddBusRequest
-import kr.hs.dgsw.smartschool.domain.param.bus.MyBusByMonthRequest
-import kr.hs.dgsw.smartschool.domain.param.bus.UpdateBusApplyRequest
-import kr.hs.dgsw.smartschool.domain.param.bus.UpdateBusRequest
+import kr.hs.dgsw.smartschool.domain.param.bus.AddBusParam
+import kr.hs.dgsw.smartschool.domain.param.bus.MyBusByMonthParam
+import kr.hs.dgsw.smartschool.domain.param.bus.UpdateBusApplyParam
+import kr.hs.dgsw.smartschool.domain.param.bus.UpdateBusParam
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import javax.inject.Inject
 
@@ -26,15 +27,15 @@ class BusRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMyBusByMonth(
-        request: MyBusByMonthRequest
+        request: MyBusByMonthParam
     ): List<Bus> {
         return dataSource.getMyBusByMonth(request).map { it.toModel() }
     }
 
     override suspend fun addBus(
-        request: AddBusRequest
+        request: AddBusParam
     ): String =
-        dataSource.addBus(request)
+        dataSource.addBus(request.toRequest())
 
     override suspend fun addBusApply(
         idx: Int
@@ -43,12 +44,12 @@ class BusRepositoryImpl @Inject constructor(
 
     override suspend fun updateBus(
         id: Int,
-        request: UpdateBusRequest
+        request: UpdateBusParam
     ): String =
-        dataSource.updateBus(id, request)
+        dataSource.updateBus(id, request.toRequest())
 
     override suspend fun updateBusApply(
-        request: UpdateBusApplyRequest
+        request: UpdateBusApplyParam
     ): String =
         dataSource.updateBusApply(request)
 
