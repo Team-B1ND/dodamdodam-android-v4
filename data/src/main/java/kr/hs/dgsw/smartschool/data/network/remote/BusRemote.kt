@@ -8,8 +8,6 @@ import kr.hs.dgsw.smartschool.data.network.request.bus.UpdateBusRequest
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.bus.BusByDateResponse
 import kr.hs.dgsw.smartschool.data.network.response.bus.BusResponse
-import kr.hs.dgsw.smartschool.domain.param.bus.MyBusByMonthParam
-import kr.hs.dgsw.smartschool.domain.param.bus.UpdateBusApplyParam
 import javax.inject.Inject
 
 class BusRemote @Inject constructor(
@@ -24,10 +22,11 @@ class BusRemote @Inject constructor(
     }
 
     suspend fun getMyBusByMonth(
-        request: MyBusByMonthParam
+        year: Int,
+        month: Int
     ): Response<List<BusResponse>> = api.getMyBusByMonth(
-        request.month,
-        request.year
+        month,
+        year
     )
 
     suspend fun updateBus(
@@ -39,10 +38,11 @@ class BusRemote @Inject constructor(
     )
 
     suspend fun updateBusApply(
-        request: UpdateBusApplyParam
+        busId: Int,
+        originBusId: Int
     ): Response<Any> = api.updateBusApply(
-        request.busId,
-        request.originBusId
+        busId,
+        originBusId
     )
 
     suspend fun addBus(

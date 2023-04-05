@@ -2,6 +2,7 @@ package kr.hs.dgsw.smartschool.data.repository
 import kr.hs.dgsw.smartschool.data.datasource.LostFoundDataSource
 import kr.hs.dgsw.smartschool.data.mapper.toModel
 import kr.hs.dgsw.smartschool.data.mapper.toRequest
+import kr.hs.dgsw.smartschool.data.network.request.lostfound.AddCommentRequest
 import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 import kr.hs.dgsw.smartschool.domain.param.lostfound.AddCommentParam
@@ -48,8 +49,8 @@ class LostFoundRepositoryImpl @Inject constructor(
         return lostFoundDataSource.addLostFound(request.toRequest())
     }
 
-    override suspend fun addComment(request: AddCommentParam): String {
-        return lostFoundDataSource.addComment(request.toRequest())
+    override suspend fun addComment(comment: String, lostFoundId: Int): String {
+        return lostFoundDataSource.addComment(AddCommentRequest(comment, lostFoundId))
     }
 
     override suspend fun modifyLostFound(request: LostFoundDataParam): String {

@@ -3,14 +3,12 @@ package kr.hs.dgsw.smartschool.data.repository
 import android.util.Log
 import kr.hs.dgsw.smartschool.data.datasource.BusDataSource
 import kr.hs.dgsw.smartschool.data.mapper.toModel
-import kr.hs.dgsw.smartschool.data.mapper.toRequest
+import kr.hs.dgsw.smartschool.data.network.request.bus.AddBusRequest
+import kr.hs.dgsw.smartschool.data.network.request.bus.UpdateBusRequest
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.param.bus.AddBusParam
-import kr.hs.dgsw.smartschool.domain.param.bus.MyBusByMonthParam
-import kr.hs.dgsw.smartschool.domain.param.bus.UpdateBusApplyParam
-import kr.hs.dgsw.smartschool.domain.param.bus.UpdateBusParam
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
+import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusInfo
 import javax.inject.Inject
 
 class BusRepositoryImpl @Inject constructor(
@@ -27,15 +25,20 @@ class BusRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMyBusByMonth(
-        request: MyBusByMonthParam
+        year: Int,
+        month: Int
     ): List<Bus> {
-        return dataSource.getMyBusByMonth(request).map { it.toModel() }
+        return dataSource.getMyBusByMonth(year, month).map { it.toModel() }
     }
 
     override suspend fun addBus(
-        request: AddBusParam
+        busName: String,
+        description: String,
+        leaveTime: String,
+        timeRequired: String,
+        peopleLimit: Int
     ): String =
-        dataSource.addBus(request.toRequest())
+        dataSource.addBus(AddBusRequest(busName, description, leaveTime, timeRequired, peopleLimit))
 
     override suspend fun addBusApply(
         idx: Int
@@ -44,14 +47,24 @@ class BusRepositoryImpl @Inject constructor(
 
     override suspend fun updateBus(
         id: Int,
-        request: UpdateBusParam
+        request: UpdateBusInfo.UpdateBusParam
     ): String =
-        dataSource.updateBus(id, request.toRequest())
+        dataSource.updateBus(
+            id,
+            UpdateBusRequest(
+                request.busName,
+                request.description,
+                request.leaveTime,
+                request.timeRequired,
+                request.peopleLimit
+            )
+        )
 
     override suspend fun updateBusApply(
-        request: UpdateBusApplyParam
+        busId: Int,
+        originBusId: Int
     ): String =
-        dataSource.updateBusApply(request)
+        dataSource.updateBusApply(busId, originBusId)
 
     override suspend fun deleteBus(
         idx: Int

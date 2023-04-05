@@ -1,11 +1,7 @@
 package kr.hs.dgsw.smartschool.domain.repository
 
-import kr.hs.dgsw.smartschool.domain.param.auth.JoinParam
-import kr.hs.dgsw.smartschool.domain.param.auth.LoginParam
-
 interface AuthRepository {
+    suspend fun join(email: String, grade: Int, id: String, name: String, number: Int, phone: String, pw: String, room: Int): String
 
-    suspend fun join(joinParam: JoinParam): String
-
-    suspend fun login(loginParam: LoginParam)
+    suspend fun login(id: String, pw: String, encryption: Boolean = true)
 }

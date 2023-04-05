@@ -4,7 +4,7 @@ import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
 import kr.hs.dgsw.smartschool.data.network.response.meal.MealResponse
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 
-fun MealEntity.toModel(): MealResponse = MealResponse(
+fun MealEntity.toModel(): Meal = Meal(
     date = "${this.year}-${this.month}-${this.day}",
     exists = this.exists,
     breakfast = this.breakfast,
@@ -19,7 +19,7 @@ fun MealResponse.toModel(): Meal = Meal(
     exists = this.exists,
     lunch = this.lunch
 )
-fun MealResponse.toEntity(): MealEntity = MealEntity(
+fun Meal.toEntity(): MealEntity = MealEntity(
     year = this.date.split("-")[0].toInt(),
     month = this.date.split("-")[1].toInt(),
     day = this.date.split("-")[2].toInt(),

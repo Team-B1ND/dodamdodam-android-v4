@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
-import kr.hs.dgsw.smartschool.data.network.request.song.SongRequest
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.song.SongResponse
 import kr.hs.dgsw.smartschool.data.network.response.song.melon.SongChartResponse
@@ -16,7 +15,7 @@ interface SongApi {
 
     @POST(DodamUrl.WAKE_UP_SONG)
     suspend fun applySong(
-        @Body request: SongRequest
+        @Body request: String
     ): Response<Any>
 
     @DELETE(DodamUrl.WakeUpSong.My.ID)

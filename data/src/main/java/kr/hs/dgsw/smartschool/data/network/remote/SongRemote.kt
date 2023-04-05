@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.data.network.remote
 
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.SongApi
-import kr.hs.dgsw.smartschool.data.network.request.song.SongRequest
 import kr.hs.dgsw.smartschool.data.network.response.song.VideoSongDataResponse
 import kr.hs.dgsw.smartschool.data.network.response.song.melon.SongChartResponse
 import javax.inject.Inject
@@ -12,8 +11,8 @@ class SongRemote @Inject constructor(
     private val quality: String
 ) : BaseRemote<SongApi>() {
 
-    suspend fun applySong(request: SongRequest): String =
-        api.applySong(request).message
+    suspend fun applySong(videoUrl: String): String =
+        api.applySong(videoUrl).message
 
     suspend fun deleteSong(id: Int): String =
         api.deleteSong(id).message

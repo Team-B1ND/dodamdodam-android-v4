@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.data.datasource
 
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.SongRemote
-import kr.hs.dgsw.smartschool.data.network.request.song.SongRequest
 import kr.hs.dgsw.smartschool.data.network.response.song.VideoSongDataResponse
 import kr.hs.dgsw.smartschool.data.network.response.song.melon.SongChartResponse
 import javax.inject.Inject
@@ -12,7 +11,7 @@ class SongDataSource @Inject constructor(
     override val cache: Any
 ) : BaseDataSource<SongRemote, Any> {
 
-    suspend fun applySong(request: SongRequest): String = remote.applySong(request)
+    suspend fun applySong(videoUrl: String): String = remote.applySong(videoUrl)
 
     suspend fun deleteSong(id: Int): String = remote.deleteSong(id)
 

@@ -2,10 +2,8 @@ package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.SongDataSource
 import kr.hs.dgsw.smartschool.data.mapper.toModel
-import kr.hs.dgsw.smartschool.data.mapper.toRequest
 import kr.hs.dgsw.smartschool.domain.model.song.VideoSongData
 import kr.hs.dgsw.smartschool.domain.model.song.melon.SongChart
-import kr.hs.dgsw.smartschool.domain.param.song.SongParam
 import kr.hs.dgsw.smartschool.domain.repository.SongRepository
 import javax.inject.Inject
 
@@ -13,8 +11,8 @@ class SongRepositoryImpl @Inject constructor(
     private val songDataSource: SongDataSource
 ) : SongRepository {
 
-    override suspend fun applySong(request: SongParam): String {
-        return songDataSource.applySong(request.toRequest())
+    override suspend fun applySong(videoUrl: String): String {
+        return songDataSource.applySong(videoUrl)
     }
 
     override suspend fun deleteSong(id: Int): String {

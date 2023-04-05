@@ -1,8 +1,6 @@
 package kr.hs.dgsw.smartschool.data.repository
 
 import kr.hs.dgsw.smartschool.data.datasource.AccountDataSource
-import kr.hs.dgsw.smartschool.data.mapper.toEntity
-import kr.hs.dgsw.smartschool.data.mapper.toModel
 import kr.hs.dgsw.smartschool.domain.model.account.Account
 import kr.hs.dgsw.smartschool.domain.repository.AccountRepository
 import javax.inject.Inject
@@ -12,11 +10,11 @@ class AccountRepositoryImpl @Inject constructor(
 ) : AccountRepository {
 
     override suspend fun getAccount(): Account {
-        return accountDataSource.getAccount().toModel()
+        return accountDataSource.getAccount()
     }
 
     override suspend fun insertAccount(account: Account) {
-        accountDataSource.insertAccount(account.toEntity())
+        accountDataSource.insertAccount(account)
     }
 
     override suspend fun deleteAccount() {

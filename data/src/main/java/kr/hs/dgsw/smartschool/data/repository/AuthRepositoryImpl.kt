@@ -4,10 +4,10 @@ import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
 import kr.hs.dgsw.smartschool.data.datasource.AccountDataSource
 import kr.hs.dgsw.smartschool.data.datasource.AuthDataSource
 import kr.hs.dgsw.smartschool.data.datasource.TokenDataSource
-import kr.hs.dgsw.smartschool.data.mapper.toRequest
+import kr.hs.dgsw.smartschool.data.mapper.toModel
+import kr.hs.dgsw.smartschool.data.network.request.auth.JoinRequest
+import kr.hs.dgsw.smartschool.data.network.request.auth.LoginRequest
 import kr.hs.dgsw.smartschool.domain.model.token.Token
-import kr.hs.dgsw.smartschool.domain.param.auth.JoinParam
-import kr.hs.dgsw.smartschool.domain.param.auth.LoginParam
 import kr.hs.dgsw.smartschool.domain.repository.AuthRepository
 import javax.inject.Inject
 
@@ -17,13 +17,13 @@ class AuthRepositoryImpl @Inject constructor(
     private val accountDataSource: AccountDataSource
 ) : AuthRepository {
 
-    override suspend fun join(joinParam: JoinParam): String {
-        return authDataSource.join(joinParam.toRequest())
+    override suspend fun join(email: String, grade: Int, id: String, name: String, number: Int, phone: String, pw: String, room: Int): String {
+        return authDataSource.join(joinRequest = JoinRequest(email, grade, id, name, number, phone, pw, room))
     }
 
-    override suspend fun login(loginParam: LoginParam) {
-        authDataSource.login(loginParam.toRequest()).also {
-            accountDataSource.insertAccount(AccountEntity(loginParam.id, loginParam.pw))
+    override suspend fun login(id: String, pw: String, encryption: Boolean) {
+        authDataSource.login(loginRequest = LoginRequest(id, pw, encryption)).also {
+            accountDataSource.insertAccount(AccountEntity(id, pw).toModel())
             tokenDataSource.insertToken(Token(it.token, it.refreshToken))
         }
     }
