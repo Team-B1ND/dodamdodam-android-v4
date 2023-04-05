@@ -21,5 +21,4 @@ class AddLostFoundComment @Inject constructor(
         val comment: String,
         val lostFoundId: Int
     )
-
 }

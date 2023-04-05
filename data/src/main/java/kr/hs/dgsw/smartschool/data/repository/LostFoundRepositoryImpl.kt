@@ -5,7 +5,6 @@ import kr.hs.dgsw.smartschool.data.mapper.toRequest
 import kr.hs.dgsw.smartschool.data.network.request.lostfound.AddCommentRequest
 import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
-import kr.hs.dgsw.smartschool.domain.param.lostfound.AddCommentParam
 import kr.hs.dgsw.smartschool.domain.param.lostfound.LostFoundDataParam
 import kr.hs.dgsw.smartschool.domain.param.lostfound.ModifyCommentParam
 import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
