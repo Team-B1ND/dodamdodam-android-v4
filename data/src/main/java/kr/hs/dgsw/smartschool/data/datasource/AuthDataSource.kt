@@ -12,11 +12,11 @@ class AuthDataSource @Inject constructor(
     override val cache: Any
 ) : BaseDataSource<AuthRemote, Any> {
 
-    suspend fun join(joinRequest: JoinRequest): String {
-        return remote.join(joinRequest)
+    suspend fun join(email: String, grade: Int, id: String, name: String, number: Int, phone: String, pw: String, room: Int): String {
+        return remote.join(JoinRequest(email, grade, id, name, number, phone, pw, room))
     }
 
-    suspend fun login(loginRequest: LoginRequest): LoginData {
-        return remote.login(loginRequest).data
+    suspend fun login(id: String, pw: String, encryption: Boolean): LoginData {
+        return remote.login(LoginRequest(id, pw, encryption)).data
     }
 }

@@ -5,16 +5,15 @@ import kr.hs.dgsw.smartschool.data.datasource.PlaceDataSource
 import kr.hs.dgsw.smartschool.data.datasource.StudyRoomDataSource
 import kr.hs.dgsw.smartschool.data.datasource.TimeTableDataSource
 import kr.hs.dgsw.smartschool.data.mapper.toModel
-import kr.hs.dgsw.smartschool.data.mapper.toRequest
 import kr.hs.dgsw.smartschool.data.network.response.studyroom.StudyRoomResponse
 import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.studyroom.DefaultStudyRoom
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
-import kr.hs.dgsw.smartschool.domain.param.studyroom.DefaultStudyRoomByTypeParam
-import kr.hs.dgsw.smartschool.domain.param.studyroom.DefaultStudyRoomParam
-import kr.hs.dgsw.smartschool.domain.param.studyroom.StudyRoomParam
 import kr.hs.dgsw.smartschool.domain.repository.StudyRoomRepository
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ApplyStudyRoom
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.CreateDefaultStudyRoom
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ModifyAppliedStudyRoom
 import javax.inject.Inject
 
 class StudyRoomRepositoryImpl @Inject constructor(
@@ -28,8 +27,8 @@ class StudyRoomRepositoryImpl @Inject constructor(
     private lateinit var timeTableList: List<TimeTable>
     private lateinit var placeList: List<Place>
 
-    override suspend fun applyStudyRoom(request: StudyRoomParam): String {
-        return studyRoomDataSource.applyStudyRoom(request.toRequest())
+    override suspend fun applyStudyRoom(studyRoomList: List<ApplyStudyRoom.Params.RequestStudyRoom>): String {
+        return studyRoomDataSource.applyStudyRoom(studyRoomList)
     }
 
     override suspend fun getMyStudyRoom(): List<StudyRoom> {
@@ -73,8 +72,8 @@ class StudyRoomRepositoryImpl @Inject constructor(
         return result
     }
 
-    override suspend fun modifyAppliedStudyRoom(request: StudyRoomParam): String {
-        return studyRoomDataSource.modifyAppliedStudyRoom(request.toRequest())
+    override suspend fun modifyAppliedStudyRoom(studyRoomList: List<ModifyAppliedStudyRoom.Params.RequestStudyRoom>): String {
+        return studyRoomDataSource.modifyAppliedStudyRoom(studyRoomList)
     }
 
     override suspend fun getStudyRoomById(id: Int): StudyRoom {
@@ -114,11 +113,11 @@ class StudyRoomRepositoryImpl @Inject constructor(
         return result
     }
 
-    override suspend fun createDefaultStudyRoom(request: DefaultStudyRoomParam): String {
-        return studyRoomDataSource.createDefaultStudyRoom(request.toRequest())
+    override suspend fun createDefaultStudyRoom(day: String, defaultStudyRooms: List<CreateDefaultStudyRoom.Params.DefaultStudyRoom>): String {
+        return studyRoomDataSource.createDefaultStudyRoom(day, defaultStudyRooms)
     }
 
-    override suspend fun createDefaultStudyRoomByWeekType(request: DefaultStudyRoomByTypeParam): String {
-        return studyRoomDataSource.createDefaultStudyRoomByWeekType(request.toRequest())
+    override suspend fun createDefaultStudyRoomByWeekType(placeId: Int, timeTableId: Int, type: Int): String {
+        return studyRoomDataSource.createDefaultStudyRoomByWeekType(placeId, timeTableId, type)
     }
 }
