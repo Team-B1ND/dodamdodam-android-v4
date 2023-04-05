@@ -31,10 +31,20 @@ class BusRemote @Inject constructor(
 
     suspend fun updateBus(
         busId: Int,
-        request: UpdateBusRequest
+        busName: String,
+        description: String,
+        leaveTime: String,
+        timeRequired: String,
+        peopleLimit: Int
     ): Response<Any> = api.updateBus(
-        busId,
-        request
+        UpdateBusRequest(
+            busId,
+            busName,
+            description,
+            leaveTime,
+            timeRequired,
+            peopleLimit
+        )
     )
 
     suspend fun updateBusApply(

@@ -2,7 +2,6 @@ package kr.hs.dgsw.smartschool.domain.repository
 
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusInfo
 
 interface BusRepository {
 
@@ -30,7 +29,11 @@ interface BusRepository {
     // PUT
     suspend fun updateBus(
         id: Int,
-        request: UpdateBusInfo.UpdateBusParam
+        busName: String,
+        description: String,
+        leaveTime: String,
+        timeRequired: String,
+        peopleLimit: Int
     ): String
     suspend fun updateBusApply(
         busId: Int,

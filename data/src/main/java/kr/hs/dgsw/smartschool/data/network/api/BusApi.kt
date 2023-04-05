@@ -39,7 +39,6 @@ interface BusApi {
 
     @PATCH(DodamUrl.Bus.ID)
     suspend fun updateBus(
-        @Query("id") busId: Int,
         @Body request: UpdateBusRequest
     ): Response<Any>
 

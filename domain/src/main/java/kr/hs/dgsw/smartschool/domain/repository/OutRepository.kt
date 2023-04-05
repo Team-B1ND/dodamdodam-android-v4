@@ -1,8 +1,6 @@
 package kr.hs.dgsw.smartschool.domain.repository
 
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
-import kr.hs.dgsw.smartschool.domain.param.out.ModifyOutParam
-import kr.hs.dgsw.smartschool.domain.param.out.OutParam
 
 interface OutRepository {
 
@@ -12,9 +10,9 @@ interface OutRepository {
 
     suspend fun getMyOutSleeping(): List<OutItem>
 
-    suspend fun applyOutSleeping(request: OutParam): OutItem
+    suspend fun applyOutSleeping(startOutDate: String, endOutDate: String, reason: String): OutItem
 
-    suspend fun modifyOutSleeping(request: ModifyOutParam): OutItem
+    suspend fun modifyOutSleeping(startOutDate: String, endOutDate: String, reason: String, outId: Int): OutItem
 
     suspend fun deleteOutSleeping(outSleepingId: Int): String
 
@@ -22,9 +20,9 @@ interface OutRepository {
 
     suspend fun getMyOutGoing(): List<OutItem>
 
-    suspend fun applyOutGoing(request: OutParam): OutItem
+    suspend fun applyOutGoing(startOutDate: String, endOutDate: String, reason: String): OutItem
 
-    suspend fun modifyOutGoing(request: ModifyOutParam): OutItem
+    suspend fun modifyOutGoing(startOutDate: String, endOutDate: String, reason: String, outId: Int): OutItem
 
     suspend fun deleteOutGoing(outGoingId: Int): String
 }

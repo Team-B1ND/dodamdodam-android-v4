@@ -4,7 +4,6 @@ import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.request.bus.AddBusRequest
-import kr.hs.dgsw.smartschool.data.network.request.bus.UpdateBusRequest
 import kr.hs.dgsw.smartschool.data.network.response.bus.BusByDateResponse
 import kr.hs.dgsw.smartschool.data.network.response.bus.BusResponse
 import javax.inject.Inject
@@ -30,9 +29,13 @@ class BusDataSource @Inject constructor(
 
     suspend fun updateBus(
         id: Int,
-        request: UpdateBusRequest
+        busName: String,
+        description: String,
+        leaveTime: String,
+        timeRequired: String,
+        peopleLimit: Int
     ): String {
-        return remote.updateBus(id, request).message
+        return remote.updateBus(id, busName, description, leaveTime, timeRequired, peopleLimit).message
     }
 
     suspend fun updateBusApply(
