@@ -21,7 +21,7 @@ class AuthRepositoryImpl @Inject constructor(
 
     override suspend fun login(id: String, pw: String, encryption: Boolean) {
         authDataSource.login(id, pw, encryption).also {
-            accountDataSource.insertAccount(AccountEntity(id, pw).toModel())
+            accountDataSource.insertAccount(AccountEntity(id, pw))
             tokenDataSource.insertToken(Token(it.token, it.refreshToken))
         }
     }

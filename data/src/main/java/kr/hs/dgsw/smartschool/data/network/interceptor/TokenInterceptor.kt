@@ -9,7 +9,6 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
 import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
 import kr.hs.dgsw.smartschool.data.datasource.AccountDataSource
-import kr.hs.dgsw.smartschool.data.mapper.toEntity
 import kr.hs.dgsw.smartschool.data.util.AppDispatchers
 import kr.hs.dgsw.smartschool.domain.exception.TokenException
 import kr.hs.dgsw.smartschool.domain.model.token.Token
@@ -42,7 +41,7 @@ class TokenInterceptor @Inject constructor(
     private val mutex = Mutex()
 
     private val getAccountJob = CoroutineScope(appDispatcher.io).launch {
-        account = accountDataSource.getAccount().toEntity()
+        account = accountDataSource.getAccount()
     }
 
     @Synchronized
