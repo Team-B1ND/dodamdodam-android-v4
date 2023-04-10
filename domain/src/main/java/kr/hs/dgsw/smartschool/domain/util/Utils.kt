@@ -12,6 +12,7 @@ import java.util.GregorianCalendar
 object Utils {
 
     const val TOKEN_EXCEPTION = "token_exception"
+    const val EXCEPTION = "오류가 발생했습니다."
 
     fun getWeekType(): WeekType {
         if (isWeekend()) {

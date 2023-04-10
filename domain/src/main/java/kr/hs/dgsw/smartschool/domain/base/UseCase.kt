@@ -24,6 +24,8 @@ abstract class UseCase<PR, R> {
             emit(Resource.Error<R>(Utils.NETWORK_ERROR_MESSAGE))
         } catch (e: TokenException) {
             emit(Resource.Error<R>(Utils.TOKEN_EXCEPTION))
+        } catch (e: Exception) {
+            emit(Resource.Error<R>(Utils.EXCEPTION))
         }
     }
 }

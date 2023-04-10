@@ -16,7 +16,11 @@ interface MealApi {
     ): Response<MealResponse>
 
     @GET(DodamUrl.Meal.CALORIE)
-    suspend fun getCalorieOfMeal(): Response<String?>
+    suspend fun getCalorieOfMeal(
+        @Query("year") year: Int,
+        @Query("month") month: Int,
+        @Query("day") day: Int
+    ): Response<Calorie>
 
     @GET(DodamUrl.Meal.MONTH)
     suspend fun getMealOfMonth(
