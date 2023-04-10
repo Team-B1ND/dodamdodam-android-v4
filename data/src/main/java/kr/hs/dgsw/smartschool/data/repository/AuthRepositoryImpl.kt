@@ -4,7 +4,6 @@ import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
 import kr.hs.dgsw.smartschool.data.datasource.AccountDataSource
 import kr.hs.dgsw.smartschool.data.datasource.AuthDataSource
 import kr.hs.dgsw.smartschool.data.datasource.TokenDataSource
-import kr.hs.dgsw.smartschool.data.mapper.toModel
 import kr.hs.dgsw.smartschool.domain.model.token.Token
 import kr.hs.dgsw.smartschool.domain.repository.AuthRepository
 import javax.inject.Inject

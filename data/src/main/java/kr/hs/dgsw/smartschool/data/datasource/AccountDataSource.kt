@@ -3,9 +3,6 @@ package kr.hs.dgsw.smartschool.data.datasource
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.database.cache.AccountCache
 import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
-import kr.hs.dgsw.smartschool.data.mapper.toEntity
-import kr.hs.dgsw.smartschool.data.mapper.toModel
-import kr.hs.dgsw.smartschool.domain.model.account.Account
 import javax.inject.Inject
 
 class AccountDataSource @Inject constructor(
