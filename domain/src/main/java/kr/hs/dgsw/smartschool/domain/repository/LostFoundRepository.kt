@@ -3,7 +3,7 @@ import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
 import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
 
 interface LostFoundRepository {
-    suspend fun getLostFound(page: Int, type: String): List<LostFound>
+    suspend fun getLostFound(page: String, type: String): List<LostFound>
 
     suspend fun getLostFoundSearch(search: String): List<LostFound>
 

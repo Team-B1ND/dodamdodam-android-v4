@@ -13,11 +13,15 @@ class MealRemote @Inject constructor(
         return api.getMeal(year, month, day).data
     }
 
-    suspend fun getCalorieOfMeal(): String? {
-        return api.getCalorieOfMeal().data
+    suspend fun getCalorieOfMeal(year: Int, month: Int, day: Int): Calorie {
+        return api.getCalorieOfMeal(year, month, day).data
     }
 
     suspend fun getMealOfMonth(month: Int, year: Int): List<MealResponse> {
         return api.getMealOfMonth(month, year).data
+    }
+
+    suspend fun getCalorieOfMonth(year: Int, month: Int): List<Calorie> {
+        return api.getCalorieOfMonth(year, month).data
     }
 }
