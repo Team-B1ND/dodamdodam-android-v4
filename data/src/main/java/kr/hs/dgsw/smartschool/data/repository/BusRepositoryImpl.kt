@@ -17,9 +17,9 @@ class BusRepositoryImpl @Inject constructor(
         return dataSource.getBusList().toModel()
     }
 
-    override suspend fun getMyBus(): Bus {
+    override suspend fun getMyBus(): Bus? {
         Log.e("BusRepository", "getMyBus")
-        return dataSource.getMyBus().toModel()
+        return dataSource.getMyBus()?.toModel()
     }
 
     override suspend fun getMyBusByMonth(

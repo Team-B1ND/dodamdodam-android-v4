@@ -3,6 +3,7 @@ package kr.hs.dgsw.smartschool.data.mapper
 import kr.hs.dgsw.smartschool.data.database.entity.CalorieEntity
 import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
 import kr.hs.dgsw.smartschool.data.network.response.meal.MealResponse
+import kr.hs.dgsw.smartschool.domain.model.meal.Calorie
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 
 fun MealEntity.toModel(): Meal = Meal(

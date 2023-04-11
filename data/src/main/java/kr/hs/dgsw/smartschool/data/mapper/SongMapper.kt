@@ -29,7 +29,7 @@ fun SongResponse.toModel(): Song {
     return Song(
         applyingMember = applyingMember.toModel(),
         channelTitle = channelTitle,
-        checkingMember = checkingMember.toModel(),
+        checkingMember = checkingMember?.toModel(),
         createdDate = createdDate,
         duration = duration,
         id = id,

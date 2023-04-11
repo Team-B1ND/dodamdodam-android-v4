@@ -7,7 +7,7 @@ interface BusRepository {
 
     // GET
     suspend fun getBusList(): BusByDate
-    suspend fun getMyBus(): Bus
+    suspend fun getMyBus(): Bus?
     suspend fun getMyBusByMonth(
         year: Int,
         month: Int

@@ -6,6 +6,8 @@ import kr.hs.dgsw.smartschool.data.network.response.classroom.ClassroomTypeRespo
 import kr.hs.dgsw.smartschool.data.network.response.member.MemberResponse
 import kr.hs.dgsw.smartschool.data.network.response.member.StudentResponse
 import kr.hs.dgsw.smartschool.domain.model.classroom.Classroom
+import kr.hs.dgsw.smartschool.domain.model.classroom.ClassroomPlace
+import kr.hs.dgsw.smartschool.domain.model.classroom.ClassroomType
 import kr.hs.dgsw.smartschool.domain.model.member.Member
 import kr.hs.dgsw.smartschool.domain.model.member.Student
 
@@ -13,14 +15,14 @@ fun StudentEntity.toModel(): Student = Student(
     classroom = Classroom(
         grade = this.grade,
         id = this.id,
-        place = ClassroomPlaceResponse(
+        place = ClassroomPlace(
             id = this.id,
             name = this.name,
-            type = ClassroomTypeResponse(
+            type = ClassroomType(
                 id = this.id,
                 name = this.name
             )
-        ).toModel(),
+        ),
         room = this.room,
     ),
     studentId = this.studentId,
@@ -37,7 +39,7 @@ fun StudentEntity.toModel(): Student = Student(
     phone = this.phone
 )
 
-fun StudentResponse.toEntity(): StudentEntity = StudentEntity(
+fun Student.toEntity(): StudentEntity = StudentEntity(
     studentId = this.studentId,
     grade = this.classroom.grade,
     id = this.classroom.id,

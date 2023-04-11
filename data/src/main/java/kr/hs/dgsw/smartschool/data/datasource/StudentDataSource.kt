@@ -4,6 +4,7 @@ import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.database.cache.MemberCache
 import kr.hs.dgsw.smartschool.data.database.entity.StudentEntity
 import kr.hs.dgsw.smartschool.data.mapper.toEntity
+import kr.hs.dgsw.smartschool.data.mapper.toModel
 import kr.hs.dgsw.smartschool.data.network.remote.MemberRemote
 import kr.hs.dgsw.smartschool.data.network.request.member.ModifyMemberInfoRequest
 import kr.hs.dgsw.smartschool.data.network.response.member.StudentResponse
@@ -27,7 +28,7 @@ class StudentDataSource @Inject constructor(
 
     suspend fun getAllStudentRemote(): List<StudentEntity> =
         remote.getStudents()
-            .map { studentResponse -> studentResponse.toEntity() }
+            .map { studentResponse -> studentResponse.toModel().toEntity() }
             .also { studentEntities -> cache.insertStudents(studentEntities) }
 
     suspend fun updateAllStudent() = cache.deleteAllStudent().also { insertAllStudentRemote() }
@@ -36,5 +37,5 @@ class StudentDataSource @Inject constructor(
         insertAllStudent(remote.getStudents())
 
     suspend fun insertAllStudent(studentList: List<StudentResponse>) =
-        cache.insertStudents(studentList.map { studentResponse -> studentResponse.toEntity() })
+        cache.insertStudents(studentList.map { studentResponse -> studentResponse.toModel().toEntity()})
 }

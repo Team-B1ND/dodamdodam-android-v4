@@ -19,7 +19,7 @@ interface BusApi {
     suspend fun getBusList(): Response<BusByDateResponse>
 
     @GET(DodamUrl.Bus.APPLY)
-    suspend fun getMyBus(): Response<BusResponse>
+    suspend fun getMyBus(): Response<BusResponse?>
 
     @GET(DodamUrl.Bus.Apply.MONTH)
     suspend fun getMyBusByMonth(

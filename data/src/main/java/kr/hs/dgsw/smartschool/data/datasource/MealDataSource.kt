@@ -15,10 +15,7 @@ class MealDataSource @Inject constructor(
     override val cache: MealCache
 ) : BaseDataSource<MealRemote, MealCache> {
 
-    suspend fun getMeal(date: String): Meal {
-        val year = date.split('-')[0].toInt()
-        val month = date.split('-')[1].toInt()
-        val day = date.split('-')[2].toInt()
+    suspend fun getMeal(year: Int, month: Int, day: Int): Meal {
         return cache.getMeal(year, month, day)?.toModel()
             ?: getRemoteMealList(year, month).find { it.date == "$year-$month-$day" }
             ?: Meal(null, "$year-$month-$day", null, false, null)
