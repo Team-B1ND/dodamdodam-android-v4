@@ -2,9 +2,9 @@ package kr.hs.dgsw.smartschool.data.network.interceptor
 
 import android.util.Log
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
 import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
@@ -40,7 +40,7 @@ class TokenInterceptor @Inject constructor(
 
     private val mutex = Mutex()
 
-    private val getAccountJob = CoroutineScope(appDispatcher.io).launch {
+    private val getAccountJob = CoroutineScope(appDispatcher.io).async {
         account = accountDataSource.getAccount()
     }
 

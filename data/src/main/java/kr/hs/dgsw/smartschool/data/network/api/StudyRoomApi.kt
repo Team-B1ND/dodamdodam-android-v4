@@ -1,12 +1,12 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
+import kr.hs.dgsw.smartschool.data.network.request.studyroom.DefaultStudyRoomByTypeRequest
+import kr.hs.dgsw.smartschool.data.network.request.studyroom.DefaultStudyRoomRequest
+import kr.hs.dgsw.smartschool.data.network.request.studyroom.StudyRoomRequest
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.data.DefaultStudyRoomData
+import kr.hs.dgsw.smartschool.data.network.response.studyroom.StudyRoomResponse
 import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
-import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
-import kr.hs.dgsw.smartschool.domain.request.studyroom.DefaultStudyRoomByTypeRequest
-import kr.hs.dgsw.smartschool.domain.request.studyroom.DefaultStudyRoomRequest
-import kr.hs.dgsw.smartschool.domain.request.studyroom.StudyRoomRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -28,7 +28,7 @@ interface StudyRoomApi {
     @GET(DodamUrl.StudyRoom.ID)
     suspend fun getStudyRoomById(
         @Path("id") id: Int
-    ): Response<StudyRoom>
+    ): Response<StudyRoomResponse>
 
     @DELETE(DodamUrl.StudyRoom.ID)
     suspend fun cancelStudyRoom(
@@ -49,5 +49,5 @@ interface StudyRoomApi {
     ): Response<Any>
 
     @GET(DodamUrl.StudyRoom.MY)
-    suspend fun getMyStudyRoom(): Response<List<StudyRoom?>>
+    suspend fun getMyStudyRoom(): Response<List<StudyRoomResponse?>>
 }

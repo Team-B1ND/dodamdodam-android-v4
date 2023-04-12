@@ -51,7 +51,7 @@ class ProfileViewModel @Inject constructor(
     }
 
     private fun getMyYearPoint() {
-        getMyYearPointsUseCase(LocalDate.now().year).divideResult(
+        getMyYearPointsUseCase(GetMyYearPointsUseCase.Params(LocalDate.now().year)).divideResult(
             isGetMyBonusLoading,
             { _getMyYearPointState.value = GetMyYearPointsState(isReach = true, yearPointList = it ?: emptyList()) },
             { _getMyYearPointState.value = GetMyYearPointsState(error = it ?: "상벌점 조회를 실패했습니다.") }

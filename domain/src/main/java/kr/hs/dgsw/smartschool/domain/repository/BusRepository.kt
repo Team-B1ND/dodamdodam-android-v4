@@ -2,23 +2,24 @@ package kr.hs.dgsw.smartschool.domain.repository
 
 import kr.hs.dgsw.smartschool.domain.model.bus.Bus
 import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.MyBusByMonthRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusApplyRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
 
 interface BusRepository {
 
     // GET
     suspend fun getBusList(): BusByDate
-    suspend fun getMyBus(): Bus
+    suspend fun getMyBus(): Bus?
     suspend fun getMyBusByMonth(
-        request: MyBusByMonthRequest
+        year: Int,
+        month: Int
     ): List<Bus>
 
     // POST
     suspend fun addBus(
-        request: AddBusRequest
+        busName: String,
+        description: String,
+        leaveTime: String,
+        timeRequired: String,
+        peopleLimit: Int
     ): String
 
     suspend fun addBusApply(
@@ -28,10 +29,15 @@ interface BusRepository {
     // PUT
     suspend fun updateBus(
         id: Int,
-        request: UpdateBusRequest
+        busName: String,
+        description: String,
+        leaveTime: String,
+        timeRequired: String,
+        peopleLimit: Int
     ): String
     suspend fun updateBusApply(
-        request: UpdateBusApplyRequest
+        busId: Int,
+        originBusId: Int
     ): String
 
     // DELETE

@@ -5,7 +5,7 @@ import kr.hs.dgsw.smartschool.data.database.cache.ClassInfoCache
 import kr.hs.dgsw.smartschool.data.database.entity.ClassroomEntity
 import kr.hs.dgsw.smartschool.data.mapper.toEntity
 import kr.hs.dgsw.smartschool.data.network.remote.ClassInfoRemote
-import kr.hs.dgsw.smartschool.domain.model.classroom.Classroom
+import kr.hs.dgsw.smartschool.data.network.response.classroom.ClassroomResponse
 import javax.inject.Inject
 
 class ClassInfoDataSource @Inject constructor(
@@ -33,6 +33,6 @@ class ClassInfoDataSource @Inject constructor(
     private suspend fun getClassInfoRemote(idx: Int): ClassroomEntity =
         getAllClassInfoRemote().let { it.filter { classInfoEntity -> classInfoEntity.id == idx }[0] }
 
-    private suspend fun insertClassInfoList(classroomList: List<Classroom>) =
+    private suspend fun insertClassInfoList(classroomList: List<ClassroomResponse>) =
         cache.insertClassInfoList(classroomList.map { classInfo -> classInfo.toEntity() })
 }

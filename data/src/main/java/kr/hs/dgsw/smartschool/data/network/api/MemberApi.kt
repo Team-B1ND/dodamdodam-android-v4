@@ -1,14 +1,14 @@
 package kr.hs.dgsw.smartschool.data.network.api
 
+import kr.hs.dgsw.smartschool.data.network.request.auth.ModifyPwRequest
+import kr.hs.dgsw.smartschool.data.network.request.member.ModifyMemberInfoRequest
 import kr.hs.dgsw.smartschool.data.network.response.Response
 import kr.hs.dgsw.smartschool.data.network.response.data.MemberData
+import kr.hs.dgsw.smartschool.data.network.response.member.MemberResponse
+import kr.hs.dgsw.smartschool.data.network.response.member.ParentResponse
+import kr.hs.dgsw.smartschool.data.network.response.member.StudentResponse
+import kr.hs.dgsw.smartschool.data.network.response.member.TeacherResponse
 import kr.hs.dgsw.smartschool.data.network.url.DodamUrl
-import kr.hs.dgsw.smartschool.domain.model.member.Member
-import kr.hs.dgsw.smartschool.domain.model.member.Parent
-import kr.hs.dgsw.smartschool.domain.model.member.Student
-import kr.hs.dgsw.smartschool.domain.model.member.Teacher
-import kr.hs.dgsw.smartschool.domain.request.auth.ModifyPwRequest
-import kr.hs.dgsw.smartschool.domain.request.member.ModifyMemberInfoRequest
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -31,10 +31,10 @@ interface MemberApi {
     ): Response<Any>
 
     @GET(DodamUrl.Member.MY)
-    suspend fun getMyInfo(): Response<Student>
+    suspend fun getMyInfo(): Response<StudentResponse>
 
     @GET(DodamUrl.Member.PARENT)
-    suspend fun getParents(): Response<List<Parent>>
+    suspend fun getParents(): Response<List<ParentResponse>>
 
     @PATCH(DodamUrl.Member.PW)
     suspend fun modifyPw(
@@ -44,11 +44,11 @@ interface MemberApi {
     @GET(DodamUrl.Member.Search.MEMBER_ID)
     suspend fun getMember(
         @Path("memberId") id: String
-    ): Response<Member>
+    ): Response<MemberResponse>
 
     @GET(DodamUrl.Member.STUDENT)
-    suspend fun getStudents(): Response<List<Student>>
+    suspend fun getStudents(): Response<List<StudentResponse>>
 
     @GET(DodamUrl.Member.TEACHER)
-    suspend fun getTeachers(): Response<List<Teacher>>
+    suspend fun getTeachers(): Response<List<TeacherResponse>>
 }

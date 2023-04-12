@@ -2,7 +2,7 @@ package kr.hs.dgsw.smartschool.data.datasource
 
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.BannerRemote
-import kr.hs.dgsw.smartschool.domain.model.banner.Banner
+import kr.hs.dgsw.smartschool.data.network.response.banner.BannerResponse
 import javax.inject.Inject
 
 class BannerDataSource @Inject constructor(
@@ -10,7 +10,7 @@ class BannerDataSource @Inject constructor(
     override val cache: Any
 ) : BaseDataSource<BannerRemote, Any> {
 
-    suspend fun getActiveBanner(): List<Banner> {
-        return remote.getActiveBanner().data
+    suspend fun getActiveBanner(): List<BannerResponse> {
+        return remote.getActiveBanner()
     }
 }

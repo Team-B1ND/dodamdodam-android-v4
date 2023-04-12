@@ -5,7 +5,7 @@ import kr.hs.dgsw.smartschool.data.database.cache.PlaceCache
 import kr.hs.dgsw.smartschool.data.database.entity.PlaceEntity
 import kr.hs.dgsw.smartschool.data.mapper.toEntity
 import kr.hs.dgsw.smartschool.data.network.remote.PlaceRemote
-import kr.hs.dgsw.smartschool.domain.model.place.Place
+import kr.hs.dgsw.smartschool.data.network.response.place.PlaceResponse
 import javax.inject.Inject
 
 class PlaceDataSource @Inject constructor(
@@ -29,6 +29,6 @@ class PlaceDataSource @Inject constructor(
             .map { place -> place.toEntity() }
             .also { placeEntityList -> cache.insertPlace(placeEntityList) }
 
-    private suspend fun insertPlaceList(placeList: List<Place>) =
-        cache.insertPlace(placeList.map { place -> place.toEntity() })
+    private suspend fun insertPlaceList(placeList: List<PlaceResponse>) =
+        cache.insertPlace(placeList.map { placeResponse -> placeResponse.toEntity() })
 }
