@@ -9,9 +9,14 @@ import javax.inject.Inject
 
 class GetMyYearPointsUseCase @Inject constructor(
     val repository: PointRepository
-) : UseCase<Int, List<Point>>() {
+) : UseCase<GetMyYearPointsUseCase.Params, List<Point>>() {
 
-    override operator fun invoke(params: Int): Flow<Resource<List<Point>>> = execute {
-        repository.getMyYearPoints(params)
+    override operator fun invoke(params: Params): Flow<Resource<List<Point>>> = execute {
+        repository.getMyYearPoints(params.year)
     }
+
+    data class Params(
+        val year: Int
+    )
+
 }

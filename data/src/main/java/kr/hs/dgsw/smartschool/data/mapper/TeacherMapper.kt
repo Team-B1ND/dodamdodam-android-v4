@@ -22,6 +22,22 @@ fun TeacherEntity.toModel(): Teacher = Teacher(
     tel = this.tel
 )
 
+fun TeacherResponse.toModel(): Teacher = Teacher(
+    id = this.id,
+    member = Member(
+        this.member.email,
+        this.member.id,
+        this.member.joinDate,
+        this.member.name,
+        this.member.profileImage,
+        this.member.role,
+        this.member.status
+    ),
+    phone = this.phone,
+    position = this.position,
+    tel = this.tel
+)
+
 fun TeacherResponse.toEntity(): TeacherEntity = TeacherEntity(
     teacherId = this.id,
     email = this.member.email,

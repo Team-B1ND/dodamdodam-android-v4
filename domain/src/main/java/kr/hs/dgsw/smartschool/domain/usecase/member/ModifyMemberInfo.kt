@@ -12,9 +12,9 @@ class ModifyMemberInfo @Inject constructor(
 
     override operator fun invoke(params: Params): Flow<Resource<String>> = execute {
         repository.modifyMemberInfo(
-            params.phone,
             params.email,
-            params.url
+            params.url,
+            params.phone
 
         )
     }
