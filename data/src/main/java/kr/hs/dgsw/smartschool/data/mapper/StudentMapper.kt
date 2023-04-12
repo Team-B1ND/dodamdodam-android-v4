@@ -1,8 +1,6 @@
 package kr.hs.dgsw.smartschool.data.mapper
 
 import kr.hs.dgsw.smartschool.data.database.entity.StudentEntity
-import kr.hs.dgsw.smartschool.data.network.response.classroom.ClassroomPlaceResponse
-import kr.hs.dgsw.smartschool.data.network.response.classroom.ClassroomTypeResponse
 import kr.hs.dgsw.smartschool.data.network.response.member.MemberResponse
 import kr.hs.dgsw.smartschool.data.network.response.member.StudentResponse
 import kr.hs.dgsw.smartschool.domain.model.classroom.Classroom

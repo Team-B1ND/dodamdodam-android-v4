@@ -37,5 +37,5 @@ class StudentDataSource @Inject constructor(
         insertAllStudent(remote.getStudents())
 
     suspend fun insertAllStudent(studentList: List<StudentResponse>) =
-        cache.insertStudents(studentList.map { studentResponse -> studentResponse.toModel().toEntity()})
+        cache.insertStudents(studentList.map { studentResponse -> studentResponse.toModel().toEntity() })
 }

@@ -1,9 +1,9 @@
 package kr.hs.dgsw.smartschool.data.mapper
 
-import kr.hs.dgsw.smartschool.domain.model.point.Point
 import kr.hs.dgsw.smartschool.data.network.response.point.PointPlaceResponse
 import kr.hs.dgsw.smartschool.data.network.response.point.PointResponse
 import kr.hs.dgsw.smartschool.data.network.response.point.PointTypeResponse
+import kr.hs.dgsw.smartschool.domain.model.point.Point
 import kr.hs.dgsw.smartschool.domain.model.point.PointPlace
 import kr.hs.dgsw.smartschool.domain.model.point.PointType
 

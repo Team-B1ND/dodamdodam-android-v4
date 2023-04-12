@@ -1,6 +1,5 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.profile
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -41,7 +40,6 @@ class ProfileViewModel @Inject constructor(
         combineLoadingVariable(isGetMyBonusLoading, isGetMyMinusLoading, isGetMyInfoLoading)
         getMyInfo()
         getMyYearPoint()
-
     }
 
     fun getMyInfo() {

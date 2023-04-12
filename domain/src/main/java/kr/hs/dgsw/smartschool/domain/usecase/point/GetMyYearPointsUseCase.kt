@@ -18,5 +18,4 @@ class GetMyYearPointsUseCase @Inject constructor(
     data class Params(
         val year: Int
     )
-
 }
