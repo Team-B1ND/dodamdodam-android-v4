@@ -9,5 +9,8 @@ data class ClassroomEntity(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "grade", defaultValue = "-1") val grade: Int,
     val room: Int,
-    val placeId: Int
+    val placeId: Int,
+    val placeName: String,
+    val typeId: Int,
+    val typeName: String
 )

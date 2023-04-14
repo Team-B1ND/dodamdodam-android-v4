@@ -9,8 +9,8 @@ import javax.inject.Inject
 
 class GetApplyBus @Inject constructor(
     private val busRepository: BusRepository
-) : NoParamUseCase<Bus>() {
-    override fun invoke(): Flow<Resource<Bus>> = execute {
+) : NoParamUseCase<Bus?>() {
+    override fun invoke(): Flow<Resource<Bus?>> = execute {
         busRepository.getMyBus()
     }
 }

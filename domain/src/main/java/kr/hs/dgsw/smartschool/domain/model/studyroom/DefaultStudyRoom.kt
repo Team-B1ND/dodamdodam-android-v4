@@ -1,15 +1,14 @@
 package kr.hs.dgsw.smartschool.domain.model.studyroom
 
-import com.google.gson.annotations.SerializedName
 import kr.hs.dgsw.smartschool.domain.model.member.Student
 import kr.hs.dgsw.smartschool.domain.model.place.Place
 import kr.hs.dgsw.smartschool.domain.model.time.TimeTable
 
 data class DefaultStudyRoom(
-    @field:SerializedName("id") val id: Int?,
-    @field:SerializedName("place") var place: Place?,
-    @field:SerializedName("student") val student: Student?,
-    @field:SerializedName("timeTable") val timeTable: TimeTable
+    val id: Int?,
+    var place: Place?,
+    val student: Student?,
+    val timeTable: TimeTable
 ) {
     constructor(timetable: TimeTable, place: Place) : this(
         null,

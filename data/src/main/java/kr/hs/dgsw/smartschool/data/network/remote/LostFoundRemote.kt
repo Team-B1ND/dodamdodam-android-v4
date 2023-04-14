@@ -2,13 +2,13 @@ package kr.hs.dgsw.smartschool.data.network.remote
 
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.LostFoundApi
+import kr.hs.dgsw.smartschool.data.network.request.lostfound.AddCommentRequest
+import kr.hs.dgsw.smartschool.data.network.request.lostfound.LostFoundDataRequest
+import kr.hs.dgsw.smartschool.data.network.request.lostfound.ModifyCommentRequest
 import kr.hs.dgsw.smartschool.data.network.response.Response
+import kr.hs.dgsw.smartschool.data.network.response.lostpound.CommentResponse
+import kr.hs.dgsw.smartschool.data.network.response.lostpound.LostFoundResponse
 import kr.hs.dgsw.smartschool.data.util.Constants
-import kr.hs.dgsw.smartschool.domain.model.lostfound.Comment
-import kr.hs.dgsw.smartschool.domain.model.lostfound.LostFound
-import kr.hs.dgsw.smartschool.domain.request.lostfound.AddCommentRequest
-import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
-import kr.hs.dgsw.smartschool.domain.request.lostfound.ModifyCommentRequest
 import javax.inject.Inject
 
 class LostFoundRemote @Inject constructor(
@@ -19,23 +19,23 @@ class LostFoundRemote @Inject constructor(
         return api.getLostFound(Constants.INFINITE_SCROLL_LIMIT, page, type)
     }*/
 
-    suspend fun getLostFoundAll(): Response<List<LostFound>> {
+    suspend fun getLostFoundAll(): Response<List<LostFoundResponse>> {
         return api.getLostFoundAll()
     }
 
-    suspend fun getLostFoundById(id: Int): Response<LostFound> {
+    suspend fun getLostFoundById(id: Int): Response<LostFoundResponse> {
         return api.getLostFoundById(id)
     }
-    suspend fun getLostFound(page: Int, type: String): Response<List<LostFound>> =
+    suspend fun getLostFound(page: String, type: String): Response<List<LostFoundResponse>> =
         api.getLostFound(Constants.INFINITE_SCROLL_LIMIT, page, type)
 
-    suspend fun getComment(lostFoundIdx: Int): Response<List<Comment>> =
+    suspend fun getComment(lostFoundIdx: Int): Response<List<CommentResponse>> =
         api.getComment(lostFoundIdx)
 
-    suspend fun getLostFoundSearch(search: String): Response<List<LostFound>> =
+    suspend fun getLostFoundSearch(search: String): Response<List<LostFoundResponse>> =
         api.getLostFoundSearch(search)
 
-    suspend fun getMyLostFound(): Response<List<LostFound>> = api.getMyLostFound()
+    suspend fun getMyLostFound(): Response<List<LostFoundResponse>> = api.getMyLostFound()
 
     suspend fun addLostFound(request: LostFoundDataRequest): Response<Any> =
         api.postLostFound(request)

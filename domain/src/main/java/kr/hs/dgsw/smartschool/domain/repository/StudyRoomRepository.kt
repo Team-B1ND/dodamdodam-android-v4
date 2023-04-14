@@ -2,15 +2,15 @@ package kr.hs.dgsw.smartschool.domain.repository
 
 import kr.hs.dgsw.smartschool.domain.model.studyroom.DefaultStudyRoom
 import kr.hs.dgsw.smartschool.domain.model.studyroom.StudyRoom
-import kr.hs.dgsw.smartschool.domain.request.studyroom.DefaultStudyRoomByTypeRequest
-import kr.hs.dgsw.smartschool.domain.request.studyroom.DefaultStudyRoomRequest
-import kr.hs.dgsw.smartschool.domain.request.studyroom.StudyRoomRequest
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ApplyStudyRoom
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.CreateDefaultStudyRoom
+import kr.hs.dgsw.smartschool.domain.usecase.studyroom.ModifyAppliedStudyRoom
 
 interface StudyRoomRepository {
 
-    suspend fun applyStudyRoom(request: StudyRoomRequest): String
+    suspend fun applyStudyRoom(studyRoomList: List<ApplyStudyRoom.Params.RequestStudyRoom>): String
 
-    suspend fun modifyAppliedStudyRoom(request: StudyRoomRequest): String
+    suspend fun modifyAppliedStudyRoom(studyRoomList: List<ModifyAppliedStudyRoom.Params.RequestStudyRoom>): String
 
     suspend fun getStudyRoomById(id: Int): StudyRoom
 
@@ -18,9 +18,9 @@ interface StudyRoomRepository {
 
     suspend fun getDefaultStudyRoom(): List<DefaultStudyRoom>
 
-    suspend fun createDefaultStudyRoom(request: DefaultStudyRoomRequest): String
+    suspend fun createDefaultStudyRoom(day: String, defaultStudyRooms: List<CreateDefaultStudyRoom.Params.DefaultStudyRoom>): String
 
-    suspend fun createDefaultStudyRoomByWeekType(request: DefaultStudyRoomByTypeRequest): String
+    suspend fun createDefaultStudyRoomByWeekType(placeId: Int, timeTableId: Int, type: Int): String
 
     suspend fun getMyStudyRoom(): List<StudyRoom>
 }

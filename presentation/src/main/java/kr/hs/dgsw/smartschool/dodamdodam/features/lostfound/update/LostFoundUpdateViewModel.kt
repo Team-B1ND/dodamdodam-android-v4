@@ -6,8 +6,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import kr.hs.dgsw.smartschool.domain.request.lostfound.LostFoundDataRequest
 import kr.hs.dgsw.smartschool.domain.usecase.lostfound.LostFoundUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.lostfound.ModifyLostFound
 import kr.hs.dgsw.smartschool.domain.usecase.upload.UploadFileUseCase
 import java.io.File
 import javax.inject.Inject
@@ -75,7 +75,7 @@ class LostFoundUpdateViewModel @Inject constructor(
         if (title.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_TITLE)
         if (content.value.isNullOrEmpty()) viewEvent(EVENT_EMPTY_CONTENT)
         useCases.modifyLostFound(
-            LostFoundDataRequest(
+            ModifyLostFound.Param(
                 content = content.value ?: "".replace(" ", ""),
                 picture = url ?: "",
                 place = place.value ?: "".replace(" ", ""),

@@ -3,46 +3,56 @@ package kr.hs.dgsw.smartschool.data.network.remote
 import android.util.Log
 import kr.hs.dgsw.smartschool.data.base.remote.BaseRemote
 import kr.hs.dgsw.smartschool.data.network.api.BusApi
+import kr.hs.dgsw.smartschool.data.network.request.bus.AddBusRequest
+import kr.hs.dgsw.smartschool.data.network.request.bus.UpdateBusRequest
 import kr.hs.dgsw.smartschool.data.network.response.Response
-import kr.hs.dgsw.smartschool.domain.model.bus.Bus
-import kr.hs.dgsw.smartschool.domain.model.bus.BusByDate
-import kr.hs.dgsw.smartschool.domain.request.bus.AddBusRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.MyBusByMonthRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusApplyRequest
-import kr.hs.dgsw.smartschool.domain.request.bus.UpdateBusRequest
+import kr.hs.dgsw.smartschool.data.network.response.bus.BusByDateResponse
+import kr.hs.dgsw.smartschool.data.network.response.bus.BusResponse
 import javax.inject.Inject
 
 class BusRemote @Inject constructor(
     override val api: BusApi
 ) : BaseRemote<BusApi>() {
 
-    suspend fun getBusList(): Response<BusByDate> = api.getBusList()
+    suspend fun getBusList(): Response<BusByDateResponse> = api.getBusList()
 
-    suspend fun getMyBus(): Response<Bus> {
+    suspend fun getMyBus(): Response<BusResponse?> {
         Log.e("getMyBus", "실행")
         return api.getMyBus()
     }
 
     suspend fun getMyBusByMonth(
-        request: MyBusByMonthRequest
-    ): Response<List<Bus>> = api.getMyBusByMonth(
-        request.month,
-        request.year
+        year: Int,
+        month: Int
+    ): Response<List<BusResponse>> = api.getMyBusByMonth(
+        month,
+        year
     )
 
     suspend fun updateBus(
         busId: Int,
-        request: UpdateBusRequest
+        busName: String,
+        description: String,
+        leaveTime: String,
+        timeRequired: String,
+        peopleLimit: Int
     ): Response<Any> = api.updateBus(
-        busId,
-        request
+        UpdateBusRequest(
+            busId,
+            busName,
+            description,
+            leaveTime,
+            timeRequired,
+            peopleLimit
+        )
     )
 
     suspend fun updateBusApply(
-        request: UpdateBusApplyRequest
+        busId: Int,
+        originBusId: Int
     ): Response<Any> = api.updateBusApply(
-        request.busId,
-        request.originBusId
+        busId,
+        originBusId
     )
 
     suspend fun addBus(
