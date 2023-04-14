@@ -80,7 +80,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                             val generation = "%d%d%02d".format(classroom.grade, classroom.room, number)
                             setProfileInfo(generation, member.name, member.email, member.profileImage ?: "")
                             setNavData(member.email, phone, member.id, member.profileImage ?: "")
-                            endRefreshing()
                         }
 
                         mBinding.tvModify.visibility = View.VISIBLE
@@ -89,7 +88,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                     if (state.error.isNotBlank()) {
                         setProfileInfo("", "값을 받아올 수 없습니다.", "", "")
                         mBinding.tvModify.visibility = View.GONE
-                        endRefreshing()
                     }
                 }
             }
@@ -117,7 +115,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
 
     private fun dividePoint(yearPointList: List<Point>) {
 
-        dormitoryMinusPoint = 0
+        dormitoryBonusPoint = 0
         schoolBonusPoint = 0
         dormitoryMinusPoint = 0
         schoolMinusPoint = 0
@@ -125,14 +123,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         yearPointList.map { pointLog ->
             if (pointLog.type == PointType.BONUS) {
                 if (pointLog.target == PointPlace.DORMITORY)
-                    dormitoryBonusPoint = pointLog.score
+                    dormitoryBonusPoint = (dormitoryBonusPoint ?: 0) + pointLog.score
                 else
-                    schoolBonusPoint = pointLog.score
+                    schoolBonusPoint = (schoolBonusPoint ?: 0) + pointLog.score
             } else if (pointLog.type == PointType.MINUS) {
                 if (pointLog.target == PointPlace.DORMITORY)
-                    dormitoryMinusPoint = pointLog.score
+                    dormitoryMinusPoint = (dormitoryMinusPoint ?: 0) + pointLog.score
                 else
-                    schoolMinusPoint = pointLog.score
+                    schoolMinusPoint = (schoolMinusPoint ?: 0) + pointLog.score
             }
         }
         setPointCard(0)
@@ -213,11 +211,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     private fun setSwipeRefresh() {
         mBinding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.getMyInfo()
+            mBinding.swipeRefreshLayout.isRefreshing = false
         }
-    }
-
-    private fun endRefreshing() {
-        mBinding.swipeRefreshLayout.isRefreshing = false
     }
 
     override fun onResume() {
