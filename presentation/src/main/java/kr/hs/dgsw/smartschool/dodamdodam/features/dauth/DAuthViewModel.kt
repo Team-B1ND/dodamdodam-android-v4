@@ -1,9 +1,7 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.dauth
 
 import androidx.lifecycle.MutableLiveData
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
-import javax.inject.Inject
 
 class DAuthViewModel : BaseViewModel() {
 
@@ -25,5 +23,4 @@ class DAuthViewModel : BaseViewModel() {
         const val EVENT_ON_CLICK_JOIN = 0
         const val EVENT_ON_CLICK_LOGIN = 1
     }
-
 }
