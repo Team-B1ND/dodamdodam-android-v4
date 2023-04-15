@@ -2,6 +2,7 @@ package kr.hs.dgsw.smartschool.data.mapper
 
 import kr.hs.dgsw.smartschool.data.database.entity.CalorieEntity
 import kr.hs.dgsw.smartschool.data.database.entity.MealEntity
+import kr.hs.dgsw.smartschool.data.network.response.meal.MealResponse
 import kr.hs.dgsw.smartschool.domain.model.meal.Calorie
 import kr.hs.dgsw.smartschool.domain.model.meal.Meal
 
@@ -13,6 +14,13 @@ fun MealEntity.toModel(): Meal = Meal(
     dinner = this.dinner
 )
 
+fun MealResponse.toModel(): Meal = Meal(
+    breakfast = this.breakfast,
+    date = this.date,
+    dinner = this.dinner,
+    exists = this.exists,
+    lunch = this.lunch
+)
 fun Meal.toEntity(): MealEntity = MealEntity(
     year = this.date.split("-")[0].toInt(),
     month = this.date.split("-")[1].toInt(),

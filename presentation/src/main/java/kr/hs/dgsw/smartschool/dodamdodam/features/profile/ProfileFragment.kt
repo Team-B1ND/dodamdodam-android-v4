@@ -37,9 +37,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         setPieChart()
         collectMyInfo()
         collectBonusPoint()
-        setPointCard(1)
         setSwipeRefresh()
         initViewEvent()
+        setPointCard(0)
     }
 
     private fun initViewEvent() {
@@ -54,7 +54,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     }
 
     private fun changePointCard() {
-        if (viewModel.dormitorySelected.value == false)
+        if (viewModel.dormitorySelected.value == true)
             setPointCard(0)
         else
             setPointCard(1)
@@ -80,7 +80,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                             val generation = "%d%d%02d".format(classroom.grade, classroom.room, number)
                             setProfileInfo(generation, member.name, member.email, member.profileImage ?: "")
                             setNavData(member.email, phone, member.id, member.profileImage ?: "")
-                            endRefreshing()
                         }
 
                         mBinding.tvModify.visibility = View.VISIBLE
@@ -89,7 +88,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                     if (state.error.isNotBlank()) {
                         setProfileInfo("", "값을 받아올 수 없습니다.", "", "")
                         mBinding.tvModify.visibility = View.GONE
-                        endRefreshing()
                     }
                 }
             }
@@ -102,7 +100,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                 getMyYearPointsState.collect { state ->
                     if (state.isReach) {
                         state.yearPointList.forEach { point ->
-                            Log.d("PointTest", "${point.type.name} : ${point.score}")
+                            Log.d("PointTest", "${point.target.name} ${point.type.name} : ${point.score}")
                         }
                         dividePoint(yearPointList = state.yearPointList)
                     }
@@ -117,7 +115,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
 
     private fun dividePoint(yearPointList: List<Point>) {
 
-        dormitoryMinusPoint = 0
+        dormitoryBonusPoint = 0
         schoolBonusPoint = 0
         dormitoryMinusPoint = 0
         schoolMinusPoint = 0
@@ -135,13 +133,14 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                     schoolMinusPoint = (schoolMinusPoint ?: 0) + pointLog.score
             }
         }
-        setPointCard(1)
+        setPointCard(0)
     }
 
     private fun setPointCard(target: Int) {
         if (target == 0) {
-            Log.d("PointTest", "SetPointCard :  ${dormitoryMinusPoint ?: 0}")
+            Log.d("PointTest", "SetPointCard(DormitoryMinus) :  ${dormitoryMinusPoint ?: 0}")
             mBinding.tvBonusPoint.text = (dormitoryBonusPoint ?: 0).toString() + "점"
+            Log.d("PointTest", "SetPointCard(DormitoryBonus) :  ${dormitoryBonusPoint ?: 0}")
             mBinding.tvMinusPoint.text = (dormitoryMinusPoint ?: 0).toString() + "점"
             updatePieChart(dormitoryBonusPoint ?: 0, dormitoryMinusPoint ?: 0)
         } else {
@@ -212,11 +211,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     private fun setSwipeRefresh() {
         mBinding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.getMyInfo()
+            mBinding.swipeRefreshLayout.isRefreshing = false
         }
-    }
-
-    private fun endRefreshing() {
-        mBinding.swipeRefreshLayout.isRefreshing = false
     }
 
     override fun onResume() {

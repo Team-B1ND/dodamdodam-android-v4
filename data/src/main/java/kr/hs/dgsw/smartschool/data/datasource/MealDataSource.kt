@@ -16,14 +16,13 @@ class MealDataSource @Inject constructor(
 ) : BaseDataSource<MealRemote, MealCache> {
 
     suspend fun getMeal(year: Int, month: Int, day: Int): Meal {
-
         return cache.getMeal(year, month, day)?.toModel()
             ?: getRemoteMealList(year, month).find { it.date == "$year-$month-$day" }
             ?: Meal(null, "$year-$month-$day", null, false, null)
     }
 
     private suspend fun getRemoteMealList(year: Int, month: Int): List<Meal> =
-        remote.getMealOfMonth(month, year).also {
+        remote.getMealOfMonth(month, year).map { mealResponse -> mealResponse.toModel() }.also {
 
             val size = LocalDate.of(year, month, 1).lengthOfMonth()
 

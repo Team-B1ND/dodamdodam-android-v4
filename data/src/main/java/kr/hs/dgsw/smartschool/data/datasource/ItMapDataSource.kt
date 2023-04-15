@@ -2,7 +2,7 @@ package kr.hs.dgsw.smartschool.data.datasource
 
 import kr.hs.dgsw.smartschool.data.base.BaseDataSource
 import kr.hs.dgsw.smartschool.data.network.remote.ItMapRemote
-import kr.hs.dgsw.smartschool.domain.model.itmap.Company
+import kr.hs.dgsw.smartschool.data.network.response.itmap.CompanyResponse
 import javax.inject.Inject
 
 class ItMapDataSource @Inject constructor(
@@ -10,9 +10,9 @@ class ItMapDataSource @Inject constructor(
     override val cache: Any
 ) : BaseDataSource<ItMapRemote, Any> {
 
-    suspend fun getAllCompanies(): List<Company> =
+    suspend fun getAllCompanies(): List<CompanyResponse> =
         remote.getAllCompanies()
 
-    suspend fun getCompanyById(id: Int): Company =
+    suspend fun getCompanyById(id: Int): CompanyResponse =
         remote.getCompanyById(id)
 }
