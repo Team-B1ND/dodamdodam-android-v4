@@ -23,9 +23,10 @@ import okhttp3.ResponseBody.Companion.toResponseBody
 import org.json.JSONException
 import retrofit2.HttpException
 import javax.inject.Inject
+import kotlin.math.acos
 
 class TokenInterceptor @Inject constructor(
-    private val loginUseCase: LoginUseCase,
+//    private val loginUseCase: LoginUseCase,
     private val tokenUseCases: TokenUseCases,
     private val accountDataSource: AccountDataSource,
     private val appDispatcher: AppDispatchers
@@ -36,12 +37,11 @@ class TokenInterceptor @Inject constructor(
 
     private lateinit var token: Token
     private lateinit var response: Response
-    private lateinit var account: AccountEntity
 
     private val mutex = Mutex()
 
     private val getAccountJob = CoroutineScope(appDispatcher.io).async {
-        account = accountDataSource.getAccount()
+        accountDataSource.getAccount()
     }
 
     @Synchronized
@@ -73,7 +73,7 @@ class TokenInterceptor @Inject constructor(
             fetchToken()
         } catch (e: HttpException) {
             // 어떤 이유로 오류 발생 시
-            getTokenToLogin()
+//            getTokenToLogin()
         }
         response = this.proceedWithToken(this.request())
 
@@ -90,7 +90,7 @@ class TokenInterceptor @Inject constructor(
 
     private fun Interceptor.Chain.login(): Response {
         // 로그인으로 토큰 교체
-        getTokenToLogin()
+//        getTokenToLogin()
 
         // request에 토큰을 붙여서 새로운 request 생성 -> 진행
         response = this.proceedWithToken(this.request())
@@ -117,22 +117,21 @@ class TokenInterceptor @Inject constructor(
         tokenUseCases.updateNewToken().let { token = it }
     }
 
-    private fun getTokenToLogin() {
-        runBlocking(appDispatcher.io) {
-            // 계정을 DB에서 받아옴
-            getAccountJob.join()
-
-            loginUseCase(LoginUseCase.Params(account.id, account.pw, false)).onEach {
-                if (it is Resource.Success) {
-                    // 성공 시 로그인 딴에서 DB에 token 값을 저장하므로 DB에서 token을 가져오는 작업 수행
-                    setToken()
-                } else if (it is Resource.Error) {
-                    Log.d("TokenTest", "Here is Get token to login")
-                    throw TokenException("세션이 만료되었습니다.")
-                }
-            }.launchIn(CoroutineScope(appDispatcher.io))
-        }
-    }
+//    private fun getTokenToLogin() {
+//        runBlocking(appDispatcher.io) {
+//            // 계정을 DB에서 받아옴
+//            val account = getAccountJob.await()
+//            loginUseCase(LoginUseCase.Params(account.id, account.pw, false)).onEach {
+//                if (it is Resource.Success) {
+//                    // 성공 시 로그인 딴에서 DB에 token 값을 저장하므로 DB에서 token을 가져오는 작업 수행
+//                    setToken()
+//                } else if (it is Resource.Error) {
+//                    Log.d("TokenTest", "Here is Get token to login")
+//                    throw TokenException("세션이 만료되었습니다.")
+//                }
+//            }.launchIn(CoroutineScope(appDispatcher.io))
+//        }
+//    }
 
     // ---------------------------------------------------------------------------------
     private fun Interceptor.Chain.proceedWithToken(req: Request): Response =
