@@ -14,15 +14,15 @@ import java.util.Locale
 
 @Parcelize
 open class OutItemResponse(
-    val arrivedDate: Date,
-    val checkedDate: Date,
+    val arrivedDate: Date?,
+    val checkedDate: Date?,
     val endOutDate: Date,
     val id: Int,
     val reason: String,
     val startOutDate: Date,
     val status: OutStatusResponse,
     @TypeParceler<StudentIdResponse, StudentIdParceler> val student: StudentIdResponse,
-    @TypeParceler<TeacherIdResponse, TeacherIdParceler> val teacher: TeacherIdResponse
+    @TypeParceler<TeacherIdResponse?, TeacherIdParceler> val teacher: TeacherIdResponse?
 ) : Serializable, Parcelable {
 
     val startDate: String

@@ -8,17 +8,18 @@ import kr.hs.dgsw.smartschool.domain.model.member.StudentId
 import kr.hs.dgsw.smartschool.domain.model.member.TeacherId
 import kr.hs.dgsw.smartschool.domain.model.out.OutItem
 import kr.hs.dgsw.smartschool.domain.model.out.OutStatus
+import java.util.Date
 
 fun OutItemResponse.toModel(): OutItem = OutItem(
-    arrivedDate = this.arrivedDate,
-    checkedDate = this.checkedDate,
+    arrivedDate = this.arrivedDate ?: Date(),
+    checkedDate = this.checkedDate ?: Date(),
     endOutDate = this.endOutDate,
     id = this.id,
     reason = this.reason,
     startOutDate = this.startOutDate,
     status = this.status.toModel(),
     student = this.student.toModel(),
-    teacher = this.teacher.toModel()
+    teacher = this.teacher?.toModel() ?: TeacherId("")
 )
 
 fun OutStatusResponse.toModel(): OutStatus = when (this.name) {
