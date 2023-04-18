@@ -3,18 +3,12 @@ package kr.hs.dgsw.smartschool.data.network.interceptor
 import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
-import kr.hs.dgsw.smartschool.data.database.entity.AccountEntity
 import kr.hs.dgsw.smartschool.data.datasource.AccountDataSource
 import kr.hs.dgsw.smartschool.data.util.AppDispatchers
-import kr.hs.dgsw.smartschool.domain.exception.TokenException
 import kr.hs.dgsw.smartschool.domain.model.token.Token
-import kr.hs.dgsw.smartschool.domain.usecase.auth.LoginUseCase
 import kr.hs.dgsw.smartschool.domain.usecase.token.TokenUseCases
-import kr.hs.dgsw.smartschool.domain.util.Resource
 import okhttp3.Interceptor
 import okhttp3.Protocol
 import okhttp3.Request
@@ -23,7 +17,6 @@ import okhttp3.ResponseBody.Companion.toResponseBody
 import org.json.JSONException
 import retrofit2.HttpException
 import javax.inject.Inject
-import kotlin.math.acos
 
 class TokenInterceptor @Inject constructor(
 //    private val loginUseCase: LoginUseCase,
