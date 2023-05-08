@@ -60,7 +60,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 HomeViewModel.ON_CLICK_SONG_MORE -> (activity as? MainActivity)?.moveHomeToSong()
                 HomeViewModel.ON_CLICK_OUT -> findNavController().navigate(R.id.action_main_home_to_outFragment)
                 HomeViewModel.ON_CLICK_ITMAP -> findNavController().navigate(R.id.action_main_home_to_itMapFragment)
-                HomeViewModel.ON_CLICK_LOST -> findNavController().navigate(R.id.action_main_home_to_lostFoundFragment)
+                HomeViewModel.ON_CLICK_EVENING_STUDY -> findNavController().navigate(R.id.action_main_home_to_eveningStudyFragment)
             }
         }
     }

@@ -4,20 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <import type="android.view.View" />
+        <import type="android.view.View"/>
 
         <variable
             name="vm"
-            type="kr.hs.dgsw.smartschool.dodamdodam.features.out.OutViewModel" />
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.eveningstudy.EveningStudyViewModel" />
     </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_background"
-        tools:context=".view.fragment.outbaseFragment">
-
+        tools:context=".features.eveningstudy.EveningStudyFragment">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_title_out"
             android:layout_width="match_parent"
@@ -37,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_regular"
                 android:includeFontPadding="false"
-                android:text="@string/title_out"
+                android:text="@string/title_evening_study"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/app_bar_title_text"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -45,34 +42,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <include
-            android:id="@+id/progress_loading"
-            layout="@layout/item_loading_progressbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_no_data"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/noto_regular"
-            android:includeFontPadding="false"
-            android:text="@string/text_no_out"
-            android:textColor="@color/color_black"
-            android:textSize="@dimen/title4"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
@@ -90,24 +59,46 @@
                 android:overScrollMode="never"
                 android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_out"
+                tools:listitem="@layout/item_evening_study"
                 tools:visibility="visible" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
+        <include
+            android:id="@+id/progress_loading"
+            layout="@layout/item_loading_progressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tv_no_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/text_no_evening_study"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/title4"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_add_out"
+            android:id="@+id/btn_add_evening_study"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:backgroundTint="@color/main"
-            android:onClick="@{() -> vm.onClickOutWrite()}"
+            android:onClick="@{() -> vm.onClickEveningStudyWrite()}"
             android:src="@drawable/ic_btn_add"
             app:elevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:tint="@color/white"
             tools:ignore="ContentDescription" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

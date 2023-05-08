@@ -7,6 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import kr.hs.dgsw.smartschool.domain.repository.AccountRepository
 import kr.hs.dgsw.smartschool.domain.repository.BusRepository
 import kr.hs.dgsw.smartschool.domain.repository.DataSetUpRepository
+import kr.hs.dgsw.smartschool.domain.repository.EveningStudyRepository
 import kr.hs.dgsw.smartschool.domain.repository.FileUploadRepository
 import kr.hs.dgsw.smartschool.domain.repository.ItMapRepository
 import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
@@ -31,6 +32,10 @@ import kr.hs.dgsw.smartschool.domain.usecase.bus.GetBusList
 import kr.hs.dgsw.smartschool.domain.usecase.bus.GetMyBusByMonth
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusApply
 import kr.hs.dgsw.smartschool.domain.usecase.bus.UpdateBusInfo
+import kr.hs.dgsw.smartschool.domain.usecase.eveningstudy.ApplyEveningStudy
+import kr.hs.dgsw.smartschool.domain.usecase.eveningstudy.DeleteEveningStudy
+import kr.hs.dgsw.smartschool.domain.usecase.eveningstudy.EveningStudyUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.eveningstudy.GetMyEveningStudy
 import kr.hs.dgsw.smartschool.domain.usecase.itmap.GetAllCompanies
 import kr.hs.dgsw.smartschool.domain.usecase.itmap.GetCompanyById
 import kr.hs.dgsw.smartschool.domain.usecase.itmap.ItMapUseCases
@@ -218,6 +223,15 @@ class UseCaseModule {
             deleteOutSleeping = DeleteOutSleeping(outRepository),
             modifyOutGoing = ModifyOutGoing(outRepository),
             modifyOutSleeping = ModifyOutSleeping(outRepository)
+        )
+
+    @Provides
+    @Singleton
+    fun provideEveningUseCases(eveningStudyRepository: EveningStudyRepository): EveningStudyUseCases =
+        EveningStudyUseCases(
+            applyEveningStudy = ApplyEveningStudy(eveningStudyRepository),
+            deleteEveningStudy = DeleteEveningStudy(eveningStudyRepository),
+            getMyEveningStudy = GetMyEveningStudy(eveningStudyRepository),
         )
 
     @Provides

@@ -1,15 +1,16 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.view
 
 import android.widget.LinearLayout
-import androidx.core.view.get
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kr.hs.dgsw.smartschool.dodamdodam.adapter.PlaceAdapter
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseFragment
 import kr.hs.dgsw.smartschool.dodamdodam.databinding.FragmentStudyRoomApplyBinding
+import kr.hs.dgsw.smartschool.dodamdodam.features.eveningstudy.write.EveningStudyWriteViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.viewmodel.StudyRoomApplyViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortSnack
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
@@ -21,9 +22,10 @@ import kotlin.collections.ArrayList
 @AndroidEntryPoint
 class StudyRoomApplyFragment :
     BaseFragment<FragmentStudyRoomApplyBinding, StudyRoomApplyViewModel>() {
-
+    private val eveningStudyViewModel: EveningStudyWriteViewModel by viewModels()
     override val viewModel: StudyRoomApplyViewModel by viewModels()
     private lateinit var placeAdapter: PlaceAdapter
+    private val args: StudyRoomApplyFragmentArgs by navArgs()
 
     companion object {
         private const val ENABLE: Boolean = true
@@ -38,10 +40,16 @@ class StudyRoomApplyFragment :
         collectPlace()
         collectApplyLocation()
         collectMyLocation()
-
+        if (args.isEveningStudyPlace) {
+            setIsEveningStudyPlace()
+        }
         viewModel.currentCheckPlaces.observe(this) {
             PlaceAdapter.currentPlace.value = it[viewModel.currentTime.value ?: 0]
         }
+    }
+    private fun setIsEveningStudyPlace() {
+        mBinding.tvStudyRoomApplyTitle.text = "심자 장소 선택"
+        eveningStudyViewModel.setEveningStudyPlace(PlaceAdapter.currentPlace.value)
     }
 
     private fun initTimeTab() {

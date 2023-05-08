@@ -125,7 +125,7 @@ class OutWriteFragment : BaseFragment<FragmentOutWriteBinding, OutWriteViewModel
             isModifyOut.value = true
             id.value = outItem.id
             mBinding.tvOutWrite.text = "외출/외박 수정"
-            mBinding.btnAddOffbase.text = "수정"
+            mBinding.btnAddConfirm.text = "수정"
 
             isOutSleeping.value = outItem.isOutSleeping()
             isOutGoing.value = !outItem.isOutSleeping()

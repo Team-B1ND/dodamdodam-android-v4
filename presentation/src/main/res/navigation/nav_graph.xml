@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/main_home">
     <fragment
@@ -32,8 +33,13 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/main_home" />
         <action
-            android:id="@+id/action_main_home_to_lostFoundFragment"
-            app:destination="@id/lostFoundFragment" />
+            android:id="@+id/action_main_home_to_eveningStudyFragment"
+            app:destination="@id/eveningStudyFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/main_home" />
     </fragment>
     <fragment
         android:id="@+id/main_profile"
@@ -112,6 +118,10 @@
             android:name="timeTable"
             android:defaultValue="0"
             app:argType="integer" />
+        <argument
+            android:name="isEveningStudyPlace"
+            app:argType="boolean"
+            android:defaultValue="false"/>
     </fragment>
     <fragment
         android:id="@+id/songApplyFragment"
@@ -224,6 +234,21 @@
             app:argType="integer" />
     </fragment>
     <fragment
+        android:id="@+id/eveningStudyFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.eveningstudy.EveningStudyFragment"
+        tools:layout="EveningStudyFragment"
+        >
+
+        <action
+            android:id="@+id/action_eveningStudyFragment_to_eveningStudyDetailFragment"
+            app:destination="@id/eveningStudyDetailFragment"
+            app:popUpTo="@id/eveningStudyFragment"/>
+        <action
+            android:id="@+id/action_eveningStudyFragment_to_eveningStudyWriteFragment"
+            app:destination="@id/eveningStudyWriteFragment"
+            app:popUpTo="@id/eveningStudyFragment"/>
+    </fragment>
+    <fragment
         android:id="@+id/lostFoundFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.main.LostFoundFragment"
         android:label="LostFoundFragment" >
@@ -269,4 +294,32 @@
         android:id="@+id/songSearchFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.search.SongSearchFragment"
         android:label="SongSearchFragment" />
+    <fragment
+        android:id="@+id/eveningStudyDetailFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.eveningstudy.detail.EveningStudyDetailFragment"
+        android:label="EveningStudyDetailFragment">
+        <argument
+            android:name="id"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_eveningStudyDetailFragment_to_eveningStudyWriteFragment"
+            app:destination="@id/eveningStudyWriteFragment"
+            app:popUpTo="@id/eveningStudyDetailFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/eveningStudyWriteFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.eveningstudy.write.EveningStudyWriteFragment"
+        android:label="fragment_evening_study_write"
+        tools:layout="@layout/fragment_evening_study_write" >
+        <argument
+            android:name="eveningStudyItem"
+            app:argType="kr.hs.dgsw.smartschool.domain.model.eveningstudy.EveningStudyItem"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_eveningStudyWriteFragment_to_studyRoomApplyFragment"
+            app:destination="@id/studyRoomApplyFragment"
+            app:popUpTo="@id/eveningStudyWriteFragment"/>
+    </fragment>
 </navigation>
