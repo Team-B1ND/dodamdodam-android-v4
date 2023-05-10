@@ -23,8 +23,8 @@ fun OutItemResponse.toModel(): OutItem = OutItem(
 )
 
 fun OutStatusResponse.toModel(): OutStatus = when (this.name) {
-    OutStatus.ALLOWED.name -> OutStatus.ALLOWED
-    OutStatus.DENIED.name -> OutStatus.DENIED
+    OutStatusResponse.ALLOWED.name -> OutStatus.ALLOWED
+    OutStatusResponse.DENIED.name -> OutStatus.DENIED
     else -> OutStatus.PENDING
 }
 

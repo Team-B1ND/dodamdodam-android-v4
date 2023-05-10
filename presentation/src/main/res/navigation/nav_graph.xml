@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/main_home">
     <fragment
@@ -32,8 +33,13 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/main_home" />
         <action
-            android:id="@+id/action_main_home_to_lostFoundFragment"
-            app:destination="@id/lostFoundFragment" />
+            android:id="@+id/action_main_home_to_nightStudyFragment"
+            app:destination="@id/nightStudyFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/main_home" />
     </fragment>
     <fragment
         android:id="@+id/main_profile"
@@ -59,6 +65,14 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@id/main_profile" />
+        <action
+            android:id="@+id/action_main_profile_to_lostFoundFragment"
+            app:destination="@id/lostFoundFragment"
+            app:popUpTo="@id/main_profile"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
 
     </fragment>
     <fragment
@@ -112,6 +126,10 @@
             android:name="timeTable"
             android:defaultValue="0"
             app:argType="integer" />
+        <argument
+            android:name="isNightStudyPlace"
+            app:argType="boolean"
+            android:defaultValue="false"/>
     </fragment>
     <fragment
         android:id="@+id/songApplyFragment"
@@ -224,18 +242,47 @@
             app:argType="integer" />
     </fragment>
     <fragment
+        android:id="@+id/nightStudyFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.nightstudy.NightStudyFragment"
+        android:label="NightStudyFragment">
+
+        <action
+            android:id="@+id/action_nightStudyFragment_to_nightStudyWriteFragment"
+            app:destination="@id/nightStudyWriteFragment"
+            app:popUpTo="@id/nightStudyFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment
         android:id="@+id/lostFoundFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.lostfound.main.LostFoundFragment"
         android:label="LostFoundFragment" >
         <action
             android:id="@+id/action_lostFoundFragment_to_lostFoundCommentFragment"
-            app:destination="@id/lostFoundCommentFragment" />
+            app:popUpTo="@id/lostFoundFragment"
+            app:destination="@id/lostFoundCommentFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action
             android:id="@+id/action_lostFoundFragment_to_lostFoundWriteFragment"
-            app:destination="@id/lostFoundWriteFragment" />
+            app:destination="@id/lostFoundWriteFragment"
+            app:popUpTo="@id/lostFoundFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action
             android:id="@+id/action_lostFoundFragment_to_lostFoundUpdateFragment"
-            app:destination="@id/lostFoundUpdateFragment" >
+            app:destination="@id/lostFoundUpdateFragment"
+            app:popUpTo="@id/lostFoundFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
         </action>
         <argument
             android:name="id"
@@ -269,4 +316,8 @@
         android:id="@+id/songSearchFragment"
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.search.SongSearchFragment"
         android:label="SongSearchFragment" />
+    <fragment
+        android:id="@+id/nightStudyWriteFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.nightstudy.write.NightStudyWriteFragment"
+        android:label="fragment_night_study_write" />
 </navigation>

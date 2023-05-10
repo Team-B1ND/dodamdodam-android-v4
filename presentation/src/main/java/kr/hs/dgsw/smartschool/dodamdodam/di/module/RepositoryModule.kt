@@ -14,6 +14,7 @@ import kr.hs.dgsw.smartschool.data.repository.FileUploadRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.ItMapRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.LostFoundRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.MealRepositoryImpl
+import kr.hs.dgsw.smartschool.data.repository.NightStudyRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.OutRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.PlaceRepositoryImpl
 import kr.hs.dgsw.smartschool.data.repository.PointRepositoryImpl
@@ -34,6 +35,7 @@ import kr.hs.dgsw.smartschool.domain.repository.FileUploadRepository
 import kr.hs.dgsw.smartschool.domain.repository.ItMapRepository
 import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
 import kr.hs.dgsw.smartschool.domain.repository.MealRepository
+import kr.hs.dgsw.smartschool.domain.repository.NightStudyRepository
 import kr.hs.dgsw.smartschool.domain.repository.OutRepository
 import kr.hs.dgsw.smartschool.domain.repository.PlaceRepository
 import kr.hs.dgsw.smartschool.domain.repository.PointRepository
@@ -120,6 +122,10 @@ class RepositoryModule {
     @Singleton
     @Provides
     fun provideOutRepository(outRepositoryImpl: OutRepositoryImpl): OutRepository = outRepositoryImpl
+
+    @Singleton
+    @Provides
+    fun provideNightRepository(nightStudyRepositoryImpl: NightStudyRepositoryImpl): NightStudyRepository = nightStudyRepositoryImpl
 
     @Singleton
     @Provides

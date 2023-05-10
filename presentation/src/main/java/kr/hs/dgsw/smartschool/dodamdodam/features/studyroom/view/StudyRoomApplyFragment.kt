@@ -1,7 +1,6 @@
 package kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.view
 
 import android.widget.LinearLayout
-import androidx.core.view.get
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -21,7 +20,6 @@ import kotlin.collections.ArrayList
 @AndroidEntryPoint
 class StudyRoomApplyFragment :
     BaseFragment<FragmentStudyRoomApplyBinding, StudyRoomApplyViewModel>() {
-
     override val viewModel: StudyRoomApplyViewModel by viewModels()
     private lateinit var placeAdapter: PlaceAdapter
 
@@ -38,7 +36,6 @@ class StudyRoomApplyFragment :
         collectPlace()
         collectApplyLocation()
         collectMyLocation()
-
         viewModel.currentCheckPlaces.observe(this) {
             PlaceAdapter.currentPlace.value = it[viewModel.currentTime.value ?: 0]
         }

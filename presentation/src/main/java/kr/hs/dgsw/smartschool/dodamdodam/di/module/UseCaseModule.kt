@@ -11,6 +11,7 @@ import kr.hs.dgsw.smartschool.domain.repository.FileUploadRepository
 import kr.hs.dgsw.smartschool.domain.repository.ItMapRepository
 import kr.hs.dgsw.smartschool.domain.repository.LostFoundRepository
 import kr.hs.dgsw.smartschool.domain.repository.MealRepository
+import kr.hs.dgsw.smartschool.domain.repository.NightStudyRepository
 import kr.hs.dgsw.smartschool.domain.repository.OutRepository
 import kr.hs.dgsw.smartschool.domain.repository.SongRepository
 import kr.hs.dgsw.smartschool.domain.repository.StudentRepository
@@ -53,6 +54,10 @@ import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.member.GetMyInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.member.ModifyMemberInfo
+import kr.hs.dgsw.smartschool.domain.usecase.nightstudy.ApplyNightStudy
+import kr.hs.dgsw.smartschool.domain.usecase.nightstudy.DeleteNightStudy
+import kr.hs.dgsw.smartschool.domain.usecase.nightstudy.GetMyNightStudy
+import kr.hs.dgsw.smartschool.domain.usecase.nightstudy.NightStudyUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutGoing
 import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutSleeping
 import kr.hs.dgsw.smartschool.domain.usecase.out.DeleteOutGoing
@@ -218,6 +223,15 @@ class UseCaseModule {
             deleteOutSleeping = DeleteOutSleeping(outRepository),
             modifyOutGoing = ModifyOutGoing(outRepository),
             modifyOutSleeping = ModifyOutSleeping(outRepository)
+        )
+
+    @Provides
+    @Singleton
+    fun provideNightUseCases(nightStudyRepository: NightStudyRepository): NightStudyUseCases =
+        NightStudyUseCases(
+            applyNightStudy = ApplyNightStudy(nightStudyRepository),
+            deleteNightStudy = DeleteNightStudy(nightStudyRepository),
+            getMyNightStudy = GetMyNightStudy(nightStudyRepository),
         )
 
     @Provides

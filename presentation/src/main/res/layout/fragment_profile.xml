@@ -484,6 +484,67 @@
                             </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.cardview.widget.CardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.cardview.widget.CardView
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/card_lost_found"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="@dimen/default_margin"
+                        android:onClick="@{() -> vm.onClickLostFound()}"
+                        app:cardCornerRadius="@dimen/card_corner"
+                        app:cardElevation="@dimen/card_elevation"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/layout_more"
+                        app:layout_constraintTop_toBottomOf="@id/layout_more">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/default_card_content_margin">
+
+                            <TextView
+                                android:id="@+id/tv_lost_found"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_bold"
+                                android:includeFontPadding="false"
+                                android:text="@string/title_lost_and_found"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/card_title"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/tv_lost_found_desc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/text_lost_and_found"
+                                android:textColor="@color/gray700"
+                                android:textSize="@dimen/card_content"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/tv_lost_found" />
+
+                            <ImageView
+                                android:layout_marginTop="25dp"
+                                android:id="@+id/iv_lost_found"
+                                android:layout_width="@dimen/default_card_icon_size"
+                                android:layout_height="@dimen/default_card_icon_size"
+                                android:src="@drawable/ic_face_screaming"
+                                app:layout_constraintTop_toBottomOf="@id/tv_lost_found_desc"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                tools:ignore="ContentDescription" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="150dp"
+                        app:layout_constraintTop_toBottomOf="@id/card_lost_found"
+                        />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

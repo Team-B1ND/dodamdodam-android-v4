@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_background"
-        tools:context=".view.fragment.OffbaseFragment">
+        tools:context=".view.fragment.outbaseFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_title_out"
@@ -32,7 +32,7 @@
                 android:onClick="@{() -> vm.onClickBack()}" />
 
             <TextView
-                android:id="@+id/tv_lost_found_write_title"
+                android:id="@+id/tv_out_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/noto_regular"
