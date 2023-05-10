@@ -13,4 +13,5 @@ object Plugins {
     const val jetbrainsAndroid = "org.jetbrains.kotlin.android"
     const val jetbrainsJvm = "org.jetbrains.kotlin.jvm"
     const val kotlinKapt = "kotlin-kapt"
+    const val jetbrainsKotlinAndroid = "org.jetbrains.kotlin.android"
 }

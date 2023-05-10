@@ -13,7 +13,7 @@ data class NightStudyItem(
     val place: String,
     val reason: String,
     val startAt: String,
-    val NightStudyStudyStudentResponse: NightStudyStudentItem?
+    val nightStudyStudentItem: NightStudyStudentItem?
 ) {
     constructor() : this(
         NightStudyStatus.PENDING,
@@ -26,11 +26,6 @@ data class NightStudyItem(
         "",
         "",
         "",
-        NightStudyStudentItem(
-            0,
-            "",
-            0,
-            0
-        )
+        NightStudyStudentItem()
     )
 }

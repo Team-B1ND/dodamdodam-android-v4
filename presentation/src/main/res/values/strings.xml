@@ -189,7 +189,6 @@
     <string name="text_test">test</string>
     <string name="dauth_login">로그인</string>
     <string name="dodam">도담도담 </string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -18,7 +18,7 @@ fun NightStudyResponse.toModel(): NightStudyItem = NightStudyItem(
     place = this.place,
     reason = this.reason,
     startAt = this.startAt,
-    NightStudyStudyStudentResponse = this.NightStudyStudyStudentResponse?.toModel()
+    nightStudyStudentItem = this.NightStudyStudyStudentResponse?.toModel()
 )
 
 fun NightStudyStudentResponse.toModel(): NightStudyStudentItem = NightStudyStudentItem(

@@ -10,8 +10,8 @@ import javax.inject.Inject
 class NightStudyRepositoryImpl @Inject constructor(
     private val nightStudyDataSource: NightStudyDataSource
 ) : NightStudyRepository {
-    override suspend fun applyNightStudy(context: String, endAt: String, isPhone: Boolean, placeId: Int, reason: String, startAt: String): NightStudyItem {
-        return nightStudyDataSource.applyNightStudy(NightStudyRequest(context, endAt, isPhone, placeId, reason, startAt)).toModel()
+    override suspend fun applyNightStudy(content: String, endAt: String, isPhone: Boolean, placeId: Int, reason: String, startAt: String): NightStudyItem {
+        return nightStudyDataSource.applyNightStudy(NightStudyRequest(content, endAt, isPhone, placeId, reason, startAt)).toModel()
     }
 
     override suspend fun deleteNightStudy(nightStudyId: Int): String {

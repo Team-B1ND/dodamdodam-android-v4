@@ -5,4 +5,11 @@ data class NightStudyStudentItem(
     val name: String,
     val number: Int,
     val room: Int
-)
+) {
+    constructor() : this(
+        0,
+        "",
+        0,
+        0
+    )
+}
