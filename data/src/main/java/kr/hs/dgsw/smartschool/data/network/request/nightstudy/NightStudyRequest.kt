@@ -1,10 +1,12 @@
 package kr.hs.dgsw.smartschool.data.network.request.nightstudy
 
+import com.google.gson.annotations.SerializedName
+
 data class NightStudyRequest(
-    val content: String,
-    val endAt: String,
-    val isPhone: Boolean,
-    val placeId: Int,
-    val reason: String,
-    val startAt: String
+    @SerializedName("content")val content: String,
+    @SerializedName("endAt")val endAt: String,
+    @SerializedName("isPhone")val isPhone: Boolean,
+    @SerializedName("placeId")val placeId: Int,
+    @SerializedName("reason")val reason: String,
+    @SerializedName("startAt")val startAt: String
 )
