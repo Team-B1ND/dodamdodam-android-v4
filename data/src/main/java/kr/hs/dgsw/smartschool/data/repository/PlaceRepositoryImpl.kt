@@ -13,4 +13,8 @@ class PlaceRepositoryImpl @Inject constructor(
     override suspend fun getAllPlace(): List<Place> {
         return placeDataSource.getAllPlace().map { placeEntity -> placeEntity.toModel() }
     }
+
+    override suspend fun getDormitoryPlace(): List<Place> {
+        return placeDataSource.getDormitoryPlace().map { placeEntity -> placeEntity.toModel() }
+    }
 }

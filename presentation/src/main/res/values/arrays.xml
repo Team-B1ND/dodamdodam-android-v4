@@ -46,4 +46,13 @@
         <item>금요일</item>
         <item>토요일</item>
     </string-array>
+
+    <string-array name="night_study_room_array">
+        <item>프로그래밍 1실</item>
+        <item>프로그래밍 2실</item>
+        <item>프로그래밍 3실</item>
+        <item>국어학습실</item>
+        <item>사회학습실</item>
+        <item>수학학습실</item>
+    </string-array>
 </resources>

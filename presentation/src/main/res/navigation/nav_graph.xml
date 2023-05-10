@@ -33,8 +33,8 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@id/main_home" />
         <action
-            android:id="@+id/action_main_home_to_eveningStudyFragment"
-            app:destination="@id/eveningStudyFragment"
+            android:id="@+id/action_main_home_to_nightStudyFragment"
+            app:destination="@id/nightStudyFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -65,6 +65,14 @@
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@id/main_profile" />
+        <action
+            android:id="@+id/action_main_profile_to_lostFoundFragment"
+            app:destination="@id/lostFoundFragment"
+            app:popUpTo="@id/main_profile"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
 
     </fragment>
     <fragment
@@ -119,7 +127,7 @@
             android:defaultValue="0"
             app:argType="integer" />
         <argument
-            android:name="isEveningStudyPlace"
+            android:name="isNightStudyPlace"
             app:argType="boolean"
             android:defaultValue="false"/>
     </fragment>
@@ -234,19 +242,18 @@
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/eveningStudyFragment"
-        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.eveningstudy.EveningStudyFragment"
-        tools:layout="EveningStudyFragment"
-        >
+        android:id="@+id/nightStudyFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.nightstudy.NightStudyFragment"
+        android:label="NightStudyFragment">
 
         <action
-            android:id="@+id/action_eveningStudyFragment_to_eveningStudyDetailFragment"
-            app:destination="@id/eveningStudyDetailFragment"
-            app:popUpTo="@id/eveningStudyFragment"/>
-        <action
-            android:id="@+id/action_eveningStudyFragment_to_eveningStudyWriteFragment"
-            app:destination="@id/eveningStudyWriteFragment"
-            app:popUpTo="@id/eveningStudyFragment"/>
+            android:id="@+id/action_nightStudyFragment_to_nightStudyWriteFragment"
+            app:destination="@id/nightStudyWriteFragment"
+            app:popUpTo="@id/nightStudyFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <fragment
         android:id="@+id/lostFoundFragment"
@@ -254,13 +261,28 @@
         android:label="LostFoundFragment" >
         <action
             android:id="@+id/action_lostFoundFragment_to_lostFoundCommentFragment"
-            app:destination="@id/lostFoundCommentFragment" />
+            app:popUpTo="@id/lostFoundFragment"
+            app:destination="@id/lostFoundCommentFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action
             android:id="@+id/action_lostFoundFragment_to_lostFoundWriteFragment"
-            app:destination="@id/lostFoundWriteFragment" />
+            app:destination="@id/lostFoundWriteFragment"
+            app:popUpTo="@id/lostFoundFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action
             android:id="@+id/action_lostFoundFragment_to_lostFoundUpdateFragment"
-            app:destination="@id/lostFoundUpdateFragment" >
+            app:destination="@id/lostFoundUpdateFragment"
+            app:popUpTo="@id/lostFoundFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
         </action>
         <argument
             android:name="id"
@@ -295,31 +317,7 @@
         android:name="kr.hs.dgsw.smartschool.dodamdodam.features.song.search.SongSearchFragment"
         android:label="SongSearchFragment" />
     <fragment
-        android:id="@+id/eveningStudyDetailFragment"
-        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.eveningstudy.detail.EveningStudyDetailFragment"
-        android:label="EveningStudyDetailFragment">
-        <argument
-            android:name="id"
-            android:defaultValue="0"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_eveningStudyDetailFragment_to_eveningStudyWriteFragment"
-            app:destination="@id/eveningStudyWriteFragment"
-            app:popUpTo="@id/eveningStudyDetailFragment"/>
-    </fragment>
-    <fragment
-        android:id="@+id/eveningStudyWriteFragment"
-        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.eveningstudy.write.EveningStudyWriteFragment"
-        android:label="fragment_evening_study_write"
-        tools:layout="@layout/fragment_evening_study_write" >
-        <argument
-            android:name="eveningStudyItem"
-            app:argType="kr.hs.dgsw.smartschool.domain.model.eveningstudy.EveningStudyItem"
-            app:nullable="true"
-            android:defaultValue="@null" />
-        <action
-            android:id="@+id/action_eveningStudyWriteFragment_to_studyRoomApplyFragment"
-            app:destination="@id/studyRoomApplyFragment"
-            app:popUpTo="@id/eveningStudyWriteFragment"/>
-    </fragment>
+        android:id="@+id/nightStudyWriteFragment"
+        android:name="kr.hs.dgsw.smartschool.dodamdodam.features.nightstudy.write.NightStudyWriteFragment"
+        android:label="fragment_night_study_write" />
 </navigation>

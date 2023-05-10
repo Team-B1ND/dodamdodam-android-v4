@@ -163,7 +163,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/cv_out_sleeping" />
 
                     <LinearLayout
-                        android:id="@+id/evening_study_layout"
+                        android:id="@+id/out_going_layout"
                         visibility="@{vm.isOutGoing()}"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"

@@ -9,12 +9,12 @@ import kr.hs.dgsw.smartschool.data.database.sharedpreferences.SharedPreferenceMa
 import kr.hs.dgsw.smartschool.data.network.api.BannerApi
 import kr.hs.dgsw.smartschool.data.network.api.BusApi
 import kr.hs.dgsw.smartschool.data.network.api.ClassInfoApi
-import kr.hs.dgsw.smartschool.data.network.api.EveningStudyApi
 import kr.hs.dgsw.smartschool.data.network.api.FileUploadApi
 import kr.hs.dgsw.smartschool.data.network.api.ItMapApi
 import kr.hs.dgsw.smartschool.data.network.api.LostFoundApi
 import kr.hs.dgsw.smartschool.data.network.api.MealApi
 import kr.hs.dgsw.smartschool.data.network.api.MemberApi
+import kr.hs.dgsw.smartschool.data.network.api.NightStudyApi
 import kr.hs.dgsw.smartschool.data.network.api.OutApi
 import kr.hs.dgsw.smartschool.data.network.api.PlaceApi
 import kr.hs.dgsw.smartschool.data.network.api.PointApi
@@ -26,12 +26,12 @@ import kr.hs.dgsw.smartschool.data.network.remote.AuthRemote
 import kr.hs.dgsw.smartschool.data.network.remote.BannerRemote
 import kr.hs.dgsw.smartschool.data.network.remote.BusRemote
 import kr.hs.dgsw.smartschool.data.network.remote.ClassInfoRemote
-import kr.hs.dgsw.smartschool.data.network.remote.EveningStudyRemote
 import kr.hs.dgsw.smartschool.data.network.remote.FileUploadRemote
 import kr.hs.dgsw.smartschool.data.network.remote.ItMapRemote
 import kr.hs.dgsw.smartschool.data.network.remote.LostFoundRemote
 import kr.hs.dgsw.smartschool.data.network.remote.MealRemote
 import kr.hs.dgsw.smartschool.data.network.remote.MemberRemote
+import kr.hs.dgsw.smartschool.data.network.remote.NightStudyRemote
 import kr.hs.dgsw.smartschool.data.network.remote.OutRemote
 import kr.hs.dgsw.smartschool.data.network.remote.PlaceRemote
 import kr.hs.dgsw.smartschool.data.network.remote.PointRemote
@@ -44,7 +44,6 @@ import kr.hs.dgsw.smartschool.dodamdodam.R
 import kr.hs.dgsw.smartschool.dodamdodam.di.OtherRemoteRetrofit
 import kr.hs.dgsw.smartschool.dodamdodam.di.YouTubeRemoteRetrofit
 import retrofit2.Retrofit
-import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -129,8 +128,8 @@ class RemoteModule {
 
     @Singleton
     @Provides
-    fun provideEveningStudyRemote(@OtherRemoteRetrofit retrofit: Retrofit): EveningStudyRemote =
-        EveningStudyRemote(retrofit.create(EveningStudyApi::class.java))
+    fun provideNightStudyRemote(@OtherRemoteRetrofit retrofit: Retrofit): NightStudyRemote =
+        NightStudyRemote(retrofit.create(NightStudyApi::class.java))
 
     @Singleton
     @Provides

@@ -112,8 +112,8 @@ class HomeViewModel @Inject constructor(
     fun onClickItMap() {
         viewEvent(ON_CLICK_ITMAP)
     }
-    fun onClickEveningStudy() {
-        viewEvent(ON_CLICK_EVENING_STUDY)
+    fun onClickNightStudy() {
+        viewEvent(ON_CLICK_NIGHT_STUDY)
     }
 
     companion object {
@@ -121,6 +121,6 @@ class HomeViewModel @Inject constructor(
         const val ON_CLICK_MEAL_MORE = 1
         const val ON_CLICK_OUT = 2
         const val ON_CLICK_ITMAP = 3
-        const val ON_CLICK_EVENING_STUDY = 4
+        const val ON_CLICK_NIGHT_STUDY = 4
     }
 }

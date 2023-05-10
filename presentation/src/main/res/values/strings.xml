@@ -42,12 +42,12 @@
     <string name="penalty_point">벌점</string>
     <string name="title_out">외출/외박</string>
     <string name="title_bus">버스 신청</string>
-    <string name="title_evening_study">심자</string>
-    <string name="text_evening_study_phone">휴대폰 필요 여부</string>
-    <string name="title_evening_study_write">심자 신청</string>
-    <string name="text_evening_study_place">심자 장소</string>
-    <string name="text_evening_date_start">시작 날짜</string>
-    <string name="text_evening_date_end">종료 날짜</string>
+    <string name="title_night_study">심자</string>
+    <string name="text_night_study_phone">휴대폰 필요 여부</string>
+    <string name="title_night_study_write">심자 신청</string>
+    <string name="text_night_study_place">심자 장소</string>
+    <string name="text_night_date_start">시작 날짜</string>
+    <string name="text_night_date_end">종료 날짜</string>
     <string name="text_out_desc">설마 무단 외출은 아니지?</string>
     <string name="text_bus_desc">드디어 집 갈 시간!</string>
     <string name="apply">신청하기</string>
@@ -82,6 +82,7 @@
     <string name="title_baek_rank">백랭</string>
     <string name="title_lost_and_found">분실물 찾기</string>
     <string name="text_lost_and_found">내 물건 찾아줘..</string>
+    <string name="text_night_study">심자 신청도 도담에서!</string>
     <string name="title_it_map">여기 선배 it을 지도?</string>
     <string name="text_it_map_desc">졸업한 선배의 회사를 알고싶다면</string>
     <string name="text_search">검색</string>
@@ -139,7 +140,7 @@
     <string name="text_please_apply_song">기상송을 신청해주세요</string>
     <string name="title_out_write">외출/외박 신청</string>
     <string name="text_no_out">신청된 외출/외박이 없어요</string>
-    <string name="text_no_evening_study">신청한 심자가 없어요</string>
+    <string name="text_no_night_study">신청한 심자가 없어요</string>
     <string name="text_today_meal_calorie">오늘 삼시세끼 칼로리는?</string>
     <string name="text_is_right">위의 영상이 맞나요?</string>
     <string name="text_no">아니요</string>

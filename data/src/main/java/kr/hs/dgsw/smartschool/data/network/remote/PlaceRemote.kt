@@ -7,4 +7,6 @@ import kr.hs.dgsw.smartschool.data.network.response.place.PlaceResponse
 class PlaceRemote(override val api: PlaceApi) : BaseRemote<PlaceApi>() {
 
     suspend fun getAllPlace(): List<PlaceResponse> = api.getPlaces().data
+
+    suspend fun getDormitoryPlace(): List<PlaceResponse> = api.getDormitoryPlaces().data
 }

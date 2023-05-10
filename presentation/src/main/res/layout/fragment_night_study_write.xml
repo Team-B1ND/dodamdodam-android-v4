@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="kr.hs.dgsw.smartschool.dodamdodam.features.nightstudy.write.NightStudyWriteViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_background"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_title_out_write"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include
+                android:id="@+id/btn_back"
+                layout="@layout/item_back_button"
+                android:onClick="@{() -> vm.onClickBack()}" />
+
+            <TextView
+                android:id="@+id/tv_out_write"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/title_night_study_write"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/app_bar_title_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_back"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_out_going"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.03892944" />
+
+                    <include
+                        android:id="@+id/progress_loading"
+                        layout="@layout/item_loading_progressbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{vm.isLoading ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:layout_editor_absoluteY="8dp" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.96107054" />
+
+                    <EditText
+                        android:id="@+id/et_reason"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_offbase_write_edittext"
+                        android:fontFamily="@font/noto_regular"
+                        android:gravity="top"
+                        android:hint="학습내용(10자 이상)"
+                        android:importantForAutofill="no"
+                        android:includeFontPadding="false"
+                        android:inputType="textMultiLine"
+                        android:maxLength="250"
+                        android:layout_marginTop="16dp"
+                        android:padding="16dp"
+                        android:text="@={vm.nightStudyReason}"
+                        android:textSize="@dimen/default_edittext_text"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/progress_loading" />
+
+                    <LinearLayout
+                        android:id="@+id/out_going_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                        app:layout_constraintStart_toStartOf="@+id/guideline"
+                        app:layout_constraintTop_toBottomOf="@+id/et_reason"
+                        tools:visibility="visible">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/text_night_date_start"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/title4" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                mutableDateText="@{vm.startNightStudyDate}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="10dp"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/title4"
+                                tools:text="2021/07/17" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:onClick="@{() -> vm.onClickStartNightStudyDate()}"
+                                android:src="@drawable/ic_btn_calendar"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/text_night_date_end"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/title4" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" />
+
+                            <TextView
+                                mutableDateText="@{vm.endNightStudyDate}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginEnd="10dp"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/title4"
+                                tools:text="2021/07/17" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:onClick="@{() -> vm.onClickEndNightStudyDate()}"
+                                android:src="@drawable/ic_btn_calendar"
+                                tools:ignore="ContentDescription" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/text_night_study_place"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/title4" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <androidx.cardview.widget.CardView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginVertical="20dp"
+                                    android:layout_weight="1"
+                                    app:cardCornerRadius="@dimen/default_item_radius"
+                                    app:cardElevation="@dimen/card_small_elevation">
+
+                                    <LinearLayout
+                                        android:id="@+id/night_study_place"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        android:paddingVertical="2dp">
+
+                                        <Spinner
+                                            android:id="@+id/spinner"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="48dp"
+                                            />
+
+                                    </LinearLayout>
+                                </androidx.cardview.widget.CardView>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/noto_regular"
+                                android:includeFontPadding="false"
+                                android:text="@string/text_night_study_phone"
+                                android:layout_gravity="center_vertical"
+                                android:textColor="@color/color_black"
+                                android:textSize="@dimen/title4" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1" />
+
+                            <CheckBox
+                                android:id="@+id/cb_night_study_phone"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center_vertical"
+                                android:onClick="@{() -> vm.onClickIsNeedPhone()}"/>
+                        </LinearLayout>
+
+                        <EditText
+                            android:id="@+id/et_phone_reason"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/background_offbase_write_edittext"
+                            android:fontFamily="@font/noto_regular"
+                            android:hint="휴대폰 필요 이유"
+                            android:importantForAutofill="no"
+                            android:includeFontPadding="false"
+                            android:inputType="textMultiLine"
+                            android:maxLength="250"
+                            android:padding="16dp"
+                            android:paddingVertical="16dp"
+                            android:text="@={vm.nightStudyPhoneReason}"
+                            android:textSize="@dimen/default_edittext_text"
+                            android:visibility="@{vm.isNeedPhone() ? View.VISIBLE : View.GONE}"
+                            tools:layout_editor_absoluteY="74dp" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
+            android:id="@+id/btn_add_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:onClick="@{() -> vm.onClickNightStudyWrite()}"
+            android:text="@string/text_ok"
+            android:visibility="@{vm.isLoading ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2" />
+
+    </LinearLayout>
+</layout>

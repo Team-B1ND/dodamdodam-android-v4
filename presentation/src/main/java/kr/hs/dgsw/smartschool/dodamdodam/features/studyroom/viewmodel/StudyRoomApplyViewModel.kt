@@ -50,8 +50,6 @@ class StudyRoomApplyViewModel @Inject constructor(
     var myStudyRoomList = ArrayList<StudyRoom>()
     val currentCheckPlaces = MutableLiveData<List<Place?>>()
 
-    val eveningStudyPlace = MutableLiveData<Place>()
-
     private val isTimeTableLoading = MutableLiveData(false)
     private val isPlaceListLoading = MutableLiveData(false)
     private val isGetMyStudyRoomLoading = MutableLiveData(false)
