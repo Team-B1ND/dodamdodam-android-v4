@@ -117,7 +117,7 @@ class NightStudyWriteViewModel @Inject constructor(
                 return
             }
 
-            TimeUnit.DAYS.convert(endDate!!.time - startDate!!.time, TimeUnit.MILLISECONDS) > 14 -> {
+            TimeUnit.DAYS.convert(endDate!!.time - startDate!!.time, TimeUnit.MILLISECONDS) > 13 -> {
                 applyError("최대 2주까지만 선택 가능합니다")
                 return
             }
