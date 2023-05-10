@@ -6,7 +6,7 @@ object ProjectProperties {
     const val MIN_SDK_VERSION = 26
     const val TARGET_SDK_VERSION = 32
     const val VERSION_CODE = 60
-    const val VERSION_NAME = "2.1.1"
+    const val VERSION_NAME = "2.2.0"
     const val JVM_TARGET = "11"
     val JAVA_VERSION = JavaVersion.VERSION_11
 
