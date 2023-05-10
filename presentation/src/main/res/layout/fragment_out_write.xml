@@ -630,7 +630,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <kr.hs.dgsw.smartschool.dodamdodam.widget.DodamButton
-            android:id="@+id/btn_add_offbase"
+            android:id="@+id/btn_add_confirm"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginHorizontal="@dimen/default_margin"

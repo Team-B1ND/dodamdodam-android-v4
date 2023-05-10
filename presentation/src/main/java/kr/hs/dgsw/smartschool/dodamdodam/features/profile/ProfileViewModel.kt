@@ -82,10 +82,15 @@ class ProfileViewModel @Inject constructor(
         viewEvent(EVENT_ON_CLICK_SETTING)
     }
 
+    fun onClickLostFound() {
+        viewEvent(EVENT_ON_CLICK_LOST_FOUND)
+    }
+
     companion object {
         const val EVENT_CHANGE_SELECTED = 1
         const val EVENT_GO_EDIT_PROFILE = 2
         const val EVENT_ON_CLICK_BUS = 3
         const val EVENT_ON_CLICK_SETTING = 4
+        const val EVENT_ON_CLICK_LOST_FOUND = 5
     }
 }

@@ -20,6 +20,10 @@ class PlaceDataSource @Inject constructor(
             it.ifEmpty { getPlaceRemote() }
         }
 
+    suspend fun getDormitoryPlace(): List<PlaceResponse> =
+        remote.getDormitoryPlace()
+            .also { insertPlaceList(it) }
+
     private suspend fun insertAllClassInfoRemote() =
         remote.getAllPlace()
             .also { insertPlaceList(it) }

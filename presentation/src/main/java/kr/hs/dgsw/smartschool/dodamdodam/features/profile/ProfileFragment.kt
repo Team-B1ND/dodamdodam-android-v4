@@ -49,6 +49,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                 ProfileViewModel.EVENT_GO_EDIT_PROFILE -> startEditProfileFragment()
                 ProfileViewModel.EVENT_ON_CLICK_BUS -> findNavController().navigate(R.id.action_main_profile_to_busFragment)
                 ProfileViewModel.EVENT_ON_CLICK_SETTING -> findNavController().navigate(R.id.action_main_profile_to_settingFragment)
+                ProfileViewModel.EVENT_ON_CLICK_LOST_FOUND -> findNavController().navigate(R.id.action_main_profile_to_lostFoundFragment)
             }
         }
     }
