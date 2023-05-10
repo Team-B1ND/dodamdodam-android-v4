@@ -56,18 +56,7 @@ class NightStudyWriteFragment :
                 position: Int,
                 id: Long
             ) {
-
-                // 아이템이 클릭 되면 맨 위부터 position 0번부터 순서대로 동작하게 됩니다.
-                when (position) {
-                    0 -> setPlace(0)
-                    1 -> setPlace(1)
-                    2 -> setPlace(2)
-                    3 -> setPlace(3)
-                    4 -> setPlace(4)
-                    5 -> setPlace(5)
-                    else -> {
-                    }
-                }
+                setPlace(position)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
