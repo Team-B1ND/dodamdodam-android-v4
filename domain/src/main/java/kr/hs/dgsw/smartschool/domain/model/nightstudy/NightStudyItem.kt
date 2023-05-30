@@ -1,13 +1,11 @@
 package kr.hs.dgsw.smartschool.domain.model.nightstudy
 
-import java.util.Date
-
 data class NightStudyItem(
     val allowCheck: NightStudyStatus,
-    val checkedAt: Date?,
+    val checkedAt: String?,
     val content: String,
-    val createdAt: Date?,
-    val endAt: Date,
+    val createdAt: String,
+    val endAt: String,
     val id: Int,
     val isPhone: Boolean,
     val place: String,
@@ -17,10 +15,10 @@ data class NightStudyItem(
 ) {
     constructor() : this(
         NightStudyStatus.PENDING,
-        Date(),
         "",
-        null,
-        Date(),
+        "",
+        "",
+        "",
         0,
         false,
         "",

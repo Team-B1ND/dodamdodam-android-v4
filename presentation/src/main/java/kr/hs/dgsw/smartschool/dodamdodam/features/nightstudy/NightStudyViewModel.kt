@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.launch
 import kr.hs.dgsw.smartschool.dodamdodam.base.BaseViewModel
 import kr.hs.dgsw.smartschool.dodamdodam.features.nightstudy.state.NightStudyState
-import kr.hs.dgsw.smartschool.domain.usecase.nightgstudy.NightStudyUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.nightstudy.NightStudyUseCases
 import javax.inject.Inject
 
 @HiltViewModel
