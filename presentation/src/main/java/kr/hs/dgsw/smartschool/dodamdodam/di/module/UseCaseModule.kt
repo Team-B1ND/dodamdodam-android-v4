@@ -54,10 +54,10 @@ import kr.hs.dgsw.smartschool.domain.usecase.meal.MealUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.member.GetMyInfo
 import kr.hs.dgsw.smartschool.domain.usecase.member.MemberUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.member.ModifyMemberInfo
-import kr.hs.dgsw.smartschool.domain.usecase.nightgstudy.ApplyNightStudy
-import kr.hs.dgsw.smartschool.domain.usecase.nightgstudy.DeleteNightStudy
-import kr.hs.dgsw.smartschool.domain.usecase.nightgstudy.GetMyNightStudy
-import kr.hs.dgsw.smartschool.domain.usecase.nightgstudy.NightStudyUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.nightstudy.ApplyNightStudy
+import kr.hs.dgsw.smartschool.domain.usecase.nightstudy.DeleteNightStudy
+import kr.hs.dgsw.smartschool.domain.usecase.nightstudy.GetMyNightStudy
+import kr.hs.dgsw.smartschool.domain.usecase.nightstudy.NightStudyUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutGoing
 import kr.hs.dgsw.smartschool.domain.usecase.out.ApplyOutSleeping
 import kr.hs.dgsw.smartschool.domain.usecase.out.DeleteOutGoing

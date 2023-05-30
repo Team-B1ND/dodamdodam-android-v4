@@ -13,8 +13,8 @@ import kr.hs.dgsw.smartschool.dodamdodam.features.nightstudy.write.state.NightSt
 import kr.hs.dgsw.smartschool.dodamdodam.features.studyroom.state.GetPlaceState
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.dateTimeFormat
 import kr.hs.dgsw.smartschool.domain.model.nightstudy.NightStudyItem
-import kr.hs.dgsw.smartschool.domain.usecase.nightgstudy.ApplyNightStudy
-import kr.hs.dgsw.smartschool.domain.usecase.nightgstudy.NightStudyUseCases
+import kr.hs.dgsw.smartschool.domain.usecase.nightstudy.ApplyNightStudy
+import kr.hs.dgsw.smartschool.domain.usecase.nightstudy.NightStudyUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.place.GetDormitoryPlaceUseCase
 import java.util.Date
 import java.util.concurrent.TimeUnit

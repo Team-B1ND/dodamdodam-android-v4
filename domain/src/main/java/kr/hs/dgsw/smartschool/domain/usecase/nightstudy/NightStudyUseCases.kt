@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.domain.usecase.nightgstudy
+package kr.hs.dgsw.smartschool.domain.usecase.nightstudy
 
 data class NightStudyUseCases(
     val applyNightStudy: ApplyNightStudy,

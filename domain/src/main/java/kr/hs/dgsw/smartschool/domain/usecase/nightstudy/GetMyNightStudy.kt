@@ -1,4 +1,4 @@
-package kr.hs.dgsw.smartschool.domain.usecase.nightgstudy
+package kr.hs.dgsw.smartschool.domain.usecase.nightstudy
 
 import kotlinx.coroutines.flow.Flow
 import kr.hs.dgsw.smartschool.domain.base.NoParamUseCase
