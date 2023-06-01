@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/meal_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="170dp"
     android:background="@drawable/background_corner_radius"
     android:backgroundTint="@color/color_card_background">
 
