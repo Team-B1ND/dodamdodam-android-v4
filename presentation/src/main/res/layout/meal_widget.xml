@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/meal_layout"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:background="@drawable/background_corner_radius"
+    android:backgroundTint="@color/color_card_background">
+
+
+    <ImageView
+        android:id="@+id/iv_meal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|top"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_breakfast" />
+
+    <TextView
+        android:id="@+id/tv_meal_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|top"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/background_meal_name"
+        android:backgroundTint="@color/main"
+        android:fontFamily="@font/noto_regular"
+        android:includeFontPadding="false"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="3dp"
+        android:text="@string/meal_name_dummy"
+        android:textColor="@color/white"
+        android:textSize="@dimen/title6"
+        android:textStyle="bold"
+        tools:ignore="RelativeOverlap" />
+
+    <TextView
+        android:id="@+id/tv_meal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="16dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/noto_regular"
+        android:includeFontPadding="false"
+        android:text="@string/meal_dummy"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/title6" />
+
+</FrameLayout>
