@@ -70,7 +70,8 @@
         </activity>
 
         <receiver android:name=".features.meal.provider.MealWidgetProvider"
-            android:exported="true">
+            android:exported="true"
+            tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
