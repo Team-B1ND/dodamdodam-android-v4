@@ -71,7 +71,7 @@ class MealWidgetProvider : AppWidgetProvider() {
                 setImageViewResource(R.id.iv_meal, R.drawable.ic_lunch)
                 setTextViewText(R.id.tv_meal, meal.safeLunch)
                 setInt(R.id.tv_meal_name, "setBackgroundResource", R.drawable.background_meal_lunch)
-            } else if (currentTime < "20:00") {
+            } else {
                 setTextViewText(R.id.tv_meal_name, "석식")
                 setImageViewResource(R.id.iv_meal, R.drawable.ic_dinner)
                 setInt(R.id.tv_meal_name, "setBackgroundResource", R.drawable.background_meal_dinner)
