@@ -5,7 +5,11 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.os.Build
 import android.widget.RemoteViews
+import androidx.annotation.RequiresApi
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -65,14 +69,17 @@ class MealWidgetProvider : AppWidgetProvider() {
                 setTextViewText(R.id.tv_meal_name, "조식")
                 setImageViewResource(R.id.iv_meal, R.drawable.ic_breakfast)
                 setTextViewText(R.id.tv_meal, meal.safeBreakfast)
+                setInt(R.id.tv_meal_name, "setBackgroundResource", R.drawable.background_meal_breakfast)
+
             } else if (currentTime < "13:20") {
                 setTextViewText(R.id.tv_meal_name, "중식")
                 setImageViewResource(R.id.iv_meal, R.drawable.ic_lunch)
                 setTextViewText(R.id.tv_meal, meal.safeLunch)
+                setInt(R.id.tv_meal_name, "setBackgroundResource", R.drawable.background_meal_lunch)
             } else if (currentTime < "20:00") {
                 setTextViewText(R.id.tv_meal_name, "석식")
                 setImageViewResource(R.id.iv_meal, R.drawable.ic_dinner)
-                setTextViewText(R.id.tv_meal, meal.safeDinner)
+                setInt(R.id.tv_meal_name, "setBackgroundResource", R.drawable.background_meal_dinner)
             }
         }
 
