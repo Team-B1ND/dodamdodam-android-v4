@@ -18,9 +18,7 @@ import kr.hs.dgsw.smartschool.domain.usecase.nightstudy.NightStudyUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.place.GetDormitoryPlaceUseCase
 import java.time.LocalDateTime
 import java.time.LocalTime
-import java.time.ZoneId
 import java.time.ZoneOffset
-import java.util.Calendar
 import java.util.Date
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -139,7 +137,7 @@ class NightStudyWriteViewModel @Inject constructor(
                 applyError("심자 장소를 선택해주세요")
                 return
             }
-            LocalTime.now() > LocalTime.of(16,30) -> {
+            LocalTime.now() > LocalTime.of(16, 30) -> {
                 applyError("4시 30분 이후로는 심지 신청이 불가능 합니다")
             }
             else -> applyNightStudy(id)
