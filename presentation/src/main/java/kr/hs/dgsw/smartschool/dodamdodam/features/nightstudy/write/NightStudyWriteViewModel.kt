@@ -16,6 +16,11 @@ import kr.hs.dgsw.smartschool.domain.model.nightstudy.NightStudyItem
 import kr.hs.dgsw.smartschool.domain.usecase.nightstudy.ApplyNightStudy
 import kr.hs.dgsw.smartschool.domain.usecase.nightstudy.NightStudyUseCases
 import kr.hs.dgsw.smartschool.domain.usecase.place.GetDormitoryPlaceUseCase
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.ZoneId
+import java.time.ZoneOffset
+import java.util.Calendar
 import java.util.Date
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -44,6 +49,8 @@ class NightStudyWriteViewModel @Inject constructor(
     val nightStudyWriteState: SharedFlow<NightStudyWriteState> = _nightStudyWriteState
 
     init {
+        val targetDate = LocalDateTime.now().plusDays(12)
+        endNightStudyDate.value = Date.from(targetDate.toInstant(ZoneOffset.MIN))
         getDormitoryPlace()
     }
 
@@ -116,7 +123,6 @@ class NightStudyWriteViewModel @Inject constructor(
                 applyError("휴대폰 사용 사유는 250자 이하로 입력해주세요")
                 return
             }
-
             TimeUnit.DAYS.convert(endDate!!.time - startDate!!.time, TimeUnit.MILLISECONDS) > 13 -> {
                 applyError("최대 2주까지만 선택 가능합니다")
                 return
@@ -132,6 +138,9 @@ class NightStudyWriteViewModel @Inject constructor(
             id == null -> {
                 applyError("심자 장소를 선택해주세요")
                 return
+            }
+            LocalTime.now() > LocalTime.of(16,30) -> {
+                applyError("4시 30분 이후로는 심지 신청이 불가능 합니다")
             }
             else -> applyNightStudy(id)
         }
