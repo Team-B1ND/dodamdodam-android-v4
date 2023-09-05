@@ -41,11 +41,13 @@ class MealDataSource @Inject constructor(
                 mealList.add(map.value)
             }
 
-            cache.insertMealList(
-                mealList.toList().map { meal ->
-                    meal.toEntity()
-                }
-            )
+            if (!mealList.all { it.breakfast == null && it.lunch == null && it.dinner == null }) {
+                cache.insertMealList(
+                    mealList.toList().map { meal ->
+                        meal.toEntity()
+                    }
+                )
+            }
         }
 
     suspend fun getCalorieOfMeal(year: Int, month: Int, day: Int): Calorie {
@@ -80,10 +82,12 @@ class MealDataSource @Inject constructor(
                 calorieList.add(map.value)
             }
 
-            cache.insertCalorieList(
-                calorieList.toList().map { calorie ->
-                    calorie.toEntity()
-                }
-            )
+            if (!calorieList.all { it.breakfast == null && it.lunch == null && it.dinner == null }) {
+                cache.insertCalorieList(
+                    calorieList.toList().map { calorie ->
+                        calorie.toEntity()
+                    }
+                )
+            }
         }
 }
