@@ -138,7 +138,7 @@ class NightStudyWriteViewModel @Inject constructor(
                 return
             }
             LocalTime.now() > LocalTime.of(16, 30) -> {
-                applyError("4시 30분 이후로는 심지 신청이 불가능 합니다")
+                applyError("4시 30분 이후로는 심자 신청이 불가능 합니다")
             }
             else -> applyNightStudy(id)
         }
