@@ -65,14 +65,16 @@ class MealWidgetProvider : AppWidgetProvider() {
                 setTextViewText(R.id.tv_meal_name, "조식")
                 setImageViewResource(R.id.iv_meal, R.drawable.ic_breakfast)
                 setTextViewText(R.id.tv_meal, meal.safeBreakfast)
+                setInt(R.id.tv_meal_name, "setBackgroundResource", R.drawable.background_meal_breakfast)
             } else if (currentTime < "13:20") {
                 setTextViewText(R.id.tv_meal_name, "중식")
                 setImageViewResource(R.id.iv_meal, R.drawable.ic_lunch)
                 setTextViewText(R.id.tv_meal, meal.safeLunch)
-            } else if (currentTime < "20:00") {
+                setInt(R.id.tv_meal_name, "setBackgroundResource", R.drawable.background_meal_lunch)
+            } else {
                 setTextViewText(R.id.tv_meal_name, "석식")
                 setImageViewResource(R.id.iv_meal, R.drawable.ic_dinner)
-                setTextViewText(R.id.tv_meal, meal.safeDinner)
+                setInt(R.id.tv_meal_name, "setBackgroundResource", R.drawable.background_meal_dinner)
             }
         }
 
