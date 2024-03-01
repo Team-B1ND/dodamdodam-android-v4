@@ -7,6 +7,7 @@ import kr.hs.dgsw.smartschool.dodamdodam.databinding.ActivityJoinBinding
 import kr.hs.dgsw.smartschool.dodamdodam.features.auth.join.detail.JoinDetailActivity
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.removeBlankInString
 import kr.hs.dgsw.smartschool.dodamdodam.widget.extension.shortToast
+import kr.hs.dgsw.smartschool.domain.util.Utils
 
 class JoinActivity : BaseActivity<ActivityJoinBinding, JoinViewModel>() {
     override val viewModel: JoinViewModel by viewModels()
@@ -30,7 +31,7 @@ class JoinActivity : BaseActivity<ActivityJoinBinding, JoinViewModel>() {
     private fun startSingUpDetailActivity() {
         val intent = Intent(this@JoinActivity, JoinDetailActivity::class.java)
         intent.putExtra("id", viewModel.id.value?.removeBlankInString())
-        intent.putExtra("pw", viewModel.pw.value?.removeBlankInString())
+        intent.putExtra("pw", Utils.encryptSHA512((viewModel.pw.value?:"").removeBlankInString()))
         startActivity(intent)
     }
 }
