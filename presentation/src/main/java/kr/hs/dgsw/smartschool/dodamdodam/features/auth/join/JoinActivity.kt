@@ -31,7 +31,7 @@ class JoinActivity : BaseActivity<ActivityJoinBinding, JoinViewModel>() {
     private fun startSingUpDetailActivity() {
         val intent = Intent(this@JoinActivity, JoinDetailActivity::class.java)
         intent.putExtra("id", viewModel.id.value?.removeBlankInString())
-        intent.putExtra("pw", Utils.encryptSHA512((viewModel.pw.value?:"").removeBlankInString()))
+        intent.putExtra("pw", Utils.encryptSHA512((viewModel.pw.value ?: "").removeBlankInString()))
         startActivity(intent)
     }
 }
